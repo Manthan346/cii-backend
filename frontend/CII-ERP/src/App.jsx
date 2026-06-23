@@ -1,15 +1,7 @@
-import { useState } from 'react'
-import './App.css'
+import LoginPage from "./components/LoginPage";
 
 function App() {
-  return (
-    <>
-    <h1>project starded</h1>
-    <h1>project 2 starded</h1>
-    </>
-  )
-
-  
+  return <LoginPage />;
 }
 
-export default App
+export default App;
