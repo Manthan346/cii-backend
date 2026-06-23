@@ -69,7 +69,7 @@ export default function Registration() {
       />
 
       <button type="submit">Submit</button>
-      <p className="login-page">Already have an acccount?<a href="">Login</a></p>
+      <p className="login-page">Already have an account? <a href="/">Login</a></p>
     </form>
   </div>
 );
