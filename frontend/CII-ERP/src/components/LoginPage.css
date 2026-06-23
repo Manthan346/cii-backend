@@ -86,7 +86,7 @@ body {
 }
 
 .login-btn {
-  width: 100%;
+  width: 80%;
   padding: 14px;
   background: #3575f6;
   color: white;
@@ -95,6 +95,9 @@ body {
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 
 .login-btn:hover {
@@ -115,6 +118,9 @@ body {
 .social-buttons {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .social-btn {
@@ -127,7 +133,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: -1px;
   font-size: 15px;
   color: #333;
   font-weight: 500;

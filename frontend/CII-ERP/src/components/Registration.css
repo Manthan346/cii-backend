@@ -1,0 +1,77 @@
+/* Page center alignment */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* Main container */
+.form-container {
+  width: 700px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form box */
+form {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+input {
+  width: 300px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.3s ease;
+  outline: none;
+}
+
+/* Focus effect */
+input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+/* Submit button */
+button {
+  width: 250px;
+  padding: 12px;
+  margin-top: 15px;
+  margin-left: 35px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Hover effect */
+button:hover {
+  background: #357abd;
+}
+
+/* Optional: form heading */
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.login-page{
+ margin-left: 3rem ;
+}
+
+.login-page a{
+    text-decoration: none;
+}

@@ -57,7 +57,7 @@ function LoginPage() {
           </div>
 
           <p className="signup-text">
-            Don't have an account? <a href="/">Sign Up</a>
+            Don't have an account? <a href="/register">Sign Up</a>
           </p>
         </form>
       </div>
