@@ -41,12 +41,15 @@ input:focus {
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
 }
 
+button:hover {
+  background: #357abd;
+}
 /* Submit button */
 button {
   width: 250px;
   padding: 12px;
   margin-top: 15px;
-  margin-left: 35px;
+  margin-left: 28px;
   background: #4a90e2;
   color: white;
   border: none;
@@ -69,9 +72,38 @@ h2 {
 }
 
 .login-page{
- margin-left: 3rem ;
+ margin-left: 2rem;
+  margin-top:0.9rem;
 }
 
 .login-page a{
     text-decoration: none;
+}
+
+.name-row {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.name-row input {
+  width: 145px;
+  margin: 0;
+}
+
+select {
+  width: 300px;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+  background: white;
+}
+
+select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
 }

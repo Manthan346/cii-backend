@@ -1,0 +1,21 @@
+.header{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:15px 40px;
+    background:white;
+}
+
+.header img{
+    height:80px;
+}
+
+.header-center{
+    text-align:center;
+}
+
+.header-center p{
+    margin-top:5px;
+    color:#2c2c74;
+    font-weight:600;
+}

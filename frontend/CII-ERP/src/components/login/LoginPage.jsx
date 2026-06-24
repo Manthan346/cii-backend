@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +33,7 @@ function LoginPage() {
               className="input-field"
             />
             <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
-              
+              <VisibilityIcon/>
             </span>
           </div>
 
@@ -50,14 +52,14 @@ function LoginPage() {
               <img src="https://www.facebook.com/favicon.ico" alt="Facebook" width="18" />
               Facebook
             </button>
-            <button type="button" className="social-btn">
+            <button type="button" className="social-btn google-btn">
               <img src="https://www.google.com/favicon.ico" alt="Google" width="18" />
               Google
             </button>
           </div>
 
           <p className="signup-text">
-            Don't have an account? <a href="/register">Sign Up</a>
+            Don't have an account?  <Link to="/Registration">Register</Link>
           </p>
         </form>
       </div>
