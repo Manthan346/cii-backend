@@ -2,31 +2,30 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-
-    min-height: 80vh;
-
-    padding: 40px;
-
-    background: linear-gradient(
-        135deg,
-        #0a2a73,
-        #123c8f
-    );
+    min-height: 85vh;
+    padding: 50px 40px;
+    background: linear-gradient(150deg, #06194a 0%, #0c2d72 55%, #1a4da8 100%);
+    gap: 40px;
 }
 
 .left-panel {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .right-panel {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (max-width: 900px) {
     .main-section {
         flex-direction: column;
-        gap: 40px;
+        padding: 40px 20px;
+        gap: 32px;
     }
 }
