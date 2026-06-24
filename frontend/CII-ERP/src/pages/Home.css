@@ -1,0 +1,32 @@
+.main-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    min-height: 80vh;
+
+    padding: 40px;
+
+    background: linear-gradient(
+        135deg,
+        #0a2a73,
+        #123c8f
+    );
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.right-panel {
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .main-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
