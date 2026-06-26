@@ -135,7 +135,7 @@ export default function Registration() {
         </div>
 
         {/* Role */}
-        <div className="reg-field reg-field-full">
+        {/* <div className="reg-field reg-field-full">
           <label className="reg-label">Role</label>
           <div className="reg-input-wrap">
             <span className="reg-input-icon">
@@ -161,7 +161,7 @@ export default function Registration() {
               <option value="Hostel Warden">Hostel Warden</option>
             </select>
           </div>
-        </div>
+        </div> */}
 
         {/* Password */}
         <div className="reg-field reg-field-full">
@@ -196,7 +196,7 @@ export default function Registration() {
 
         <p className="reg-login-text">
           Already have an account?{" "}
-          <Link to="/LoginPage" className="reg-login-link">Sign in</Link>
+          <Link to="/LoginPage" className="reg-login-link">Login</Link>
         </p>
       </form>
     </div>

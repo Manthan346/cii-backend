@@ -201,3 +201,35 @@
 .reg-login-link:hover {
   text-decoration: underline;
 }
+
+/* ── Responsive additions ── */
+@media (max-width: 900px) {
+  .reg-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 28px 24px;
+    box-shadow: 0 2px 20px rgba(6, 25, 74, 0.12);
+  }
+}
+
+@media (max-width: 480px) {
+  .reg-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  /* Stack name row on very small screens */
+  .reg-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .reg-row .reg-field {
+    margin-bottom: 14px;
+  }
+
+  .reg-title  { font-size: 20px; }
+  .reg-input  { font-size: 14px; padding: 12px 12px; }
+  .reg-select { font-size: 14px; padding: 12px 12px 12px 34px; }
+  .reg-submit-btn { font-size: 15px; padding: 13px; }
+}
