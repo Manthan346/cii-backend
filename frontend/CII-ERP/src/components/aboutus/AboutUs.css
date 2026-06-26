@@ -1,0 +1,178 @@
+/* ── About Us Section ── */
+.about-section {
+  background: #ffffff;
+  padding: 80px 60px;
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.about-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.about-eyebrow-line {
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: #f4c542;
+  border-radius: 2px;
+}
+
+.about-eyebrow-text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0c2d72;
+}
+
+.about-heading {
+  font-size: 38px;
+  font-weight: 800;
+  color: #06194a;
+  margin: 0 0 18px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.about-accent {
+  color: #1a4da8;
+}
+
+.about-intro {
+  max-width: 700px;
+  margin: 0 auto 52px;
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+/* ── Stats bar ── */
+.about-stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: linear-gradient(135deg, #06194a, #1a4da8);
+  border-radius: 16px;
+  padding: 36px 20px;
+  margin-bottom: 60px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.about-stat-item:last-child {
+  border-right: none;
+}
+
+.about-stat-num {
+  font-size: 38px;
+  font-weight: 800;
+  color: #f4c542;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.about-stat-lbl {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Pillar cards ── */
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 60px;
+}
+
+.about-pillar-card {
+  background: #f8fafc;
+  border: 1.5px solid #e8ecf4;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: default;
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(12, 45, 114, 0.1);
+  border-color: #c0ccdf;
+}
+
+.about-pillar-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.about-pillar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #06194a;
+  margin: 0 0 10px;
+}
+
+.about-pillar-desc {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Mission strip ── */
+.about-mission-strip {
+  background: #f0f4fb;
+  border-left: 5px solid #f4c542;
+  border-radius: 0 12px 12px 0;
+  padding: 28px 36px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.about-mission-quote {
+  font-size: 17px;
+  font-style: italic;
+  color: #1e3a6e;
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+
+.about-mission-attr {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0c2d72;
+  letter-spacing: 0.3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-section { padding: 60px 24px; }
+  .about-heading { font-size: 28px; }
+  .about-pillars { grid-template-columns: repeat(2, 1fr); }
+  .about-stats-bar { flex-wrap: wrap; gap: 24px; }
+  .about-stat-item { border-right: none; min-width: 40%; }
+}
+
+@media (max-width: 560px) {
+  .about-pillars { grid-template-columns: 1fr; }
+  .about-stat-item { min-width: 100%; }
+}

@@ -1,29 +1,68 @@
-import Header from "../components/header/Header";
-import Navbar from "../components/navbar/Navbar";
-import Registration from "../components/registration/Registration";
+import Header      from "../components/header/Header";
+import Navbar      from "../components/navbar/Navbar";
 import HeroSection from "../components/herosection/HeroSection";
+import AboutUs     from "../components/aboutus/AboutUs";
+import Courses     from "../components/courses/Courses";
+import Showcase    from "../components/showcase/Showcase";
+import Testimonials from "../components/testimonials/Testimonials";
+import Footer      from "../components/footer/Footer";
+import Registration from "../components/registration/Registration";
+import buildingImg  from "../assets/abvkvk.jpg";
 
 import "./Home.css";
 
 export default function Home() {
-    return (
-        <>
-            <Header />
+  return (
+    <>
+      <Header />
+      <Navbar />
 
-            <Navbar />
+      {/* ── Hero section: building image left, registration form right ── */}
+      <section className="main-section" id="home">
 
-            <section className="main-section">
+        {/* Left — building photo */}
+        <div className="hero-image-panel">
+          <img src={buildingImg} alt="ABVKVK Skill Centre" className="hero-building-img" />
+          {/* Overlay text on top of image */}
+          <div className="hero-image-overlay">
+            <p className="hero-overlay-tag">Atal Bihari Vajpayee Kaushalya Vikas Kendra</p>
+            <h1 className="hero-overlay-heading">
+              Making a Difference:<br />
+              Touching Lives of<br />
+              <span className="hero-overlay-accent">1 Million Youth</span><br />
+              Annually
+            </h1>
+            <div className="hero-overlay-stats">
+              <div className="hero-stat">
+                <span className="hero-stat-num">36+</span>
+                <span className="hero-stat-lbl">Centres</span>
+              </div>
+              <div className="hero-stat-div" />
+              <div className="hero-stat">
+                <span className="hero-stat-num">25+</span>
+                <span className="hero-stat-lbl">Programs</span>
+              </div>
+              <div className="hero-stat-div" />
+              <div className="hero-stat">
+                <span className="hero-stat-num">95%</span>
+                <span className="hero-stat-lbl">Placed</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div className="left-panel">
-                    <Registration />
-                </div>
+        {/* Right — registration form */}
+        <div className="hero-form-panel">
+          <Registration />
+        </div>
 
-                <div className="right-panel">
-                    <HeroSection />
-                </div>
+      </section>
 
-            </section>
-        </>
-    );
+      <AboutUs />
+      <Courses />
+      <Showcase />
+      <Testimonials />
+      <Footer />
+    </>
+  );
 }
-

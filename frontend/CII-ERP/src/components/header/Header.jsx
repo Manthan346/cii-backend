@@ -1,22 +1,14 @@
 import "./Header.css";
-import logo from "../../assets/Logo.png";
+// Change the line below to use relative pathing:
+import header_logo_1 from "../../assets/header_logo_1.png";
+import header_logo_3 from "../../assets/header_logo_3.png";
 
 export default function Header() {
-    return (
-        <header className="header">
-            <img src={logo} alt="Logo" />
+  return (
+    <header className="header">
+      <img src={header_logo_1} alt="Header-logo" />
 
-            <div className="header-center">
-                <h2>CII - Rahul Bajaj</h2>
-
-                <p>
-                    Centre of Excellence on Skills
-                    <br />
-                    Enhancing Workforce Productivity
-                </p>
-            </div>
-
-            <img src={logo} alt="Logo" />
-        </header>
-    );
+      <img src={header_logo_3} alt="Header-logo" />
+    </header>
+  );
 }

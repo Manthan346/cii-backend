@@ -1,17 +1,115 @@
-.navbar{
-    background:#0c2d72;
-    display:flex;
-    justify-content:center;
-    gap:70px;
-    padding:18px;
+.navbar {
+  background: #0c2d72;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: box-shadow 0.3s;
 }
 
-.navbar a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
+.navbar-scrolled {
+  box-shadow: 0 4px 20px rgba(6, 25, 74, 0.35);
 }
 
-.navbar a:hover{
-    color:#f4c542;
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  position: relative;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar-link {
+  position: relative;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 18px 16px;
+  letter-spacing: 0.2px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.navbar-link:hover {
+  color: #f4c542;
+}
+
+.navbar-link-active {
+  color: #f4c542 !important;
+}
+
+.navbar-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: #f4c542;
+  border-radius: 3px 3px 0 0;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Hamburger ── */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  margin: 0;
+}
+
+.ham-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── Mobile menu ── */
+.navbar-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #091e52;
+  padding: 8px 0 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.navbar-mobile-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-mobile-link:hover,
+.navbar-mobile-active {
+  color: #f4c542;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .navbar-links { display: none; }
+  .navbar-hamburger { display: flex; }
+  .navbar-inner { justify-content: flex-start; padding: 10px 20px; }
 }
