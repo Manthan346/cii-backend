@@ -1,12 +1,12 @@
-import Header      from "../components/header/Header";
-import Navbar      from "../components/navbar/Navbar";
-import HeroSection from "../components/herosection/HeroSection";
-import AboutUs     from "../components/aboutus/AboutUs";
-import Courses     from "../components/courses/Courses";
-import Showcase    from "../components/showcase/Showcase";
-import Testimonials from "../components/testimonials/Testimonials";
-import Footer      from "../components/footer/Footer";
-import Registration from "../components/registration/Registration";
+import Header      from "../components/homepage/header/Header";
+import Navbar      from "../components/homepage/navbar/Navbar";
+import HeroSection from "../components/homepage/herosection/HeroSection";
+import AboutUs     from "../components/homepage/aboutus/AboutUs";
+import Courses     from "../components/homepage/courses/Courses";
+import Showcase    from "../components/homepage/showcase/Showcase";
+import Testimonials from "../components/homepage/testimonials/Testimonials";
+import Footer      from "../components/homepage/footer/Footer";
+import Registration from "../components/homepage/registration/Registration";
 import buildingImg  from "../assets/abvkvk.jpg";
 
 import "./Home.css";
