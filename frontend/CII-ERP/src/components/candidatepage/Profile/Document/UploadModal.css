@@ -1,0 +1,98 @@
+/* UploadModal.css */
+
+.upload-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 39, 64, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+.upload-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 380px;
+  padding: 22px;
+  box-shadow: var(--shadow-hover);
+}
+
+.upload-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.upload-modal__header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.upload-modal__close {
+  background: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.upload-modal__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px dashed var(--blue-soft);
+  background: var(--blue-light);
+  border-radius: var(--radius-md);
+  padding: 26px 14px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  transition: background 0.15s;
+}
+
+.upload-modal__dropzone:hover {
+  background: var(--blue-soft);
+}
+
+.upload-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.upload-modal__btn {
+  border: none;
+  border-radius: 20px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.upload-modal__btn--ghost {
+  background: var(--bg);
+  color: var(--ink-soft);
+}
+
+.upload-modal__btn--primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.upload-modal__btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

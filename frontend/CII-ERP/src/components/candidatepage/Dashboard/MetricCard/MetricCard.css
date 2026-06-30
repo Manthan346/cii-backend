@@ -1,0 +1,67 @@
+/* MetricCard.css */
+
+/* ── Grid wrapper ── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ── Single card ── */
+.metric-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px 18px 18px;
+  border: 1px solid #E0E8F0;
+  box-shadow: 0 2px 10px rgba(0, 60, 126, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Icon box ── */
+.metric-card__icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* ── Animated number ── */
+.metric-card__value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A2740;
+  line-height: 1;
+}
+
+/* Suffix (%, h, etc.) rendered smaller */
+.metric-card__suffix {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A2740;
+}
+
+.metric-card__label {
+  font-size: 12.5px;
+  color: #6B7A94;
+  margin-top: 3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,133 @@
+/* GovtIdModal.css */
+
+.govt-id-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 39, 64, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+.govt-id-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 420px;
+  padding: 22px;
+  box-shadow: var(--shadow-hover);
+}
+
+.govt-id-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.govt-id-modal__header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.govt-id-modal__close {
+  background: var(--bg);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.govt-id-modal__subtext {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.govt-id-modal__picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.govt-id-modal__picker:hover {
+  background: var(--blue-light);
+  border-color: var(--blue-soft);
+}
+
+.govt-id-modal__picker-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.govt-id-modal__picker-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.govt-id-modal__picker-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.govt-id-modal__picker-file {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.govt-id-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.govt-id-modal__btn {
+  border: none;
+  border-radius: 20px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.govt-id-modal__btn--ghost {
+  background: var(--bg);
+  color: var(--ink-soft);
+}
+
+.govt-id-modal__btn--primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.govt-id-modal__btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

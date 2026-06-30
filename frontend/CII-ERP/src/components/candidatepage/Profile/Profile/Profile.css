@@ -1,0 +1,29 @@
+/* Profile.css */
+
+/* ── Layout shell ── */
+.profile-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ── Main content area (offset by sidebar width) ── */
+.profile-page__main {
+  margin-left: 240px;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Page body ── */
+.profile-page__body {
+  padding: 24px 28px 48px;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .profile-page__main {
+    margin-left: 0;
+  }
+}

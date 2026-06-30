@@ -1,0 +1,61 @@
+/* CourseList.css */
+
+/* ── Section heading row ── */
+.course-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.course-list__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A2740;
+  border-bottom: 2.5px solid #003C7E;
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+/* ── Scroll control buttons ── */
+.course-list__controls {
+  display: flex;
+  gap: 8px;
+}
+
+.course-list__scroll-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #E0E8F0;
+  background: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.course-list__scroll-btn:hover {
+  background: #E6EEF8;
+  border-color: #D0E3F5;
+}
+
+/* ── Horizontally scrollable track ── */
+.course-list__track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+/* ── Footer hint ── */
+.course-list__hint {
+  font-size: 12px;
+  color: #6B7A94;
+  margin-top: 8px;
+  text-align: right;
+}

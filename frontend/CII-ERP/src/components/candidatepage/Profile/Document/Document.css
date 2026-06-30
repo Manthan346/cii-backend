@@ -1,0 +1,141 @@
+/* Document.css */
+
+.document__card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.document__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.document__card-title {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.document__upload-new {
+  background: transparent;
+  border: none;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.document__upload-new:hover {
+  text-decoration: underline;
+}
+
+.document__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.document__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.document__item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.document__item-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.document__item-date {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.document__item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.document__badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+.document__badge--verified {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.document__badge--pending {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.document__upload-btn {
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.document__upload-btn:hover {
+  background: var(--blue-mid);
+}
+
+.document__chevron-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.document__subdocs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 16px 4px 44px;
+}
+
+.document__subdoc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.document__subdoc-row span {
+  font-weight: 600;
+  color: var(--ink);
+}

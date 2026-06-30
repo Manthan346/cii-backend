@@ -1,0 +1,37 @@
+/* MyCourses.css */
+
+/* ── Layout shell ── */
+.my-courses {
+  display: flex;
+  min-height: 100vh;
+  background: #F4F6FA;
+}
+
+/* ── Main content area (offset by sidebar width) ── */
+.my-courses__main {
+  margin-left: 240px;
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Page body (below topbar) ── */
+.my-courses__body {
+  padding: 28px 28px 48px;
+  flex: 1;
+  overflow-y: auto;
+  height: 0;
+}
+
+/* ── Responsive: full width when sidebar is hidden ── */
+@media (max-width: 900px) {
+  .my-courses__main {
+    margin-left: 0;
+  }
+
+  .my-courses__body {
+    padding: 20px 16px 40px;
+  }
+}
