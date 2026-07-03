@@ -8,7 +8,7 @@
 //   onUpload  {function({ pan: File, aadhar: File })}
 
 import { useState } from 'react';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './GovtIdModal.css';
 
 function FilePicker({ label, file, onChange }) {

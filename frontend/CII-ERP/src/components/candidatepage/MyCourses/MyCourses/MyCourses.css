@@ -1,0 +1,58 @@
+/* MyCourses.css */
+
+/* Page-specific override: My Courses renders the course-card logo
+   borderless/flush rather than the bordered style used by Dashboard
+   and Profile. See shared/LogoDisplay/LogoDisplay.css for the
+   default, and ../LogoDisplay/LogoDisplay.css for this override —
+   loaded after the shared stylesheet so it wins the cascade. */
+@import '../LogoDisplay/LogoDisplay.css';
+
+/* ── Layout shell ── */
+.my-courses {
+  display: flex;
+  min-height: 100vh;
+  background: #F4F6FA;
+}
+
+/* ── Main content area (offset by sidebar width) ── */
+.my-courses__main {
+  margin-left: 240px;
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Page body (below topbar) ── */
+.my-courses__body {
+  padding: 16px 40px 16px 40px;
+  flex: 1;
+  overflow-y: auto;
+  height: 0;
+}
+
+/* ── Completed courses / Up Skill Activities row ──
+   Wider left panel, narrower right panel, matching the reference design. */
+.my-courses__progress-row {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: stretch;
+}
+
+/* ── Responsive: full width when sidebar is hidden ── */
+@media (max-width: 900px) {
+  .my-courses__main {
+    margin-left: 0;
+  }
+
+  .my-courses__body {
+    padding: 20px 16px 40px;
+  }
+
+  .my-courses__progress-row {
+    grid-template-columns: 1fr;
+  }
+}

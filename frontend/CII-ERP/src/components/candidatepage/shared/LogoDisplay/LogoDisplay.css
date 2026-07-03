@@ -1,0 +1,80 @@
+/* LogoDisplay.css */
+
+/* ── Card logo (inside course cards / applied-course rows) ──
+   Flush, borderless style — the surrounding card (.course-card__logo-area,
+   .applied-card__logo) already supplies its own border/background, so this
+   component stays a plain logo container at any size it's given. */
+.logo-display {
+  border-radius: 0;
+  background: #FFFFFF;
+  border: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-display__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 16px;
+}
+
+.logo-display__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-display__placeholder span {
+  font-size: 10px;
+  color: #E0E8F0;
+  text-align: center;
+  padding: 0 8px;
+  line-height: 1.3;
+}
+
+/* ── Sidebar org logo ── */
+.sidebar-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar-logo__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.sidebar-logo__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-logo__placeholder span {
+  font-size: 9px;
+  color: #E6EEF8;
+  text-align: center;
+  padding: 0 6px;
+  line-height: 1.3;
+}

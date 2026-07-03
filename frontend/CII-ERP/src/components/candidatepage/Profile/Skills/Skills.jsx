@@ -7,7 +7,7 @@
 //   onSkillsChange {function(nextSkills)}
 
 import { useState, useRef, useEffect } from 'react';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './Skills.css';
 
 export default function Skills({ skills, onSkillsChange }) {

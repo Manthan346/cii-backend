@@ -1,146 +1,111 @@
 // Dashboard.jsx
-// Root page — composes every dashboard section.
+// Root Dashboard page. Sits at:
+//   src/components/candidatepage/Dashboard/Dashboard/Dashboard.jsx
+// and is imported by CandidateDashboard.jsx as the "/" route.
 //
-// ─── Backend hookup ───────────────────────────────────────────────────────────
-// Replace static imports with useEffect fetches when the API is ready:
-//
-//   const [metrics,  setMetrics]  = useState(METRIC_DATA);
-//   const [courses,  setCourses]  = useState(COURSE_DATA);
-//   const [attendance, setAtt]    = useState({ present: 85 });
-//   const [alerts,   setAlerts]   = useState([]);
-//   const [upcoming, setUpcoming] = useState([]);
-//   const [jobs,     setJobs]     = useState([]);
-//   const [orgLogo,  setOrgLogo]  = useState(null);
-//
-//   useEffect(() => {
-//     fetch('/api/candidate/stats').then(r=>r.json()).then(setMetrics);
-//     fetch('/api/candidate/courses').then(r=>r.json()).then(setCourses);
-//     fetch('/api/candidate/attendance').then(r=>r.json()).then(setAtt);
-//     fetch('/api/candidate/alerts').then(r=>r.json()).then(setAlerts);
-//     fetch('/api/candidate/upcoming').then(r=>r.json()).then(setUpcoming);
-//     fetch('/api/jobs').then(r=>r.json()).then(setJobs);
-//     fetch('/api/organisation').then(r=>r.json()).then(d=>setOrgLogo(d.logoUrl));
-//   }, []);
-// ─────────────────────────────────────────────────────────────────────────────
+// Data flow: this component is the only one that talks to the service
+// layer (`dashboardService`). Every child below only receives plain
+// props, so swapping mock data for a real API later means changing
+// `dashboardService.js` alone — no component here needs to change.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import Sidebar          from '../Sidebar/Sidebar';
-import Topbar           from '../Topbar/Topbar';
-import WelcomeBanner    from '../WelcomeBanner/WelcomeBanner';
-import { MetricGrid }   from '../MetricCard/MetricCard';
-import MyCourses        from '../MyCourses/MyCourses';
-import AttendanceChart  from '../AttendanceChart/AttendanceChart';
-import AlertsTabs       from '../AlertsTabs/AlertsTabs';
-import JobOpportunities from '../JobOpportunities/JobOpportunities';
+import Sidebar               from '../../layout/Sidebar/Sidebar';
+import Topbar                 from '../../layout/Topbar/Topbar';
+import { StatGrid }           from '../../shared/StatCard/StatCard';
+import WelcomeBanner          from '../WelcomeBanner/WelcomeBanner';
+import CourseProgressList     from '../CourseProgressList/CourseProgressList';
+import UnlockCertificate      from '../UnlockCertificate/UnlockCertificate';
+import CertificateProgress    from '../CertificateProgress/CertificateProgress';
+import CertificateEligibility from '../CertificateEligibility/CertificateEligibility';
+import AlertsTabs             from '../AlertsTabs/AlertsTabs';
+import JobOpportunities       from '../JobOpportunities/JobOpportunities';
+
+import { fetchDashboardData } from '../../../../services/dashboardService';
 
 import './Dashboard.css';
-import orgLogo from '../../../Assets/Logo.png';
-import { courseCards } from '../data/dashboardData';
-
-// ── Static metric data ───────────────────────────────────────
-// TODO: replace with /api/candidate/stats response
-const METRIC_DATA = [
-  {
-    icon:      'courses',
-    iconBg:    'var(--blue-light)',
-    iconColor: 'var(--blue)',
-    target:    3,
-    suffix:    '',
-    label:     'Enrolled courses',
-  },
-  {
-    icon:      'attendance',
-    iconBg:    'var(--orange-soft)',
-    iconColor: 'var(--orange)',
-    target:    85,
-    suffix:    '%',
-    label:     'Attendance rate',
-  },
-  {
-    icon:      'pending',
-    iconBg:    'var(--gold-soft)',
-    iconColor: 'var(--gold)',
-    target:    2,
-    suffix:    '',
-    label:     'Pending assessments',
-  },
-  {
-    icon:      'certificates',
-    iconBg:    'var(--green-soft)',
-    iconColor: 'var(--green)',
-    target:    4,
-    suffix:    '',
-    label:     'Certificates earned',
-  },
-];
-
-// ── Static course data ───────────────────────────────────────
-// TODO: replace with /api/candidate/courses response
-const COURSE_DATA = [
-  { name: 'Graphic Design', pct: 78, emoji: '🎨', bgColor: '#F0EBFF', barColor: 'var(--purple)' },
-  { name: 'Housekeeping',   pct: 54, emoji: '🏠', bgColor: '#FFF5E0', barColor: 'var(--gold)'   },
-  { name: 'Cyber Security', pct: 98, emoji: '🛡️', bgColor: '#FFE8E8', barColor: 'var(--blue)'   },
-];
+import orgLogo from '../../../../assets/Logo.png';
 
 export default function Dashboard() {
   const [search, setSearch] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [data, setData] = useState(null);
 
-  // TODO: wire these to API responses
-  const orgLogoSrc = orgLogo;
+  useEffect(() => {
+    let cancelled = false;
+    fetchDashboardData().then(result => {
+      if (!cancelled) setData(result);
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <div className="dashboard">
 
-      {/* Fixed left sidebar */}
-      <Sidebar orgLogoSrc={orgLogoSrc} activeItem="Dashboard" />
+      <Sidebar
+        orgLogoSrc={orgLogo}
+        activeItem="Dashboard"
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
 
-      {/* Right: topbar + page body */}
+      {sidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+      )}
+
       <div className="dashboard__main">
 
         <Topbar
           search={search}
           onSearch={setSearch}
-          userInitials="AS"
+          userInitials={data?.candidate.initials ?? 'AS'}
+          onMenuClick={() => setSidebarOpen(o => !o)}
         />
 
         <main className="dashboard__body">
+          {!data ? (
+            <div className="dashboard__loading">Loading your dashboard…</div>
+          ) : (
+            <>
+              {/* 1. Welcome banner */}
+              <WelcomeBanner
+                name={data.candidate.name}
+                subText="You're 3 sessions away from completing. Keep going!"
+                streakDays={data.candidate.streakDays}
+                certificates={data.stats.find(s => s.icon === 'certificates')?.value}
+                avatarSrc={data.candidate.avatarSrc}
+              />
 
-          {/* 1. Welcome banner */}
-          <WelcomeBanner
-            name="Anisha"
-            subText="You're 3 sessions away from completing. Keep going!"
-            streakDays={12}
-            certificates={4}
-            avatarSrc={null}
-          />
+              {/* 2. Stat tiles */}
+              <StatGrid stats={data.stats} />
 
-          {/* 2. Metric tiles – numbers count up from 0 on mount */}
-          <MetricGrid metrics={METRIC_DATA} />
+              {/* 3. My Courses Progress + Unlock Certificate */}
+              <div className="dashboard__row dashboard__row--split">
+                <CourseProgressList courses={data.courses} />
+                <UnlockCertificate {...data.unlockCertificate} />
+              </div>
 
-          {/* 3. Bottom two-column grid */}
-          <div className="dashboard__grid">
+              {/* 4. Certificate Progress Overview (full width) */}
+              <div className="dashboard__row">
+                <CertificateProgress courses={data.courses} />
+              </div>
 
-            {/* Left column */}
-            <div className="dashboard__left">
-              {/* Course progress bars – bars animate from 0 on mount */}
-              <MyCourses courses={COURSE_DATA} />
+              {/* 5. Certificate Eligibility (full width) */}
+              <div className="dashboard__row">
+                <CertificateEligibility
+                  overallPct={data.eligibility.overallPct}
+                  criteria={data.eligibility.criteria}
+                  checklist={data.eligibility.checklist}
+                />
+              </div>
 
-              {/* Alerts / Upcoming tabbed panel */}
-              <AlertsTabs />
-            </div>
-
-            {/* Right column */}
-            <div className="dashboard__right">
-              {/* Donut attendance chart – arc draws from 0 on mount */}
-              <AttendanceChart present={85} />
-
-              {/* Job opportunities cards */}
-              <JobOpportunities />
-            </div>
-
-          </div>
-
+              {/* 6. Alerts/Upcoming + Job Opportunities */}
+              <div className="dashboard__row dashboard__row--split dashboard__row--bottom">
+                <AlertsTabs alerts={data.alerts} upcoming={data.upcoming} />
+                <JobOpportunities jobs={data.jobs} />
+              </div>
+            </>
+          )}
         </main>
       </div>
     </div>

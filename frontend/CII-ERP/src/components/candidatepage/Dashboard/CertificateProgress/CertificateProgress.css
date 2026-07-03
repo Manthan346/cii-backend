@@ -1,0 +1,195 @@
+/* CertificateProgress.css */
+
+.cert-progress {
+  background: #FFFFFF;
+  border: 1px solid #E0E8F0;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 60, 126, 0.06);
+  padding: 22px 24px 8px;
+}
+
+.cert-progress__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.cert-progress__subtitle {
+  margin: 6px 0 20px;
+  font-size: 12.5px;
+  color: #6B7A94;
+}
+
+.cert-progress__table {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header row ── */
+.cert-progress__head {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr;
+  align-items: end;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E0E8F0;
+}
+
+.cert-progress__head-cell {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1A2740;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cert-progress__head-cell small {
+  font-weight: 500;
+  font-size: 10.5px;
+  color: #6B7A94;
+}
+
+.cert-progress__head-cell--course {
+  text-align: left;
+}
+
+/* ── Data row ── */
+.cert-progress__row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #E0E8F0;
+}
+
+.cert-progress__row:last-child {
+  border-bottom: none;
+}
+
+.cert-progress__course {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cert-progress__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-progress__name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1A2740;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-progress__ring-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.cert-progress__ring-mobile-label {
+  display: none;
+}
+
+.cert-progress__status {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Status badge ── */
+.cert-progress__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cert-progress__badge--pending {
+  background: #FFF5E0;
+  color: #B8892A;
+}
+
+.cert-progress__badge--eligible {
+  background: #E2F4EE;
+  color: #0D6E50;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .cert-progress__head {
+    display: none;
+  }
+
+  .cert-progress__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "course course status"
+      "ring1  ring2   ring3";
+    align-items: center;
+    gap: 14px 8px;
+    padding: 16px 4px;
+  }
+
+  /* Course name — top left */
+  .cert-progress__course {
+    grid-area: course;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  /* Badge — top right, same row as course name */
+  .cert-progress__status {
+    grid-area: status;
+    justify-content: flex-end;
+  }
+
+  /* Three rings — single row underneath, in DOM order */
+  .cert-progress__ring-cell:nth-of-type(2) { grid-area: ring1; }
+  .cert-progress__ring-cell:nth-of-type(3) { grid-area: ring2; }
+  .cert-progress__ring-cell:nth-of-type(4) { grid-area: ring3; }
+
+  .cert-progress__ring-cell {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cert-progress__ring-mobile-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6B7A94;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Shrink rings so 3 fit comfortably on narrow phones */
+  .cert-progress__ring-cell .progress-ring {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .cert-progress__badge {
+    padding: 5px 9px;
+    font-size: 10.5px;
+  }
+}

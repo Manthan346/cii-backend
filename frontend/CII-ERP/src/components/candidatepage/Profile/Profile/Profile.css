@@ -1,29 +1,37 @@
-/* Profile.css */
+/* Profile.css — page-level layout shell */
 
-/* ── Layout shell ── */
 .profile-page {
   display: flex;
-  min-height: 100vh;
-  background: var(--bg);
+  height: 100vh;
+  overflow: hidden;
+  background: #F4F6FA;
 }
 
-/* ── Main content area (offset by sidebar width) ── */
+/* ── Overlay for mobile sidebar drawer ── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 40;
+}
+
+/* ── Right side (topbar + scrollable body) ── */
 .profile-page__main {
-  margin-left: 240px;
   flex: 1;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
 }
 
-/* ── Page body ── */
 .profile-page__body {
-  padding: 24px 28px 48px;
   flex: 1;
+  overflow-y: auto;
+  padding: 28px 28px 40px;
 }
 
 @media (max-width: 900px) {
-  .profile-page__main {
-    margin-left: 0;
+  .profile-page__body {
+    padding: 20px 16px 32px;
   }
 }

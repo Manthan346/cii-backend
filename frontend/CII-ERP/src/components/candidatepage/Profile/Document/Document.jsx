@@ -8,7 +8,7 @@
 //   onDocumentsChange {function(nextDocuments)} – called whenever the list changes
 
 import { useState } from 'react';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import UploadModal from './UploadModal';
 import GovtIdModal from './GovtIdModal';
 import './Document.css';

@@ -6,7 +6,7 @@
 //   candidate   {object}    – { name, fullName, candidateId, batch, status, avatarSrc, completionPct }
 //   onEdit      {function}  – Callback fired when "Edit Profile" is clicked.
 
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './ProfileHeader.css';
 
 export default function ProfileHeader({ candidate, onEdit = () => {} }) {

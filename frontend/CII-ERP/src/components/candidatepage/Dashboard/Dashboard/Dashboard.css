@@ -1,61 +1,89 @@
-/* Dashboard.css */
+/* Dashboard.css — page-level layout shell */
 
-/* ── Layout shell ── */
 .dashboard {
   display: flex;
   min-height: 100vh;
-  background: #F4F6FA;
+  background: #F5F7FB;
 }
 
-/* ── Main content area (offset by sidebar width) ── */
+/* ── Right side (topbar + scrollable body) ──
+   FIX: Sidebar.css uses `position: fixed` (by design — it's the shared
+   drawer used across Dashboard/My Courses/Profile), which takes it out
+   of normal flow. Without this margin, .dashboard__main doesn't know
+   the sidebar occupies 240px and stretches underneath it, causing the
+   sidebar to visually overlap the page content. This margin is the
+   single, minimal fix — Sidebar.css itself is untouched. It's removed
+   below the same 900px breakpoint where the sidebar already slides
+   off-canvas via `transform: translateX(-100%)`. */
 .dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   margin-left: 240px;
-  flex: 1;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── Page body ── */
-.dashboard__body {
-  padding: 24px 28px 48px;
-  flex: 1;
-}
-
-/* ── Bottom two-column grid: left (courses+alerts) + right (attendance+jobs) ── */
-.dashboard__grid {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 20px;
-  align-items: start;
-}
-
-/* Left column: courses on top, alerts below */
-.dashboard__left {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Right column: attendance on top, jobs below */
-.dashboard__right {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* ── Responsive ── */
-@media (max-width: 1100px) {
-  .dashboard__grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 900px) {
   .dashboard__main {
     margin-left: 0;
   }
+}
+
+.dashboard__body {
+  flex: 1;
+  padding: 16px 16px 16px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard__loading {
+  padding: 60px 0;
+  text-align: center;
+  color: #6B7A94;
+  font-size: 14px;
+}
+
+/* ── Section spacing ──
+   WelcomeBanner and StatGrid already carry their own bottom margins
+   (defined in their own CSS, reused as-is from other screens), so we
+   don't double up on those. Every .dashboard__row below them just adds
+   its own top margin — the same pattern the original file used for
+   .dashboard__grid. */
+.dashboard__row {
+  margin-top: 20px;
+}
+
+/* ── Two-column rows (My Courses/Unlock Certificate, Alerts/Jobs) ── */
+/* ── Two-column rows (My Courses/Unlock Certificate) ── */
+.dashboard__row--split {
+  display: grid;
+  /* 
+     Change: The left side (1fr) expands to fill space, 
+     the right side (auto) stays only as wide as its content. 
+  */
+  grid-template-columns: 1fr auto; 
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Ensure the Unlock Certificate card doesn't stretch too thin or wide */
+/* .dashboard__row--split > :last-child {
+  min-width: 320px; /* Adjust this value to match your design's preferred width 
+  max-width: 400px;
+} */
+
+.dashboard__row--bottom {
+  grid-template-columns: 1fr 320px;
+}
+
+@media (max-width: 1100px) {
+  .dashboard__row--split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
   .dashboard__body {
-    padding: 16px 14px 40px;
+    padding: 20px 16px 32px;
   }
 }

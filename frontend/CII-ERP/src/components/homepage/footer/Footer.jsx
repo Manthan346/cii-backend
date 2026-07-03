@@ -11,11 +11,9 @@ const quickLinks = [
 
 const programs = [
   "Industrial Automation",
-  "Full Stack Development",
-  "General Duty Assistant",
   "Retail Sales Associate",
   "Food & Beverage Service",
-  "Solar Panel Installation",
+  "Cyber Security"
 ];
 
 const socials = [

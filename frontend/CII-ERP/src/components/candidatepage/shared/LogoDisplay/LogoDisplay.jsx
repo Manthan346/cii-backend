@@ -1,0 +1,85 @@
+// LogoDisplay.jsx
+// Shared read-only logo renderer used across the candidate portal.
+// src is supplied by the backend API. No upload affordance is
+// exposed to the end user.
+//
+// Backend hookup:
+//   <LogoDisplay src={course.logoUrl} alt={course.company} />
+//   <SidebarLogo src={orgData.logoUrl} />
+//
+// ── Consolidation notes (2026-06-30) ───────────────────────────
+// Merged from three near-identical copies (Dashboard/LogoDisplay,
+// MyCourses/LogoDisplay, Profile/LogoDisplay). This JS file was
+// already a strict superset in MyCourses (adds width/height props
+// while staying backward-compatible with the old `size` prop), so
+// no logic was lost.
+//
+// NOTE: the *visual* styling of `.logo-display` (course-card logo
+// box) intentionally differs between My Courses and the other two
+// screens — My Courses renders it borderless/flush, Dashboard and
+// Profile render it with a rounded border. That's page-specific
+// theming, not accidental drift, so it was NOT merged away. See
+// shared/LogoDisplay/LogoDisplay.css for the default (Dashboard/
+// Profile) styling, and MyCourses/LogoDisplay/LogoDisplay.css for
+// the small override file that screen still keeps locally.
+// ─────────────────────────────────────────────────────────────
+
+import Icon from '../Icon/Icon';
+import './LogoDisplay.css';
+
+/* ── Course-card logo ── */
+export function LogoDisplay({ src, alt = 'Company logo', size, width, height }) {
+  const w = width ?? size ?? '100%';
+  const h = height ?? size ?? '100%';
+  return (
+    <div
+      className="logo-display"
+      style={{ width: w, height: h }}
+    >
+      {src && (
+        <img
+          className="logo-display__img"
+          src={src}
+          alt={alt}
+          onError={e => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'flex';
+          }}
+        />
+      )}
+      <div
+        className="logo-display__placeholder"
+        style={{ display: src ? 'none' : 'flex' }}
+      >
+        <Icon name="image" size={28} color="var(--border)" />
+        <span>Logo pending</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── Sidebar organisation logo ── */
+export function SidebarLogo({ src }) {
+  return (
+    <div className="sidebar-logo">
+      {src && (
+        <img
+          className="sidebar-logo__img"
+          src={src}
+          alt="Organisation logo"
+          onError={e => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'flex';
+          }}
+        />
+      )}
+      <div
+        className="sidebar-logo__placeholder"
+        style={{ display: src ? 'none' : 'flex' }}
+      >
+        <Icon name="image" size={26} color="var(--blue-light)" />
+        <span>Logo</span>
+      </div>
+    </div>
+  );
+}

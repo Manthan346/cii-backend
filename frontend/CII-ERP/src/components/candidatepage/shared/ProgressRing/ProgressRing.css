@@ -1,0 +1,38 @@
+/* ProgressRing.css */
+
+.progress-ring {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.progress-ring svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-ring__track {
+  fill: none;
+}
+
+.progress-ring__fill {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progress-ring__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  /* scales with the ring's own box size instead of a fixed px value,
+     so the same component reads well at 56px (table rows) and 96px
+     (overall eligibility ring) */
+  font-size: 60%;
+  line-height: 1;
+}

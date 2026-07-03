@@ -5,7 +5,7 @@
 //   academic  {object}  – { program, batch, enrollmentDate, expectedCompletion, mentor, mode }
 //   snapshot  {array}   – [{ icon, label }]
 
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './AcademicDetail.css';
 
 function Field({ label, value }) {

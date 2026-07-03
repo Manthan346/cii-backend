@@ -1,4 +1,4 @@
-import { LogoDisplay } from '../LogoDisplay/LogoDisplay';
+import { LogoDisplay } from '../../shared/LogoDisplay/LogoDisplay';
 import './AppliedCourses.css';
 
 const STATUS_MAP = {

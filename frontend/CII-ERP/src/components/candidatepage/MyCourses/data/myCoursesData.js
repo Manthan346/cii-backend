@@ -47,18 +47,18 @@
 //
 // ──────────────────────────────────────────────────────────────
 
-import bluestarLogo from '../../../Assets/bluestar-logo.png';
-import itcLogo      from '../../../Assets/itc-logo.png';
-import cosmicLogo   from '../../../Assets/OIP (1).jpg';
-import nasscomLogo  from '../../../Assets/dsci-logo.png';
-import kalpataru    from '../../../Assets/kalpataru-logo.png';
-import nihonLogo    from '../../../Assets/nihon edutech-logo.png';
-import apparelLogo  from '../../../Assets/aparrel-logo.png';
-import bajajLogo    from '../../../Assets/bajaj-logo.png';
-import jubilantLogo from '../../../Assets/jubliant-logo.png';
-import lorealLogo   from '../../../Assets/loreal-logo.png';
-import ciscoLogo    from '../../../Assets/cisco-logo.png';
-import vfsLogo      from '../../../Assets/vfs-global-logo.png';
+import bluestarLogo from '../../../../assets/bluestar-logo.png';
+import itcLogo      from '../../../../assets/itc-logo.png';
+import cosmosLogo   from '../../../../assets/cosmos-logo.png';
+import nasscomLogo  from '../../../../assets/dsci-logo.png';
+import kalpataru    from '../../../../assets/kalpataru-logo.png';
+import nihonLogo    from '../../../../assets/nihon edutech-logo.png';
+import apparelLogo  from '../../../../assets/aparrel-logo.png';
+import bajajLogo    from '../../../../assets/bajaj-logo.png';
+import jubilantLogo from '../../../../assets/jubliant-logo.png';
+import lorealLogo   from '../../../../assets/loreal-logo.png';
+import ciscoLogo    from '../../../../assets/cisco-logo.png';
+import vfsLogo      from '../../../../assets/vfs-global-logo.png';
 
 export const courseCards = [
   {
@@ -98,7 +98,7 @@ export const courseCards = [
     applied: true,
     status: 'enrolled',
     progress: 10,
-    logoSrc: cosmicLogo,
+    logoSrc: cosmosLogo,
   },
   {
     id: 4,
@@ -193,8 +193,93 @@ export const courseCards = [
 ];
 
 export const candidateStats = [
-  { label: 'Total Enrolled', value: '3',   iconBg: '#E6EEF8', iconColor: '#003C7E', icon: 'courses'      },
-  { label: 'In Progress',    value: '2',   iconBg: '#FFF5E0', iconColor: '#B8892A', icon: 'dashboard'    },
-  { label: 'Completed',      value: '1',   iconBg: '#E2F4EE', iconColor: '#0D6E50', icon: 'certificates' },
-  { label: 'Learning Time',  value: '48h', iconBg: '#FFF0EB', iconColor: '#E05A2B', icon: 'assessments'  },
+  { label: 'Total enrolled courses', value: '4',   iconBg: '#E6EEF8', iconColor: '#003C7E', icon: 'courses'      },
+  { label: 'In progress courses',    value: '2',   iconBg: '#FFF5E0', iconColor: '#B8892A', icon: 'dashboard'    },
+  { label: 'Completed course',       value: '1',   iconBg: '#E2F4EE', iconColor: '#0D6E50', icon: 'certificates' },
+  { label: 'Learning time of courses', value: '42h', iconBg: '#FFF0EB', iconColor: '#E05A2B', icon: 'assessments' },
+];
+
+// ─── Completed courses ─────────────────────────────────────────
+// Backend hookup: GET /api/candidate/completed-courses
+//   => [{ id, iconName, iconBgColor, iconColor, courseName,
+//          completedOn, instructorName, grade, certificateDownloadUrl }]
+export const completedCourses = [
+  {
+    id: 1,
+    icon: 'certificates',
+    iconBg: '#FFE8F5',
+    iconColor: '#A0297A',
+    title: 'Beauty Advisor Training',
+    completedDate: '2 june 2026',
+    professor: 'professor name',
+    grade: 'A',
+    certificateUrl: null,
+  },
+  {
+    id: 2,
+    icon: 'certificates',
+    iconBg: '#FFE8E8',
+    iconColor: '#C0392B',
+    title: 'Beauty & Make up Training',
+    completedDate: '2 june 2026',
+    professor: 'professor name',
+    grade: 'A+',
+    certificateUrl: null,
+  },
+  {
+    id: 3,
+    icon: 'courses',
+    iconBg: '#E0F5FA',
+    iconColor: '#0891B2',
+    title: 'International placement Program',
+    completedDate: '2 june 2026',
+    professor: 'professor name',
+    grade: 'B',
+    certificateUrl: null,
+  },
+  {
+    id: 4,
+    icon: 'dashboard',
+    iconBg: '#E6EEF8',
+    iconColor: '#003C7E',
+    title: 'Housekeeping',
+    completedDate: '2 june 2026',
+    professor: 'professor name',
+    grade: 'B+',
+    certificateUrl: null,
+  },
+];
+
+// ─── Up-skill activities ───────────────────────────────────────
+// Backend hookup: GET /api/candidate/upskill-activities
+//   => [{ id, iconName, iconBgColor, iconColor, activityName,
+//          completedOn, durationLabel, instructorName, certificateDownloadUrl }]
+export const upSkillActivities = [
+  {
+    id: 1,
+    icon: 'certificates',
+    iconBg: '#FFF0EB',
+    iconColor: '#E05A2B',
+    title: 'Nailart Workshop',
+    completedDate: '2 june 2026',
+    durationLabel: '2 days',
+    professor: 'professor name',
+    certificateUrl: null,
+  },
+];
+
+// ─── Suggested for you ─────────────────────────────────────────
+// Backend hookup: GET /api/candidate/suggested-courses
+//   => [{ id, iconName, iconBgColor, iconColor, courseName,
+//          recommendationReason, ctaLabel }]
+export const suggestedCourses = [
+  {
+    id: 1,
+    icon: 'courses',
+    iconBg: '#FFE8F5',
+    iconColor: '#A0297A',
+    title: 'Hairdressing Training',
+    reason: 'Based on your Beauty makeup training',
+    ctaLabel: 'Enroll',
+  },
 ];

@@ -7,7 +7,7 @@
 //   onUpload  {function(file)}  – called with the selected File object
 
 import { useState } from 'react';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './UploadModal.css';
 
 export default function UploadModal({ open, onClose, onUpload }) {

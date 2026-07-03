@@ -1,0 +1,91 @@
+/* SuggestedCourses.css */
+
+.suggested-courses {
+  background: #FFFFFF;
+  border: 1px solid #E0E8F0;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 60, 126, 0.06);
+  padding: 20px 22px;
+  margin-bottom: 32px;
+}
+
+.suggested-courses__title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.suggested-courses__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.suggested-courses__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+}
+
+.suggested-courses__item:hover {
+  background-color:   #F4F6FA;
+  border-radius: 16px;
+}
+
+.suggested-courses__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.suggested-courses__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.suggested-courses__name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.suggested-courses__reason {
+  font-size: 11.5px;
+  color: #6B7A94;
+  margin-top: 2px;
+}
+
+.suggested-courses__enroll {
+  flex-shrink: 0;
+  background: #F5C542;
+  color: #1A2740;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.suggested-courses__enroll:hover {
+  background: #EAB82F;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .suggested-courses__item {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .suggested-courses__enroll {
+    margin-left: 54px; /* aligns under text, past the icon */
+  }
+}

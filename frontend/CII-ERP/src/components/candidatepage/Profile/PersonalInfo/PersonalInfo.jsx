@@ -6,7 +6,7 @@
 //   checklist   {array}   – [{ label, done }]
 //   completionPct {number}
 
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/Icon/Icon';
 import './PersonalInfo.css';
 
 function Field({ label, value }) {

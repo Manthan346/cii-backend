@@ -1,0 +1,152 @@
+/* CompletedCourses.css */
+
+.completed-courses {
+  background: #FFFFFF;
+  border: 1px solid #E0E8F0;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 60, 126, 0.06);
+  padding: 20px 25px;
+  height: fit-content;
+}
+
+.completed-courses__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.completed-courses__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.completed-courses__viewall {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #6B7A94;
+  line-height: 1.3;
+}
+
+.completed-courses__viewall span {
+  color: #003C7E;
+  text-decoration: underline;
+  font-size: 11px;
+}
+
+.completed-courses__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.completed-courses__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #F0F3F8;
+}
+
+.completed-courses__item:hover {
+  background-color:   #F4F6FA;
+  border-radius: 1rem;
+}
+
+.completed-courses__item:last-child {
+  border-bottom: none;
+  padding-bottom: 12px;
+}
+
+.completed-courses__item:first-child {
+  padding-top: 12px;
+}
+
+.completed-courses__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.completed-courses__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.completed-courses__name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1A2740;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.completed-courses__meta {
+  font-size: 11.5px;
+  color: #6B7A94;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.completed-courses__grade {
+  flex-shrink: 0;
+  background: #E2F4EE;
+  color: #0D6E50;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.completed-courses__download {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #E6EEF8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.completed-courses__download:hover {
+  background: #D0E3F5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .completed-courses__item {
+    flex-wrap: wrap;
+  }
+
+  .completed-courses__info {
+    min-width: 60%;
+  }
+
+  .completed-courses__grade {
+    margin-left: 50px; /* aligns under text, past the icon */
+  }
+}
