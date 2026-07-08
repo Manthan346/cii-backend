@@ -1,0 +1,77 @@
+/* Attendance.css — page-level layout shell */
+
+.attendance-page {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F7FB;
+}
+
+/* Sidebar.css uses `position: fixed`, so this margin is required for
+   the same reason documented in Dashboard.css — it's the shared
+   drawer used across Dashboard/My Courses/Profile/Attendance. */
+.attendance-page__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-left: 240px;
+}
+
+@media (max-width: 900px) {
+  .attendance-page__main {
+    margin-left: 0;
+  }
+}
+
+.attendance-page__body {
+  flex: 1;
+  padding: 16px 40px 16px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.attendance-page__loading {
+  padding: 60px 0;
+  text-align: center;
+  color: #6B7A94;
+  font-size: 14px;
+}
+
+.attendance-page__heading {
+  margin-bottom: 20px;
+}
+
+.attendance-page__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.attendance-page__subtitle {
+  font-size: 13px;
+  color: #6B7A94;
+  margin-top: 4px;
+}
+
+.attendance-page__row {
+  margin-top: 20px;
+}
+
+.attendance-page__row--split {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .attendance-page__row--split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .attendance-page__body {
+    padding: 20px 16px 32px;
+  }
+}

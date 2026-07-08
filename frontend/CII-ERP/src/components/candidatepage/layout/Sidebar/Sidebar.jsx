@@ -1,6 +1,6 @@
 // Sidebar.jsx
 // Shared fixed left navigation panel used across the candidate
-// portal (Dashboard, My Courses, Profile).
+// portal (Dashboard, My Courses, Profile, Attendance).
 //
 // Props:
 //   orgLogoSrc  {string|null}  – Organisation logo URL from backend API.
@@ -23,6 +23,11 @@
 // `display: none` on the sidebar under 900px with no way to
 // reopen it — a real bug, now fixed for all three screens.
 //
+// ── Update (2026-07-07) ─────────────────────────────────────────
+// Wired the "Attendance" nav item to /attendance now that the
+// Attendance page exists. Point this at whatever path your router
+// uses if it differs.
+//
 // Usage with the mobile drawer (see shared/Topbar's onMenuClick):
 //
 //   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -42,10 +47,10 @@ import { SidebarLogo } from '../../shared/LogoDisplay/LogoDisplay';
 import './Sidebar.css';
 
 const NAV_MAIN = [
-  { icon: 'dashboard',   label: 'Dashboard',  to: '/'           },
+  { icon: 'dashboard',   label: 'Dashboard',  to: '/my-dashboard'           },
   { icon: 'profile',     label: 'My Profile', to: '/my-profile' },
   { icon: 'courses',     label: 'My Courses', to: '/my-courses' },
-  { icon: 'attendance',  label: 'Attendance', to: null          },
+  { icon: 'attendance',  label: 'Attendance', to: '/attendance' },
 ];
 
 const NAV_PROGRESS = [
