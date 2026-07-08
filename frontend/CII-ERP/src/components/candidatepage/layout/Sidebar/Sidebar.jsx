@@ -42,7 +42,7 @@ import { SidebarLogo } from '../../shared/LogoDisplay/LogoDisplay';
 import './Sidebar.css';
 
 const NAV_MAIN = [
-  { icon: 'dashboard',   label: 'Dashboard',  to: '/'           },
+  { icon: 'dashboard',   label: 'Dashboard',  to: '/my-dashboard'           },
   { icon: 'profile',     label: 'My Profile', to: '/my-profile' },
   { icon: 'courses',     label: 'My Courses', to: '/my-courses' },
   { icon: 'attendance',  label: 'Attendance', to: null          },
