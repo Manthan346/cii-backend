@@ -72,7 +72,7 @@ export default function Skills({ skills, onSkillsChange }) {
               onClick={() => setAdding(true)}
               aria-label="Add skill"
             >
-              <Icon name="plus" size={14} color="var(--blue)" />
+              <Icon name="plus" size={14} color="var(-bg)" />
             </button>
           )}
         </div>

@@ -42,11 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--blue-light);
+  background: var(--bg);
   border: none;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 }
 
@@ -58,17 +58,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--white);
-  border: 1.5px dashed var(--blue-soft);
+  border: 1.5px solid var(--blue-soft);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 }
 
 .skills__add-btn:hover {
-  background: var(--blue-light);
+  background: var(--blue-soft);
   border-color: var(--blue);
 }
 

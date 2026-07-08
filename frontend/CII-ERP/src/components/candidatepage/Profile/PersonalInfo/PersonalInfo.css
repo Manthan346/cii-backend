@@ -15,9 +15,13 @@
   padding: 20px;
 }
 
+.personal-info__card:last-of-type {
+  grid-column: 1 / -1;
+}
+
 .personal-info__card-title {
   display: inline-block;
-  background: var(--blue-light);
+  background: var(--blue-soft);
   color: var(--blue);
   font-size: 12.5px;
   font-weight: 700;
@@ -31,6 +35,20 @@
   grid-template-columns: 1fr 1fr;
   gap: 22px 24px;
 }
+
+.personal-info__grid_mainaddress {
+  grid-template-columns: 1fr;
+  margin-bottom: 25px;
+}
+
+.personal-info__grid_address {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px 24px;
+}
+
+
 
 .personal-info__field-label {
   font-size: 11px;
@@ -62,7 +80,7 @@
 
 .personal-info__donut-bg {
   fill: none;
-  stroke: var(--blue-light);
+  stroke: var(--blue-soft);
   stroke-width: 9;
 }
 
@@ -71,7 +89,6 @@
   stroke: var(--blue);
   stroke-width: 9;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.6s ease;
 }
 
 .personal-info__donut-label {
