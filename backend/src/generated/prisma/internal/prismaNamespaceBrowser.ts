@@ -51,7 +51,8 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 export const ModelName = {
   user: 'user',
   candidates_details: 'candidates_details',
-  staff_details: 'staff_details'
+  staff_details: 'staff_details',
+  company_name: 'company_name'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,7 +86,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const Candidates_detailsScalarFieldEnum = {
   candidate_id: 'candidate_id',
-  candidate_name: 'candidate_name',
+  candidate_first_name: 'candidate_first_name',
   contact_number: 'contact_number',
   email_id: 'email_id',
   gender: 'gender',
@@ -108,7 +109,11 @@ export const Candidates_detailsScalarFieldEnum = {
   job_location: 'job_location',
   candidate_status: 'candidate_status',
   verification_status: 'verification_status',
-  blood_group: 'blood_group'
+  blood_group: 'blood_group',
+  category: 'category',
+  candidate_password: 'candidate_password',
+  candidate_last_name: 'candidate_last_name',
+  guardian_name: 'guardian_name'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -121,6 +126,15 @@ export const Staff_detailsScalarFieldEnum = {
 } as const
 
 export type Staff_detailsScalarFieldEnum = (typeof Staff_detailsScalarFieldEnum)[keyof typeof Staff_detailsScalarFieldEnum]
+
+
+export const Company_nameScalarFieldEnum = {
+  company_id: 'company_id',
+  company_name: 'company_name',
+  company_description: 'company_description'
+} as const
+
+export type Company_nameScalarFieldEnum = (typeof Company_nameScalarFieldEnum)[keyof typeof Company_nameScalarFieldEnum]
 
 
 export const SortOrder = {

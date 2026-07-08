@@ -392,7 +392,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   user: 'user',
   candidates_details: 'candidates_details',
-  staff_details: 'staff_details'
+  staff_details: 'staff_details',
+  company_name: 'company_name'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "candidates_details" | "staff_details"
+    modelProps: "user" | "candidates_details" | "staff_details" | "company_name"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -634,6 +635,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    company_name: {
+      payload: Prisma.$company_namePayload<ExtArgs>
+      fields: Prisma.company_nameFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.company_nameFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.company_nameFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        findFirst: {
+          args: Prisma.company_nameFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.company_nameFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        findMany: {
+          args: Prisma.company_nameFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>[]
+        }
+        create: {
+          args: Prisma.company_nameCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        createMany: {
+          args: Prisma.company_nameCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.company_nameCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>[]
+        }
+        delete: {
+          args: Prisma.company_nameDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        update: {
+          args: Prisma.company_nameUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        deleteMany: {
+          args: Prisma.company_nameDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.company_nameUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.company_nameUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>[]
+        }
+        upsert: {
+          args: Prisma.company_nameUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$company_namePayload>
+        }
+        aggregate: {
+          args: Prisma.Company_nameAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompany_name>
+        }
+        groupBy: {
+          args: Prisma.company_nameGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Company_nameGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.company_nameCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Company_nameCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -688,7 +763,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const Candidates_detailsScalarFieldEnum = {
   candidate_id: 'candidate_id',
-  candidate_name: 'candidate_name',
+  candidate_first_name: 'candidate_first_name',
   contact_number: 'contact_number',
   email_id: 'email_id',
   gender: 'gender',
@@ -711,7 +786,11 @@ export const Candidates_detailsScalarFieldEnum = {
   job_location: 'job_location',
   candidate_status: 'candidate_status',
   verification_status: 'verification_status',
-  blood_group: 'blood_group'
+  blood_group: 'blood_group',
+  category: 'category',
+  candidate_password: 'candidate_password',
+  candidate_last_name: 'candidate_last_name',
+  guardian_name: 'guardian_name'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -724,6 +803,15 @@ export const Staff_detailsScalarFieldEnum = {
 } as const
 
 export type Staff_detailsScalarFieldEnum = (typeof Staff_detailsScalarFieldEnum)[keyof typeof Staff_detailsScalarFieldEnum]
+
+
+export const Company_nameScalarFieldEnum = {
+  company_id: 'company_id',
+  company_name: 'company_name',
+  company_description: 'company_description'
+} as const
+
+export type Company_nameScalarFieldEnum = (typeof Company_nameScalarFieldEnum)[keyof typeof Company_nameScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -901,6 +989,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.userOmit
   candidates_details?: Prisma.candidates_detailsOmit
   staff_details?: Prisma.staff_detailsOmit
+  company_name?: Prisma.company_nameOmit
 }
 
 /* Types for Logging */
