@@ -27,6 +27,7 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from '../components/candidatepage/Dashboard/Dashboard/Dashboard';
 import MyCourses from '../components/candidatepage/MyCourses/MyCourses/MyCourses';
 import Profile   from '../components/candidatepage/Profile/Profile/Profile';
+import Attendance from '../components/candidatepage/Attendance/Attendance/Attendance';
 
 export default function CandidateDashboard() {
   return (
@@ -34,6 +35,7 @@ export default function CandidateDashboard() {
       <Route path="/my-dashboard"            element={<Dashboard />} />
       <Route path="/my-courses"  element={<MyCourses />} />
       <Route path="/my-profile"  element={<Profile />} />
+      <Route path="/attendance" element={<Attendance />} />
     </Routes>
   );
 }
