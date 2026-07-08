@@ -16,7 +16,7 @@
 
 .document__card-title {
   display: inline-block;
-  background: var(--blue-light);
+  background: var(--blue-soft);
   color: var(--blue);
   font-size: 12.5px;
   font-weight: 700;
@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--bg);
+  background: #f4f6fa;
   border-radius: var(--radius-md);
   padding: 14px 16px;
 }
@@ -108,34 +108,42 @@
   background: var(--blue-mid);
 }
 
-.document__chevron-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.document__subdocs {
+/* ── Note Section ── */
+.document__note {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px 16px 4px 44px;
+  gap: 8px;
+  background: #F4F6FA;
+  border: 1px solid #E0E8F0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
 }
 
-.document__subdoc-row {
+.document__note-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1A2740;
+  text-transform: uppercase;
+}
+
+.document__note-text {
+  font-size: 13px;
+  color: #6B7A94;
+}
+
+/* ── Download Button ── */
+.document__download-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--ink-soft);
 }
 
-.document__subdoc-row span {
-  font-weight: 600;
-  color: var(--ink);
+/* ── Pending Status ── */
+.document__item-date--pending {
+  color: #E05A2B;
+  font-style: italic;
 }

@@ -32,7 +32,7 @@ import Attendance from '../components/candidatepage/Attendance/Attendance/Attend
 export default function CandidateDashboard() {
   return (
     <Routes>
-      <Route path="/my-dashboard"            element={<Dashboard />} />
+      <Route path="/my-dashboard" element={<Dashboard />} />
       <Route path="/my-courses"  element={<MyCourses />} />
       <Route path="/my-profile"  element={<Profile />} />
       <Route path="/attendance" element={<Attendance />} />

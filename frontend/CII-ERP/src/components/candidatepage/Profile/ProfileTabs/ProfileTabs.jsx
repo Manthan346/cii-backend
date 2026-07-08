@@ -8,7 +8,7 @@
 import './ProfileTabs.css';
 
 const TABS = [
-  { id: 'personal',  label: 'personal info'   },
+  { id: 'personal',  label: 'Personal Info'   },
   { id: 'academic',  label: 'Academic Detail' },
   { id: 'document',  label: 'Document'        },
   { id: 'skills',    label: 'Skill & Links'   },

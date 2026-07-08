@@ -1,7 +1,5 @@
 // Document.jsx
-// "Document" tab: shows uploaded documents with status, lets the user upload
-// new documents, and handles the special Government ID Proof flow which
-// requires both a PAN Card and an Aadhaar Card.
+// "Document" tab: shows uploaded documents with status and lets the user upload new documents.
 //
 // Props:
 //   documents     {array}     – list of document records (see profileData.js)
@@ -10,7 +8,6 @@
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import UploadModal from './UploadModal';
-import GovtIdModal from './GovtIdModal';
 import './Document.css';
 
 function StatusBadge({ status }) {
@@ -22,8 +19,6 @@ function StatusBadge({ status }) {
 
 export default function Document({ documents, onDocumentsChange }) {
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [govtModalOpen, setGovtModalOpen] = useState(false);
-  const [expandedId, setExpandedId] = useState(null);
 
   const addNewDocument = (file) => {
     const newDoc = {
@@ -37,33 +32,8 @@ export default function Document({ documents, onDocumentsChange }) {
     setUploadOpen(false);
   };
 
-  const handleGovtUpload = ({ pan, aadhar }) => {
-    onDocumentsChange(documents.map(doc => {
-      if (doc.kind !== 'govtId') return doc;
-      return {
-        ...doc,
-        status: 'verified',
-        uploadedOn: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-        subDocs: doc.subDocs.map(sd => {
-          if (sd.key === 'pan') return { ...sd, file: pan };
-          if (sd.key === 'aadhar') return { ...sd, file: aadhar };
-          return sd;
-        }),
-      };
-    }));
-    setGovtModalOpen(false);
-  };
-
   const handleUploadClick = (doc) => {
-    if (doc.kind === 'govtId') {
-      setGovtModalOpen(true);
-    } else {
-      setUploadOpen(true);
-    }
-  };
-
-  const toggleExpand = (id) => {
-    setExpandedId(prev => (prev === id ? null : id));
+    setUploadOpen(true);
   };
 
   return (
@@ -89,40 +59,36 @@ export default function Document({ documents, onDocumentsChange }) {
                   />
                   <div>
                     <div className="document__item-name">{doc.name}</div>
-                    <div className="document__item-date">Uploaded {doc.uploadedOn}</div>
+                    {doc.uploadedOn ? (
+                      <div className="document__item-date">Uploaded {doc.uploadedOn}</div>
+                    ) : (
+                      <div className="document__item-date document__item-date--pending">Not uploaded</div>
+                    )}
                   </div>
                 </div>
 
                 <div className="document__item-right">
                   <StatusBadge status={doc.status} />
                   {doc.status === 'verified' ? (
-                    <button
-                      className="document__chevron-btn"
-                      onClick={() => toggleExpand(doc.id)}
-                      aria-label="Toggle details"
-                    >
+                    <button className="document__download-btn" aria-label="Download">
                       <Icon name="download" size={14} color="var(--ink-soft)" />
                     </button>
                   ) : (
                     <button className="document__upload-btn" onClick={() => handleUploadClick(doc)}>
-                      Upload
+                      Upload Now
                     </button>
                   )}
                 </div>
               </div>
 
-              {expandedId === doc.id && doc.kind === 'govtId' && (
-                <div className="document__subdocs">
-                  {doc.subDocs.map(sd => (
-                    <div key={sd.key} className="document__subdoc-row">
-                      <Icon name="document" size={14} color="var(--ink-soft)" />
-                      {sd.label}: <span>{sd.file ? sd.file.name : 'Not uploaded'}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+
             </div>
           ))}
+        </div>
+
+        <div className="document__note">
+          <span className="document__note-label">Note</span>
+          <span className="document__note-text">File Size Should be less than 200KB (PDF Format only)</span>
         </div>
       </div>
 
@@ -130,12 +96,6 @@ export default function Document({ documents, onDocumentsChange }) {
         open={uploadOpen}
         onClose={() => setUploadOpen(false)}
         onUpload={addNewDocument}
-      />
-
-      <GovtIdModal
-        open={govtModalOpen}
-        onClose={() => setGovtModalOpen(false)}
-        onUpload={handleGovtUpload}
       />
 
     </div>

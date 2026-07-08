@@ -41,35 +41,44 @@
 //   <Topbar onMenuClick={() => setSidebarOpen(o => !o)} ... />
 // ─────────────────────────────────────────────────────────────
 
-import { Link } from 'react-router-dom';
-import Icon from '../../shared/Icon/Icon';
-import { SidebarLogo } from '../../shared/LogoDisplay/LogoDisplay';
-import './Sidebar.css';
+import { Link } from "react-router-dom";
+import Icon from "../../shared/Icon/Icon";
+import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
+import "./Sidebar.css";
 
 const NAV_MAIN = [
-  { icon: 'dashboard',   label: 'Dashboard',  to: '/my-dashboard'           },
-  { icon: 'profile',     label: 'My Profile', to: '/my-profile' },
-  { icon: 'courses',     label: 'My Courses', to: '/my-courses' },
-  { icon: 'attendance',  label: 'Attendance', to: '/attendance' },
+  { icon: "dashboard", label: "Dashboard", to: "/my-dashboard" },
+  { icon: "profile", label: "My Profile", to: "/my-profile" },
+  { icon: "courses", label: "My Courses", to: "/my-courses" },
+  { icon: "attendance", label: "Attendance", to: "/attendance" },
 ];
 
 const NAV_PROGRESS = [
-  { icon: 'assessments',  label: 'Assessments',       to: null },
-  { icon: 'certificates', label: 'Certificates',      to: null },
-  { icon: 'jobs',         label: 'Job Opportunities', to: null },
+  { icon: "assessments", label: "Assessments", to: null },
+  { icon: "certificates", label: "Certificates", to: null },
+  { icon: "jobs", label: "Job Opportunities", to: null },
 ];
 
 const NAV_SCHEDULE = [
-  { icon: 'upcomingClasses',  label: 'Upcoming Classes',       to: null },
+  { icon: "upcomingClasses", label: "Upcoming Classes", to: null },
 ];
 
 function NavItem({ icon, label, active, to }) {
-  const cls = `sidebar__nav-item${active ? ' sidebar__nav-item--active' : ''}`;
-  const iconColor = active ? '#003C7E' : 'rgba(255,255,255,0.78)';
-  const content = <><Icon name={icon} size={17} color={iconColor} />{label}</>;
+  const cls = `sidebar__nav-item${active ? " sidebar__nav-item--active" : ""}`;
+  const iconColor = active ? "#003C7E" : "rgba(255,255,255,0.78)";
+  const content = (
+    <>
+      <Icon name={icon} size={17} color={iconColor} />
+      {label}
+    </>
+  );
 
   if (to) {
-    return <Link to={to} className={cls} aria-current={active ? 'page' : undefined}>{content}</Link>;
+    return (
+      <Link to={to} className={cls} aria-current={active ? "page" : undefined}>
+        {content}
+      </Link>
+    );
   }
   return <button className={cls}>{content}</button>;
 }
@@ -78,11 +87,21 @@ function SectionLabel({ children }) {
   return <div className="sidebar__section-label">{children}</div>;
 }
 
-export default function Sidebar({ orgLogoSrc = null, activeItem = 'Dashboard', isOpen = false, onClose = () => {} }) {
+export default function Sidebar({
+  orgLogoSrc = null,
+  activeItem = "Dashboard",
+  isOpen = false,
+  onClose = () => {},
+}) {
   return (
-    <aside className={`sidebar${isOpen ? ' sidebar--open' : ''}`}>
-
-      <button className="sidebar__close-btn" onClick={onClose} aria-label="Close menu">✕</button>
+    <aside className={`sidebar${isOpen ? " sidebar--open" : ""}`}>
+      <button
+        className="sidebar__close-btn"
+        onClick={onClose}
+        aria-label="Close menu"
+      >
+        ✕
+      </button>
 
       {/* Organisation logo – sourced from backend, read-only */}
       <div className="sidebar__logo-wrap">
@@ -101,30 +120,51 @@ export default function Sidebar({ orgLogoSrc = null, activeItem = 'Dashboard', i
 
       {/* Main navigation */}
       <SectionLabel>Main</SectionLabel>
-      {NAV_MAIN.map(item => (
-        <NavItem key={item.label} icon={item.icon} label={item.label} to={item.to} active={activeItem === item.label} />
+      {NAV_MAIN.map((item) => (
+        <NavItem
+          key={item.label}
+          icon={item.icon}
+          label={item.label}
+          to={item.to}
+          active={activeItem === item.label}
+        />
       ))}
 
       {/* Progress navigation */}
       <SectionLabel>Progress</SectionLabel>
-      {NAV_PROGRESS.map(item => (
-        <NavItem key={item.label} icon={item.icon} label={item.label} to={item.to} active={activeItem === item.label} />
+      {NAV_PROGRESS.map((item) => (
+        <NavItem
+          key={item.label}
+          icon={item.icon}
+          label={item.label}
+          to={item.to}
+          active={activeItem === item.label}
+        />
       ))}
 
       {/* Schedule navigation */}
       <SectionLabel>Schedule</SectionLabel>
-      {NAV_SCHEDULE.map(item => (
-        <NavItem key={item.label} icon={item.icon} label={item.label} to={item.to} active={activeItem === item.label} />
+      {NAV_SCHEDULE.map((item) => (
+        <NavItem
+          key={item.label}
+          icon={item.icon}
+          label={item.label}
+          to={item.to}
+          active={activeItem === item.label}
+        />
       ))}
 
       {/* Logout */}
       <div className="sidebar__logout-wrap">
-        <a href="#" onClick={e => e.preventDefault()} className="sidebar__logout">
+        <a
+          href="#"
+          onClick={(e) => e.preventDefault()}
+          className="sidebar__logout"
+        >
           <Icon name="logout" size={17} color="rgba(255,255,255,0.5)" />
           Logout
         </a>
       </div>
-
     </aside>
   );
 }

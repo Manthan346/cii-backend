@@ -1,37 +1,62 @@
-/* Profile.css — page-level layout shell */
+/* Profile.css */
 
+/* ── Design tokens ──────────────────────────────────────────────────────
+   Fallback variable definitions for the whole Profile feature. Every
+   Profile/*.css file (PersonalInfo, AcademicDetail, Document, Skills,
+   ProfileHeader, ProfileTabs) references these via var(--x). If your
+   project already defines the same variable names in a global theme file
+   (e.g. index.css), these :root values are simply overridden by whichever
+   stylesheet loads LAST — so it's safe to keep both. If it doesn't, this
+   block guarantees the Profile page renders correctly on its own.
+   Adjust the actual color values below to match your brand if needed. */
+:root {
+  --bg:            #f4f6fb;
+  --white:         #ffffff;
+  --ink:           #1b2437;
+  --ink-soft:      #6b7280;
+  --border:        #e2e6ee;
+
+  --blue:          #003c7e;
+  --blue-mid:      #0f5fb3;
+  --blue-light:    #4c8dd9;
+  --blue-soft:     #eaf1fb;
+
+  --green:         #1a9c5c;
+  --green-soft:    #e6f7ee;
+  --orange:        #e2892e;
+  --gold:          #d4af37;
+  --red:           #c2372e;
+
+  --radius-md:     10px;
+  --radius-lg:     16px;
+  --shadow-hover:  0 4px 14px rgba(0, 0, 0, 0.08);
+  --font-base:     'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ── Layout shell ── */
 .profile-page {
   display: flex;
-  height: 100vh;
-  overflow: hidden;
-  background: #F4F6FA;
+  min-height: 100vh;
+  background: var(--bg);
 }
 
-/* ── Overlay for mobile sidebar drawer ── */
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 40;
-}
-
-/* ── Right side (topbar + scrollable body) ── */
+/* ── Main content area (offset by sidebar width) ── */
 .profile-page__main {
+  margin-left: 240px;
   flex: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  min-width: 0;
 }
 
+/* ── Page body ── */
 .profile-page__body {
+   padding: 16px 30px 16px 48px;
   flex: 1;
-  overflow-y: auto;
-  padding: 28px 28px 40px;
 }
 
 @media (max-width: 900px) {
-  .profile-page__body {
-    padding: 20px 16px 32px;
+  .profile-page__main {
+    margin-left: 0;
   }
 }

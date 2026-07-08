@@ -6,23 +6,54 @@
 //   candidate   {object}    – { name, fullName, candidateId, batch, status, avatarSrc, completionPct }
 //   onEdit      {function}  – Callback fired when "Edit Profile" is clicked.
 
+import { useEffect, useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import './ProfileHeader.css';
 
+const RING_R = 46;
+const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R;
+
+// Animates the completion ring + percentage badge from 0 up to
+// completionPct on mount (ease-out cubic).
+function useRingAnimation(completionPct, duration = 1200) {
+  const [displayPct, setDisplayPct] = useState(0);
+  const [offset, setOffset] = useState(RING_CIRCUMFERENCE);
+
+  useEffect(() => {
+    let raf;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3);
+      const value    = Math.round(eased * completionPct);
+      setDisplayPct(value);
+      setOffset(RING_CIRCUMFERENCE * (1 - value / 100));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    }
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [completionPct]);
+
+  return { displayPct, offset };
+}
+
 export default function ProfileHeader({ candidate, onEdit = () => {} }) {
   const { name, candidateId, batch, status, avatarSrc, completionPct } = candidate;
+  const { displayPct, offset } = useRingAnimation(completionPct);
 
   return (
     <div className="profile-header">
 
       <div className="profile-header__avatar-wrap">
         <svg className="profile-header__ring" viewBox="0 0 100 100">
-          <circle className="profile-header__ring-bg" cx="50" cy="50" r="46" />
+          <circle className="profile-header__ring-bg" cx="50" cy="50" r={RING_R} />
           <circle
             className="profile-header__ring-fg"
-            cx="50" cy="50" r="46"
-            strokeDasharray={2 * Math.PI * 46}
-            strokeDashoffset={2 * Math.PI * 46 * (1 - completionPct / 100)}
+            cx="50" cy="50" r={RING_R}
+            strokeDasharray={RING_CIRCUMFERENCE}
+            strokeDashoffset={offset}
           />
         </svg>
         <div className="profile-header__avatar">
@@ -30,7 +61,7 @@ export default function ProfileHeader({ candidate, onEdit = () => {} }) {
             ? <img src={avatarSrc} alt={name} />
             : <span>{name.slice(0, 2).toUpperCase()}</span>}
         </div>
-        <div className="profile-header__pct-badge">{completionPct}%</div>
+        <div className="profile-header__pct-badge">{displayPct}%</div>
       </div>
 
       <div className="profile-header__card">
@@ -51,7 +82,7 @@ export default function ProfileHeader({ candidate, onEdit = () => {} }) {
         <div className="profile-header__card-bottom">
           <span className="profile-header__status">{status}</span>
           <span className="profile-header__pct-text">
-            {completionPct}% profile<br />Completed
+            {displayPct}% profile<br />Completed
           </span>
         </div>
       </div>
