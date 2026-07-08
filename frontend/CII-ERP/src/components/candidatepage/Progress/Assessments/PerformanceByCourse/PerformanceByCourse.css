@@ -1,0 +1,56 @@
+/* PerformanceByCourse.css */
+
+.performance-by-course.card {
+  background: #FFFFFF;
+  border: 1px solid #EEF0F4;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.performance-by-course__title {
+  margin: 0 0 18px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A1D29;
+}
+
+.performance-by-course__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.performance-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: 12px;
+}
+
+.performance-row__label {
+  font-size: 13px;
+  color: #4A4F63;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.performance-row__bar-track {
+  height: 8px;
+  background: #EEF0F4;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.performance-row__bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.performance-row__value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1A1D29;
+  text-align: right;
+}

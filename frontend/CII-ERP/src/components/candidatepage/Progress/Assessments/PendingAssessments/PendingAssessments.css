@@ -1,0 +1,26 @@
+/* PendingAssessments.css */
+
+.pending-assessments.card {
+  background: #FFFFFF;
+  border: 1px solid #EEF0F4;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.pending-assessments__title {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A1D29;
+}
+
+.pending-assessments__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.pending-assessments__empty {
+  margin: 0;
+  font-size: 14px;
+  color: #8A8FA3;
+}

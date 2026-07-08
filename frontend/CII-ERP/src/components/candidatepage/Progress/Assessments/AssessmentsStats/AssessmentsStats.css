@@ -1,0 +1,21 @@
+/* AssessmentsStats.css
+   Layout for the 4-column stat card row at the top of the page. */
+
+.assessments-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .assessments-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .assessments-stats {
+    grid-template-columns: 1fr;
+  }
+}
