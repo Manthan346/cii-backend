@@ -17,6 +17,17 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
     }
   })
 
+  const contactNoExists = await prisma.candidates_details.findUnique({
+    where: {
+      contact_number: contact_number
+    }
+  })
+
+  if (contactNoExists) {
+    throw new ApiError(409, "phone number already exists")
+    
+  }
+
   if (emailExists) {
     throw new ApiError(409,"email already exists")
     
