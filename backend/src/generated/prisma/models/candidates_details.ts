@@ -42,7 +42,7 @@ export type Candidates_detailsSumAggregateOutputType = {
 
 export type Candidates_detailsMinAggregateOutputType = {
   candidate_id: number | null
-  candidate_name: string | null
+  candidate_first_name: string | null
   contact_number: string | null
   email_id: string | null
   gender: string | null
@@ -66,11 +66,15 @@ export type Candidates_detailsMinAggregateOutputType = {
   candidate_status: string | null
   verification_status: string | null
   blood_group: string | null
+  category: string | null
+  candidate_password: string | null
+  candidate_last_name: string | null
+  guardian_name: string | null
 }
 
 export type Candidates_detailsMaxAggregateOutputType = {
   candidate_id: number | null
-  candidate_name: string | null
+  candidate_first_name: string | null
   contact_number: string | null
   email_id: string | null
   gender: string | null
@@ -94,11 +98,15 @@ export type Candidates_detailsMaxAggregateOutputType = {
   candidate_status: string | null
   verification_status: string | null
   blood_group: string | null
+  category: string | null
+  candidate_password: string | null
+  candidate_last_name: string | null
+  guardian_name: string | null
 }
 
 export type Candidates_detailsCountAggregateOutputType = {
   candidate_id: number
-  candidate_name: number
+  candidate_first_name: number
   contact_number: number
   email_id: number
   gender: number
@@ -122,6 +130,10 @@ export type Candidates_detailsCountAggregateOutputType = {
   candidate_status: number
   verification_status: number
   blood_group: number
+  category: number
+  candidate_password: number
+  candidate_last_name: number
+  guardian_name: number
   _all: number
 }
 
@@ -142,7 +154,7 @@ export type Candidates_detailsSumAggregateInputType = {
 
 export type Candidates_detailsMinAggregateInputType = {
   candidate_id?: true
-  candidate_name?: true
+  candidate_first_name?: true
   contact_number?: true
   email_id?: true
   gender?: true
@@ -166,11 +178,15 @@ export type Candidates_detailsMinAggregateInputType = {
   candidate_status?: true
   verification_status?: true
   blood_group?: true
+  category?: true
+  candidate_password?: true
+  candidate_last_name?: true
+  guardian_name?: true
 }
 
 export type Candidates_detailsMaxAggregateInputType = {
   candidate_id?: true
-  candidate_name?: true
+  candidate_first_name?: true
   contact_number?: true
   email_id?: true
   gender?: true
@@ -194,11 +210,15 @@ export type Candidates_detailsMaxAggregateInputType = {
   candidate_status?: true
   verification_status?: true
   blood_group?: true
+  category?: true
+  candidate_password?: true
+  candidate_last_name?: true
+  guardian_name?: true
 }
 
 export type Candidates_detailsCountAggregateInputType = {
   candidate_id?: true
-  candidate_name?: true
+  candidate_first_name?: true
   contact_number?: true
   email_id?: true
   gender?: true
@@ -222,6 +242,10 @@ export type Candidates_detailsCountAggregateInputType = {
   candidate_status?: true
   verification_status?: true
   blood_group?: true
+  category?: true
+  candidate_password?: true
+  candidate_last_name?: true
+  guardian_name?: true
   _all?: true
 }
 
@@ -313,7 +337,7 @@ export type candidates_detailsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 
 export type Candidates_detailsGroupByOutputType = {
   candidate_id: number
-  candidate_name: string
+  candidate_first_name: string
   contact_number: string
   email_id: string
   gender: string | null
@@ -337,6 +361,10 @@ export type Candidates_detailsGroupByOutputType = {
   candidate_status: string | null
   verification_status: string | null
   blood_group: string | null
+  category: string | null
+  candidate_password: string | null
+  candidate_last_name: string | null
+  guardian_name: string | null
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -364,7 +392,7 @@ export type candidates_detailsWhereInput = {
   OR?: Prisma.candidates_detailsWhereInput[]
   NOT?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   candidate_id?: Prisma.IntFilter<"candidates_details"> | number
-  candidate_name?: Prisma.StringFilter<"candidates_details"> | string
+  candidate_first_name?: Prisma.StringFilter<"candidates_details"> | string
   contact_number?: Prisma.StringFilter<"candidates_details"> | string
   email_id?: Prisma.StringFilter<"candidates_details"> | string
   gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -388,11 +416,15 @@ export type candidates_detailsWhereInput = {
   candidate_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   verification_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_password?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
 }
 
 export type candidates_detailsOrderByWithRelationInput = {
   candidate_id?: Prisma.SortOrder
-  candidate_name?: Prisma.SortOrder
+  candidate_first_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   email_id?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -416,6 +448,10 @@ export type candidates_detailsOrderByWithRelationInput = {
   candidate_status?: Prisma.SortOrderInput | Prisma.SortOrder
   verification_status?: Prisma.SortOrderInput | Prisma.SortOrder
   blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_password?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
@@ -425,7 +461,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   OR?: Prisma.candidates_detailsWhereInput[]
   NOT?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
-  candidate_name?: Prisma.StringFilter<"candidates_details"> | string
+  candidate_first_name?: Prisma.StringFilter<"candidates_details"> | string
   gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   date_of_birth?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   education?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -447,11 +483,15 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   candidate_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   verification_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_password?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
 }, "candidate_id" | "contact_number" | "email_id">
 
 export type candidates_detailsOrderByWithAggregationInput = {
   candidate_id?: Prisma.SortOrder
-  candidate_name?: Prisma.SortOrder
+  candidate_first_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   email_id?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -475,6 +515,10 @@ export type candidates_detailsOrderByWithAggregationInput = {
   candidate_status?: Prisma.SortOrderInput | Prisma.SortOrder
   verification_status?: Prisma.SortOrderInput | Prisma.SortOrder
   blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_password?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -487,7 +531,7 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   OR?: Prisma.candidates_detailsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.candidates_detailsScalarWhereWithAggregatesInput | Prisma.candidates_detailsScalarWhereWithAggregatesInput[]
   candidate_id?: Prisma.IntWithAggregatesFilter<"candidates_details"> | number
-  candidate_name?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
+  candidate_first_name?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
   contact_number?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
   email_id?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
   gender?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
@@ -511,10 +555,14 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   candidate_status?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   verification_status?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  category?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  candidate_password?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  candidate_last_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
 }
 
 export type candidates_detailsCreateInput = {
-  candidate_name: string
+  candidate_first_name: string
   contact_number: string
   email_id: string
   gender?: string | null
@@ -538,11 +586,15 @@ export type candidates_detailsCreateInput = {
   candidate_status?: string | null
   verification_status?: string | null
   blood_group?: string | null
+  category?: string | null
+  candidate_password?: string | null
+  candidate_last_name?: string | null
+  guardian_name?: string | null
 }
 
 export type candidates_detailsUncheckedCreateInput = {
   candidate_id?: number
-  candidate_name: string
+  candidate_first_name: string
   contact_number: string
   email_id: string
   gender?: string | null
@@ -566,10 +618,14 @@ export type candidates_detailsUncheckedCreateInput = {
   candidate_status?: string | null
   verification_status?: string | null
   blood_group?: string | null
+  category?: string | null
+  candidate_password?: string | null
+  candidate_last_name?: string | null
+  guardian_name?: string | null
 }
 
 export type candidates_detailsUpdateInput = {
-  candidate_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   email_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -593,11 +649,15 @@ export type candidates_detailsUpdateInput = {
   candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type candidates_detailsUncheckedUpdateInput = {
   candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
-  candidate_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   email_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -621,11 +681,15 @@ export type candidates_detailsUncheckedUpdateInput = {
   candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type candidates_detailsCreateManyInput = {
   candidate_id?: number
-  candidate_name: string
+  candidate_first_name: string
   contact_number: string
   email_id: string
   gender?: string | null
@@ -649,10 +713,14 @@ export type candidates_detailsCreateManyInput = {
   candidate_status?: string | null
   verification_status?: string | null
   blood_group?: string | null
+  category?: string | null
+  candidate_password?: string | null
+  candidate_last_name?: string | null
+  guardian_name?: string | null
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
-  candidate_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   email_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -676,11 +744,15 @@ export type candidates_detailsUpdateManyMutationInput = {
   candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
   candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
-  candidate_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   email_id?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -704,11 +776,15 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type candidates_detailsCountOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
-  candidate_name?: Prisma.SortOrder
+  candidate_first_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   email_id?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -732,6 +808,10 @@ export type candidates_detailsCountOrderByAggregateInput = {
   candidate_status?: Prisma.SortOrder
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  candidate_password?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
@@ -743,7 +823,7 @@ export type candidates_detailsAvgOrderByAggregateInput = {
 
 export type candidates_detailsMaxOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
-  candidate_name?: Prisma.SortOrder
+  candidate_first_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   email_id?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -767,11 +847,15 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   candidate_status?: Prisma.SortOrder
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  candidate_password?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
 }
 
 export type candidates_detailsMinOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
-  candidate_name?: Prisma.SortOrder
+  candidate_first_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   email_id?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -795,6 +879,10 @@ export type candidates_detailsMinOrderByAggregateInput = {
   candidate_status?: Prisma.SortOrder
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  candidate_password?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
 }
 
 export type candidates_detailsSumOrderByAggregateInput = {
@@ -832,7 +920,7 @@ export type IntFieldUpdateOperationsInput = {
 
 export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
-  candidate_name?: boolean
+  candidate_first_name?: boolean
   contact_number?: boolean
   email_id?: boolean
   gender?: boolean
@@ -856,11 +944,15 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   candidate_status?: boolean
   verification_status?: boolean
   blood_group?: boolean
+  category?: boolean
+  candidate_password?: boolean
+  candidate_last_name?: boolean
+  guardian_name?: boolean
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
-  candidate_name?: boolean
+  candidate_first_name?: boolean
   contact_number?: boolean
   email_id?: boolean
   gender?: boolean
@@ -884,11 +976,15 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   candidate_status?: boolean
   verification_status?: boolean
   blood_group?: boolean
+  category?: boolean
+  candidate_password?: boolean
+  candidate_last_name?: boolean
+  guardian_name?: boolean
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
-  candidate_name?: boolean
+  candidate_first_name?: boolean
   contact_number?: boolean
   email_id?: boolean
   gender?: boolean
@@ -912,11 +1008,15 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   candidate_status?: boolean
   verification_status?: boolean
   blood_group?: boolean
+  category?: boolean
+  candidate_password?: boolean
+  candidate_last_name?: boolean
+  guardian_name?: boolean
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectScalar = {
   candidate_id?: boolean
-  candidate_name?: boolean
+  candidate_first_name?: boolean
   contact_number?: boolean
   email_id?: boolean
   gender?: boolean
@@ -940,16 +1040,20 @@ export type candidates_detailsSelectScalar = {
   candidate_status?: boolean
   verification_status?: boolean
   blood_group?: boolean
+  category?: boolean
+  candidate_password?: boolean
+  candidate_last_name?: boolean
+  guardian_name?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_name" | "contact_number" | "email_id" | "gender" | "date_of_birth" | "education" | "address" | "center_name" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "nearest_station" | "pin_code" | "district" | "state_name" | "course_name" | "salary" | "batch_no" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "contact_number" | "email_id" | "gender" | "date_of_birth" | "education" | "address" | "center_name" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "nearest_station" | "pin_code" | "district" | "state_name" | "course_name" | "salary" | "batch_no" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "candidate_password" | "candidate_last_name" | "guardian_name", ExtArgs["result"]["candidates_details"]>
 
 export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "candidates_details"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     candidate_id: number
-    candidate_name: string
+    candidate_first_name: string
     contact_number: string
     email_id: string
     gender: string | null
@@ -973,6 +1077,10 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     candidate_status: string | null
     verification_status: string | null
     blood_group: string | null
+    category: string | null
+    candidate_password: string | null
+    candidate_last_name: string | null
+    guardian_name: string | null
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -1397,7 +1505,7 @@ export interface Prisma__candidates_detailsClient<T, Null = never, ExtArgs exten
  */
 export interface candidates_detailsFieldRefs {
   readonly candidate_id: Prisma.FieldRef<"candidates_details", 'Int'>
-  readonly candidate_name: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_first_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly contact_number: Prisma.FieldRef<"candidates_details", 'String'>
   readonly email_id: Prisma.FieldRef<"candidates_details", 'String'>
   readonly gender: Prisma.FieldRef<"candidates_details", 'String'>
@@ -1421,6 +1529,10 @@ export interface candidates_detailsFieldRefs {
   readonly candidate_status: Prisma.FieldRef<"candidates_details", 'String'>
   readonly verification_status: Prisma.FieldRef<"candidates_details", 'String'>
   readonly blood_group: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly category: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_password: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_last_name: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly guardian_name: Prisma.FieldRef<"candidates_details", 'String'>
 }
     
 

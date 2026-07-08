@@ -59,3 +59,8 @@ export type candidates_details = Prisma.candidates_detailsModel
  * 
  */
 export type staff_details = Prisma.staff_detailsModel
+/**
+ * Model company_name
+ * 
+ */
+export type company_name = Prisma.company_nameModel
