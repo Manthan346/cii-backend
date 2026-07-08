@@ -1,0 +1,114 @@
+/* CourseAttendanceList.css */
+
+.course-attendance-list {
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E0E8F0;
+  padding: 20px 22px;
+  width: auto;
+}
+
+.course-attendance-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.course-attendance-list__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A2740;
+}
+
+.course-attendance-list__view-all {
+  background: none;
+  border: none;
+  color: #2F6FB0;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+
+.course-attendance-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: -2rem;
+}
+
+.course-attendance-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.course-attendance-list__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.course-attendance-list__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-attendance-list__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.course-attendance-list__name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1A2740;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-attendance-list__pct {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1B8A4F;
+  flex-shrink: 0;
+}
+
+.course-attendance-list__pct--low {
+  color: #D8432B;
+}
+
+.course-attendance-list__bar-track {
+  height: 5px;
+  border-radius: 4px;
+  background: #E6EEF8;
+  overflow: hidden;
+}
+
+.course-attendance-list__bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: #2FAE68;
+  transition: width 0.6s ease;
+}
+
+.course-attendance-list__bar-fill--low {
+  background: #E05A2B;
+}
+
+@media (max-width: 1100px) {
+  .course-attendance-list {
+    width: auto;
+  }
+}

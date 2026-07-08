@@ -1,9 +1,15 @@
 generator client {
+<<<<<<< HEAD
   provider = "prisma-client-js"
+=======
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+>>>>>>> e2f37dc29cd4c218060de7bee04c86467ed8cb1a
 }
 
 datasource db {
   provider = "postgresql"
+<<<<<<< HEAD
   url      = env("DATABASE_URL")
 }
 
@@ -13,6 +19,23 @@ model StaffDetails {
   gender     String? @db.VarChar(50)
 
   @@map("staff_details")
+=======
+    url  = env("DATABASE_URL")
+ 
+
+   
+   
+}
+
+model user {
+  id             String @id @default(uuid())
+  candidate_name String
+  contact_no     String
+  email          String
+  gender         String
+  date_of_birth  String
+  education      String
+>>>>>>> e2f37dc29cd4c218060de7bee04c86467ed8cb1a
 }
 
 model candidates_details {
@@ -40,6 +63,7 @@ model candidates_details {
   job_location        String?   @db.VarChar(100)
   candidate_status    String?   @db.VarChar(50)
   verification_status String?   @db.VarChar(50)
+<<<<<<< HEAD
 }
 
 model user {
@@ -51,3 +75,20 @@ model user {
   date_of_birth  String
   education      String
 }
+=======
+  blood_group         String?   @db.VarChar(5)
+}
+
+model staff_details {
+  staff_id   Int     @id @default(autoincrement())
+  staff_name String  @db.VarChar(100)
+  gender     String? @db.VarChar(50)
+}
+
+model company {
+  
+
+
+
+}
+>>>>>>> e2f37dc29cd4c218060de7bee04c86467ed8cb1a
