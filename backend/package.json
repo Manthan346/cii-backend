@@ -2,34 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-<<<<<<< HEAD
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-=======
   "main": "index.ts",
   "scripts": {
     "start": "tsx index.ts",
     "dev": "nodemon --exec tsx index.ts"
->>>>>>> e2f37dc29cd4c218060de7bee04c86467ed8cb1a
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-  "type": "commonjs",
-  "dependencies": {
-    "@prisma/client": "^6.19.3",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "prisma": "^6.19.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
-=======
   "type": "module",
   "dependencies": {
     "@prisma/adapter-pg": "^6.19.0",
@@ -47,6 +27,5 @@
     "@types/pg": "^8.20.0",
     "tsx": "^4.23.0",
     "typescript": "^6.0.3"
->>>>>>> e2f37dc29cd4c218060de7bee04c86467ed8cb1a
   }
 }
