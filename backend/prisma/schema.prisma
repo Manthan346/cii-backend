@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+    url  = env("DATABASE_URL")
+ 
+
+   
+   
+}
+
+model user {
+  id             String @id @default(uuid())
+  candidate_name String
+  contact_no     String
+  email          String
+  gender         String
+  date_of_birth  String
+  education      String
+}
+
+model candidates_details {
+  candidate_id        Int       @id @default(autoincrement())
+  candidate_name      String    @db.VarChar(100)
+  contact_number      String    @unique @db.VarChar(10)
+  email_id            String    @unique @db.VarChar(100)
+  gender              String?   @db.VarChar(10)
+  date_of_birth       DateTime? @db.Date
+  education           String?   @db.VarChar(100)
+  address             String?   @db.VarChar(250)
+  center_name         String?   @db.VarChar(100)
+  enquiry_source      String?   @db.VarChar(50)
+  aadhar_card_no      String?   @db.VarChar(50)
+  pan_card_no         String?   @db.VarChar(50)
+  nearest_station     String?   @db.VarChar(50)
+  pin_code            Int?
+  district            String?   @db.VarChar(50)
+  state_name          String?   @db.VarChar(50)
+  course_name         String?   @db.VarChar(100)
+  salary              Int?
+  batch_no            Int?
+  training_start_date DateTime? @db.Date
+  training_end_date   DateTime? @db.Date
+  job_location        String?   @db.VarChar(100)
+  candidate_status    String?   @db.VarChar(50)
+  verification_status String?   @db.VarChar(50)
+  blood_group         String?   @db.VarChar(5)
+}
+
+model staff_details {
+  staff_id   Int     @id @default(autoincrement())
+  staff_name String  @db.VarChar(100)
+  gender     String? @db.VarChar(50)
+}
+
+model company {
+  
+
+
+
+}
