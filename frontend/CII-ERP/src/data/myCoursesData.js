@@ -47,18 +47,18 @@
 //
 // ──────────────────────────────────────────────────────────────
 
-import bluestarLogo from '../../../../assets/bluestar-logo.png';
-import itcLogo      from '../../../../assets/itc-logo.png';
-import cosmosLogo   from '../../../../assets/cosmos-logo.png';
-import nasscomLogo  from '../../../../assets/dsci-logo.png';
-import kalpataru    from '../../../../assets/kalpataru-logo.png';
-import nihonLogo    from '../../../../assets/nihon edutech-logo.png';
-import apparelLogo  from '../../../../assets/aparrel-logo.png';
-import bajajLogo    from '../../../../assets/bajaj-logo.png';
-import jubilantLogo from '../../../../assets/jubliant-logo.png';
-import lorealLogo   from '../../../../assets/loreal-logo.png';
-import ciscoLogo    from '../../../../assets/cisco-logo.png';
-import vfsLogo      from '../../../../assets/vfs-global-logo.png';
+import bluestarLogo from '../assets/bluestar-logo.png';
+import itcLogo      from '../assets/itc-logo.png';
+import cosmosLogo   from '../assets/cosmos-logo.png';
+import nasscomLogo  from '../assets/dsci-logo.png';
+import kalpataru    from '../assets/kalpataru-logo.png';
+import nihonLogo    from '../assets/nihon edutech-logo.png';
+import apparelLogo  from '../assets/aparrel-logo.png';
+import bajajLogo    from '../assets/bajaj-logo.png';
+import jubilantLogo from '../assets/jubliant-logo.png';
+import lorealLogo   from '../assets/loreal-logo.png';
+import ciscoLogo    from '../assets/cisco-logo.png';
+import vfsLogo      from '../assets/vfs-global-logo.png';
 
 export const courseCards = [
   {

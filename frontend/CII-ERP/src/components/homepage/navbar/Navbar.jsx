@@ -3,13 +3,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 const links = [
-  { label: "Home",              href: "#home",         route: null },
-  { label: "About Us",          href: "#about-us",     route: null },
-  { label: "Course / Training", href: "#courses",      route: null },
-  { label: "Achievements",      href: "#showcase",     route: null },
-  { label: "Events",            href: null,            route: "/events" },
-  { label: "Testimonials",      href: "#testimonials", route: null },
-  { label: "Contact Us",        href: "#contact",      route: null },
+  { label: "Home", href: "#home", route: null },
+  { label: "About Us", href: "#about-us", route: null },
+  { label: "Course / Training", href: "#courses", route: null },
+  { label: "Achievements", href: "#showcase", route: null },
+  { label: "Events", href: null, route: "/events" },
+  { label: "Testimonials", href: "#testimonials", route: null },
+  { label: "Contact Us", href: "#contact", route: null },
+  { label: "Login", href: "#login", route: "/LoginPage" },
 ];
 
 export default function Navbar() {
@@ -67,6 +68,7 @@ export default function Navbar() {
               {active === l.label && <span className="navbar-indicator" />}
             </a>
           ))}
+          {/* <button style={{color: "", background: "#f4c542", border: "1px solid ", borderRadius: "0.2rem", padding: "5px"}}>Login</button> */}
         </div>
 
         {/* Hamburger for mobile */}

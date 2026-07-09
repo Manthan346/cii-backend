@@ -21,6 +21,7 @@ import Home from "./pages/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";
+import EnquirePage from "./pages/EnquireForm/EnquirePage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path="/Registration" element={<Home />} />
       <Route path="/events" element={<EventsPage />} />
       <Route path="/*" element={<CandidatePage />} />
+      <Route path="/enquire" element={<EnquirePage />} />
     </Routes>
   );
 }

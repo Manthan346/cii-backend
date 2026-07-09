@@ -40,7 +40,7 @@ import {
   completedCourses,
   upSkillActivities,
   suggestedCourses,
-} from '../data/myCoursesData';
+} from '../../../../data/myCoursesData';
 import orgLogo from '../../../../assets/Logo.png';
 
 import './MyCourses.css';
