@@ -32,12 +32,19 @@ import Assessments from '../components/candidatepage/Progress/Assessments/Assess
 
 export default function CandidateDashboard() {
   return (
+    <div>
+
+
+  
+
     <Routes>
+      
       <Route path="/my-dashboard" element={<Dashboard />} />
       <Route path="/my-courses"  element={<MyCourses />} />
       <Route path="/my-profile"  element={<Profile />} />
       <Route path="/attendance" element={<Attendance />} />
       <Route path="/progress/assessments" element={<Assessments />} />
     </Routes>
+      </div>
   );
 }

@@ -21,6 +21,8 @@ import Home from "./pages/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";
+import CandidateDashboard from "./pages/CandidateDashboard";
+
 
 function App() {
   return (
@@ -30,8 +32,9 @@ function App() {
       <Route path="/Registration" element={<Home />} />
       <Route path="/events" element={<EventsPage />} />
       <Route path="/*" element={<CandidatePage />} />
+     
     </Routes>
-  );
+  );          
 }
 
 export default App;
