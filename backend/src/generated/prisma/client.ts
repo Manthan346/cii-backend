@@ -60,7 +60,27 @@ export type candidates_details = Prisma.candidates_detailsModel
  */
 export type staff_details = Prisma.staff_detailsModel
 /**
- * Model company_name
+ * Model attendance_records
  * 
  */
-export type company_name = Prisma.company_nameModel
+export type attendance_records = Prisma.attendance_recordsModel
+/**
+ * Model batch_details
+ * 
+ */
+export type batch_details = Prisma.batch_detailsModel
+/**
+ * Model company
+ * 
+ */
+export type company = Prisma.companyModel
+/**
+ * Model course_details
+ * 
+ */
+export type course_details = Prisma.course_detailsModel
+/**
+ * Model course_enrollment
+ * 
+ */
+export type course_enrollment = Prisma.course_enrollmentModel

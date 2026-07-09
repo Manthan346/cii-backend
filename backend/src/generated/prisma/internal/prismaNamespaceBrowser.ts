@@ -52,7 +52,11 @@ export const ModelName = {
   user: 'user',
   candidates_details: 'candidates_details',
   staff_details: 'staff_details',
-  company_name: 'company_name'
+  attendance_records: 'attendance_records',
+  batch_details: 'batch_details',
+  company: 'company',
+  course_details: 'course_details',
+  course_enrollment: 'course_enrollment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -128,13 +132,56 @@ export const Staff_detailsScalarFieldEnum = {
 export type Staff_detailsScalarFieldEnum = (typeof Staff_detailsScalarFieldEnum)[keyof typeof Staff_detailsScalarFieldEnum]
 
 
-export const Company_nameScalarFieldEnum = {
+export const Attendance_recordsScalarFieldEnum = {
+  record_id: 'record_id',
+  candidate_id: 'candidate_id',
+  batch_id: 'batch_id',
+  is_present: 'is_present'
+} as const
+
+export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]
+
+
+export const Batch_detailsScalarFieldEnum = {
+  batch_id: 'batch_id',
+  batch_name: 'batch_name',
+  batch_desc: 'batch_desc',
+  batch_start_date: 'batch_start_date',
+  batch_end_date: 'batch_end_date',
+  course_id: 'course_id'
+} as const
+
+export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
+
+
+export const CompanyScalarFieldEnum = {
   company_id: 'company_id',
   company_name: 'company_name',
   company_description: 'company_description'
 } as const
 
-export type Company_nameScalarFieldEnum = (typeof Company_nameScalarFieldEnum)[keyof typeof Company_nameScalarFieldEnum]
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const Course_detailsScalarFieldEnum = {
+  course_id: 'course_id',
+  course_name: 'course_name',
+  course_desc: 'course_desc',
+  course_duration: 'course_duration',
+  company_id: 'company_id',
+  course_type: 'course_type'
+} as const
+
+export type Course_detailsScalarFieldEnum = (typeof Course_detailsScalarFieldEnum)[keyof typeof Course_detailsScalarFieldEnum]
+
+
+export const Course_enrollmentScalarFieldEnum = {
+  enroll_id: 'enroll_id',
+  candidate_id: 'candidate_id',
+  batch_id: 'batch_id'
+} as const
+
+export type Course_enrollmentScalarFieldEnum = (typeof Course_enrollmentScalarFieldEnum)[keyof typeof Course_enrollmentScalarFieldEnum]
 
 
 export const SortOrder = {
