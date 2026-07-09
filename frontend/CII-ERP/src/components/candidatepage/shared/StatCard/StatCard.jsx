@@ -39,3 +39,5 @@ export function StatGrid({ stats }) {
     </div>
   );
 }
+
+export default StatCard;

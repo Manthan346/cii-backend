@@ -1,0 +1,70 @@
+/* Assessments.css
+   Overall page layout: sidebar + main column (topbar + content). */
+
+.assessments-page {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F7FB;
+}
+
+.assessments-page__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-left: 240px;
+}
+
+@media (max-width: 900px) {
+  .assessments-page__main {
+    margin-left: 0;
+  }
+}
+
+.assessments-page__content {
+  padding: 16px 40px 16px 40px;
+}
+
+.assessments-page__header {
+  margin-bottom: 20px;
+}
+
+.assessments-page__title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1D29;
+}
+
+.assessments-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #8A8FA3;
+}
+
+.assessments-page__body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.assessments-page__left,
+.assessments-page__right {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .assessments-page__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .assessments-page {
+    flex-direction: column;
+  }
+  .assessments-page__content {
+    padding: 16px;
+  }
+}
