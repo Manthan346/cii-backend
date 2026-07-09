@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./LoginPage.css";
 import logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
@@ -18,36 +18,134 @@ function EyeIcon({ open }) {
   );
 }
 
+function Dropdown({ id, label, value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find((opt) => opt.value === value);
+
+  return (
+    <div className="lp-field-group" style={{ flex: 1, minWidth: 0 }}>
+      <label className="lp-label" htmlFor={id}>{label}</label>
+      <div className="lp-input-wrap" style={{ position: "relative" }} ref={wrapperRef}>
+        <button
+          type="button"
+          id={id}
+          className="lp-input"
+          style={{
+            textAlign: "left",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderRadius: "10px",
+            paddingLeft: "14px",
+          }}
+          onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+        >
+          <span style={{ color: selectedOption ? "#1a202c" : "#9ca3af" }}>
+            {selectedOption ? selectedOption.label : placeholder}
+          </span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            style={{
+              transform: open ? "rotate(180deg)" : "none",
+              transition: "transform 0.2s",
+              flexShrink: 0,
+              color: "#9ca3af",
+            }}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        {open && (
+          <ul
+            role="listbox"
+            aria-label={label}
+            style={{
+              position: "absolute",
+              top: "calc(100% + 6px)",
+              left: 0,
+              right: 0,
+              margin: 0,
+              padding: "6px",
+              listStyle: "none",
+              background: "#ffffff",
+              border: "1.5px solid #e2e8f0",
+              borderRadius: "10px",
+              boxShadow: "0 8px 24px rgba(6, 25, 74, 0.12)",
+              zIndex: 20,
+              maxHeight: "220px",
+              overflowY: "auto",
+            }}
+          >
+            {options.map((opt) => {
+              const isSelected = value === opt.value;
+              return (
+                <li
+                  key={opt.value}
+                  role="option"
+                  aria-selected={isSelected}
+                  onClick={() => {
+                    onChange(opt.value);
+                    setOpen(false);
+                  }}
+                  style={{
+                    padding: "10px 12px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    color: isSelected ? "#ffffff" : "#1a202c",
+                    background: isSelected ? "#0c2d72" : "transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = "#f8fafc";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  {opt.label}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState("");
+  const [center, setCenter] = useState("");
+
+  const centers = ["MUMBAI", "PUNE","DELHI"];
 
   return (
     <div className="lp-container">
       {/* Left decorative panel */}
       <div className="lp-left">
         <div className="lp-left-inner">
-          {/* <div className="lp-brand-badge">
-            <img src={logo} alt="CII Logo" className="lp-brand-logo" />
-          </div>
-          <h2 className="lp-left-title">CII – Rahul Bajaj</h2>
-          <p className="lp-left-subtitle">Centre of Excellence on Skills</p>
-          <p className="lp-left-desc">
-            Empowering a million youth every year through skill-based education and workforce readiness programs.
-          </p>
-          <div className="lp-left-stats">
-            <div className="lp-stat">
-              <span className="lp-stat-number">1M+</span>
-              <span className="lp-stat-label">Youth Trained</span>
-            </div>
-            <div className="lp-stat">
-              <span className="lp-stat-number">500+</span>
-              <span className="lp-stat-label">Centres</span>
-            </div>
-            <div className="lp-stat">
-              <span className="lp-stat-number">20+</span>
-              <span className="lp-stat-label">Programs</span>
-            </div>
-          </div> */}
         </div>
       </div>
 
@@ -96,6 +194,33 @@ function LoginPage() {
                   <EyeIcon open={showPassword} />
                 </button>
               </div>
+            </div>
+
+            <div style={{ display: "flex", gap: "12px" }}>
+              <Dropdown
+                id="lp-role-select"
+                label="Role"
+                placeholder="Select role"
+                value={role}
+                onChange={setRole}
+                options={[
+                  { value: "Staff", label: "Staff" },
+                  { value: "Admin", label: "Admin" },
+                  { value: "Student", label: "Student" },
+                ]}
+              />
+
+              <Dropdown
+                id="lp-center-select"
+                label="Center"
+                placeholder="Select center"
+                value={center}
+                onChange={setCenter}
+                options={centers.map((c) => ({
+                  value: c.id || c.value || c,
+                  label: c.name || c.label || c,
+                }))}
+              />
             </div>
 
             <div className="lp-forgot-row">
