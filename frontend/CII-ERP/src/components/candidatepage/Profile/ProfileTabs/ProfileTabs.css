@@ -31,7 +31,7 @@
 } */
 
 .profile-tabs__item--active {
-  background: var(--blue);
+  background: var(--blue-light);
   color: var(--white);
 }
 

@@ -28,7 +28,7 @@ import Dashboard from '../components/candidatepage/Dashboard/Dashboard/Dashboard
 import MyCourses from '../components/candidatepage/MyCourses/MyCourses/MyCourses';
 import Profile   from '../components/candidatepage/Profile/Profile/Profile';
 import Attendance from '../components/candidatepage/Attendance/Attendance/Attendance';
-import Assessments from '../components/candidatepage/Progress/Assessments/Assessments';
+import Assessments from '../components/candidatepage/Progress/Assessments/Assessments/Assessments';
 
 export default function CandidateDashboard() {
   return (

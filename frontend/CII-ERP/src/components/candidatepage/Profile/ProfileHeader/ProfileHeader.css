@@ -31,7 +31,7 @@
 
 .profile-header__ring-fg {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--blue-light);
   stroke-width: 6;
   stroke-linecap: round;
 }
@@ -41,7 +41,7 @@
   inset: 8px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--blue);
+  background: var(--blue-light);
   color: var(--white);
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 /* ── Blue identity card ── */
 .profile-header__card {
   flex: 1;
-  background: linear-gradient(120deg, var(--blue) 0%, var(--blue-mid) 100%);
+  background: linear-gradient(120deg, var(--blue-mid) 0%, var(--blue-light) 100%);
   border-radius: var(--radius-lg);
   padding: 18px 22px;
   color: var(--white);

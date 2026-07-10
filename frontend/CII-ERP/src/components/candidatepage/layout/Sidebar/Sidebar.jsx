@@ -28,6 +28,16 @@
 // Attendance page exists. Point this at whatever path your router
 // uses if it differs.
 //
+// ── Visual refresh (2026-07-10) ──────────────────────────────────
+// Restyled to match the light/blue reference design (white surface,
+// bright-blue active state) instead of the previous solid navy
+// sidebar. No routing, props, or state logic changed — see the CSS
+// changelog at the top of Sidebar.css for the full list of visual
+// changes. Icons swapped from the local <Icon> component to
+// lucide-react so the linework matches the reference exactly; if
+// <Icon> is used elsewhere in the app that's untouched, this file
+// simply no longer imports it.
+//
 // Usage with the mobile drawer (see shared/Topbar's onMenuClick):
 //
 //   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -42,34 +52,44 @@
 // ─────────────────────────────────────────────────────────────
 
 import { Link } from "react-router-dom";
-import Icon from "../../shared/Icon/Icon";
+import {
+  LayoutDashboard,
+  User,
+  GraduationCap,
+  CalendarCheck,
+  Star,
+  Award,
+  Briefcase,
+  Clock,
+  LogOut,
+  X,
+} from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
-  { icon: "dashboard", label: "Dashboard", to: "/my-dashboard" },
-  { icon: "profile", label: "My Profile", to: "/my-profile" },
-  { icon: "courses", label: "My Courses", to: "/my-courses" },
-  { icon: "attendance", label: "Attendance", to: "/attendance" },
+  { icon: LayoutDashboard, label: "Dashboard", to: "/my-dashboard" },
+  { icon: User, label: "My Profile", to: "/my-profile" },
+  { icon: GraduationCap, label: "My Courses", to: "/my-courses" },
+  { icon: CalendarCheck, label: "Attendance", to: "/attendance" },
 ];
 
 const NAV_PROGRESS = [
-  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments' },
-  { icon: 'certificates', label: 'Certificates',      to: null },
-  { icon: 'jobs',         label: 'Job Opportunities', to: null },
+  { icon: Star, label: "Assessments", to: "/progress/assessments" },
+  { icon: Award, label: "Certificates", to: null },
+  { icon: Briefcase, label: "Job Opportunities", to: null },
 ];
 
 const NAV_SCHEDULE = [
-  { icon: "upcomingClasses", label: "Upcoming Classes", to: null },
+  { icon: Clock, label: "Upcoming Classes", to: null },
 ];
 
-function NavItem({ icon, label, active, to }) {
+function NavItem({ icon: IconComp, label, active, to }) {
   const cls = `sidebar__nav-item${active ? " sidebar__nav-item--active" : ""}`;
-  const iconColor = active ? "#003C7E" : "rgba(255,255,255,0.78)";
   const content = (
     <>
-      <Icon name={icon} size={17} color={iconColor} />
-      {label}
+      <IconComp size={18} strokeWidth={2} className="sidebar__nav-icon" />
+      <span>{label}</span>
     </>
   );
 
@@ -100,59 +120,63 @@ export default function Sidebar({
         onClick={onClose}
         aria-label="Close menu"
       >
-        ✕
+        <X size={16} strokeWidth={2.5} />
       </button>
 
-      {/* Organisation logo – sourced from backend, read-only */}
-      <div className="sidebar__logo-wrap">
-        <SidebarLogo src={orgLogoSrc} />
-      </div>
-
-      {/* Candidate profile mini-card */}
-      {/* TODO: replace hardcoded values with user data from auth context / API */}
-      <div className="sidebar__profile">
-        <div className="sidebar__avatar">AS</div>
-        <div>
-          <div className="sidebar__profile-name">Aisha Sheikh</div>
-          <div className="sidebar__profile-role">Candidate · Batch DS-24</div>
+      <div className="sidebar__scroll">
+        {/* Organisation logo – sourced from backend, read-only */}
+        <div className="sidebar__logo-card">
+          <div className="sidebar__logo-wrap">
+            <SidebarLogo src={orgLogoSrc} />
+          </div>
         </div>
+
+        {/* Candidate profile mini-card */}
+        {/* TODO: replace hardcoded values with user data from auth context / API */}
+        <div className="sidebar__profile">
+          <div className="sidebar__avatar">AS</div>
+          <div>
+            <div className="sidebar__profile-name">Aisha Sheikh</div>
+            <div className="sidebar__profile-role">Candidate</div>
+          </div>
+        </div>
+
+        {/* Main navigation */}
+        <SectionLabel>Main</SectionLabel>
+        {NAV_MAIN.map((item) => (
+          <NavItem
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            to={item.to}
+            active={activeItem === item.label}
+          />
+        ))}
+
+        {/* Progress navigation */}
+        <SectionLabel>Progress</SectionLabel>
+        {NAV_PROGRESS.map((item) => (
+          <NavItem
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            to={item.to}
+            active={activeItem === item.label}
+          />
+        ))}
+
+        {/* Schedule navigation */}
+        <SectionLabel>Schedule</SectionLabel>
+        {NAV_SCHEDULE.map((item) => (
+          <NavItem
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            to={item.to}
+            active={activeItem === item.label}
+          />
+        ))}
       </div>
-
-      {/* Main navigation */}
-      <SectionLabel>Main</SectionLabel>
-      {NAV_MAIN.map((item) => (
-        <NavItem
-          key={item.label}
-          icon={item.icon}
-          label={item.label}
-          to={item.to}
-          active={activeItem === item.label}
-        />
-      ))}
-
-      {/* Progress navigation */}
-      <SectionLabel>Progress</SectionLabel>
-      {NAV_PROGRESS.map((item) => (
-        <NavItem
-          key={item.label}
-          icon={item.icon}
-          label={item.label}
-          to={item.to}
-          active={activeItem === item.label}
-        />
-      ))}
-
-      {/* Schedule navigation */}
-      <SectionLabel>Schedule</SectionLabel>
-      {NAV_SCHEDULE.map((item) => (
-        <NavItem
-          key={item.label}
-          icon={item.icon}
-          label={item.label}
-          to={item.to}
-          active={activeItem === item.label}
-        />
-      ))}
 
       {/* Logout */}
       <div className="sidebar__logout-wrap">
@@ -161,7 +185,7 @@ export default function Sidebar({
           onClick={(e) => e.preventDefault()}
           className="sidebar__logout"
         >
-          <Icon name="logout" size={17} color="rgba(255,255,255,0.5)" />
+          <LogOut size={17} strokeWidth={2} />
           Logout
         </a>
       </div>
