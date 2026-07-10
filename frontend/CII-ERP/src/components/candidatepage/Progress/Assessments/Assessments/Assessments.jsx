@@ -45,16 +45,16 @@
 // ============================================================================
 
 import React, { useState } from "react";
-import Sidebar from "../../layout/Sidebar/Sidebar";
-import Topbar from "../../layout/Topbar/Topbar";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
 
-import AssessmentsStats from "./AssessmentsStats/AssessmentsStats";
-import PendingAssessments from "./PendingAssessments/PendingAssessments";
-import CompletedAssessments from "./CompletedAssessments/CompletedAssessments";
-import PerformanceByCourse from "./PerformanceByCourse/PerformanceByCourse";
-import TipsCard from "./TipsCard/TipsCard";
+import AssessmentsStats from "../AssessmentsStats/AssessmentsStats";
+import PendingAssessments from "../PendingAssessments/PendingAssessments";
+import CompletedAssessments from "../CompletedAssessments/CompletedAssessments";
+import PerformanceByCourse from "../PerformanceByCourse/PerformanceByCourse";
+import TipsCard from "../TipsCard/TipsCard";
 
-import orgLogo from '../../../../assets/Logo.png';
+import orgLogo from '../../../../../assets/Logo.png';
 
 import "./Assessments.css";
 

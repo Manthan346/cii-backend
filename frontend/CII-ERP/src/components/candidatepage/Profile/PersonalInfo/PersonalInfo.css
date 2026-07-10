@@ -86,7 +86,7 @@
 
 .personal-info__donut-fg {
   fill: none;
-  stroke: var(--blue);
+  stroke: var(--blue-light);
   stroke-width: 9;
   stroke-linecap: round;
 }
