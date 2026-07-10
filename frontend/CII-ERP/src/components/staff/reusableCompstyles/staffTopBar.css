@@ -1,0 +1,13 @@
+.staffTopbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 100px;
+
+    background: rgb(199, 184, 184);
+    border-bottom: 1px solid #E5E7EB;
+
+    z-index: 1000;
+}
