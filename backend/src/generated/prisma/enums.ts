@@ -9,7 +9,10 @@
 * 🟢 You can import this file directly.
 */
 
+export const attend_types = {
+  present: 'present',
+  late: 'late',
+  absent: 'absent'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type attend_types = (typeof attend_types)[keyof typeof attend_types]

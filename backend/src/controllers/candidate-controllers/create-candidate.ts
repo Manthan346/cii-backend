@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
-
+import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
 
 const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
   const {first_name, last_name,email_id,gender,date_of_birth, education,contact_number,centre_name,password } = req.body
@@ -49,9 +49,43 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
        
      }
    })
+
+
+  const accessToken= generateAccessToken({
+    candidate_id: user.candidate_id,
+    candidate_first_name: user.candidate_first_name,
+    centre_name: user.center_name ?? "",
+    email: user.email_id,
+    candidate_last_name: user.candidate_last_name ?? "",
+
+
+
+
+
+   })
+
+   const refreshToken = generateRefreshToken({
+    candidate_id: user.candidate_id,
+    candidate_first_name: user.candidate_first_name,
+    candidate_last_name: user.candidate_last_name ?? ""
+   })
+
+   res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        maxAge: 15 * 60 * 1000
+    })
+       res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
    return res.status(201).json(
     new ApiResponse(201, {
       user,
+      refreshToken: refreshToken
       
     }, "user added successfully")
     

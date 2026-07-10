@@ -18,11 +18,6 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
- * Model user
- * 
- */
-export type user = Prisma.userModel
-/**
  * Model candidates_details
  * 
  */
@@ -43,11 +38,6 @@ export type attendance_records = Prisma.attendance_recordsModel
  */
 export type batch_details = Prisma.batch_detailsModel
 /**
- * Model company
- * 
- */
-export type company = Prisma.companyModel
-/**
  * Model course_details
  * 
  */
@@ -57,3 +47,38 @@ export type course_details = Prisma.course_detailsModel
  * 
  */
 export type course_enrollment = Prisma.course_enrollmentModel
+/**
+ * Model center_company
+ * 
+ */
+export type center_company = Prisma.center_companyModel
+/**
+ * Model center_details
+ * 
+ */
+export type center_details = Prisma.center_detailsModel
+/**
+ * Model enquiry_records
+ * 
+ */
+export type enquiry_records = Prisma.enquiry_recordsModel
+/**
+ * Model user_login
+ * 
+ */
+export type user_login = Prisma.user_loginModel
+/**
+ * Model assessments
+ * 
+ */
+export type assessments = Prisma.assessmentsModel
+/**
+ * Model candidate_assessments
+ * 
+ */
+export type candidate_assessments = Prisma.candidate_assessmentsModel
+/**
+ * Model company_details
+ * 
+ */
+export type company_details = Prisma.company_detailsModel
