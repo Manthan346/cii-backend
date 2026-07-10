@@ -28,8 +28,8 @@ import Dashboard from '../components/candidatepage/Dashboard/Dashboard/Dashboard
 import MyCourses from '../components/candidatepage/MyCourses/MyCourses/MyCourses';
 import Profile   from '../components/candidatepage/Profile/Profile/Profile';
 import Attendance from '../components/candidatepage/Attendance/Attendance/Attendance';
-import Assessments from '../components/candidatepage/Progress/Assessments/Assessments';
-import Certificates from '../components/candidatepage/Progress/Certificates/Certificates';
+import Assessments from '../components/candidatepage/Progress/Assessments/Assessments/Assessments';
+import Certificates from '../components/candidatepage/Progress/Certificates/Certificates/Certificates';
 
 export default function CandidateDashboard() {
   return (

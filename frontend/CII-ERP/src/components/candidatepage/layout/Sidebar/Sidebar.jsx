@@ -76,7 +76,7 @@ const NAV_MAIN = [
 
 const NAV_PROGRESS = [
   { icon: Star, label: "Assessments", to: "/progress/assessments" },
-  { icon: Award, label: "Certificates", to: null },
+  { icon: Award, label: "Certificates", to: "/progress/certificates" },
   { icon: Briefcase, label: "Job Opportunities", to: null },
 ];
 
