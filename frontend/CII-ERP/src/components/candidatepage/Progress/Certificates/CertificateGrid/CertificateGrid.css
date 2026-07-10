@@ -1,0 +1,13 @@
+/* CertificateGrid.css */
+
+.certificate-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.certificate-grid__empty {
+  font-size: 14px;
+  color: #8A8FA3;
+  margin: 8px 0 0;
+}

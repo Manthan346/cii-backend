@@ -54,8 +54,8 @@ const NAV_MAIN = [
 ];
 
 const NAV_PROGRESS = [
-  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments' },
-  { icon: 'certificates', label: 'Certificates',      to: null },
+  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'  },
+  { icon: 'certificates', label: 'Certificates',      to: '/progress/certificates' },
   { icon: 'jobs',         label: 'Job Opportunities', to: null },
 ];
 

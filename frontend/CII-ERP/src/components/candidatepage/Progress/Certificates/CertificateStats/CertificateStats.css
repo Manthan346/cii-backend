@@ -1,0 +1,54 @@
+/* CertificateStats.css */
+
+/* .certificate-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 220px));
+  gap: 16px;
+  margin-bottom: 20px;
+} */
+
+.certificate-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.certificate-stat-card {
+  background: #4361EE;
+  border-radius: 16px;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
+.certificate-stat-card__icon {
+  color: #FFFFFF;
+  margin-bottom: 22px;
+  display: block;
+}
+
+.certificate-stat-card__value {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.certificate-stat-card__label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1024px) {
+  .certificate-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .certificate-stats {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,84 @@
+/* CertificateCard.css */
+
+.certificate-card {
+  background: #FFFFFF;
+  border: 1px solid #EEF0F4;
+  border-radius: 16px;
+  padding: 16px;
+  width: 260px;
+}
+
+.certificate-card__preview {
+  background: #F7F8FA;
+  border-radius: 12px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.certificate-card__title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1D29;
+  line-height: 1.25;
+}
+
+.certificate-card__subtitle {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: #8A8FA3;
+}
+
+.certificate-card__grade {
+  display: inline-block;
+  background: #DFF5E3;
+  color: #1F9D4D;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.certificate-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.certificate-card__download {
+  flex: 1;
+  background: #4361EE;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.certificate-card__download:hover {
+  background: #364FD1;
+}
+
+.certificate-card__share {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: none;
+  background: #F1F3F9;
+  color: #1A1D29;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.certificate-card__share:hover {
+  background: #E4E7F0;
+}

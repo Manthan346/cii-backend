@@ -13,3 +13,16 @@ Made some Important changes in the My Profile Section of the Candidate Login :
     On Personal Info Screen added a Container which contains the Address of the Candidate.
     In the academic detail added containers for multiple courses.
     Added more documents on the Documents section & a note.
+
+08 July 2026
+Designed the Whole Assesment Page in Candidate Login
+Added Pending, Completed, Average Score & Best Score Cards
+Added Pending Assessments Sections
+Added Performance base on Courses
+Added Tips before you start Section For Test Preparation
+Added Completed Assessments Sections
+
+09 July 2026
+Leave
+
+10 July 2026
