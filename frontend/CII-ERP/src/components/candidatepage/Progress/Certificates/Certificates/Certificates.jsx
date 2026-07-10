@@ -48,14 +48,14 @@
 // ============================================================================
 
 import React, { useState } from "react";
-import Sidebar from "../../layout/Sidebar/Sidebar";
-import Topbar from "../../layout/Topbar/Topbar";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
 
-import CertificateStats from "./CertificateStats/CertificateStats";
-import CertificateTabs from "./CertificateTabs/CertificateTabs";
-import CertificateGrid from "./CertificateGrid/CertificateGrid";
+import CertificateStats from "../CertificateStats/CertificateStats";
+import CertificateTabs from "../CertificateTabs/CertificateTabs";
+import CertificateGrid from "../CertificateGrid/CertificateGrid";
 
-import { certificateStatsByTab, certificatesByTab } from "../../../../data/certificatesData";
+import { certificateStatsByTab, certificatesByTab } from "../../../../../data/certificatesData";
 import "./Certificates.css";
 
 const Certificates = () => {
