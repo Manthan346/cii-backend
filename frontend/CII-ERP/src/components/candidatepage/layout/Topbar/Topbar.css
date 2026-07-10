@@ -88,7 +88,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #003C7E;
+  background: var(--blue-light);
   color: #FFFFFF;
   display: flex;
   align-items: center;

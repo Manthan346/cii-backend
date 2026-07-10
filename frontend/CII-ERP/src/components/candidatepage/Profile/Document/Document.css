@@ -89,12 +89,12 @@
 }
 
 .document__badge--pending {
-  background: var(--blue);
+  background: var(--blue-light);
   color: var(--white);
 }
 
 .document__upload-btn {
-  background: var(--blue);
+  background: var(--blue-light);
   color: var(--white);
   border: none;
   border-radius: 20px;
