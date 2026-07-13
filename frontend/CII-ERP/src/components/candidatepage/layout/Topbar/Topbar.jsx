@@ -54,7 +54,8 @@ export default function Topbar({
 
         {/* User avatar */}
         {/* TODO: replace initials with <img> when profile photo is available */}
-        <div className="topbar__avatar" role="button" aria-label="User menu">
+        
+        <div className="topbar__avatar" role="button" aria-label="User menu" onClick={() => navigate('/my-profile')}>
           {userInitials}
         </div>
 
