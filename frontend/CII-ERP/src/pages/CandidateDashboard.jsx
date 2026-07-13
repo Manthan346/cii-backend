@@ -30,6 +30,7 @@ import Profile   from '../components/candidatepage/Profile/Profile/Profile';
 import Attendance from '../components/candidatepage/Attendance/Attendance/Attendance';
 import Assessments from '../components/candidatepage/Progress/Assessments/Assessments/Assessments';
 import Certificates from '../components/candidatepage/Progress/Certificates/Certificates/Certificates';
+import JobOpportunities from '../components/candidatepage/Progress/JobOpportunities/JobOpportunities/JobOpportunities';
 
 export default function CandidateDashboard() {
   return (
@@ -40,6 +41,7 @@ export default function CandidateDashboard() {
       <Route path="/attendance" element={<Attendance />} />
       <Route path="/progress/assessments" element={<Assessments />} />
       <Route path="/progress/certificates" element={<Certificates />} />
+      <Route path="/progress/jobopportunities" element={<JobOpportunities />} /> 
     </Routes>
   );
 }

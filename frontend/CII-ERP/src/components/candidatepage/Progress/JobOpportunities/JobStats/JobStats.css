@@ -1,0 +1,41 @@
+/* JobStats.css */
+
+.job-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.job-stat-card {
+  background: #4361EE;
+  border-radius: 16px;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
+.job-stat-card__icon {
+  color: #FFFFFF;
+  margin-bottom: 22px;
+  display: block;
+}
+
+.job-stat-card__value {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.job-stat-card__label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 560px) {
+  .job-stats {
+    grid-template-columns: 1fr;
+  }
+}

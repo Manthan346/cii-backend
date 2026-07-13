@@ -68,16 +68,16 @@ import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
-  { icon: LayoutDashboard, label: "Dashboard", to: "/my-dashboard" },
-  { icon: User, label: "My Profile", to: "/my-profile" },
-  { icon: GraduationCap, label: "My Courses", to: "/my-courses" },
-  { icon: CalendarCheck, label: "Attendance", to: "/attendance" },
+  { icon: LayoutDashboard, label: "Dashboard",  to: "/my-dashboard" },
+  { icon: User,            label: "My Profile", to: "/my-profile"   },
+  { icon: GraduationCap,   label: "My Courses", to: "/my-courses"   },
+  { icon: CalendarCheck,   label: "Attendance", to: "/attendance"   },
 ];
 
 const NAV_PROGRESS = [
-  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'  },
-  { icon: 'certificates', label: 'Certificates',      to: '/progress/certificates' },
-  { icon: 'jobs',         label: 'Job Opportunities', to: null },
+  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
+  { icon: 'certificates', label: 'Certificates',      to: '/progress/certificates'     },
+  { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 
 const NAV_SCHEDULE = [

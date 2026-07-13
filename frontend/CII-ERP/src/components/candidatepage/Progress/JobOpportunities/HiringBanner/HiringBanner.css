@@ -1,0 +1,13 @@
+/* HiringBanner.css */
+
+.hiring-banner {
+  border-radius: 14px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.hiring-banner__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
