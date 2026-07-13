@@ -288,7 +288,10 @@ export type instructor_detailsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"instructor_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"instructor_details"> | Date | string
   company_id?: Prisma.UuidNullableFilter<"instructor_details"> | string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsOrderByWithRelationInput = {
@@ -306,7 +309,10 @@ export type instructor_detailsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   company_id?: Prisma.SortOrderInput | Prisma.SortOrder
+<<<<<<< HEAD
   attendance_sessions?: Prisma.attendance_sessionsOrderByRelationAggregateInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
@@ -327,7 +333,10 @@ export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"instructor_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"instructor_details"> | Date | string
   company_id?: Prisma.UuidNullableFilter<"instructor_details"> | string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }, "instructor_id" | "contact_number">
 
 export type instructor_detailsOrderByWithAggregationInput = {
@@ -387,7 +396,10 @@ export type instructor_detailsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   company_id?: string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutInstructor_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsUncheckedCreateInput = {
@@ -405,7 +417,10 @@ export type instructor_detailsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   company_id?: string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutInstructor_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsUpdateInput = {
@@ -423,7 +438,10 @@ export type instructor_detailsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutInstructor_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsUncheckedUpdateInput = {
@@ -441,7 +459,10 @@ export type instructor_detailsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+<<<<<<< HEAD
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutInstructor_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type instructor_detailsCreateManyInput = {
@@ -554,6 +575,7 @@ export type instructor_detailsSumOrderByAggregateInput = {
   experience_years?: Prisma.SortOrder
 }
 
+<<<<<<< HEAD
 export type Instructor_detailsScalarRelationFilter = {
   is?: Prisma.instructor_detailsWhereInput
   isNot?: Prisma.instructor_detailsWhereInput
@@ -686,6 +708,8 @@ export type Instructor_detailsCountOutputTypeDefaultArgs<ExtArgs extends runtime
 export type Instructor_detailsCountOutputTypeCountAttendance_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.attendance_sessionsWhereInput
 }
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 
 
 export type instructor_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -703,8 +727,11 @@ export type instructor_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   created_at?: boolean
   updated_at?: boolean
   company_id?: boolean
+<<<<<<< HEAD
   attendance_sessions?: boolean | Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.Instructor_detailsCountOutputTypeDefaultArgs<ExtArgs>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }, ExtArgs["result"]["instructor_details"]>
 
 export type instructor_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -759,6 +786,7 @@ export type instructor_detailsSelectScalar = {
 }
 
 export type instructor_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"instructor_id" | "user_id" | "instructor_first_name" | "instructor_last_name" | "contact_number" | "gender" | "date_of_birth" | "qualification" | "specialization" | "experience_years" | "instructor_status" | "created_at" | "updated_at" | "company_id", ExtArgs["result"]["instructor_details"]>
+<<<<<<< HEAD
 export type instructor_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_sessions?: boolean | Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.Instructor_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -771,6 +799,12 @@ export type $instructor_detailsPayload<ExtArgs extends runtime.Types.Extensions.
   objects: {
     attendance_sessions: Prisma.$attendance_sessionsPayload<ExtArgs>[]
   }
+=======
+
+export type $instructor_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "instructor_details"
+  objects: {}
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     instructor_id: string
     user_id: string | null
@@ -1180,7 +1214,10 @@ readonly fields: instructor_detailsFieldRefs;
  */
 export interface Prisma__instructor_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+<<<<<<< HEAD
   attendance_sessions<T extends Prisma.instructor_details$attendance_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$attendance_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1241,10 +1278,13 @@ export type instructor_detailsFindUniqueArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter, which instructor_details to fetch.
    */
   where: Prisma.instructor_detailsWhereUniqueInput
@@ -1263,10 +1303,13 @@ export type instructor_detailsFindUniqueOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter, which instructor_details to fetch.
    */
   where: Prisma.instructor_detailsWhereUniqueInput
@@ -1285,10 +1328,13 @@ export type instructor_detailsFindFirstArgs<ExtArgs extends runtime.Types.Extens
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter, which instructor_details to fetch.
    */
   where?: Prisma.instructor_detailsWhereInput
@@ -1337,10 +1383,13 @@ export type instructor_detailsFindFirstOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter, which instructor_details to fetch.
    */
   where?: Prisma.instructor_detailsWhereInput
@@ -1389,10 +1438,13 @@ export type instructor_detailsFindManyArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter, which instructor_details to fetch.
    */
   where?: Prisma.instructor_detailsWhereInput
@@ -1436,10 +1488,13 @@ export type instructor_detailsCreateArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * The data needed to create a instructor_details.
    */
   data: Prisma.XOR<Prisma.instructor_detailsCreateInput, Prisma.instructor_detailsUncheckedCreateInput>
@@ -1488,10 +1543,13 @@ export type instructor_detailsUpdateArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * The data needed to update a instructor_details.
    */
   data: Prisma.XOR<Prisma.instructor_detailsUpdateInput, Prisma.instructor_detailsUncheckedUpdateInput>
@@ -1558,10 +1616,13 @@ export type instructor_detailsUpsertArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * The filter to search for the instructor_details to update in case it exists.
    */
   where: Prisma.instructor_detailsWhereUniqueInput
@@ -1588,10 +1649,13 @@ export type instructor_detailsDeleteArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
   /**
+<<<<<<< HEAD
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
   /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    * Filter which instructor_details to delete.
    */
   where: Prisma.instructor_detailsWhereUniqueInput
@@ -1612,6 +1676,7 @@ export type instructor_detailsDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+<<<<<<< HEAD
  * instructor_details.attendance_sessions
  */
 export type instructor_details$attendance_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1636,6 +1701,8 @@ export type instructor_details$attendance_sessionsArgs<ExtArgs extends runtime.T
 }
 
 /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
  * instructor_details without action
  */
 export type instructor_detailsDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1647,8 +1714,11 @@ export type instructor_detailsDefaultArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the instructor_details
    */
   omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
+<<<<<<< HEAD
   /**
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.instructor_detailsInclude<ExtArgs> | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }

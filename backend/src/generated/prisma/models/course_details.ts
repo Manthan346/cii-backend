@@ -243,7 +243,10 @@ export type course_detailsWhereUniqueInput = Prisma.AtLeast<{
   course_assessment_weights?: Prisma.Course_assessment_weightsListRelationFilter
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
+<<<<<<< HEAD
   batch_details?: Prisma.Batch_detailsListRelationFilter
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }, "course_id" | "company_id_course_name_course_duration_course_type">
 
 export type course_detailsOrderByWithAggregationInput = {
@@ -362,9 +365,11 @@ export type course_detailsUncheckedUpdateManyInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Course_detailsNullableScalarRelationFilter = {
-  is?: Prisma.course_detailsWhereInput | null
-  isNot?: Prisma.course_detailsWhereInput | null
+export type course_detailsCompany_idCourse_nameCourse_durationCourse_typeCompoundUniqueInput = {
+  company_id: string
+  course_name: string
+  course_duration: string
+  course_type: string
 }
 
 export type course_detailsCompany_idCourse_nameCourse_durationCourse_typeCompoundUniqueInput = {
@@ -405,6 +410,14 @@ export type course_detailsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+<<<<<<< HEAD
+=======
+}
+
+export type Course_detailsNullableScalarRelationFilter = {
+  is?: Prisma.course_detailsWhereInput | null
+  isNot?: Prisma.course_detailsWhereInput | null
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Course_detailsListRelationFilter = {
@@ -420,6 +433,7 @@ export type course_detailsOrderByRelationAggregateInput = {
 export type Course_detailsScalarRelationFilter = {
   is?: Prisma.course_detailsWhereInput
   isNot?: Prisma.course_detailsWhereInput
+<<<<<<< HEAD
 }
 
 export type course_detailsCreateNestedOneWithoutBatch_detailsInput = {
@@ -436,6 +450,8 @@ export type course_detailsUpdateOneWithoutBatch_detailsNestedInput = {
   delete?: Prisma.course_detailsWhereInput | boolean
   connect?: Prisma.course_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutBatch_detailsInput, Prisma.course_detailsUpdateWithoutBatch_detailsInput>, Prisma.course_detailsUncheckedUpdateWithoutBatch_detailsInput>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsCreateNestedOneWithoutEnquiry_recordsInput = {
@@ -500,6 +516,7 @@ export type course_detailsCreateNestedOneWithoutCourse_assessment_weightsInput =
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
   connect?: Prisma.course_detailsWhereUniqueInput
+<<<<<<< HEAD
 }
 
 export type course_detailsUpdateOneRequiredWithoutCourse_assessment_weightsNestedInput = {
@@ -576,6 +593,16 @@ export type course_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+=======
+}
+
+export type course_detailsUpdateOneRequiredWithoutCourse_assessment_weightsNestedInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
+  upsert?: Prisma.course_detailsUpsertWithoutCourse_assessment_weightsInput
+  connect?: Prisma.course_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutCourse_assessment_weightsInput, Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput>, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsCreateWithoutEnquiry_recordsInput = {
@@ -588,7 +615,10 @@ export type course_detailsCreateWithoutEnquiry_recordsInput = {
   updated_at?: Date | string
   course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
@@ -601,7 +631,10 @@ export type course_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
   updated_at?: Date | string
   company_id: string
   course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsCreateOrConnectWithoutEnquiry_recordsInput = {
@@ -630,7 +663,10 @@ export type course_detailsUpdateWithoutEnquiry_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
@@ -643,7 +679,10 @@ export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsCreateWithoutCompany_detailsInput = {
@@ -722,7 +761,10 @@ export type course_detailsCreateWithoutCourse_assessment_weightsInput = {
   updated_at?: Date | string
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput = {
@@ -735,7 +777,10 @@ export type course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput =
   updated_at?: Date | string
   company_id: string
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput = {
@@ -800,7 +845,10 @@ export type course_detailsUpdateWithoutCompany_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsUncheckedUpdateWithoutCompany_detailsInput = {
@@ -813,7 +861,10 @@ export type course_detailsUncheckedUpdateWithoutCompany_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+<<<<<<< HEAD
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type course_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {

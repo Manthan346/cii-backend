@@ -29,13 +29,19 @@ export type AggregateCandidates_details = {
 export type Candidates_detailsAvgAggregateOutputType = {
   pin_code: number | null
   salary: number | null
+<<<<<<< HEAD
   qualification_percentage: runtime.Decimal | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Candidates_detailsSumAggregateOutputType = {
   pin_code: number | null
   salary: number | null
+<<<<<<< HEAD
   qualification_percentage: runtime.Decimal | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Candidates_detailsMinAggregateOutputType = {
@@ -139,13 +145,19 @@ export type Candidates_detailsCountAggregateOutputType = {
 export type Candidates_detailsAvgAggregateInputType = {
   pin_code?: true
   salary?: true
+<<<<<<< HEAD
   qualification_percentage?: true
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Candidates_detailsSumAggregateInputType = {
   pin_code?: true
   salary?: true
+<<<<<<< HEAD
   qualification_percentage?: true
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Candidates_detailsMinAggregateInputType = {
@@ -359,8 +371,11 @@ export type Candidates_detailsGroupByOutputType = {
   user_id: string
   created_at: Date
   updated_at: Date
+<<<<<<< HEAD
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -414,10 +429,13 @@ export type candidates_detailsWhereInput = {
   user_id?: Prisma.UuidFilter<"candidates_details"> | string
   created_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.Candidate_assessmentsListRelationFilter
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }
@@ -450,10 +468,13 @@ export type candidates_detailsOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+<<<<<<< HEAD
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsOrderByRelationAggregateInput
   user_login?: Prisma.user_loginOrderByWithRelationInput
 }
@@ -489,10 +510,13 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   created_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.Candidate_assessmentsListRelationFilter
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }, "candidate_id" | "contact_number" | "user_id">
@@ -525,8 +549,11 @@ export type candidates_detailsOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+<<<<<<< HEAD
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -565,8 +592,11 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   user_id?: Prisma.UuidWithAggregatesFilter<"candidates_details"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableWithAggregatesFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsCreateInput = {
@@ -596,10 +626,13 @@ export type candidates_detailsCreateInput = {
   category?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
@@ -632,10 +665,13 @@ export type candidates_detailsUncheckedCreateInput = {
   user_id: string
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
@@ -666,10 +702,13 @@ export type candidates_detailsUpdateInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
@@ -702,10 +741,13 @@ export type candidates_detailsUncheckedUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
@@ -737,8 +779,11 @@ export type candidates_detailsCreateManyInput = {
   user_id: string
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
@@ -768,8 +813,11 @@ export type candidates_detailsUpdateManyMutationInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
@@ -800,8 +848,11 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsCountOrderByAggregateInput = {
@@ -839,7 +890,10 @@ export type candidates_detailsCountOrderByAggregateInput = {
 export type candidates_detailsAvgOrderByAggregateInput = {
   pin_code?: Prisma.SortOrder
   salary?: Prisma.SortOrder
+<<<<<<< HEAD
   qualification_percentage?: Prisma.SortOrder
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsMaxOrderByAggregateInput = {
@@ -909,12 +963,15 @@ export type candidates_detailsMinOrderByAggregateInput = {
 export type candidates_detailsSumOrderByAggregateInput = {
   pin_code?: Prisma.SortOrder
   salary?: Prisma.SortOrder
+<<<<<<< HEAD
   qualification_percentage?: Prisma.SortOrder
 }
 
 export type Candidates_detailsScalarRelationFilter = {
   is?: Prisma.candidates_detailsWhereInput
   isNot?: Prisma.candidates_detailsWhereInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type Candidates_detailsNullableScalarRelationFilter = {
@@ -922,6 +979,14 @@ export type Candidates_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.candidates_detailsWhereInput | null
 }
 
+<<<<<<< HEAD
+=======
+export type Candidates_detailsScalarRelationFilter = {
+  is?: Prisma.candidates_detailsWhereInput
+  isNot?: Prisma.candidates_detailsWhereInput
+}
+
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -944,6 +1009,7 @@ export type NullableIntFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+<<<<<<< HEAD
 }
 
 export type NullableDecimalFieldUpdateOperationsInput = {
@@ -952,22 +1018,40 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
-export type candidates_detailsCreateNestedOneWithoutAttendance_recordsInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutAttendance_recordsInput, Prisma.candidates_detailsUncheckedCreateWithoutAttendance_recordsInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutAttendance_recordsInput
+export type candidates_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
   connect?: Prisma.candidates_detailsWhereUniqueInput
 }
 
+<<<<<<< HEAD
 export type candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput = {
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutAttendance_recordsInput, Prisma.candidates_detailsUncheckedCreateWithoutAttendance_recordsInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutAttendance_recordsInput
   upsert?: Prisma.candidates_detailsUpsertWithoutAttendance_recordsInput
+=======
+export type candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
   connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutAttendance_recordsInput, Prisma.candidates_detailsUpdateWithoutAttendance_recordsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput>
 }
 
+export type candidates_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.candidates_detailsWhereInput | boolean
+  delete?: Prisma.candidates_detailsWhereInput | boolean
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+<<<<<<< HEAD
 export type candidates_detailsCreateNestedOneWithoutUser_loginInput = {
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
@@ -981,6 +1065,9 @@ export type candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
 }
 
 export type candidates_detailsUpdateOneWithoutUser_loginNestedInput = {
+=======
+export type candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
   upsert?: Prisma.candidates_detailsUpsertWithoutUser_loginInput
@@ -988,6 +1075,7 @@ export type candidates_detailsUpdateOneWithoutUser_loginNestedInput = {
   delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
+<<<<<<< HEAD
 }
 
 export type candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
@@ -998,6 +1086,8 @@ export type candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
   delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsCreateNestedOneWithoutCandidate_assessmentsInput = {
@@ -1014,6 +1104,7 @@ export type candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentsNeste
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentsInput, Prisma.candidates_detailsUpdateWithoutCandidate_assessmentsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentsInput>
 }
 
+<<<<<<< HEAD
 export type candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput = {
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
@@ -1180,6 +1271,8 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 export type candidates_detailsCreateWithoutUser_loginInput = {
   candidate_id?: string
   candidate_first_name: string
@@ -1207,10 +1300,13 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   category?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
 }
 
@@ -1241,10 +1337,13 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   category?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
@@ -1291,10 +1390,13 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
 }
 
@@ -1325,10 +1427,13 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
@@ -1359,10 +1464,13 @@ export type candidates_detailsCreateWithoutCandidate_assessmentsInput = {
   category?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
 
@@ -1394,10 +1502,13 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentsInput =
   user_id: string
   created_at?: Date | string
   updated_at?: Date | string
+<<<<<<< HEAD
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 export type candidates_detailsCreateOrConnectWithoutCandidate_assessmentsInput = {
@@ -1443,10 +1554,13 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentsInput = {
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
 
@@ -1478,6 +1592,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentsInput =
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+<<<<<<< HEAD
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1634,6 +1749,8 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 }
 
 
@@ -1642,14 +1759,20 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
  */
 
 export type Candidates_detailsCountOutputType = {
+<<<<<<< HEAD
   attendance_records: number
   batch_enrollment: number
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments: number
 }
 
 export type Candidates_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+<<<<<<< HEAD
   attendance_records?: boolean | Candidates_detailsCountOutputTypeCountAttendance_recordsArgs
   batch_enrollment?: boolean | Candidates_detailsCountOutputTypeCountBatch_enrollmentArgs
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: boolean | Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs
 }
 
@@ -1666,6 +1789,7 @@ export type Candidates_detailsCountOutputTypeDefaultArgs<ExtArgs extends runtime
 /**
  * Candidates_detailsCountOutputType without action
  */
+<<<<<<< HEAD
 export type Candidates_detailsCountOutputTypeCountAttendance_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.attendance_recordsWhereInput
 }
@@ -1684,6 +1808,12 @@ export type Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs<ExtA
   where?: Prisma.candidate_assessmentsWhereInput
 }
 
+=======
+export type Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.candidate_assessmentsWhereInput
+}
+
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 
 export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
@@ -1713,10 +1843,13 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+<<<<<<< HEAD
   highest_qualification?: boolean
   qualification_percentage?: boolean
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: boolean | Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.Candidates_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1750,8 +1883,11 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+<<<<<<< HEAD
   highest_qualification?: boolean
   qualification_percentage?: boolean
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -1783,8 +1919,11 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+<<<<<<< HEAD
   highest_qualification?: boolean
   qualification_percentage?: boolean
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -1820,10 +1959,15 @@ export type candidates_detailsSelectScalar = {
   qualification_percentage?: boolean
 }
 
+<<<<<<< HEAD
 export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
+=======
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments?: boolean | Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.Candidates_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1838,8 +1982,11 @@ export type candidates_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime
 export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "candidates_details"
   objects: {
+<<<<<<< HEAD
     attendance_records: Prisma.$attendance_recordsPayload<ExtArgs>[]
     batch_enrollment: Prisma.$batch_enrollmentPayload<ExtArgs>[]
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
     candidate_assessments: Prisma.$candidate_assessmentsPayload<ExtArgs>[]
     user_login: Prisma.$user_loginPayload<ExtArgs>
   }
@@ -1871,8 +2018,11 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     user_id: string
     created_at: Date
     updated_at: Date
+<<<<<<< HEAD
     highest_qualification: string | null
     qualification_percentage: runtime.Decimal | null
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -2267,8 +2417,11 @@ readonly fields: candidates_detailsFieldRefs;
  */
 export interface Prisma__candidates_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+<<<<<<< HEAD
   attendance_records<T extends Prisma.candidates_details$attendance_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$attendance_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$attendance_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   batch_enrollment<T extends Prisma.candidates_details$batch_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
   candidate_assessments<T extends Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$candidate_assessmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user_login<T extends Prisma.user_loginDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_loginDefaultArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -2725,6 +2878,7 @@ export type candidates_detailsDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+<<<<<<< HEAD
  * candidates_details.attendance_records
  */
 export type candidates_details$attendance_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2773,6 +2927,8 @@ export type candidates_details$batch_enrollmentArgs<ExtArgs extends runtime.Type
 }
 
 /**
+=======
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
  * candidates_details.candidate_assessments
  */
 export type candidates_details$candidate_assessmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {

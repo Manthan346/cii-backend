@@ -17,6 +17,7 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET!) as TokenPayload
      req.candidate = { 
         candidate_id: decoded.candidate_id,
+<<<<<<< HEAD
 
          
         
@@ -26,6 +27,11 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
         user_id: decoded.user_id
      }
      
+=======
+        // email: decoded.,  
+
+     }
+>>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
    
 
      next()

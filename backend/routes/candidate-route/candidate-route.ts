@@ -6,8 +6,6 @@ import { getAllCandidate } from "../../src/controllers/candidate-controllers/get
 import { verifyCandidateUsingAccessToken } from "../../src/middlewares/candidate-auth-middleware/auth-middleware";
 import candidateDashboardData from "../../src/controllers/candidate-controllers/candidate-dashboard-data";
 import { loginCandidate } from "../../src/controllers/candidate-controllers/login-candidate";
-import { candidateProfileDetails } from "../../src/controllers/candidate-controllers/candidate-profile";
-import { candidateAcademicDetails } from "../../src/controllers/candidate-controllers/candidate-academic-details";
 
 const candidateRouter = Router()
 
@@ -15,8 +13,6 @@ candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), c
 candidateRouter.get('/get-all-candidates', getAllCandidate)
 candidateRouter.post('/dashboard-data',verifyCandidateUsingAccessToken,candidateDashboardData)
 candidateRouter.post('/login', loginCandidate)
-candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken, candidateAcademicDetails)
-candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateProfileDetails)
 
 
 export {
