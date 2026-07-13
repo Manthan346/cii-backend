@@ -6,10 +6,8 @@ import Topbar from "../../layout/Topbar/Topbar";
 import SectionHeading from "../../shared/SectionHeading/SectionHeading";
 import NotificationTabs from "../../shared/NotificationTabs/NotificationTabs";
 import NotificationCard from "../../shared/NotificationCard/NotificationCard";
-import NotificationPreference from "../../shared/NotificationPreference/NotificationPreference";
 
 import notificationData from "../../../../data/notificationData";
-import notificationPreferenceData from "../../../../data/notificationPreferenceData";
 
 import styles from "./NotificationDashboard.module.css";
 
@@ -61,7 +59,6 @@ function NotificationDashboard() {
   const [searchValue, setSearchValue] = useState("");
   const [activeTab, setActiveTab] = useState("All");
   const [notifications, setNotifications] = useState(notificationData);
-  const [preferences, setPreferences] = useState(notificationPreferenceData);
 
   const unreadCount = useMemo(
     () => notifications.filter((notification) => notification.isUnread).length,
@@ -132,15 +129,6 @@ function NotificationDashboard() {
     }
   };
 
-  const handleTogglePreference = (id, enabled) => {
-    setPreferences((current) =>
-      current.map((preference) =>
-        preference.id === id ? { ...preference, enabled } : preference,
-      ),
-    );
-    // TODO: PATCH /notification-preferences
-  };
-
   return (
     <div className={styles.layout}>
       <Sidebar
@@ -177,50 +165,38 @@ function NotificationDashboard() {
             onTabChange={setActiveTab}
           />
 
-          <div className={styles.grid}>
-            <section
-              className={styles.notificationColumn}
-              aria-label="Notification list"
-            >
-              {groupedNotifications.length === 0 && (
-                <p className={styles.emptyState}>
-                  No notifications match your filters.
-                </p>
-              )}
+          <section
+            className={styles.notificationColumn}
+            aria-label="Notification list"
+          >
+            {groupedNotifications.length === 0 && (
+              <p className={styles.emptyState}>
+                No notifications match your filters.
+              </p>
+            )}
 
-              {groupedNotifications.map(([groupLabel, items]) => (
-                <div key={groupLabel} className={styles.group}>
-                  <h2 className={styles.groupLabel}>{groupLabel}</h2>
-                  <div className={styles.cardList}>
-                    {items.map((notification) => (
-                      <NotificationCard
-                        key={notification.id}
-                        id={notification.id}
-                        title={notification.title}
-                        description={notification.description}
-                        category={notification.category}
-                        color={notification.color}
-                        icon={notification.icon}
-                        isUnread={notification.isUnread}
-                        time={formatRelativeTime(notification.createdAt)}
-                        onSelect={handleNotificationClick}
-                      />
-                    ))}
-                  </div>
+            {groupedNotifications.map(([groupLabel, items]) => (
+              <div key={groupLabel} className={styles.group}>
+                <h2 className={styles.groupLabel}>{groupLabel}</h2>
+                <div className={styles.cardList}>
+                  {items.map((notification) => (
+                    <NotificationCard
+                      key={notification.id}
+                      id={notification.id}
+                      title={notification.title}
+                      description={notification.description}
+                      category={notification.category}
+                      color={notification.color}
+                      icon={notification.icon}
+                      isUnread={notification.isUnread}
+                      time={formatRelativeTime(notification.createdAt)}
+                      onSelect={handleNotificationClick}
+                    />
+                  ))}
                 </div>
-              ))}
-            </section>
-
-            <aside
-              className={styles.preferenceColumn}
-              aria-label="Notification preferences"
-            >
-              <NotificationPreference
-                preferences={preferences}
-                onToggle={handleTogglePreference}
-              />
-            </aside>
-          </div>
+              </div>
+            ))}
+          </section>
         </main>
       </div>
     </div>
