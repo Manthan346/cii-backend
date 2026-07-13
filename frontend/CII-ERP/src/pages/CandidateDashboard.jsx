@@ -38,7 +38,13 @@ import JobOpportunities from '../components/candidatepage/Progress/JobOpportunit
 
 export default function CandidateDashboard() {
   return (
+    <div>
+
+
+  
+
     <Routes>
+      
       <Route path="/my-dashboard" element={<Dashboard />} />
       <Route path="/my-courses"  element={<MyCourses />} />
       <Route path="/my-profile"  element={<Profile />} />
@@ -49,5 +55,6 @@ export default function CandidateDashboard() {
       <Route path="/notifications" element={<NotificationDashboard />} />
       <Route path="/progress/jobopportunities" element={<JobOpportunities />} /> 
     </Routes>
+      </div>
   );
 }
