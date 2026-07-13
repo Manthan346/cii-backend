@@ -2,24 +2,28 @@ import jwt from "jsonwebtoken"
 import { ApiError } from '../../helpers/ApiError'
 
 type accessTokenPayload = {
-    candidate_id: number,
+    candidate_id: string,
     candidate_first_name: string,
+    user_id: string,
     candidate_last_name: string,
+    center_id?: string
 
-    centre_name: string,
+    centre_name?: string,
     
    
-    email: string
+    email?: string
 }
 
 
 type refreshTokenPayload = {
-    candidate_id: number,
+    candidate_id: string,
+    center_id?: string,
+    user_id: string,
+
     candidate_first_name: string,
     candidate_last_name: string
    
 }
-
 
 
  const generateAccessToken = (token: accessTokenPayload) => {

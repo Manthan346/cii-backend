@@ -11,8 +11,28 @@
 
 export const attend_types = {
   present: 'present',
-  late: 'late',
-  absent: 'absent'
+  absent: 'absent',
+  late: 'late'
 } as const
 
 export type attend_types = (typeof attend_types)[keyof typeof attend_types]
+
+
+export const role_types = {
+  candidate: 'candidate',
+  instructor: 'instructor',
+  admin: 'admin',
+  super_admin: 'super_admin'
+} as const
+
+export type role_types = (typeof role_types)[keyof typeof role_types]
+
+
+export const enquiry_status_type = {
+  Pending: 'Pending',
+  Verified: 'Verified',
+  Rejected: 'Rejected',
+  Converted: 'Converted'
+} as const
+
+export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]

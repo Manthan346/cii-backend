@@ -20,74 +20,56 @@ export type company_detailsModel = runtime.Types.Result.DefaultSelection<Prisma.
 
 export type AggregateCompany_details = {
   _count: Company_detailsCountAggregateOutputType | null
-  _avg: Company_detailsAvgAggregateOutputType | null
-  _sum: Company_detailsSumAggregateOutputType | null
   _min: Company_detailsMinAggregateOutputType | null
   _max: Company_detailsMaxAggregateOutputType | null
 }
 
-export type Company_detailsAvgAggregateOutputType = {
-  company_id: number | null
-}
-
-export type Company_detailsSumAggregateOutputType = {
-  company_id: number | null
-}
-
 export type Company_detailsMinAggregateOutputType = {
-  company_id: number | null
-  company_description: string | null
+  company_id: string | null
   company_name: string | null
+  company_description: string | null
   created_at: Date | null
   updated_at: Date | null
 }
 
 export type Company_detailsMaxAggregateOutputType = {
-  company_id: number | null
-  company_description: string | null
+  company_id: string | null
   company_name: string | null
+  company_description: string | null
   created_at: Date | null
   updated_at: Date | null
 }
 
 export type Company_detailsCountAggregateOutputType = {
   company_id: number
-  company_description: number
   company_name: number
+  company_description: number
   created_at: number
   updated_at: number
   _all: number
 }
 
 
-export type Company_detailsAvgAggregateInputType = {
-  company_id?: true
-}
-
-export type Company_detailsSumAggregateInputType = {
-  company_id?: true
-}
-
 export type Company_detailsMinAggregateInputType = {
   company_id?: true
-  company_description?: true
   company_name?: true
+  company_description?: true
   created_at?: true
   updated_at?: true
 }
 
 export type Company_detailsMaxAggregateInputType = {
   company_id?: true
-  company_description?: true
   company_name?: true
+  company_description?: true
   created_at?: true
   updated_at?: true
 }
 
 export type Company_detailsCountAggregateInputType = {
   company_id?: true
-  company_description?: true
   company_name?: true
+  company_description?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -131,18 +113,6 @@ export type Company_detailsAggregateArgs<ExtArgs extends runtime.Types.Extension
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: Company_detailsAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: Company_detailsSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: Company_detailsMinAggregateInputType
@@ -173,21 +143,17 @@ export type company_detailsGroupByArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   _count?: Company_detailsCountAggregateInputType | true
-  _avg?: Company_detailsAvgAggregateInputType
-  _sum?: Company_detailsSumAggregateInputType
   _min?: Company_detailsMinAggregateInputType
   _max?: Company_detailsMaxAggregateInputType
 }
 
 export type Company_detailsGroupByOutputType = {
-  company_id: number
+  company_id: string
+  company_name: string
   company_description: string | null
-  company_name: string | null
-  created_at: Date | null
-  updated_at: Date | null
+  created_at: Date
+  updated_at: Date
   _count: Company_detailsCountAggregateOutputType | null
-  _avg: Company_detailsAvgAggregateOutputType | null
-  _sum: Company_detailsSumAggregateOutputType | null
   _min: Company_detailsMinAggregateOutputType | null
   _max: Company_detailsMaxAggregateOutputType | null
 }
@@ -211,126 +177,122 @@ export type company_detailsWhereInput = {
   AND?: Prisma.company_detailsWhereInput | Prisma.company_detailsWhereInput[]
   OR?: Prisma.company_detailsWhereInput[]
   NOT?: Prisma.company_detailsWhereInput | Prisma.company_detailsWhereInput[]
-  company_id?: Prisma.IntFilter<"company_details"> | number
+  company_id?: Prisma.UuidFilter<"company_details"> | string
+  company_name?: Prisma.StringFilter<"company_details"> | string
   company_description?: Prisma.StringNullableFilter<"company_details"> | string | null
-  company_name?: Prisma.StringNullableFilter<"company_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"company_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"company_details"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
   center_company?: Prisma.Center_companyListRelationFilter
   course_details?: Prisma.Course_detailsListRelationFilter
 }
 
 export type company_detailsOrderByWithRelationInput = {
   company_id?: Prisma.SortOrder
+  company_name?: Prisma.SortOrder
   company_description?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   center_company?: Prisma.center_companyOrderByRelationAggregateInput
   course_details?: Prisma.course_detailsOrderByRelationAggregateInput
 }
 
 export type company_detailsWhereUniqueInput = Prisma.AtLeast<{
-  company_id?: number
+  company_id?: string
   company_name?: string
   AND?: Prisma.company_detailsWhereInput | Prisma.company_detailsWhereInput[]
   OR?: Prisma.company_detailsWhereInput[]
   NOT?: Prisma.company_detailsWhereInput | Prisma.company_detailsWhereInput[]
   company_description?: Prisma.StringNullableFilter<"company_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"company_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"company_details"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
   center_company?: Prisma.Center_companyListRelationFilter
   course_details?: Prisma.Course_detailsListRelationFilter
 }, "company_id" | "company_name">
 
 export type company_detailsOrderByWithAggregationInput = {
   company_id?: Prisma.SortOrder
+  company_name?: Prisma.SortOrder
   company_description?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.company_detailsCountOrderByAggregateInput
-  _avg?: Prisma.company_detailsAvgOrderByAggregateInput
   _max?: Prisma.company_detailsMaxOrderByAggregateInput
   _min?: Prisma.company_detailsMinOrderByAggregateInput
-  _sum?: Prisma.company_detailsSumOrderByAggregateInput
 }
 
 export type company_detailsScalarWhereWithAggregatesInput = {
   AND?: Prisma.company_detailsScalarWhereWithAggregatesInput | Prisma.company_detailsScalarWhereWithAggregatesInput[]
   OR?: Prisma.company_detailsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.company_detailsScalarWhereWithAggregatesInput | Prisma.company_detailsScalarWhereWithAggregatesInput[]
-  company_id?: Prisma.IntWithAggregatesFilter<"company_details"> | number
+  company_id?: Prisma.UuidWithAggregatesFilter<"company_details"> | string
+  company_name?: Prisma.StringWithAggregatesFilter<"company_details"> | string
   company_description?: Prisma.StringNullableWithAggregatesFilter<"company_details"> | string | null
-  company_name?: Prisma.StringNullableWithAggregatesFilter<"company_details"> | string | null
-  created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"company_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"company_details"> | Date | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"company_details"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"company_details"> | Date | string
 }
 
 export type company_detailsCreateInput = {
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_nameInput
-  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompanyInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
+  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsUncheckedCreateInput = {
-  company_id?: number
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_nameInput
-  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompanyInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
+  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsUpdateInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  center_company?: Prisma.center_companyUpdateManyWithoutCompany_nameNestedInput
-  course_details?: Prisma.course_detailsUpdateManyWithoutCompanyNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
+  course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
 }
 
 export type company_detailsUncheckedUpdateInput = {
-  company_id?: Prisma.IntFieldUpdateOperationsInput | number
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_nameNestedInput
-  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompanyNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
 export type company_detailsCreateManyInput = {
-  company_id?: number
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type company_detailsUpdateManyMutationInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type company_detailsUncheckedUpdateManyInput = {
-  company_id?: Prisma.IntFieldUpdateOperationsInput | number
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type Company_detailsNullableScalarRelationFilter = {
-  is?: Prisma.company_detailsWhereInput | null
-  isNot?: Prisma.company_detailsWhereInput | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type Company_detailsScalarRelationFilter = {
@@ -340,34 +302,26 @@ export type Company_detailsScalarRelationFilter = {
 
 export type company_detailsCountOrderByAggregateInput = {
   company_id?: Prisma.SortOrder
-  company_description?: Prisma.SortOrder
   company_name?: Prisma.SortOrder
+  company_description?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
 
-export type company_detailsAvgOrderByAggregateInput = {
-  company_id?: Prisma.SortOrder
-}
-
 export type company_detailsMaxOrderByAggregateInput = {
   company_id?: Prisma.SortOrder
-  company_description?: Prisma.SortOrder
   company_name?: Prisma.SortOrder
+  company_description?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
 
 export type company_detailsMinOrderByAggregateInput = {
   company_id?: Prisma.SortOrder
-  company_description?: Prisma.SortOrder
   company_name?: Prisma.SortOrder
+  company_description?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-}
-
-export type company_detailsSumOrderByAggregateInput = {
-  company_id?: Prisma.SortOrder
 }
 
 export type company_detailsCreateNestedOneWithoutCourse_detailsInput = {
@@ -376,12 +330,10 @@ export type company_detailsCreateNestedOneWithoutCourse_detailsInput = {
   connect?: Prisma.company_detailsWhereUniqueInput
 }
 
-export type company_detailsUpdateOneWithoutCourse_detailsNestedInput = {
+export type company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCourse_detailsInput, Prisma.company_detailsUncheckedCreateWithoutCourse_detailsInput>
   connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCourse_detailsInput
   upsert?: Prisma.company_detailsUpsertWithoutCourse_detailsInput
-  disconnect?: Prisma.company_detailsWhereInput | boolean
-  delete?: Prisma.company_detailsWhereInput | boolean
   connect?: Prisma.company_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutCourse_detailsInput, Prisma.company_detailsUpdateWithoutCourse_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutCourse_detailsInput>
 }
@@ -401,20 +353,21 @@ export type company_detailsUpdateOneRequiredWithoutCenter_companyNestedInput = {
 }
 
 export type company_detailsCreateWithoutCourse_detailsInput = {
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_nameInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsUncheckedCreateWithoutCourse_detailsInput = {
-  company_id?: number
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_nameInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsCreateOrConnectWithoutCourse_detailsInput = {
@@ -434,37 +387,39 @@ export type company_detailsUpdateToOneWithWhereWithoutCourse_detailsInput = {
 }
 
 export type company_detailsUpdateWithoutCourse_detailsInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  center_company?: Prisma.center_companyUpdateManyWithoutCompany_nameNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
 }
 
 export type company_detailsUncheckedUpdateWithoutCourse_detailsInput = {
-  company_id?: Prisma.IntFieldUpdateOperationsInput | number
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_nameNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
 export type company_detailsCreateWithoutCenter_companyInput = {
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompanyInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsUncheckedCreateWithoutCenter_companyInput = {
-  company_id?: number
+  company_id?: string
+  company_name: string
   company_description?: string | null
-  company_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompanyInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
 export type company_detailsCreateOrConnectWithoutCenter_companyInput = {
@@ -484,20 +439,21 @@ export type company_detailsUpdateToOneWithWhereWithoutCenter_companyInput = {
 }
 
 export type company_detailsUpdateWithoutCenter_companyInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  course_details?: Prisma.course_detailsUpdateManyWithoutCompanyNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
 }
 
 export type company_detailsUncheckedUpdateWithoutCenter_companyInput = {
-  company_id?: Prisma.IntFieldUpdateOperationsInput | number
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompanyNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
 
@@ -542,8 +498,8 @@ export type Company_detailsCountOutputTypeCountCourse_detailsArgs<ExtArgs extend
 
 export type company_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   company_id?: boolean
-  company_description?: boolean
   company_name?: boolean
+  company_description?: boolean
   created_at?: boolean
   updated_at?: boolean
   center_company?: boolean | Prisma.company_details$center_companyArgs<ExtArgs>
@@ -553,29 +509,29 @@ export type company_detailsSelect<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type company_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   company_id?: boolean
-  company_description?: boolean
   company_name?: boolean
+  company_description?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["company_details"]>
 
 export type company_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   company_id?: boolean
-  company_description?: boolean
   company_name?: boolean
+  company_description?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["company_details"]>
 
 export type company_detailsSelectScalar = {
   company_id?: boolean
-  company_description?: boolean
   company_name?: boolean
+  company_description?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type company_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_id" | "company_description" | "company_name" | "created_at" | "updated_at", ExtArgs["result"]["company_details"]>
+export type company_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_id" | "company_name" | "company_description" | "created_at" | "updated_at", ExtArgs["result"]["company_details"]>
 export type company_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   center_company?: boolean | Prisma.company_details$center_companyArgs<ExtArgs>
   course_details?: boolean | Prisma.company_details$course_detailsArgs<ExtArgs>
@@ -591,11 +547,11 @@ export type $company_detailsPayload<ExtArgs extends runtime.Types.Extensions.Int
     course_details: Prisma.$course_detailsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    company_id: number
+    company_id: string
+    company_name: string
     company_description: string | null
-    company_name: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["company_details"]>
   composites: {}
 }
@@ -1021,9 +977,9 @@ export interface Prisma__company_detailsClient<T, Null = never, ExtArgs extends 
  * Fields of the company_details model
  */
 export interface company_detailsFieldRefs {
-  readonly company_id: Prisma.FieldRef<"company_details", 'Int'>
-  readonly company_description: Prisma.FieldRef<"company_details", 'String'>
+  readonly company_id: Prisma.FieldRef<"company_details", 'String'>
   readonly company_name: Prisma.FieldRef<"company_details", 'String'>
+  readonly company_description: Prisma.FieldRef<"company_details", 'String'>
   readonly created_at: Prisma.FieldRef<"company_details", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"company_details", 'DateTime'>
 }
@@ -1244,7 +1200,7 @@ export type company_detailsCreateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * The data needed to create a company_details.
    */
-  data?: Prisma.XOR<Prisma.company_detailsCreateInput, Prisma.company_detailsUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.company_detailsCreateInput, Prisma.company_detailsUncheckedCreateInput>
 }
 
 /**

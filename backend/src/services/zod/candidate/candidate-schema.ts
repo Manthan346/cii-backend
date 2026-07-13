@@ -1,49 +1,34 @@
 import { z } from "zod";
 
-export const candidateSchema = z.object({
+export const createCandidateSchema = z.object({
   first_name: z
     .string()
+    .trim()
     .min(2, "First name must be at least 2 characters")
-    .max(50, "First name is too long"),
+    .max(50, "First name cannot exceed 50 characters"),
 
   last_name: z
     .string()
+    .trim()
     .min(2, "Last name must be at least 2 characters")
-    .max(50, "Last name is too long"),
+    .max(50, "Last name cannot exceed 50 characters"),
 
   email_id: z
     .string()
+    .trim()
     .email("Invalid email address"),
 
   contact_number: z
     .string()
-    .regex(/^[0-9]{10}$/, "Contact number must be exactly 10 digits"),
+    .regex(/^[6-9]\d{9}$/, "Invalid contact number"),
 
-  gender: z
-    .enum(["Male", "Female", "Other"], {
-      error: "Gender must be Male, Female, or Other",
-    }),
-
-  date_of_birth: z
-    .coerce
-    .date({
-      error: "Invalid date of birth",
-    }),
-
-  education: z
-    .string()
-    .min(2, "Education is required")
-    .max(100, "Education is too long"),
-
-  center_name: z
-    .string()
-    .min(2, "Center name is required")
-    .max(100, "Center name is too long"),
+  center_id: z
+    .string().min(4, "center id is so small"),
 
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
-    .max(100, "Password is too long"),
+    .max(100, "Password cannot exceed 100 characters"),
 });
 
-export type CandidateInput = z.infer<typeof candidateSchema>;
+export type CreateCandidateInput = z.infer<typeof createCandidateSchema>;

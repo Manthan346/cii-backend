@@ -9,24 +9,23 @@ datasource db {
 }
 
 model candidates_details {
-  candidate_id          Int                     @id @default(autoincrement())
+  candidate_id          String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   candidate_first_name  String                  @db.VarChar(100)
+  candidate_last_name   String?                 @db.VarChar(50)
   contact_number        String                  @unique @db.VarChar(10)
   gender                String?                 @db.VarChar(10)
   date_of_birth         DateTime?               @db.Date
   education             String?                 @db.VarChar(100)
   candidate_address     String?
-  center_name           String?                 @db.VarChar(100)
   enquiry_source        String?                 @db.VarChar(50)
-  aadhar_card_no        String?                 @db.VarChar(50)
-  pan_card_no           String?                 @db.VarChar(50)
+  aadhar_card_no        String?                 @db.VarChar(12)
+  pan_card_no           String?                 @db.VarChar(10)
+  guardian_name         String?                 @db.VarChar(50)
   nearest_station       String?                 @db.VarChar(50)
   pin_code              Int?
   district              String?                 @db.VarChar(50)
   state_name            String?                 @db.VarChar(50)
-  course_name           String?                 @db.VarChar(100)
   salary                Int?
-  batch_no              Int?
   training_start_date   DateTime?               @db.Date
   training_end_date     DateTime?               @db.Date
   job_location          String?                 @db.VarChar(100)
@@ -34,156 +33,219 @@ model candidates_details {
   verification_status   String?                 @db.VarChar(50)
   blood_group           String?                 @db.VarChar(5)
   category              String?                 @db.VarChar(15)
-  candidate_last_name   String?                 @db.VarChar(50)
-  guardian_name         String?                 @db.VarChar(50)
-  user_id               String?                 @db.Uuid
-  created_at            DateTime?               @db.Timestamp(6)
-  updated_at            DateTime?               @db.Timestamp(6)
-  attendance_records    attendance_records[]
+  user_id               String                  @unique(map: "uq_candidate_user") @db.Uuid
+  created_at            DateTime                @default(now()) @db.Timestamp(6)
+  updated_at            DateTime                @default(now()) @db.Timestamp(6)
   candidate_assessments candidate_assessments[]
-  user_login            user_login?             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  course_enrollment     course_enrollment[]
-}
-
-model staff_details {
-  staff_id   Int     @id @default(autoincrement())
-  staff_name String  @db.VarChar(100)
-  gender     String? @db.VarChar(50)
+  user_login            user_login              @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_user")
 }
 
 model attendance_records {
-  record_id          Int                 @id @default(autoincrement())
-  candidate_id       Int?
-  batch_id           Int?
-  created_at         DateTime?           @db.Timestamp(6)
-  updated_at         DateTime?           @db.Timestamp(6)
-  is_present         attend_types?
-  batch_details      batch_details?      @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction)
-  candidates_details candidates_details? @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+  attendance_id     String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id      String       @db.Uuid
+  batch_id          String       @db.Uuid
+  attendance_date   DateTime     @db.Date
+  attendance_status attend_types
+  attendance_mode   String       @db.VarChar(20)
+  remarks           String?
+  created_at        DateTime     @default(now()) @db.Timestamp(6)
+  updated_at        DateTime     @default(now()) @db.Timestamp(6)
+
+  @@unique([candidate_id, batch_id, attendance_date], map: "uq_attendance")
 }
 
 model batch_details {
-  batch_id           Int                  @id @default(autoincrement())
-  batch_name         String?              @db.VarChar(100)
-  batch_desc         String?
-  batch_start_date   DateTime?            @db.Date
-  batch_end_date     DateTime?            @db.Date
-  course_id          Int?
-  batch_code         String?              @unique @db.VarChar(255)
-  max_candidates     Int?
-  created_at         DateTime?            @db.Timestamp(6)
-  updated_at         DateTime?            @db.Timestamp(6)
-  assessments        assessments[]
-  attendance_records attendance_records[]
-  course_details     course_details?      @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
-  course_enrollment  course_enrollment[]
+  batch_id         String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_name       String             @db.VarChar(100)
+  batch_code       String?            @unique @db.VarChar(255)
+  batch_desc       String?
+  course_id        String?            @db.Uuid
+  batch_start_date DateTime           @db.Date
+  batch_end_date   DateTime           @db.Date
+  max_candidates   Int?
+  created_at       DateTime           @default(now()) @db.Timestamp(6)
+  updated_at       DateTime           @default(now()) @db.Timestamp(6)
+  instructor_id    String?            @db.Uuid
+  assessments      assessments[]
+  batch_enrollment batch_enrollment[]
 }
 
 model course_details {
-  course_id       Int               @id(map: "course_detail_pkey") @default(autoincrement())
-  course_name     String?           @db.VarChar(100)
-  course_desc     String?
-  course_duration String?
-  company_id      Int?
-  course_type     String?           @db.VarChar(50)
-  created_at      DateTime?         @db.Timestamp(6)
-  updated_at      DateTime?         @db.Timestamp(6)
-  batch_details   batch_details[]
-  company         company_details?  @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "course_detail_company_id_fkey")
-  enquiry_records enquiry_records[]
-}
+  course_id                 String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  course_name               String                      @db.VarChar(100)
+  course_desc               String?
+  course_duration           String?                     @db.VarChar(100)
+  course_type               String?                     @db.VarChar(50)
+  created_at                DateTime                    @default(now()) @db.Timestamp(6)
+  updated_at                DateTime                    @default(now()) @db.Timestamp(6)
+  company_id                String                      @db.Uuid
+  course_assessment_weights course_assessment_weights[]
+  company_details           company_details             @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
+  enquiry_records           enquiry_records[]
 
-model course_enrollment {
-  enroll_id          Int                 @id @default(autoincrement())
-  candidate_id       Int?
-  batch_id           Int?
-  batch_details      batch_details?      @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction)
-  candidates_details candidates_details? @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+  @@unique([company_id, course_name, course_duration, course_type], map: "uq_company_course")
 }
 
 model center_company {
-  center_id      Int
-  company_id     Int
-  created_at     DateTime?       @db.Timestamp(6)
-  updated_at     DateTime?       @db.Timestamp(6)
-  center_details center_details  @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
-  company_name   company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction)
+  center_id       String          @db.Uuid
+  company_id      String          @db.Uuid
+  created_at      DateTime        @default(now()) @db.Timestamp(6)
+  updated_at      DateTime        @default(now()) @db.Timestamp(6)
+  center_details  center_details  @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_center_company_center")
+  company_details company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_center_company_company")
 
   @@id([center_id, company_id])
 }
 
 model center_details {
-  center_id       Int               @id(map: "center_pkey") @default(autoincrement())
-  center_name     String?           @unique(map: "center_center_name_key") @db.VarChar(255)
-  centre_address  String?
-  created_at      DateTime?         @db.Timestamp(6)
-  updated_at      DateTime?         @db.Timestamp(6)
-  center_company  center_company[]
-  enquiry_records enquiry_records[]
-  user_login      user_login[]
+  center_id      String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  center_name    String           @unique @db.VarChar(255)
+  center_address String
+  center_email   String           @unique @db.VarChar(255)
+  center_contact String           @db.VarChar(15)
+  created_at     DateTime         @default(now()) @db.Timestamp(6)
+  updated_at     DateTime         @default(now()) @db.Timestamp(6)
+  center_company center_company[]
+  user_login     user_login[]
 }
 
 model enquiry_records {
-  enquiry_id        Int             @id @default(autoincrement())
-  enquiry_name      String?         @db.VarChar(255)
-  enquiry_email     String?         @db.VarChar(255)
-  enquiry_location  String?         @db.VarChar(255)
-  enquiry_phone_no  String?         @db.VarChar(255)
-  enquiry_education String?         @db.VarChar(255)
-  centre_id         Int?
-  course_id         Int?
-  center_details    center_details? @relation(fields: [centre_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
-  course_details    course_details? @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction)
+  enquiry_id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiry_first_name String          @db.VarChar(100)
+  enquiry_last_name  String?         @db.VarChar(100)
+  enquiry_email      String?         @db.VarChar(255)
+  enquiry_phone_no   String          @db.VarChar(15)
+  enquiry_education  String?         @db.VarChar(100)
+  enquiry_location   String?
+  center_id          String?         @db.Uuid
+  course_id          String?         @db.Uuid
+  enquiry_source     String?         @db.VarChar(100)
+  enquiry_status     String?         @default("Pending") @db.VarChar(30)
+  remarks            String?
+  created_at         DateTime        @default(now()) @db.Timestamp(6)
+  updated_at         DateTime        @default(now()) @db.Timestamp(6)
+  course_details     course_details? @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_course")
 }
 
 model user_login {
-  user_id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_email         String               @db.VarChar(255)
-  password_hash      String
-  user_role          String               @db.VarChar(50)
-  center_id          Int?
-  candidates_details candidates_details[]
-  center_details     center_details?      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
+  user_id            String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_email         String              @unique @db.VarChar(255)
+  user_password      String
+  user_role          role_types
+  created_at         DateTime            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime            @default(now()) @db.Timestamp(6)
+  center_id          String              @db.Uuid
+  candidates_details candidates_details?
+  center_details     center_details      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
 }
 
 model assessments {
-  assessment_id         Int                     @id @default(autoincrement())
-  assessment_name       String?                 @db.VarChar(250)
-  assessment_type       String?                 @db.VarChar(250)
+  assessment_id         String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  assessment_name       String                  @db.VarChar(255)
   assessment_desc       String?
-  batch_id              Int?
-  total_marks           Int?
-  created_at            DateTime?               @db.Timestamp(6)
-  updated_at            DateTime?               @db.Timestamp(6)
-  batch_details         batch_details?          @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction)
+  batch_id              String                  @db.Uuid
+  total_marks           Int
+  assessment_date       DateTime?               @db.Date
+  created_at            DateTime                @default(now()) @db.Timestamp(6)
+  updated_at            DateTime                @default(now()) @db.Timestamp(6)
+  assessment_type_id    String                  @db.Uuid
+  batch_details         batch_details           @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_batch")
+  assessment_types      assessment_types        @relation(fields: [assessment_type_id], references: [assessment_type_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_type")
   candidate_assessments candidate_assessments[]
 }
 
 model candidate_assessments {
-  ca_id              Int                 @id @default(autoincrement())
-  candidate_id       Int?
-  assessment_id      Int?
-  marks_obtained     Int?
-  created_at         DateTime?           @db.Timestamp(6)
-  updated_at         DateTime?           @db.Timestamp(6)
-  assessments        assessments?        @relation(fields: [assessment_id], references: [assessment_id], onDelete: NoAction, onUpdate: NoAction)
-  candidates_details candidates_details? @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+  candidate_assessment_id String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id            String             @db.Uuid
+  assessment_id           String             @db.Uuid
+  marks_obtained          Int
+  submission              Boolean            @default(false)
+  created_at              DateTime           @default(now()) @db.Timestamp(6)
+  updated_at              DateTime           @default(now()) @db.Timestamp(6)
+  assessments             assessments        @relation(fields: [assessment_id], references: [assessment_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_assessment_assessment")
+  candidates_details      candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_assessment_candidate")
 
-  @@unique([candidate_id, assessment_id], map: "uq_cid_aid")
+  @@unique([candidate_id, assessment_id], map: "uq_candidate_assessment")
 }
 
 model company_details {
-  company_id          Int              @id(map: "company_name_pkey") @default(autoincrement())
+  company_id          String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name        String           @unique @db.VarChar(255)
   company_description String?
-  company_name        String?          @unique(map: "company_company_name_key") @db.VarChar(255)
-  created_at          DateTime?        @db.Timestamp(6)
-  updated_at          DateTime?        @db.Timestamp(6)
+  created_at          DateTime         @default(now()) @db.Timestamp(6)
+  updated_at          DateTime         @default(now()) @db.Timestamp(6)
   center_company      center_company[]
   course_details      course_details[]
 }
 
+model instructor_details {
+  instructor_id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id               String?   @db.Uuid
+  instructor_first_name String    @db.VarChar(100)
+  instructor_last_name  String?   @db.VarChar(100)
+  contact_number        String    @unique @db.VarChar(10)
+  gender                String?   @db.VarChar(10)
+  date_of_birth         DateTime? @db.Date
+  qualification         String?   @db.VarChar(255)
+  specialization        String?   @db.VarChar(255)
+  experience_years      Int?
+  instructor_status     String?   @db.VarChar(50)
+  created_at            DateTime  @default(now()) @db.Timestamp(6)
+  updated_at            DateTime  @default(now()) @db.Timestamp(6)
+  company_id            String?   @db.Uuid
+}
+
+model assessment_types {
+  assessment_type_id        String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  assessment_type_name      String                      @unique(map: "uq_assessment_type") @db.VarChar(100)
+  created_at                DateTime                    @default(now()) @db.Timestamp(6)
+  updated_at                DateTime                    @default(now()) @db.Timestamp(6)
+  assessments               assessments[]
+  course_assessment_weights course_assessment_weights[]
+}
+
+model course_assessment_weights {
+  weight_id          String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  course_id          String           @db.Uuid
+  assessment_type_id String           @db.Uuid
+  weight             Decimal          @db.Decimal(5, 2)
+  created_at         DateTime         @default(now()) @db.Timestamp(6)
+  updated_at         DateTime         @default(now()) @db.Timestamp(6)
+  assessment_types   assessment_types @relation(fields: [assessment_type_id], references: [assessment_type_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_weight_assessment_type")
+  course_details     course_details   @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_weight_course")
+
+  @@unique([course_id, assessment_type_id], map: "uq_course_assessment_type")
+}
+
+model batch_enrollment {
+  enrollment_id     String        @id(map: "course_enrollment_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id      String        @db.Uuid
+  batch_id          String        @db.Uuid
+  enrollment_date   DateTime      @default(dbgenerated("CURRENT_DATE")) @db.Date
+  enrollment_status String?       @default("Active") @db.VarChar(30)
+  created_at        DateTime      @default(now()) @db.Timestamp(6)
+  updated_at        DateTime      @default(now()) @db.Timestamp(6)
+  batch_details     batch_details @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_batch")
+
+  @@unique([candidate_id, batch_id], map: "uq_candidate_batch")
+}
+
 enum attend_types {
   present
-  late
   absent
+  late
+}
+
+enum role_types {
+  candidate
+  instructor
+  admin
+  super_admin @map("super-admin")
+}
+
+enum enquiry_status_type {
+  Pending
+  Verified
+  Rejected
+  Converted
 }

@@ -50,11 +50,6 @@ path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
  */
 export type candidates_details = Prisma.candidates_detailsModel
 /**
- * Model staff_details
- * 
- */
-export type staff_details = Prisma.staff_detailsModel
-/**
  * Model attendance_records
  * 
  */
@@ -69,11 +64,6 @@ export type batch_details = Prisma.batch_detailsModel
  * 
  */
 export type course_details = Prisma.course_detailsModel
-/**
- * Model course_enrollment
- * 
- */
-export type course_enrollment = Prisma.course_enrollmentModel
 /**
  * Model center_company
  * 
@@ -109,3 +99,23 @@ export type candidate_assessments = Prisma.candidate_assessmentsModel
  * 
  */
 export type company_details = Prisma.company_detailsModel
+/**
+ * Model instructor_details
+ * 
+ */
+export type instructor_details = Prisma.instructor_detailsModel
+/**
+ * Model assessment_types
+ * 
+ */
+export type assessment_types = Prisma.assessment_typesModel
+/**
+ * Model course_assessment_weights
+ * 
+ */
+export type course_assessment_weights = Prisma.course_assessment_weightsModel
+/**
+ * Model batch_enrollment
+ * 
+ */
+export type batch_enrollment = Prisma.batch_enrollmentModel

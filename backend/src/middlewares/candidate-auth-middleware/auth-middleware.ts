@@ -1,0 +1,27 @@
+import { TokenPayload } from "../../interfaces/jwt-interface"
+import { ApiError } from "../../helpers/ApiError";
+import { asyncHandler } from "../../helpers/asyncHandler";
+import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface";
+import { NextFunction, Response } from "express";
+import jwt, { JwtPayload } from "jsonwebtoken"
+
+
+export const verifyCandidateUsingAccessToken = asyncHandler(async(req: CandidateAuthRequest, res: Response, next: NextFunction) => {
+    const accessToken = req.cookies.accessToken
+
+    if (!accessToken) {
+        throw new ApiError(401, "unauthorized")
+        
+    }
+    //verify user 
+    const decoded = jwt.verify(accessToken, process.env.JWT_SECRET!) as TokenPayload
+     req.candidate = { 
+        candidate_id: decoded.candidate_id,
+        // email: decoded.,  
+
+     }
+   
+
+     next()
+ 
+}) 
