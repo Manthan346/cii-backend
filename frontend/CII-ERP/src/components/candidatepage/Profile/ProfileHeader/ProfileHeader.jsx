@@ -66,10 +66,11 @@ export default function ProfileHeader({ candidate, onEdit = () => {} }) {
 
       <div className="profile-header__card">
         <div className="profile-header__card-top">
-          <div>
+          <div className="profile-header__identity">
             <div className="profile-header__name">{name}</div>
             <div className="profile-header__meta">
-              candidate ID: {candidateId} &nbsp;&nbsp; Batch:{batch}
+              <span className="profile-header__meta-id">candidate ID: {candidateId}</span>
+              <span className="profile-header__meta-batch">&nbsp;&nbsp;Batch:{batch}</span>
             </div>
           </div>
 

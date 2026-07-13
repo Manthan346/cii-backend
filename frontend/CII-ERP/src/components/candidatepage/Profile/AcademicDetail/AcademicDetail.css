@@ -71,11 +71,35 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .academic-detail {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 760px) {
   .academic-detail__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .academic-detail__courses-grid {
+    gap: 14px;
+  }
+  .academic-detail__course-card {
+    padding: 14px;
+  }
+  .academic-detail__grid {
+    gap: 16px 18px;
+  }
+  .academic-detail__card-title {
+    font-size: 11.5px;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+  .academic-detail__courses-title {
+    font-size: 13px;
+    margin-bottom: 12px;
   }
 }

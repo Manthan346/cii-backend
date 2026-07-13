@@ -59,4 +59,7 @@
   .profile-page__main {
     margin-left: 0;
   }
+  .profile-page__body {
+    padding: 16px 65px 0px 16px;
+  }
 }

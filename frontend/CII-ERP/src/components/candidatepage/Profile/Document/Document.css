@@ -147,3 +147,55 @@
   color: #E05A2B;
   font-style: italic;
 }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .document__card {
+    padding: 16px;
+  }
+
+  .document__card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .document__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .document__item-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 400px) {
+  .document__item-left {
+    gap: 8px;
+  }
+
+  .document__item-name {
+    font-size: 12.5px;
+  }
+
+  .document__item-date {
+    font-size: 11px;
+  }
+
+  .document__badge {
+    font-size: 10.5px;
+    padding: 4px 10px;
+  }
+
+  .document__upload-btn {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .document__note {
+    padding: 12px;
+  }
+}

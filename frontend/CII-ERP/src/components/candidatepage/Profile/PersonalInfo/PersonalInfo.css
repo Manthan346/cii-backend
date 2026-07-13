@@ -131,11 +131,34 @@
   color: var(--orange);
 }
 
+@media (max-width: 900px) {
+  .personal-info__grid_address {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 760px) {
   .personal-info {
     grid-template-columns: 1fr;
   }
   .personal-info__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .personal-info__card,
+  .personal-info__side {
+    padding: 16px;
+  }
+  .personal-info__grid_address {
+    grid-template-columns: 1fr;
+  }
+  .personal-info__donut-wrap {
+    width: 92px;
+    height: 92px;
+  }
+  .personal-info__donut-label {
+    font-size: 18px;
   }
 }

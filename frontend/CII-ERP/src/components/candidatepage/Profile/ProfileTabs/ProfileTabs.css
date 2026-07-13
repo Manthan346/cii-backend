@@ -39,5 +39,15 @@
   .profile-tabs {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .profile-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .profile-tabs__item {
+    padding: 8px 16px;
+    font-size: 13px;
   }
 }

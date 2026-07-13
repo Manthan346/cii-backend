@@ -83,3 +83,33 @@
   width: 140px;
   font-family: var(--font-base);
 }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .skills__card {
+    padding: 16px;
+  }
+  .skills__chip-row {
+    gap: 10px;
+  }
+  .skills__chip {
+    font-size: 12.5px;
+    padding: 7px 12px;
+  }
+  .skills__add-input {
+    width: 120px;
+  }
+}
+
+@media (max-width: 400px) {
+  .skills__chip-row {
+    gap: 8px;
+  }
+  .skills__chip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  .skills__add-input {
+    width: 100%;
+  }
+}
