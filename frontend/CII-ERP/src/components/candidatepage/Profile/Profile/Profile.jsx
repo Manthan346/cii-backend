@@ -41,6 +41,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState('personal');
   const [documents, setDocuments] = useState(INITIAL_DOCUMENTS);
   const [skills, setSkills] = useState(INITIAL_SKILLS);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const orgLogoSrc = orgLogo;
 
@@ -48,7 +49,7 @@ export default function Profile() {
     <div className="profile-page">
 
       {/* Fixed left sidebar */}
-      <Sidebar orgLogoSrc={orgLogoSrc} activeItem="My Profile" />
+      <Sidebar orgLogoSrc={orgLogoSrc} activeItem="My Profile" isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Right: topbar + page body */}
       <div className="profile-page__main">
@@ -57,6 +58,7 @@ export default function Profile() {
           search={search}
           onSearch={setSearch}
           userInitials="AS"
+          onMenuClick={() => setSidebarOpen(o => !o)}
         />
 
         <main className="profile-page__body">

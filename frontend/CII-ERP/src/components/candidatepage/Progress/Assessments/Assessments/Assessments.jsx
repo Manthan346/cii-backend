@@ -59,6 +59,7 @@ import orgLogo from '../../../../../assets/Logo.png';
 import "./Assessments.css";
 
 const Assessments = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   // Local UI state only (e.g. search box on the Topbar). Replace with real
   // data-fetching state as described in the comment block above once the
   // backend endpoints are ready.
@@ -81,6 +82,8 @@ const Assessments = () => {
       <Sidebar 
         orgLogoSrc={orgLogo}
         activeItem="Assessments" 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)} 
       />
 
       <div className="assessments-page__main">
@@ -88,6 +91,7 @@ const Assessments = () => {
           searchPlaceholder="Search courses, classes..."
           searchValue={searchTerm}
           onSearchChange={setSearchTerm}
+          onMenuClick={() => setSidebarOpen(o => !o)}
         />
 
         <div className="assessments-page__content">

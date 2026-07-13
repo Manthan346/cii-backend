@@ -41,31 +41,4 @@ const CertificateStats = ({ stats = [] }) => {
 
 export default CertificateStats;
 
-// import React from "react";
-// import Icon from "../../../shared/Icon/Icon";
-// // import { ICON_PATHS } from "../certificateIcons";
-// import "./CertificateStats.css";
 
-// const CertificateStats = ({ stats = [] }) => {
-//   return (
-//     <div className="certificate-stats">
-//       {stats.map((stat) => (
-//         <div className="certificate-stat-card" key={stat.id}>
-//           <svg
-//             className="certificate-stat-card__icon"
-//             width="22"
-//             height="22"
-//             viewBox="0 0 24 24"
-//             fill="none"
-//           >
-//             <path d={ICON_PATHS[stat.icon]} fill="currentColor" />
-//           </svg>
-//           <p className="certificate-stat-card__value">{stat.value}</p>
-//           <p className="certificate-stat-card__label">{stat.label}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default CertificateStats;
