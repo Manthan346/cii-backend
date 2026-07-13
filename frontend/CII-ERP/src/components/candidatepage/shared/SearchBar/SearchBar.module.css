@@ -1,0 +1,35 @@
+/* src/components/candidatepage/shared/SearchBar/SearchBar.module.css */
+.form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #eef2fb;
+  border-radius: 999px;
+  padding: 10px 18px;
+  width: 100%;
+  max-width: 420px;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form:focus-within {
+  background: #e4eaf9;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.icon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #0f172a;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #8592a8;
+}

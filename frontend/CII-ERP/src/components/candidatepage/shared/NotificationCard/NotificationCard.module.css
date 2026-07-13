@@ -1,0 +1,112 @@
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  outline: none;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 111, 240, 0.1);
+}
+
+.card:focus-visible {
+  box-shadow: 0 0 0 2px #3b6ff0;
+}
+
+.unread {
+  background: #eef3ff;
+}
+
+.dot {
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b6ff0;
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.icon-blue {
+  background: #dce6ff;
+  color: #3b6ff0;
+}
+
+.icon-green {
+  background: #dff5e6;
+  color: #1fa24a;
+}
+
+.icon-yellow {
+  background: #fdf1d6;
+  color: #c98a11;
+}
+
+.icon-red {
+  background: #fce1e1;
+  color: #e14848;
+}
+
+.icon-gray {
+  background: #eaedf3;
+  color: #6b7280;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c2333;
+  line-height: 1.4;
+}
+
+.description {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #7a8194;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.time {
+  font-size: 12px;
+  color: #9aa1b2;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+}

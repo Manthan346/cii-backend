@@ -81,7 +81,7 @@ const NAV_PROGRESS = [
 ];
 
 const NAV_SCHEDULE = [
-  { icon: Clock, label: "Upcoming Classes", to: null },
+  { icon: Clock, label: "Upcoming Classes", to: "/Schedule/upcomingclasses" },
 ];
 
 function NavItem({ icon: IconComp, label, active, to }) {
@@ -108,7 +108,7 @@ function SectionLabel({ children }) {
 }
 
 export default function Sidebar({
-  orgLogoSrc = null,
+  orgLogoSrc = SidebarLogo,
   activeItem = "Dashboard",
   isOpen = false,
   onClose = () => {},

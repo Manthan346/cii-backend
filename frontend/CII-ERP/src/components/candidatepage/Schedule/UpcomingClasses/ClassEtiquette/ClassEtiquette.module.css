@@ -1,0 +1,47 @@
+/* src/components/candidatepage/Schedule/components/ClassEtiquette/ClassEtiquette.module.css */
+.panel {
+  background: #ffffff;
+  border: 1px solid #eef1f6;
+  border-radius: 16px;
+  padding: 20px;
+  height: fit-content;
+}
+
+.heading {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+}

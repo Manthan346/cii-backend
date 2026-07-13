@@ -10,18 +10,8 @@
 //   onMenuClick  {function}  – Opens the mobile sidebar drawer. Optional;
 //                              defaults to a no-op so screens that don't
 //                              wire up a mobile drawer still work fine.
-//
-// ── Consolidation notes (2026-06-30) ───────────────────────────
-// Merged from three near-identical copies. MyCourses' version was
-// the superset (adds the mobile hamburger button + onMenuClick),
-// so it was kept as the canonical implementation. Dashboard and
-// Profile previously had NO hamburger button at all, meaning their
-// sidebars were unreachable on mobile (Dashboard's Sidebar.css even
-// hid the whole sidebar under 900px with no way to reopen it). That
-// was a real bug, now fixed for all three screens by using this
-// shared Topbar + the shared Sidebar's isOpen/onClose support.
-// ─────────────────────────────────────────────────────────────
 
+import { useNavigate } from 'react-router-dom';
 import Icon from '../../shared/Icon/Icon';
 import './Topbar.css';
 
@@ -31,6 +21,8 @@ export default function Topbar({
   userInitials = 'AS',
   onMenuClick = () => {},
 }) {
+  const navigate = useNavigate();
+
   return (
     <header className="topbar">
 
@@ -54,7 +46,7 @@ export default function Topbar({
       <div className="topbar__actions">
 
         {/* Notification bell */}
-        <button className="topbar__bell-btn" aria-label="Notifications">
+        <button onClick={() => navigate('/notifications')} className="topbar__bell-btn" aria-label="Notifications">
           <Icon name="bell" size={17} color="var(--ink-soft)" />
           {/* TODO: hide dot when there are no unread notifications */}
           <span className="topbar__bell-dot" aria-hidden="true" />
