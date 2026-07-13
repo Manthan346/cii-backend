@@ -65,6 +65,7 @@ import {
   X,
 } from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
+//import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
