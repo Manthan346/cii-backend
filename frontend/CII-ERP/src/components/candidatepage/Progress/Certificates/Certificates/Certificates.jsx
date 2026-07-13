@@ -58,6 +58,8 @@ import CertificateGrid from "../CertificateGrid/CertificateGrid";
 import { certificateStatsByTab, certificatesByTab } from "../../../../../data/certificatesData";
 import "./Certificates.css";
 
+import orgLogo from '../../../../../assets/Logo.png';
+
 const Certificates = () => {
   // Local UI state. Replace `certificates`/`stats` derivations with real
   // fetched state (see BACKEND INTEGRATION comment above) once ready.
@@ -82,6 +84,7 @@ const Certificates = () => {
   return (
     <div className="certificates-page">
       <Sidebar
+        orgLogoSrc={orgLogo}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         activeItem="Certificates"

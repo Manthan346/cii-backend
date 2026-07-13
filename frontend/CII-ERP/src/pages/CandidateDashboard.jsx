@@ -34,6 +34,7 @@ import UpcomingClasses from '../components/candidatepage/Schedule/UpcomingClasse
 import NotificationDashboard from '../components/candidatepage/Notification/NotificationDashboard/NotificationDashboard';
 
 
+import JobOpportunities from '../components/candidatepage/Progress/JobOpportunities/JobOpportunities/JobOpportunities';
 
 export default function CandidateDashboard() {
   return (
@@ -46,6 +47,7 @@ export default function CandidateDashboard() {
       <Route path="/progress/certificates" element={<Certificates />} />
       <Route path="/Schedule/upcomingclasses" element={<UpcomingClasses />} />
       <Route path="/notifications" element={<NotificationDashboard />} />
+      <Route path="/progress/jobopportunities" element={<JobOpportunities />} /> 
     </Routes>
   );
 }

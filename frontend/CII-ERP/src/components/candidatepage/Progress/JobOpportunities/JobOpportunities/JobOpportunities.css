@@ -1,0 +1,59 @@
+/* JobOpportunities.css
+   Overall page layout: sidebar + main column (topbar + content). */
+
+.job-opportunities-page {
+  min-height: 100vh;
+  background: #F7F8FA;
+}
+
+/* Sidebar.css positions <aside class="sidebar"> with `position: fixed;
+   width: 240px;`, which takes it out of normal document flow entirely.
+   A flex/grid wrapper around <Sidebar /> + this main column would NOT
+   reserve any space for it (fixed elements are invisible to layout
+   algorithms), so the sidebar would visually float on top of this
+   content instead of sitting beside it. Pushing this column over with
+   margin-left matching the sidebar's width is what actually reserves
+   the space. Keep this value in sync with `.sidebar { width: ... }`. */
+.job-opportunities-page__main {
+  margin-left: 240px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Sidebar.css collapses the sidebar into an off-canvas drawer
+   (`transform: translateX(-100%)`) below 900px, so the reserved space
+   on this side must collapse at the same breakpoint or content will be
+   pushed 240px to the right with nothing actually occupying it. */
+@media (max-width: 900px) {
+  .job-opportunities-page__main {
+    margin-left: 0;
+  }
+}
+
+.job-opportunities-page__content {
+  padding: 24px 32px 40px;
+}
+
+.job-opportunities-page__header {
+  margin-bottom: 20px;
+}
+
+.job-opportunities-page__title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1D29;
+}
+
+.job-opportunities-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #8A8FA3;
+}
+
+@media (max-width: 768px) {
+  .job-opportunities-page__content {
+    padding: 16px;
+  }
+}

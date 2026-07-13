@@ -32,7 +32,6 @@ export const certificateStatsByTab = {
     { id: "earned", icon: "certificate", value: "4", label: "Certificate earned" },
     { id: "inProgress", icon: "hourGlass", value: "2", label: "In progress" },
     { id: "avgGrade", icon: "trendingUp", value: "1", label: "Average Grade" },
-    { id: "shared", icon: "share", value: "3", label: "Shared to Profile" },
   ],
   workshops: [
     { id: "earned", icon: "certificate", value: "4", label: "Certificate earned" },

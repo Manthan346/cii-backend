@@ -65,19 +65,20 @@ import {
   X,
 } from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
+//import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
-  { icon: LayoutDashboard, label: "Dashboard", to: "/my-dashboard" },
-  { icon: User, label: "My Profile", to: "/my-profile" },
-  { icon: GraduationCap, label: "My Courses", to: "/my-courses" },
-  { icon: CalendarCheck, label: "Attendance", to: "/attendance" },
+  { icon: LayoutDashboard, label: "Dashboard",  to: "/my-dashboard" },
+  { icon: User,            label: "My Profile", to: "/my-profile"   },
+  { icon: GraduationCap,   label: "My Courses", to: "/my-courses"   },
+  { icon: CalendarCheck,   label: "Attendance", to: "/attendance"   },
 ];
 
 const NAV_PROGRESS = [
-  { icon: Star, label: "Assessments", to: "/progress/assessments" },
-  { icon: Award, label: "Certificates", to: "/progress/certificates" },
-  { icon: Briefcase, label: "Job Opportunities", to: null },
+  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
+  { icon: 'certificates', label: 'Certificates',      to: '/progress/certificates'     },
+  { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 
 const NAV_SCHEDULE = [

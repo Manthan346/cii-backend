@@ -1,0 +1,21 @@
+/* JobList.css */
+
+.job-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  /* Let the last card peek in from the right edge, matching the reference
+     screenshot, instead of hard-wrapping to a new row. */
+  scroll-snap-type: x proximity;
+}
+
+.job-list > * {
+  scroll-snap-align: start;
+}
+
+.job-list__empty {
+  font-size: 14px;
+  color: #8A8FA3;
+  margin: 8px 0 0;
+}
