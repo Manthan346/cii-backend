@@ -1,25 +1,27 @@
-import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Sidebar from '../../layout/Sidebar/Sidebar';
-import Topbar from '../../layout/Topbar/Topbar';
-import SectionHeading from '../../shared/SectionHeading/SectionHeading';
-import NotificationTabs from '../../shared/NotificationTabs/NotificationTabs';
-import NotificationCard from '../../shared/NotificationCard/NotificationCard';
-import NotificationPreference from '../../shared/NotificationPreference/NotificationPreference';
+import Sidebar from "../../layout/Sidebar/Sidebar";
+import Topbar from "../../layout/Topbar/Topbar";
+import SectionHeading from "../../shared/SectionHeading/SectionHeading";
+import NotificationTabs from "../../shared/NotificationTabs/NotificationTabs";
+import NotificationCard from "../../shared/NotificationCard/NotificationCard";
+import NotificationPreference from "../../shared/NotificationPreference/NotificationPreference";
 
-import notificationData from '../../../../data/notificationData';
-import notificationPreferenceData from '../../../../data/notificationPreferenceData';
+import notificationData from "../../../../data/notificationData";
+import notificationPreferenceData from "../../../../data/notificationPreferenceData";
 
-import styles from './NotificationDashboard.module.css';
+import styles from "./NotificationDashboard.module.css";
+
+import orgLogo from "../../../../assets/Logo.png";
 
 // Tab -> category mapping. "All" has no category filter.
 const TAB_CONFIG = [
-  { id: 'All', label: 'All', category: null },
-  { id: 'Job', label: 'Job', category: 'Job' },
-  { id: 'Examination', label: 'Examination', category: 'Examination' },
-  { id: 'Academics', label: 'Academics', category: 'Academics' },
-  { id: 'Finance', label: 'Finance', category: 'Finance' },
+  { id: "All", label: "All", category: null },
+  { id: "Job", label: "Job", category: "Job" },
+  { id: "Examination", label: "Examination", category: "Examination" },
+  { id: "Academics", label: "Academics", category: "Academics" },
+  { id: "Finance", label: "Finance", category: "Finance" },
 ];
 
 function getDateGroupLabel(isoDate) {
@@ -33,22 +35,22 @@ function getDateGroupLabel(isoDate) {
     a.getMonth() === b.getMonth() &&
     a.getDate() === b.getDate();
 
-  if (isSameDay(date, today)) return 'TODAY';
-  if (isSameDay(date, yesterday)) return 'YESTERDAY';
-  return 'OLDER';
+  if (isSameDay(date, today)) return "TODAY";
+  if (isSameDay(date, yesterday)) return "YESTERDAY";
+  return "OLDER";
 }
 
 function formatRelativeTime(isoDate) {
   const diffMs = Date.now() - new Date(isoDate).getTime();
   const diffHours = Math.round(diffMs / (1000 * 60 * 60));
 
-  if (diffHours < 1) return 'Just now';
+  if (diffHours < 1) return "Just now";
   if (diffHours < 24) return `${diffHours}h ago`;
 
-  return new Date(isoDate).toLocaleDateString('en-IN', {
-    weekday: diffHours < 24 * 7 ? 'long' : undefined,
-    hour: 'numeric',
-    minute: '2-digit',
+  return new Date(isoDate).toLocaleDateString("en-IN", {
+    weekday: diffHours < 24 * 7 ? "long" : undefined,
+    hour: "numeric",
+    minute: "2-digit",
   });
 }
 
@@ -56,14 +58,14 @@ function NotificationDashboard() {
   const navigate = useNavigate();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [activeTab, setActiveTab] = useState('All');
+  const [searchValue, setSearchValue] = useState("");
+  const [activeTab, setActiveTab] = useState("All");
   const [notifications, setNotifications] = useState(notificationData);
   const [preferences, setPreferences] = useState(notificationPreferenceData);
 
   const unreadCount = useMemo(
     () => notifications.filter((notification) => notification.isUnread).length,
-    [notifications]
+    [notifications],
   );
 
   // Badge counts are derived from live data rather than hardcoded, so they
@@ -74,18 +76,24 @@ function NotificationDashboard() {
         id: tab.id,
         label: tab.label,
         count: tab.category
-          ? notifications.filter((notification) => notification.category === tab.category).length
+          ? notifications.filter(
+              (notification) => notification.category === tab.category,
+            ).length
           : notifications.length,
       })),
-    [notifications]
+    [notifications],
   );
 
   const filteredNotifications = useMemo(() => {
-    const activeCategory = TAB_CONFIG.find((tab) => tab.id === activeTab)?.category ?? null;
+    const activeCategory =
+      TAB_CONFIG.find((tab) => tab.id === activeTab)?.category ?? null;
     const query = searchValue.trim().toLowerCase();
 
     return notifications
-      .filter((notification) => !activeCategory || notification.category === activeCategory)
+      .filter(
+        (notification) =>
+          !activeCategory || notification.category === activeCategory,
+      )
       .filter((notification) => {
         if (!query) return true;
         return (
@@ -113,7 +121,9 @@ function NotificationDashboard() {
     const notification = notifications.find((item) => item.id === id);
 
     setNotifications((current) =>
-      current.map((item) => (item.id === id ? { ...item, isUnread: false } : item))
+      current.map((item) =>
+        item.id === id ? { ...item, isUnread: false } : item,
+      ),
     );
     // TODO: PATCH /notifications/:id/read
 
@@ -124,7 +134,9 @@ function NotificationDashboard() {
 
   const handleTogglePreference = (id, enabled) => {
     setPreferences((current) =>
-      current.map((preference) => (preference.id === id ? { ...preference, enabled } : preference))
+      current.map((preference) =>
+        preference.id === id ? { ...preference, enabled } : preference,
+      ),
     );
     // TODO: PATCH /notification-preferences
   };
@@ -132,13 +144,18 @@ function NotificationDashboard() {
   return (
     <div className={styles.layout}>
       <Sidebar
-        // orgLogoSrc={orgLogo}  -> pass the same logo asset other pages use
+        orgLogoSrc={orgLogo}
         activeItem="Notifications"
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />
 
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       <div className={styles.content}>
         <Topbar
@@ -154,12 +171,21 @@ function NotificationDashboard() {
             subtitle={`${unreadCount} Unread · Stay On Top of Deadlines, Classes, and Updates`}
           />
 
-          <NotificationTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+          <NotificationTabs
+            tabs={tabs}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
 
           <div className={styles.grid}>
-            <section className={styles.notificationColumn} aria-label="Notification list">
+            <section
+              className={styles.notificationColumn}
+              aria-label="Notification list"
+            >
               {groupedNotifications.length === 0 && (
-                <p className={styles.emptyState}>No notifications match your filters.</p>
+                <p className={styles.emptyState}>
+                  No notifications match your filters.
+                </p>
               )}
 
               {groupedNotifications.map(([groupLabel, items]) => (
@@ -185,8 +211,14 @@ function NotificationDashboard() {
               ))}
             </section>
 
-            <aside className={styles.preferenceColumn} aria-label="Notification preferences">
-              <NotificationPreference preferences={preferences} onToggle={handleTogglePreference} />
+            <aside
+              className={styles.preferenceColumn}
+              aria-label="Notification preferences"
+            >
+              <NotificationPreference
+                preferences={preferences}
+                onToggle={handleTogglePreference}
+              />
             </aside>
           </div>
         </main>
