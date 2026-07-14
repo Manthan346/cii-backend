@@ -16,10 +16,10 @@ export const MOCK_DASHBOARD_DATA = {
   },
 
   stats: [
-    { icon: 'courses',      iconBg: 'var(--blue-light)',  iconColor: 'var(--blue)',   value: '3',   label: 'Enrolled courses'    },
-    { icon: 'attendance',   iconBg: 'var(--orange-soft)', iconColor: 'var(--orange)', value: '85%', label: 'Attendance rate'     },
-    { icon: 'pending',      iconBg: 'var(--gold-soft)',   iconColor: 'var(--gold)',   value: '2',   label: 'Pending assessments' },
-    { icon: 'certificates', iconBg: 'var(--green-soft)',  iconColor: 'var(--green)',  value: '4',   label: 'Certificates earned' },
+    { icon: 'courses',      iconBg: 'rgb(230, 238, 248)',  iconColor: 'var(--blue)',   value: '3',   label: 'Enrolled courses'    },
+    { icon: 'attendance',   iconBg: '#fff0eb', iconColor: 'var(--orange)', value: '85%', label: 'Attendance rate'     },
+    { icon: 'pending',      iconBg: '#fff5e0',   iconColor: 'var(--gold)',   value: '2',   label: 'Pending assessments' },
+    { icon: 'certificates', iconBg: '#e2f4ee',  iconColor: 'var(--green)',  value: '4',   label: 'Certificates earned' },
   ],
 
   // Single source of truth for the three enrolled courses — reused by
@@ -56,8 +56,8 @@ export const MOCK_DASHBOARD_DATA = {
       icon: 'shield',
       iconBg: 'var(--orange-soft)',
       iconColor: 'var(--orange)',
-      courseProgressPct: 98,
-      attendancePct: 98,
+      courseProgressPct: 70,
+      attendancePct: 95,
       assessmentsPct: 96,
       overallPct: 97,
       eligible: true,
