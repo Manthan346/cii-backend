@@ -6,7 +6,8 @@ import Courses     from "../components/homepage/courses/Courses";
 import Showcase    from "../components/homepage/showcase/Showcase";
 import Testimonials from "../components/homepage/testimonials/Testimonials";
 import Footer      from "../components/homepage/footer/Footer";
-import Registration from "../components/homepage/registration/Registration";
+// import Registration from "../components/homepage/registration/Registration";
+import EnquiryForm from "../components/enquiryform/EnquiryForm";
 import buildingImg  from "../assets/abvkvk.jpg";
 
 import "./Home.css";
@@ -53,7 +54,7 @@ export default function Home() {
 
         {/* Right — registration form */}
         <div className="hero-form-panel">
-          <Registration />
+          <EnquiryForm />
         </div>
 
       </section>

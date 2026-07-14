@@ -203,7 +203,7 @@ export default function Courses() {
             <p className="partner-desc">{p.desc}</p>
 
             <a href="#" className="partner-learn-more">
-              Learn more
+              Enquiry Now
               <svg
                 width="14"
                 height="14"

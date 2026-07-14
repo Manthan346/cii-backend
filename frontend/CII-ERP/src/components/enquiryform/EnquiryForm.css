@@ -1,5 +1,5 @@
-/* ── Enquiry Card ── */
-.enq-card {
+/* ── Registration Card ── */
+.reg-card {
   background: #ffffff;
   border-radius: 20px;
   padding: 36px 32px;
@@ -9,12 +9,17 @@
   box-sizing: border-box;
 }
 
-.enq-header {
+.reg-header {
   text-align: center;
   margin-bottom: 28px;
 }
 
-.enq-title {
+.reg-header-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.reg-title {
   font-size: 22px;
   font-weight: 700;
   color: #06194a;
@@ -23,7 +28,7 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.enq-subtitle {
+.reg-subtitle {
   font-size: 13px;
   color: #7a8499;
   margin: 0;
@@ -31,28 +36,28 @@
 }
 
 /* ── Form layout ── */
-.enq-form {
+.reg-form {
   display: flex;
   flex-direction: column;
   gap: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.enq-row {
+.reg-row {
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.enq-row .enq-field {
+.reg-row .reg-field {
   flex: 1;
 }
 
-.enq-field-full {
+.reg-field-full {
   margin-bottom: 16px;
 }
 
-.enq-label {
+.reg-label {
   display: block;
   font-size: 12px;
   font-weight: 600;
@@ -63,13 +68,13 @@
 }
 
 /* ── Input wrapper ── */
-.enq-input-wrap {
+.reg-input-wrap {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.enq-input-icon {
+.reg-input-icon {
   position: absolute;
   left: 11px;
   color: #9ca3af;
@@ -79,7 +84,7 @@
   z-index: 1;
 }
 
-.enq-input {
+.reg-input {
   width: 100%;
   padding: 11px 12px;
   border: 1.5px solid #e2e8f0;
@@ -93,18 +98,22 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.enq-input-icon-pad {
+.reg-input-icon-pad {
   padding-left: 34px;
 }
 
-.enq-input:focus {
+.reg-input-pw {
+  padding-right: 40px;
+}
+
+.reg-input:focus {
   border-color: #0c2d72;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(12, 45, 114, 0.09);
 }
 
 /* ── Select dropdown ── */
-.enq-select {
+.reg-select {
   width: 100%;
   padding: 11px 12px 11px 34px;
   border: 1.5px solid #e2e8f0;
@@ -120,14 +129,37 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.enq-select:focus {
+.reg-select:focus {
   border-color: #0c2d72;
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(12, 45, 114, 0.09);
 }
 
+/* ── Eye toggle button ── */
+.reg-eye-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  width: auto;
+  margin: 0;
+}
+
+.reg-eye-btn:hover {
+  color: #0c2d72;
+  background: rgba(12, 45, 114, 0.07);
+}
+
 /* ── Submit button ── */
-.enq-submit-btn {
+.reg-submit-btn {
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, #0c2d72, #1a4da8);
@@ -143,18 +175,36 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.enq-submit-btn:hover {
+.reg-submit-btn:hover {
   opacity: 0.91;
   transform: translateY(-1px);
 }
 
-.enq-submit-btn:active {
+.reg-submit-btn:active {
   transform: translateY(0);
+}
+
+/* ── Footer link ── */
+.reg-login-text {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  margin: 14px 0 0;
+}
+
+.reg-login-link {
+  color: #0c2d72;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reg-login-link:hover {
+  text-decoration: underline;
 }
 
 /* ── Responsive additions ── */
 @media (max-width: 900px) {
-  .enq-card {
+  .reg-card {
     max-width: 100%;
     width: 100%;
     padding: 28px 24px;
@@ -163,23 +213,23 @@
 }
 
 @media (max-width: 480px) {
-  .enq-card {
+  .reg-card {
     padding: 24px 16px;
     border-radius: 16px;
   }
 
   /* Stack name row on very small screens */
-  .enq-row {
+  .reg-row {
     flex-direction: column;
     gap: 0;
   }
 
-  .enq-row .enq-field {
+  .reg-row .reg-field {
     margin-bottom: 14px;
   }
 
-  .enq-title  { font-size: 20px; }
-  .enq-input  { font-size: 14px; padding: 12px 12px; }
-  .enq-select { font-size: 14px; padding: 12px 12px 12px 34px; }
-  .enq-submit-btn { font-size: 15px; padding: 13px; }
+  .reg-title  { font-size: 20px; }
+  .reg-input  { font-size: 14px; padding: 12px 12px; }
+  .reg-select { font-size: 14px; padding: 12px 12px 12px 34px; }
+  .reg-submit-btn { font-size: 15px; padding: 13px; }
 }
