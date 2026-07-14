@@ -20,42 +20,30 @@ export type course_detailsModel = runtime.Types.Result.DefaultSelection<Prisma.$
 
 export type AggregateCourse_details = {
   _count: Course_detailsCountAggregateOutputType | null
-  _avg: Course_detailsAvgAggregateOutputType | null
-  _sum: Course_detailsSumAggregateOutputType | null
   _min: Course_detailsMinAggregateOutputType | null
   _max: Course_detailsMaxAggregateOutputType | null
 }
 
-export type Course_detailsAvgAggregateOutputType = {
-  course_id: number | null
-  company_id: number | null
-}
-
-export type Course_detailsSumAggregateOutputType = {
-  course_id: number | null
-  company_id: number | null
-}
-
 export type Course_detailsMinAggregateOutputType = {
-  course_id: number | null
+  course_id: string | null
   course_name: string | null
   course_desc: string | null
   course_duration: string | null
-  company_id: number | null
   course_type: string | null
   created_at: Date | null
   updated_at: Date | null
+  company_id: string | null
 }
 
 export type Course_detailsMaxAggregateOutputType = {
-  course_id: number | null
+  course_id: string | null
   course_name: string | null
   course_desc: string | null
   course_duration: string | null
-  company_id: number | null
   course_type: string | null
   created_at: Date | null
   updated_at: Date | null
+  company_id: string | null
 }
 
 export type Course_detailsCountAggregateOutputType = {
@@ -63,33 +51,23 @@ export type Course_detailsCountAggregateOutputType = {
   course_name: number
   course_desc: number
   course_duration: number
-  company_id: number
   course_type: number
   created_at: number
   updated_at: number
+  company_id: number
   _all: number
 }
 
-
-export type Course_detailsAvgAggregateInputType = {
-  course_id?: true
-  company_id?: true
-}
-
-export type Course_detailsSumAggregateInputType = {
-  course_id?: true
-  company_id?: true
-}
 
 export type Course_detailsMinAggregateInputType = {
   course_id?: true
   course_name?: true
   course_desc?: true
   course_duration?: true
-  company_id?: true
   course_type?: true
   created_at?: true
   updated_at?: true
+  company_id?: true
 }
 
 export type Course_detailsMaxAggregateInputType = {
@@ -97,10 +75,10 @@ export type Course_detailsMaxAggregateInputType = {
   course_name?: true
   course_desc?: true
   course_duration?: true
-  company_id?: true
   course_type?: true
   created_at?: true
   updated_at?: true
+  company_id?: true
 }
 
 export type Course_detailsCountAggregateInputType = {
@@ -108,10 +86,10 @@ export type Course_detailsCountAggregateInputType = {
   course_name?: true
   course_desc?: true
   course_duration?: true
-  company_id?: true
   course_type?: true
   created_at?: true
   updated_at?: true
+  company_id?: true
   _all?: true
 }
 
@@ -153,18 +131,6 @@ export type Course_detailsAggregateArgs<ExtArgs extends runtime.Types.Extensions
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: Course_detailsAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: Course_detailsSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: Course_detailsMinAggregateInputType
@@ -195,24 +161,20 @@ export type course_detailsGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   _count?: Course_detailsCountAggregateInputType | true
-  _avg?: Course_detailsAvgAggregateInputType
-  _sum?: Course_detailsSumAggregateInputType
   _min?: Course_detailsMinAggregateInputType
   _max?: Course_detailsMaxAggregateInputType
 }
 
 export type Course_detailsGroupByOutputType = {
-  course_id: number
-  course_name: string | null
+  course_id: string
+  course_name: string
   course_desc: string | null
   course_duration: string | null
-  company_id: number | null
   course_type: string | null
-  created_at: Date | null
-  updated_at: Date | null
+  created_at: Date
+  updated_at: Date
+  company_id: string
   _count: Course_detailsCountAggregateOutputType | null
-  _avg: Course_detailsAvgAggregateOutputType | null
-  _sum: Course_detailsSumAggregateOutputType | null
   _min: Course_detailsMinAggregateOutputType | null
   _max: Course_detailsMaxAggregateOutputType | null
 }
@@ -236,159 +198,168 @@ export type course_detailsWhereInput = {
   AND?: Prisma.course_detailsWhereInput | Prisma.course_detailsWhereInput[]
   OR?: Prisma.course_detailsWhereInput[]
   NOT?: Prisma.course_detailsWhereInput | Prisma.course_detailsWhereInput[]
-  course_id?: Prisma.IntFilter<"course_details"> | number
-  course_name?: Prisma.StringNullableFilter<"course_details"> | string | null
+  course_id?: Prisma.UuidFilter<"course_details"> | string
+  course_name?: Prisma.StringFilter<"course_details"> | string
   course_desc?: Prisma.StringNullableFilter<"course_details"> | string | null
   course_duration?: Prisma.StringNullableFilter<"course_details"> | string | null
-  company_id?: Prisma.IntNullableFilter<"course_details"> | number | null
   course_type?: Prisma.StringNullableFilter<"course_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
-  batch_details?: Prisma.Batch_detailsListRelationFilter
-  company?: Prisma.XOR<Prisma.Company_detailsNullableScalarRelationFilter, Prisma.company_detailsWhereInput> | null
+  created_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  company_id?: Prisma.UuidFilter<"course_details"> | string
+  course_assessment_weights?: Prisma.Course_assessment_weightsListRelationFilter
+  company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
+  batch_details?: Prisma.Batch_detailsListRelationFilter
 }
 
 export type course_detailsOrderByWithRelationInput = {
   course_id?: Prisma.SortOrder
-  course_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  course_name?: Prisma.SortOrder
   course_desc?: Prisma.SortOrderInput | Prisma.SortOrder
   course_duration?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_id?: Prisma.SortOrderInput | Prisma.SortOrder
   course_type?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  batch_details?: Prisma.batch_detailsOrderByRelationAggregateInput
-  company?: Prisma.company_detailsOrderByWithRelationInput
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  company_id?: Prisma.SortOrder
+  course_assessment_weights?: Prisma.course_assessment_weightsOrderByRelationAggregateInput
+  company_details?: Prisma.company_detailsOrderByWithRelationInput
   enquiry_records?: Prisma.enquiry_recordsOrderByRelationAggregateInput
+  batch_details?: Prisma.batch_detailsOrderByRelationAggregateInput
 }
 
 export type course_detailsWhereUniqueInput = Prisma.AtLeast<{
-  course_id?: number
+  course_id?: string
+  company_id_course_name_course_duration_course_type?: Prisma.course_detailsCompany_idCourse_nameCourse_durationCourse_typeCompoundUniqueInput
   AND?: Prisma.course_detailsWhereInput | Prisma.course_detailsWhereInput[]
   OR?: Prisma.course_detailsWhereInput[]
   NOT?: Prisma.course_detailsWhereInput | Prisma.course_detailsWhereInput[]
-  course_name?: Prisma.StringNullableFilter<"course_details"> | string | null
+  course_name?: Prisma.StringFilter<"course_details"> | string
   course_desc?: Prisma.StringNullableFilter<"course_details"> | string | null
   course_duration?: Prisma.StringNullableFilter<"course_details"> | string | null
-  company_id?: Prisma.IntNullableFilter<"course_details"> | number | null
   course_type?: Prisma.StringNullableFilter<"course_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
-  batch_details?: Prisma.Batch_detailsListRelationFilter
-  company?: Prisma.XOR<Prisma.Company_detailsNullableScalarRelationFilter, Prisma.company_detailsWhereInput> | null
+  created_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  company_id?: Prisma.UuidFilter<"course_details"> | string
+  course_assessment_weights?: Prisma.Course_assessment_weightsListRelationFilter
+  company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
-}, "course_id">
+  batch_details?: Prisma.Batch_detailsListRelationFilter
+}, "course_id" | "company_id_course_name_course_duration_course_type">
 
 export type course_detailsOrderByWithAggregationInput = {
   course_id?: Prisma.SortOrder
-  course_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  course_name?: Prisma.SortOrder
   course_desc?: Prisma.SortOrderInput | Prisma.SortOrder
   course_duration?: Prisma.SortOrderInput | Prisma.SortOrder
-  company_id?: Prisma.SortOrderInput | Prisma.SortOrder
   course_type?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  company_id?: Prisma.SortOrder
   _count?: Prisma.course_detailsCountOrderByAggregateInput
-  _avg?: Prisma.course_detailsAvgOrderByAggregateInput
   _max?: Prisma.course_detailsMaxOrderByAggregateInput
   _min?: Prisma.course_detailsMinOrderByAggregateInput
-  _sum?: Prisma.course_detailsSumOrderByAggregateInput
 }
 
 export type course_detailsScalarWhereWithAggregatesInput = {
   AND?: Prisma.course_detailsScalarWhereWithAggregatesInput | Prisma.course_detailsScalarWhereWithAggregatesInput[]
   OR?: Prisma.course_detailsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.course_detailsScalarWhereWithAggregatesInput | Prisma.course_detailsScalarWhereWithAggregatesInput[]
-  course_id?: Prisma.IntWithAggregatesFilter<"course_details"> | number
-  course_name?: Prisma.StringNullableWithAggregatesFilter<"course_details"> | string | null
+  course_id?: Prisma.UuidWithAggregatesFilter<"course_details"> | string
+  course_name?: Prisma.StringWithAggregatesFilter<"course_details"> | string
   course_desc?: Prisma.StringNullableWithAggregatesFilter<"course_details"> | string | null
   course_duration?: Prisma.StringNullableWithAggregatesFilter<"course_details"> | string | null
-  company_id?: Prisma.IntNullableWithAggregatesFilter<"course_details"> | number | null
   course_type?: Prisma.StringNullableWithAggregatesFilter<"course_details"> | string | null
-  created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"course_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"course_details"> | Date | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"course_details"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"course_details"> | Date | string
+  company_id?: Prisma.UuidWithAggregatesFilter<"course_details"> | string
 }
 
 export type course_detailsCreateInput = {
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  company?: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
+  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
 }
 
 export type course_detailsUncheckedCreateInput = {
-  course_id?: number
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
-  company_id?: number | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id: string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
 export type course_detailsUpdateInput = {
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  company?: Prisma.company_detailsUpdateOneWithoutCourse_detailsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsUncheckedUpdateInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsCreateManyInput = {
-  course_id?: number
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
-  company_id?: number | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id: string
 }
 
 export type course_detailsUpdateManyMutationInput = {
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type course_detailsUncheckedUpdateManyInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type Course_detailsNullableScalarRelationFilter = {
@@ -396,19 +367,21 @@ export type Course_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.course_detailsWhereInput | null
 }
 
+export type course_detailsCompany_idCourse_nameCourse_durationCourse_typeCompoundUniqueInput = {
+  company_id: string
+  course_name: string
+  course_duration: string
+  course_type: string
+}
+
 export type course_detailsCountOrderByAggregateInput = {
   course_id?: Prisma.SortOrder
   course_name?: Prisma.SortOrder
   course_desc?: Prisma.SortOrder
   course_duration?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
   course_type?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-}
-
-export type course_detailsAvgOrderByAggregateInput = {
-  course_id?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
 }
 
@@ -417,10 +390,10 @@ export type course_detailsMaxOrderByAggregateInput = {
   course_name?: Prisma.SortOrder
   course_desc?: Prisma.SortOrder
   course_duration?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
   course_type?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  company_id?: Prisma.SortOrder
 }
 
 export type course_detailsMinOrderByAggregateInput = {
@@ -428,14 +401,9 @@ export type course_detailsMinOrderByAggregateInput = {
   course_name?: Prisma.SortOrder
   course_desc?: Prisma.SortOrder
   course_duration?: Prisma.SortOrder
-  company_id?: Prisma.SortOrder
   course_type?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-}
-
-export type course_detailsSumOrderByAggregateInput = {
-  course_id?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
 }
 
@@ -447,6 +415,11 @@ export type Course_detailsListRelationFilter = {
 
 export type course_detailsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Course_detailsScalarRelationFilter = {
+  is?: Prisma.course_detailsWhereInput
+  isNot?: Prisma.course_detailsWhereInput
 }
 
 export type course_detailsCreateNestedOneWithoutBatch_detailsInput = {
@@ -481,68 +454,85 @@ export type course_detailsUpdateOneWithoutEnquiry_recordsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput, Prisma.course_detailsUpdateWithoutEnquiry_recordsInput>, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
 }
 
-export type course_detailsCreateNestedManyWithoutCompanyInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput> | Prisma.course_detailsCreateWithoutCompanyInput[] | Prisma.course_detailsUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompanyInput | Prisma.course_detailsCreateOrConnectWithoutCompanyInput[]
-  createMany?: Prisma.course_detailsCreateManyCompanyInputEnvelope
+export type course_detailsCreateNestedManyWithoutCompany_detailsInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput> | Prisma.course_detailsCreateWithoutCompany_detailsInput[] | Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput[]
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput | Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput[]
+  createMany?: Prisma.course_detailsCreateManyCompany_detailsInputEnvelope
   connect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
 }
 
-export type course_detailsUncheckedCreateNestedManyWithoutCompanyInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput> | Prisma.course_detailsCreateWithoutCompanyInput[] | Prisma.course_detailsUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompanyInput | Prisma.course_detailsCreateOrConnectWithoutCompanyInput[]
-  createMany?: Prisma.course_detailsCreateManyCompanyInputEnvelope
+export type course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput> | Prisma.course_detailsCreateWithoutCompany_detailsInput[] | Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput[]
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput | Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput[]
+  createMany?: Prisma.course_detailsCreateManyCompany_detailsInputEnvelope
   connect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
 }
 
-export type course_detailsUpdateManyWithoutCompanyNestedInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput> | Prisma.course_detailsCreateWithoutCompanyInput[] | Prisma.course_detailsUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompanyInput | Prisma.course_detailsCreateOrConnectWithoutCompanyInput[]
-  upsert?: Prisma.course_detailsUpsertWithWhereUniqueWithoutCompanyInput | Prisma.course_detailsUpsertWithWhereUniqueWithoutCompanyInput[]
-  createMany?: Prisma.course_detailsCreateManyCompanyInputEnvelope
+export type course_detailsUpdateManyWithoutCompany_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput> | Prisma.course_detailsCreateWithoutCompany_detailsInput[] | Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput[]
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput | Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput[]
+  upsert?: Prisma.course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput | Prisma.course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput[]
+  createMany?: Prisma.course_detailsCreateManyCompany_detailsInputEnvelope
   set?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   disconnect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   delete?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   connect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
-  update?: Prisma.course_detailsUpdateWithWhereUniqueWithoutCompanyInput | Prisma.course_detailsUpdateWithWhereUniqueWithoutCompanyInput[]
-  updateMany?: Prisma.course_detailsUpdateManyWithWhereWithoutCompanyInput | Prisma.course_detailsUpdateManyWithWhereWithoutCompanyInput[]
+  update?: Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput | Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput[]
+  updateMany?: Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput | Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput[]
   deleteMany?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
 }
 
-export type course_detailsUncheckedUpdateManyWithoutCompanyNestedInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput> | Prisma.course_detailsCreateWithoutCompanyInput[] | Prisma.course_detailsUncheckedCreateWithoutCompanyInput[]
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompanyInput | Prisma.course_detailsCreateOrConnectWithoutCompanyInput[]
-  upsert?: Prisma.course_detailsUpsertWithWhereUniqueWithoutCompanyInput | Prisma.course_detailsUpsertWithWhereUniqueWithoutCompanyInput[]
-  createMany?: Prisma.course_detailsCreateManyCompanyInputEnvelope
+export type course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput> | Prisma.course_detailsCreateWithoutCompany_detailsInput[] | Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput[]
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput | Prisma.course_detailsCreateOrConnectWithoutCompany_detailsInput[]
+  upsert?: Prisma.course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput | Prisma.course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput[]
+  createMany?: Prisma.course_detailsCreateManyCompany_detailsInputEnvelope
   set?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   disconnect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   delete?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
   connect?: Prisma.course_detailsWhereUniqueInput | Prisma.course_detailsWhereUniqueInput[]
-  update?: Prisma.course_detailsUpdateWithWhereUniqueWithoutCompanyInput | Prisma.course_detailsUpdateWithWhereUniqueWithoutCompanyInput[]
-  updateMany?: Prisma.course_detailsUpdateManyWithWhereWithoutCompanyInput | Prisma.course_detailsUpdateManyWithWhereWithoutCompanyInput[]
+  update?: Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput | Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput[]
+  updateMany?: Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput | Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput[]
   deleteMany?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
+}
+
+export type course_detailsCreateNestedOneWithoutCourse_assessment_weightsInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
+  connect?: Prisma.course_detailsWhereUniqueInput
+}
+
+export type course_detailsUpdateOneRequiredWithoutCourse_assessment_weightsNestedInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
+  upsert?: Prisma.course_detailsUpsertWithoutCourse_assessment_weightsInput
+  connect?: Prisma.course_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutCourse_assessment_weightsInput, Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput>, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
 }
 
 export type course_detailsCreateWithoutBatch_detailsInput = {
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  company?: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
+  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
 }
 
 export type course_detailsUncheckedCreateWithoutBatch_detailsInput = {
-  course_id?: number
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
-  company_id?: number | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id: string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
@@ -563,48 +553,54 @@ export type course_detailsUpdateToOneWithWhereWithoutBatch_detailsInput = {
 }
 
 export type course_detailsUpdateWithoutBatch_detailsInput = {
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company?: Prisma.company_detailsUpdateOneWithoutCourse_detailsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsUncheckedUpdateWithoutBatch_detailsInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsCreateWithoutEnquiry_recordsInput = {
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
+  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  company?: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
 }
 
 export type course_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
-  course_id?: number
-  course_name?: string | null
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
-  company_id?: number | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id: string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
@@ -625,132 +621,209 @@ export type course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput = {
 }
 
 export type course_detailsUpdateWithoutEnquiry_recordsInput = {
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  company?: Prisma.company_detailsUpdateOneWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  company_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
-export type course_detailsCreateWithoutCompanyInput = {
-  course_name?: string | null
+export type course_detailsCreateWithoutCompany_detailsInput = {
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
 }
 
-export type course_detailsUncheckedCreateWithoutCompanyInput = {
-  course_id?: number
-  course_name?: string | null
+export type course_detailsUncheckedCreateWithoutCompany_detailsInput = {
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
-export type course_detailsCreateOrConnectWithoutCompanyInput = {
+export type course_detailsCreateOrConnectWithoutCompany_detailsInput = {
   where: Prisma.course_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
 }
 
-export type course_detailsCreateManyCompanyInputEnvelope = {
-  data: Prisma.course_detailsCreateManyCompanyInput | Prisma.course_detailsCreateManyCompanyInput[]
+export type course_detailsCreateManyCompany_detailsInputEnvelope = {
+  data: Prisma.course_detailsCreateManyCompany_detailsInput | Prisma.course_detailsCreateManyCompany_detailsInput[]
   skipDuplicates?: boolean
 }
 
-export type course_detailsUpsertWithWhereUniqueWithoutCompanyInput = {
+export type course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput = {
   where: Prisma.course_detailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompanyInput, Prisma.course_detailsUncheckedUpdateWithoutCompanyInput>
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompanyInput, Prisma.course_detailsUncheckedCreateWithoutCompanyInput>
+  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
 }
 
-export type course_detailsUpdateWithWhereUniqueWithoutCompanyInput = {
+export type course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput = {
   where: Prisma.course_detailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompanyInput, Prisma.course_detailsUncheckedUpdateWithoutCompanyInput>
+  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
 }
 
-export type course_detailsUpdateManyWithWhereWithoutCompanyInput = {
+export type course_detailsUpdateManyWithWhereWithoutCompany_detailsInput = {
   where: Prisma.course_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateManyMutationInput, Prisma.course_detailsUncheckedUpdateManyWithoutCompanyInput>
+  data: Prisma.XOR<Prisma.course_detailsUpdateManyMutationInput, Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsInput>
 }
 
 export type course_detailsScalarWhereInput = {
   AND?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
   OR?: Prisma.course_detailsScalarWhereInput[]
   NOT?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
-  course_id?: Prisma.IntFilter<"course_details"> | number
-  course_name?: Prisma.StringNullableFilter<"course_details"> | string | null
+  course_id?: Prisma.UuidFilter<"course_details"> | string
+  course_name?: Prisma.StringFilter<"course_details"> | string
   course_desc?: Prisma.StringNullableFilter<"course_details"> | string | null
   course_duration?: Prisma.StringNullableFilter<"course_details"> | string | null
-  company_id?: Prisma.IntNullableFilter<"course_details"> | number | null
   course_type?: Prisma.StringNullableFilter<"course_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"course_details"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  company_id?: Prisma.UuidFilter<"course_details"> | string
 }
 
-export type course_detailsCreateManyCompanyInput = {
-  course_id?: number
-  course_name?: string | null
+export type course_detailsCreateWithoutCourse_assessment_weightsInput = {
+  course_id?: string
+  course_name: string
   course_desc?: string | null
   course_duration?: string | null
   course_type?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
+  enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
 }
 
-export type course_detailsUpdateWithoutCompanyInput = {
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput = {
+  course_id?: string
+  course_name: string
+  course_desc?: string | null
+  course_duration?: string | null
+  course_type?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id: string
+  enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+}
+
+export type course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput = {
+  where: Prisma.course_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
+}
+
+export type course_detailsUpsertWithoutCourse_assessment_weightsInput = {
+  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
+  where?: Prisma.course_detailsWhereInput
+}
+
+export type course_detailsUpdateToOneWithWhereWithoutCourse_assessment_weightsInput = {
+  where?: Prisma.course_detailsWhereInput
+  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
+}
+
+export type course_detailsUpdateWithoutCourse_assessment_weightsInput = {
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
 }
 
-export type course_detailsUncheckedUpdateWithoutCompanyInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput = {
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
-export type course_detailsUncheckedUpdateManyWithoutCompanyInput = {
-  course_id?: Prisma.IntFieldUpdateOperationsInput | number
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type course_detailsCreateManyCompany_detailsInput = {
+  course_id?: string
+  course_name: string
+  course_desc?: string | null
+  course_duration?: string | null
+  course_type?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type course_detailsUpdateWithoutCompany_detailsInput = {
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
   course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
+  enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
+}
+
+export type course_detailsUncheckedUpdateWithoutCompany_detailsInput = {
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
+  course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
+}
+
+export type course_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_name?: Prisma.StringFieldUpdateOperationsInput | string
+  course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -759,13 +832,15 @@ export type course_detailsUncheckedUpdateManyWithoutCompanyInput = {
  */
 
 export type Course_detailsCountOutputType = {
-  batch_details: number
+  course_assessment_weights: number
   enquiry_records: number
+  batch_details: number
 }
 
 export type Course_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  batch_details?: boolean | Course_detailsCountOutputTypeCountBatch_detailsArgs
+  course_assessment_weights?: boolean | Course_detailsCountOutputTypeCountCourse_assessment_weightsArgs
   enquiry_records?: boolean | Course_detailsCountOutputTypeCountEnquiry_recordsArgs
+  batch_details?: boolean | Course_detailsCountOutputTypeCountBatch_detailsArgs
 }
 
 /**
@@ -781,8 +856,8 @@ export type Course_detailsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
 /**
  * Course_detailsCountOutputType without action
  */
-export type Course_detailsCountOutputTypeCountBatch_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.batch_detailsWhereInput
+export type Course_detailsCountOutputTypeCountCourse_assessment_weightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.course_assessment_weightsWhereInput
 }
 
 /**
@@ -792,19 +867,27 @@ export type Course_detailsCountOutputTypeCountEnquiry_recordsArgs<ExtArgs extend
   where?: Prisma.enquiry_recordsWhereInput
 }
 
+/**
+ * Course_detailsCountOutputType without action
+ */
+export type Course_detailsCountOutputTypeCountBatch_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.batch_detailsWhereInput
+}
+
 
 export type course_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   course_id?: boolean
   course_name?: boolean
   course_desc?: boolean
   course_duration?: boolean
-  company_id?: boolean
   course_type?: boolean
   created_at?: boolean
   updated_at?: boolean
-  batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  company_id?: boolean
+  course_assessment_weights?: boolean | Prisma.course_details$course_assessment_weightsArgs<ExtArgs>
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   enquiry_records?: boolean | Prisma.course_details$enquiry_recordsArgs<ExtArgs>
+  batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
   _count?: boolean | Prisma.Course_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["course_details"]>
 
@@ -813,11 +896,11 @@ export type course_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   course_name?: boolean
   course_desc?: boolean
   course_duration?: boolean
-  company_id?: boolean
   course_type?: boolean
   created_at?: boolean
   updated_at?: boolean
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  company_id?: boolean
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["course_details"]>
 
 export type course_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -825,11 +908,11 @@ export type course_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   course_name?: boolean
   course_desc?: boolean
   course_duration?: boolean
-  company_id?: boolean
   course_type?: boolean
   created_at?: boolean
   updated_at?: boolean
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  company_id?: boolean
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["course_details"]>
 
 export type course_detailsSelectScalar = {
@@ -837,42 +920,44 @@ export type course_detailsSelectScalar = {
   course_name?: boolean
   course_desc?: boolean
   course_duration?: boolean
-  company_id?: boolean
   course_type?: boolean
   created_at?: boolean
   updated_at?: boolean
+  company_id?: boolean
 }
 
-export type course_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"course_id" | "course_name" | "course_desc" | "course_duration" | "company_id" | "course_type" | "created_at" | "updated_at", ExtArgs["result"]["course_details"]>
+export type course_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"course_id" | "course_name" | "course_desc" | "course_duration" | "course_type" | "created_at" | "updated_at" | "company_id", ExtArgs["result"]["course_details"]>
 export type course_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  course_assessment_weights?: boolean | Prisma.course_details$course_assessment_weightsArgs<ExtArgs>
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   enquiry_records?: boolean | Prisma.course_details$enquiry_recordsArgs<ExtArgs>
+  batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
   _count?: boolean | Prisma.Course_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type course_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
 }
 export type course_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  company?: boolean | Prisma.course_details$companyArgs<ExtArgs>
+  company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
 }
 
 export type $course_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "course_details"
   objects: {
-    batch_details: Prisma.$batch_detailsPayload<ExtArgs>[]
-    company: Prisma.$company_detailsPayload<ExtArgs> | null
+    course_assessment_weights: Prisma.$course_assessment_weightsPayload<ExtArgs>[]
+    company_details: Prisma.$company_detailsPayload<ExtArgs>
     enquiry_records: Prisma.$enquiry_recordsPayload<ExtArgs>[]
+    batch_details: Prisma.$batch_detailsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    course_id: number
-    course_name: string | null
+    course_id: string
+    course_name: string
     course_desc: string | null
     course_duration: string | null
-    company_id: number | null
     course_type: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    created_at: Date
+    updated_at: Date
+    company_id: string
   }, ExtArgs["result"]["course_details"]>
   composites: {}
 }
@@ -1267,9 +1352,10 @@ readonly fields: course_detailsFieldRefs;
  */
 export interface Prisma__course_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  batch_details<T extends Prisma.course_details$batch_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$batch_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  company<T extends Prisma.course_details$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$companyArgs<ExtArgs>>): Prisma.Prisma__company_detailsClient<runtime.Types.Result.GetResult<Prisma.$company_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  course_assessment_weights<T extends Prisma.course_details$course_assessment_weightsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$course_assessment_weightsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$course_assessment_weightsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  company_details<T extends Prisma.company_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__company_detailsClient<runtime.Types.Result.GetResult<Prisma.$company_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   enquiry_records<T extends Prisma.course_details$enquiry_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$enquiry_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$enquiry_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  batch_details<T extends Prisma.course_details$batch_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$batch_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1299,14 +1385,14 @@ export interface Prisma__course_detailsClient<T, Null = never, ExtArgs extends r
  * Fields of the course_details model
  */
 export interface course_detailsFieldRefs {
-  readonly course_id: Prisma.FieldRef<"course_details", 'Int'>
+  readonly course_id: Prisma.FieldRef<"course_details", 'String'>
   readonly course_name: Prisma.FieldRef<"course_details", 'String'>
   readonly course_desc: Prisma.FieldRef<"course_details", 'String'>
   readonly course_duration: Prisma.FieldRef<"course_details", 'String'>
-  readonly company_id: Prisma.FieldRef<"course_details", 'Int'>
   readonly course_type: Prisma.FieldRef<"course_details", 'String'>
   readonly created_at: Prisma.FieldRef<"course_details", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"course_details", 'DateTime'>
+  readonly company_id: Prisma.FieldRef<"course_details", 'String'>
 }
     
 
@@ -1525,7 +1611,7 @@ export type course_detailsCreateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * The data needed to create a course_details.
    */
-  data?: Prisma.XOR<Prisma.course_detailsCreateInput, Prisma.course_detailsUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.course_detailsCreateInput, Prisma.course_detailsUncheckedCreateInput>
 }
 
 /**
@@ -1703,46 +1789,27 @@ export type course_detailsDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * course_details.batch_details
+ * course_details.course_assessment_weights
  */
-export type course_details$batch_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type course_details$course_assessment_weightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the batch_details
+   * Select specific fields to fetch from the course_assessment_weights
    */
-  select?: Prisma.batch_detailsSelect<ExtArgs> | null
+  select?: Prisma.course_assessment_weightsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the batch_details
+   * Omit specific fields from the course_assessment_weights
    */
-  omit?: Prisma.batch_detailsOmit<ExtArgs> | null
+  omit?: Prisma.course_assessment_weightsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.batch_detailsInclude<ExtArgs> | null
-  where?: Prisma.batch_detailsWhereInput
-  orderBy?: Prisma.batch_detailsOrderByWithRelationInput | Prisma.batch_detailsOrderByWithRelationInput[]
-  cursor?: Prisma.batch_detailsWhereUniqueInput
+  include?: Prisma.course_assessment_weightsInclude<ExtArgs> | null
+  where?: Prisma.course_assessment_weightsWhereInput
+  orderBy?: Prisma.course_assessment_weightsOrderByWithRelationInput | Prisma.course_assessment_weightsOrderByWithRelationInput[]
+  cursor?: Prisma.course_assessment_weightsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.Batch_detailsScalarFieldEnum | Prisma.Batch_detailsScalarFieldEnum[]
-}
-
-/**
- * course_details.company
- */
-export type course_details$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the company_details
-   */
-  select?: Prisma.company_detailsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the company_details
-   */
-  omit?: Prisma.company_detailsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.company_detailsInclude<ExtArgs> | null
-  where?: Prisma.company_detailsWhereInput
+  distinct?: Prisma.Course_assessment_weightsScalarFieldEnum | Prisma.Course_assessment_weightsScalarFieldEnum[]
 }
 
 /**
@@ -1767,6 +1834,30 @@ export type course_details$enquiry_recordsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.Enquiry_recordsScalarFieldEnum | Prisma.Enquiry_recordsScalarFieldEnum[]
+}
+
+/**
+ * course_details.batch_details
+ */
+export type course_details$batch_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the batch_details
+   */
+  select?: Prisma.batch_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the batch_details
+   */
+  omit?: Prisma.batch_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.batch_detailsInclude<ExtArgs> | null
+  where?: Prisma.batch_detailsWhereInput
+  orderBy?: Prisma.batch_detailsOrderByWithRelationInput | Prisma.batch_detailsOrderByWithRelationInput[]
+  cursor?: Prisma.batch_detailsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Batch_detailsScalarFieldEnum | Prisma.Batch_detailsScalarFieldEnum[]
 }
 
 /**

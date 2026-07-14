@@ -20,75 +20,69 @@ export type user_loginModel = runtime.Types.Result.DefaultSelection<Prisma.$user
 
 export type AggregateUser_login = {
   _count: User_loginCountAggregateOutputType | null
-  _avg: User_loginAvgAggregateOutputType | null
-  _sum: User_loginSumAggregateOutputType | null
   _min: User_loginMinAggregateOutputType | null
   _max: User_loginMaxAggregateOutputType | null
-}
-
-export type User_loginAvgAggregateOutputType = {
-  center_id: number | null
-}
-
-export type User_loginSumAggregateOutputType = {
-  center_id: number | null
 }
 
 export type User_loginMinAggregateOutputType = {
   user_id: string | null
   user_email: string | null
-  password_hash: string | null
-  user_role: string | null
-  center_id: number | null
+  user_password: string | null
+  user_role: $Enums.role_types | null
+  created_at: Date | null
+  updated_at: Date | null
+  center_id: string | null
 }
 
 export type User_loginMaxAggregateOutputType = {
   user_id: string | null
   user_email: string | null
-  password_hash: string | null
-  user_role: string | null
-  center_id: number | null
+  user_password: string | null
+  user_role: $Enums.role_types | null
+  created_at: Date | null
+  updated_at: Date | null
+  center_id: string | null
 }
 
 export type User_loginCountAggregateOutputType = {
   user_id: number
   user_email: number
-  password_hash: number
+  user_password: number
   user_role: number
+  created_at: number
+  updated_at: number
   center_id: number
   _all: number
 }
 
 
-export type User_loginAvgAggregateInputType = {
-  center_id?: true
-}
-
-export type User_loginSumAggregateInputType = {
-  center_id?: true
-}
-
 export type User_loginMinAggregateInputType = {
   user_id?: true
   user_email?: true
-  password_hash?: true
+  user_password?: true
   user_role?: true
+  created_at?: true
+  updated_at?: true
   center_id?: true
 }
 
 export type User_loginMaxAggregateInputType = {
   user_id?: true
   user_email?: true
-  password_hash?: true
+  user_password?: true
   user_role?: true
+  created_at?: true
+  updated_at?: true
   center_id?: true
 }
 
 export type User_loginCountAggregateInputType = {
   user_id?: true
   user_email?: true
-  password_hash?: true
+  user_password?: true
   user_role?: true
+  created_at?: true
+  updated_at?: true
   center_id?: true
   _all?: true
 }
@@ -131,18 +125,6 @@ export type User_loginAggregateArgs<ExtArgs extends runtime.Types.Extensions.Int
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: User_loginAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: User_loginSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: User_loginMinAggregateInputType
@@ -173,8 +155,6 @@ export type user_loginGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   _count?: User_loginCountAggregateInputType | true
-  _avg?: User_loginAvgAggregateInputType
-  _sum?: User_loginSumAggregateInputType
   _min?: User_loginMinAggregateInputType
   _max?: User_loginMaxAggregateInputType
 }
@@ -182,12 +162,12 @@ export type user_loginGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type User_loginGroupByOutputType = {
   user_id: string
   user_email: string
-  password_hash: string
-  user_role: string
-  center_id: number | null
+  user_password: string
+  user_role: $Enums.role_types
+  created_at: Date
+  updated_at: Date
+  center_id: string
   _count: User_loginCountAggregateOutputType | null
-  _avg: User_loginAvgAggregateOutputType | null
-  _sum: User_loginSumAggregateOutputType | null
   _min: User_loginMinAggregateOutputType | null
   _max: User_loginMaxAggregateOutputType | null
 }
@@ -213,47 +193,53 @@ export type user_loginWhereInput = {
   NOT?: Prisma.user_loginWhereInput | Prisma.user_loginWhereInput[]
   user_id?: Prisma.UuidFilter<"user_login"> | string
   user_email?: Prisma.StringFilter<"user_login"> | string
-  password_hash?: Prisma.StringFilter<"user_login"> | string
-  user_role?: Prisma.StringFilter<"user_login"> | string
-  center_id?: Prisma.IntNullableFilter<"user_login"> | number | null
-  candidates_details?: Prisma.Candidates_detailsListRelationFilter
-  center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
+  user_password?: Prisma.StringFilter<"user_login"> | string
+  user_role?: Prisma.Enumrole_typesFilter<"user_login"> | $Enums.role_types
+  created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  center_id?: Prisma.UuidFilter<"user_login"> | string
+  candidates_details?: Prisma.XOR<Prisma.Candidates_detailsNullableScalarRelationFilter, Prisma.candidates_detailsWhereInput> | null
+  center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
 }
 
 export type user_loginOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   user_email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
+  user_password?: Prisma.SortOrder
   user_role?: Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidates_details?: Prisma.candidates_detailsOrderByRelationAggregateInput
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  center_id?: Prisma.SortOrder
+  candidates_details?: Prisma.candidates_detailsOrderByWithRelationInput
   center_details?: Prisma.center_detailsOrderByWithRelationInput
 }
 
 export type user_loginWhereUniqueInput = Prisma.AtLeast<{
   user_id?: string
+  user_email?: string
   AND?: Prisma.user_loginWhereInput | Prisma.user_loginWhereInput[]
   OR?: Prisma.user_loginWhereInput[]
   NOT?: Prisma.user_loginWhereInput | Prisma.user_loginWhereInput[]
-  user_email?: Prisma.StringFilter<"user_login"> | string
-  password_hash?: Prisma.StringFilter<"user_login"> | string
-  user_role?: Prisma.StringFilter<"user_login"> | string
-  center_id?: Prisma.IntNullableFilter<"user_login"> | number | null
-  candidates_details?: Prisma.Candidates_detailsListRelationFilter
-  center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
-}, "user_id">
+  user_password?: Prisma.StringFilter<"user_login"> | string
+  user_role?: Prisma.Enumrole_typesFilter<"user_login"> | $Enums.role_types
+  created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  center_id?: Prisma.UuidFilter<"user_login"> | string
+  candidates_details?: Prisma.XOR<Prisma.Candidates_detailsNullableScalarRelationFilter, Prisma.candidates_detailsWhereInput> | null
+  center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
+}, "user_id" | "user_email">
 
 export type user_loginOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   user_email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
+  user_password?: Prisma.SortOrder
   user_role?: Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  center_id?: Prisma.SortOrder
   _count?: Prisma.user_loginCountOrderByAggregateInput
-  _avg?: Prisma.user_loginAvgOrderByAggregateInput
   _max?: Prisma.user_loginMaxOrderByAggregateInput
   _min?: Prisma.user_loginMinOrderByAggregateInput
-  _sum?: Prisma.user_loginSumOrderByAggregateInput
 }
 
 export type user_loginScalarWhereWithAggregatesInput = {
@@ -262,73 +248,89 @@ export type user_loginScalarWhereWithAggregatesInput = {
   NOT?: Prisma.user_loginScalarWhereWithAggregatesInput | Prisma.user_loginScalarWhereWithAggregatesInput[]
   user_id?: Prisma.UuidWithAggregatesFilter<"user_login"> | string
   user_email?: Prisma.StringWithAggregatesFilter<"user_login"> | string
-  password_hash?: Prisma.StringWithAggregatesFilter<"user_login"> | string
-  user_role?: Prisma.StringWithAggregatesFilter<"user_login"> | string
-  center_id?: Prisma.IntNullableWithAggregatesFilter<"user_login"> | number | null
+  user_password?: Prisma.StringWithAggregatesFilter<"user_login"> | string
+  user_role?: Prisma.Enumrole_typesWithAggregatesFilter<"user_login"> | $Enums.role_types
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"user_login"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"user_login"> | Date | string
+  center_id?: Prisma.UuidWithAggregatesFilter<"user_login"> | string
 }
 
 export type user_loginCreateInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  candidates_details?: Prisma.candidates_detailsCreateNestedManyWithoutUser_loginInput
-  center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
+  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
 
 export type user_loginUncheckedCreateInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  center_id?: number | null
-  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedManyWithoutUser_loginInput
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
 }
 
 export type user_loginUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  candidates_details?: Prisma.candidates_detailsUpdateManyWithoutUser_loginNestedInput
-  center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
 }
 
 export type user_loginUncheckedUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  center_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  candidates_details?: Prisma.candidates_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
 }
 
 export type user_loginCreateManyInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  center_id?: number | null
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
 }
 
 export type user_loginUpdateManyMutationInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type user_loginUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  center_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type User_loginNullableScalarRelationFilter = {
-  is?: Prisma.user_loginWhereInput | null
-  isNot?: Prisma.user_loginWhereInput | null
+export type User_loginScalarRelationFilter = {
+  is?: Prisma.user_loginWhereInput
+  isNot?: Prisma.user_loginWhereInput
 }
 
 export type User_loginListRelationFilter = {
@@ -344,32 +346,30 @@ export type user_loginOrderByRelationAggregateInput = {
 export type user_loginCountOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   user_email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
+  user_password?: Prisma.SortOrder
   user_role?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
-}
-
-export type user_loginAvgOrderByAggregateInput = {
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
 }
 
 export type user_loginMaxOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   user_email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
+  user_password?: Prisma.SortOrder
   user_role?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
 }
 
 export type user_loginMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   user_email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
+  user_password?: Prisma.SortOrder
   user_role?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
-}
-
-export type user_loginSumOrderByAggregateInput = {
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
 }
 
@@ -379,12 +379,10 @@ export type user_loginCreateNestedOneWithoutCandidates_detailsInput = {
   connect?: Prisma.user_loginWhereUniqueInput
 }
 
-export type user_loginUpdateOneWithoutCandidates_detailsNestedInput = {
+export type user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutCandidates_detailsInput, Prisma.user_loginUncheckedCreateWithoutCandidates_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutCandidates_detailsInput
   upsert?: Prisma.user_loginUpsertWithoutCandidates_detailsInput
-  disconnect?: Prisma.user_loginWhereInput | boolean
-  delete?: Prisma.user_loginWhereInput | boolean
   connect?: Prisma.user_loginWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutCandidates_detailsInput, Prisma.user_loginUpdateWithoutCandidates_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutCandidates_detailsInput>
 }
@@ -431,20 +429,28 @@ export type user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput = {
   deleteMany?: Prisma.user_loginScalarWhereInput | Prisma.user_loginScalarWhereInput[]
 }
 
+export type Enumrole_typesFieldUpdateOperationsInput = {
+  set?: $Enums.role_types
+}
+
 export type user_loginCreateWithoutCandidates_detailsInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
 
 export type user_loginUncheckedCreateWithoutCandidates_detailsInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  center_id?: number | null
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
 }
 
 export type user_loginCreateOrConnectWithoutCandidates_detailsInput = {
@@ -466,33 +472,41 @@ export type user_loginUpdateToOneWithWhereWithoutCandidates_detailsInput = {
 export type user_loginUpdateWithoutCandidates_detailsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
 }
 
 export type user_loginUncheckedUpdateWithoutCandidates_detailsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  center_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type user_loginCreateWithoutCenter_detailsInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  candidates_details?: Prisma.candidates_detailsCreateNestedManyWithoutUser_loginInput
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
 }
 
 export type user_loginUncheckedCreateWithoutCenter_detailsInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
-  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedManyWithoutUser_loginInput
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
 }
 
 export type user_loginCreateOrConnectWithoutCenter_detailsInput = {
@@ -527,134 +541,123 @@ export type user_loginScalarWhereInput = {
   NOT?: Prisma.user_loginScalarWhereInput | Prisma.user_loginScalarWhereInput[]
   user_id?: Prisma.UuidFilter<"user_login"> | string
   user_email?: Prisma.StringFilter<"user_login"> | string
-  password_hash?: Prisma.StringFilter<"user_login"> | string
-  user_role?: Prisma.StringFilter<"user_login"> | string
-  center_id?: Prisma.IntNullableFilter<"user_login"> | number | null
+  user_password?: Prisma.StringFilter<"user_login"> | string
+  user_role?: Prisma.Enumrole_typesFilter<"user_login"> | $Enums.role_types
+  created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
+  center_id?: Prisma.UuidFilter<"user_login"> | string
 }
 
 export type user_loginCreateManyCenter_detailsInput = {
   user_id?: string
   user_email: string
-  password_hash: string
-  user_role: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type user_loginUpdateWithoutCenter_detailsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  candidates_details?: Prisma.candidates_detailsUpdateManyWithoutUser_loginNestedInput
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
 }
 
 export type user_loginUncheckedUpdateWithoutCenter_detailsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
-  candidates_details?: Prisma.candidates_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
 }
 
 export type user_loginUncheckedUpdateManyWithoutCenter_detailsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type User_loginCountOutputType
- */
-
-export type User_loginCountOutputType = {
-  candidates_details: number
-}
-
-export type User_loginCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  candidates_details?: boolean | User_loginCountOutputTypeCountCandidates_detailsArgs
-}
-
-/**
- * User_loginCountOutputType without action
- */
-export type User_loginCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User_loginCountOutputType
-   */
-  select?: Prisma.User_loginCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * User_loginCountOutputType without action
- */
-export type User_loginCountOutputTypeCountCandidates_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.candidates_detailsWhereInput
-}
 
 
 export type user_loginSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   user_id?: boolean
   user_email?: boolean
-  password_hash?: boolean
+  user_password?: boolean
   user_role?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   center_id?: boolean
   candidates_details?: boolean | Prisma.user_login$candidates_detailsArgs<ExtArgs>
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
-  _count?: boolean | Prisma.User_loginCountOutputTypeDefaultArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
 
 export type user_loginSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   user_id?: boolean
   user_email?: boolean
-  password_hash?: boolean
+  user_password?: boolean
   user_role?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   center_id?: boolean
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
 
 export type user_loginSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   user_id?: boolean
   user_email?: boolean
-  password_hash?: boolean
+  user_password?: boolean
   user_role?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   center_id?: boolean
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
 
 export type user_loginSelectScalar = {
   user_id?: boolean
   user_email?: boolean
-  password_hash?: boolean
+  user_password?: boolean
   user_role?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   center_id?: boolean
 }
 
-export type user_loginOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_email" | "password_hash" | "user_role" | "center_id", ExtArgs["result"]["user_login"]>
+export type user_loginOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_email" | "user_password" | "user_role" | "created_at" | "updated_at" | "center_id", ExtArgs["result"]["user_login"]>
 export type user_loginInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidates_details?: boolean | Prisma.user_login$candidates_detailsArgs<ExtArgs>
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
-  _count?: boolean | Prisma.User_loginCountOutputTypeDefaultArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }
 export type user_loginIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }
 export type user_loginIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }
 
 export type $user_loginPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "user_login"
   objects: {
-    candidates_details: Prisma.$candidates_detailsPayload<ExtArgs>[]
-    center_details: Prisma.$center_detailsPayload<ExtArgs> | null
+    candidates_details: Prisma.$candidates_detailsPayload<ExtArgs> | null
+    center_details: Prisma.$center_detailsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     user_id: string
     user_email: string
-    password_hash: string
-    user_role: string
-    center_id: number | null
+    user_password: string
+    user_role: $Enums.role_types
+    created_at: Date
+    updated_at: Date
+    center_id: string
   }, ExtArgs["result"]["user_login"]>
   composites: {}
 }
@@ -1049,8 +1052,8 @@ readonly fields: user_loginFieldRefs;
  */
 export interface Prisma__user_loginClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  candidates_details<T extends Prisma.user_login$candidates_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$candidates_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$candidates_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  center_details<T extends Prisma.user_login$center_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$center_detailsArgs<ExtArgs>>): Prisma.Prisma__center_detailsClient<runtime.Types.Result.GetResult<Prisma.$center_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  candidates_details<T extends Prisma.user_login$candidates_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$candidates_detailsArgs<ExtArgs>>): Prisma.Prisma__candidates_detailsClient<runtime.Types.Result.GetResult<Prisma.$candidates_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  center_details<T extends Prisma.center_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__center_detailsClient<runtime.Types.Result.GetResult<Prisma.$center_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1082,9 +1085,11 @@ export interface Prisma__user_loginClient<T, Null = never, ExtArgs extends runti
 export interface user_loginFieldRefs {
   readonly user_id: Prisma.FieldRef<"user_login", 'String'>
   readonly user_email: Prisma.FieldRef<"user_login", 'String'>
-  readonly password_hash: Prisma.FieldRef<"user_login", 'String'>
-  readonly user_role: Prisma.FieldRef<"user_login", 'String'>
-  readonly center_id: Prisma.FieldRef<"user_login", 'Int'>
+  readonly user_password: Prisma.FieldRef<"user_login", 'String'>
+  readonly user_role: Prisma.FieldRef<"user_login", 'role_types'>
+  readonly created_at: Prisma.FieldRef<"user_login", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"user_login", 'DateTime'>
+  readonly center_id: Prisma.FieldRef<"user_login", 'String'>
 }
     
 
@@ -1497,30 +1502,6 @@ export type user_login$candidates_detailsArgs<ExtArgs extends runtime.Types.Exte
    */
   include?: Prisma.candidates_detailsInclude<ExtArgs> | null
   where?: Prisma.candidates_detailsWhereInput
-  orderBy?: Prisma.candidates_detailsOrderByWithRelationInput | Prisma.candidates_detailsOrderByWithRelationInput[]
-  cursor?: Prisma.candidates_detailsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Candidates_detailsScalarFieldEnum | Prisma.Candidates_detailsScalarFieldEnum[]
-}
-
-/**
- * user_login.center_details
- */
-export type user_login$center_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the center_details
-   */
-  select?: Prisma.center_detailsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the center_details
-   */
-  omit?: Prisma.center_detailsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.center_detailsInclude<ExtArgs> | null
-  where?: Prisma.center_detailsWhereInput
 }
 
 /**

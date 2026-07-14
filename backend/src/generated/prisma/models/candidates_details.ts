@@ -27,38 +27,35 @@ export type AggregateCandidates_details = {
 }
 
 export type Candidates_detailsAvgAggregateOutputType = {
-  candidate_id: number | null
   pin_code: number | null
   salary: number | null
-  batch_no: number | null
+  qualification_percentage: runtime.Decimal | null
 }
 
 export type Candidates_detailsSumAggregateOutputType = {
-  candidate_id: number | null
   pin_code: number | null
   salary: number | null
-  batch_no: number | null
+  qualification_percentage: runtime.Decimal | null
 }
 
 export type Candidates_detailsMinAggregateOutputType = {
-  candidate_id: number | null
+  candidate_id: string | null
   candidate_first_name: string | null
+  candidate_last_name: string | null
   contact_number: string | null
   gender: string | null
   date_of_birth: Date | null
   education: string | null
   candidate_address: string | null
-  center_name: string | null
   enquiry_source: string | null
   aadhar_card_no: string | null
   pan_card_no: string | null
+  guardian_name: string | null
   nearest_station: string | null
   pin_code: number | null
   district: string | null
   state_name: string | null
-  course_name: string | null
   salary: number | null
-  batch_no: number | null
   training_start_date: Date | null
   training_end_date: Date | null
   job_location: string | null
@@ -66,32 +63,31 @@ export type Candidates_detailsMinAggregateOutputType = {
   verification_status: string | null
   blood_group: string | null
   category: string | null
-  candidate_last_name: string | null
-  guardian_name: string | null
   user_id: string | null
   created_at: Date | null
   updated_at: Date | null
+  highest_qualification: string | null
+  qualification_percentage: runtime.Decimal | null
 }
 
 export type Candidates_detailsMaxAggregateOutputType = {
-  candidate_id: number | null
+  candidate_id: string | null
   candidate_first_name: string | null
+  candidate_last_name: string | null
   contact_number: string | null
   gender: string | null
   date_of_birth: Date | null
   education: string | null
   candidate_address: string | null
-  center_name: string | null
   enquiry_source: string | null
   aadhar_card_no: string | null
   pan_card_no: string | null
+  guardian_name: string | null
   nearest_station: string | null
   pin_code: number | null
   district: string | null
   state_name: string | null
-  course_name: string | null
   salary: number | null
-  batch_no: number | null
   training_start_date: Date | null
   training_end_date: Date | null
   job_location: string | null
@@ -99,32 +95,31 @@ export type Candidates_detailsMaxAggregateOutputType = {
   verification_status: string | null
   blood_group: string | null
   category: string | null
-  candidate_last_name: string | null
-  guardian_name: string | null
   user_id: string | null
   created_at: Date | null
   updated_at: Date | null
+  highest_qualification: string | null
+  qualification_percentage: runtime.Decimal | null
 }
 
 export type Candidates_detailsCountAggregateOutputType = {
   candidate_id: number
   candidate_first_name: number
+  candidate_last_name: number
   contact_number: number
   gender: number
   date_of_birth: number
   education: number
   candidate_address: number
-  center_name: number
   enquiry_source: number
   aadhar_card_no: number
   pan_card_no: number
+  guardian_name: number
   nearest_station: number
   pin_code: number
   district: number
   state_name: number
-  course_name: number
   salary: number
-  batch_no: number
   training_start_date: number
   training_end_date: number
   job_location: number
@@ -132,48 +127,45 @@ export type Candidates_detailsCountAggregateOutputType = {
   verification_status: number
   blood_group: number
   category: number
-  candidate_last_name: number
-  guardian_name: number
   user_id: number
   created_at: number
   updated_at: number
+  highest_qualification: number
+  qualification_percentage: number
   _all: number
 }
 
 
 export type Candidates_detailsAvgAggregateInputType = {
-  candidate_id?: true
   pin_code?: true
   salary?: true
-  batch_no?: true
+  qualification_percentage?: true
 }
 
 export type Candidates_detailsSumAggregateInputType = {
-  candidate_id?: true
   pin_code?: true
   salary?: true
-  batch_no?: true
+  qualification_percentage?: true
 }
 
 export type Candidates_detailsMinAggregateInputType = {
   candidate_id?: true
   candidate_first_name?: true
+  candidate_last_name?: true
   contact_number?: true
   gender?: true
   date_of_birth?: true
   education?: true
   candidate_address?: true
-  center_name?: true
   enquiry_source?: true
   aadhar_card_no?: true
   pan_card_no?: true
+  guardian_name?: true
   nearest_station?: true
   pin_code?: true
   district?: true
   state_name?: true
-  course_name?: true
   salary?: true
-  batch_no?: true
   training_start_date?: true
   training_end_date?: true
   job_location?: true
@@ -181,32 +173,31 @@ export type Candidates_detailsMinAggregateInputType = {
   verification_status?: true
   blood_group?: true
   category?: true
-  candidate_last_name?: true
-  guardian_name?: true
   user_id?: true
   created_at?: true
   updated_at?: true
+  highest_qualification?: true
+  qualification_percentage?: true
 }
 
 export type Candidates_detailsMaxAggregateInputType = {
   candidate_id?: true
   candidate_first_name?: true
+  candidate_last_name?: true
   contact_number?: true
   gender?: true
   date_of_birth?: true
   education?: true
   candidate_address?: true
-  center_name?: true
   enquiry_source?: true
   aadhar_card_no?: true
   pan_card_no?: true
+  guardian_name?: true
   nearest_station?: true
   pin_code?: true
   district?: true
   state_name?: true
-  course_name?: true
   salary?: true
-  batch_no?: true
   training_start_date?: true
   training_end_date?: true
   job_location?: true
@@ -214,32 +205,31 @@ export type Candidates_detailsMaxAggregateInputType = {
   verification_status?: true
   blood_group?: true
   category?: true
-  candidate_last_name?: true
-  guardian_name?: true
   user_id?: true
   created_at?: true
   updated_at?: true
+  highest_qualification?: true
+  qualification_percentage?: true
 }
 
 export type Candidates_detailsCountAggregateInputType = {
   candidate_id?: true
   candidate_first_name?: true
+  candidate_last_name?: true
   contact_number?: true
   gender?: true
   date_of_birth?: true
   education?: true
   candidate_address?: true
-  center_name?: true
   enquiry_source?: true
   aadhar_card_no?: true
   pan_card_no?: true
+  guardian_name?: true
   nearest_station?: true
   pin_code?: true
   district?: true
   state_name?: true
-  course_name?: true
   salary?: true
-  batch_no?: true
   training_start_date?: true
   training_end_date?: true
   job_location?: true
@@ -247,11 +237,11 @@ export type Candidates_detailsCountAggregateInputType = {
   verification_status?: true
   blood_group?: true
   category?: true
-  candidate_last_name?: true
-  guardian_name?: true
   user_id?: true
   created_at?: true
   updated_at?: true
+  highest_qualification?: true
+  qualification_percentage?: true
   _all?: true
 }
 
@@ -342,24 +332,23 @@ export type candidates_detailsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 export type Candidates_detailsGroupByOutputType = {
-  candidate_id: number
+  candidate_id: string
   candidate_first_name: string
+  candidate_last_name: string | null
   contact_number: string
   gender: string | null
   date_of_birth: Date | null
   education: string | null
   candidate_address: string | null
-  center_name: string | null
   enquiry_source: string | null
   aadhar_card_no: string | null
   pan_card_no: string | null
+  guardian_name: string | null
   nearest_station: string | null
   pin_code: number | null
   district: string | null
   state_name: string | null
-  course_name: string | null
   salary: number | null
-  batch_no: number | null
   training_start_date: Date | null
   training_end_date: Date | null
   job_location: string | null
@@ -367,11 +356,11 @@ export type Candidates_detailsGroupByOutputType = {
   verification_status: string | null
   blood_group: string | null
   category: string | null
-  candidate_last_name: string | null
-  guardian_name: string | null
-  user_id: string | null
-  created_at: Date | null
-  updated_at: Date | null
+  user_id: string
+  created_at: Date
+  updated_at: Date
+  highest_qualification: string | null
+  qualification_percentage: runtime.Decimal | null
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -398,24 +387,23 @@ export type candidates_detailsWhereInput = {
   AND?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   OR?: Prisma.candidates_detailsWhereInput[]
   NOT?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
-  candidate_id?: Prisma.IntFilter<"candidates_details"> | number
+  candidate_id?: Prisma.UuidFilter<"candidates_details"> | string
   candidate_first_name?: Prisma.StringFilter<"candidates_details"> | string
+  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   contact_number?: Prisma.StringFilter<"candidates_details"> | string
   gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   date_of_birth?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   education?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   candidate_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  center_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   enquiry_source?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   aadhar_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   pan_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   nearest_station?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   pin_code?: Prisma.IntNullableFilter<"candidates_details"> | number | null
   district?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   state_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  course_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   salary?: Prisma.IntNullableFilter<"candidates_details"> | number | null
-  batch_no?: Prisma.IntNullableFilter<"candidates_details"> | number | null
   training_start_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   training_end_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   job_location?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -423,36 +411,35 @@ export type candidates_detailsWhereInput = {
   verification_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"candidates_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
+  user_id?: Prisma.UuidFilter<"candidates_details"> | string
+  created_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+  highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
+  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessments?: Prisma.Candidate_assessmentsListRelationFilter
-  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
-  course_enrollment?: Prisma.Course_enrollmentListRelationFilter
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }
 
 export type candidates_detailsOrderByWithRelationInput = {
   candidate_id?: Prisma.SortOrder
   candidate_first_name?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   date_of_birth?: Prisma.SortOrderInput | Prisma.SortOrder
   education?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_address?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_name?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_source?: Prisma.SortOrderInput | Prisma.SortOrder
   aadhar_card_no?: Prisma.SortOrderInput | Prisma.SortOrder
   pan_card_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
   nearest_station?: Prisma.SortOrderInput | Prisma.SortOrder
   pin_code?: Prisma.SortOrderInput | Prisma.SortOrder
   district?: Prisma.SortOrderInput | Prisma.SortOrder
   state_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  course_name?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  batch_no?: Prisma.SortOrderInput | Prisma.SortOrder
   training_start_date?: Prisma.SortOrderInput | Prisma.SortOrder
   training_end_date?: Prisma.SortOrderInput | Prisma.SortOrder
   job_location?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -460,39 +447,39 @@ export type candidates_detailsOrderByWithRelationInput = {
   verification_status?: Prisma.SortOrderInput | Prisma.SortOrder
   blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
+  batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
   candidate_assessments?: Prisma.candidate_assessmentsOrderByRelationAggregateInput
   user_login?: Prisma.user_loginOrderByWithRelationInput
-  course_enrollment?: Prisma.course_enrollmentOrderByRelationAggregateInput
 }
 
 export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
-  candidate_id?: number
+  candidate_id?: string
   contact_number?: string
+  user_id?: string
   AND?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   OR?: Prisma.candidates_detailsWhereInput[]
   NOT?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   candidate_first_name?: Prisma.StringFilter<"candidates_details"> | string
+  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   date_of_birth?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   education?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   candidate_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  center_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   enquiry_source?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   aadhar_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   pan_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   nearest_station?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   pin_code?: Prisma.IntNullableFilter<"candidates_details"> | number | null
   district?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   state_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  course_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   salary?: Prisma.IntNullableFilter<"candidates_details"> | number | null
-  batch_no?: Prisma.IntNullableFilter<"candidates_details"> | number | null
   training_start_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   training_end_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   job_location?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -500,36 +487,34 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   verification_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"candidates_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
+  highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
+  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessments?: Prisma.Candidate_assessmentsListRelationFilter
-  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
-  course_enrollment?: Prisma.Course_enrollmentListRelationFilter
-}, "candidate_id" | "contact_number">
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
+}, "candidate_id" | "contact_number" | "user_id">
 
 export type candidates_detailsOrderByWithAggregationInput = {
   candidate_id?: Prisma.SortOrder
   candidate_first_name?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   date_of_birth?: Prisma.SortOrderInput | Prisma.SortOrder
   education?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_address?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_name?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_source?: Prisma.SortOrderInput | Prisma.SortOrder
   aadhar_card_no?: Prisma.SortOrderInput | Prisma.SortOrder
   pan_card_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
   nearest_station?: Prisma.SortOrderInput | Prisma.SortOrder
   pin_code?: Prisma.SortOrderInput | Prisma.SortOrder
   district?: Prisma.SortOrderInput | Prisma.SortOrder
   state_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  course_name?: Prisma.SortOrderInput | Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  batch_no?: Prisma.SortOrderInput | Prisma.SortOrder
   training_start_date?: Prisma.SortOrderInput | Prisma.SortOrder
   training_end_date?: Prisma.SortOrderInput | Prisma.SortOrder
   job_location?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -537,11 +522,11 @@ export type candidates_detailsOrderByWithAggregationInput = {
   verification_status?: Prisma.SortOrderInput | Prisma.SortOrder
   blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_last_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  guardian_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -553,24 +538,23 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   AND?: Prisma.candidates_detailsScalarWhereWithAggregatesInput | Prisma.candidates_detailsScalarWhereWithAggregatesInput[]
   OR?: Prisma.candidates_detailsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.candidates_detailsScalarWhereWithAggregatesInput | Prisma.candidates_detailsScalarWhereWithAggregatesInput[]
-  candidate_id?: Prisma.IntWithAggregatesFilter<"candidates_details"> | number
+  candidate_id?: Prisma.UuidWithAggregatesFilter<"candidates_details"> | string
   candidate_first_name?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
+  candidate_last_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   contact_number?: Prisma.StringWithAggregatesFilter<"candidates_details"> | string
   gender?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   date_of_birth?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
   education?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   candidate_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  center_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   enquiry_source?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   aadhar_card_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   pan_card_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  guardian_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   nearest_station?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   pin_code?: Prisma.IntNullableWithAggregatesFilter<"candidates_details"> | number | null
   district?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   state_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  course_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   salary?: Prisma.IntNullableWithAggregatesFilter<"candidates_details"> | number | null
-  batch_no?: Prisma.IntNullableWithAggregatesFilter<"candidates_details"> | number | null
   training_start_date?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
   training_end_date?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
   job_location?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
@@ -578,31 +562,31 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   verification_status?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   category?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  candidate_last_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  guardian_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  user_id?: Prisma.UuidNullableWithAggregatesFilter<"candidates_details"> | string | null
-  created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
+  user_id?: Prisma.UuidWithAggregatesFilter<"candidates_details"> | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
+  highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  qualification_percentage?: Prisma.DecimalNullableWithAggregatesFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type candidates_detailsCreateInput = {
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -610,35 +594,34 @@ export type candidates_detailsCreateInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
-  user_login?: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsUncheckedCreateInput = {
-  candidate_id?: number
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -646,34 +629,34 @@ export type candidates_detailsUncheckedCreateInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  user_id?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsUpdateInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -681,35 +664,34 @@ export type candidates_detailsUpdateInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
-  user_login?: Prisma.user_loginUpdateOneWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsUncheckedUpdateInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -717,35 +699,34 @@ export type candidates_detailsUncheckedUpdateInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsCreateManyInput = {
-  candidate_id?: number
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -753,31 +734,31 @@ export type candidates_detailsCreateManyInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  user_id?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -785,31 +766,30 @@ export type candidates_detailsUpdateManyMutationInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -817,32 +797,31 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
 }
 
 export type candidates_detailsCountOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   candidate_first_name?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   date_of_birth?: Prisma.SortOrder
   education?: Prisma.SortOrder
   candidate_address?: Prisma.SortOrder
-  center_name?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   aadhar_card_no?: Prisma.SortOrder
   pan_card_no?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
   nearest_station?: Prisma.SortOrder
   pin_code?: Prisma.SortOrder
   district?: Prisma.SortOrder
   state_name?: Prisma.SortOrder
-  course_name?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  batch_no?: Prisma.SortOrder
   training_start_date?: Prisma.SortOrder
   training_end_date?: Prisma.SortOrder
   job_location?: Prisma.SortOrder
@@ -850,39 +829,37 @@ export type candidates_detailsCountOrderByAggregateInput = {
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  candidate_last_name?: Prisma.SortOrder
-  guardian_name?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  highest_qualification?: Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrder
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
-  candidate_id?: Prisma.SortOrder
   pin_code?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  batch_no?: Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrder
 }
 
 export type candidates_detailsMaxOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   candidate_first_name?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   date_of_birth?: Prisma.SortOrder
   education?: Prisma.SortOrder
   candidate_address?: Prisma.SortOrder
-  center_name?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   aadhar_card_no?: Prisma.SortOrder
   pan_card_no?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
   nearest_station?: Prisma.SortOrder
   pin_code?: Prisma.SortOrder
   district?: Prisma.SortOrder
   state_name?: Prisma.SortOrder
-  course_name?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  batch_no?: Prisma.SortOrder
   training_start_date?: Prisma.SortOrder
   training_end_date?: Prisma.SortOrder
   job_location?: Prisma.SortOrder
@@ -890,32 +867,31 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  candidate_last_name?: Prisma.SortOrder
-  guardian_name?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  highest_qualification?: Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrder
 }
 
 export type candidates_detailsMinOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   candidate_first_name?: Prisma.SortOrder
+  candidate_last_name?: Prisma.SortOrder
   contact_number?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   date_of_birth?: Prisma.SortOrder
   education?: Prisma.SortOrder
   candidate_address?: Prisma.SortOrder
-  center_name?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   aadhar_card_no?: Prisma.SortOrder
   pan_card_no?: Prisma.SortOrder
+  guardian_name?: Prisma.SortOrder
   nearest_station?: Prisma.SortOrder
   pin_code?: Prisma.SortOrder
   district?: Prisma.SortOrder
   state_name?: Prisma.SortOrder
-  course_name?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  batch_no?: Prisma.SortOrder
   training_start_date?: Prisma.SortOrder
   training_end_date?: Prisma.SortOrder
   job_location?: Prisma.SortOrder
@@ -923,33 +899,27 @@ export type candidates_detailsMinOrderByAggregateInput = {
   verification_status?: Prisma.SortOrder
   blood_group?: Prisma.SortOrder
   category?: Prisma.SortOrder
-  candidate_last_name?: Prisma.SortOrder
-  guardian_name?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  highest_qualification?: Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrder
 }
 
 export type candidates_detailsSumOrderByAggregateInput = {
-  candidate_id?: Prisma.SortOrder
   pin_code?: Prisma.SortOrder
   salary?: Prisma.SortOrder
-  batch_no?: Prisma.SortOrder
+  qualification_percentage?: Prisma.SortOrder
+}
+
+export type Candidates_detailsScalarRelationFilter = {
+  is?: Prisma.candidates_detailsWhereInput
+  isNot?: Prisma.candidates_detailsWhereInput
 }
 
 export type Candidates_detailsNullableScalarRelationFilter = {
   is?: Prisma.candidates_detailsWhereInput | null
   isNot?: Prisma.candidates_detailsWhereInput | null
-}
-
-export type Candidates_detailsListRelationFilter = {
-  every?: Prisma.candidates_detailsWhereInput
-  some?: Prisma.candidates_detailsWhereInput
-  none?: Prisma.candidates_detailsWhereInput
-}
-
-export type candidates_detailsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -972,12 +942,16 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type candidates_detailsCreateNestedOneWithoutAttendance_recordsInput = {
@@ -986,72 +960,44 @@ export type candidates_detailsCreateNestedOneWithoutAttendance_recordsInput = {
   connect?: Prisma.candidates_detailsWhereUniqueInput
 }
 
-export type candidates_detailsUpdateOneWithoutAttendance_recordsNestedInput = {
+export type candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput = {
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutAttendance_recordsInput, Prisma.candidates_detailsUncheckedCreateWithoutAttendance_recordsInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutAttendance_recordsInput
   upsert?: Prisma.candidates_detailsUpsertWithoutAttendance_recordsInput
-  disconnect?: Prisma.candidates_detailsWhereInput | boolean
-  delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutAttendance_recordsInput, Prisma.candidates_detailsUpdateWithoutAttendance_recordsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput>
 }
 
-export type candidates_detailsCreateNestedOneWithoutCourse_enrollmentInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCourse_enrollmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCourse_enrollmentInput
+export type candidates_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
   connect?: Prisma.candidates_detailsWhereUniqueInput
 }
 
-export type candidates_detailsUpdateOneWithoutCourse_enrollmentNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCourse_enrollmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCourse_enrollmentInput
-  upsert?: Prisma.candidates_detailsUpsertWithoutCourse_enrollmentInput
+export type candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutUser_loginInput
   disconnect?: Prisma.candidates_detailsWhereInput | boolean
   delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCourse_enrollmentInput, Prisma.candidates_detailsUpdateWithoutCourse_enrollmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCourse_enrollmentInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type candidates_detailsCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.candidates_detailsCreateWithoutUser_loginInput[] | Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput | Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.candidates_detailsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-}
-
-export type candidates_detailsUncheckedCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.candidates_detailsCreateWithoutUser_loginInput[] | Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput | Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.candidates_detailsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-}
-
-export type candidates_detailsUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.candidates_detailsCreateWithoutUser_loginInput[] | Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput | Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.candidates_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.candidates_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.candidates_detailsCreateManyUser_loginInputEnvelope
-  set?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  disconnect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  delete?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  connect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  update?: Prisma.candidates_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.candidates_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.candidates_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.candidates_detailsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.candidates_detailsScalarWhereInput | Prisma.candidates_detailsScalarWhereInput[]
-}
-
-export type candidates_detailsUncheckedUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.candidates_detailsCreateWithoutUser_loginInput[] | Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput | Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.candidates_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.candidates_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.candidates_detailsCreateManyUser_loginInputEnvelope
-  set?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  disconnect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  delete?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  connect?: Prisma.candidates_detailsWhereUniqueInput | Prisma.candidates_detailsWhereUniqueInput[]
-  update?: Prisma.candidates_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.candidates_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.candidates_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.candidates_detailsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.candidates_detailsScalarWhereInput | Prisma.candidates_detailsScalarWhereInput[]
+export type candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.candidates_detailsWhereInput | boolean
+  delete?: Prisma.candidates_detailsWhereInput | boolean
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
 export type candidates_detailsCreateNestedOneWithoutCandidate_assessmentsInput = {
@@ -1060,34 +1006,46 @@ export type candidates_detailsCreateNestedOneWithoutCandidate_assessmentsInput =
   connect?: Prisma.candidates_detailsWhereUniqueInput
 }
 
-export type candidates_detailsUpdateOneWithoutCandidate_assessmentsNestedInput = {
+export type candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentsNestedInput = {
   create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentsInput>
   connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_assessmentsInput
   upsert?: Prisma.candidates_detailsUpsertWithoutCandidate_assessmentsInput
-  disconnect?: Prisma.candidates_detailsWhereInput | boolean
-  delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentsInput, Prisma.candidates_detailsUpdateWithoutCandidate_assessmentsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentsInput>
 }
 
+export type candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutBatch_enrollmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutBatch_enrollmentInput, Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+}
+
 export type candidates_detailsCreateWithoutAttendance_recordsInput = {
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1095,34 +1053,33 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
-  user_login?: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
-  candidate_id?: number
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1130,13 +1087,13 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  user_id?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsCreateOrConnectWithoutAttendance_recordsInput = {
@@ -1156,23 +1113,23 @@ export type candidates_detailsUpdateToOneWithWhereWithoutAttendance_recordsInput
 }
 
 export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1180,34 +1137,33 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
-  user_login?: Prisma.user_loginUpdateOneWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1215,187 +1171,33 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-}
-
-export type candidates_detailsCreateWithoutCourse_enrollmentInput = {
-  candidate_first_name: string
-  contact_number: string
-  gender?: string | null
-  date_of_birth?: Date | string | null
-  education?: string | null
-  candidate_address?: string | null
-  center_name?: string | null
-  enquiry_source?: string | null
-  aadhar_card_no?: string | null
-  pan_card_no?: string | null
-  nearest_station?: string | null
-  pin_code?: number | null
-  district?: string | null
-  state_name?: string | null
-  course_name?: string | null
-  salary?: number | null
-  batch_no?: number | null
-  training_start_date?: Date | string | null
-  training_end_date?: Date | string | null
-  job_location?: string | null
-  candidate_status?: string | null
-  verification_status?: string | null
-  blood_group?: string | null
-  category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
-  candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
-  user_login?: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
-}
-
-export type candidates_detailsUncheckedCreateWithoutCourse_enrollmentInput = {
-  candidate_id?: number
-  candidate_first_name: string
-  contact_number: string
-  gender?: string | null
-  date_of_birth?: Date | string | null
-  education?: string | null
-  candidate_address?: string | null
-  center_name?: string | null
-  enquiry_source?: string | null
-  aadhar_card_no?: string | null
-  pan_card_no?: string | null
-  nearest_station?: string | null
-  pin_code?: number | null
-  district?: string | null
-  state_name?: string | null
-  course_name?: string | null
-  salary?: number | null
-  batch_no?: number | null
-  training_start_date?: Date | string | null
-  training_end_date?: Date | string | null
-  job_location?: string | null
-  candidate_status?: string | null
-  verification_status?: string | null
-  blood_group?: string | null
-  category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  user_id?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-  candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-}
-
-export type candidates_detailsCreateOrConnectWithoutCourse_enrollmentInput = {
-  where: Prisma.candidates_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCourse_enrollmentInput>
-}
-
-export type candidates_detailsUpsertWithoutCourse_enrollmentInput = {
-  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutCourse_enrollmentInput>
-  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCourse_enrollmentInput>
-  where?: Prisma.candidates_detailsWhereInput
-}
-
-export type candidates_detailsUpdateToOneWithWhereWithoutCourse_enrollmentInput = {
-  where?: Prisma.candidates_detailsWhereInput
-  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCourse_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutCourse_enrollmentInput>
-}
-
-export type candidates_detailsUpdateWithoutCourse_enrollmentInput = {
-  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
-  candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
-  user_login?: Prisma.user_loginUpdateOneWithoutCandidates_detailsNestedInput
-}
-
-export type candidates_detailsUncheckedUpdateWithoutCourse_enrollmentInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
-  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsCreateWithoutUser_loginInput = {
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1403,34 +1205,33 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentCreateNestedManyWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
-  candidate_id?: number
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1438,13 +1239,13 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsCreateOrConnectWithoutUser_loginInput = {
@@ -1452,81 +1253,103 @@ export type candidates_detailsCreateOrConnectWithoutUser_loginInput = {
   create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
 }
 
-export type candidates_detailsCreateManyUser_loginInputEnvelope = {
-  data: Prisma.candidates_detailsCreateManyUser_loginInput | Prisma.candidates_detailsCreateManyUser_loginInput[]
-  skipDuplicates?: boolean
-}
-
-export type candidates_detailsUpsertWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.candidates_detailsWhereUniqueInput
+export type candidates_detailsUpsertWithoutUser_loginInput = {
   update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
   create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.candidates_detailsWhereInput
 }
 
-export type candidates_detailsUpdateWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.candidates_detailsWhereUniqueInput
+export type candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.candidates_detailsWhereInput
   data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutUser_loginInput, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type candidates_detailsUpdateManyWithWhereWithoutUser_loginInput = {
-  where: Prisma.candidates_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.candidates_detailsUpdateManyMutationInput, Prisma.candidates_detailsUncheckedUpdateManyWithoutUser_loginInput>
+export type candidates_detailsUpdateWithoutUser_loginInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
 }
 
-export type candidates_detailsScalarWhereInput = {
-  AND?: Prisma.candidates_detailsScalarWhereInput | Prisma.candidates_detailsScalarWhereInput[]
-  OR?: Prisma.candidates_detailsScalarWhereInput[]
-  NOT?: Prisma.candidates_detailsScalarWhereInput | Prisma.candidates_detailsScalarWhereInput[]
-  candidate_id?: Prisma.IntFilter<"candidates_details"> | number
-  candidate_first_name?: Prisma.StringFilter<"candidates_details"> | string
-  contact_number?: Prisma.StringFilter<"candidates_details"> | string
-  gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  date_of_birth?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  education?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  center_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  enquiry_source?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  aadhar_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  pan_card_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  nearest_station?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  pin_code?: Prisma.IntNullableFilter<"candidates_details"> | number | null
-  district?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  state_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  course_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  salary?: Prisma.IntNullableFilter<"candidates_details"> | number | null
-  batch_no?: Prisma.IntNullableFilter<"candidates_details"> | number | null
-  training_start_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  training_end_date?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  job_location?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  verification_status?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  category?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_last_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  guardian_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"candidates_details"> | string | null
-  created_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
+export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsCreateWithoutCandidate_assessmentsInput = {
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1534,34 +1357,33 @@ export type candidates_detailsCreateWithoutCandidate_assessmentsInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
-  user_login?: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentsInput = {
-  candidate_id?: number
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1569,13 +1391,13 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentsInput =
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  user_id?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
 }
 
 export type candidates_detailsCreateOrConnectWithoutCandidate_assessmentsInput = {
@@ -1595,23 +1417,23 @@ export type candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentsIn
 }
 
 export type candidates_detailsUpdateWithoutCandidate_assessmentsInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1619,34 +1441,33 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentsInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
-  user_login?: Prisma.user_loginUpdateOneWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentsInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1654,34 +1475,33 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentsInput =
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
-export type candidates_detailsCreateManyUser_loginInput = {
-  candidate_id?: number
+export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
+  candidate_id?: string
   candidate_first_name: string
+  candidate_last_name?: string | null
   contact_number: string
   gender?: string | null
   date_of_birth?: Date | string | null
   education?: string | null
   candidate_address?: string | null
-  center_name?: string | null
   enquiry_source?: string | null
   aadhar_card_no?: string | null
   pan_card_no?: string | null
+  guardian_name?: string | null
   nearest_station?: string | null
   pin_code?: number | null
   district?: string | null
   state_name?: string | null
-  course_name?: string | null
   salary?: number | null
-  batch_no?: number | null
   training_start_date?: Date | string | null
   training_end_date?: Date | string | null
   job_location?: string | null
@@ -1689,30 +1509,83 @@ export type candidates_detailsCreateManyUser_loginInput = {
   verification_status?: string | null
   blood_group?: string | null
   category?: string | null
-  candidate_last_name?: string | null
-  guardian_name?: string | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessments?: Prisma.candidate_assessmentsCreateNestedManyWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
 }
 
-export type candidates_detailsUpdateWithoutUser_loginInput = {
+export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessments?: Prisma.candidate_assessmentsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput = {
+  where: Prisma.candidates_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+}
+
+export type candidates_detailsUpsertWithoutBatch_enrollmentInput = {
+  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  where?: Prisma.candidates_detailsWhereInput
+}
+
+export type candidates_detailsUpdateToOneWithWhereWithoutBatch_enrollmentInput = {
+  where?: Prisma.candidates_detailsWhereInput
+  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+}
+
+export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1720,34 +1593,33 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUpdateManyWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
 }
 
-export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
+export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
   gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1755,45 +1627,13 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessments?: Prisma.candidate_assessmentsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-  course_enrollment?: Prisma.course_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
-}
-
-export type candidates_detailsUncheckedUpdateManyWithoutUser_loginInput = {
-  candidate_id?: Prisma.IntFieldUpdateOperationsInput | number
-  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  batch_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1803,14 +1643,14 @@ export type candidates_detailsUncheckedUpdateManyWithoutUser_loginInput = {
 
 export type Candidates_detailsCountOutputType = {
   attendance_records: number
+  batch_enrollment: number
   candidate_assessments: number
-  course_enrollment: number
 }
 
 export type Candidates_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Candidates_detailsCountOutputTypeCountAttendance_recordsArgs
+  batch_enrollment?: boolean | Candidates_detailsCountOutputTypeCountBatch_enrollmentArgs
   candidate_assessments?: boolean | Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs
-  course_enrollment?: boolean | Candidates_detailsCountOutputTypeCountCourse_enrollmentArgs
 }
 
 /**
@@ -1833,37 +1673,36 @@ export type Candidates_detailsCountOutputTypeCountAttendance_recordsArgs<ExtArgs
 /**
  * Candidates_detailsCountOutputType without action
  */
-export type Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.candidate_assessmentsWhereInput
+export type Candidates_detailsCountOutputTypeCountBatch_enrollmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.batch_enrollmentWhereInput
 }
 
 /**
  * Candidates_detailsCountOutputType without action
  */
-export type Candidates_detailsCountOutputTypeCountCourse_enrollmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.course_enrollmentWhereInput
+export type Candidates_detailsCountOutputTypeCountCandidate_assessmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.candidate_assessmentsWhereInput
 }
 
 
 export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
   candidate_first_name?: boolean
+  candidate_last_name?: boolean
   contact_number?: boolean
   gender?: boolean
   date_of_birth?: boolean
   education?: boolean
   candidate_address?: boolean
-  center_name?: boolean
   enquiry_source?: boolean
   aadhar_card_no?: boolean
   pan_card_no?: boolean
+  guardian_name?: boolean
   nearest_station?: boolean
   pin_code?: boolean
   district?: boolean
   state_name?: boolean
-  course_name?: boolean
   salary?: boolean
-  batch_no?: boolean
   training_start_date?: boolean
   training_end_date?: boolean
   job_location?: boolean
@@ -1871,37 +1710,36 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   verification_status?: boolean
   blood_group?: boolean
   category?: boolean
-  candidate_last_name?: boolean
-  guardian_name?: boolean
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  highest_qualification?: boolean
+  qualification_percentage?: boolean
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
+  batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessments?: boolean | Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
-  course_enrollment?: boolean | Prisma.candidates_details$course_enrollmentArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.Candidates_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
   candidate_first_name?: boolean
+  candidate_last_name?: boolean
   contact_number?: boolean
   gender?: boolean
   date_of_birth?: boolean
   education?: boolean
   candidate_address?: boolean
-  center_name?: boolean
   enquiry_source?: boolean
   aadhar_card_no?: boolean
   pan_card_no?: boolean
+  guardian_name?: boolean
   nearest_station?: boolean
   pin_code?: boolean
   district?: boolean
   state_name?: boolean
-  course_name?: boolean
   salary?: boolean
-  batch_no?: boolean
   training_start_date?: boolean
   training_end_date?: boolean
   job_location?: boolean
@@ -1909,33 +1747,32 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   verification_status?: boolean
   blood_group?: boolean
   category?: boolean
-  candidate_last_name?: boolean
-  guardian_name?: boolean
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
+  highest_qualification?: boolean
+  qualification_percentage?: boolean
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   candidate_id?: boolean
   candidate_first_name?: boolean
+  candidate_last_name?: boolean
   contact_number?: boolean
   gender?: boolean
   date_of_birth?: boolean
   education?: boolean
   candidate_address?: boolean
-  center_name?: boolean
   enquiry_source?: boolean
   aadhar_card_no?: boolean
   pan_card_no?: boolean
+  guardian_name?: boolean
   nearest_station?: boolean
   pin_code?: boolean
   district?: boolean
   state_name?: boolean
-  course_name?: boolean
   salary?: boolean
-  batch_no?: boolean
   training_start_date?: boolean
   training_end_date?: boolean
   job_location?: boolean
@@ -1943,33 +1780,32 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   verification_status?: boolean
   blood_group?: boolean
   category?: boolean
-  candidate_last_name?: boolean
-  guardian_name?: boolean
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
+  highest_qualification?: boolean
+  qualification_percentage?: boolean
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
 export type candidates_detailsSelectScalar = {
   candidate_id?: boolean
   candidate_first_name?: boolean
+  candidate_last_name?: boolean
   contact_number?: boolean
   gender?: boolean
   date_of_birth?: boolean
   education?: boolean
   candidate_address?: boolean
-  center_name?: boolean
   enquiry_source?: boolean
   aadhar_card_no?: boolean
   pan_card_no?: boolean
+  guardian_name?: boolean
   nearest_station?: boolean
   pin_code?: boolean
   district?: boolean
   state_name?: boolean
-  course_name?: boolean
   salary?: boolean
-  batch_no?: boolean
   training_start_date?: boolean
   training_end_date?: boolean
   job_location?: boolean
@@ -1977,55 +1813,54 @@ export type candidates_detailsSelectScalar = {
   verification_status?: boolean
   blood_group?: boolean
   category?: boolean
-  candidate_last_name?: boolean
-  guardian_name?: boolean
   user_id?: boolean
   created_at?: boolean
   updated_at?: boolean
+  highest_qualification?: boolean
+  qualification_percentage?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "center_name" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "nearest_station" | "pin_code" | "district" | "state_name" | "course_name" | "salary" | "batch_no" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "candidate_last_name" | "guardian_name" | "user_id" | "created_at" | "updated_at", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
+  batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessments?: boolean | Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
-  course_enrollment?: boolean | Prisma.candidates_details$course_enrollmentArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.Candidates_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type candidates_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 export type candidates_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user_login?: boolean | Prisma.candidates_details$user_loginArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 
 export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "candidates_details"
   objects: {
     attendance_records: Prisma.$attendance_recordsPayload<ExtArgs>[]
+    batch_enrollment: Prisma.$batch_enrollmentPayload<ExtArgs>[]
     candidate_assessments: Prisma.$candidate_assessmentsPayload<ExtArgs>[]
-    user_login: Prisma.$user_loginPayload<ExtArgs> | null
-    course_enrollment: Prisma.$course_enrollmentPayload<ExtArgs>[]
+    user_login: Prisma.$user_loginPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    candidate_id: number
+    candidate_id: string
     candidate_first_name: string
+    candidate_last_name: string | null
     contact_number: string
     gender: string | null
     date_of_birth: Date | null
     education: string | null
     candidate_address: string | null
-    center_name: string | null
     enquiry_source: string | null
     aadhar_card_no: string | null
     pan_card_no: string | null
+    guardian_name: string | null
     nearest_station: string | null
     pin_code: number | null
     district: string | null
     state_name: string | null
-    course_name: string | null
     salary: number | null
-    batch_no: number | null
     training_start_date: Date | null
     training_end_date: Date | null
     job_location: string | null
@@ -2033,11 +1868,11 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     verification_status: string | null
     blood_group: string | null
     category: string | null
-    candidate_last_name: string | null
-    guardian_name: string | null
-    user_id: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    user_id: string
+    created_at: Date
+    updated_at: Date
+    highest_qualification: string | null
+    qualification_percentage: runtime.Decimal | null
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -2433,9 +2268,9 @@ readonly fields: candidates_detailsFieldRefs;
 export interface Prisma__candidates_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   attendance_records<T extends Prisma.candidates_details$attendance_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$attendance_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$attendance_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  batch_enrollment<T extends Prisma.candidates_details$batch_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   candidate_assessments<T extends Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$candidate_assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$candidate_assessmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user_login<T extends Prisma.candidates_details$user_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$user_loginArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  course_enrollment<T extends Prisma.candidates_details$course_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.candidates_details$course_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$course_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_login<T extends Prisma.user_loginDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_loginDefaultArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2465,24 +2300,23 @@ export interface Prisma__candidates_detailsClient<T, Null = never, ExtArgs exten
  * Fields of the candidates_details model
  */
 export interface candidates_detailsFieldRefs {
-  readonly candidate_id: Prisma.FieldRef<"candidates_details", 'Int'>
+  readonly candidate_id: Prisma.FieldRef<"candidates_details", 'String'>
   readonly candidate_first_name: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_last_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly contact_number: Prisma.FieldRef<"candidates_details", 'String'>
   readonly gender: Prisma.FieldRef<"candidates_details", 'String'>
   readonly date_of_birth: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly education: Prisma.FieldRef<"candidates_details", 'String'>
   readonly candidate_address: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly center_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly enquiry_source: Prisma.FieldRef<"candidates_details", 'String'>
   readonly aadhar_card_no: Prisma.FieldRef<"candidates_details", 'String'>
   readonly pan_card_no: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly guardian_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly nearest_station: Prisma.FieldRef<"candidates_details", 'String'>
   readonly pin_code: Prisma.FieldRef<"candidates_details", 'Int'>
   readonly district: Prisma.FieldRef<"candidates_details", 'String'>
   readonly state_name: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly course_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly salary: Prisma.FieldRef<"candidates_details", 'Int'>
-  readonly batch_no: Prisma.FieldRef<"candidates_details", 'Int'>
   readonly training_start_date: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly training_end_date: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly job_location: Prisma.FieldRef<"candidates_details", 'String'>
@@ -2490,11 +2324,11 @@ export interface candidates_detailsFieldRefs {
   readonly verification_status: Prisma.FieldRef<"candidates_details", 'String'>
   readonly blood_group: Prisma.FieldRef<"candidates_details", 'String'>
   readonly category: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly candidate_last_name: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly guardian_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly user_id: Prisma.FieldRef<"candidates_details", 'String'>
   readonly created_at: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"candidates_details", 'DateTime'>
+  readonly highest_qualification: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly qualification_percentage: Prisma.FieldRef<"candidates_details", 'Decimal'>
 }
     
 
@@ -2915,6 +2749,30 @@ export type candidates_details$attendance_recordsArgs<ExtArgs extends runtime.Ty
 }
 
 /**
+ * candidates_details.batch_enrollment
+ */
+export type candidates_details$batch_enrollmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the batch_enrollment
+   */
+  select?: Prisma.batch_enrollmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the batch_enrollment
+   */
+  omit?: Prisma.batch_enrollmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.batch_enrollmentInclude<ExtArgs> | null
+  where?: Prisma.batch_enrollmentWhereInput
+  orderBy?: Prisma.batch_enrollmentOrderByWithRelationInput | Prisma.batch_enrollmentOrderByWithRelationInput[]
+  cursor?: Prisma.batch_enrollmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Batch_enrollmentScalarFieldEnum | Prisma.Batch_enrollmentScalarFieldEnum[]
+}
+
+/**
  * candidates_details.candidate_assessments
  */
 export type candidates_details$candidate_assessmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2936,49 +2794,6 @@ export type candidates_details$candidate_assessmentsArgs<ExtArgs extends runtime
   take?: number
   skip?: number
   distinct?: Prisma.Candidate_assessmentsScalarFieldEnum | Prisma.Candidate_assessmentsScalarFieldEnum[]
-}
-
-/**
- * candidates_details.user_login
- */
-export type candidates_details$user_loginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the user_login
-   */
-  select?: Prisma.user_loginSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the user_login
-   */
-  omit?: Prisma.user_loginOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.user_loginInclude<ExtArgs> | null
-  where?: Prisma.user_loginWhereInput
-}
-
-/**
- * candidates_details.course_enrollment
- */
-export type candidates_details$course_enrollmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the course_enrollment
-   */
-  select?: Prisma.course_enrollmentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the course_enrollment
-   */
-  omit?: Prisma.course_enrollmentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.course_enrollmentInclude<ExtArgs> | null
-  where?: Prisma.course_enrollmentWhereInput
-  orderBy?: Prisma.course_enrollmentOrderByWithRelationInput | Prisma.course_enrollmentOrderByWithRelationInput[]
-  cursor?: Prisma.course_enrollmentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Course_enrollmentScalarFieldEnum | Prisma.Course_enrollmentScalarFieldEnum[]
 }
 
 /**

@@ -4,11 +4,13 @@ import type { Request, Response } from "express"
 import { candidateRouter } from "./routes/candidate-route/candidate-route"
 import { companyRouter } from "./routes/company-route/company-route"
 import { courseRouter } from "./routes/course-route/course-route"
+import cookieParser from "cookie-parser"
 
 const app = Express()
 const port = 3000
 
 app.use(json())
+app.use(cookieParser())
 app.get("/", (req: Request, res: Response) => {
   res.send("server is running hello ")
 })
