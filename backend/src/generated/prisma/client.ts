@@ -119,3 +119,8 @@ export type course_assessment_weights = Prisma.course_assessment_weightsModel
  * 
  */
 export type batch_enrollment = Prisma.batch_enrollmentModel
+/**
+ * Model attendance_sessions
+ * 
+ */
+export type attendance_sessions = Prisma.attendance_sessionsModel

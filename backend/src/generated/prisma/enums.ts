@@ -36,3 +36,11 @@ export const enquiry_status_type = {
 } as const
 
 export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]
+
+
+export const attendance_mode_type = {
+  offline: 'offline',
+  online: 'online'
+} as const
+
+export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]

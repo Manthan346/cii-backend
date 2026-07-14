@@ -404,7 +404,8 @@ export const ModelName = {
   instructor_details: 'instructor_details',
   assessment_types: 'assessment_types',
   course_assessment_weights: 'course_assessment_weights',
-  batch_enrollment: 'batch_enrollment'
+  batch_enrollment: 'batch_enrollment',
+  attendance_sessions: 'attendance_sessions'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "candidate_assessments" | "company_details" | "instructor_details" | "assessment_types" | "course_assessment_weights" | "batch_enrollment"
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "candidate_assessments" | "company_details" | "instructor_details" | "assessment_types" | "course_assessment_weights" | "batch_enrollment" | "attendance_sessions"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1534,6 +1535,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    attendance_sessions: {
+      payload: Prisma.$attendance_sessionsPayload<ExtArgs>
+      fields: Prisma.attendance_sessionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.attendance_sessionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.attendance_sessionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        findFirst: {
+          args: Prisma.attendance_sessionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.attendance_sessionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        findMany: {
+          args: Prisma.attendance_sessionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>[]
+        }
+        create: {
+          args: Prisma.attendance_sessionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        createMany: {
+          args: Prisma.attendance_sessionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.attendance_sessionsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>[]
+        }
+        delete: {
+          args: Prisma.attendance_sessionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        update: {
+          args: Prisma.attendance_sessionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.attendance_sessionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.attendance_sessionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.attendance_sessionsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>[]
+        }
+        upsert: {
+          args: Prisma.attendance_sessionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$attendance_sessionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Attendance_sessionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAttendance_sessions>
+        }
+        groupBy: {
+          args: Prisma.attendance_sessionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Attendance_sessionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.attendance_sessionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Attendance_sessionsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1600,7 +1675,9 @@ export const Candidates_detailsScalarFieldEnum = {
   category: 'category',
   user_id: 'user_id',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  highest_qualification: 'highest_qualification',
+  qualification_percentage: 'qualification_percentage'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -1609,13 +1686,11 @@ export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalar
 export const Attendance_recordsScalarFieldEnum = {
   attendance_id: 'attendance_id',
   candidate_id: 'candidate_id',
-  batch_id: 'batch_id',
-  attendance_date: 'attendance_date',
   attendance_status: 'attendance_status',
-  attendance_mode: 'attendance_mode',
   remarks: 'remarks',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  attendance_session_id: 'attendance_session_id'
 } as const
 
 export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]
@@ -1802,6 +1877,19 @@ export const Batch_enrollmentScalarFieldEnum = {
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
 
 
+export const Attendance_sessionsScalarFieldEnum = {
+  attendance_session_id: 'attendance_session_id',
+  batch_id: 'batch_id',
+  instructor_id: 'instructor_id',
+  session_date: 'session_date',
+  attendance_mode: 'attendance_mode',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Attendance_sessionsScalarFieldEnum = (typeof Attendance_sessionsScalarFieldEnum)[keyof typeof Attendance_sessionsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1875,6 +1963,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'attend_types'
  */
 export type Enumattend_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'attend_types'>
@@ -1910,16 +2012,16 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Decimal'
+ * Reference to a field of type 'attendance_mode_type'
  */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+export type Enumattendance_mode_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'attendance_mode_type'>
     
 
 
 /**
- * Reference to a field of type 'Decimal[]'
+ * Reference to a field of type 'attendance_mode_type[]'
  */
-export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+export type ListEnumattendance_mode_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'attendance_mode_type[]'>
     
 
 
@@ -2038,6 +2140,7 @@ export type GlobalOmitConfig = {
   assessment_types?: Prisma.assessment_typesOmit
   course_assessment_weights?: Prisma.course_assessment_weightsOmit
   batch_enrollment?: Prisma.batch_enrollmentOmit
+  attendance_sessions?: Prisma.attendance_sessionsOmit
 }
 
 /* Types for Logging */
