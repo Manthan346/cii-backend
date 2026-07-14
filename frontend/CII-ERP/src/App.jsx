@@ -21,7 +21,6 @@ import Home from "./pages/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";
-import EnquirePage from "./pages/EnquireForm/EnquirePage";
 import BatchManagement from "./components/staff/batch/batchManagement";import CandidateDashboard from "./pages/CandidateDashboard";
 
 
