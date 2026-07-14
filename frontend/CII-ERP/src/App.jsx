@@ -21,8 +21,9 @@ import Home from "./pages/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";
-import EnquirePage from "./pages/EnquireForm/EnquirePage";
-import BatchManagement from "./components/staff/batch/batchManagement";
+import BatchManagement from "./components/staff/batch/batchManagement";import CandidateDashboard from "./pages/CandidateDashboard";
+
+
 function App() {
   return (
     <Routes>
@@ -31,10 +32,8 @@ function App() {
       <Route path="/Registration" element={<Home />} />
       <Route path="/events" element={<EventsPage />} />
       <Route path="/*" element={<CandidatePage />} />
-      <Route path="/enquire" element={<EnquirePage />} />
-      <Route path = "/batch-management" element={<BatchManagement />}/>
     </Routes>
-  );
+  );          
 }
 
 export default App;
