@@ -63,12 +63,7 @@ export const ModelName = {
   instructor_details: 'instructor_details',
   assessment_types: 'assessment_types',
   course_assessment_weights: 'course_assessment_weights',
-<<<<<<< HEAD
-  batch_enrollment: 'batch_enrollment',
-  attendance_sessions: 'attendance_sessions'
-=======
   batch_enrollment: 'batch_enrollment'
->>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -114,9 +109,7 @@ export const Candidates_detailsScalarFieldEnum = {
   category: 'category',
   user_id: 'user_id',
   created_at: 'created_at',
-  updated_at: 'updated_at',
-  highest_qualification: 'highest_qualification',
-  qualification_percentage: 'qualification_percentage'
+  updated_at: 'updated_at'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -125,13 +118,6 @@ export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalar
 export const Attendance_recordsScalarFieldEnum = {
   attendance_id: 'attendance_id',
   candidate_id: 'candidate_id',
-<<<<<<< HEAD
-  attendance_status: 'attendance_status',
-  remarks: 'remarks',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  attendance_session_id: 'attendance_session_id'
-=======
   batch_id: 'batch_id',
   attendance_date: 'attendance_date',
   attendance_status: 'attendance_status',
@@ -139,7 +125,6 @@ export const Attendance_recordsScalarFieldEnum = {
   remarks: 'remarks',
   created_at: 'created_at',
   updated_at: 'updated_at'
->>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 } as const
 
 export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]
@@ -326,22 +311,6 @@ export const Batch_enrollmentScalarFieldEnum = {
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
 
 
-<<<<<<< HEAD
-export const Attendance_sessionsScalarFieldEnum = {
-  attendance_session_id: 'attendance_session_id',
-  batch_id: 'batch_id',
-  instructor_id: 'instructor_id',
-  session_date: 'session_date',
-  attendance_mode: 'attendance_mode',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Attendance_sessionsScalarFieldEnum = (typeof Attendance_sessionsScalarFieldEnum)[keyof typeof Attendance_sessionsScalarFieldEnum]
-
-
-=======
->>>>>>> 8c4af90 (add login controller, candidate dashboard data enrolled courses, total sessions, pending assesment)
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
