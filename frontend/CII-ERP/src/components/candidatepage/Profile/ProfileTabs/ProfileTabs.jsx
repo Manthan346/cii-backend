@@ -11,7 +11,7 @@ const TABS = [
   { id: 'personal',  label: 'Personal Info'   },
   { id: 'academic',  label: 'Academic Detail' },
   { id: 'document',  label: 'Document'        },
-  { id: 'skills',    label: 'Skill & Links'   },
+  { id: 'skills',    label: 'Skills'   },
 ];
 
 export default function ProfileTabs({ active, onChange = () => {} }) {
