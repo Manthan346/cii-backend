@@ -8,6 +8,9 @@ import candidateDashboardData from "../../src/controllers/candidate-controllers/
 import { loginCandidate } from "../../src/controllers/candidate-controllers/login-candidate";
 import { candidateProfileDetails } from "../../src/controllers/candidate-controllers/candidate-profile";
 import { candidateAcademicDetails } from "../../src/controllers/candidate-controllers/candidate-academic-details";
+import { upload } from "../../src/middlewares/multer-middleware/multer";
+import { candidateCertificateUpload } from "../../src/controllers/candidate-controllers/candidate-documents";
+import { multerErrorHandler } from "../../src/middlewares/multer-middleware/file-limit-middleware";
 
 const candidateRouter = Router()
 
@@ -17,7 +20,13 @@ candidateRouter.post('/dashboard-data',verifyCandidateUsingAccessToken,candidate
 candidateRouter.post('/login', loginCandidate)
 candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken, candidateAcademicDetails)
 candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateProfileDetails)
+candidateRouter.post('/candidate-documents', upload.fields([
+    {name: 'aadhar_card', maxCount: 1},
+     {name: 'pan_card', maxCount: 1},
+      {name: 'passport_size_photo', maxCount: 1},
+       {name: 'resume', maxCount: 1}, 
 
+]),multerErrorHandler, verifyCandidateUsingAccessToken, candidateCertificateUpload)
 
 export {
     candidateRouter

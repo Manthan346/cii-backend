@@ -266,8 +266,9 @@ export type batch_detailsWhereInput = {
   instructor_id?: Prisma.UuidNullableFilter<"batch_details"> | string | null
   assessments?: Prisma.AssessmentsListRelationFilter
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
-  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+  instructor?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
   course_details?: Prisma.XOR<Prisma.Course_detailsNullableScalarRelationFilter, Prisma.course_detailsWhereInput> | null
+  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
 }
 
 export type batch_detailsOrderByWithRelationInput = {
@@ -284,8 +285,9 @@ export type batch_detailsOrderByWithRelationInput = {
   instructor_id?: Prisma.SortOrderInput | Prisma.SortOrder
   assessments?: Prisma.assessmentsOrderByRelationAggregateInput
   attendance_sessions?: Prisma.attendance_sessionsOrderByRelationAggregateInput
-  batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
+  instructor?: Prisma.instructor_detailsOrderByWithRelationInput
   course_details?: Prisma.course_detailsOrderByWithRelationInput
+  batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
 }
 
 export type batch_detailsWhereUniqueInput = Prisma.AtLeast<{
@@ -305,8 +307,9 @@ export type batch_detailsWhereUniqueInput = Prisma.AtLeast<{
   instructor_id?: Prisma.UuidNullableFilter<"batch_details"> | string | null
   assessments?: Prisma.AssessmentsListRelationFilter
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
-  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+  instructor?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
   course_details?: Prisma.XOR<Prisma.Course_detailsNullableScalarRelationFilter, Prisma.course_detailsWhereInput> | null
+  batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
 }, "batch_id" | "batch_code">
 
 export type batch_detailsOrderByWithAggregationInput = {
@@ -355,11 +358,11 @@ export type batch_detailsCreateInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  instructor_id?: string | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
-  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
 }
 
 export type batch_detailsUncheckedCreateInput = {
@@ -389,11 +392,11 @@ export type batch_detailsUpdateInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
-  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
 }
 
 export type batch_detailsUncheckedUpdateInput = {
@@ -437,7 +440,6 @@ export type batch_detailsUpdateManyMutationInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type batch_detailsUncheckedUpdateManyInput = {
@@ -575,6 +577,48 @@ export type batch_detailsUpdateOneRequiredWithoutAssessmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.batch_detailsUpdateToOneWithWhereWithoutAssessmentsInput, Prisma.batch_detailsUpdateWithoutAssessmentsInput>, Prisma.batch_detailsUncheckedUpdateWithoutAssessmentsInput>
 }
 
+export type batch_detailsCreateNestedManyWithoutInstructorInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput> | Prisma.batch_detailsCreateWithoutInstructorInput[] | Prisma.batch_detailsUncheckedCreateWithoutInstructorInput[]
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutInstructorInput | Prisma.batch_detailsCreateOrConnectWithoutInstructorInput[]
+  createMany?: Prisma.batch_detailsCreateManyInstructorInputEnvelope
+  connect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+}
+
+export type batch_detailsUncheckedCreateNestedManyWithoutInstructorInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput> | Prisma.batch_detailsCreateWithoutInstructorInput[] | Prisma.batch_detailsUncheckedCreateWithoutInstructorInput[]
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutInstructorInput | Prisma.batch_detailsCreateOrConnectWithoutInstructorInput[]
+  createMany?: Prisma.batch_detailsCreateManyInstructorInputEnvelope
+  connect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+}
+
+export type batch_detailsUpdateManyWithoutInstructorNestedInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput> | Prisma.batch_detailsCreateWithoutInstructorInput[] | Prisma.batch_detailsUncheckedCreateWithoutInstructorInput[]
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutInstructorInput | Prisma.batch_detailsCreateOrConnectWithoutInstructorInput[]
+  upsert?: Prisma.batch_detailsUpsertWithWhereUniqueWithoutInstructorInput | Prisma.batch_detailsUpsertWithWhereUniqueWithoutInstructorInput[]
+  createMany?: Prisma.batch_detailsCreateManyInstructorInputEnvelope
+  set?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  disconnect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  delete?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  connect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  update?: Prisma.batch_detailsUpdateWithWhereUniqueWithoutInstructorInput | Prisma.batch_detailsUpdateWithWhereUniqueWithoutInstructorInput[]
+  updateMany?: Prisma.batch_detailsUpdateManyWithWhereWithoutInstructorInput | Prisma.batch_detailsUpdateManyWithWhereWithoutInstructorInput[]
+  deleteMany?: Prisma.batch_detailsScalarWhereInput | Prisma.batch_detailsScalarWhereInput[]
+}
+
+export type batch_detailsUncheckedUpdateManyWithoutInstructorNestedInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput> | Prisma.batch_detailsCreateWithoutInstructorInput[] | Prisma.batch_detailsUncheckedCreateWithoutInstructorInput[]
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutInstructorInput | Prisma.batch_detailsCreateOrConnectWithoutInstructorInput[]
+  upsert?: Prisma.batch_detailsUpsertWithWhereUniqueWithoutInstructorInput | Prisma.batch_detailsUpsertWithWhereUniqueWithoutInstructorInput[]
+  createMany?: Prisma.batch_detailsCreateManyInstructorInputEnvelope
+  set?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  disconnect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  delete?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  connect?: Prisma.batch_detailsWhereUniqueInput | Prisma.batch_detailsWhereUniqueInput[]
+  update?: Prisma.batch_detailsUpdateWithWhereUniqueWithoutInstructorInput | Prisma.batch_detailsUpdateWithWhereUniqueWithoutInstructorInput[]
+  updateMany?: Prisma.batch_detailsUpdateManyWithWhereWithoutInstructorInput | Prisma.batch_detailsUpdateManyWithWhereWithoutInstructorInput[]
+  deleteMany?: Prisma.batch_detailsScalarWhereInput | Prisma.batch_detailsScalarWhereInput[]
+}
+
 export type batch_detailsCreateNestedOneWithoutBatch_enrollmentInput = {
   create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutBatch_enrollmentInput, Prisma.batch_detailsUncheckedCreateWithoutBatch_enrollmentInput>
   connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutBatch_enrollmentInput
@@ -613,9 +657,9 @@ export type batch_detailsCreateWithoutCourse_detailsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  instructor_id?: string | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
+  instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
 }
 
@@ -688,10 +732,10 @@ export type batch_detailsCreateWithoutAssessmentsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  instructor_id?: string | null
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
-  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
 }
 
 export type batch_detailsUncheckedCreateWithoutAssessmentsInput = {
@@ -736,10 +780,10 @@ export type batch_detailsUpdateWithoutAssessmentsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
-  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
 }
 
 export type batch_detailsUncheckedUpdateWithoutAssessmentsInput = {
@@ -758,6 +802,64 @@ export type batch_detailsUncheckedUpdateWithoutAssessmentsInput = {
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
 
+export type batch_detailsCreateWithoutInstructorInput = {
+  batch_id?: string
+  batch_name: string
+  batch_code?: string | null
+  batch_desc?: string | null
+  batch_start_date: Date | string
+  batch_end_date: Date | string
+  max_candidates?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
+  attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
+  course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+}
+
+export type batch_detailsUncheckedCreateWithoutInstructorInput = {
+  batch_id?: string
+  batch_name: string
+  batch_code?: string | null
+  batch_desc?: string | null
+  course_id?: string | null
+  batch_start_date: Date | string
+  batch_end_date: Date | string
+  max_candidates?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+}
+
+export type batch_detailsCreateOrConnectWithoutInstructorInput = {
+  where: Prisma.batch_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput>
+}
+
+export type batch_detailsCreateManyInstructorInputEnvelope = {
+  data: Prisma.batch_detailsCreateManyInstructorInput | Prisma.batch_detailsCreateManyInstructorInput[]
+  skipDuplicates?: boolean
+}
+
+export type batch_detailsUpsertWithWhereUniqueWithoutInstructorInput = {
+  where: Prisma.batch_detailsWhereUniqueInput
+  update: Prisma.XOR<Prisma.batch_detailsUpdateWithoutInstructorInput, Prisma.batch_detailsUncheckedUpdateWithoutInstructorInput>
+  create: Prisma.XOR<Prisma.batch_detailsCreateWithoutInstructorInput, Prisma.batch_detailsUncheckedCreateWithoutInstructorInput>
+}
+
+export type batch_detailsUpdateWithWhereUniqueWithoutInstructorInput = {
+  where: Prisma.batch_detailsWhereUniqueInput
+  data: Prisma.XOR<Prisma.batch_detailsUpdateWithoutInstructorInput, Prisma.batch_detailsUncheckedUpdateWithoutInstructorInput>
+}
+
+export type batch_detailsUpdateManyWithWhereWithoutInstructorInput = {
+  where: Prisma.batch_detailsScalarWhereInput
+  data: Prisma.XOR<Prisma.batch_detailsUpdateManyMutationInput, Prisma.batch_detailsUncheckedUpdateManyWithoutInstructorInput>
+}
+
 export type batch_detailsCreateWithoutBatch_enrollmentInput = {
   batch_id?: string
   batch_name: string
@@ -768,9 +870,9 @@ export type batch_detailsCreateWithoutBatch_enrollmentInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  instructor_id?: string | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
+  instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
 }
 
@@ -816,9 +918,9 @@ export type batch_detailsUpdateWithoutBatch_enrollmentInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
+  instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
 }
 
@@ -848,10 +950,10 @@ export type batch_detailsCreateWithoutAttendance_sessionsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  instructor_id?: string | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
-  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
 }
 
 export type batch_detailsUncheckedCreateWithoutAttendance_sessionsInput = {
@@ -896,10 +998,10 @@ export type batch_detailsUpdateWithoutAttendance_sessionsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
-  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
 }
 
 export type batch_detailsUncheckedUpdateWithoutAttendance_sessionsInput = {
@@ -941,9 +1043,9 @@ export type batch_detailsUpdateWithoutCourse_detailsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
+  instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
 }
 
@@ -974,6 +1076,64 @@ export type batch_detailsUncheckedUpdateManyWithoutCourse_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type batch_detailsCreateManyInstructorInput = {
+  batch_id?: string
+  batch_name: string
+  batch_code?: string | null
+  batch_desc?: string | null
+  course_id?: string | null
+  batch_start_date: Date | string
+  batch_end_date: Date | string
+  max_candidates?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type batch_detailsUpdateWithoutInstructorInput = {
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_name?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
+  attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
+  course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+}
+
+export type batch_detailsUncheckedUpdateWithoutInstructorInput = {
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_name?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+}
+
+export type batch_detailsUncheckedUpdateManyWithoutInstructorInput = {
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_name?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -1039,8 +1199,9 @@ export type batch_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   instructor_id?: boolean
   assessments?: boolean | Prisma.batch_details$assessmentsArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.batch_details$attendance_sessionsArgs<ExtArgs>
-  batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
+  batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
   _count?: boolean | Prisma.Batch_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["batch_details"]>
 
@@ -1056,6 +1217,7 @@ export type batch_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["batch_details"]>
 
@@ -1071,6 +1233,7 @@ export type batch_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["batch_details"]>
 
@@ -1092,14 +1255,17 @@ export type batch_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalA
 export type batch_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assessments?: boolean | Prisma.batch_details$assessmentsArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.batch_details$attendance_sessionsArgs<ExtArgs>
-  batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
+  batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
   _count?: boolean | Prisma.Batch_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type batch_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }
 export type batch_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }
 
@@ -1108,8 +1274,9 @@ export type $batch_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     assessments: Prisma.$assessmentsPayload<ExtArgs>[]
     attendance_sessions: Prisma.$attendance_sessionsPayload<ExtArgs>[]
-    batch_enrollment: Prisma.$batch_enrollmentPayload<ExtArgs>[]
+    instructor: Prisma.$instructor_detailsPayload<ExtArgs> | null
     course_details: Prisma.$course_detailsPayload<ExtArgs> | null
+    batch_enrollment: Prisma.$batch_enrollmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     batch_id: string
@@ -1519,8 +1686,9 @@ export interface Prisma__batch_detailsClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assessments<T extends Prisma.batch_details$assessmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$assessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$assessmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendance_sessions<T extends Prisma.batch_details$attendance_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$attendance_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$attendance_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  batch_enrollment<T extends Prisma.batch_details$batch_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$batch_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  instructor<T extends Prisma.batch_details$instructorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$instructorArgs<ExtArgs>>): Prisma.Prisma__instructor_detailsClient<runtime.Types.Result.GetResult<Prisma.$instructor_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   course_details<T extends Prisma.batch_details$course_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$course_detailsArgs<ExtArgs>>): Prisma.Prisma__course_detailsClient<runtime.Types.Result.GetResult<Prisma.$course_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  batch_enrollment<T extends Prisma.batch_details$batch_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$batch_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2005,6 +2173,44 @@ export type batch_details$attendance_sessionsArgs<ExtArgs extends runtime.Types.
 }
 
 /**
+ * batch_details.instructor
+ */
+export type batch_details$instructorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the instructor_details
+   */
+  select?: Prisma.instructor_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the instructor_details
+   */
+  omit?: Prisma.instructor_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.instructor_detailsInclude<ExtArgs> | null
+  where?: Prisma.instructor_detailsWhereInput
+}
+
+/**
+ * batch_details.course_details
+ */
+export type batch_details$course_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the course_details
+   */
+  select?: Prisma.course_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the course_details
+   */
+  omit?: Prisma.course_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.course_detailsInclude<ExtArgs> | null
+  where?: Prisma.course_detailsWhereInput
+}
+
+/**
  * batch_details.batch_enrollment
  */
 export type batch_details$batch_enrollmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2026,25 +2232,6 @@ export type batch_details$batch_enrollmentArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.Batch_enrollmentScalarFieldEnum | Prisma.Batch_enrollmentScalarFieldEnum[]
-}
-
-/**
- * batch_details.course_details
- */
-export type batch_details$course_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the course_details
-   */
-  select?: Prisma.course_detailsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the course_details
-   */
-  omit?: Prisma.course_detailsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.course_detailsInclude<ExtArgs> | null
-  where?: Prisma.course_detailsWhereInput
 }
 
 /**

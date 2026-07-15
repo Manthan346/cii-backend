@@ -12,3 +12,4 @@ export interface CandidateAuthRequest extends Request {
         user_id: string
     }
 }
+

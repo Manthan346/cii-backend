@@ -124,3 +124,23 @@ export type batch_enrollment = Prisma.batch_enrollmentModel
  * 
  */
 export type attendance_sessions = Prisma.attendance_sessionsModel
+/**
+ * Model candidate_documents
+ * 
+ */
+export type candidate_documents = Prisma.candidate_documentsModel
+/**
+ * Model job_eligible_course
+ * 
+ */
+export type job_eligible_course = Prisma.job_eligible_courseModel
+/**
+ * Model job_opportunity
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type job_opportunity = Prisma.job_opportunityModel
+/**
+ * Model job_application
+ * 
+ */
+export type job_application = Prisma.job_applicationModel

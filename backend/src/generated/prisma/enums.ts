@@ -44,3 +44,31 @@ export const attendance_mode_type = {
 } as const
 
 export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]
+
+
+export const grade_types = {
+  A: 'A',
+  B: 'B',
+  C: 'C',
+  D: 'D',
+  F: 'F'
+} as const
+
+export type grade_types = (typeof grade_types)[keyof typeof grade_types]
+
+
+export const course_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
+} as const
+
+export type course_type = (typeof course_type)[keyof typeof course_type]
+
+
+export const job_application_status = {
+  Applied: 'Applied',
+  Shortlisted: 'Shortlisted'
+} as const
+
+export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
