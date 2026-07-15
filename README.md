@@ -26,3 +26,20 @@ Added Completed Assessments Sections
 Leave
 
 10 July 2026
+Designed the Candidate Certificates Page
+Made Changes in designs
+
+11 July 2026
+Saturday
+
+12 July 2026
+Sunday
+
+13 July 2026
+Designed the Candidate Job Opportunities Pages
+Added Hamburger Menu for responsiveness 
+Made changes in My Profile Pages
+
+14 July 2026
+Made Changes in css files of the project
+added css designs to it
