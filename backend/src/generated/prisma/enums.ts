@@ -72,3 +72,22 @@ export const job_application_status = {
 } as const
 
 export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
+
+
+export const assessment_type = {
+  APTITUDE: 'APTITUDE',
+  TECHNICAL: 'TECHNICAL',
+  COMMUNICATION: 'COMMUNICATION',
+  MOCK_INTERVIEW: 'MOCK_INTERVIEW',
+  FINAL_ASSESSMENT: 'FINAL_ASSESSMENT'
+} as const
+
+export type assessment_type = (typeof assessment_type)[keyof typeof assessment_type]
+
+
+export const ca_status_types = {
+  SUBMITTED: 'SUBMITTED',
+  NOT_SUBMITTED: 'NOT_SUBMITTED'
+} as const
+
+export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]

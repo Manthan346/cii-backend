@@ -215,7 +215,6 @@ export type course_detailsWhereInput = {
   company_id?: Prisma.UuidFilter<"course_details"> | string
   course_mode?: Prisma.Enumcourse_typeNullableFilter<"course_details"> | $Enums.course_type | null
   batch_details?: Prisma.Batch_detailsListRelationFilter
-  course_assessment_weights?: Prisma.Course_assessment_weightsListRelationFilter
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
   job_eligible_course?: Prisma.Job_eligible_courseListRelationFilter
@@ -232,7 +231,6 @@ export type course_detailsOrderByWithRelationInput = {
   company_id?: Prisma.SortOrder
   course_mode?: Prisma.SortOrderInput | Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByRelationAggregateInput
-  course_assessment_weights?: Prisma.course_assessment_weightsOrderByRelationAggregateInput
   company_details?: Prisma.company_detailsOrderByWithRelationInput
   enquiry_records?: Prisma.enquiry_recordsOrderByRelationAggregateInput
   job_eligible_course?: Prisma.job_eligible_courseOrderByRelationAggregateInput
@@ -253,7 +251,6 @@ export type course_detailsWhereUniqueInput = Prisma.AtLeast<{
   company_id?: Prisma.UuidFilter<"course_details"> | string
   course_mode?: Prisma.Enumcourse_typeNullableFilter<"course_details"> | $Enums.course_type | null
   batch_details?: Prisma.Batch_detailsListRelationFilter
-  course_assessment_weights?: Prisma.Course_assessment_weightsListRelationFilter
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
   job_eligible_course?: Prisma.Job_eligible_courseListRelationFilter
@@ -299,7 +296,6 @@ export type course_detailsCreateInput = {
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
@@ -316,7 +312,6 @@ export type course_detailsUncheckedCreateInput = {
   company_id: string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
@@ -331,7 +326,6 @@ export type course_detailsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUpdateManyWithoutCourse_detailsNestedInput
@@ -348,7 +342,6 @@ export type course_detailsUncheckedUpdateInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -529,20 +522,6 @@ export type course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput =
   deleteMany?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
 }
 
-export type course_detailsCreateNestedOneWithoutCourse_assessment_weightsInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
-  connect?: Prisma.course_detailsWhereUniqueInput
-}
-
-export type course_detailsUpdateOneRequiredWithoutCourse_assessment_weightsNestedInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput
-  upsert?: Prisma.course_detailsUpsertWithoutCourse_assessment_weightsInput
-  connect?: Prisma.course_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutCourse_assessment_weightsInput, Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput>, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
-}
-
 export type course_detailsCreateNestedOneWithoutJob_eligible_courseInput = {
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutJob_eligible_courseInput, Prisma.course_detailsUncheckedCreateWithoutJob_eligible_courseInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutJob_eligible_courseInput
@@ -566,7 +545,6 @@ export type course_detailsCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
-  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
@@ -582,7 +560,6 @@ export type course_detailsUncheckedCreateWithoutBatch_detailsInput = {
   updated_at?: Date | string
   company_id: string
   course_mode?: $Enums.course_type | null
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
@@ -612,7 +589,6 @@ export type course_detailsUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
-  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUpdateManyWithoutCourse_detailsNestedInput
@@ -628,7 +604,6 @@ export type course_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -643,7 +618,6 @@ export type course_detailsCreateWithoutEnquiry_recordsInput = {
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
 }
@@ -659,7 +633,6 @@ export type course_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
   company_id: string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
@@ -689,7 +662,6 @@ export type course_detailsUpdateWithoutEnquiry_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -705,7 +677,6 @@ export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
@@ -719,7 +690,6 @@ export type course_detailsCreateWithoutCompany_detailsInput = {
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
 }
@@ -734,7 +704,6 @@ export type course_detailsUncheckedCreateWithoutCompany_detailsInput = {
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
@@ -780,82 +749,6 @@ export type course_detailsScalarWhereInput = {
   course_mode?: Prisma.Enumcourse_typeNullableFilter<"course_details"> | $Enums.course_type | null
 }
 
-export type course_detailsCreateWithoutCourse_assessment_weightsInput = {
-  course_id?: string
-  course_name: string
-  course_desc?: string | null
-  course_duration?: string | null
-  course_type?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  course_mode?: $Enums.course_type | null
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
-  job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
-}
-
-export type course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput = {
-  course_id?: string
-  course_name: string
-  course_desc?: string | null
-  course_duration?: string | null
-  course_type?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  company_id: string
-  course_mode?: $Enums.course_type | null
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
-}
-
-export type course_detailsCreateOrConnectWithoutCourse_assessment_weightsInput = {
-  where: Prisma.course_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
-}
-
-export type course_detailsUpsertWithoutCourse_assessment_weightsInput = {
-  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedCreateWithoutCourse_assessment_weightsInput>
-  where?: Prisma.course_detailsWhereInput
-}
-
-export type course_detailsUpdateToOneWithWhereWithoutCourse_assessment_weightsInput = {
-  where?: Prisma.course_detailsWhereInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCourse_assessment_weightsInput, Prisma.course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput>
-}
-
-export type course_detailsUpdateWithoutCourse_assessment_weightsInput = {
-  course_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_name?: Prisma.StringFieldUpdateOperationsInput | string
-  course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
-  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
-  enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
-  job_eligible_course?: Prisma.job_eligible_courseUpdateManyWithoutCourse_detailsNestedInput
-}
-
-export type course_detailsUncheckedUpdateWithoutCourse_assessment_weightsInput = {
-  course_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_name?: Prisma.StringFieldUpdateOperationsInput | string
-  course_desc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_duration?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
-  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
-}
-
 export type course_detailsCreateWithoutJob_eligible_courseInput = {
   course_id?: string
   course_name: string
@@ -866,7 +759,6 @@ export type course_detailsCreateWithoutJob_eligible_courseInput = {
   updated_at?: Date | string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsCreateNestedManyWithoutCourse_detailsInput
   company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
 }
@@ -882,7 +774,6 @@ export type course_detailsUncheckedCreateWithoutJob_eligible_courseInput = {
   company_id: string
   course_mode?: $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedCreateNestedManyWithoutCourse_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
 }
 
@@ -912,7 +803,6 @@ export type course_detailsUpdateWithoutJob_eligible_courseInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -928,7 +818,6 @@ export type course_detailsUncheckedUpdateWithoutJob_eligible_courseInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
@@ -953,7 +842,6 @@ export type course_detailsUpdateWithoutCompany_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -968,7 +856,6 @@ export type course_detailsUncheckedUpdateWithoutCompany_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_mode?: Prisma.NullableEnumcourse_typeFieldUpdateOperationsInput | $Enums.course_type | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-  course_assessment_weights?: Prisma.course_assessment_weightsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
@@ -991,14 +878,12 @@ export type course_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
 
 export type Course_detailsCountOutputType = {
   batch_details: number
-  course_assessment_weights: number
   enquiry_records: number
   job_eligible_course: number
 }
 
 export type Course_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Course_detailsCountOutputTypeCountBatch_detailsArgs
-  course_assessment_weights?: boolean | Course_detailsCountOutputTypeCountCourse_assessment_weightsArgs
   enquiry_records?: boolean | Course_detailsCountOutputTypeCountEnquiry_recordsArgs
   job_eligible_course?: boolean | Course_detailsCountOutputTypeCountJob_eligible_courseArgs
 }
@@ -1018,13 +903,6 @@ export type Course_detailsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
  */
 export type Course_detailsCountOutputTypeCountBatch_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.batch_detailsWhereInput
-}
-
-/**
- * Course_detailsCountOutputType without action
- */
-export type Course_detailsCountOutputTypeCountCourse_assessment_weightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.course_assessment_weightsWhereInput
 }
 
 /**
@@ -1053,7 +931,6 @@ export type course_detailsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   company_id?: boolean
   course_mode?: boolean
   batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
-  course_assessment_weights?: boolean | Prisma.course_details$course_assessment_weightsArgs<ExtArgs>
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   enquiry_records?: boolean | Prisma.course_details$enquiry_recordsArgs<ExtArgs>
   job_eligible_course?: boolean | Prisma.course_details$job_eligible_courseArgs<ExtArgs>
@@ -1101,7 +978,6 @@ export type course_detailsSelectScalar = {
 export type course_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"course_id" | "course_name" | "course_desc" | "course_duration" | "course_type" | "created_at" | "updated_at" | "company_id" | "course_mode", ExtArgs["result"]["course_details"]>
 export type course_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.course_details$batch_detailsArgs<ExtArgs>
-  course_assessment_weights?: boolean | Prisma.course_details$course_assessment_weightsArgs<ExtArgs>
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   enquiry_records?: boolean | Prisma.course_details$enquiry_recordsArgs<ExtArgs>
   job_eligible_course?: boolean | Prisma.course_details$job_eligible_courseArgs<ExtArgs>
@@ -1118,7 +994,6 @@ export type $course_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "course_details"
   objects: {
     batch_details: Prisma.$batch_detailsPayload<ExtArgs>[]
-    course_assessment_weights: Prisma.$course_assessment_weightsPayload<ExtArgs>[]
     company_details: Prisma.$company_detailsPayload<ExtArgs>
     enquiry_records: Prisma.$enquiry_recordsPayload<ExtArgs>[]
     job_eligible_course: Prisma.$job_eligible_coursePayload<ExtArgs>[]
@@ -1528,7 +1403,6 @@ readonly fields: course_detailsFieldRefs;
 export interface Prisma__course_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   batch_details<T extends Prisma.course_details$batch_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$batch_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  course_assessment_weights<T extends Prisma.course_details$course_assessment_weightsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$course_assessment_weightsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$course_assessment_weightsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   company_details<T extends Prisma.company_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__company_detailsClient<runtime.Types.Result.GetResult<Prisma.$company_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   enquiry_records<T extends Prisma.course_details$enquiry_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$enquiry_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$enquiry_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   job_eligible_course<T extends Prisma.course_details$job_eligible_courseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_details$job_eligible_courseArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$job_eligible_coursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1987,30 +1861,6 @@ export type course_details$batch_detailsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.Batch_detailsScalarFieldEnum | Prisma.Batch_detailsScalarFieldEnum[]
-}
-
-/**
- * course_details.course_assessment_weights
- */
-export type course_details$course_assessment_weightsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the course_assessment_weights
-   */
-  select?: Prisma.course_assessment_weightsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the course_assessment_weights
-   */
-  omit?: Prisma.course_assessment_weightsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.course_assessment_weightsInclude<ExtArgs> | null
-  where?: Prisma.course_assessment_weightsWhereInput
-  orderBy?: Prisma.course_assessment_weightsOrderByWithRelationInput | Prisma.course_assessment_weightsOrderByWithRelationInput[]
-  cursor?: Prisma.course_assessment_weightsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Course_assessment_weightsScalarFieldEnum | Prisma.Course_assessment_weightsScalarFieldEnum[]
 }
 
 /**

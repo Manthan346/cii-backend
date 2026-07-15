@@ -90,11 +90,6 @@ export type user_login = Prisma.user_loginModel
  */
 export type assessments = Prisma.assessmentsModel
 /**
- * Model candidate_assessments
- * 
- */
-export type candidate_assessments = Prisma.candidate_assessmentsModel
-/**
  * Model company_details
  * 
  */
@@ -104,16 +99,6 @@ export type company_details = Prisma.company_detailsModel
  * 
  */
 export type instructor_details = Prisma.instructor_detailsModel
-/**
- * Model assessment_types
- * 
- */
-export type assessment_types = Prisma.assessment_typesModel
-/**
- * Model course_assessment_weights
- * 
- */
-export type course_assessment_weights = Prisma.course_assessment_weightsModel
 /**
  * Model batch_enrollment
  * 
@@ -144,3 +129,8 @@ export type job_opportunity = Prisma.job_opportunityModel
  * 
  */
 export type job_application = Prisma.job_applicationModel
+/**
+ * Model candidate_assessment
+ * 
+ */
+export type candidate_assessment = Prisma.candidate_assessmentModel

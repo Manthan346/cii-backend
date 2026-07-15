@@ -32,6 +32,9 @@ export type Attendance_sessionsMinAggregateOutputType = {
   attendance_mode: $Enums.attendance_mode_type | null
   created_at: Date | null
   updated_at: Date | null
+  session_time: Date | null
+  room_no: string | null
+  topic_name: string | null
 }
 
 export type Attendance_sessionsMaxAggregateOutputType = {
@@ -42,6 +45,9 @@ export type Attendance_sessionsMaxAggregateOutputType = {
   attendance_mode: $Enums.attendance_mode_type | null
   created_at: Date | null
   updated_at: Date | null
+  session_time: Date | null
+  room_no: string | null
+  topic_name: string | null
 }
 
 export type Attendance_sessionsCountAggregateOutputType = {
@@ -52,6 +58,9 @@ export type Attendance_sessionsCountAggregateOutputType = {
   attendance_mode: number
   created_at: number
   updated_at: number
+  session_time: number
+  room_no: number
+  topic_name: number
   _all: number
 }
 
@@ -64,6 +73,9 @@ export type Attendance_sessionsMinAggregateInputType = {
   attendance_mode?: true
   created_at?: true
   updated_at?: true
+  session_time?: true
+  room_no?: true
+  topic_name?: true
 }
 
 export type Attendance_sessionsMaxAggregateInputType = {
@@ -74,6 +86,9 @@ export type Attendance_sessionsMaxAggregateInputType = {
   attendance_mode?: true
   created_at?: true
   updated_at?: true
+  session_time?: true
+  room_no?: true
+  topic_name?: true
 }
 
 export type Attendance_sessionsCountAggregateInputType = {
@@ -84,6 +99,9 @@ export type Attendance_sessionsCountAggregateInputType = {
   attendance_mode?: true
   created_at?: true
   updated_at?: true
+  session_time?: true
+  room_no?: true
+  topic_name?: true
   _all?: true
 }
 
@@ -167,6 +185,9 @@ export type Attendance_sessionsGroupByOutputType = {
   attendance_mode: $Enums.attendance_mode_type
   created_at: Date
   updated_at: Date
+  session_time: Date | null
+  room_no: string | null
+  topic_name: string | null
   _count: Attendance_sessionsCountAggregateOutputType | null
   _min: Attendance_sessionsMinAggregateOutputType | null
   _max: Attendance_sessionsMaxAggregateOutputType | null
@@ -198,6 +219,9 @@ export type attendance_sessionsWhereInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFilter<"attendance_sessions"> | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
+  session_time?: Prisma.DateTimeNullableFilter<"attendance_sessions"> | Date | string | null
+  room_no?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
+  topic_name?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsScalarRelationFilter, Prisma.instructor_detailsWhereInput>
@@ -211,6 +235,9 @@ export type attendance_sessionsOrderByWithRelationInput = {
   attendance_mode?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  session_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  room_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  topic_name?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_details?: Prisma.batch_detailsOrderByWithRelationInput
   instructor_details?: Prisma.instructor_detailsOrderByWithRelationInput
@@ -228,6 +255,9 @@ export type attendance_sessionsWhereUniqueInput = Prisma.AtLeast<{
   attendance_mode?: Prisma.Enumattendance_mode_typeFilter<"attendance_sessions"> | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
+  session_time?: Prisma.DateTimeNullableFilter<"attendance_sessions"> | Date | string | null
+  room_no?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
+  topic_name?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsScalarRelationFilter, Prisma.instructor_detailsWhereInput>
@@ -241,6 +271,9 @@ export type attendance_sessionsOrderByWithAggregationInput = {
   attendance_mode?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  session_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  room_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  topic_name?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.attendance_sessionsCountOrderByAggregateInput
   _max?: Prisma.attendance_sessionsMaxOrderByAggregateInput
   _min?: Prisma.attendance_sessionsMinOrderByAggregateInput
@@ -257,6 +290,9 @@ export type attendance_sessionsScalarWhereWithAggregatesInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeWithAggregatesFilter<"attendance_sessions"> | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeWithAggregatesFilter<"attendance_sessions"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"attendance_sessions"> | Date | string
+  session_time?: Prisma.DateTimeNullableWithAggregatesFilter<"attendance_sessions"> | Date | string | null
+  room_no?: Prisma.StringNullableWithAggregatesFilter<"attendance_sessions"> | string | null
+  topic_name?: Prisma.StringNullableWithAggregatesFilter<"attendance_sessions"> | string | null
 }
 
 export type attendance_sessionsCreateInput = {
@@ -265,6 +301,9 @@ export type attendance_sessionsCreateInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutAttendance_sessionsInput
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutAttendance_sessionsInput
@@ -278,6 +317,9 @@ export type attendance_sessionsUncheckedCreateInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutAttendance_sessionsInput
 }
 
@@ -287,6 +329,9 @@ export type attendance_sessionsUpdateInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutAttendance_sessionsNestedInput
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
@@ -300,6 +345,9 @@ export type attendance_sessionsUncheckedUpdateInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsNestedInput
 }
 
@@ -311,6 +359,9 @@ export type attendance_sessionsCreateManyInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
 }
 
 export type attendance_sessionsUpdateManyMutationInput = {
@@ -319,6 +370,9 @@ export type attendance_sessionsUpdateManyMutationInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type attendance_sessionsUncheckedUpdateManyInput = {
@@ -329,6 +383,9 @@ export type attendance_sessionsUncheckedUpdateManyInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Attendance_sessionsScalarRelationFilter = {
@@ -359,6 +416,9 @@ export type attendance_sessionsCountOrderByAggregateInput = {
   attendance_mode?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  session_time?: Prisma.SortOrder
+  room_no?: Prisma.SortOrder
+  topic_name?: Prisma.SortOrder
 }
 
 export type attendance_sessionsMaxOrderByAggregateInput = {
@@ -369,6 +429,9 @@ export type attendance_sessionsMaxOrderByAggregateInput = {
   attendance_mode?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  session_time?: Prisma.SortOrder
+  room_no?: Prisma.SortOrder
+  topic_name?: Prisma.SortOrder
 }
 
 export type attendance_sessionsMinOrderByAggregateInput = {
@@ -379,6 +442,9 @@ export type attendance_sessionsMinOrderByAggregateInput = {
   attendance_mode?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  session_time?: Prisma.SortOrder
+  room_no?: Prisma.SortOrder
+  topic_name?: Prisma.SortOrder
 }
 
 export type attendance_sessionsCreateNestedOneWithoutAttendance_recordsInput = {
@@ -489,6 +555,9 @@ export type attendance_sessionsCreateWithoutAttendance_recordsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutAttendance_sessionsInput
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutAttendance_sessionsInput
 }
@@ -501,6 +570,9 @@ export type attendance_sessionsUncheckedCreateWithoutAttendance_recordsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
 }
 
 export type attendance_sessionsCreateOrConnectWithoutAttendance_recordsInput = {
@@ -525,6 +597,9 @@ export type attendance_sessionsUpdateWithoutAttendance_recordsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
 }
@@ -537,6 +612,9 @@ export type attendance_sessionsUncheckedUpdateWithoutAttendance_recordsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type attendance_sessionsCreateWithoutBatch_detailsInput = {
@@ -545,6 +623,9 @@ export type attendance_sessionsCreateWithoutBatch_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutAttendance_sessionsInput
 }
@@ -556,6 +637,9 @@ export type attendance_sessionsUncheckedCreateWithoutBatch_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutAttendance_sessionsInput
 }
 
@@ -596,6 +680,9 @@ export type attendance_sessionsScalarWhereInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFilter<"attendance_sessions"> | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_sessions"> | Date | string
+  session_time?: Prisma.DateTimeNullableFilter<"attendance_sessions"> | Date | string | null
+  room_no?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
+  topic_name?: Prisma.StringNullableFilter<"attendance_sessions"> | string | null
 }
 
 export type attendance_sessionsCreateWithoutInstructor_detailsInput = {
@@ -604,6 +691,9 @@ export type attendance_sessionsCreateWithoutInstructor_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutAttendance_sessionsInput
 }
@@ -615,6 +705,9 @@ export type attendance_sessionsUncheckedCreateWithoutInstructor_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutAttendance_sessionsInput
 }
 
@@ -651,6 +744,9 @@ export type attendance_sessionsCreateManyBatch_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
 }
 
 export type attendance_sessionsUpdateWithoutBatch_detailsInput = {
@@ -659,6 +755,9 @@ export type attendance_sessionsUpdateWithoutBatch_detailsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutAttendance_sessionsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
 }
@@ -670,6 +769,9 @@ export type attendance_sessionsUncheckedUpdateWithoutBatch_detailsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsNestedInput
 }
 
@@ -680,6 +782,9 @@ export type attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type attendance_sessionsCreateManyInstructor_detailsInput = {
@@ -689,6 +794,9 @@ export type attendance_sessionsCreateManyInstructor_detailsInput = {
   attendance_mode: $Enums.attendance_mode_type
   created_at?: Date | string
   updated_at?: Date | string
+  session_time?: Date | string | null
+  room_no?: string | null
+  topic_name?: string | null
 }
 
 export type attendance_sessionsUpdateWithoutInstructor_detailsInput = {
@@ -697,6 +805,9 @@ export type attendance_sessionsUpdateWithoutInstructor_detailsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutAttendance_sessionsNestedInput
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutAttendance_sessionsNestedInput
 }
@@ -708,6 +819,9 @@ export type attendance_sessionsUncheckedUpdateWithoutInstructor_detailsInput = {
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsNestedInput
 }
 
@@ -718,6 +832,9 @@ export type attendance_sessionsUncheckedUpdateManyWithoutInstructor_detailsInput
   attendance_mode?: Prisma.Enumattendance_mode_typeFieldUpdateOperationsInput | $Enums.attendance_mode_type
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  room_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  topic_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -759,6 +876,9 @@ export type attendance_sessionsSelect<ExtArgs extends runtime.Types.Extensions.I
   attendance_mode?: boolean
   created_at?: boolean
   updated_at?: boolean
+  session_time?: boolean
+  room_no?: boolean
+  topic_name?: boolean
   attendance_records?: boolean | Prisma.attendance_sessions$attendance_recordsArgs<ExtArgs>
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   instructor_details?: boolean | Prisma.instructor_detailsDefaultArgs<ExtArgs>
@@ -773,6 +893,9 @@ export type attendance_sessionsSelectCreateManyAndReturn<ExtArgs extends runtime
   attendance_mode?: boolean
   created_at?: boolean
   updated_at?: boolean
+  session_time?: boolean
+  room_no?: boolean
+  topic_name?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   instructor_details?: boolean | Prisma.instructor_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance_sessions"]>
@@ -785,6 +908,9 @@ export type attendance_sessionsSelectUpdateManyAndReturn<ExtArgs extends runtime
   attendance_mode?: boolean
   created_at?: boolean
   updated_at?: boolean
+  session_time?: boolean
+  room_no?: boolean
+  topic_name?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   instructor_details?: boolean | Prisma.instructor_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance_sessions"]>
@@ -797,9 +923,12 @@ export type attendance_sessionsSelectScalar = {
   attendance_mode?: boolean
   created_at?: boolean
   updated_at?: boolean
+  session_time?: boolean
+  room_no?: boolean
+  topic_name?: boolean
 }
 
-export type attendance_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"attendance_session_id" | "batch_id" | "instructor_id" | "session_date" | "attendance_mode" | "created_at" | "updated_at", ExtArgs["result"]["attendance_sessions"]>
+export type attendance_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"attendance_session_id" | "batch_id" | "instructor_id" | "session_date" | "attendance_mode" | "created_at" | "updated_at" | "session_time" | "room_no" | "topic_name", ExtArgs["result"]["attendance_sessions"]>
 export type attendance_sessionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.attendance_sessions$attendance_recordsArgs<ExtArgs>
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
@@ -830,6 +959,9 @@ export type $attendance_sessionsPayload<ExtArgs extends runtime.Types.Extensions
     attendance_mode: $Enums.attendance_mode_type
     created_at: Date
     updated_at: Date
+    session_time: Date | null
+    room_no: string | null
+    topic_name: string | null
   }, ExtArgs["result"]["attendance_sessions"]>
   composites: {}
 }
@@ -1263,6 +1395,9 @@ export interface attendance_sessionsFieldRefs {
   readonly attendance_mode: Prisma.FieldRef<"attendance_sessions", 'attendance_mode_type'>
   readonly created_at: Prisma.FieldRef<"attendance_sessions", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"attendance_sessions", 'DateTime'>
+  readonly session_time: Prisma.FieldRef<"attendance_sessions", 'DateTime'>
+  readonly room_no: Prisma.FieldRef<"attendance_sessions", 'String'>
+  readonly topic_name: Prisma.FieldRef<"attendance_sessions", 'String'>
 }
     
 
