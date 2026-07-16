@@ -13,6 +13,8 @@ import { candidateCertificateUpload } from "../../src/controllers/candidate-cont
 import { multerErrorHandler } from "../../src/middlewares/multer-middleware/file-limit-middleware";
 import { candidateAttendanceSummary } from "../../src/controllers/candidate-controllers/candidate-attendance";
 import allCoursesAttendance from "../../src/controllers/candidate-controllers/candidate-allcourses-attendance";
+import candidateAssessments from "../../src/controllers/candidate-controllers/candidate-assesments";
+import candidateUpcomingSessions from "../../src/controllers/candidate-controllers/candidate-sessions";
 
 const candidateRouter = Router()
 
@@ -31,6 +33,9 @@ candidateRouter.post('/candidate-documents', upload.fields([
 ]),multerErrorHandler, verifyCandidateUsingAccessToken, candidateCertificateUpload)
 candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, candidateAttendanceSummary)
 candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAccessToken, allCoursesAttendance)
+candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken, candidateAssessments)
+candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateUpcomingSessions)
+
 
 export {
     candidateRouter
