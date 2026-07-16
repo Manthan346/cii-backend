@@ -20,7 +20,7 @@ const candidateRouter = Router()
 
 candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), createCandidate)
 candidateRouter.get('/get-all-candidates', getAllCandidate)
-candidateRouter.post('/dashboard-data',verifyCandidateUsingAccessToken,candidateDashboardData)
+candidateRouter.get('/dashboard-data',verifyCandidateUsingAccessToken,candidateDashboardData)
 candidateRouter.post('/login', loginCandidate)
 candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken, candidateAcademicDetails)
 candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateProfileDetails)
