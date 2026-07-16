@@ -1,0 +1,39 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar--teal {
+  background: #0f7b73;
+  color: #ffffff;
+}
+
+.avatar--orange {
+  background: #ffb347;
+  color: #ffffff;
+}
+
+.avatar--blue {
+  background: #1a56db;
+  color: #ffffff;
+}
+
+.avatar--grey {
+  background: #cfd2d8;
+  color: #3a3a3a;
+}
+
+.avatar__initials {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

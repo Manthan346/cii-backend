@@ -1,0 +1,34 @@
+.file-type-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
+.file-type-icon--red {
+  background: #fde2e1;
+  color: #d43b31;
+}
+
+.file-type-icon--orange {
+  background: #ffe3cf;
+  color: #d9722c;
+}
+
+.file-type-icon--blue {
+  background: #dbe9ff;
+  color: #1a56db;
+}
+
+.file-type-icon--green {
+  background: #d9f7e3;
+  color: #1a8f4c;
+}
+
+.file-type-icon--grey {
+  background: #eceef1;
+  color: #5b5b5b;
+}

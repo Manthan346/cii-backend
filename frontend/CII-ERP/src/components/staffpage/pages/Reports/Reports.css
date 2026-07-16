@@ -1,0 +1,27 @@
+.reports {
+  padding: 0;
+}
+
+.reports__card {
+  min-height: 300px;
+}
+
+.reports__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.reports__icon {
+  color: var(--blue-primary, #2563eb);
+  margin-bottom: 16px;
+}
+
+.reports__placeholder-note {
+  margin-top: 16px;
+  color: var(--ink-soft, #64748b);
+  font-style: italic;
+}

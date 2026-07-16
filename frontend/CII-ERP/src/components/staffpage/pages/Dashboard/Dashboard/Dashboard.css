@@ -1,0 +1,29 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-right: 20px; /* Prevent content from touching the right edge */
+}
+
+.dashboard__row {
+  display: grid;
+  gap: 20px;
+}
+
+.dashboard__row--primary {
+  grid-template-columns: 1.6fr 1fr;
+}
+
+.dashboard__row--secondary {
+  grid-template-columns: 1.4fr 1fr;
+}
+
+@media (max-width: 1024px) {
+  .dashboard__row--primary,
+  .dashboard__row--secondary {
+    grid-template-columns: 1fr;
+  }
+}

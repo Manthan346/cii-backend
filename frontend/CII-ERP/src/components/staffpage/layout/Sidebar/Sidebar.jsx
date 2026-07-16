@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { sidebarMenu } from "../data";
+import { sidebarMenu } from "../../data";
 import "./Sidebar.css";
 
 /**

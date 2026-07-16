@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
-import bannerImage from "../assets/topbar-banner.png";
-import ciiLogo from "../assets/cii-logo.png";
+import bannerImage from "../../assets/topbar-banner.png";
+import ciiLogo from "../../assets/cii-logo.png";
 import "./Topbar.css";
 
 /**

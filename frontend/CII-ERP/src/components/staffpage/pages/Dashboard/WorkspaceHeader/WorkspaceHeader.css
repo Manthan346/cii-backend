@@ -1,0 +1,40 @@
+.workspace-header {
+  background: #e9edf1;
+  border-radius: 18px;
+  padding: 26px 26px 22px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.workspace-header__title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #14141a;
+}
+
+.workspace-header__subtitle {
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+
+.workspace-header__stats {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .workspace-header {
+    padding: 18px 16px;
+  }
+
+  .workspace-header__stats {
+    gap: 12px;
+  }
+
+  .workspace-header__stats .stat-card {
+    min-width: calc(50% - 6px);
+  }
+}

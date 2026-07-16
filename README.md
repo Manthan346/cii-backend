@@ -43,3 +43,8 @@ Made changes in My Profile Pages
 14 July 2026
 Made Changes in css files of the project
 added css designs to it
+
+15 July 2026
+Started the Staff Login pages
+Designed the file Structure for Staff Login
+Completed the 80% Design of Staff Dashboard.

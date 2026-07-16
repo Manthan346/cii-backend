@@ -1,0 +1,23 @@
+.priority-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.priority-dot--red {
+  background: #e0483f;
+}
+
+.priority-dot--orange {
+  background: #e0833f;
+}
+
+.priority-dot--green {
+  background: #34c759;
+}
+
+.priority-dot--grey {
+  background: #a5a5a5;
+}

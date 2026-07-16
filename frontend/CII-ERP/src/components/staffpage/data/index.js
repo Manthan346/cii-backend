@@ -8,3 +8,11 @@
  */
 
 export { sidebarMenu } from "./sidebarMenu";
+export {
+  workspaceInfo,
+  dashboardStats,
+  batchOverview,
+  tasksAssigned,
+  attendanceLast7Days,
+  recentUploads,
+} from "./dashboardData";
