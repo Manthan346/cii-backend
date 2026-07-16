@@ -62,11 +62,19 @@ export const ModelName = {
   instructor_details: 'instructor_details',
   batch_enrollment: 'batch_enrollment',
   attendance_sessions: 'attendance_sessions',
+<<<<<<< HEAD
   job_eligible_course: 'job_eligible_course',
   job_opportunity: 'job_opportunity',
   candidate_assessment: 'candidate_assessment',
   candidate_documents: 'candidate_documents',
   job_application: 'job_application'
+=======
+  candidate_documents: 'candidate_documents',
+  job_eligible_course: 'job_eligible_course',
+  job_opportunity: 'job_opportunity',
+  job_application: 'job_application',
+  candidate_assessment: 'candidate_assessment'
+>>>>>>> 4203de8aa98f5a5b657cf5d5f8019209e3a5d542
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -299,6 +307,21 @@ export const Attendance_sessionsScalarFieldEnum = {
 export type Attendance_sessionsScalarFieldEnum = (typeof Attendance_sessionsScalarFieldEnum)[keyof typeof Attendance_sessionsScalarFieldEnum]
 
 
+<<<<<<< HEAD
+=======
+export const Candidate_documentsScalarFieldEnum = {
+  document_id: 'document_id',
+  candidate_id: 'candidate_id',
+  candidate_photo: 'candidate_photo',
+  candidate_aadhar_card: 'candidate_aadhar_card',
+  candidate_pan_card: 'candidate_pan_card',
+  candidate_resume: 'candidate_resume'
+} as const
+
+export type Candidate_documentsScalarFieldEnum = (typeof Candidate_documentsScalarFieldEnum)[keyof typeof Candidate_documentsScalarFieldEnum]
+
+
+>>>>>>> 4203de8aa98f5a5b657cf5d5f8019209e3a5d542
 export const Job_eligible_courseScalarFieldEnum = {
   job_id: 'job_id',
   course_id: 'course_id'
@@ -324,6 +347,21 @@ export const Job_opportunityScalarFieldEnum = {
 export type Job_opportunityScalarFieldEnum = (typeof Job_opportunityScalarFieldEnum)[keyof typeof Job_opportunityScalarFieldEnum]
 
 
+<<<<<<< HEAD
+=======
+export const Job_applicationScalarFieldEnum = {
+  application_id: 'application_id',
+  job_id: 'job_id',
+  candidate_id: 'candidate_id',
+  application_status: 'application_status',
+  applied_at: 'applied_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Job_applicationScalarFieldEnum = (typeof Job_applicationScalarFieldEnum)[keyof typeof Job_applicationScalarFieldEnum]
+
+
+>>>>>>> 4203de8aa98f5a5b657cf5d5f8019209e3a5d542
 export const Candidate_assessmentScalarFieldEnum = {
   ca_record_id: 'ca_record_id',
   assessment_id: 'assessment_id',
@@ -337,6 +375,7 @@ export const Candidate_assessmentScalarFieldEnum = {
 export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
 
 
+<<<<<<< HEAD
 export const Candidate_documentsScalarFieldEnum = {
   document_id: 'document_id',
   candidate_id: 'candidate_id',
@@ -361,6 +400,8 @@ export const Job_applicationScalarFieldEnum = {
 export type Job_applicationScalarFieldEnum = (typeof Job_applicationScalarFieldEnum)[keyof typeof Job_applicationScalarFieldEnum]
 
 
+=======
+>>>>>>> 4203de8aa98f5a5b657cf5d5f8019209e3a5d542
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'

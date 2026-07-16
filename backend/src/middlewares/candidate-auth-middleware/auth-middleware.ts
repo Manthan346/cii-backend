@@ -18,6 +18,10 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
      req.candidate = { 
         candidate_id: decoded.candidate_id,
         // email: decoded.,  
+        role:  "candidate"
+
+         
+        
 
      }
    

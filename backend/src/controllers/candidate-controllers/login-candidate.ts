@@ -13,7 +13,7 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 const loginCandidate = asyncHandler(async(req: Request, res: Response) => {
 
     const {email, password, role, centerId} = req.body
-    const user = await prisma.user_login.findUniqueOrThrow({
+    const user = await prisma.user_login.findUnique({
         where: {
             user_email: email
 
@@ -32,7 +32,12 @@ const loginCandidate = asyncHandler(async(req: Request, res: Response) => {
         }
     })
 
-    if (user.center_details.center_id !== centerId) {
+    if (role !== "candidate") {
+        throw new ApiError(401, "invalid role")
+        
+    }
+
+    if (user?.center_details.center_id !== centerId) {
         throw new ApiError(404, "user doesnt exists on this center please select right center")
         
     }

@@ -110,6 +110,11 @@ export type batch_enrollment = Prisma.batch_enrollmentModel
  */
 export type attendance_sessions = Prisma.attendance_sessionsModel
 /**
+ * Model candidate_documents
+ * 
+ */
+export type candidate_documents = Prisma.candidate_documentsModel
+/**
  * Model job_eligible_course
  * 
  */
@@ -120,17 +125,12 @@ export type job_eligible_course = Prisma.job_eligible_courseModel
  */
 export type job_opportunity = Prisma.job_opportunityModel
 /**
- * Model candidate_assessment
- * 
- */
-export type candidate_assessment = Prisma.candidate_assessmentModel
-/**
- * Model candidate_documents
- * 
- */
-export type candidate_documents = Prisma.candidate_documentsModel
-/**
  * Model job_application
  * 
  */
 export type job_application = Prisma.job_applicationModel
+/**
+ * Model candidate_assessment
+ * 
+ */
+export type candidate_assessment = Prisma.candidate_assessmentModel
