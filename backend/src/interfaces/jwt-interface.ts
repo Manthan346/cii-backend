@@ -11,4 +11,14 @@ export interface TokenPayload {
     
    
     email?: string
+} 
+
+export interface InstructorTokenPayload{
+    instructor_id:string,
+    instructor_first_name?:string,
+    user_id:string,
+    instructor_last_name?:string,
+    center_id?:string,
+    center_name?:string,
+    email?:string
 }
