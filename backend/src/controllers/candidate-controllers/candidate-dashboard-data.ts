@@ -30,7 +30,7 @@ const candidateDashboardData = asyncHandler(async (req: CandidateAuthRequest, re
     }),
     prisma.assessments.count({
       where: {
-        candidate_assessments: {
+        candidate_assessment: {
           none: {
             candidate_id: candidateId,
           },
