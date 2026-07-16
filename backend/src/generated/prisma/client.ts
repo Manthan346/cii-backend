@@ -29,8 +29,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Candidates_details
+ * const candidates_details = await prisma.candidates_details.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -45,22 +45,92 @@ path.join(__dirname, "query_engine-windows.dll.node")
 path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
 
 /**
- * Model user
- * 
- */
-export type user = Prisma.userModel
-/**
  * Model candidates_details
  * 
  */
 export type candidates_details = Prisma.candidates_detailsModel
 /**
- * Model staff_details
+ * Model attendance_records
  * 
  */
-export type staff_details = Prisma.staff_detailsModel
+export type attendance_records = Prisma.attendance_recordsModel
 /**
- * Model company_name
+ * Model batch_details
  * 
  */
-export type company_name = Prisma.company_nameModel
+export type batch_details = Prisma.batch_detailsModel
+/**
+ * Model course_details
+ * 
+ */
+export type course_details = Prisma.course_detailsModel
+/**
+ * Model center_company
+ * 
+ */
+export type center_company = Prisma.center_companyModel
+/**
+ * Model center_details
+ * 
+ */
+export type center_details = Prisma.center_detailsModel
+/**
+ * Model enquiry_records
+ * 
+ */
+export type enquiry_records = Prisma.enquiry_recordsModel
+/**
+ * Model user_login
+ * 
+ */
+export type user_login = Prisma.user_loginModel
+/**
+ * Model assessments
+ * 
+ */
+export type assessments = Prisma.assessmentsModel
+/**
+ * Model company_details
+ * 
+ */
+export type company_details = Prisma.company_detailsModel
+/**
+ * Model instructor_details
+ * 
+ */
+export type instructor_details = Prisma.instructor_detailsModel
+/**
+ * Model batch_enrollment
+ * 
+ */
+export type batch_enrollment = Prisma.batch_enrollmentModel
+/**
+ * Model attendance_sessions
+ * 
+ */
+export type attendance_sessions = Prisma.attendance_sessionsModel
+/**
+ * Model candidate_documents
+ * 
+ */
+export type candidate_documents = Prisma.candidate_documentsModel
+/**
+ * Model job_eligible_course
+ * 
+ */
+export type job_eligible_course = Prisma.job_eligible_courseModel
+/**
+ * Model job_opportunity
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type job_opportunity = Prisma.job_opportunityModel
+/**
+ * Model job_application
+ * 
+ */
+export type job_application = Prisma.job_applicationModel
+/**
+ * Model candidate_assessment
+ * 
+ */
+export type candidate_assessment = Prisma.candidate_assessmentModel

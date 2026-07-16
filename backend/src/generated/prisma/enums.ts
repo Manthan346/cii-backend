@@ -9,7 +9,85 @@
 * 🟢 You can import this file directly.
 */
 
+export const attend_types = {
+  present: 'present',
+  absent: 'absent',
+  late: 'late'
+} as const
+
+export type attend_types = (typeof attend_types)[keyof typeof attend_types]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const role_types = {
+  candidate: 'candidate',
+  instructor: 'instructor',
+  admin: 'admin',
+  super_admin: 'super_admin'
+} as const
+
+export type role_types = (typeof role_types)[keyof typeof role_types]
+
+
+export const enquiry_status_type = {
+  Pending: 'Pending',
+  Verified: 'Verified',
+  Rejected: 'Rejected',
+  Converted: 'Converted'
+} as const
+
+export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]
+
+
+export const attendance_mode_type = {
+  offline: 'offline',
+  online: 'online'
+} as const
+
+export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]
+
+
+export const grade_types = {
+  A: 'A',
+  B: 'B',
+  C: 'C',
+  D: 'D',
+  F: 'F'
+} as const
+
+export type grade_types = (typeof grade_types)[keyof typeof grade_types]
+
+
+export const course_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
+} as const
+
+export type course_type = (typeof course_type)[keyof typeof course_type]
+
+
+export const job_application_status = {
+  Applied: 'Applied',
+  Shortlisted: 'Shortlisted'
+} as const
+
+export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
+
+
+export const assessment_type = {
+  APTITUDE: 'APTITUDE',
+  TECHNICAL: 'TECHNICAL',
+  COMMUNICATION: 'COMMUNICATION',
+  MOCK_INTERVIEW: 'MOCK_INTERVIEW',
+  FINAL_ASSESSMENT: 'FINAL_ASSESSMENT'
+} as const
+
+export type assessment_type = (typeof assessment_type)[keyof typeof assessment_type]
+
+
+export const ca_status_types = {
+  SUBMITTED: 'SUBMITTED',
+  NOT_SUBMITTED: 'NOT_SUBMITTED'
+} as const
+
+export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
