@@ -17,7 +17,7 @@ const candidateDashboardData = asyncHandler(async (req: CandidateAuthRequest, re
     await prisma.batch_details.findMany({
   where: {
     batch_enrollment: {
-      every: { candidate_id: candidateId }
+      some: { candidate_id: candidateId }
     }
   },
   distinct: ["course_id"],
@@ -29,14 +29,17 @@ const candidateDashboardData = asyncHandler(async (req: CandidateAuthRequest, re
       },
     }),
     prisma.assessments.count({
-      where: {
-        candidate_assessment: {
-          none: {
-            candidate_id: candidateId,
-          },
-        },
+  where: {
+    batch_details: {
+      batch_enrollment: {
+        some: { candidate_id: candidateId },
       },
-    }),
+    },
+    candidate_assessment: {
+      none: { candidate_id: candidateId },
+    },
+  },
+}),
   ]);
 
   const enrolledCourses = enrolledCoursesResult.length;

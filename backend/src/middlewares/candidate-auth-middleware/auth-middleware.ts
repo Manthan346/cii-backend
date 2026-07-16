@@ -17,6 +17,7 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET!) as TokenPayload
      req.candidate = { 
         candidate_id: decoded.candidate_id,
+        role:  "candidate"
 
          
         
