@@ -90,11 +90,6 @@ export type user_login = Prisma.user_loginModel
  */
 export type assessments = Prisma.assessmentsModel
 /**
- * Model candidate_assessments
- * 
- */
-export type candidate_assessments = Prisma.candidate_assessmentsModel
-/**
  * Model company_details
  * 
  */
@@ -105,17 +100,37 @@ export type company_details = Prisma.company_detailsModel
  */
 export type instructor_details = Prisma.instructor_detailsModel
 /**
- * Model assessment_types
- * 
- */
-export type assessment_types = Prisma.assessment_typesModel
-/**
- * Model course_assessment_weights
- * 
- */
-export type course_assessment_weights = Prisma.course_assessment_weightsModel
-/**
  * Model batch_enrollment
  * 
  */
 export type batch_enrollment = Prisma.batch_enrollmentModel
+/**
+ * Model attendance_sessions
+ * 
+ */
+export type attendance_sessions = Prisma.attendance_sessionsModel
+/**
+ * Model job_eligible_course
+ * 
+ */
+export type job_eligible_course = Prisma.job_eligible_courseModel
+/**
+ * Model job_opportunity
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type job_opportunity = Prisma.job_opportunityModel
+/**
+ * Model candidate_assessment
+ * 
+ */
+export type candidate_assessment = Prisma.candidate_assessmentModel
+/**
+ * Model candidate_documents
+ * 
+ */
+export type candidate_documents = Prisma.candidate_documentsModel
+/**
+ * Model job_application
+ * 
+ */
+export type job_application = Prisma.job_applicationModel

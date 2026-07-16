@@ -13,7 +13,8 @@ candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), c
 candidateRouter.get('/get-all-candidates', getAllCandidate)
 candidateRouter.post('/dashboard-data',verifyCandidateUsingAccessToken,candidateDashboardData)
 candidateRouter.post('/login', loginCandidate)
-
+/*candidateRouter.get(
+    "/attendance/upcoming-sessions",verifyCandidateUsingAccessToken,getUpcomingSessions);*/
 
 export {
     candidateRouter

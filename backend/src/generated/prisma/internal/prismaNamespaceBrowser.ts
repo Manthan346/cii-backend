@@ -58,12 +58,15 @@ export const ModelName = {
   enquiry_records: 'enquiry_records',
   user_login: 'user_login',
   assessments: 'assessments',
-  candidate_assessments: 'candidate_assessments',
   company_details: 'company_details',
   instructor_details: 'instructor_details',
-  assessment_types: 'assessment_types',
-  course_assessment_weights: 'course_assessment_weights',
-  batch_enrollment: 'batch_enrollment'
+  batch_enrollment: 'batch_enrollment',
+  attendance_sessions: 'attendance_sessions',
+  job_eligible_course: 'job_eligible_course',
+  job_opportunity: 'job_opportunity',
+  candidate_assessment: 'candidate_assessment',
+  candidate_documents: 'candidate_documents',
+  job_application: 'job_application'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -109,7 +112,9 @@ export const Candidates_detailsScalarFieldEnum = {
   category: 'category',
   user_id: 'user_id',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  highest_qualification: 'highest_qualification',
+  qualification_percentage: 'qualification_percentage'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -118,13 +123,11 @@ export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalar
 export const Attendance_recordsScalarFieldEnum = {
   attendance_id: 'attendance_id',
   candidate_id: 'candidate_id',
-  batch_id: 'batch_id',
-  attendance_date: 'attendance_date',
   attendance_status: 'attendance_status',
-  attendance_mode: 'attendance_mode',
   remarks: 'remarks',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  attendance_session_id: 'attendance_session_id'
 } as const
 
 export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]
@@ -155,7 +158,8 @@ export const Course_detailsScalarFieldEnum = {
   course_type: 'course_type',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  company_id: 'company_id'
+  company_id: 'company_id',
+  course_mode: 'course_mode'
 } as const
 
 export type Course_detailsScalarFieldEnum = (typeof Course_detailsScalarFieldEnum)[keyof typeof Course_detailsScalarFieldEnum]
@@ -211,7 +215,8 @@ export const User_loginScalarFieldEnum = {
   user_role: 'user_role',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  center_id: 'center_id'
+  center_id: 'center_id',
+  refresh_token_hash: 'refresh_token_hash'
 } as const
 
 export type User_loginScalarFieldEnum = (typeof User_loginScalarFieldEnum)[keyof typeof User_loginScalarFieldEnum]
@@ -219,30 +224,17 @@ export type User_loginScalarFieldEnum = (typeof User_loginScalarFieldEnum)[keyof
 
 export const AssessmentsScalarFieldEnum = {
   assessment_id: 'assessment_id',
-  assessment_name: 'assessment_name',
-  assessment_desc: 'assessment_desc',
   batch_id: 'batch_id',
-  total_marks: 'total_marks',
+  title: 'title',
+  assessment_desc: 'assessment_desc',
+  assessment_type: 'assessment_type',
   assessment_date: 'assessment_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  assessment_type_id: 'assessment_type_id'
+  questions: 'questions'
 } as const
 
 export type AssessmentsScalarFieldEnum = (typeof AssessmentsScalarFieldEnum)[keyof typeof AssessmentsScalarFieldEnum]
-
-
-export const Candidate_assessmentsScalarFieldEnum = {
-  candidate_assessment_id: 'candidate_assessment_id',
-  candidate_id: 'candidate_id',
-  assessment_id: 'assessment_id',
-  marks_obtained: 'marks_obtained',
-  submission: 'submission',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Candidate_assessmentsScalarFieldEnum = (typeof Candidate_assessmentsScalarFieldEnum)[keyof typeof Candidate_assessmentsScalarFieldEnum]
 
 
 export const Company_detailsScalarFieldEnum = {
@@ -276,28 +268,6 @@ export const Instructor_detailsScalarFieldEnum = {
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
 
 
-export const Assessment_typesScalarFieldEnum = {
-  assessment_type_id: 'assessment_type_id',
-  assessment_type_name: 'assessment_type_name',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Assessment_typesScalarFieldEnum = (typeof Assessment_typesScalarFieldEnum)[keyof typeof Assessment_typesScalarFieldEnum]
-
-
-export const Course_assessment_weightsScalarFieldEnum = {
-  weight_id: 'weight_id',
-  course_id: 'course_id',
-  assessment_type_id: 'assessment_type_id',
-  weight: 'weight',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Course_assessment_weightsScalarFieldEnum = (typeof Course_assessment_weightsScalarFieldEnum)[keyof typeof Course_assessment_weightsScalarFieldEnum]
-
-
 export const Batch_enrollmentScalarFieldEnum = {
   enrollment_id: 'enrollment_id',
   candidate_id: 'candidate_id',
@@ -305,10 +275,90 @@ export const Batch_enrollmentScalarFieldEnum = {
   enrollment_date: 'enrollment_date',
   enrollment_status: 'enrollment_status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  grade: 'grade',
+  certificate_url: 'certificate_url'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
+
+
+export const Attendance_sessionsScalarFieldEnum = {
+  attendance_session_id: 'attendance_session_id',
+  batch_id: 'batch_id',
+  instructor_id: 'instructor_id',
+  session_date: 'session_date',
+  attendance_mode: 'attendance_mode',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  session_time: 'session_time',
+  room_no: 'room_no',
+  topic_name: 'topic_name'
+} as const
+
+export type Attendance_sessionsScalarFieldEnum = (typeof Attendance_sessionsScalarFieldEnum)[keyof typeof Attendance_sessionsScalarFieldEnum]
+
+
+export const Job_eligible_courseScalarFieldEnum = {
+  job_id: 'job_id',
+  course_id: 'course_id'
+} as const
+
+export type Job_eligible_courseScalarFieldEnum = (typeof Job_eligible_courseScalarFieldEnum)[keyof typeof Job_eligible_courseScalarFieldEnum]
+
+
+export const Job_opportunityScalarFieldEnum = {
+  job_id: 'job_id',
+  company_id: 'company_id',
+  job_title: 'job_title',
+  description: 'description',
+  location: 'location',
+  salary: 'salary',
+  vacancies: 'vacancies',
+  last_apply_date: 'last_apply_date',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Job_opportunityScalarFieldEnum = (typeof Job_opportunityScalarFieldEnum)[keyof typeof Job_opportunityScalarFieldEnum]
+
+
+export const Candidate_assessmentScalarFieldEnum = {
+  ca_record_id: 'ca_record_id',
+  assessment_id: 'assessment_id',
+  candidate_id: 'candidate_id',
+  attempted_at: 'attempted_at',
+  assessment_grade: 'assessment_grade',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
+
+
+export const Candidate_documentsScalarFieldEnum = {
+  document_id: 'document_id',
+  candidate_id: 'candidate_id',
+  candidate_photo: 'candidate_photo',
+  candidate_aadhar_card: 'candidate_aadhar_card',
+  candidate_pan_card: 'candidate_pan_card',
+  candidate_resume: 'candidate_resume'
+} as const
+
+export type Candidate_documentsScalarFieldEnum = (typeof Candidate_documentsScalarFieldEnum)[keyof typeof Candidate_documentsScalarFieldEnum]
+
+
+export const Job_applicationScalarFieldEnum = {
+  application_id: 'application_id',
+  job_id: 'job_id',
+  candidate_id: 'candidate_id',
+  application_status: 'application_status',
+  applied_at: 'applied_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Job_applicationScalarFieldEnum = (typeof Job_applicationScalarFieldEnum)[keyof typeof Job_applicationScalarFieldEnum]
 
 
 export const SortOrder = {

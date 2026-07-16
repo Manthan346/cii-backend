@@ -32,6 +32,7 @@ export type User_loginMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   center_id: string | null
+  refresh_token_hash: string | null
 }
 
 export type User_loginMaxAggregateOutputType = {
@@ -42,6 +43,7 @@ export type User_loginMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   center_id: string | null
+  refresh_token_hash: string | null
 }
 
 export type User_loginCountAggregateOutputType = {
@@ -52,6 +54,7 @@ export type User_loginCountAggregateOutputType = {
   created_at: number
   updated_at: number
   center_id: number
+  refresh_token_hash: number
   _all: number
 }
 
@@ -64,6 +67,7 @@ export type User_loginMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_id?: true
+  refresh_token_hash?: true
 }
 
 export type User_loginMaxAggregateInputType = {
@@ -74,6 +78,7 @@ export type User_loginMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_id?: true
+  refresh_token_hash?: true
 }
 
 export type User_loginCountAggregateInputType = {
@@ -84,6 +89,7 @@ export type User_loginCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_id?: true
+  refresh_token_hash?: true
   _all?: true
 }
 
@@ -167,6 +173,7 @@ export type User_loginGroupByOutputType = {
   created_at: Date
   updated_at: Date
   center_id: string
+  refresh_token_hash: string | null
   _count: User_loginCountAggregateOutputType | null
   _min: User_loginMinAggregateOutputType | null
   _max: User_loginMaxAggregateOutputType | null
@@ -198,6 +205,7 @@ export type user_loginWhereInput = {
   created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   center_id?: Prisma.UuidFilter<"user_login"> | string
+  refresh_token_hash?: Prisma.StringNullableFilter<"user_login"> | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsNullableScalarRelationFilter, Prisma.candidates_detailsWhereInput> | null
   center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
 }
@@ -210,6 +218,7 @@ export type user_loginOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
+  refresh_token_hash?: Prisma.SortOrderInput | Prisma.SortOrder
   candidates_details?: Prisma.candidates_detailsOrderByWithRelationInput
   center_details?: Prisma.center_detailsOrderByWithRelationInput
 }
@@ -225,6 +234,7 @@ export type user_loginWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   center_id?: Prisma.UuidFilter<"user_login"> | string
+  refresh_token_hash?: Prisma.StringNullableFilter<"user_login"> | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsNullableScalarRelationFilter, Prisma.candidates_detailsWhereInput> | null
   center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
 }, "user_id" | "user_email">
@@ -237,6 +247,7 @@ export type user_loginOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
+  refresh_token_hash?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.user_loginCountOrderByAggregateInput
   _max?: Prisma.user_loginMaxOrderByAggregateInput
   _min?: Prisma.user_loginMinOrderByAggregateInput
@@ -253,6 +264,7 @@ export type user_loginScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"user_login"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"user_login"> | Date | string
   center_id?: Prisma.UuidWithAggregatesFilter<"user_login"> | string
+  refresh_token_hash?: Prisma.StringNullableWithAggregatesFilter<"user_login"> | string | null
 }
 
 export type user_loginCreateInput = {
@@ -262,6 +274,7 @@ export type user_loginCreateInput = {
   user_role: $Enums.role_types
   created_at?: Date | string
   updated_at?: Date | string
+  refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
@@ -274,6 +287,7 @@ export type user_loginUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_id: string
+  refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
 }
 
@@ -284,6 +298,7 @@ export type user_loginUpdateInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
 }
@@ -296,6 +311,7 @@ export type user_loginUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
 }
 
@@ -307,6 +323,7 @@ export type user_loginCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_id: string
+  refresh_token_hash?: string | null
 }
 
 export type user_loginUpdateManyMutationInput = {
@@ -316,6 +333,7 @@ export type user_loginUpdateManyMutationInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_loginUncheckedUpdateManyInput = {
@@ -326,6 +344,7 @@ export type user_loginUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type User_loginScalarRelationFilter = {
@@ -351,6 +370,7 @@ export type user_loginCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
+  refresh_token_hash?: Prisma.SortOrder
 }
 
 export type user_loginMaxOrderByAggregateInput = {
@@ -361,6 +381,7 @@ export type user_loginMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
+  refresh_token_hash?: Prisma.SortOrder
 }
 
 export type user_loginMinOrderByAggregateInput = {
@@ -371,6 +392,7 @@ export type user_loginMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_id?: Prisma.SortOrder
+  refresh_token_hash?: Prisma.SortOrder
 }
 
 export type user_loginCreateNestedOneWithoutCandidates_detailsInput = {
@@ -440,6 +462,7 @@ export type user_loginCreateWithoutCandidates_detailsInput = {
   user_role: $Enums.role_types
   created_at?: Date | string
   updated_at?: Date | string
+  refresh_token_hash?: string | null
   center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
 
@@ -451,6 +474,7 @@ export type user_loginUncheckedCreateWithoutCandidates_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_id: string
+  refresh_token_hash?: string | null
 }
 
 export type user_loginCreateOrConnectWithoutCandidates_detailsInput = {
@@ -476,6 +500,7 @@ export type user_loginUpdateWithoutCandidates_detailsInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
 }
 
@@ -487,6 +512,7 @@ export type user_loginUncheckedUpdateWithoutCandidates_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type user_loginCreateWithoutCenter_detailsInput = {
@@ -496,6 +522,7 @@ export type user_loginCreateWithoutCenter_detailsInput = {
   user_role: $Enums.role_types
   created_at?: Date | string
   updated_at?: Date | string
+  refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
 }
 
@@ -506,6 +533,7 @@ export type user_loginUncheckedCreateWithoutCenter_detailsInput = {
   user_role: $Enums.role_types
   created_at?: Date | string
   updated_at?: Date | string
+  refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
 }
 
@@ -546,6 +574,7 @@ export type user_loginScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"user_login"> | Date | string
   center_id?: Prisma.UuidFilter<"user_login"> | string
+  refresh_token_hash?: Prisma.StringNullableFilter<"user_login"> | string | null
 }
 
 export type user_loginCreateManyCenter_detailsInput = {
@@ -555,6 +584,7 @@ export type user_loginCreateManyCenter_detailsInput = {
   user_role: $Enums.role_types
   created_at?: Date | string
   updated_at?: Date | string
+  refresh_token_hash?: string | null
 }
 
 export type user_loginUpdateWithoutCenter_detailsInput = {
@@ -564,6 +594,7 @@ export type user_loginUpdateWithoutCenter_detailsInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
 }
 
@@ -574,6 +605,7 @@ export type user_loginUncheckedUpdateWithoutCenter_detailsInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
 }
 
@@ -584,6 +616,7 @@ export type user_loginUncheckedUpdateManyWithoutCenter_detailsInput = {
   user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -596,6 +629,7 @@ export type user_loginSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   created_at?: boolean
   updated_at?: boolean
   center_id?: boolean
+  refresh_token_hash?: boolean
   candidates_details?: boolean | Prisma.user_login$candidates_detailsArgs<ExtArgs>
   center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
@@ -608,6 +642,7 @@ export type user_loginSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   created_at?: boolean
   updated_at?: boolean
   center_id?: boolean
+  refresh_token_hash?: boolean
   center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
 
@@ -619,6 +654,7 @@ export type user_loginSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   created_at?: boolean
   updated_at?: boolean
   center_id?: boolean
+  refresh_token_hash?: boolean
   center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_login"]>
 
@@ -630,9 +666,10 @@ export type user_loginSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   center_id?: boolean
+  refresh_token_hash?: boolean
 }
 
-export type user_loginOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_email" | "user_password" | "user_role" | "created_at" | "updated_at" | "center_id", ExtArgs["result"]["user_login"]>
+export type user_loginOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_email" | "user_password" | "user_role" | "created_at" | "updated_at" | "center_id" | "refresh_token_hash", ExtArgs["result"]["user_login"]>
 export type user_loginInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidates_details?: boolean | Prisma.user_login$candidates_detailsArgs<ExtArgs>
   center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
@@ -658,6 +695,7 @@ export type $user_loginPayload<ExtArgs extends runtime.Types.Extensions.Internal
     created_at: Date
     updated_at: Date
     center_id: string
+    refresh_token_hash: string | null
   }, ExtArgs["result"]["user_login"]>
   composites: {}
 }
@@ -1090,6 +1128,7 @@ export interface user_loginFieldRefs {
   readonly created_at: Prisma.FieldRef<"user_login", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"user_login", 'DateTime'>
   readonly center_id: Prisma.FieldRef<"user_login", 'String'>
+  readonly refresh_token_hash: Prisma.FieldRef<"user_login", 'String'>
 }
     
 
