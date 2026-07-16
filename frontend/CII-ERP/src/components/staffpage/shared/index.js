@@ -13,3 +13,13 @@ export { default as ProgressBar } from "./ProgressBar/ProgressBar";
 export { default as FileTypeIcon } from "./FileTypeIcon/FileTypeIcon";
 export { default as PriorityDot } from "./PriorityDot/PriorityDot";
 export { default as Avatar } from "./Avatar/Avatar";
+
+/* ---- Candidate Management additions ----
+   Generic UI atoms reusable across any page (not just Candidate
+   Management) - filter bars, dropdowns, buttons, pagination footers,
+   and row action icon-buttons. */
+export { default as Button } from "./Button/Button";
+export { default as Dropdown } from "./Dropdown/Dropdown";
+export { default as ActionButtons } from "./ActionButtons/ActionButtons";
+export { default as Pagination } from "./Pagination/Pagination";
+export { default as FilterBar } from "./FilterBar/FilterBar";

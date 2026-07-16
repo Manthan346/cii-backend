@@ -1,10 +1,15 @@
 .staff-sidebar {
-  width: 250px;
+  width: 270px;
   flex-shrink: 0;
+  position: sticky;
+  top: 112px; /* height of .staff-topbar */
+  align-self: flex-start;
+  height: calc(100vh - 112px - 40px); /* viewport minus topbar height and content padding */
   background: #ffffff;
   border-radius: 0px 18px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 20px 14px;
+  box-sizing: border-box;
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -12,7 +17,7 @@
 .staff-sidebar__nav {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
 }
 
 .staff-sidebar__section-title {
@@ -35,11 +40,11 @@
 }
 
 .staff-sidebar__item {
-  width: 90%;
+  width: 88%;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  padding: 09px 14px;
   border-radius: 12px;
   font-size: 0.88rem;
   font-weight: 500;
@@ -58,6 +63,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 0.85rem;
 }
 
 /* Inactive hover */

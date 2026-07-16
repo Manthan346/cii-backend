@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { BarChart3 } from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
+import Sidebar from "../../layout/Sidebar/Sidebar";
+import Topbar from "../../layout/Topbar/Topbar";
 import "./Reports.css";
 
 /**
@@ -10,8 +12,24 @@ import "./Reports.css";
  * This is a placeholder component that can be expanded with real functionality.
  */
 const Reports = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+
   return (
-    <div className="reports">
+    <div className="staff-dashboard">
+      <Topbar
+        user={{ name: "Staff Admin" }}
+        hasUnreadNotifications={true}
+        onMenuToggle={() => setSidebarOpen((o) => !o)}
+        onSearch={setSearchValue}
+      />
+
+      <div className="staff-dashboard__content">
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+        <div className="staff-dashboard__main">
+          <main className="staff-dashboard__body">
+            <div className="reports">
       <SectionCard title="Reports" className="reports__card">
         <div className="reports__content">
           <BarChart3 size={48} className="reports__icon" />
@@ -22,6 +40,10 @@ const Reports = () => {
           </p>
         </div>
       </SectionCard>
+    </div>
+          </main>
+        </div>
+      </div>
     </div>
   );
 };

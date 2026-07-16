@@ -16,3 +16,8 @@ export {
   attendanceLast7Days,
   recentUploads,
 } from "./dashboardData";
+
+/* ---- Candidate Management additions ---- */
+export { candidateStats } from "./stats";
+export { candidates } from "./candidates";
+export { batchOptions, courseOptions, statusOptions } from "./filterOptions";

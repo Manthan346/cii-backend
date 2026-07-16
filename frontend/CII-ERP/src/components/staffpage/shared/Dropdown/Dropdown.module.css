@@ -1,0 +1,72 @@
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.triggerOpen {
+  background: var(--color-teal);
+  border-color: var(--color-teal);
+  color: var(--color-white);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  min-width: 160px;
+  background: var(--color-teal);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  z-index: 30;
+  box-shadow: 0 12px 24px rgba(16, 24, 40, 0.18);
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.option {
+  padding: 10px 14px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.optionActive {
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 600;
+}

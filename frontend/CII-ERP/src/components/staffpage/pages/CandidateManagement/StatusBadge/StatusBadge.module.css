@@ -1,0 +1,30 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  min-width: 64px;
+}
+
+.active {
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+.dropped {
+  background: var(--color-dropped-bg);
+  color: var(--color-white);
+}
+
+.ending {
+  background: var(--color-peach-bg);
+  color: var(--color-peach-text);
+  white-space: normal;
+  max-width: 68px;
+}
