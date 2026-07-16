@@ -32,6 +32,11 @@ const loginCandidate = asyncHandler(async(req: Request, res: Response) => {
         }
     })
 
+    if (role !== "candidate") {
+        throw new ApiError(401, "you are not a candidate")
+        
+    }
+
     if (user.center_details.center_id !== centerId) {
         throw new ApiError(404, "user doesnt exists on this center please select right center")
         

@@ -15,26 +15,27 @@ import { candidateAttendanceSummary } from "../../src/controllers/candidate-cont
 import allCoursesAttendance from "../../src/controllers/candidate-controllers/candidate-allcourses-attendance";
 import candidateAssessments from "../../src/controllers/candidate-controllers/candidate-assesments";
 import candidateUpcomingSessions from "../../src/controllers/candidate-controllers/candidate-sessions";
+import { candidateRoleMiddleware } from "../../src/middlewares/roles-middleware/candidate-role";
 
 const candidateRouter = Router()
 
 candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), createCandidate)
 candidateRouter.get('/get-all-candidates', getAllCandidate)
-candidateRouter.get('/dashboard-data',verifyCandidateUsingAccessToken,candidateDashboardData)
+candidateRouter.get('/dashboard-data',verifyCandidateUsingAccessToken,candidateRoleMiddleware,candidateDashboardData)
 candidateRouter.post('/login', loginCandidate)
-candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken, candidateAcademicDetails)
-candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateProfileDetails)
+candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken,candidateRoleMiddleware, candidateAcademicDetails)
+candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateRoleMiddleware,candidateProfileDetails)
 candidateRouter.post('/candidate-documents', upload.fields([
     {name: 'aadhar_card', maxCount: 1},
      {name: 'pan_card', maxCount: 1},
       {name: 'passport_size_photo', maxCount: 1},
        {name: 'resume', maxCount: 1}, 
 
-]),multerErrorHandler, verifyCandidateUsingAccessToken, candidateCertificateUpload)
-candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, candidateAttendanceSummary)
-candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAccessToken, allCoursesAttendance)
-candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken, candidateAssessments)
-candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateUpcomingSessions)
+]),multerErrorHandler, verifyCandidateUsingAccessToken, candidateRoleMiddleware,candidateCertificateUpload)
+candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateAttendanceSummary)
+candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAccessToken,candidateRoleMiddleware, allCoursesAttendance)
+candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken,candidateRoleMiddleware, candidateAssessments)
+candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateUpcomingSessions)
 
 
 export {

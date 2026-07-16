@@ -5,6 +5,7 @@ export interface CandidateAuthRequest extends Request {
     candidate?: {
         candidate_id: string,
         email?: string,
+        role: "candidate"
         
         
     },
