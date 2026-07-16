@@ -3,7 +3,7 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcrypt"
 import { ApiError } from "../../helpers/ApiError";
-import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
+import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor/instructor-auth";
 import { ApiResponse } from "../../helpers/ApiResponse";
 
 
@@ -51,6 +51,10 @@ const loginInstructor = asyncHandler(async(req: Request, res: Response) => {
         
     }
 
+    if(user.user_role !== "instructor"){
+    throw new ApiError(401,"Unauthorized");
+    }
+
 
     const instructor= await prisma.instructor_details.findUnique({
         where: {
@@ -76,7 +80,7 @@ const loginInstructor = asyncHandler(async(req: Request, res: Response) => {
         
     }
 
-    const accessToken= generateAccessToken({
+    const accessToken= generateInstructorAccessToken({
     instructor_id: instructor?.instructor_id,
     user_id: user.user_id,
     instructor_first_name: instructor.instructor_first_name,
@@ -87,7 +91,7 @@ const loginInstructor = asyncHandler(async(req: Request, res: Response) => {
 
    })
 
-   const refreshToken = generateRefreshToken({
+   const refreshToken = generateInstructorRefreshToken({
     instructor_id: instructor.instructor_id,
     user_id: user.user_id,
     instructor_first_name: instructor.instructor_first_name,
