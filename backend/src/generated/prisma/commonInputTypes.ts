@@ -245,6 +245,13 @@ export type UuidNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedUuidNullableFilter<$PrismaModel> | string | null
 }
 
+export type Enumtraining_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.training_type | Prisma.Enumtraining_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel> | $Enums.training_type | null
+}
+
 export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
@@ -258,6 +265,16 @@ export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type Enumtraining_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.training_type | Prisma.Enumtraining_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumtraining_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.training_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel>
 }
 
 export type Enumcourse_typeNullableFilter<$PrismaModel = never> = {
@@ -603,6 +620,13 @@ export type NestedUuidNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedUuidNullableFilter<$PrismaModel> | string | null
 }
 
+export type NestedEnumtraining_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.training_type | Prisma.Enumtraining_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel> | $Enums.training_type | null
+}
+
 export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
@@ -615,6 +639,16 @@ export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumtraining_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.training_type | Prisma.Enumtraining_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.training_type[] | Prisma.ListEnumtraining_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumtraining_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.training_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumtraining_typeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumcourse_typeNullableFilter<$PrismaModel = never> = {
