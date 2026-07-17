@@ -27,9 +27,6 @@ export const candidateCertificateUpload = asyncHandler(
 
 
 
-    if (!files) {
-      throw new ApiError(400, "Please upload documents");
-    }
 
 
 
