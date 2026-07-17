@@ -70,6 +70,7 @@ model batch_details {
   created_at          DateTime              @default(now()) @db.Timestamp(6)
   updated_at          DateTime              @default(now()) @db.Timestamp(6)
   instructor_id       String?               @db.Uuid
+  batch_type          training_type?
   assessments         assessments[]
   attendance_sessions attendance_sessions[]
   instructor          instructor_details?   @relation(fields: [instructor_id], references: [instructor_id])
@@ -82,7 +83,6 @@ model course_details {
   course_name         String                @db.VarChar(100)
   course_desc         String?
   course_duration     String?               @db.VarChar(100)
-  course_type         String?               @db.VarChar(50)
   created_at          DateTime              @default(now()) @db.Timestamp(6)
   updated_at          DateTime              @default(now()) @db.Timestamp(6)
   company_id          String                @db.Uuid
@@ -91,8 +91,6 @@ model course_details {
   company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
   enquiry_records     enquiry_records[]
   job_eligible_course job_eligible_course[]
-
-  @@unique([company_id, course_name, course_duration, course_type], map: "uq_company_course")
 }
 
 model center_company {
@@ -177,7 +175,7 @@ model company_details {
 
 model instructor_details {
   instructor_id         String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id               String?               @db.Uuid
+  user_id               String?               @unique @db.Uuid
   instructor_first_name String                @db.VarChar(100)
   instructor_last_name  String?               @db.VarChar(100)
   contact_number        String                @unique @db.VarChar(10)
@@ -347,4 +345,11 @@ enum assessment_type {
 enum ca_status_types {
   SUBMITTED
   NOT_SUBMITTED @map("NOT SUBMITTED")
+}
+
+enum training_type {
+  ACADEMIC
+  WORKSHOP
+  UPSKILLING
+  SEMINAR
 }

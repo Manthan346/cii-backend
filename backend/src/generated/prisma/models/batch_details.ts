@@ -46,6 +46,7 @@ export type Batch_detailsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   instructor_id: string | null
+  batch_type: $Enums.training_type | null
 }
 
 export type Batch_detailsMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type Batch_detailsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   instructor_id: string | null
+  batch_type: $Enums.training_type | null
 }
 
 export type Batch_detailsCountAggregateOutputType = {
@@ -74,6 +76,7 @@ export type Batch_detailsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   instructor_id: number
+  batch_type: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type Batch_detailsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   instructor_id?: true
+  batch_type?: true
 }
 
 export type Batch_detailsMaxAggregateInputType = {
@@ -112,6 +116,7 @@ export type Batch_detailsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   instructor_id?: true
+  batch_type?: true
 }
 
 export type Batch_detailsCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type Batch_detailsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   instructor_id?: true
+  batch_type?: true
   _all?: true
 }
 
@@ -227,6 +233,7 @@ export type Batch_detailsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   instructor_id: string | null
+  batch_type: $Enums.training_type | null
   _count: Batch_detailsCountAggregateOutputType | null
   _avg: Batch_detailsAvgAggregateOutputType | null
   _sum: Batch_detailsSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type batch_detailsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   instructor_id?: Prisma.UuidNullableFilter<"batch_details"> | string | null
+  batch_type?: Prisma.Enumtraining_typeNullableFilter<"batch_details"> | $Enums.training_type | null
   assessments?: Prisma.AssessmentsListRelationFilter
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   instructor?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
@@ -283,6 +291,7 @@ export type batch_detailsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   instructor_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  batch_type?: Prisma.SortOrderInput | Prisma.SortOrder
   assessments?: Prisma.assessmentsOrderByRelationAggregateInput
   attendance_sessions?: Prisma.attendance_sessionsOrderByRelationAggregateInput
   instructor?: Prisma.instructor_detailsOrderByWithRelationInput
@@ -305,6 +314,7 @@ export type batch_detailsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   instructor_id?: Prisma.UuidNullableFilter<"batch_details"> | string | null
+  batch_type?: Prisma.Enumtraining_typeNullableFilter<"batch_details"> | $Enums.training_type | null
   assessments?: Prisma.AssessmentsListRelationFilter
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   instructor?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
@@ -324,6 +334,7 @@ export type batch_detailsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   instructor_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  batch_type?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.batch_detailsCountOrderByAggregateInput
   _avg?: Prisma.batch_detailsAvgOrderByAggregateInput
   _max?: Prisma.batch_detailsMaxOrderByAggregateInput
@@ -346,6 +357,7 @@ export type batch_detailsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"batch_details"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"batch_details"> | Date | string
   instructor_id?: Prisma.UuidNullableWithAggregatesFilter<"batch_details"> | string | null
+  batch_type?: Prisma.Enumtraining_typeNullableWithAggregatesFilter<"batch_details"> | $Enums.training_type | null
 }
 
 export type batch_detailsCreateInput = {
@@ -358,6 +370,7 @@ export type batch_detailsCreateInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
   instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
@@ -377,6 +390,7 @@ export type batch_detailsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
@@ -392,6 +406,7 @@ export type batch_detailsUpdateInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
   instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
@@ -411,6 +426,7 @@ export type batch_detailsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
@@ -428,6 +444,7 @@ export type batch_detailsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
 }
 
 export type batch_detailsUpdateManyMutationInput = {
@@ -440,6 +457,7 @@ export type batch_detailsUpdateManyMutationInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
 }
 
 export type batch_detailsUncheckedUpdateManyInput = {
@@ -454,6 +472,7 @@ export type batch_detailsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
 }
 
 export type batch_detailsCountOrderByAggregateInput = {
@@ -468,6 +487,7 @@ export type batch_detailsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   instructor_id?: Prisma.SortOrder
+  batch_type?: Prisma.SortOrder
 }
 
 export type batch_detailsAvgOrderByAggregateInput = {
@@ -486,6 +506,7 @@ export type batch_detailsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   instructor_id?: Prisma.SortOrder
+  batch_type?: Prisma.SortOrder
 }
 
 export type batch_detailsMinOrderByAggregateInput = {
@@ -500,6 +521,7 @@ export type batch_detailsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   instructor_id?: Prisma.SortOrder
+  batch_type?: Prisma.SortOrder
 }
 
 export type batch_detailsSumOrderByAggregateInput = {
@@ -519,6 +541,10 @@ export type batch_detailsOrderByRelationAggregateInput = {
 export type Batch_detailsScalarRelationFilter = {
   is?: Prisma.batch_detailsWhereInput
   isNot?: Prisma.batch_detailsWhereInput
+}
+
+export type NullableEnumtraining_typeFieldUpdateOperationsInput = {
+  set?: $Enums.training_type | null
 }
 
 export type batch_detailsCreateNestedManyWithoutCourse_detailsInput = {
@@ -657,6 +683,7 @@ export type batch_detailsCreateWithoutCourse_detailsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
   instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
@@ -674,6 +701,7 @@ export type batch_detailsUncheckedCreateWithoutCourse_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
@@ -720,6 +748,7 @@ export type batch_detailsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_details"> | Date | string
   instructor_id?: Prisma.UuidNullableFilter<"batch_details"> | string | null
+  batch_type?: Prisma.Enumtraining_typeNullableFilter<"batch_details"> | $Enums.training_type | null
 }
 
 export type batch_detailsCreateWithoutAssessmentsInput = {
@@ -732,6 +761,7 @@ export type batch_detailsCreateWithoutAssessmentsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
   instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
@@ -750,6 +780,7 @@ export type batch_detailsUncheckedCreateWithoutAssessmentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -780,6 +811,7 @@ export type batch_detailsUpdateWithoutAssessmentsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
   instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
@@ -798,6 +830,7 @@ export type batch_detailsUncheckedUpdateWithoutAssessmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -812,6 +845,7 @@ export type batch_detailsCreateWithoutInstructorInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
@@ -829,6 +863,7 @@ export type batch_detailsUncheckedCreateWithoutInstructorInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
@@ -870,6 +905,7 @@ export type batch_detailsCreateWithoutBatch_enrollmentInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
   instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
@@ -888,6 +924,7 @@ export type batch_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -918,6 +955,7 @@ export type batch_detailsUpdateWithoutBatch_enrollmentInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
   instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
@@ -936,6 +974,7 @@ export type batch_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -950,6 +989,7 @@ export type batch_detailsCreateWithoutAttendance_sessionsInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
   instructor?: Prisma.instructor_detailsCreateNestedOneWithoutBatchesInput
   course_details?: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
@@ -968,6 +1008,7 @@ export type batch_detailsUncheckedCreateWithoutAttendance_sessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -998,6 +1039,7 @@ export type batch_detailsUpdateWithoutAttendance_sessionsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
@@ -1016,6 +1058,7 @@ export type batch_detailsUncheckedUpdateWithoutAttendance_sessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1031,6 +1074,7 @@ export type batch_detailsCreateManyCourse_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   instructor_id?: string | null
+  batch_type?: $Enums.training_type | null
 }
 
 export type batch_detailsUpdateWithoutCourse_detailsInput = {
@@ -1043,6 +1087,7 @@ export type batch_detailsUpdateWithoutCourse_detailsInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
   instructor?: Prisma.instructor_detailsUpdateOneWithoutBatchesNestedInput
@@ -1060,6 +1105,7 @@ export type batch_detailsUncheckedUpdateWithoutCourse_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
@@ -1076,6 +1122,7 @@ export type batch_detailsUncheckedUpdateManyWithoutCourse_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructor_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
 }
 
 export type batch_detailsCreateManyInstructorInput = {
@@ -1089,6 +1136,7 @@ export type batch_detailsCreateManyInstructorInput = {
   max_candidates?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  batch_type?: $Enums.training_type | null
 }
 
 export type batch_detailsUpdateWithoutInstructorInput = {
@@ -1101,6 +1149,7 @@ export type batch_detailsUpdateWithoutInstructorInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneWithoutBatch_detailsNestedInput
@@ -1118,6 +1167,7 @@ export type batch_detailsUncheckedUpdateWithoutInstructorInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
@@ -1134,6 +1184,7 @@ export type batch_detailsUncheckedUpdateManyWithoutInstructorInput = {
   max_candidates?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.NullableEnumtraining_typeFieldUpdateOperationsInput | $Enums.training_type | null
 }
 
 
@@ -1197,6 +1248,7 @@ export type batch_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  batch_type?: boolean
   assessments?: boolean | Prisma.batch_details$assessmentsArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.batch_details$attendance_sessionsArgs<ExtArgs>
   instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
@@ -1217,6 +1269,7 @@ export type batch_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  batch_type?: boolean
   instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["batch_details"]>
@@ -1233,6 +1286,7 @@ export type batch_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  batch_type?: boolean
   instructor?: boolean | Prisma.batch_details$instructorArgs<ExtArgs>
   course_details?: boolean | Prisma.batch_details$course_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["batch_details"]>
@@ -1249,9 +1303,10 @@ export type batch_detailsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   instructor_id?: boolean
+  batch_type?: boolean
 }
 
-export type batch_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"batch_id" | "batch_name" | "batch_code" | "batch_desc" | "course_id" | "batch_start_date" | "batch_end_date" | "max_candidates" | "created_at" | "updated_at" | "instructor_id", ExtArgs["result"]["batch_details"]>
+export type batch_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"batch_id" | "batch_name" | "batch_code" | "batch_desc" | "course_id" | "batch_start_date" | "batch_end_date" | "max_candidates" | "created_at" | "updated_at" | "instructor_id" | "batch_type", ExtArgs["result"]["batch_details"]>
 export type batch_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assessments?: boolean | Prisma.batch_details$assessmentsArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.batch_details$attendance_sessionsArgs<ExtArgs>
@@ -1290,6 +1345,7 @@ export type $batch_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     created_at: Date
     updated_at: Date
     instructor_id: string | null
+    batch_type: $Enums.training_type | null
   }, ExtArgs["result"]["batch_details"]>
   composites: {}
 }
@@ -1729,6 +1785,7 @@ export interface batch_detailsFieldRefs {
   readonly created_at: Prisma.FieldRef<"batch_details", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"batch_details", 'DateTime'>
   readonly instructor_id: Prisma.FieldRef<"batch_details", 'String'>
+  readonly batch_type: Prisma.FieldRef<"batch_details", 'training_type'>
 }
     
 

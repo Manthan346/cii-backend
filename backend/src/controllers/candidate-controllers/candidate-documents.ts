@@ -27,26 +27,26 @@ export const candidateCertificateUpload = asyncHandler(
 
 
 
-    if (!files) {
-      throw new ApiError(400, "Please upload documents");
-    }
+    // if (!files) {
+    //   throw new ApiError(400, "Please upload documents");
+    // }
 
 
 
     const aadharFile =
-      files.aadhar_card?.[0]?.path;
+      files?.aadhar_card?.[0]?.path;
 
 
     const panFile =
-      files.pan_card?.[0]?.path;
+      files?.pan_card?.[0]?.path;
 
 
     const photoFile =
-      files.passport_size_photo?.[0]?.path;
+      files?.passport_size_photo?.[0]?.path;
 
 
     const resumeFile =
-      files.resume?.[0]?.path;
+      files?.resume?.[0]?.path;
 
 
 
