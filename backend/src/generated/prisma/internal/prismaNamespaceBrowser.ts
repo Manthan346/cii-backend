@@ -145,7 +145,8 @@ export const Batch_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   instructor_id: 'instructor_id',
-  batch_type: 'batch_type'
+  batch_type: 'batch_type',
+  b_status: 'b_status'
 } as const
 
 export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
