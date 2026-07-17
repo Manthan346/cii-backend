@@ -144,7 +144,8 @@ export const Batch_detailsScalarFieldEnum = {
   max_candidates: 'max_candidates',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  instructor_id: 'instructor_id'
+  instructor_id: 'instructor_id',
+  batch_type: 'batch_type'
 } as const
 
 export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
@@ -155,7 +156,6 @@ export const Course_detailsScalarFieldEnum = {
   course_name: 'course_name',
   course_desc: 'course_desc',
   course_duration: 'course_duration',
-  course_type: 'course_type',
   created_at: 'created_at',
   updated_at: 'updated_at',
   company_id: 'company_id',

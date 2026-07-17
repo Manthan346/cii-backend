@@ -32,6 +32,8 @@ const candidateAcademicDetails = asyncHandler(async(req: CandidateAuthRequest, r
             batch_id: true,
             batch_name: true,
             batch_start_date: true,
+            batch_type: true,
+            
             batch_end_date: true,
             instructor: {
                 select: {
@@ -47,7 +49,7 @@ const candidateAcademicDetails = asyncHandler(async(req: CandidateAuthRequest, r
                 course_id: true,
                 course_name: true,
                 course_duration: true,
-                course_type: true,
+                
                 course_desc: true,
                 course_mode: true,
                 company_details: {
@@ -85,6 +87,7 @@ const academicDetails = {
     course: enrollment.batch_details.course_details!.course_name,
     company: enrollment.batch_details.course_details!.company_details.company_name,
     mode: enrollment.batch_details.course_details?.course_mode,
+    course_type: enrollment.batch_details.batch_type,
     
     location: academics.user_login.center_details.center_name,
     enrolled_date: enrollment.enrollment_date,

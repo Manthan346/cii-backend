@@ -91,3 +91,13 @@ export const ca_status_types = {
 } as const
 
 export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
+
+
+export const training_type = {
+  ACADEMIC: 'ACADEMIC',
+  WORKSHOP: 'WORKSHOP',
+  UPSKILLING: 'UPSKILLING',
+  SEMINAR: 'SEMINAR'
+} as const
+
+export type training_type = (typeof training_type)[keyof typeof training_type]
