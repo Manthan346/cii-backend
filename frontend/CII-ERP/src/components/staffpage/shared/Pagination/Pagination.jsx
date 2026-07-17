@@ -1,13 +1,20 @@
 import { ChevronRight } from 'lucide-react';
 import styles from './Pagination.module.css';
 
-export default function Pagination({ currentPage = 1, totalPages = 22, showing = 0, total = 0, onPageChange }) {
+export default function Pagination({
+  currentPage = 1,
+  totalPages = 22,
+  showing = 0,
+  total = 0,
+  onPageChange,
+  label,
+}) {
   const leadingPages = [1, 2, 3].filter((page) => page <= totalPages);
 
   return (
     <div className={styles.footer}>
       <span className={styles.info}>
-        showing {showing} out of {total}
+        {label || `showing ${showing} out of ${total}`}
       </span>
 
       <div className={styles.pages}>

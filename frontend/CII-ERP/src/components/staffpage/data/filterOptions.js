@@ -14,3 +14,19 @@ export const courseOptions = [
 ];
 
 export const statusOptions = ['All Status', 'All status', 'Active', 'Dropped', 'Ending soon'];
+
+/* ---- Batch Management additions ----
+   Options for the Batch List page's filter bar (Search / Trainers /
+   Courses / Status). Kept separate from the candidate filter arrays
+   above since the label set/wording differs slightly. */
+export const trainerFilterOptions = ['All Trainers', 'rohit mehta', 'Anjali patil', 'Neha wagh'];
+
+export const batchCourseOptions = ['All Courses', 'Data Science', 'Python programming', 'Business comm.'];
+
+export const batchStatusOptions = ['All Status', 'Active', 'Dropped', 'Ending Soon', 'Upcoming'];
+
+/* ---- Attendance Management additions ----
+   Status filter for the "Today's Attendance" table. Batch dropdown
+   reuses `batchOptions` above since the batch list is shared across
+   Candidate/Attendance pages. */
+export const attendanceStatusOptions = ['All Status', 'Present', 'Late', 'Absent'];

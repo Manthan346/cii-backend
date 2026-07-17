@@ -1,0 +1,64 @@
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.iconWrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teal {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+.green {
+  background: var(--color-green-bg);
+  color: var(--color-green);
+}
+
+.peach {
+  background: var(--color-peach-bg);
+  color: var(--color-peach-text);
+}
+
+.yellow {
+  background: #fdf3d3;
+  color: #c48a1f;
+}
+
+.value {
+  font-family: var(--font-family);
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 14px 16px;
+  }
+
+  .value {
+    font-size: 22px;
+  }
+}

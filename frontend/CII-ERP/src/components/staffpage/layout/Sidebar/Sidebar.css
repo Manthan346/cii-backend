@@ -1,7 +1,7 @@
 .staff-sidebar {
   width: 270px;
   flex-shrink: 0;
-  position: sticky;
+  /* position: sticky; */
   top: 112px; /* height of .staff-topbar */
   align-self: flex-start;
   height: calc(100vh - 112px - 40px); /* viewport minus topbar height and content padding */
@@ -11,7 +11,15 @@
   padding: 20px 14px;
   box-sizing: border-box;
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.staff-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .staff-sidebar__nav {

@@ -21,3 +21,27 @@ export {
 export { candidateStats } from "./stats";
 export { candidates } from "./candidates";
 export { batchOptions, courseOptions, statusOptions } from "./filterOptions";
+
+/* ---- Batch Management additions ---- */
+export { batches, batchListMeta } from "./batches";
+export { batchStats } from "./batchStats";
+export { trainers } from "./trainers";
+export {
+  courseSelectOptions,
+  sessionTimeOptions,
+  classroomOptions,
+  daysOfWeek,
+} from "./batchFormOptions";
+export {
+  trainerFilterOptions,
+  batchCourseOptions,
+  batchStatusOptions,
+} from "./filterOptions";
+
+/* ---- Attendance Management additions ---- */
+export { attendanceStatusOptions } from "./filterOptions";
+export {
+  attendanceStats,
+  attendanceMeta,
+  attendanceRecords,
+} from "./attendanceData";

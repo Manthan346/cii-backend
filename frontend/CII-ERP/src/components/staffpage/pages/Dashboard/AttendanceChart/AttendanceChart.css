@@ -57,7 +57,7 @@
   max-width: 34px;
   border-radius: 5px 5px 0 0;
   background: #14265e;
-  transition: height 0.4s ease;
+  transition: height 1s ease;
 }
 
 .attendance-chart__bar--projected {

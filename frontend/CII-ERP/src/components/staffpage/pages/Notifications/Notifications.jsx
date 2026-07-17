@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Layers } from "lucide-react";
+import { Boxes } from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
-import "./BatchManagement.css";
+import "./Notifications.css";
 
 /**
- * BatchManagement
+ * Notification 
  *
- * Staff page for managing batches.
+ * Staff page for managing resources.
  * This is a placeholder component that can be expanded with real functionality.
  */
-const BatchManagement = () => {
+const Notifications = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -29,13 +29,13 @@ const BatchManagement = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className="batch-management">
-      <SectionCard title="Batch Management" className="batch-management__card">
-        <div className="batch-management__content">
-          <Layers size={48} className="batch-management__icon" />
-          <h2>Batch Management</h2>
-          <p>View and manage all training batches.</p>
-          <p className="batch-management__placeholder-note">
+            <div className="notifications">
+      <SectionCard title="Notifications" className="notifications__card">
+        <div className="notifications__content">
+          <Boxes size={48} className="notifications__icon" />
+          <h2>Notifications</h2>
+          <p>Access and manage your notifications.</p>
+          <p className="notifications__placeholder-note">
             This page is under development. Content will be added soon.
           </p>
         </div>
@@ -48,4 +48,4 @@ const BatchManagement = () => {
   );
 };
 
-export default BatchManagement;
+export default Notifications;

@@ -18,6 +18,10 @@ const STATUS_TONE = {
   completed: "blue",
   inactive: "grey",
   overdue: "red",
+  /* ---- Attendance Management additions ---- */
+  present: "green",
+  late: "red",
+  absent: "dark",
 };
 
 const StatusBadge = ({ status }) => {

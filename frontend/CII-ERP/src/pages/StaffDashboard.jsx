@@ -26,25 +26,29 @@
 import { Routes, Route } from 'react-router-dom';
 
 import Dashboard from '../components/staffpage/pages/Dashboard/Dashboard/Dashboard';
-import CandidateManagement from '../components/staffpage/pages/CandidateManagement/CandidateManagement';
-import BatchManagement from '../components/staffpage/pages/BatchManagement/BatchManagement';
-import AttendanceManagement from '../components/staffpage/pages/AttendanceManagement/AttendanceManagement';
+import CandidateManagement from '../components/staffpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
+import BatchManagement from '../components/staffpage/pages/BatchManagement/BatchManagement/BatchManagement';
+import AttendanceManagement from '../components/staffpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
 import Resources from '../components/staffpage/pages/Resources/Resources';
 import StudyMaterialUpload from '../components/staffpage/pages/StudyMaterialUpload/StudyMaterialUpload';
 import Reports from '../components/staffpage/pages/Reports/Reports';
 import Work from '../components/staffpage/pages/Work/Work';
+import Notifications from '../components/staffpage/pages/Notifications/Notifications';
+import TaskAssigned from '../components/staffpage/pages/TaskAssigned/TaskAssigned';
 
 export default function StaffDashboard() {
   return (
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/candidates" element={<CandidateManagement />} />
-      <Route path="/batches" element={<BatchManagement />} />
+      <Route path="/batch-management" element={<BatchManagement />} />
       <Route path="/attendance" element={<AttendanceManagement />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/study-material" element={<StudyMaterialUpload />} />
       <Route path="/reports" element={<Reports />} />
       <Route path="/work" element={<Work />} />
+      <Route path="/notifications" element={<Notifications />} />
+      <Route path="/task-assigned" element={<TaskAssigned />} />
       {/* Default redirect to dashboard */}
       <Route path="/" element={<Dashboard />} />
     </Routes>

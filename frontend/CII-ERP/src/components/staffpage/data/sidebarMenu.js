@@ -49,7 +49,7 @@ export const sidebarMenu = [
         id: "batch-management",
         title: "Batch Management",
         icon: Layers,
-        route: "/staff/batches",
+        route: "/staff/batch-management",
       },
       {
         id: "attendance-management",
@@ -90,6 +90,18 @@ export const sidebarMenu = [
         title: "Work",
         icon: BriefcaseBusiness,
         route: "/staff/work",
+      },
+      {
+        id: "task-assigned",
+        title: "Task Assigned",
+        icon: BriefcaseBusiness,
+        route: "/staff/task-assigned",
+      },
+      {
+        id: "notifications",
+        title: "Notifications",
+        icon: BriefcaseBusiness,
+        route: "/staff/notifications",
       },
     ],
   },

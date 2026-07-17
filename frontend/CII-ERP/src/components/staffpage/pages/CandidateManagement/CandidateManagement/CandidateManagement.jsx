@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { UserRound, CheckCircle2, Clock, Phone } from "lucide-react";
-import Sidebar from "../../layout/Sidebar/Sidebar";
-import Topbar from "../../layout/Topbar/Topbar";
-import { FilterBar, Pagination, Button } from "../../shared";
-import StatCard from "./StatCard/StatCard";
-import CandidateTable from "./CandidateTable/CandidateTable";
-import { candidateStats } from "../../data/stats";
-import { candidates } from "../../data/candidates";
-import { batchOptions, courseOptions, statusOptions } from "../../data/filterOptions";
-import "../../styles/variables.css";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import { FilterBar, Pagination, Button } from "../../../shared";
+import StatCard from "../StatCard/StatCard";
+import CandidateTable from "../CandidateTable/CandidateTable";
+import { candidateStats } from "../../../data/stats";
+import { candidates } from "../../../data/candidates";
+import { batchOptions, courseOptions, statusOptions } from "../../../data/filterOptions";
+import "../../../styles/variables.css";
 import styles from "./CandidateManagement.module.css";
 
 /**

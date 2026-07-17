@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProgressBar.css";
 
 /**
@@ -12,9 +12,19 @@ import "./ProgressBar.css";
  * Props:
  *  - value: number   -> 0-100 percentage filled
  *  - tone: string    -> optional color variant, defaults to teal
+ *
+ * The fill animates from 0 to `value` on mount (CSS `width` transition
+ * in ProgressBar.css does the actual easing; this component just flips
+ * the width from 0 -> value one tick after mount to trigger it).
  */
 const ProgressBar = ({ value = 0, tone = "teal" }) => {
   const clamped = Math.max(0, Math.min(100, value));
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setWidth(clamped));
+    return () => cancelAnimationFrame(raf);
+  }, [clamped]);
 
   return (
     <div
@@ -26,7 +36,7 @@ const ProgressBar = ({ value = 0, tone = "teal" }) => {
     >
       <div
         className={`progress-bar__fill progress-bar__fill--${tone}`}
-        style={{ width: `${clamped}%` }}
+        style={{ width: `${width}%` }}
       />
     </div>
   );

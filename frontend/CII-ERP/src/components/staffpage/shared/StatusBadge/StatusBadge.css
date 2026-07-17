@@ -32,3 +32,9 @@
   background: #fde0df;
   color: #c22a24;
 }
+
+/* ---- Attendance Management addition: solid dark pill for "Absent" ---- */
+.status-badge--dark {
+  background: #1f2937;
+  color: #ffffff;
+}

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Calendar } from "lucide-react";
+import { Boxes } from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
-import "./AttendanceManagement.css";
+import "./TaskAssigned.css";
 
 /**
- * AttendanceManagement
+ * Task Assigned
  *
- * Staff page for managing attendance.
+ * Staff page for managing resources.
  * This is a placeholder component that can be expanded with real functionality.
  */
-const AttendanceManagement = () => {
+const TaskAssigned = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -29,13 +29,13 @@ const AttendanceManagement = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className="attendance-management">
-      <SectionCard title="Attendance Management" className="attendance-management__card">
-        <div className="attendance-management__content">
-          <Calendar size={48} className="attendance-management__icon" />
-          <h2>Attendance Management</h2>
-          <p>Track and manage candidate attendance across batches.</p>
-          <p className="attendance-management__placeholder-note">
+            <div className="task-assigned">
+      <SectionCard title="TaskAssigned" className="task-assigned__card">
+        <div className="task-assigned__content">
+          <Boxes size={48} className="task-assigned__icon" />
+          <h2>Task Assigned</h2>
+          <p>Manage your assigned tasks and monitor their progress.</p>
+          <p className="task-assigned__placeholder-note">
             This page is under development. Content will be added soon.
           </p>
         </div>
@@ -48,4 +48,4 @@ const AttendanceManagement = () => {
   );
 };
 
-export default AttendanceManagement;
+export default TaskAssigned;
