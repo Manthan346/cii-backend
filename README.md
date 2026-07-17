@@ -48,3 +48,13 @@ added css designs to it
 Started the Staff Login pages
 Designed the file Structure for Staff Login
 Completed the 80% Design of Staff Dashboard.
+
+16 July 2026
+Designed the dashboard section on the staff Login page
+Designed Candidate management section on staff login
+Integrated in the Develop file.
+
+17 July 2026
+Added the Batch Management Page on Staff Login 
+Added the Attendence Management Page on Staff Login 
+Added the Candidate Management Page on Staff Login 
