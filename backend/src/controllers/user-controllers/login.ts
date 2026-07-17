@@ -8,7 +8,7 @@ import { generateAccessToken, generateRefreshToken } from "../../utils/candidate
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor/instructor-auth";
 
 const login = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password, centerId } = req.body;
+  const { email, password, centerId,role } = req.body;
 
   // 1. Fetch the base user record — role-agnostic
   //common login endpoint for all the roles
@@ -29,6 +29,10 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(404, "user not found");
   }
 
+  if(user.user_role !== role){
+    throw new ApiError(404, "invalid role")
+  }
+
   if (user.center_details.center_id !== centerId) {
     throw new ApiError(404, "user doesn't exist at this center, please select the right center");
   }
@@ -45,7 +49,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
 
 
 
-  switch (user.user_role) {
+  switch (role) {
     case "candidate": {
       const candidate = await prisma.candidates_details.findUnique({
         where: { user_id: user.user_id },
