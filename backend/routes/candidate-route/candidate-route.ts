@@ -11,7 +11,7 @@ import { candidateAcademicDetails } from "../../src/controllers/candidate-contro
 import { upload } from "../../src/middlewares/multer-middleware/multer";
 import { candidateCertificateUpload } from "../../src/controllers/candidate-controllers/candidate-documents";
 import { multerErrorHandler } from "../../src/middlewares/multer-middleware/file-limit-middleware";
-import { candidateAttendanceSummary } from "../../src/controllers/candidate-controllers/candidate-attendance";
+import { candidateAttendanceCalendar } from "../../src/controllers/candidate-controllers/candidate-attendance";
 import allCoursesAttendance from "../../src/controllers/candidate-controllers/candidate-allcourses-attendance";
 import candidateAssessments from "../../src/controllers/candidate-controllers/candidate-assesments";
 import candidateUpcomingSessions from "../../src/controllers/candidate-controllers/candidate-sessions";
@@ -32,7 +32,8 @@ candidateRouter.post('/candidate-documents', upload.fields([
        {name: 'resume', maxCount: 1}, 
 
 ]),multerErrorHandler, verifyCandidateUsingAccessToken, candidateRoleMiddleware,candidateCertificateUpload)
-candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateAttendanceSummary)
+candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateAttendanceCalendar)
+
 candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAccessToken,candidateRoleMiddleware, allCoursesAttendance)
 candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken,candidateRoleMiddleware, candidateAssessments)
 candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateUpcomingSessions)
