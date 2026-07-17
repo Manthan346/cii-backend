@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
-import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor/instructor-auth";
+import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor-jwt-auth/instructor-auth";
 
 const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password, centerId } = req.body;
