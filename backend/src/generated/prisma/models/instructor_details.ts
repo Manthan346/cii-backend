@@ -313,11 +313,11 @@ export type instructor_detailsOrderByWithRelationInput = {
 
 export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   instructor_id?: string
+  user_id?: string
   contact_number?: string
   AND?: Prisma.instructor_detailsWhereInput | Prisma.instructor_detailsWhereInput[]
   OR?: Prisma.instructor_detailsWhereInput[]
   NOT?: Prisma.instructor_detailsWhereInput | Prisma.instructor_detailsWhereInput[]
-  user_id?: Prisma.UuidNullableFilter<"instructor_details"> | string | null
   instructor_first_name?: Prisma.StringFilter<"instructor_details"> | string
   instructor_last_name?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   gender?: Prisma.StringNullableFilter<"instructor_details"> | string | null
@@ -331,7 +331,7 @@ export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   company_id?: Prisma.UuidNullableFilter<"instructor_details"> | string | null
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   batches?: Prisma.Batch_detailsListRelationFilter
-}, "instructor_id" | "contact_number">
+}, "instructor_id" | "user_id" | "contact_number">
 
 export type instructor_detailsOrderByWithAggregationInput = {
   instructor_id?: Prisma.SortOrder

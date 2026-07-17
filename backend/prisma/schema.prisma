@@ -177,7 +177,7 @@ model company_details {
 
 model instructor_details {
   instructor_id         String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id               String?               @db.Uuid
+  user_id               String?               @unique @db.Uuid
   instructor_first_name String                @db.VarChar(100)
   instructor_last_name  String?               @db.VarChar(100)
   contact_number        String                @unique @db.VarChar(10)
