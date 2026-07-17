@@ -1,5 +1,5 @@
 
-//jwt token payload
+//jwt token payload for candidate
 export interface TokenPayload {
      candidate_id: string,
     candidate_first_name?: string,
@@ -11,4 +11,16 @@ export interface TokenPayload {
     
    
     email?: string
+} 
+
+
+//jwt token payload for instructor
+export interface InstructorTokenPayload{
+    instructor_id:string,
+    instructor_first_name?:string,
+    user_id:string,
+    instructor_last_name?:string,
+    center_id?:string,
+    center_name?:string,
+    email?:string
 }
