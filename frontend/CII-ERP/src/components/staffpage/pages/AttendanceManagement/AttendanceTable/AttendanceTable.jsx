@@ -31,6 +31,7 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
             <th>Time in</th>
             <th>Time out</th>
             <th>Status</th>
+            <th>Staff Attendence</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -38,7 +39,7 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${record.name}`} />
+                <input type="csheckbox" defaultChecked aria-label={`Select ${record.name}`} />
               </td>
               <td className={styles.idCell}>{record.candidateId}</td>
               <td>
@@ -48,14 +49,17 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
                 </div>
               </td>
               <td>{record.batch}</td>
-              <td>
+              {/* <td>
                 <div className={styles.courseCell}>
                   <span>{record.course}</span>
                   <ProgressBar value={record.progress} />
                 </div>
-              </td>
+              </td> */}
               <td className={styles.nowrap}>{record.timeIn}</td>
               <td className={styles.nowrap}>{record.timeOut}</td>
+              <td>
+                <StatusBadge status={record.status} />
+              </td>
               <td>
                 <StatusBadge status={record.status} />
               </td>

@@ -45,3 +45,49 @@ export {
   attendanceMeta,
   attendanceRecords,
 } from "./attendanceData";
+
+/* ---- Resources additions ---- */
+export {
+  resourceStats,
+  quickAccessCards,
+  resourceCategoryOptions,
+  resourceTypeOptions,
+  resourceMeta,
+  resourceRecords,
+} from "./resourcesData";
+
+/* ---- Study Material Upload additions ---- */
+export { materialTypeOptions, materialStatusOptions } from "./filterOptions";
+export {
+  materialStats,
+  materialMeta,
+  materialRecords,
+} from "./studyMaterialData";
+
+/* ---- Reports additions ---- */
+export {
+  reportStats,
+  attendanceOverviewByBatch,
+  attendanceOverviewMeta,
+  reportTypeOptions,
+  reportBatchOptions,
+  reportFormatOptions,
+  reportMeta,
+  reportRecords,
+} from "./reportsData";
+
+/* ---- Work additions ---- */
+export {
+  workStats,
+  workShortcuts,
+  recentActivity,
+  workMeta,
+} from "./workData";
+
+/* ---- Task Assigned (full page) additions ---- */
+export { taskAssigneeOptions, taskPriorityOptions, taskStatusOptions } from "./filterOptions";
+export {
+  taskAssignedStats,
+  taskAssignedMeta,
+  taskAssignedRecords,
+} from "./tasksAssignedData";

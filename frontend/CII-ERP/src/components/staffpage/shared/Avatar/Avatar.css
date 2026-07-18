@@ -27,6 +27,12 @@
   color: #3a3a3a;
 }
 
+/* ---- Resources addition: light mint tone for "Updated by" initials ---- */
+.avatar--mint {
+  background: #d9f7e3;
+  color: #1a8f4c;
+}
+
 .avatar__initials {
   font-weight: 600;
   letter-spacing: 0.02em;

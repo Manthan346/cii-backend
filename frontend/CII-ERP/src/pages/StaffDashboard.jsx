@@ -29,12 +29,12 @@ import Dashboard from '../components/staffpage/pages/Dashboard/Dashboard/Dashboa
 import CandidateManagement from '../components/staffpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
 import BatchManagement from '../components/staffpage/pages/BatchManagement/BatchManagement/BatchManagement';
 import AttendanceManagement from '../components/staffpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
-import Resources from '../components/staffpage/pages/Resources/Resources';
-import StudyMaterialUpload from '../components/staffpage/pages/StudyMaterialUpload/StudyMaterialUpload';
-import Reports from '../components/staffpage/pages/Reports/Reports';
-import Work from '../components/staffpage/pages/Work/Work';
+import Resources from '../components/staffpage/pages/Resources/Resources/Resources';
+import StudyMaterialUpload from '../components/staffpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
+import Reports from '../components/staffpage/pages/Reports/Reports/Reports';
+import Work from '../components/staffpage/pages/Work/Work/Work';
 import Notifications from '../components/staffpage/pages/Notifications/Notifications';
-import TaskAssigned from '../components/staffpage/pages/TaskAssigned/TaskAssigned';
+import TaskAssigned from '../components/staffpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
 
 export default function StaffDashboard() {
   return (

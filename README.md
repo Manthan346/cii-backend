@@ -58,3 +58,10 @@ Integrated in the Develop file.
 Added the Batch Management Page on Staff Login 
 Added the Attendence Management Page on Staff Login 
 Added the Candidate Management Page on Staff Login 
+
+18 July 2026
+Added the Resourses Page on Staff Login 
+Added the Study Material Upload Page on Staff Login 
+Added the Reports Page on Staff Login
+Added the Work Page on Staff Login
+Added the Task Assigned Page on Staff Login

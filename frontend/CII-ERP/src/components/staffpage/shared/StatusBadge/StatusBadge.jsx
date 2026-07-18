@@ -22,6 +22,14 @@ const STATUS_TONE = {
   present: "green",
   late: "red",
   absent: "dark",
+  /* ---- Study Material Upload additions ---- */
+  published: "green",
+  "pending review": "orange",
+  draft: "grey",
+  /* ---- Task Assigned additions (Priority column pill) ---- */
+  high: "red",
+  medium: "orange",
+  low: "grey",
 };
 
 const StatusBadge = ({ status }) => {

@@ -1,0 +1,103 @@
+.generate-report-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 90px 20px 20px;
+  z-index: 100;
+}
+
+.generate-report-modal {
+  width: 100%;
+  max-width: 460px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-family);
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.generate-report-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.generate-report-modal__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.generate-report-modal__close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.generate-report-modal__close:hover {
+  background: #f3f4f6;
+}
+
+.generate-report-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.generate-report-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.generate-report-modal__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.generate-report-modal__input {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.generate-report-modal__input:focus {
+  border-color: var(--color-teal);
+}
+
+.generate-report-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .generate-report-modal__row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -30,3 +30,21 @@ export const batchStatusOptions = ['All Status', 'Active', 'Dropped', 'Ending So
    reuses `batchOptions` above since the batch list is shared across
    Candidate/Attendance pages. */
 export const attendanceStatusOptions = ['All Status', 'Present', 'Late', 'Absent'];
+
+/* ---- Study Material Upload additions ----
+   Type/Status filters for the "All Materials" table. Course dropdown
+   reuses `courseOptions` above since the course list is shared across
+   Candidate/Study Material pages. */
+export const materialTypeOptions = ['All type', 'PDF', 'Video', 'PPT', 'DOC'];
+
+export const materialStatusOptions = ['All Status', 'Published', 'Pending review', 'Draft'];
+
+/* ---- Task Assigned additions ----
+   Assignee / Priority / Status filters for the "Task assigned" page's
+   filter bar. Wording (casing) reproduces the reference design exactly,
+   same convention as "All braches" above. */
+export const taskAssigneeOptions = ['All Assignees', 'Rohit mehta', 'Anjali rane', 'karan bhosale'];
+
+export const taskPriorityOptions = ['All priorities', 'High', 'medium', 'low'];
+
+export const taskStatusOptions = ['All status', 'Present', 'absent', 'late'];
