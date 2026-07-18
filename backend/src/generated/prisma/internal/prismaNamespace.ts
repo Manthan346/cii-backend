@@ -1858,7 +1858,8 @@ export const Batch_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   instructor_id: 'instructor_id',
-  batch_type: 'batch_type'
+  batch_type: 'batch_type',
+  b_status: 'b_status'
 } as const
 
 export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
@@ -2185,6 +2186,20 @@ export type Enumtraining_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'training_type[]'
  */
 export type ListEnumtraining_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'training_type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_status'
+ */
+export type Enumbatch_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_status'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_status[]'
+ */
+export type ListEnumbatch_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_status[]'>
     
 
 
