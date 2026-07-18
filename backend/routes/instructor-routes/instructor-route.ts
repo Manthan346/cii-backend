@@ -4,6 +4,7 @@ import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instruct
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
 
+
 const instructorRouter = Router();
 
 instructorRouter.post("/login", loginInstructor);
@@ -17,5 +18,10 @@ instructorRouter.get(
     verifyInstructorUsingAccessToken,
     getBatchAttendance
 )
+instructorRouter.get(
+    "/instructor-dashboard",
+    verifyInstructorUsingAccessToken,
+    getInstructorDashboard
+);
 
 export { instructorRouter };
