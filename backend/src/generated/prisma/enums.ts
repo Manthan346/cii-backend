@@ -101,3 +101,12 @@ export const training_type = {
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
+
+
+export const batch_status = {
+  UPCOMING: 'UPCOMING',
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type batch_status = (typeof batch_status)[keyof typeof batch_status]

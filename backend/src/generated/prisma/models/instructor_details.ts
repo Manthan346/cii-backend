@@ -502,9 +502,9 @@ export type instructor_detailsUncheckedUpdateManyInput = {
   company_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type Instructor_detailsNullableScalarRelationFilter = {
-  is?: Prisma.instructor_detailsWhereInput | null
-  isNot?: Prisma.instructor_detailsWhereInput | null
+export type Instructor_detailsScalarRelationFilter = {
+  is?: Prisma.instructor_detailsWhereInput
+  isNot?: Prisma.instructor_detailsWhereInput
 }
 
 export type instructor_detailsCountOrderByAggregateInput = {
@@ -566,23 +566,16 @@ export type instructor_detailsSumOrderByAggregateInput = {
   experience_years?: Prisma.SortOrder
 }
 
-export type Instructor_detailsScalarRelationFilter = {
-  is?: Prisma.instructor_detailsWhereInput
-  isNot?: Prisma.instructor_detailsWhereInput
-}
-
 export type instructor_detailsCreateNestedOneWithoutBatchesInput = {
   create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutBatchesInput, Prisma.instructor_detailsUncheckedCreateWithoutBatchesInput>
   connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutBatchesInput
   connect?: Prisma.instructor_detailsWhereUniqueInput
 }
 
-export type instructor_detailsUpdateOneWithoutBatchesNestedInput = {
+export type instructor_detailsUpdateOneRequiredWithoutBatchesNestedInput = {
   create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutBatchesInput, Prisma.instructor_detailsUncheckedCreateWithoutBatchesInput>
   connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutBatchesInput
   upsert?: Prisma.instructor_detailsUpsertWithoutBatchesInput
-  disconnect?: Prisma.instructor_detailsWhereInput | boolean
-  delete?: Prisma.instructor_detailsWhereInput | boolean
   connect?: Prisma.instructor_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.instructor_detailsUpdateToOneWithWhereWithoutBatchesInput, Prisma.instructor_detailsUpdateWithoutBatchesInput>, Prisma.instructor_detailsUncheckedUpdateWithoutBatchesInput>
 }
