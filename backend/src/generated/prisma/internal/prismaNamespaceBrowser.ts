@@ -114,7 +114,9 @@ export const Candidates_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
-  qualification_percentage: 'qualification_percentage'
+  qualification_percentage: 'qualification_percentage',
+  candidate_skills: 'candidate_skills',
+  admin_approval: 'admin_approval'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -274,11 +276,11 @@ export const Batch_enrollmentScalarFieldEnum = {
   candidate_id: 'candidate_id',
   batch_id: 'batch_id',
   enrollment_date: 'enrollment_date',
-  enrollment_status: 'enrollment_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
   grade: 'grade',
-  certificate_url: 'certificate_url'
+  certificate_url: 'certificate_url',
+  enrollment_status: 'enrollment_status'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]

@@ -1827,7 +1827,9 @@ export const Candidates_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
-  qualification_percentage: 'qualification_percentage'
+  qualification_percentage: 'qualification_percentage',
+  candidate_skills: 'candidate_skills',
+  admin_approval: 'admin_approval'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -1987,11 +1989,11 @@ export const Batch_enrollmentScalarFieldEnum = {
   candidate_id: 'candidate_id',
   batch_id: 'batch_id',
   enrollment_date: 'enrollment_date',
-  enrollment_status: 'enrollment_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
   grade: 'grade',
-  certificate_url: 'certificate_url'
+  certificate_url: 'certificate_url',
+  enrollment_status: 'enrollment_status'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
@@ -2162,6 +2164,13 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'attend_types'
  */
 export type Enumattend_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'attend_types'>
@@ -2256,6 +2265,20 @@ export type Enumgrade_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'grade_types[]'
  */
 export type ListEnumgrade_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'grade_types[]'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_enrollment_status_type'
+ */
+export type Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_enrollment_status_type'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_enrollment_status_type[]'
+ */
+export type ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_enrollment_status_type[]'>
     
 
 
