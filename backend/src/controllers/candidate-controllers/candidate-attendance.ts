@@ -102,9 +102,12 @@ export const candidateAttendanceCalendar = asyncHandler(
     });
 
     const statusByDate = new Map<string, "present" | "absent" | "late">();
+    const sessionDates = new Set<string>()
     for (const session of sessions) {
       const key = session.session_date.toISOString().slice(0, 10);
       const record = session.attendance_records[0];
+      sessionDates.add(key)
+      
       console.log(record)
       if (record) statusByDate.set(key, record.attendance_status as any);
     }
@@ -121,7 +124,7 @@ export const candidateAttendanceCalendar = asyncHandler(
 
     // Day-by-day grid. ASSUMPTION (no holiday table exists yet): a weekday
     // inside the batch's date range with no session row is treated as a holiday.
-    const calendar: { date: string; status: "present" | "absent" | "late" | "holiday" | null }[] = [];
+    const calendar: { date: string; status: "present" | "absent" | "late" | "holiday" | "today" | "unmarked" | null }[] = [];
     const cursor = new Date(monthStart);
 
     while (cursor <= monthEnd) {
@@ -142,7 +145,11 @@ const isFuture = cursor > todayUTC;
 let status: typeof calendar[number]["status"] = null;
 if (statusByDate.has(dateKey)) {
   status = statusByDate.get(dateKey)!;
-} else if (withinAnyBatch && !isWeekend && !isFuture) {
+} else if (sessionDates.has(dateKey)) {
+  status = null
+} else if (withinAnyBatch && !isFuture && !isWeekend) {
+  status = "holiday";
+} else if (withinAnyBatch && isWeekend) {
   status = "holiday";
 }
 

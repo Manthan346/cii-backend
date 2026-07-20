@@ -1827,7 +1827,9 @@ export const Candidates_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
-  qualification_percentage: 'qualification_percentage'
+  qualification_percentage: 'qualification_percentage',
+  candidate_skills: 'candidate_skills',
+  admin_approval: 'admin_approval'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -2158,6 +2160,13 @@ export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Decimal[]'
  */
 export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
