@@ -13,7 +13,7 @@ const candidateUpcomingSessions = asyncHandler(async (req: CandidateAuthRequest,
   const enrollments = await prisma.batch_enrollment.findMany({
     where: {
       candidate_id: candidateId,
-      enrollment_status: "Active",
+      enrollment_status: "ACTIVE",
     },
     select: {
       batch_details: {

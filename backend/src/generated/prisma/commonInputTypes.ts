@@ -379,6 +379,13 @@ export type Enumgrade_typesNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel> | $Enums.grade_types | null
 }
 
+export type Enumbatch_enrollment_status_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.batch_enrollment_status_type | Prisma.Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel> | $Enums.batch_enrollment_status_type | null
+}
+
 export type Enumgrade_typesNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.grade_types | Prisma.Enumgrade_typesFieldRefInput<$PrismaModel> | null
   in?: $Enums.grade_types[] | Prisma.ListEnumgrade_typesFieldRefInput<$PrismaModel> | null
@@ -387,6 +394,16 @@ export type Enumgrade_typesNullableWithAggregatesFilter<$PrismaModel = never> = 
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel>
+}
+
+export type Enumbatch_enrollment_status_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.batch_enrollment_status_type | Prisma.Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumbatch_enrollment_status_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.batch_enrollment_status_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel>
 }
 
 export type Enumattendance_mode_typeFilter<$PrismaModel = never> = {
@@ -797,6 +814,13 @@ export type NestedEnumgrade_typesNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel> | $Enums.grade_types | null
 }
 
+export type NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.batch_enrollment_status_type | Prisma.Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel> | $Enums.batch_enrollment_status_type | null
+}
+
 export type NestedEnumgrade_typesNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.grade_types | Prisma.Enumgrade_typesFieldRefInput<$PrismaModel> | null
   in?: $Enums.grade_types[] | Prisma.ListEnumgrade_typesFieldRefInput<$PrismaModel> | null
@@ -805,6 +829,16 @@ export type NestedEnumgrade_typesNullableWithAggregatesFilter<$PrismaModel = nev
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumgrade_typesNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumbatch_enrollment_status_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.batch_enrollment_status_type | Prisma.Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.batch_enrollment_status_type[] | Prisma.ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumbatch_enrollment_status_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.batch_enrollment_status_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumbatch_enrollment_status_typeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumattendance_mode_typeFilter<$PrismaModel = never> = {

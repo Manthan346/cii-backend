@@ -29,11 +29,11 @@ export type Batch_enrollmentMinAggregateOutputType = {
   candidate_id: string | null
   batch_id: string | null
   enrollment_date: Date | null
-  enrollment_status: string | null
   created_at: Date | null
   updated_at: Date | null
   grade: $Enums.grade_types | null
   certificate_url: string | null
+  enrollment_status: $Enums.batch_enrollment_status_type | null
 }
 
 export type Batch_enrollmentMaxAggregateOutputType = {
@@ -41,11 +41,11 @@ export type Batch_enrollmentMaxAggregateOutputType = {
   candidate_id: string | null
   batch_id: string | null
   enrollment_date: Date | null
-  enrollment_status: string | null
   created_at: Date | null
   updated_at: Date | null
   grade: $Enums.grade_types | null
   certificate_url: string | null
+  enrollment_status: $Enums.batch_enrollment_status_type | null
 }
 
 export type Batch_enrollmentCountAggregateOutputType = {
@@ -53,11 +53,11 @@ export type Batch_enrollmentCountAggregateOutputType = {
   candidate_id: number
   batch_id: number
   enrollment_date: number
-  enrollment_status: number
   created_at: number
   updated_at: number
   grade: number
   certificate_url: number
+  enrollment_status: number
   _all: number
 }
 
@@ -67,11 +67,11 @@ export type Batch_enrollmentMinAggregateInputType = {
   candidate_id?: true
   batch_id?: true
   enrollment_date?: true
-  enrollment_status?: true
   created_at?: true
   updated_at?: true
   grade?: true
   certificate_url?: true
+  enrollment_status?: true
 }
 
 export type Batch_enrollmentMaxAggregateInputType = {
@@ -79,11 +79,11 @@ export type Batch_enrollmentMaxAggregateInputType = {
   candidate_id?: true
   batch_id?: true
   enrollment_date?: true
-  enrollment_status?: true
   created_at?: true
   updated_at?: true
   grade?: true
   certificate_url?: true
+  enrollment_status?: true
 }
 
 export type Batch_enrollmentCountAggregateInputType = {
@@ -91,11 +91,11 @@ export type Batch_enrollmentCountAggregateInputType = {
   candidate_id?: true
   batch_id?: true
   enrollment_date?: true
-  enrollment_status?: true
   created_at?: true
   updated_at?: true
   grade?: true
   certificate_url?: true
+  enrollment_status?: true
   _all?: true
 }
 
@@ -176,11 +176,11 @@ export type Batch_enrollmentGroupByOutputType = {
   candidate_id: string
   batch_id: string
   enrollment_date: Date
-  enrollment_status: string | null
   created_at: Date
   updated_at: Date
   grade: $Enums.grade_types | null
   certificate_url: string | null
+  enrollment_status: $Enums.batch_enrollment_status_type | null
   _count: Batch_enrollmentCountAggregateOutputType | null
   _min: Batch_enrollmentMinAggregateOutputType | null
   _max: Batch_enrollmentMaxAggregateOutputType | null
@@ -209,11 +209,11 @@ export type batch_enrollmentWhereInput = {
   candidate_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   batch_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   enrollment_date?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  enrollment_status?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
   created_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   grade?: Prisma.Enumgrade_typesNullableFilter<"batch_enrollment"> | $Enums.grade_types | null
   certificate_url?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
+  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
 }
@@ -223,11 +223,11 @@ export type batch_enrollmentOrderByWithRelationInput = {
   candidate_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
   enrollment_date?: Prisma.SortOrder
-  enrollment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
   certificate_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByWithRelationInput
   candidates_details?: Prisma.candidates_detailsOrderByWithRelationInput
 }
@@ -242,10 +242,10 @@ export type batch_enrollmentWhereUniqueInput = Prisma.AtLeast<{
   candidate_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   batch_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   enrollment_date?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  enrollment_status?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
   created_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   grade?: Prisma.Enumgrade_typesNullableFilter<"batch_enrollment"> | $Enums.grade_types | null
+  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
 }, "enrollment_id" | "certificate_url" | "candidate_id_batch_id">
@@ -255,11 +255,11 @@ export type batch_enrollmentOrderByWithAggregationInput = {
   candidate_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
   enrollment_date?: Prisma.SortOrder
-  enrollment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
   certificate_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollment_status?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.batch_enrollmentCountOrderByAggregateInput
   _max?: Prisma.batch_enrollmentMaxOrderByAggregateInput
   _min?: Prisma.batch_enrollmentMinOrderByAggregateInput
@@ -273,21 +273,21 @@ export type batch_enrollmentScalarWhereWithAggregatesInput = {
   candidate_id?: Prisma.UuidWithAggregatesFilter<"batch_enrollment"> | string
   batch_id?: Prisma.UuidWithAggregatesFilter<"batch_enrollment"> | string
   enrollment_date?: Prisma.DateTimeWithAggregatesFilter<"batch_enrollment"> | Date | string
-  enrollment_status?: Prisma.StringNullableWithAggregatesFilter<"batch_enrollment"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"batch_enrollment"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"batch_enrollment"> | Date | string
   grade?: Prisma.Enumgrade_typesNullableWithAggregatesFilter<"batch_enrollment"> | $Enums.grade_types | null
   certificate_url?: Prisma.StringNullableWithAggregatesFilter<"batch_enrollment"> | string | null
+  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableWithAggregatesFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateInput = {
   enrollment_id?: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutBatch_enrollmentInput
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput
 }
@@ -297,21 +297,21 @@ export type batch_enrollmentUncheckedCreateInput = {
   candidate_id: string
   batch_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUpdateInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
 }
@@ -321,11 +321,11 @@ export type batch_enrollmentUncheckedUpdateInput = {
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateManyInput = {
@@ -333,21 +333,21 @@ export type batch_enrollmentCreateManyInput = {
   candidate_id: string
   batch_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUpdateManyMutationInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUncheckedUpdateManyInput = {
@@ -355,11 +355,11 @@ export type batch_enrollmentUncheckedUpdateManyInput = {
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type Batch_enrollmentListRelationFilter = {
@@ -382,11 +382,11 @@ export type batch_enrollmentCountOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
   enrollment_date?: Prisma.SortOrder
-  enrollment_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   grade?: Prisma.SortOrder
   certificate_url?: Prisma.SortOrder
+  enrollment_status?: Prisma.SortOrder
 }
 
 export type batch_enrollmentMaxOrderByAggregateInput = {
@@ -394,11 +394,11 @@ export type batch_enrollmentMaxOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
   enrollment_date?: Prisma.SortOrder
-  enrollment_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   grade?: Prisma.SortOrder
   certificate_url?: Prisma.SortOrder
+  enrollment_status?: Prisma.SortOrder
 }
 
 export type batch_enrollmentMinOrderByAggregateInput = {
@@ -406,11 +406,11 @@ export type batch_enrollmentMinOrderByAggregateInput = {
   candidate_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
   enrollment_date?: Prisma.SortOrder
-  enrollment_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   grade?: Prisma.SortOrder
   certificate_url?: Prisma.SortOrder
+  enrollment_status?: Prisma.SortOrder
 }
 
 export type batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput = {
@@ -501,14 +501,18 @@ export type NullableEnumgrade_typesFieldUpdateOperationsInput = {
   set?: $Enums.grade_types | null
 }
 
+export type NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput = {
+  set?: $Enums.batch_enrollment_status_type | null
+}
+
 export type batch_enrollmentCreateWithoutCandidates_detailsInput = {
   enrollment_id?: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutBatch_enrollmentInput
 }
 
@@ -516,11 +520,11 @@ export type batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput = {
   enrollment_id?: string
   batch_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput = {
@@ -557,21 +561,21 @@ export type batch_enrollmentScalarWhereInput = {
   candidate_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   batch_id?: Prisma.UuidFilter<"batch_enrollment"> | string
   enrollment_date?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  enrollment_status?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
   created_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
   grade?: Prisma.Enumgrade_typesNullableFilter<"batch_enrollment"> | $Enums.grade_types | null
   certificate_url?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
+  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateWithoutBatch_detailsInput = {
   enrollment_id?: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput
 }
 
@@ -579,11 +583,11 @@ export type batch_enrollmentUncheckedCreateWithoutBatch_detailsInput = {
   enrollment_id?: string
   candidate_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateOrConnectWithoutBatch_detailsInput = {
@@ -616,21 +620,21 @@ export type batch_enrollmentCreateManyCandidates_detailsInput = {
   enrollment_id?: string
   batch_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUpdateWithoutCandidates_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
 }
 
@@ -638,43 +642,43 @@ export type batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentCreateManyBatch_detailsInput = {
   enrollment_id?: string
   candidate_id: string
   enrollment_date?: Date | string
-  enrollment_status?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   grade?: $Enums.grade_types | null
   certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUpdateWithoutBatch_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
 }
 
@@ -682,22 +686,22 @@ export type batch_enrollmentUncheckedUpdateWithoutBatch_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 export type batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enrollment_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
 }
 
 
@@ -707,11 +711,11 @@ export type batch_enrollmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   candidate_id?: boolean
   batch_id?: boolean
   enrollment_date?: boolean
-  enrollment_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   grade?: boolean
   certificate_url?: boolean
+  enrollment_status?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["batch_enrollment"]>
@@ -721,11 +725,11 @@ export type batch_enrollmentSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   candidate_id?: boolean
   batch_id?: boolean
   enrollment_date?: boolean
-  enrollment_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   grade?: boolean
   certificate_url?: boolean
+  enrollment_status?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["batch_enrollment"]>
@@ -735,11 +739,11 @@ export type batch_enrollmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   candidate_id?: boolean
   batch_id?: boolean
   enrollment_date?: boolean
-  enrollment_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   grade?: boolean
   certificate_url?: boolean
+  enrollment_status?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["batch_enrollment"]>
@@ -749,14 +753,14 @@ export type batch_enrollmentSelectScalar = {
   candidate_id?: boolean
   batch_id?: boolean
   enrollment_date?: boolean
-  enrollment_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   grade?: boolean
   certificate_url?: boolean
+  enrollment_status?: boolean
 }
 
-export type batch_enrollmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"enrollment_id" | "candidate_id" | "batch_id" | "enrollment_date" | "enrollment_status" | "created_at" | "updated_at" | "grade" | "certificate_url", ExtArgs["result"]["batch_enrollment"]>
+export type batch_enrollmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"enrollment_id" | "candidate_id" | "batch_id" | "enrollment_date" | "created_at" | "updated_at" | "grade" | "certificate_url" | "enrollment_status", ExtArgs["result"]["batch_enrollment"]>
 export type batch_enrollmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
@@ -781,11 +785,11 @@ export type $batch_enrollmentPayload<ExtArgs extends runtime.Types.Extensions.In
     candidate_id: string
     batch_id: string
     enrollment_date: Date
-    enrollment_status: string | null
     created_at: Date
     updated_at: Date
     grade: $Enums.grade_types | null
     certificate_url: string | null
+    enrollment_status: $Enums.batch_enrollment_status_type | null
   }, ExtArgs["result"]["batch_enrollment"]>
   composites: {}
 }
@@ -1215,11 +1219,11 @@ export interface batch_enrollmentFieldRefs {
   readonly candidate_id: Prisma.FieldRef<"batch_enrollment", 'String'>
   readonly batch_id: Prisma.FieldRef<"batch_enrollment", 'String'>
   readonly enrollment_date: Prisma.FieldRef<"batch_enrollment", 'DateTime'>
-  readonly enrollment_status: Prisma.FieldRef<"batch_enrollment", 'String'>
   readonly created_at: Prisma.FieldRef<"batch_enrollment", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"batch_enrollment", 'DateTime'>
   readonly grade: Prisma.FieldRef<"batch_enrollment", 'grade_types'>
   readonly certificate_url: Prisma.FieldRef<"batch_enrollment", 'String'>
+  readonly enrollment_status: Prisma.FieldRef<"batch_enrollment", 'batch_enrollment_status_type'>
 }
     
 

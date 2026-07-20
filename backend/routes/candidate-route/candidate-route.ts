@@ -16,6 +16,7 @@ import allCoursesAttendance from "../../src/controllers/candidate-controllers/ca
 import candidateAssessments from "../../src/controllers/candidate-controllers/candidate-assesments";
 import candidateUpcomingSessions from "../../src/controllers/candidate-controllers/candidate-sessions";
 import { candidateRoleMiddleware } from "../../src/middlewares/roles-middleware/candidate-role";
+import { candidateRecentAttendanceLog } from "../../src/controllers/candidate-controllers/candidate-attendanceRecentLog";
 
 const candidateRouter = Router()
 
@@ -37,6 +38,7 @@ candidateRouter.get('/candidate-attendance', verifyCandidateUsingAccessToken, ca
 candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAccessToken,candidateRoleMiddleware, allCoursesAttendance)
 candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken,candidateRoleMiddleware, candidateAssessments)
 candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateRoleMiddleware, candidateUpcomingSessions)
+candidateRouter.get('/candidate-attendance-recentLog', verifyCandidateUsingAccessToken, candidateRecentAttendanceLog)
 
 
 export {
