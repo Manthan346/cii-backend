@@ -3,7 +3,12 @@ import { loginInstructor } from "../../src/controllers/instructor-controller/log
 import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instructor-auth-middleware/instructor-auth-middleware";
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
-
+import { createCandidateByInstructor } from "../../src/controllers/instructor-controller/create-candidate-by-instructor";
+import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
+import { createInstructorCandidateSchema } from "../../src/services/zod/instructor/create-Instructor-candidate-schema";
+import { createInstructorCandidateEnrollmentSchema } from "../../src/services/zod/instructor/create-instructor-candidate-enrollment-schema";
+import { enrollCandidate } from "../../src/controllers/instructor-controller/enroll-candidate";
+import { getCandidateStatistics } from "../../src/controllers/instructor-controller/candidate-management-statistics";
 
 const instructorRouter = Router();
 
@@ -18,15 +23,31 @@ instructorRouter.get(
     verifyInstructorUsingAccessToken,
     getBatchAttendance
 )
-instructorRouter.get(
-    "/instructor-dashboard",
+instructorRouter.post(
+    "/candidate-management/candidates",
     verifyInstructorUsingAccessToken,
-    getInstructorDashboard
-);
+    validateBody(createInstructorCandidateSchema),
+    createCandidateByInstructor
+)
 instructorRouter.get(
-    "/instructor-dashboard",
-    verifyInstructorUsingAccessToken,
-    getInstructorDashboard
+    "/test",
+    (req,res)=>{
+        res.send("Working");
+    }
 );
+instructorRouter.post(
+    "/candidate-management/enroll-candidate",
+    verifyInstructorUsingAccessToken,
+    validateBody(createInstructorCandidateEnrollmentSchema),
+    enrollCandidate
+)
+
+instructorRouter.get(
+    "/candidate-management/statistics",
+    verifyInstructorUsingAccessToken,
+    getCandidateStatistics
+)
+
 
 export { instructorRouter };
+

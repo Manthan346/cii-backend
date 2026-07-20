@@ -22,10 +22,16 @@ export const verifyInstructorUsingAccessToken = asyncHandler(
             accessToken,
             process.env.JWT_SECRET!
         ) as InstructorTokenPayload;
+        
+        req.user ={
+            user_id: decoded.user_id,
+            center_id:decoded.center_id
+        }
 
         req.instructor = {
             instructor_id: decoded.instructor_id,
-            role:"instructor"
+            role:"instructor",
+            
         };
 
         next();
