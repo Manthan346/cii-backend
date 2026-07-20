@@ -100,7 +100,7 @@ export const getBatchAttendance = asyncHandler(
         await prisma.batch_enrollment.count({
             where:{
                 batch_id:batchId,
-                enrollment_status:"Active"
+                enrollment_status: "ACTIVE"
             }
         });
         const sessionDateMap = new Map<string,string>();

@@ -1987,11 +1987,11 @@ export const Batch_enrollmentScalarFieldEnum = {
   candidate_id: 'candidate_id',
   batch_id: 'batch_id',
   enrollment_date: 'enrollment_date',
-  enrollment_status: 'enrollment_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
   grade: 'grade',
-  certificate_url: 'certificate_url'
+  certificate_url: 'certificate_url',
+  enrollment_status: 'enrollment_status'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
@@ -2256,6 +2256,20 @@ export type Enumgrade_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'grade_types[]'
  */
 export type ListEnumgrade_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'grade_types[]'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_enrollment_status_type'
+ */
+export type Enumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_enrollment_status_type'>
+    
+
+
+/**
+ * Reference to a field of type 'batch_enrollment_status_type[]'
+ */
+export type ListEnumbatch_enrollment_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'batch_enrollment_status_type[]'>
     
 
 

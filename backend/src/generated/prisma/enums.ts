@@ -110,3 +110,13 @@ export const batch_status = {
 } as const
 
 export type batch_status = (typeof batch_status)[keyof typeof batch_status]
+
+
+export const batch_enrollment_status_type = {
+  ACTIVE: 'ACTIVE',
+  DROPPED: 'DROPPED',
+  BLACKLIST: 'BLACKLIST',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type batch_enrollment_status_type = (typeof batch_enrollment_status_type)[keyof typeof batch_enrollment_status_type]
