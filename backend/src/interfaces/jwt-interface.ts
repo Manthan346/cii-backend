@@ -20,7 +20,7 @@ export interface InstructorTokenPayload{
     instructor_first_name?:string,
     user_id:string,
     instructor_last_name?:string,
-    center_id?:string,
+    center_id:string,
     center_name?:string,
     email?:string
 }

@@ -10,7 +10,8 @@ export interface InstructorAuthRequest extends Request {
     },
 
     user: {
-        user_id:string
+        user_id:string,
+        center_id:string
     }
 
 }
