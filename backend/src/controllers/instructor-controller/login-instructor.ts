@@ -3,7 +3,8 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcrypt"
 import { ApiError } from "../../helpers/ApiError";
-import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor/instructor-auth";
+
+import { generateInstructorAccessToken,generateInstructorRefreshToken } from "../../utils/instructor-jwt-auth/instructor-auth";
 import { ApiResponse } from "../../helpers/ApiResponse";
 
 

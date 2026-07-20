@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import { upload } from "./src/middlewares/multer-middleware/multer";
 
 import { instructorRouter } from "./routes/instructor-routes/instructor-route";
+import { login } from "./src/controllers/user-controllers/login";
 
 const app = Express();
 const port = 3000;
@@ -37,6 +38,7 @@ app.use("/api/v1/candidate", candidateRouter);
 app.use("/api/v1/company", companyRouter);
 app.use("/api/v1/courses", courseRouter);
 app.use("/api/v1/instructor", instructorRouter);
+app.use("/api/v1/user",login)
 
 app.listen(port, () => {
   console.log(`port is running on server ${port}`);

@@ -5,7 +5,7 @@ import {  createCandidateSchema } from "../../src/services/zod/candidate/candida
 import { getAllCandidate } from "../../src/controllers/candidate-controllers/get-all-candidate";
 import { verifyCandidateUsingAccessToken } from "../../src/middlewares/candidate-auth-middleware/auth-middleware";
 import candidateDashboardData from "../../src/controllers/candidate-controllers/candidate-dashboard-data";
-import { loginCandidate } from "../../src/controllers/candidate-controllers/login-candidate";
+
 import { candidateProfileDetails } from "../../src/controllers/candidate-controllers/candidate-profile";
 import { candidateAcademicDetails } from "../../src/controllers/candidate-controllers/candidate-academic-details";
 import { upload } from "../../src/middlewares/multer-middleware/multer";
@@ -22,7 +22,7 @@ const candidateRouter = Router()
 candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), createCandidate)
 candidateRouter.get('/get-all-candidates', getAllCandidate)
 candidateRouter.get('/dashboard-data',verifyCandidateUsingAccessToken,candidateRoleMiddleware,candidateDashboardData)
-candidateRouter.post('/login', loginCandidate)
+
 candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken,candidateRoleMiddleware, candidateAcademicDetails)
 candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateRoleMiddleware,candidateProfileDetails)
 candidateRouter.post('/candidate-documents', upload.fields([
