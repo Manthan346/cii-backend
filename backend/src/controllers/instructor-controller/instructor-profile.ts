@@ -39,10 +39,13 @@ export const instructorProfileDetails = asyncHandler(
       (value) => value !== null && value !== ""
     ).length;
 
+
+    //this is for all the fields in instructor 
     const profileCompletion = Math.round(
       (completedFields / values.length) * 100
     );
 
+    //filtering as per the need of information
     const basicInformation = {
       personalInformation: {
         name: `${profile.instructor_first_name} ${profile.instructor_last_name}`,
