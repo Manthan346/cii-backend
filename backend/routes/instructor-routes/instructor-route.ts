@@ -3,7 +3,7 @@ import { Router } from "express";
 import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instructor-auth-middleware/instructor-auth-middleware";
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
-import { intructorProfileDetails } from "../../src/controllers/instructor-controller/instructor-profile";
+import { instructorProfileDetails } from "../../src/controllers/instructor-controller/instructor-profile";
 import { instructorAcademicDetails } from "../../src/controllers/instructor-controller/instructor-academic-details";
 import { upload } from "../../src/middlewares/multer-middleware/multer";
 import { multerErrorHandler } from "../../src/middlewares/multer-middleware/file-limit-middleware";
@@ -25,7 +25,7 @@ instructorRouter.get(
     verifyInstructorUsingAccessToken,
     getBatchAttendance
 )
-instructorRouter.get("/basic-information", verifyInstructorUsingAccessToken,  intructorProfileDetails)
+instructorRouter.get("/basic-information", verifyInstructorUsingAccessToken,  instructorProfileDetails)
 instructorRouter.get("/academics-details", verifyInstructorUsingAccessToken,  instructorAcademicDetails)
 instructorRouter.post('/documents', upload.fields([
      {name: 'aadhar_card', maxCount: 1},

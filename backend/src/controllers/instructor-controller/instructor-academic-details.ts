@@ -13,7 +13,7 @@ const instructorAcademicDetails = asyncHandler(async(req: InstructorAuthRequest,
     const academicDetails = await prisma.instructor_details.findUnique({
         where: {
             instructor_id: instructorId
-        },
+        }, 
          select: {
             highest_qualification: true,
             specialization: true,
