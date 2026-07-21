@@ -9,10 +9,10 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 
 const instructorAcademicDetails = asyncHandler(async(req: InstructorAuthRequest, res: Response) => {
-    // const instructorId = req.instructor?.instructor_id
+    const instructorId = req.instructor?.instructor_id
     const academicDetails = await prisma.instructor_details.findUnique({
         where: {
-            instructor_id: req.instructor?.instructor_id
+            instructor_id: instructorId
         },
          select: {
             highest_qualification: true,
