@@ -134,3 +134,8 @@ export type job_application = Prisma.job_applicationModel
  * 
  */
 export type candidate_assessment = Prisma.candidate_assessmentModel
+/**
+ * Model instructor_documents
+ * 
+ */
+export type instructor_documents = Prisma.instructor_documentsModel

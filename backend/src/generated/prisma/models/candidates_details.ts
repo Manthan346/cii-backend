@@ -68,7 +68,6 @@ export type Candidates_detailsMinAggregateOutputType = {
   updated_at: Date | null
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  candidate_skills: string | null
   admin_approval: boolean | null
 }
 
@@ -102,7 +101,6 @@ export type Candidates_detailsMaxAggregateOutputType = {
   updated_at: Date | null
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  candidate_skills: string | null
   admin_approval: boolean | null
 }
 
@@ -136,8 +134,8 @@ export type Candidates_detailsCountAggregateOutputType = {
   updated_at: number
   highest_qualification: number
   qualification_percentage: number
-  candidate_skills: number
   admin_approval: number
+  candidate_skills: number
   _all: number
 }
 
@@ -184,7 +182,6 @@ export type Candidates_detailsMinAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  candidate_skills?: true
   admin_approval?: true
 }
 
@@ -218,7 +215,6 @@ export type Candidates_detailsMaxAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  candidate_skills?: true
   admin_approval?: true
 }
 
@@ -252,8 +248,8 @@ export type Candidates_detailsCountAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  candidate_skills?: true
   admin_approval?: true
+  candidate_skills?: true
   _all?: true
 }
 
@@ -373,8 +369,8 @@ export type Candidates_detailsGroupByOutputType = {
   updated_at: Date
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  candidate_skills: string | null
   admin_approval: boolean | null
+  candidate_skills: string[]
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -430,8 +426,8 @@ export type candidates_detailsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   admin_approval?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
+  candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -470,8 +466,8 @@ export type candidates_detailsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_skills?: Prisma.SortOrderInput | Prisma.SortOrder
   admin_approval?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_skills?: Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
   candidate_assessment?: Prisma.candidate_assessmentOrderByRelationAggregateInput
@@ -513,8 +509,8 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   admin_approval?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
+  candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -553,8 +549,8 @@ export type candidates_detailsOrderByWithAggregationInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_skills?: Prisma.SortOrderInput | Prisma.SortOrder
   admin_approval?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_skills?: Prisma.SortOrder
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -595,8 +591,8 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableWithAggregatesFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   admin_approval?: Prisma.BoolNullableWithAggregatesFilter<"candidates_details"> | boolean | null
+  candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
 }
 
 export type candidates_detailsCreateInput = {
@@ -628,8 +624,8 @@ export type candidates_detailsCreateInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -668,8 +664,8 @@ export type candidates_detailsUncheckedCreateInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -706,8 +702,8 @@ export type candidates_detailsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -746,8 +742,8 @@ export type candidates_detailsUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -785,8 +781,8 @@ export type candidates_detailsCreateManyInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
@@ -818,8 +814,8 @@ export type candidates_detailsUpdateManyMutationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
@@ -852,8 +848,16 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type candidates_detailsCountOrderByAggregateInput = {
@@ -886,8 +890,8 @@ export type candidates_detailsCountOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  candidate_skills?: Prisma.SortOrder
   admin_approval?: Prisma.SortOrder
+  candidate_skills?: Prisma.SortOrder
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
@@ -926,7 +930,6 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  candidate_skills?: Prisma.SortOrder
   admin_approval?: Prisma.SortOrder
 }
 
@@ -960,7 +963,6 @@ export type candidates_detailsMinOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  candidate_skills?: Prisma.SortOrder
   admin_approval?: Prisma.SortOrder
 }
 
@@ -978,6 +980,10 @@ export type Candidates_detailsScalarRelationFilter = {
 export type Candidates_detailsNullableScalarRelationFilter = {
   is?: Prisma.candidates_detailsWhereInput | null
   isNot?: Prisma.candidates_detailsWhereInput | null
+}
+
+export type candidates_detailsCreatecandidate_skillsInput = {
+  set: string[]
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -1014,6 +1020,11 @@ export type NullableDecimalFieldUpdateOperationsInput = {
 
 export type NullableBoolFieldUpdateOperationsInput = {
   set?: boolean | null
+}
+
+export type candidates_detailsUpdatecandidate_skillsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type candidates_detailsCreateNestedOneWithoutAttendance_recordsInput = {
@@ -1147,8 +1158,8 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1186,8 +1197,8 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1239,8 +1250,8 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1278,8 +1289,8 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -1315,8 +1326,8 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1353,8 +1364,8 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1407,8 +1418,8 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1445,8 +1456,8 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1483,8 +1494,8 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1522,8 +1533,8 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1575,8 +1586,8 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1614,8 +1625,8 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -1651,8 +1662,8 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1690,8 +1701,8 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1743,8 +1754,8 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1782,8 +1793,8 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1819,8 +1830,8 @@ export type candidates_detailsCreateWithoutJob_applicationInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1858,8 +1869,8 @@ export type candidates_detailsUncheckedCreateWithoutJob_applicationInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1911,8 +1922,8 @@ export type candidates_detailsUpdateWithoutJob_applicationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1950,8 +1961,8 @@ export type candidates_detailsUncheckedUpdateWithoutJob_applicationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1987,8 +1998,8 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -2026,8 +2037,8 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: string | null
   admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -2079,8 +2090,8 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -2118,8 +2129,8 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  candidate_skills?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -2214,8 +2225,8 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  candidate_skills?: boolean
   admin_approval?: boolean
+  candidate_skills?: boolean
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.candidates_details$candidate_assessmentArgs<ExtArgs>
@@ -2255,8 +2266,8 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  candidate_skills?: boolean
   admin_approval?: boolean
+  candidate_skills?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2290,8 +2301,8 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  candidate_skills?: boolean
   admin_approval?: boolean
+  candidate_skills?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2325,11 +2336,11 @@ export type candidates_detailsSelectScalar = {
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  candidate_skills?: boolean
   admin_approval?: boolean
+  candidate_skills?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "candidate_skills" | "admin_approval", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -2386,8 +2397,8 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     updated_at: Date
     highest_qualification: string | null
     qualification_percentage: runtime.Decimal | null
-    candidate_skills: string | null
     admin_approval: boolean | null
+    candidate_skills: string[]
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -2846,8 +2857,8 @@ export interface candidates_detailsFieldRefs {
   readonly updated_at: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly highest_qualification: Prisma.FieldRef<"candidates_details", 'String'>
   readonly qualification_percentage: Prisma.FieldRef<"candidates_details", 'Decimal'>
-  readonly candidate_skills: Prisma.FieldRef<"candidates_details", 'String'>
   readonly admin_approval: Prisma.FieldRef<"candidates_details", 'Boolean'>
+  readonly candidate_skills: Prisma.FieldRef<"candidates_details", 'String[]'>
 }
     
 

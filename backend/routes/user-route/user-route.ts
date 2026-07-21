@@ -8,4 +8,6 @@ import { loginSchema } from "../../src/services/zod/users/user-login-schema";
 
 const userRouter = Router()
 
-userRouter.post("/login",validateBody(loginSchema), login)
+userRouter.post("/login", login)
+
+export default userRouter

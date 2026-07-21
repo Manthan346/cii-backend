@@ -6,11 +6,12 @@ export interface InstructorAuthRequest extends Request {
         
         instructor_id?: string,
         email?: string,
-        role:"instructor"
+        
     },
 
     user: {
-        user_id:string
+        user_id:string,
+         role: string
     }
 
 }

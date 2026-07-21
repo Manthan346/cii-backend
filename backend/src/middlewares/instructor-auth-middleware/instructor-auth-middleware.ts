@@ -22,11 +22,23 @@ export const verifyInstructorUsingAccessToken = asyncHandler(
             accessToken,
             process.env.JWT_SECRET!
         ) as InstructorTokenPayload;
+        // console.log("instructor",decoded)
 
+        if (decoded.role !== "instructor") {
+            throw new ApiError(401, "you are not an instructor")
+            
+        }
+
+        req.user = {
+            user_id: decoded.user_id,
+            role: decoded.role
+        }
         req.instructor = {
             instructor_id: decoded.instructor_id,
-            role:"instructor"
+            email: decoded.email
         };
+
+     
 
         next();
 

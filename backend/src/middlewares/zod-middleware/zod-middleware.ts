@@ -6,6 +6,7 @@ export const  validateBody = <T extends z.ZodTypeAny>(schema: T) => {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
       req.body = schema.parse(req.body);
+      console.log(req.body)
       next();
     } catch (error) {
       if (error instanceof z.ZodError) {

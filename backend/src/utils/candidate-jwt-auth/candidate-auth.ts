@@ -7,7 +7,7 @@ type accessTokenPayload = {
     user_id: string,
     candidate_last_name: string,
     center_id?: string
-
+    role: string,
     centre_name?: string,
     
    
@@ -19,6 +19,7 @@ type refreshTokenPayload = {
     candidate_id: string,
     center_id?: string,
     user_id: string,
+    role: string,
 
     candidate_first_name: string,
     candidate_last_name: string
