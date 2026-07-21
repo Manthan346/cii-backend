@@ -66,7 +66,8 @@ export const ModelName = {
   job_eligible_course: 'job_eligible_course',
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
-  candidate_assessment: 'candidate_assessment'
+  candidate_assessment: 'candidate_assessment',
+  instructor_documents: 'instructor_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -114,7 +115,10 @@ export const Candidates_detailsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
-  qualification_percentage: 'qualification_percentage'
+  qualification_percentage: 'qualification_percentage',
+  admin_approval: 'admin_approval',
+  candidate_skills: 'candidate_skills',
+  guardian_phone_no: 'guardian_phone_no'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -257,13 +261,31 @@ export const Instructor_detailsScalarFieldEnum = {
   contact_number: 'contact_number',
   gender: 'gender',
   date_of_birth: 'date_of_birth',
-  qualification: 'qualification',
   specialization: 'specialization',
   experience_years: 'experience_years',
   instructor_status: 'instructor_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  company_id: 'company_id'
+  company_id: 'company_id',
+  instructor_state: 'instructor_state',
+  instructor_district: 'instructor_district',
+  instructor_taluka: 'instructor_taluka',
+  instructor_pin_code: 'instructor_pin_code',
+  instructor_address: 'instructor_address',
+  qualification: 'qualification',
+  emergency_contact: 'emergency_contact',
+  instructor_blood_group: 'instructor_blood_group',
+  instructor_guardian_name: 'instructor_guardian_name',
+  instructor_guardian_relationship: 'instructor_guardian_relationship',
+  instructor_guardian_occupation: 'instructor_guardian_occupation',
+  instructor_guardian_address: 'instructor_guardian_address',
+  instructor_guardian_contact_no: 'instructor_guardian_contact_no',
+  instructor_university: 'instructor_university',
+  instructor_passing_year: 'instructor_passing_year',
+  instructor_certificates: 'instructor_certificates',
+  instructor_prev_org: 'instructor_prev_org',
+  instructor_prev_org_designation: 'instructor_prev_org_designation',
+  highest_qualification: 'highest_qualification'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -278,7 +300,8 @@ export const Batch_enrollmentScalarFieldEnum = {
   updated_at: 'updated_at',
   grade: 'grade',
   certificate_url: 'certificate_url',
-  enrollment_status: 'enrollment_status'
+  enrollment_status: 'enrollment_status',
+  candidate_batch_id: 'candidate_batch_id'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
@@ -360,6 +383,20 @@ export const Candidate_assessmentScalarFieldEnum = {
 } as const
 
 export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
+
+
+export const Instructor_documentsScalarFieldEnum = {
+  instructor_doc_id: 'instructor_doc_id',
+  instructor_id: 'instructor_id',
+  past_exp_letter: 'past_exp_letter',
+  pan_card: 'pan_card',
+  aadhar_card: 'aadhar_card',
+  instructor_resume: 'instructor_resume',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
 export const SortOrder = {
