@@ -3,7 +3,6 @@ import { loginInstructor } from "../../src/controllers/instructor-controller/log
 import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instructor-auth-middleware/instructor-auth-middleware";
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
-import { createCandidateByInstructor } from "../../src/controllers/instructor-controller/create-candidate-by-instructor";
 import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
 import { createInstructorCandidateSchema } from "../../src/services/zod/instructor/create-Instructor-candidate-schema";
 import { createInstructorCandidateEnrollmentSchema } from "../../src/services/zod/instructor/create-instructor-candidate-enrollment-schema";
@@ -23,12 +22,7 @@ instructorRouter.get(
     verifyInstructorUsingAccessToken,
     getBatchAttendance
 )
-instructorRouter.post(
-    "/candidate-management/candidates",
-    verifyInstructorUsingAccessToken,
-    validateBody(createInstructorCandidateSchema),
-    createCandidateByInstructor
-)
+
 instructorRouter.get(
     "/test",
     (req,res)=>{
