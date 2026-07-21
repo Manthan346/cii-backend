@@ -407,7 +407,8 @@ export const ModelName = {
   job_eligible_course: 'job_eligible_course',
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
-  candidate_assessment: 'candidate_assessment'
+  candidate_assessment: 'candidate_assessment',
+  instructor_documents: 'instructor_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment"
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1759,6 +1760,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    instructor_documents: {
+      payload: Prisma.$instructor_documentsPayload<ExtArgs>
+      fields: Prisma.instructor_documentsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.instructor_documentsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.instructor_documentsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        findFirst: {
+          args: Prisma.instructor_documentsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.instructor_documentsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        findMany: {
+          args: Prisma.instructor_documentsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>[]
+        }
+        create: {
+          args: Prisma.instructor_documentsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        createMany: {
+          args: Prisma.instructor_documentsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.instructor_documentsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>[]
+        }
+        delete: {
+          args: Prisma.instructor_documentsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        update: {
+          args: Prisma.instructor_documentsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        deleteMany: {
+          args: Prisma.instructor_documentsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.instructor_documentsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.instructor_documentsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>[]
+        }
+        upsert: {
+          args: Prisma.instructor_documentsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$instructor_documentsPayload>
+        }
+        aggregate: {
+          args: Prisma.Instructor_documentsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInstructor_documents>
+        }
+        groupBy: {
+          args: Prisma.instructor_documentsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Instructor_documentsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.instructor_documentsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Instructor_documentsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1828,8 +1903,8 @@ export const Candidates_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
   qualification_percentage: 'qualification_percentage',
-  candidate_skills: 'candidate_skills',
-  admin_approval: 'admin_approval'
+  admin_approval: 'admin_approval',
+  candidate_skills: 'candidate_skills'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -1972,13 +2047,31 @@ export const Instructor_detailsScalarFieldEnum = {
   contact_number: 'contact_number',
   gender: 'gender',
   date_of_birth: 'date_of_birth',
-  qualification: 'qualification',
   specialization: 'specialization',
   experience_years: 'experience_years',
   instructor_status: 'instructor_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  company_id: 'company_id'
+  company_id: 'company_id',
+  instructor_state: 'instructor_state',
+  instructor_district: 'instructor_district',
+  instructor_taluka: 'instructor_taluka',
+  instructor_pin_code: 'instructor_pin_code',
+  instructor_address: 'instructor_address',
+  qualification: 'qualification',
+  emergency_contact: 'emergency_contact',
+  instructor_blood_group: 'instructor_blood_group',
+  instructor_guardian_name: 'instructor_guardian_name',
+  instructor_guardian_relationship: 'instructor_guardian_relationship',
+  instructor_guardian_occupation: 'instructor_guardian_occupation',
+  instructor_guardian_address: 'instructor_guardian_address',
+  instructor_guardian_contact_no: 'instructor_guardian_contact_no',
+  instructor_university: 'instructor_university',
+  instructor_passing_year: 'instructor_passing_year',
+  instructor_certificates: 'instructor_certificates',
+  instructor_prev_org: 'instructor_prev_org',
+  instructor_prev_org_designation: 'instructor_prev_org_designation',
+  highest_qualification: 'highest_qualification'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -1993,7 +2086,8 @@ export const Batch_enrollmentScalarFieldEnum = {
   updated_at: 'updated_at',
   grade: 'grade',
   certificate_url: 'certificate_url',
-  enrollment_status: 'enrollment_status'
+  enrollment_status: 'enrollment_status',
+  candidate_batch_id: 'candidate_batch_id'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
@@ -2075,6 +2169,20 @@ export const Candidate_assessmentScalarFieldEnum = {
 } as const
 
 export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
+
+
+export const Instructor_documentsScalarFieldEnum = {
+  instructor_doc_id: 'instructor_doc_id',
+  instructor_id: 'instructor_id',
+  past_exp_letter: 'past_exp_letter',
+  pan_card: 'pan_card',
+  aadhar_card: 'aadhar_card',
+  instructor_resume: 'instructor_resume',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2428,6 +2536,7 @@ export type GlobalOmitConfig = {
   job_opportunity?: Prisma.job_opportunityOmit
   job_application?: Prisma.job_applicationOmit
   candidate_assessment?: Prisma.candidate_assessmentOmit
+  instructor_documents?: Prisma.instructor_documentsOmit
 }
 
 /* Types for Logging */

@@ -177,22 +177,41 @@ model company_details {
 }
 
 model instructor_details {
-  instructor_id         String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id               String?               @unique @db.Uuid
-  instructor_first_name String                @db.VarChar(100)
-  instructor_last_name  String?               @db.VarChar(100)
-  contact_number        String                @unique @db.VarChar(10)
-  gender                String?               @db.VarChar(10)
-  date_of_birth         DateTime?             @db.Date
-  qualification         String?               @db.VarChar(255)
-  specialization        String?               @db.VarChar(255)
-  experience_years      Int?
-  instructor_status     String?               @db.VarChar(50)
-  created_at            DateTime              @default(now()) @db.Timestamp(6)
-  updated_at            DateTime              @default(now()) @db.Timestamp(6)
-  company_id            String?               @db.Uuid
-  attendance_sessions   attendance_sessions[]
-  batches               batch_details[]
+  instructor_id                    String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                          String?               @unique @db.Uuid
+  instructor_first_name            String                @db.VarChar(100)
+  instructor_last_name             String?               @db.VarChar(100)
+  contact_number                   String                @unique @db.VarChar(10)
+  gender                           String?               @db.VarChar(10)
+  date_of_birth                    DateTime?             @db.Date
+  specialization                   String?               @db.VarChar(255)
+  experience_years                 Int?
+  instructor_status                String?               @db.VarChar(50)
+  created_at                       DateTime              @default(now()) @db.Timestamp(6)
+  updated_at                       DateTime              @default(now()) @db.Timestamp(6)
+  company_id                       String?               @db.Uuid
+  instructor_state                 String?               @db.VarChar(250)
+  instructor_district              String?               @db.VarChar(250)
+  instructor_taluka                String?               @db.VarChar(250)
+  instructor_pin_code              String?               @db.VarChar(6)
+  instructor_address               String?
+  qualification                    String[]
+  emergency_contact                String?               @db.VarChar(10)
+  instructor_blood_group           String?               @db.VarChar(10)
+  instructor_guardian_name         String?               @db.VarChar(255)
+  instructor_guardian_relationship String?               @db.VarChar(255)
+  instructor_guardian_occupation   String?               @db.VarChar(255)
+  instructor_guardian_address      String?
+  instructor_guardian_contact_no   String?               @db.VarChar(10)
+  instructor_university            String?
+  instructor_passing_year          String?               @db.VarChar(10)
+  instructor_certificates          String[]
+  instructor_prev_org              String[]
+  instructor_prev_org_designation  String?               @db.VarChar(255)
+  highest_qualification            String?               @db.VarChar(255)
+  attendance_sessions              attendance_sessions[]
+  batches                          batch_details[]
+  instructor_documents             instructor_documents?
 }
 
 model batch_enrollment {
@@ -205,6 +224,7 @@ model batch_enrollment {
   grade              grade_types?
   certificate_url    String?                       @unique
   enrollment_status  batch_enrollment_status_type?
+  candidate_batch_id String?                       @unique @db.VarChar(255)
   batch_details      batch_details                 @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_batch")
   candidates_details candidates_details            @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_candidate")
 
@@ -291,6 +311,18 @@ model candidate_assessment {
   candidates_details candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
 
   @@unique([assessment_id, candidate_id])
+}
+
+model instructor_documents {
+  instructor_doc_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  instructor_id      String?             @unique @db.Uuid
+  past_exp_letter    String?
+  pan_card           String?
+  aadhar_card        String?
+  instructor_resume  String?
+  created_at         DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?           @default(now()) @db.Timestamp(6)
+  instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum attend_types {
