@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
 import ciiLogo from "../../assets/cii-logo.png";
 import "./Topbar.css";
@@ -20,14 +21,17 @@ import "./Topbar.css";
  *  - hasUnreadNotifications      -> boolean, toggles the red dot on the bell.
  *  - onMenuToggle: function      -> opens a mobile Sidebar drawer, wired from a parent layout.
  *  - onSearch: function(str)     -> fires on Enter in the search input.
- *  - onNotificationClick         -> reserved for a future notification panel/dropdown.
- *  - onAvatarClick               -> reserved for a future account dropdown.
+ *  - onNotificationClick         -> optional override for the bell click; when omitted,
+ *                                   the bell navigates to the existing /staff/notifications page.
+ *  - onAvatarClick               -> optional override for the avatar click; when omitted,
+ *                                   the avatar navigates to the existing /staff/profile page.
  *
  * Backend integration note:
  *  Replace the default `user` below with the authenticated user object
  *  from your auth/session context once it's available. Debounce
  *  `onSearch` in the parent before calling a `/api/search?q=` endpoint.
  */
+
 const getInitials = (name = "") => {
   const parts = name.trim().split(" ").filter(Boolean);
   if (parts.length === 0) return "";
@@ -44,10 +48,31 @@ const Topbar = ({
   onAvatarClick,
 }) => {
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const handleSearchKeyDown = (e) => {
     if (e.key === "Enter" && onSearch) {
       onSearch(searchValue);
+    }
+  };
+
+  const handleBellClick = () => {
+    if (onNotificationClick) {
+      onNotificationClick();
+    } else {
+      navigate("/staff/notifications");
+    }
+  };
+
+  // Avatar click: reuse the parent's handler if one was passed in,
+  // otherwise route straight to the existing My Profile page
+  // (pages/Profile/Profile/Profile.jsx) - same pattern as the bell
+  // above, no new page/dropdown is created here.
+  const handleAvatarClick = () => {
+    if (onAvatarClick) {
+      onAvatarClick();
+    } else {
+      navigate("/staff/profile");
     }
   };
 
@@ -101,7 +126,7 @@ const Topbar = ({
         <button
           type="button"
           className="staff-topbar__bell"
-          onClick={onNotificationClick}
+          onClick={handleBellClick}
           aria-label="Notifications"
         >
           <Bell size={20} strokeWidth={1.75} />
@@ -113,7 +138,7 @@ const Topbar = ({
         <button
           type="button"
           className="staff-topbar__avatar"
-          onClick={onAvatarClick}
+          onClick={handleAvatarClick}
           aria-label={`${user.name} account menu`}
           title={user.name}
         >

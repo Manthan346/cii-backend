@@ -91,3 +91,23 @@ export {
   taskAssignedMeta,
   taskAssignedRecords,
 } from "./tasksAssignedData";
+
+/* ---- Notifications additions ---- */
+export {
+  notificationTabs,
+  notificationMeta,
+  notificationRecords,
+} from "./notificationsData";
+
+/* ---- My Profile additions ---- */
+export {
+  staffProfile,
+  profileTabs,
+  profileBasicInfo,
+  profileCompletion,
+  profileEducation,
+  profileExperience,
+  profileDocuments,
+  profileDocumentNote,
+  profileContactDetail,
+} from "./profileData";

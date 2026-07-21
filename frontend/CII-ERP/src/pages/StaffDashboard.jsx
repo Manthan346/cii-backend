@@ -33,8 +33,9 @@ import Resources from '../components/staffpage/pages/Resources/Resources/Resourc
 import StudyMaterialUpload from '../components/staffpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
 import Reports from '../components/staffpage/pages/Reports/Reports/Reports';
 import Work from '../components/staffpage/pages/Work/Work/Work';
-import Notifications from '../components/staffpage/pages/Notifications/Notifications';
+import Notifications from '../components/staffpage/pages/Notifications/Notifications/Notifications';
 import TaskAssigned from '../components/staffpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
+import Profile from '../components/staffpage/pages/Profile/Profile/Profile';
 
 export default function StaffDashboard() {
   return (
@@ -49,6 +50,7 @@ export default function StaffDashboard() {
       <Route path="/work" element={<Work />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/task-assigned" element={<TaskAssigned />} />
+      <Route path="/profile" element={<Profile />} />
       {/* Default redirect to dashboard */}
       <Route path="/" element={<Dashboard />} />
     </Routes>

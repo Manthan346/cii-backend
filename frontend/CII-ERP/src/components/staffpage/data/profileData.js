@@ -1,0 +1,143 @@
+// Dummy data for the My Profile page.
+// Replace with API responses later, e.g.
+//   GET /api/staff/me                 -> staffProfile
+//   GET /api/staff/me/basic-info      -> profileBasicInfo, profileCompletion
+//   GET /api/staff/me/academic-detail -> profileAcademicDetail
+//   GET /api/staff/me/documents       -> profileDocuments
+//   GET /api/staff/me/contact-detail  -> profileContactDetail
+
+// NOTE on the name mismatch below: the reference design's teal hero
+// banner reads "Anjali Mehta" on 3 of the 4 tab screenshots, while the
+// Basic Information tab's own header + "Personal Information > Name"
+// field read "Anjali Sharma" (email is also "anjalisharma22@gmail.com").
+// This is reproduced exactly as designed rather than "corrected" -
+// same convention as other quirks preserved elsewhere in this data
+// folder (e.g. "15 july 20264" in tasksAssignedData.js).
+
+import staffAvatar from "../assets/staff-avatar.jpg";
+
+// ---- Hero card (name shown in the teal banner across all tabs) ----
+export const staffProfile = {
+  name: "Anjali Mehta",
+  role: "Cyber Security Trainer",
+  employeeId: "CSaj-2205",
+  status: "Active",
+  profileCompletedPercent: 75,
+  avatar: staffAvatar,
+};
+
+// ---- Tab strip: Basic Information / Academic Detail / Document / Contact Details ----
+export const profileTabs = [
+  { id: "basic-information", label: "Basic Information" },
+  { id: "academic-detail", label: "Academic Detail" },
+  { id: "document", label: "Document" },
+  { id: "contact-details", label: "Contact Details" },
+];
+
+// ---- Basic Information tab ----
+export const profileBasicInfo = {
+  personal: {
+    name: "Anjali Sharma",
+    gender: "Female",
+    dob: "22 feb 1995",
+    bloodGroup: "AB-",
+    highestQualification: "Ph.D in Cyber Security",
+  },
+  guardian: {
+    name: "Ram Sharma",
+    relationship: "Father",
+    mobileNumber: "8723456284",
+    occupation: "Retired Govt. officer",
+    address: "shree Complex ,thane400101",
+  },
+};
+
+export const profileCompletion = {
+  percent: 85,
+  label: "Almost There!!",
+  checklist: [
+    { id: "basic-info", label: "Basic Information added", done: true },
+    { id: "contact-verified", label: "Contact Details verified", done: true },
+    { id: "id-proof", label: "Upload ID Proof", done: false },
+    { id: "resume", label: "Resume Added", done: true },
+  ],
+};
+
+// ---- Academic Detail tab (Education + Experience are two separate
+// containers in the UI, so they're kept as two separate objects here) ----
+export const profileEducation = {
+  highestEducation: "Ph.D in cyber Security",
+  specialization: "Cyber Security",
+  university: "indian institute of technology (IIT)Bombay",
+  passingYear: "2022",
+  additionalQualification: "M Tech in computer Engineering",
+  certifications: "Certified ethical hacker(CEH)",
+};
+
+export const profileExperience = {
+  totalExperience: "3 Years experience",
+  previousOrganization: "cybersecurity solutions pvt. Ltd.",
+  role: "Senior cyber security Analyst",
+};
+
+// ---- Document tab ----
+export const profileDocuments = [
+  {
+    id: "doc-1",
+    name: "Highest Qualification Document",
+    required: false,
+    uploaded: true,
+    uploadedOn: "Uploaded 12 jan 2025",
+    status: "verified",
+  },
+  {
+    id: "doc-2",
+    name: "Past Experience letter",
+    required: false,
+    uploaded: false,
+    uploadedOn: "Not uploaded",
+    status: null,
+  },
+  {
+    id: "doc-3",
+    name: "PAN Card",
+    required: true,
+    uploaded: true,
+    uploadedOn: "Uploaded 12 jan 2025",
+    status: "verified",
+  },
+  {
+    id: "doc-4",
+    name: "Aadhar Card",
+    required: true,
+    uploaded: true,
+    uploadedOn: "Uploaded 12 jan 2025",
+    status: "verified",
+  },
+  {
+    id: "doc-5",
+    name: "Resume",
+    required: true,
+    uploaded: true,
+    uploadedOn: "Uploaded 12 jan 2025",
+    status: "verified",
+  },
+];
+
+export const profileDocumentNote = "File Size Should be less than 200KB (PDF Format only)";
+
+// ---- Contact Details tab ----
+export const profileContactDetail = {
+  contact: {
+    mobileNumber: "+91 6475276534",
+    emergencyContactNumber: "+91 3423567543",
+    emailId: "anjalisharma22@gmail.com",
+  },
+  address: {
+    line: "'E' 205 Shree sai,om nagar kandivali ,(w)",
+    state: "Maharashtra",
+    district: "Mumbai suburban District",
+    taluka: "Kandivali",
+    pinCode: "400067",
+  },
+};

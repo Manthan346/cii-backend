@@ -27,6 +27,9 @@ import {
   Upload,
   BarChart3,
   BriefcaseBusiness,
+  ClipboardCheck,
+  Bell,
+  UserCircle,
 } from "lucide-react";
 
 export const sidebarMenu = [
@@ -38,6 +41,12 @@ export const sidebarMenu = [
         title: "Dashboard",
         icon: LayoutGrid,
         route: "/staff/dashboard",
+      },
+      {
+        id: "profile",
+        title: "Profile",
+        icon: UserCircle,
+        route: "/staff/profile",
       },
       {
         id: "candidate-management",
@@ -94,13 +103,13 @@ export const sidebarMenu = [
       {
         id: "task-assigned",
         title: "Task Assigned",
-        icon: BriefcaseBusiness,
+        icon: ClipboardCheck,
         route: "/staff/task-assigned",
       },
       {
         id: "notifications",
         title: "Notifications",
-        icon: BriefcaseBusiness,
+        icon: Bell,
         route: "/staff/notifications",
       },
     ],

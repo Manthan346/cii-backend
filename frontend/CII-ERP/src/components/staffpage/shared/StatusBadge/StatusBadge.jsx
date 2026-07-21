@@ -30,6 +30,8 @@ const STATUS_TONE = {
   high: "red",
   medium: "orange",
   low: "grey",
+  /* ---- Profile additions (Document tab pill) ---- */
+  verified: "green",
 };
 
 const StatusBadge = ({ status }) => {

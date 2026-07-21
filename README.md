@@ -65,3 +65,15 @@ Added the Study Material Upload Page on Staff Login
 Added the Reports Page on Staff Login
 Added the Work Page on Staff Login
 Added the Task Assigned Page on Staff Login
+
+19 July 2026
+Sunday
+
+20 July 2026
+Createded the staff Notifications page 
+Added path to Notifications page
+
+21 July 2026
+Created the My profile Page on Staff Login
+Added path to Profile Page
+MAde change in Profile Page
