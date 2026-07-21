@@ -117,7 +117,8 @@ export const Candidates_detailsScalarFieldEnum = {
   highest_qualification: 'highest_qualification',
   qualification_percentage: 'qualification_percentage',
   admin_approval: 'admin_approval',
-  candidate_skills: 'candidate_skills'
+  candidate_skills: 'candidate_skills',
+  guardian_phone_no: 'guardian_phone_no'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
