@@ -9,6 +9,9 @@ import { createInstructorCandidateSchema } from "../../src/services/zod/instruct
 import { createInstructorCandidateEnrollmentSchema } from "../../src/services/zod/instructor/create-instructor-candidate-enrollment-schema";
 import { enrollCandidate } from "../../src/controllers/instructor-controller/enroll-candidate";
 import { getCandidateStatistics } from "../../src/controllers/instructor-controller/candidate-management-statistics";
+import { getAllCandidateBelongingToInstructor } from "../../src/controllers/instructor-controller/all-candidate-overview";
+import { updateCandidateBatchStatus } from "../../src/controllers/instructor-controller/update-candidate-batch-status";
+import { viewCandidateProfile } from "../../src/controllers/instructor-controller/view-candidate-profile";
 
 const instructorRouter = Router();
 
@@ -46,6 +49,24 @@ instructorRouter.get(
     "/candidate-management/statistics",
     verifyInstructorUsingAccessToken,
     getCandidateStatistics
+)
+
+instructorRouter.get(
+    "/candidate-management/candidate-overview",
+    verifyInstructorUsingAccessToken,
+    getAllCandidateBelongingToInstructor
+)
+
+instructorRouter.patch(
+    "/candidate-management/update-status",
+    verifyInstructorUsingAccessToken,
+    updateCandidateBatchStatus
+)
+
+instructorRouter.get(
+    "/candidate-management/view-candidate-profile",
+    verifyInstructorUsingAccessToken,
+    viewCandidateProfile
 )
 
 
