@@ -1,0 +1,43 @@
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+  font-family: var(--font-family);
+}
+
+.table thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 14px 10px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: middle;
+}
+
+.checkboxCol {
+  width: 32px;
+}
+
+.nameCell {
+  font-weight: 700;
+  min-width: 220px;
+}
+
+.nowrap {
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}

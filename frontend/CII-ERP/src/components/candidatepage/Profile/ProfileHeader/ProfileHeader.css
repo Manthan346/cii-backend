@@ -139,99 +139,12 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* ── Mobile / tablet redesign ──────────────────────────────────────────
-   Below 900px the avatar (with its progress ring) moves on top of the
-   blue card instead of sitting beside it, the edit button drops down
-   next to the status pill, and the secondary batch/percentage text is
-   hidden. Achieved with `display: contents` on the two card rows so
-   their children become direct grid items of the card — no JSX
-   restructuring needed, and nothing above this block is touched, so
-   the desktop layout is completely unaffected. */
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .profile-header {
-    position: relative;
-    display: block;
-    width: 100%;
-    margin-bottom: 18px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .profile-header__avatar-wrap {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    width: 64px;
-    height: 64px;
-    z-index: 2;
-  }
-
-  .profile-header__avatar {
-    inset: 6px;
-    font-size: 15px;
-  }
-
-  .profile-header__pct-badge {
-    font-size: 9px;
-    padding: 1px 5px;
-    top: -3px;
-    right: -3px;
-  }
-
   .profile-header__card {
     width: 100%;
-    padding: 14px 16px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "info   info"
-      "status edit";
-    row-gap: 14px;
-    column-gap: 10px;
-  }
-
-  /* Make the two row-wrappers "disappear" so their children act as
-     direct grid items of .profile-header__card and can be placed
-     into the areas above. */
-  .profile-header__card-top,
-  .profile-header__card-bottom {
-    display: contents;
-  }
-
-  .profile-header__identity {
-    grid-area: info;
-    padding-left: 78px;
-    min-height: 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .profile-header__name {
-    font-size: 17px;
-  }
-
-  /* "Welcome back, " prefix, mobile-only, no JS needed */
-  .profile-header__name::before {
-    content: "Welcome back, ";
-    font-weight: 400;
-  }
-
-  .profile-header__meta-batch {
-    display: none;
-  }
-
-  .profile-header__status {
-    grid-area: status;
-    align-self: center;
-    justify-self: start;
-  }
-
-  .profile-header__edit-btn {
-    grid-area: edit;
-    align-self: center;
-    justify-self: end;
-  }
-
-  .profile-header__pct-text {
-    display: none;
   }
 }

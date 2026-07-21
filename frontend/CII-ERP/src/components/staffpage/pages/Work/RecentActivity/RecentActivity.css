@@ -1,0 +1,60 @@
+.recent-activity__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* SectionCard's built-in action link defaults to teal; the reference
+   design uses blue for "View all" here, so override it scoped to this
+   panel only (SectionCard itself stays untouched). */
+.recent-activity .section-card__action {
+  color: #2f6fed;
+}
+
+.recent-activity__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f4f5f7;
+}
+
+.recent-activity__item:first-child {
+  padding-top: 2px;
+}
+
+.recent-activity__item:last-child {
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+
+.recent-activity__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md, 12px);
+  background: #cdf3ea;
+  color: #0f7b73;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.recent-activity__content {
+  min-width: 0;
+}
+
+.recent-activity__title {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #14141a;
+}
+
+.recent-activity__meta {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #8b8b8b;
+}

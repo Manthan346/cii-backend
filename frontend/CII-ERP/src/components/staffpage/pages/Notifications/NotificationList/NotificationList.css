@@ -1,0 +1,79 @@
+.notification-list {
+  padding: 0;
+  overflow: hidden;
+}
+
+.notification-list .section-card__header {
+  padding: 18px 24px 14px;
+  margin-bottom: 0;
+}
+
+.notification-list .section-card__body {
+  padding: 0;
+}
+
+.notification-list__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.notification-list__item:last-child {
+  border-bottom: none;
+}
+
+.notification-list__item--unread {
+  background: #dbe7fb;
+}
+
+.notification-list__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification-list__icon--navy {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.notification-list__icon--blue {
+  background: var(--color-blue-bg);
+  color: var(--color-blue);
+}
+
+.notification-list__content {
+  min-width: 0;
+}
+
+.notification-list__title {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.notification-list__meta {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+.notification-list__empty {
+  padding: 32px 24px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}

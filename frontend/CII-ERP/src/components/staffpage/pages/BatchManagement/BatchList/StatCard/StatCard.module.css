@@ -1,0 +1,52 @@
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iconWrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blue {
+  background: var(--color-blue-bg);
+  color: var(--color-blue);
+}
+
+.green {
+  background: var(--color-green-bg);
+  color: var(--color-green);
+}
+
+.peach {
+  background: var(--color-peach-bg);
+  color: var(--color-peach-text);
+}
+
+.gray {
+  background: var(--color-gray-icon-bg);
+  color: var(--color-gray-icon);
+}
+
+.value {
+  font-family: var(--font-family);
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}

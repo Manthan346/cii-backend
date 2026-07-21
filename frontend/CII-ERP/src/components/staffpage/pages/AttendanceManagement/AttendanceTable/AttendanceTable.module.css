@@ -1,0 +1,66 @@
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+  font-family: var(--font-family);
+}
+
+.table thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 14px 10px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: middle;
+}
+
+.checkboxCol {
+  width: 32px;
+}
+
+.idCell {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nameCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.avatarIcon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.courseCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+  min-width: 130px;
+}
+
+.nowrap {
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}

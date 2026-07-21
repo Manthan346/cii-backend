@@ -1,0 +1,28 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-gray-icon-bg);
+  color: var(--color-gray-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.iconBtn:hover {
+  background: #e5e7eb;
+}
+
+.danger:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
