@@ -1,4 +1,4 @@
-.staff-topbar {
+.trainer-topbar {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -19,13 +19,13 @@
 }
 
 /* -------- Left: logo card -------- */
-.staff-topbar__left {
+.trainer-topbar__left {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.staff-topbar__logo-card {
+.trainer-topbar__logo-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,13 +37,13 @@
   padding: 10px 22px;
 }
 
-.staff-topbar__logo-image {
+.trainer-topbar__logo-image {
   height: 32px;
   width: auto;
   object-fit: contain;
 }
 
-.staff-topbar__logo-caption {
+.trainer-topbar__logo-caption {
   font-size: 0.68rem;
   font-weight: 600;
   color: #1a2a6c;
@@ -52,13 +52,13 @@
 }
 
 /* -------- Center: search -------- */
-.staff-topbar__center {
+.trainer-topbar__center {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.staff-topbar__search {
+.trainer-topbar__search {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -73,17 +73,17 @@
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.staff-topbar__search:focus-within {
+.trainer-topbar__search:focus-within {
   border-color: #0f7b73;
   box-shadow: 0 0 0 3px #e5f2f1;
 }
 
-.staff-topbar__search-icon {
+.trainer-topbar__search-icon {
   color: #8b8b8b;
   flex-shrink: 0;
 }
 
-.staff-topbar__search-input {
+.trainer-topbar__search-input {
   flex: 1;
   border: none;
   outline: none;
@@ -92,19 +92,19 @@
   color: #1a1a1a;
 }
 
-.staff-topbar__search-input::placeholder {
+.trainer-topbar__search-input::placeholder {
   color: #a5a5a5;
 }
 
 /* -------- Right: bell + avatar -------- */
-.staff-topbar__right {
+.trainer-topbar__right {
   display: flex;
   align-items: center;
   gap: 14px;
   flex-shrink: 0;
 }
 
-.staff-topbar__bell {
+.trainer-topbar__bell {
   position: relative;
   display: flex;
   align-items: center;
@@ -121,16 +121,16 @@
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.staff-topbar__bell:hover {
+.trainer-topbar__bell:hover {
   transform: scale(1.08);
   background: #fafafa;
 }
 
-.staff-topbar__bell:active {
+.trainer-topbar__bell:active {
   transform: scale(0.96);
 }
 
-.staff-topbar__bell-dot {
+.trainer-topbar__bell-dot {
   position: absolute;
   top: 8px;
   right: 9px;
@@ -141,7 +141,7 @@
   border: 1.5px solid #ffffff;
 }
 
-.staff-topbar__avatar {
+.trainer-topbar__avatar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,30 +157,30 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.staff-topbar__avatar:hover {
+.trainer-topbar__avatar:hover {
   transform: scale(1.06);
   box-shadow: 0 4px 12px rgba(15, 123, 115, 0.35);
 }
 
-.staff-topbar__avatar:active {
+.trainer-topbar__avatar:active {
   transform: scale(0.98);
 }
 
-.staff-topbar__avatar-initials {
+.trainer-topbar__avatar-initials {
   color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
-.staff-topbar__avatar-image {
+.trainer-topbar__avatar-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* -------- Hamburger: mobile only -------- */
-.staff-topbar__hamburger {
+.trainer-topbar__hamburger {
   display: none;
   align-items: center;
   justify-content: center;
@@ -197,19 +197,19 @@
 
 /* -------- Tablet -------- */
 @media (max-width: 1024px) {
-  .staff-topbar {
+  .trainer-topbar {
     padding: 0 18px;
     gap: 14px;
   }
 
-  .staff-topbar__search {
+  .trainer-topbar__search {
     max-width: 320px;
   }
 }
 
 /* -------- Mobile -------- */
 @media (max-width: 640px) {
-  .staff-topbar {
+  .trainer-topbar {
     height: auto;
     min-height: 84px;
     padding: 14px;
@@ -217,41 +217,41 @@
     flex-wrap: wrap;
   }
 
-  .staff-topbar__hamburger {
+  .trainer-topbar__hamburger {
     display: flex;
     order: 1;
   }
 
-  .staff-topbar__left {
+  .trainer-topbar__left {
     order: 2;
   }
 
-  .staff-topbar__right {
+  .trainer-topbar__right {
     order: 3;
     margin-left: auto;
   }
 
-  .staff-topbar__center {
+  .trainer-topbar__center {
     order: 4;
     width: 100%;
     flex-basis: 100%;
   }
 
-  .staff-topbar__search {
+  .trainer-topbar__search {
     max-width: none;
     height: 40px;
     padding: 0 14px;
   }
 
-  .staff-topbar__logo-card {
+  .trainer-topbar__logo-card {
     padding: 8px 14px;
   }
 
-  .staff-topbar__logo-image {
+  .trainer-topbar__logo-image {
     height: 24px;
   }
 
-  .staff-topbar__logo-caption {
+  .trainer-topbar__logo-caption {
     display: none;
   }
 }

@@ -78,13 +78,13 @@ const Topbar = ({
 
   return (
     <header
-      className="staff-topbar"
+      className="trainer-topbar"
       style={{ backgroundImage: `url(${bannerImage})` }}
     >
       {/* Hamburger: mobile only, opens a Sidebar drawer supplied by the parent layout */}
       <button
         type="button"
-        className="staff-topbar__hamburger"
+        className="trainer-topbar__hamburger"
         onClick={onMenuToggle}
         aria-label="Open menu"
       >
@@ -92,26 +92,26 @@ const Topbar = ({
       </button>
 
       {/* Left: CII logo card */}
-      <div className="staff-topbar__left">
-        <div className="staff-topbar__logo-card">
-          <img src={ciiLogo} alt="CII" className="staff-topbar__logo-image" />
-          <span className="staff-topbar__logo-caption">
+      <div className="trainer-topbar__left">
+        <div className="trainer-topbar__logo-card">
+          <img src={ciiLogo} alt="CII" className="trainer-topbar__logo-image" />
+          <span className="trainer-topbar__logo-caption">
             Confederation of Indian Industry
           </span>
         </div>
       </div>
 
       {/* Center: search */}
-      <div className="staff-topbar__center">
-        <div className="staff-topbar__search">
+      <div className="trainer-topbar__center">
+        <div className="trainer-topbar__search">
           <Search
             size={18}
             strokeWidth={2}
-            className="staff-topbar__search-icon"
+            className="trainer-topbar__search-icon"
           />
           <input
             type="text"
-            className="staff-topbar__search-input"
+            className="trainer-topbar__search-input"
             placeholder="Search Batches, candidates....."
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -122,22 +122,22 @@ const Topbar = ({
       </div>
 
       {/* Right: notifications + avatar */}
-      <div className="staff-topbar__right">
+      <div className="trainer-topbar__right">
         <button
           type="button"
-          className="staff-topbar__bell"
+          className="trainer-topbar__bell"
           onClick={handleBellClick}
           aria-label="Notifications"
         >
           <Bell size={20} strokeWidth={1.75} />
           {hasUnreadNotifications && (
-            <span className="staff-topbar__bell-dot" />
+            <span className="trainer-topbar__bell-dot" />
           )}
         </button>
 
         <button
           type="button"
-          className="staff-topbar__avatar"
+          className="trainer-topbar__avatar"
           onClick={handleAvatarClick}
           aria-label={`${user.name} account menu`}
           title={user.name}
@@ -146,10 +146,10 @@ const Topbar = ({
             <img
               src={user.avatarUrl}
               alt={user.name}
-              className="staff-topbar__avatar-image"
+              className="trainer-topbar__avatar-image"
             />
           ) : (
-            <span className="staff-topbar__avatar-initials">
+            <span className="trainer-topbar__avatar-initials">
               {getInitials(user.name)}
             </span>
           )}
