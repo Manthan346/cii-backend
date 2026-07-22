@@ -25,19 +25,19 @@
 
 import { Routes, Route } from 'react-router-dom';
 
-import Dashboard from '../components/staffpage/pages/Dashboard/Dashboard/Dashboard';
-import CandidateManagement from '../components/staffpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
-import BatchManagement from '../components/staffpage/pages/BatchManagement/BatchManagement/BatchManagement';
-import AttendanceManagement from '../components/staffpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
-import Resources from '../components/staffpage/pages/Resources/Resources/Resources';
-import StudyMaterialUpload from '../components/staffpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
-import Reports from '../components/staffpage/pages/Reports/Reports/Reports';
-import Work from '../components/staffpage/pages/Work/Work/Work';
-import Notifications from '../components/staffpage/pages/Notifications/Notifications/Notifications';
-import TaskAssigned from '../components/staffpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
-import Profile from '../components/staffpage/pages/Profile/Profile/Profile';
+import Dashboard from '../components/trainerpage/pages/Dashboard/Dashboard/Dashboard';
+import CandidateManagement from '../components/trainerpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
+import BatchManagement from '../components/trainerpage/pages/BatchManagement/BatchManagement/BatchManagement';
+import AttendanceManagement from '../components/trainerpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
+import Resources from '../components/trainerpage/pages/Resources/Resources/Resources';
+import StudyMaterialUpload from '../components/trainerpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
+import Reports from '../components/trainerpage/pages/Reports/Reports/Reports';
+import Work from '../components/trainerpage/pages/Work/Work/Work';
+import Notifications from '../components/trainerpage/pages/Notifications/Notifications/Notifications';
+import TaskAssigned from '../components/trainerpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
+import Profile from '../components/trainerpage/pages/Profile/Profile/Profile';
 
-export default function StaffDashboard() {
+export default function TrainerDashboard() {
   return (
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />

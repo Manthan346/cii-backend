@@ -39,7 +39,7 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <input type="csheckbox" defaultChecked aria-label={`Select ${record.name}`} />
+                <input type="checkbox" defaultChecked aria-label={`Select ${record.name}`} />
               </td>
               <td className={styles.idCell}>{record.candidateId}</td>
               <td>

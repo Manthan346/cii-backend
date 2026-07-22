@@ -60,7 +60,7 @@ const Topbar = ({
     if (onNotificationClick) {
       onNotificationClick();
     } else {
-      navigate("/staff/notifications");
+      navigate("/trainer/notifications");
     }
   };
 
@@ -72,7 +72,7 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate("/staff/profile");
+      navigate("/trainer/profile");
     }
   };
 
