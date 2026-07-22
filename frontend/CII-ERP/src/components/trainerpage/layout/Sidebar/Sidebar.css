@@ -1,8 +1,8 @@
-.staff-sidebar {
+.trainer-sidebar {
   width: 270px;
   flex-shrink: 0;
   /* position: sticky; */
-  top: 112px; /* height of .staff-topbar */
+  top: 112px; /* height of .trainer-topbar */
   align-self: flex-start;
   height: calc(100vh - 112px - 40px); /* viewport minus topbar height and content padding */
   background: #ffffff;
@@ -18,17 +18,17 @@
   -ms-overflow-style: none;
 }
 
-.staff-sidebar::-webkit-scrollbar {
+.trainer-sidebar::-webkit-scrollbar {
   display: none;
 }
 
-.staff-sidebar__nav {
+.trainer-sidebar__nav {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.staff-sidebar__section-title {
+.trainer-sidebar__section-title {
   margin: 0 0 10px 12px;
   font-size: 0.7rem;
   font-weight: 700;
@@ -38,7 +38,7 @@
   white-space: nowrap;
 }
 
-.staff-sidebar__list {
+.trainer-sidebar__list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -47,7 +47,7 @@
   gap: 4px;
 }
 
-.staff-sidebar__item {
+.trainer-sidebar__item {
   width: 88%;
   display: flex;
   align-items: center;
@@ -62,12 +62,12 @@
   transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
-.staff-sidebar__icon {
+.trainer-sidebar__icon {
   flex-shrink: 0;
   transition: color 0.15s ease;
 }
 
-.staff-sidebar__label {
+.trainer-sidebar__label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,49 +75,49 @@
 }
 
 /* Inactive hover */
-.staff-sidebar__item:hover:not(.staff-sidebar__item--active) {
+.trainer-sidebar__item:hover:not(.trainer-sidebar__item--active) {
   background: #f5f7fa;
 }
 
-.staff-sidebar__item:active {
+.trainer-sidebar__item:active {
   transform: scale(0.98);
 }
 
 /* Active item: green pill, white icon + text */
-.staff-sidebar__item--active {
+.trainer-sidebar__item--active {
   background: #0f7b73;
   color: #ffffff;
   font-weight: 600;
   box-shadow: 0 6px 14px rgba(15, 123, 115, 0.28);
 }
 
-.staff-sidebar__item--active .staff-sidebar__icon {
+.trainer-sidebar__item--active .trainer-sidebar__icon {
   color: #ffffff;
 }
 
-.staff-sidebar__item--active:hover {
+.trainer-sidebar__item--active:hover {
   background: #0b5f59;
 }
 
 /* Mobile overlay, hidden by default (desktop/tablet) */
-.staff-sidebar__overlay {
+.trainer-sidebar__overlay {
   display: none;
 }
 
 /* --------------------------------------------------- */
 /* Collapsed state (future toggle button drives this)  */
 /* --------------------------------------------------- */
-.staff-sidebar--collapsed {
+.trainer-sidebar--collapsed {
   width: 84px;
   padding: 20px 10px;
 }
 
-.staff-sidebar--collapsed .staff-sidebar__label,
-.staff-sidebar--collapsed .staff-sidebar__section-title {
+.trainer-sidebar--collapsed .trainer-sidebar__label,
+.trainer-sidebar--collapsed .trainer-sidebar__section-title {
   display: none;
 }
 
-.staff-sidebar--collapsed .staff-sidebar__item {
+.trainer-sidebar--collapsed .trainer-sidebar__item {
   justify-content: center;
   padding: 12px;
 }
@@ -126,17 +126,17 @@
 /* Tablet: auto-collapses to icons    */
 /* ---------------------------------- */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .staff-sidebar:not(.staff-sidebar--collapsed) {
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) {
     width: 84px;
     padding: 20px 10px;
   }
 
-  .staff-sidebar:not(.staff-sidebar--collapsed) .staff-sidebar__label,
-  .staff-sidebar:not(.staff-sidebar--collapsed) .staff-sidebar__section-title {
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__label,
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__section-title {
     display: none;
   }
 
-  .staff-sidebar:not(.staff-sidebar--collapsed) .staff-sidebar__item {
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__item {
     justify-content: center;
     padding: 12px;
   }
@@ -146,7 +146,7 @@
 /* Mobile: drawer sidebar + overlay */
 /* ------------------------------- */
 @media (max-width: 768px) {
-  .staff-sidebar {
+  .trainer-sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -159,21 +159,21 @@
     padding-top: 24px;
   }
 
-  .staff-sidebar--open {
+  .trainer-sidebar--open {
     transform: translateX(0);
   }
 
-  .staff-sidebar__overlay {
+  .trainer-sidebar__overlay {
     display: block;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1000;
-    animation: staff-sidebar-fade-in 0.25s ease;
+    animation: trainer-sidebar-fade-in 0.25s ease;
   }
 }
 
-@keyframes staff-sidebar-fade-in {
+@keyframes trainer-sidebar-fade-in {
   from {
     opacity: 0;
   }

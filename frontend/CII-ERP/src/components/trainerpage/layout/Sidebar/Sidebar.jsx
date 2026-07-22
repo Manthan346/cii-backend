@@ -6,8 +6,8 @@ import "./Sidebar.css";
 /**
  * Sidebar
  *
- * Standalone staff navigation menu. Renders `sidebarMenu` from
- * staffpage/data with `.map()` — no hardcoded menu items live here.
+ * Standalone trainer navigation menu. Renders `sidebarMenu` from
+ * trainerpage/data with `.map()` — no hardcoded menu items live here.
  *
  * Active state is driven by react-router's <NavLink>, so it stays in
  * sync with the URL automatically. No parent-managed "activeId" needed.
@@ -20,7 +20,7 @@ import "./Sidebar.css";
  *                              so a parent layout can close the drawer.
  *
  * This component is intentionally layout-agnostic: it doesn't assume
- * a StaffLayout wrapper exists, so it can be dropped into any shell.
+ * a TrainerLayout wrapper exists, so it can be dropped into any shell.
  */
 const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
   return (
@@ -28,24 +28,24 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
       {/* Overlay only appears/interacts on mobile via CSS */}
       {isOpen && (
         <div
-          className="staff-sidebar__overlay"
+          className="trainer-sidebar__overlay"
           onClick={onClose}
           aria-hidden="true"
         />
       )}
 
       <aside
-        className={`staff-sidebar ${isOpen ? "staff-sidebar--open" : ""} ${
-          isCollapsed ? "staff-sidebar--collapsed" : ""
+        className={`trainer-sidebar ${isOpen ? "trainer-sidebar--open" : ""} ${
+          isCollapsed ? "trainer-sidebar--collapsed" : ""
         }`}
-        aria-label="Staff navigation"
+        aria-label="Trainer navigation"
       >
-        <nav className="staff-sidebar__nav">
+        <nav className="trainer-sidebar__nav">
           {sidebarMenu.map((group) => (
-            <div className="staff-sidebar__section" key={group.title}>
-              <p className="staff-sidebar__section-title">{group.title}</p>
+            <div className="trainer-sidebar__section" key={group.title}>
+              <p className="trainer-sidebar__section-title">{group.title}</p>
 
-              <ul className="staff-sidebar__list">
+              <ul className="trainer-sidebar__list">
                 {group.items.map((item) => {
                   const Icon = item.icon;
 
@@ -55,8 +55,8 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
                         to={item.route}
                         onClick={onClose}
                         className={({ isActive }) =>
-                          `staff-sidebar__item ${
-                            isActive ? "staff-sidebar__item--active" : ""
+                          `trainer-sidebar__item ${
+                            isActive ? "trainer-sidebar__item--active" : ""
                           }`
                         }
                       >
@@ -65,9 +65,9 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
                             <Icon
                               size={19}
                               strokeWidth={isActive ? 2.1 : 1.6}
-                              className="staff-sidebar__icon"
+                              className="trainer-sidebar__icon"
                             />
-                            <span className="staff-sidebar__label">
+                            <span className="trainer-sidebar__label">
                               {item.title}
                             </span>
                           </>
