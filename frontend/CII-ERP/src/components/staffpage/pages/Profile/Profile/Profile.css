@@ -44,6 +44,7 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  background: #f8fafc;
 }
 
 /* ---- Hero: photo + teal info card ---- */
@@ -121,6 +122,7 @@
   font-weight: 700;
   overflow-wrap: break-word;
   color: white;
+  letter-spacing: normal;
 }
 
 .profile-page__role {
@@ -133,6 +135,7 @@
   margin: 0;
   font-size: 13px;
   color: #d9f2ee;
+  text-transform: uppercase;
 }
 
 .profile-page__status {

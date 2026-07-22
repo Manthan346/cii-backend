@@ -18,7 +18,7 @@ import staffAvatar from "../assets/staff-avatar.jpg";
 
 // ---- Hero card (name shown in the teal banner across all tabs) ----
 export const staffProfile = {
-  name: "Anjali Mehta",
+  name: "Anjali Sharma",
   role: "Cyber Security Trainer",
   employeeId: "CSaj-2205",
   status: "Active",
@@ -66,18 +66,18 @@ export const profileCompletion = {
 // ---- Academic Detail tab (Education + Experience are two separate
 // containers in the UI, so they're kept as two separate objects here) ----
 export const profileEducation = {
-  highestEducation: "Ph.D in cyber Security",
+  highestEducation: "Ph.D in Cyber Security",
   specialization: "Cyber Security",
-  university: "indian institute of technology (IIT)Bombay",
+  university: "Indian Institute of Technology (IIT), Bombay",
   passingYear: "2022",
-  additionalQualification: "M Tech in computer Engineering",
-  certifications: "Certified ethical hacker(CEH)",
+  additionalQualification: "M Tech in Computer Engineering",
+  certifications: "Certified Ethical Hacker(CEH)",
 };
 
 export const profileExperience = {
-  totalExperience: "3 Years experience",
-  previousOrganization: "cybersecurity solutions pvt. Ltd.",
-  role: "Senior cyber security Analyst",
+  totalExperience: "3 Years Experience",
+  previousOrganization: "Cybersecurity Solutions Pvt. Ltd.",
+  role: "Senior Cyber Security Analyst",
 };
 
 // ---- Document tab ----

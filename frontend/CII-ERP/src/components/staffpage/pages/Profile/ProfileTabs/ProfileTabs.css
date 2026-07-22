@@ -1,9 +1,10 @@
 .profile-tabs {
   display: flex;
   width: 100%;
-  gap: 16px;
+  gap: 30px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 30px;
+  margin-bottom: 0px;
 }
 
 .profile-tabs__pill {

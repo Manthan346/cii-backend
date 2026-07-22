@@ -27,7 +27,7 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
             <th>Candidate id</th>
             <th>Name</th>
             <th>Batch</th>
-            <th>Course</th>
+            {/* <th>Course</th> */}
             <th>Time in</th>
             <th>Time out</th>
             <th>Status</th>
