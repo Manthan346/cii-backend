@@ -77,3 +77,8 @@ Added path to Notifications page
 Created the My profile Page on Staff Login
 Added path to Profile Page
 MAde change in Profile Page
+
+22 July 2026
+Transformed Staff page to Trainer Page
+Made changes in the Profile section of Trainer Login
+Added "Add Candidate" form in Candidate Management section of Trainer Login
