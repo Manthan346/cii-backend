@@ -5,8 +5,9 @@ import Topbar from "../../../layout/Topbar/Topbar";
 import { FilterBar, Pagination, Button } from "../../../shared";
 import StatCard from "../StatCard/StatCard";
 import CandidateTable from "../CandidateTable/CandidateTable";
+import AddCandidateModal from "../AddCandidateModal/AddCandidateModal";
 import { candidateStats } from "../../../data/stats";
-import { candidates } from "../../../data/candidates";
+import { candidates as defaultCandidates } from "../../../data/candidates";
 import { batchOptions, courseOptions, statusOptions } from "../../../data/filterOptions";
 import "../../../styles/variables.css";
 import styles from "./CandidateManagement.module.css";
@@ -33,6 +34,29 @@ const TOTAL_PAGES = 22;
 const CandidateManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [candidates, setCandidates] = useState(defaultCandidates);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  const handleSaveCandidate = ({ name, candidateId, batch, course, contact, joinDate, status }) => {
+    const newCandidate = {
+      id: Date.now(),
+      candidateId: candidateId || "CII-DS-1042",
+      name,
+      batch,
+      course,
+      progress: 0,
+      contact: contact || "—",
+      joinDate: joinDate || "—",
+      attendance: 0,
+      status,
+    };
+
+    setCandidates((prev) => [newCandidate, ...prev]);
+    setShowAddModal(false);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 2500);
+  };
 
   return (
     <div className="staff-dashboard">
@@ -49,6 +73,12 @@ const CandidateManagement = () => {
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
             <div className={styles.content}>
+              {showToast && (
+                <div className={styles.toast} role="status">
+                  Candidate added successfully
+                </div>
+              )}
+
               <div className={styles.pageHeader}>
                 <h1 className={styles.title}>Candidate List</h1>
                 <p className={styles.subtitle}>
@@ -78,7 +108,9 @@ const CandidateManagement = () => {
                 <div className={styles.tableHeader}>
                   <h2 className={styles.tableTitle}>All Candidates</h2>
                   <div className={styles.tableActions}>
-                    <Button variant="primary">Add Candidate</Button>
+                    <Button variant="primary" onClick={() => setShowAddModal(true)}>
+                      Add Candidate
+                    </Button>
                     <Button variant="outline">Export CSV</Button>
                     <Button variant="outline">Export Excel</Button>
                   </div>
@@ -97,6 +129,13 @@ const CandidateManagement = () => {
           </main>
         </div>
       </div>
+
+      {showAddModal && (
+        <AddCandidateModal
+          onCancel={() => setShowAddModal(false)}
+          onSave={handleSaveCandidate}
+        />
+      )}
     </div>
   );
 };
