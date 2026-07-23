@@ -14,9 +14,6 @@
   box-shadow: var(--shadow-card);
   box-sizing: border-box;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
 }
 
 .basic-information-tab__columns {
@@ -66,64 +63,9 @@
   overflow-wrap: break-word;
 }
 
-/* ---- Address row (moved here from the old Contact Details tab) ---- */
-.basic-information-tab__address-row {
-  display: grid;
-  grid-template-columns: 1.6fr repeat(4, 1fr);
-  gap: 20px;
-  align-items: start;
-  padding-top: 24px;
-  border-top: 1px solid var(--color-border-light, var(--color-border));
-}
-
-.basic-information-tab__address-block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-.basic-information-tab__address-line {
-  margin: 0;
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  line-height: 1.5;
-  overflow-wrap: break-word;
-}
-
-.basic-information-tab__pill-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.basic-information-tab__pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--color-page-bg);
-  color: var(--color-text-primary);
-  font-size: 13.5px;
-  font-weight: 600;
-  overflow-wrap: break-word;
-  box-sizing: border-box;
-  width: 100%;
-}
-
 @media (max-width: 1024px) {
   .basic-information-tab {
     grid-template-columns: 1fr;
-  }
-
-  .basic-information-tab__address-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .basic-information-tab__address-block {
-    grid-column: 1 / -1;
   }
 }
 
@@ -142,9 +84,5 @@
 @media (max-width: 480px) {
   .basic-information-tab__details {
     padding: 18px;
-  }
-
-  .basic-information-tab__address-row {
-    grid-template-columns: 1fr;
   }
 }
