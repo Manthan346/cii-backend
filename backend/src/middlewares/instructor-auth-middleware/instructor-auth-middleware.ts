@@ -31,7 +31,8 @@ export const verifyInstructorUsingAccessToken = asyncHandler(
 
         req.user = {
             user_id: decoded.user_id,
-            role: decoded.role
+            role: decoded.role,
+            center_id: decoded.center_id!
         }
         req.instructor = {
             instructor_id: decoded.instructor_id,

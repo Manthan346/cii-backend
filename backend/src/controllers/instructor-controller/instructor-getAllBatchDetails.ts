@@ -9,6 +9,7 @@ export const getInstructorBatches = asyncHandler(
     const instructorId = req.instructor?.instructor_id;
 
     const search = req.query.search as string | undefined; // matches batch_name OR batch_code
+    const courseId = req.query.courseId as string | undefined; // filter by a specific course
     const courseType = req.query.courseType as string | undefined; // online | offline | hybrid
     const status = req.query.status as string | undefined; // UPCOMING | ACTIVE | INACTIVE
 
@@ -24,6 +25,10 @@ export const getInstructorBatches = asyncHandler(
           { batch_code: { contains: search, mode: "insensitive" } },
         ],
       });
+    }
+
+    if (courseId) {
+      andConditions.push({ course_id: courseId });
     }
 
     if (courseType) {
@@ -49,7 +54,7 @@ export const getInstructorBatches = asyncHandler(
           batch_start_date: true,
           b_status: true,
           batch_type: true,
-          course_details: { select: { course_mode: true, course_name: true } },
+          course_details: { select: { course_id: true, course_mode: true, course_name: true } },
           _count: {
             select: {
               batch_enrollment: { where: { enrollment_status: "ACTIVE" } },
@@ -65,6 +70,7 @@ export const getInstructorBatches = asyncHandler(
       batch_name: b.batch_name,
       batch_code: b.batch_code,
       batch_type: b.batch_type,
+      course_id: b.course_details?.course_id,
       course_name: b.course_details?.course_name,
       course_type: b.course_details?.course_mode,
       total_candidates_enrolled: b._count.batch_enrollment,
@@ -79,6 +85,10 @@ export const getInstructorBatches = asyncHandler(
         200,
         {
           batches: data,
+          courses: data.map((c)=> ({
+           courseName:  c.course_name
+
+          })),
           pagination: {
             currentPage: page,
             limit,

@@ -11,7 +11,8 @@ export interface InstructorAuthRequest extends Request {
 
     user: {
         user_id:string,
-         role: string
+         role: string,
+         center_id: string
     }
 
 }
