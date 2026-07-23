@@ -15,8 +15,8 @@ import styles from "./CandidateManagement.module.css";
 /**
  * CandidateManagement
  *
- * Staff "Candidate List" page. Mounts the shared Topbar + Sidebar shell
- * (identical composition to every other staff page) around the
+ * Trainer "Candidate List" page. Mounts the shared Topbar + Sidebar shell
+ * (identical composition to every other trainer page) around the
  * candidate-list-specific content: stat cards, filter bar, candidate
  * table, and pagination footer.
  */
@@ -67,19 +67,19 @@ const CandidateManagement = () => {
   };
 
   return (
-    <div className="staff-dashboard">
+    <div className="trainer-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: "Trainer Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
       />
 
-      <div className="staff-dashboard__content">
+      <div className="trainer-dashboard__content">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <div className="staff-dashboard__main">
-          <main className="staff-dashboard__body">
+        <div className="trainer-dashboard__main">
+          <main className="trainer-dashboard__body">
             <div className={styles.content}>
               {showToast && (
                 <div className={styles.toast} role="status">
