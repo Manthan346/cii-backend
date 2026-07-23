@@ -109,5 +109,5 @@ export {
   profileExperience,
   profileDocuments,
   profileDocumentNote,
-  profileContactDetail,
+  profileGuardianDetail,
 } from "./profileData";

@@ -48,7 +48,7 @@ const Notifications = () => {
       />
 
       <div className="staff-dashboard__content">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <Sidebar /*isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)}*/ />
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">

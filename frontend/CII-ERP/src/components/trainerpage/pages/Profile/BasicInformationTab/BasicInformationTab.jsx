@@ -4,16 +4,21 @@ import "./BasicInformationTab.css";
 /**
  * BasicInformationTab
  *
- * "Basic Information" tab content: Personal Information + Guardian
- * Information side by side in one card, and the Profile completion
- * ring/checklist in a second card alongside it.
+ * "Basic Information" tab content: Personal Information + Contact side
+ * by side, an Address block below (state/district/taluka/pin code as
+ * read-only pills), and the Profile completion ring/checklist in a
+ * second card alongside it.
+ *
+ * Contact + Address used to live in the separate "Contact Details" tab;
+ * both now live here so a staff member's core info sits in one place.
+ * Guardian Information moved the other way into the Contact Details tab.
  *
  * Note: this doesn't use the shared <SectionCard> - SectionCard always
  * renders its own title bar, but this panel's heading is the inline
- * underlined "Personal Information"/"Guardian Information" labels
- * instead, so a plain styled div matches the reference design better.
+ * underlined "Personal Information"/"Contact" labels instead, so a
+ * plain styled div matches the reference design better.
  */
-export default function BasicInformationTab({ personal, guardian, completion }) {
+export default function BasicInformationTab({ personal, contact, address, completion }) {
   return (
     <div className="basic-information-tab">
       <div className="basic-information-tab__details">
@@ -46,28 +51,44 @@ export default function BasicInformationTab({ personal, guardian, completion }) 
           <div className="basic-information-tab__divider" />
 
           <div className="basic-information-tab__column">
-            <h3 className="basic-information-tab__heading">Guardian Information</h3>
+            <h3 className="basic-information-tab__heading">Contact</h3>
 
             <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Name</span>
-              <span className="basic-information-tab__value">{guardian.name}</span>
-            </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Relationship</span>
-              <span className="basic-information-tab__value">{guardian.relationship}</span>
-            </div>
-            <div className="basic-information-tab__field">
               <span className="basic-information-tab__label">Mobile Number</span>
-              <span className="basic-information-tab__value">{guardian.mobileNumber}</span>
+              <span className="basic-information-tab__value">{contact.mobileNumber}</span>
             </div>
             <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Occupation</span>
-              <span className="basic-information-tab__value">{guardian.occupation}</span>
+              <span className="basic-information-tab__label">Emergency Contact Number</span>
+              <span className="basic-information-tab__value">{contact.emergencyContactNumber}</span>
             </div>
             <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Address</span>
-              <span className="basic-information-tab__value">{guardian.address}</span>
+              <span className="basic-information-tab__label">Email - ID</span>
+              <span className="basic-information-tab__value">{contact.emailId}</span>
             </div>
+          </div>
+        </div>
+
+        <div className="basic-information-tab__address-row">
+          <div className="basic-information-tab__address-block">
+            <h3 className="basic-information-tab__heading">Address</h3>
+            <p className="basic-information-tab__address-line">{address.line}</p>
+          </div>
+
+          <div className="basic-information-tab__pill-field">
+            <span className="basic-information-tab__label">State</span>
+            <span className="basic-information-tab__pill">{address.state}</span>
+          </div>
+          <div className="basic-information-tab__pill-field">
+            <span className="basic-information-tab__label">District</span>
+            <span className="basic-information-tab__pill">{address.district}</span>
+          </div>
+          <div className="basic-information-tab__pill-field">
+            <span className="basic-information-tab__label">Taluka</span>
+            <span className="basic-information-tab__pill">{address.taluka}</span>
+          </div>
+          <div className="basic-information-tab__pill-field">
+            <span className="basic-information-tab__label">Pin Code</span>
+            <span className="basic-information-tab__pill">{address.pinCode}</span>
           </div>
         </div>
       </div>

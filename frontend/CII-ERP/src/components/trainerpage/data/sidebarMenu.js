@@ -106,12 +106,12 @@ export const sidebarMenu = [
         icon: ClipboardCheck,
         route: "/trainer/task-assigned",
       },
-      {
-        id: "notifications",
-        title: "Notifications",
-        icon: Bell,
-        route: "/trainer/notifications",
-      },
+      // {
+      //   id: "notifications",
+      //   title: "Notifications",
+      //   icon: Bell,
+      //   route: "/trainer/notifications",
+      // },
     ],
   },
 ];

@@ -58,6 +58,14 @@ const CandidateManagement = () => {
     setTimeout(() => setShowToast(false), 2500);
   };
 
+  const handleStatusChange = (candidateId, newStatus) => {
+    setCandidates((prev) =>
+      prev.map((candidate) =>
+        candidate.id === candidateId ? { ...candidate, status: newStatus } : candidate
+      )
+    );
+  };
+
   return (
     <div className="staff-dashboard">
       <Topbar
@@ -111,12 +119,10 @@ const CandidateManagement = () => {
                     <Button variant="primary" onClick={() => setShowAddModal(true)}>
                       Add Candidate
                     </Button>
-                    <Button variant="outline">Export CSV</Button>
-                    <Button variant="outline">Export Excel</Button>
                   </div>
                 </div>
 
-                <CandidateTable candidates={candidates} />
+                <CandidateTable candidates={candidates} onStatusChange={handleStatusChange} />
 
                 <Pagination
                   showing={candidates.length}

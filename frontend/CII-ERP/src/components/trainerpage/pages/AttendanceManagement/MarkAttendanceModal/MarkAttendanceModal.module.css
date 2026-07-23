@@ -5,13 +5,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 90px 20px 20px;
+  padding: 60px 20px 20px;
   z-index: 100;
 }
 
 .modal {
   width: 100%;
   max-width: 480px;
+  max-height: 85vh;
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
@@ -29,12 +30,6 @@
   margin: 0;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
 .field {
   display: flex;
   flex-direction: column;
@@ -47,12 +42,7 @@
   color: var(--color-text-primary);
 }
 
-.required {
-  color: #dc2626;
-}
-
-.input,
-.textarea {
+.input {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -63,36 +53,95 @@
   outline: none;
 }
 
-.input:focus,
-.textarea:focus {
+.input:focus {
   border-color: var(--color-teal);
 }
 
-.textarea {
-  resize: vertical;
-  min-height: 64px;
+.studentList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 6px;
 }
 
-.radioGroup {
+.studentRow {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
 }
 
-.radioOption {
+.studentRow:hover {
+  background: var(--color-page-bg);
+}
+
+.studentInfo {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  min-width: 0;
+}
+
+.studentAvatar {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.studentText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.studentName {
   font-size: 14px;
+  font-weight: 600;
   color: var(--color-text-primary);
-  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.radioOption input[type="radio"] {
-  accent-color: var(--color-teal);
-  width: 16px;
-  height: 16px;
+.studentId {
+  font-size: 11.5px;
+  color: var(--color-text-secondary);
+}
+
+.toggle {
+  display: flex;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-page-bg);
+  padding: 2px;
+  gap: 2px;
+}
+
+.toggleBtn {
+  border: none;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: calc(var(--radius-md) - 2px);
   cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.toggleBtnPresent.toggleBtnActive {
+  background: #16a34a;
+  color: var(--color-white);
+}
+
+.toggleBtnAbsent.toggleBtnActive {
+  background: #dc2626;
+  color: var(--color-white);
 }
 
 .actions {
@@ -100,14 +149,20 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
 }
 
 @media (max-width: 480px) {
-  .row {
-    grid-template-columns: 1fr;
+  .overlay {
+    padding: 30px 16px;
   }
 
-  .overlay {
-    padding: 40px 16px;
+  .modal {
+    max-height: 90vh;
+  }
+
+  .studentName {
+    max-width: 120px;
   }
 }

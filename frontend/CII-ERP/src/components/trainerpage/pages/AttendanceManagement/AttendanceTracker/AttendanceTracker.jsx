@@ -18,6 +18,7 @@ import {
   attendanceRecords as defaultRecords,
   batchOptions,
   attendanceStatusOptions,
+  candidates as students,
 } from "../../../data";
 import styles from "./AttendanceTracker.module.css";
 
@@ -27,9 +28,10 @@ import styles from "./AttendanceTracker.module.css";
  * Staff "Attendance tracker" view - matches the reference screens:
  *  - 4 summary stat cards (Sessions today / Present / Absent / Avg. attendance)
  *  - Search / Batch / Date / Status filter bar with an Apply Filter action
- *  - "Today's Attendance" table with Export CSV / Export Excel
- *  - "+ Mark attendance" button that opens a popup form; saving it
- *    prepends a new row to the table and shows a success toast
+ *  - "Today's Attendance" table (export buttons removed per request)
+ *  - "+ Mark attendance" button that opens a popup listing every student
+ *    with a Present/Absent toggle (defaults to Present); saving it
+ *    prepends the marked rows to the table and shows a success toast
  *
  * Data (stats + table rows + page meta) comes from data/attendanceData.js
  * so it can be swapped for an API response later without touching this file.
@@ -51,20 +53,20 @@ export default function AttendanceTracker() {
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  const handleSaveAttendance = ({ batchName, date: markedDate, candidate, status: markedStatus }) => {
-    const newRecord = {
-      id: Date.now(),
-      candidateId: "CII-DS-1042",
-      name: candidate || "New candidate",
-      batch: batchName || "—",
-      course: "—",
+  const handleSaveAttendance = ({ attendanceList }) => {
+    const newRecords = attendanceList.map((entry) => ({
+      id: `${entry.id}-${Date.now()}`,
+      candidateId: entry.candidateId,
+      name: entry.name,
+      batch: entry.batch,
+      course: entry.course,
       progress: 0,
-      timeIn: markedStatus === "Absent" ? "—" : "9:00",
-      timeOut: markedStatus === "Absent" ? "—" : "5:00",
-      status: markedStatus,
-    };
+      timeIn: entry.status === "Absent" ? "—" : "9:00",
+      timeOut: entry.status === "Absent" ? "—" : "5:00",
+      status: entry.status,
+    }));
 
-    setRecords((prev) => [newRecord, ...prev]);
+    setRecords((prev) => [...newRecords, ...prev]);
     setShowModal(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
@@ -86,7 +88,6 @@ export default function AttendanceTracker() {
           </p>
         </div>
         <div className={styles.headerActions}>
-          <Button variant="outline">Export</Button>
           <Button variant="primary" icon={Plus} iconPosition="left" onClick={() => setShowModal(true)}>
             Mark attendance
           </Button>
@@ -146,10 +147,6 @@ export default function AttendanceTracker() {
           <h2 className={styles.tableTitle}>
             Today's Attendance <span className={styles.tableDate}>. {attendanceMeta.attendanceDate}</span>
           </h2>
-          <div className={styles.tableActions}>
-            <Button variant="outline">Export CSV</Button>
-            <Button variant="outline">Export Excel</Button>
-          </div>
         </div>
 
         <AttendanceTable records={records} />
@@ -166,6 +163,7 @@ export default function AttendanceTracker() {
 
       {showModal && (
         <MarkAttendanceModal
+          students={students}
           defaultDate={date}
           onCancel={() => setShowModal(false)}
           onSave={handleSaveAttendance}

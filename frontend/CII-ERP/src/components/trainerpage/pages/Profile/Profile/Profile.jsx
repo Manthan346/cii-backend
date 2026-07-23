@@ -7,6 +7,7 @@ import BasicInformationTab from "../BasicInformationTab/BasicInformationTab";
 import AcademicDetailTab from "../AcademicDetailTab/AcademicDetailTab";
 import DocumentTab from "../DocumentTab/DocumentTab";
 import ContactDetailsTab from "../ContactDetailsTab/ContactDetailsTab";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import {
   staffProfile,
   profileTabs,
@@ -16,7 +17,7 @@ import {
   profileExperience,
   profileDocuments,
   profileDocumentNote,
-  profileContactDetail,
+  profileGuardianDetail,
 } from "../../../data";
 import "../../../styles/variables.css";
 import "./Profile.css";
@@ -30,6 +31,16 @@ import "./Profile.css";
  * All fake data comes from data/profileData.js so it can be swapped
  * for API responses later without touching this file.
  *
+ * Personal/Contact/Address/Guardian/Education/Experience are lifted
+ * into state here (instead of read directly off the imported data) so
+ * the "Edit Profile" popup can save changes and have them show up
+ * immediately across whichever tab is open.
+ *
+ * Basic Information now also carries Contact + Address (moved out of
+ * the old Contact Details tab), and Contact Details now shows Guardian
+ * Information (moved out of Basic Information) - see EditProfileModal
+ * and the data/profileData.js comments for the full picture.
+ *
  * This is also where the Topbar's avatar button lands: Topbar.jsx
  * navigates to this page's route by default when no onAvatarClick
  * override is passed in, the same way its bell icon defaults to the
@@ -39,30 +50,42 @@ const Profile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [activeTab, setActiveTab] = useState(profileTabs[0].id);
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const [personal, setPersonal] = useState(profileBasicInfo.personal);
+  const [contact, setContact] = useState(profileBasicInfo.contact);
+  const [address, setAddress] = useState(profileBasicInfo.address);
+  const [guardian, setGuardian] = useState(profileGuardianDetail.guardian);
+  const [education, setEducation] = useState(profileEducation);
+  const [experience, setExperience] = useState(profileExperience);
+
+  const handleSaveProfile = (updated) => {
+    setPersonal(updated.personal);
+    setContact(updated.contact);
+    setAddress(updated.address);
+    setGuardian(updated.guardian);
+    setEducation(updated.education);
+    setExperience(updated.experience);
+    setShowEditModal(false);
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
       case "basic-information":
         return (
           <BasicInformationTab
-            personal={profileBasicInfo.personal}
-            guardian={profileBasicInfo.guardian}
+            personal={personal}
+            contact={contact}
+            address={address}
             completion={profileCompletion}
           />
         );
       case "academic-detail":
-        return (
-          <AcademicDetailTab education={profileEducation} experience={profileExperience} />
-        );
+        return <AcademicDetailTab education={education} experience={experience} />;
       case "document":
         return <DocumentTab documents={profileDocuments} note={profileDocumentNote} />;
       case "contact-details":
-        return (
-          <ContactDetailsTab
-            contact={profileContactDetail.contact}
-            address={profileContactDetail.address}
-          />
-        );
+        return <ContactDetailsTab guardian={guardian} />;
       default:
         return null;
     }
@@ -87,7 +110,11 @@ const Profile = () => {
                 <img src={staffProfile.avatar} alt={staffProfile.name} className="profile-page__photo" />
 
                 <div className="profile-page__hero-card">
-                  <button type="button" className="profile-page__edit-btn">
+                  <button
+                    type="button"
+                    className="profile-page__edit-btn"
+                    onClick={() => setShowEditModal(true)}
+                  >
                     <Pencil size={13} />
                     Edit Profile
                   </button>
@@ -97,7 +124,7 @@ const Profile = () => {
                   </p>
 
                   <h1 className="profile-page__name">
-                    {staffProfile.name} <span className="profile-page__role">({staffProfile.role})</span>
+                    {personal.name} <span className="profile-page__role">({staffProfile.role})</span>
                   </h1>
                   <p className="profile-page__id">ID : {staffProfile.employeeId}</p>
 
@@ -112,6 +139,19 @@ const Profile = () => {
           </main>
         </div>
       </div>
+
+      {showEditModal && (
+        <EditProfileModal
+          personal={personal}
+          contact={contact}
+          address={address}
+          guardian={guardian}
+          education={education}
+          experience={experience}
+          onCancel={() => setShowEditModal(false)}
+          onSave={handleSaveProfile}
+        />
+      )}
     </div>
   );
 };

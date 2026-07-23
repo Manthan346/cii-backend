@@ -4,7 +4,7 @@
 //   GET /api/staff/me/basic-info      -> profileBasicInfo, profileCompletion
 //   GET /api/staff/me/academic-detail -> profileAcademicDetail
 //   GET /api/staff/me/documents       -> profileDocuments
-//   GET /api/staff/me/contact-detail  -> profileContactDetail
+//   GET /api/staff/me/contact-detail  -> profileGuardianDetail
 
 // NOTE on the name mismatch below: the reference design's teal hero
 // banner reads "Anjali Mehta" on 3 of the 4 tab screenshots, while the
@@ -35,6 +35,10 @@ export const profileTabs = [
 ];
 
 // ---- Basic Information tab ----
+// NOTE: Contact + Address (previously the separate "Contact Details" tab)
+// now live here so all of a staff member's core info sits in one place.
+// Guardian info moved the other way - see profileGuardianDetail below,
+// which now surfaces inside the "Contact Details" tab.
 export const profileBasicInfo = {
   personal: {
     name: "Anjali Sharma",
@@ -43,12 +47,17 @@ export const profileBasicInfo = {
     bloodGroup: "AB-",
     highestQualification: "Ph.D in Cyber Security",
   },
-  guardian: {
-    name: "Ram Sharma",
-    relationship: "Father",
-    mobileNumber: "8723456284",
-    occupation: "Retired Govt. officer",
-    address: "shree Complex ,thane400101",
+  contact: {
+    mobileNumber: "+91 6475276534",
+    emergencyContactNumber: "+91 3423567543",
+    emailId: "anjalisharma22@gmail.com",
+  },
+  address: {
+    line: "'E' 205 Shree sai,om nagar kandivali ,(w)",
+    state: "Maharashtra",
+    district: "Mumbai suburban District",
+    taluka: "Kandivali",
+    pinCode: "400067",
   },
 };
 
@@ -126,18 +135,13 @@ export const profileDocuments = [
 
 export const profileDocumentNote = "File Size Should be less than 200KB (PDF Format only)";
 
-// ---- Contact Details tab ----
-export const profileContactDetail = {
-  contact: {
-    mobileNumber: "+91 6475276534",
-    emergencyContactNumber: "+91 3423567543",
-    emailId: "anjalisharma22@gmail.com",
-  },
-  address: {
-    line: "'E' 205 Shree sai,om nagar kandivali ,(w)",
-    state: "Maharashtra",
-    district: "Mumbai suburban District",
-    taluka: "Kandivali",
-    pinCode: "400067",
+// ---- Contact Details tab (now shows Guardian Information) ----
+export const profileGuardianDetail = {
+  guardian: {
+    name: "Ram Sharma",
+    relationship: "Father",
+    mobileNumber: "8723456284",
+    occupation: "Retired Govt. officer",
+    address: "shree Complex ,thane400101",
   },
 };

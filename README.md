@@ -82,3 +82,6 @@ MAde change in Profile Page
 Transformed Staff page to Trainer Page
 Made changes in the Profile section of Trainer Login
 Added "Add Candidate" form in Candidate Management section of Trainer Login
+
+23 July 2026
+

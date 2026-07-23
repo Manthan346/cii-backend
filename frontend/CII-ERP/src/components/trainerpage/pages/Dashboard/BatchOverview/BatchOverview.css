@@ -6,7 +6,7 @@
 .batch-overview__head-row,
 .batch-overview__row {
   display: grid;
-  grid-template-columns: 0.8fr 1.4fr 1fr 1.3fr 1fr;
+  grid-template-columns: 0.9fr 1.6fr 1fr 1fr;
   align-items: center;
   gap: 10px;
 }
@@ -54,8 +54,7 @@
     grid-template-areas:
       "code status"
       "course course"
-      "candidates candidates"
-      "progress progress";
+      "candidates candidates";
     row-gap: 6px;
     padding: 14px 0;
   }
@@ -74,9 +73,6 @@
   }
   .batch-overview__candidates::before {
     content: "Candidates: ";
-  }
-  .batch-overview__progress {
-    grid-area: progress;
   }
   .batch-overview__status {
     grid-area: status;

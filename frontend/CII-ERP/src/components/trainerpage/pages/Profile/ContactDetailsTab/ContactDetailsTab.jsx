@@ -3,59 +3,35 @@ import "./ContactDetailsTab.css";
 /**
  * ContactDetailsTab
  *
- * "Contact Details" tab content: a Contact section (mobile/emergency
- * numbers on the left, email on the right, separated by a vertical
- * divider) and an Address section below it with State/District/Taluka/
- * Pin Code shown as read-only pill fields.
+ * "Contact Details" tab content. Now shows Guardian Information - it
+ * moved here from the Basic Information tab, which in turn picked up
+ * Contact + Address (the content this tab used to hold).
  */
-export default function ContactDetailsTab({ contact, address }) {
+export default function ContactDetailsTab({ guardian }) {
   return (
     <div className="contact-details-tab">
-      <div className="contact-details-tab__row">
-        <div className="contact-details-tab__column">
-          <h3 className="contact-details-tab__heading">Contact</h3>
+      <h3 className="contact-details-tab__heading">Guardian Information</h3>
 
-          <div className="contact-details-tab__field">
-            <span className="contact-details-tab__label">Mobile Number</span>
-            <span className="contact-details-tab__value">{contact.mobileNumber}</span>
-          </div>
-          <div className="contact-details-tab__field">
-            <span className="contact-details-tab__label">Emergency Contact Number</span>
-            <span className="contact-details-tab__value">{contact.emergencyContactNumber}</span>
-          </div>
+      <div className="contact-details-tab__grid">
+        <div className="contact-details-tab__field">
+          <span className="contact-details-tab__label">Name</span>
+          <span className="contact-details-tab__value">{guardian.name}</span>
         </div>
-
-        <div className="contact-details-tab__divider" />
-
-        <div className="contact-details-tab__column">
-          <div className="contact-details-tab__field">
-            <span className="contact-details-tab__label">Email - ID</span>
-            <span className="contact-details-tab__value">{contact.emailId}</span>
-          </div>
+        <div className="contact-details-tab__field">
+          <span className="contact-details-tab__label">Relationship</span>
+          <span className="contact-details-tab__value">{guardian.relationship}</span>
         </div>
-      </div>
-
-      <div className="contact-details-tab__address-row">
-        <div className="contact-details-tab__address-block">
-          <h3 className="contact-details-tab__heading">Address</h3>
-          <p className="contact-details-tab__address-line">{address.line}</p>
+        <div className="contact-details-tab__field">
+          <span className="contact-details-tab__label">Mobile Number</span>
+          <span className="contact-details-tab__value">{guardian.mobileNumber}</span>
         </div>
-
-        <div className="contact-details-tab__pill-field">
-          <span className="contact-details-tab__label">State</span>
-          <span className="contact-details-tab__pill">{address.state}</span>
+        <div className="contact-details-tab__field">
+          <span className="contact-details-tab__label">Occupation</span>
+          <span className="contact-details-tab__value">{guardian.occupation}</span>
         </div>
-        <div className="contact-details-tab__pill-field">
-          <span className="contact-details-tab__label">District</span>
-          <span className="contact-details-tab__pill">{address.district}</span>
-        </div>
-        <div className="contact-details-tab__pill-field">
-          <span className="contact-details-tab__label">Taluka</span>
-          <span className="contact-details-tab__pill">{address.taluka}</span>
-        </div>
-        <div className="contact-details-tab__pill-field">
-          <span className="contact-details-tab__label">Pin Code</span>
-          <span className="contact-details-tab__pill">{address.pinCode}</span>
+        <div className="contact-details-tab__field contact-details-tab__field--wide">
+          <span className="contact-details-tab__label">Address</span>
+          <span className="contact-details-tab__value">{guardian.address}</span>
         </div>
       </div>
     </div>

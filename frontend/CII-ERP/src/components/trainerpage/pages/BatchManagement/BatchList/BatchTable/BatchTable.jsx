@@ -1,6 +1,5 @@
 import { UserCircle2 } from "lucide-react";
 import StatusBadge from "../StatusBadge/StatusBadge";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import ActionButtons from "../ActionButtons/ActionButtons";
 import styles from "./BatchTable.module.css";
 
@@ -8,9 +7,10 @@ import styles from "./BatchTable.module.css";
  * BatchTable
  *
  * "All Batches" table for the Batch Management page. Column shape is
- * specific to batches (code + schedule, trainer, course + progress,
- * candidate count, start date, status, row actions), so this lives
- * inside pages/BatchManagement/BatchList rather than /shared.
+ * specific to batches (batch code, trainer, course, candidate count,
+ * start date, status, row actions), so this lives inside
+ * pages/BatchManagement/BatchList rather than /shared. Schedule subtext
+ * and the course progress bar were removed per request.
  */
 export default function BatchTable({ batches = [], onView, onDelete, onAssignTrainer }) {
   return (
@@ -39,10 +39,7 @@ export default function BatchTable({ batches = [], onView, onDelete, onAssignTra
               <td>
                 <div className={styles.batchCell}>
                   <span className={styles.batchIcon} aria-hidden="true" />
-                  <div className={styles.batchText}>
-                    <span className={styles.batchCode}>{batch.code}</span>
-                    <span className={styles.batchSchedule}>{batch.schedule}</span>
-                  </div>
+                  <span className={styles.batchCode}>{batch.code}</span>
                 </div>
               </td>
               <td>
@@ -51,12 +48,7 @@ export default function BatchTable({ batches = [], onView, onDelete, onAssignTra
                   <span>{batch.trainer}</span>
                 </div>
               </td>
-              <td>
-                <div className={styles.courseCell}>
-                  <span>{batch.course}</span>
-                  <ProgressBar percent={batch.progress} />
-                </div>
-              </td>
+              <td>{batch.course}</td>
               <td>{batch.candidates}</td>
               <td className={styles.nowrap}>{batch.startDate}</td>
               <td>

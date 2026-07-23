@@ -6,7 +6,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 920px;
+  min-width: 800px;
   font-family: var(--font-family);
 }
 
@@ -47,19 +47,8 @@
   flex-shrink: 0;
 }
 
-.batchText {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .batchCode {
   font-weight: 700;
-}
-
-.batchSchedule {
-  font-size: 12px;
-  color: var(--color-text-secondary);
 }
 
 .trainerCell {
@@ -73,14 +62,6 @@
 .trainerIcon {
   color: #9ca3af;
   flex-shrink: 0;
-}
-
-.courseCell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-weight: 500;
-  white-space: nowrap;
 }
 
 .nowrap {

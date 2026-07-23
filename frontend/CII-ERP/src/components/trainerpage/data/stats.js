@@ -16,13 +16,6 @@ export const candidateStats = [
     tone: 'green',
   },
   {
-    id: 'ending',
-    label: 'Ending soon',
-    value: 14,
-    icon: 'clock',
-    tone: 'gray',
-  },
-  {
     id: 'dropped',
     label: 'Dropped out',
     value: 5,

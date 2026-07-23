@@ -6,7 +6,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 920px;
+  min-width: 720px;
   font-family: var(--font-family);
 }
 
@@ -49,18 +49,6 @@
 .avatarIcon {
   color: #9ca3af;
   flex-shrink: 0;
-}
-
-.courseCell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.attendanceCell {
-  font-weight: 600;
 }
 
 .nowrap {

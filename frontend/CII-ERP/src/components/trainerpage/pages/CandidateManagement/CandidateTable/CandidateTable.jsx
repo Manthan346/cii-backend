@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { UserCircle2 } from "lucide-react";
 import StatusBadge from "../StatusBadge/StatusBadge";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import { ActionButtons } from "../../../shared";
-import useCountUp from "../../../shared/hooks/useCountUp";
+import ViewCandidateModal from "../ViewCandidateModal/ViewCandidateModal";
+import EditStatusModal from "../EditStatusModal/EditStatusModal";
 import styles from "./CandidateTable.module.css";
 
 /**
@@ -12,16 +13,23 @@ import styles from "./CandidateTable.module.css";
  * is specific to candidates, so this lives inside pages/CandidateManagement
  * rather than /shared - only the generic row-action icon buttons come
  * from /shared (ActionButtons), since those are reusable on any table.
+ *
+ * Contact and Attendance columns were removed from the table itself -
+ * that info (plus everything else) now lives in the short popup opened
+ * by the Eye icon. The Edit (pencil) icon opens a small popup used only
+ * to set a candidate's status to Active or Dropped.
  */
+export default function CandidateTable({ candidates = [], onStatusChange }) {
+  const [viewingCandidate, setViewingCandidate] = useState(null);
+  const [editingCandidate, setEditingCandidate] = useState(null);
 
-/* Small helper so the Attendance % cell can count up from 0 - hooks
-   can't be called directly inside the .map() below. */
-function AttendanceCell({ value }) {
-  const animated = useCountUp(value);
-  return <>{animated}%</>;
-}
+  const handleSaveStatus = (newStatus) => {
+    if (editingCandidate) {
+      onStatusChange?.(editingCandidate.id, newStatus);
+    }
+    setEditingCandidate(null);
+  };
 
-export default function CandidateTable({ candidates = [] }) {
   return (
     <div className={styles.tableWrap}>
       <table className={styles.table}>
@@ -34,9 +42,7 @@ export default function CandidateTable({ candidates = [] }) {
             <th>Name</th>
             <th>Batch</th>
             <th>Course</th>
-            <th>Contact</th>
             <th>Join Date</th>
-            <th>Attendance</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -55,27 +61,33 @@ export default function CandidateTable({ candidates = [] }) {
                 </div>
               </td>
               <td>{candidate.batch}</td>
-              <td>
-                <div className={styles.courseCell}>
-                  <span>{candidate.course}</span>
-                  <ProgressBar percent={candidate.progress} />
-                </div>
-              </td>
-              <td>{candidate.contact}</td>
+              <td>{candidate.course}</td>
               <td className={styles.nowrap}>{candidate.joinDate}</td>
-              <td className={styles.attendanceCell}>
-                <AttendanceCell value={candidate.attendance} />
-              </td>
               <td>
                 <StatusBadge status={candidate.status} />
               </td>
               <td>
-                <ActionButtons />
+                <ActionButtons
+                  onView={() => setViewingCandidate(candidate)}
+                  onEdit={() => setEditingCandidate(candidate)}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {viewingCandidate && (
+        <ViewCandidateModal candidate={viewingCandidate} onClose={() => setViewingCandidate(null)} />
+      )}
+
+      {editingCandidate && (
+        <EditStatusModal
+          candidate={editingCandidate}
+          onCancel={() => setEditingCandidate(null)}
+          onSave={handleSaveStatus}
+        />
+      )}
     </div>
   );
 }

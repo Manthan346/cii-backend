@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Layers, CheckCircle2, Eye, Repeat, Search, Filter, Download, Printer } from "lucide-react";
+import { Layers, CheckCircle2, GraduationCap, Repeat, Search, Filter, Download, Printer } from "lucide-react";
 import { Dropdown, Button, Pagination } from "../../../shared";
 import StatCard from "./StatCard/StatCard";
 import BatchTable from "./BatchTable/BatchTable";
@@ -31,7 +31,7 @@ import styles from "./BatchList.module.css";
 const STAT_ICONS = {
   layers: Layers,
   check: CheckCircle2,
-  eye: Eye,
+  completed: GraduationCap,
   repeat: Repeat,
 };
 

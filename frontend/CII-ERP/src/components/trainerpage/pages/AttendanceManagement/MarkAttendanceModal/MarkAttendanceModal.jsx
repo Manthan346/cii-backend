@@ -1,29 +1,42 @@
 import { useState } from "react";
+import { UserCircle2 } from "lucide-react";
 import { Button } from "../../../shared";
 import styles from "./MarkAttendanceModal.module.css";
 
 /**
  * MarkAttendanceModal
  *
- * "+ Mark attendance" popup form: Batch name, Date, candidate, a
- * Present/Late/Absent radio group, and a Remark note. Fires
- * onSave(formValues) so the parent (AttendanceTracker) can push a new
- * row into the table and show the success toast.
+ * "+ Mark attendance" popup. Instead of a one-candidate-at-a-time form,
+ * it lists every student with a Present/Absent toggle next to their
+ * name. Everyone starts out Present when the popup opens; the trainer
+ * only has to click to flip someone to Absent (only one of the two can
+ * be selected at a time per student - it's a toggle, not a checkbox).
  *
- * Kept page-local (not /shared) since the field set is specific to
- * marking attendance.
+ * Fires onSave(attendanceList) with one entry per student so the
+ * parent (AttendanceTracker) can turn it into table rows.
  */
-const STATUS_OPTIONS = ["Present", "Late", "Absent"];
-
-export default function MarkAttendanceModal({ defaultDate = "", onCancel, onSave }) {
-  const [batchName, setBatchName] = useState("");
+export default function MarkAttendanceModal({ students = [], defaultDate = "", onCancel, onSave }) {
   const [date, setDate] = useState(defaultDate);
-  const [candidate, setCandidate] = useState("");
-  const [status, setStatus] = useState("Present");
-  const [remark, setRemark] = useState("");
+  // Map of candidateId -> "Present" | "Absent". Missing entries default
+  // to Present, so nothing needs pre-seeding here.
+  const [statusById, setStatusById] = useState({});
+
+  const getStatus = (student) => statusById[student.id] || "Present";
+
+  const setStatus = (student, status) => {
+    setStatusById((prev) => ({ ...prev, [student.id]: status }));
+  };
 
   const handleSave = () => {
-    onSave?.({ batchName, date, candidate, status, remark });
+    const attendanceList = students.map((student) => ({
+      id: student.id,
+      candidateId: student.candidateId,
+      name: student.name,
+      batch: student.batch,
+      course: student.course,
+      status: getStatus(student),
+    }));
+    onSave?.({ date, attendanceList });
   };
 
   return (
@@ -31,70 +44,56 @@ export default function MarkAttendanceModal({ defaultDate = "", onCancel, onSave
       <div className={styles.modal}>
         <h2 className={styles.title}>Mark Attendance</h2>
 
-        <div className={styles.row}>
-          <div className={styles.field}>
-            <label className={styles.label}>
-              Batch name <span className={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="eg DS-24"
-              value={batchName}
-              onChange={(event) => setBatchName(event.target.value)}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label className={styles.label}>Date</label>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="dd-mm-yy"
-              value={date}
-              onChange={(event) => setDate(event.target.value)}
-            />
-          </div>
-        </div>
-
         <div className={styles.field}>
-          <label className={styles.label}>candidate</label>
+          <label className={styles.label}>Date</label>
           <input
             type="text"
             className={styles.input}
-            placeholder="Ankita sharma CII-DS-24"
-            value={candidate}
-            onChange={(event) => setCandidate(event.target.value)}
+            placeholder="dd-mm-yy"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
           />
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label}>Status</label>
-          <div className={styles.radioGroup}>
-            {STATUS_OPTIONS.map((option) => (
-              <label key={option} className={styles.radioOption}>
-                <input
-                  type="radio"
-                  name="attendance-status"
-                  value={option}
-                  checked={status === option}
-                  onChange={() => setStatus(option)}
-                />
-                <span>{option}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+        <div className={styles.studentList}>
+          {students.map((student) => {
+            const status = getStatus(student);
+            const isPresent = status === "Present";
+            return (
+              <div key={student.id} className={styles.studentRow}>
+                <div className={styles.studentInfo}>
+                  <UserCircle2 size={22} className={styles.studentAvatar} />
+                  <div className={styles.studentText}>
+                    <span className={styles.studentName}>{student.name}</span>
+                    <span className={styles.studentId}>{student.candidateId}</span>
+                  </div>
+                </div>
 
-        <div className={styles.field}>
-          <label className={styles.label}>Remark</label>
-          <textarea
-            className={styles.textarea}
-            placeholder="Add note"
-            rows={3}
-            value={remark}
-            onChange={(event) => setRemark(event.target.value)}
-          />
+                <div className={styles.toggle} role="group" aria-label={`${student.name} attendance`}>
+                  <button
+                    type="button"
+                    className={`${styles.toggleBtn} ${styles.toggleBtnPresent} ${
+                      isPresent ? styles.toggleBtnActive : ""
+                    }`}
+                    aria-pressed={isPresent}
+                    onClick={() => setStatus(student, "Present")}
+                  >
+                    Present
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.toggleBtn} ${styles.toggleBtnAbsent} ${
+                      !isPresent ? styles.toggleBtnActive : ""
+                    }`}
+                    aria-pressed={!isPresent}
+                    onClick={() => setStatus(student, "Absent")}
+                  >
+                    Absent
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className={styles.actions}>

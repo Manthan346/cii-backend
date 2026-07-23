@@ -8,7 +8,6 @@ export const batches = [
   {
     id: 1,
     code: "DS-24",
-    schedule: "morning . Mon-Fri",
     trainer: "rohit mehta",
     course: "Data Science",
     progress: 85,
@@ -19,7 +18,6 @@ export const batches = [
   {
     id: 2,
     code: "PY-18",
-    schedule: "morning . Mon-Fri",
     trainer: "rohit mehta",
     course: "Python programming",
     progress: 98,
@@ -30,7 +28,6 @@ export const batches = [
   {
     id: 3,
     code: "DS-18",
-    schedule: "morning . Mon-Fri",
     trainer: "Anjali patil",
     course: "Data Science",
     progress: 50,
@@ -41,7 +38,6 @@ export const batches = [
   {
     id: 4,
     code: "BC-18",
-    schedule: "morning . Mon-Fri",
     trainer: "rohit mehta",
     course: "Business comm.",
     progress: 30,
@@ -52,7 +48,6 @@ export const batches = [
   {
     id: 5,
     code: "BC-18",
-    schedule: "morning . Mon-Fri",
     trainer: "Neha wagh",
     course: "Business comm.",
     progress: 75,
@@ -63,7 +58,6 @@ export const batches = [
   {
     id: 6,
     code: "PY-18",
-    schedule: "morning . Mon-Fri",
     trainer: "rohit mehta",
     course: "Python programming",
     progress: 60,

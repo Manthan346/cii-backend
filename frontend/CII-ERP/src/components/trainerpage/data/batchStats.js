@@ -16,10 +16,10 @@ export const batchStats = [
     tone: "green",
   },
   {
-    id: "ending",
-    label: "Ending Soon",
-    value: 2,
-    icon: "eye",
+    id: "completed",
+    label: "Batches Completed",
+    value: 14,
+    icon: "completed",
     tone: "peach",
   },
   {
