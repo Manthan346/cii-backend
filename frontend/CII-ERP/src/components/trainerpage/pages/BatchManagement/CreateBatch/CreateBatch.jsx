@@ -21,7 +21,7 @@ const EMPTY_FORM = {
 /**
  * CreateBatch
  *
- * Staff "Create new Batch" view. Two-column layout: a form (Basic
+ * Trainer "Create new Batch" view. Two-column layout: a form (Basic
  * Details / Schedule / Trainer Assignment / Additional Notes) on the
  * left, and a live "Batch Summary" + "Tip" panel on the right -
  * matches the reference "Create new Batch" screens.

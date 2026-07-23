@@ -16,7 +16,7 @@ import styles from "./BatchList.module.css";
 /**
  * BatchList
  *
- * Staff "Batch List" view (default screen of Batch Management). Shows
+ * Trainer "Batch List" view (default screen of Batch Management). Shows
  * the four summary stat cards, a search/filter bar (Trainers / Courses
  * / Status), and the "All Batches" table with pagination - matches the
  * reference "Batch List" screen.

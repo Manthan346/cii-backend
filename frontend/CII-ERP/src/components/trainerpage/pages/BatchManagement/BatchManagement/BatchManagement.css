@@ -1,7 +1,7 @@
 /* ---- Page shell: Topbar + Sidebar composition ----
    (this block is identical across every page file so each route
    can mount its own Topbar/Sidebar shell independently) ---- */
-.staff-dashboard {
+.trainer-dashboard {
   min-height: 100vh;
   background-color: var(--bg-page, #f8fafc);
   display: flex;
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-.staff-dashboard__content {
+.trainer-dashboard__content {
   display: flex;
   flex: 1;
   min-height: 0;
@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 
-.staff-dashboard__main {
+.trainer-dashboard__main {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,6 @@
   box-sizing: border-box;
 }
 
-.staff-dashboard__body {
+.trainer-dashboard__body {
   flex: 1;
 }

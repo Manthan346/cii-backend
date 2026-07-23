@@ -10,8 +10,8 @@ import "./BatchManagement.css";
 /**
  * BatchManagement
  *
- * Staff "Batch Management" page. Mounts the shared Topbar + Sidebar
- * shell (identical composition to every other staff page) around two
+ * Trainer "Batch Management" page. Mounts the shared Topbar + Sidebar
+ * shell (identical composition to every other trainer page) around two
  * swappable views:
  *  - BatchList   -> default screen: stats, filters, "All Batches" table
  *  - CreateBatch -> "Create new Batch" form, opened via the
@@ -32,19 +32,19 @@ const BatchManagement = () => {
   };
 
   return (
-    <div className="staff-dashboard">
+    <div className="trainer-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: "Trainer Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
       />
 
-      <div className="staff-dashboard__content">
+      <div className="trainer-dashboard__content">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <div className="staff-dashboard__main">
-          <main className="staff-dashboard__body">
+        <div className="trainer-dashboard__main">
+          <main className="trainer-dashboard__body">
             {view === "list" ? (
               <BatchList batches={batches} onCreateBatch={() => setView("create")} />
             ) : (
