@@ -25,7 +25,7 @@ import styles from "./AttendanceTracker.module.css";
 /**
  * AttendanceTracker
  *
- * Staff "Attendance tracker" view - matches the reference screens:
+ * Trainer "Attendance tracker" view - matches the reference screens:
  *  - 4 summary stat cards (Sessions today / Present / Absent / Avg. attendance)
  *  - Search / Batch / Date / Status filter bar with an Apply Filter action
  *  - "Today's Attendance" table (export buttons removed per request)

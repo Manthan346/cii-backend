@@ -8,8 +8,8 @@ import "./AttendanceManagement.css";
 /**
  * AttendanceManagement
  *
- * Staff "Attendance Management" page. Mounts the shared Topbar +
- * Sidebar shell (identical composition to every other staff page,
+ * Trainer "Attendance Management" page. Mounts the shared Topbar +
+ * Sidebar shell (identical composition to every other trainer page,
  * e.g. BatchManagement/CandidateManagement) around the attendance-
  * specific content, which lives in ./AttendanceTracker so this file
  * stays a thin route-level shell.
@@ -19,19 +19,19 @@ const AttendanceManagement = () => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div className="staff-dashboard">
+    <div className="trainer-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: "Trainer Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
       />
 
-      <div className="staff-dashboard__content">
+      <div className="trainer-dashboard__content">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <div className="staff-dashboard__main">
-          <main className="staff-dashboard__body">
+        <div className="trainer-dashboard__main">
+          <main className="trainer-dashboard__body">
             <div className="attendance-management">
               <AttendanceTracker />
             </div>

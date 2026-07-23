@@ -31,7 +31,7 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
             <th>Time in</th>
             <th>Time out</th>
             <th>Status</th>
-            <th>Staff Attendence</th>
+            <th>Trainer Attendence</th>
             <th>Action</th>
           </tr>
         </thead>
