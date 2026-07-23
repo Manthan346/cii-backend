@@ -2,7 +2,7 @@ import Express, { json } from "express";
 import type { Request, Response } from "express";
 import cors from "cors"; // ADD THIS
 import { candidateRouter } from "./routes/candidate-route/candidate-route";
-import { companyRouter } from "./routes/company-route/company-route";
+// import { companyRouter } from "./routes/company-route/company-route";
 import { courseRouter } from "./routes/course-route/course-route";
 import userRouter from "./routes/user-route/user-route";
 import cookieParser from "cookie-parser";
@@ -36,7 +36,7 @@ app.use(
 );
 
 app.use("/api/v1/candidate", candidateRouter);
-app.use("/api/v1/company", companyRouter);
+// app.use("/api/v1/company", companyRouter);
 app.use("/api/v1/courses", courseRouter);
 app.use("/api/v1/instructor", instructorRouter);
 app.use("/api/v1/user", userRouter)

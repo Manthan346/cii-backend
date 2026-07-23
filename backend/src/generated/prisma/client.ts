@@ -139,3 +139,18 @@ export type candidate_assessment = Prisma.candidate_assessmentModel
  * 
  */
 export type instructor_documents = Prisma.instructor_documentsModel
+/**
+ * Model notifications
+ * 
+ */
+export type notifications = Prisma.notificationsModel
+/**
+ * Model study_material
+ * 
+ */
+export type study_material = Prisma.study_materialModel
+/**
+ * Model user_notifications
+ * 
+ */
+export type user_notifications = Prisma.user_notificationsModel

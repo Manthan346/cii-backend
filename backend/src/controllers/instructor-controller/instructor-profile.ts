@@ -46,6 +46,7 @@ export const instructorProfileDetails = asyncHandler(
     );
 
     //filtering as per the need of information
+
     const basicInformation = {
       personalInformation: {
         name: `${profile.instructor_first_name} ${profile.instructor_last_name}`,

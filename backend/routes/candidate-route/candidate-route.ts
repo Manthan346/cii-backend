@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createCandidate } from "../../src/controllers/candidate-controllers/create-candidate";
-import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
+import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-validator";
 import {  createCandidateSchema } from "../../src/services/zod/candidate/candidate-schema";
 import { getAllCandidate } from "../../src/controllers/candidate-controllers/get-all-candidate";
 import { verifyCandidateUsingAccessToken } from "../../src/middlewares/candidate-auth-middleware/auth-middleware";

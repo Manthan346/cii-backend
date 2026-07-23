@@ -40,6 +40,7 @@ model candidates_details {
   qualification_percentage Decimal?               @db.Decimal(5, 2)
   admin_approval           Boolean?
   candidate_skills         String[]
+  guardian_phone_no        String?                @unique @db.VarChar(10)
   attendance_records       attendance_records[]
   batch_enrollment         batch_enrollment[]
   candidate_assessment     candidate_assessment[]
@@ -74,11 +75,14 @@ model batch_details {
   instructor_id       String                @db.Uuid
   batch_type          training_type
   b_status            batch_status
+  center_id           String?               @db.Uuid
   assessments         assessments[]
   attendance_sessions attendance_sessions[]
-  instructor          instructor_details    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
-  course_details      course_details        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
+  center_details      center_details?       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
+  instructor          instructor_details?    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
+  course_details      course_details?        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
   batch_enrollment    batch_enrollment[]
+  study_material      study_material[]
 }
 
 model course_details {
@@ -115,6 +119,7 @@ model center_details {
   center_contact String           @db.VarChar(15)
   created_at     DateTime         @default(now()) @db.Timestamp(6)
   updated_at     DateTime         @default(now()) @db.Timestamp(6)
+  batch_details  batch_details[]
   center_company center_company[]
   user_login     user_login[]
 }
@@ -138,16 +143,18 @@ model enquiry_records {
 }
 
 model user_login {
-  user_id            String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_email         String              @unique @db.VarChar(255)
+  user_id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_email         String               @unique @db.VarChar(255)
   user_password      String
   user_role          role_types
-  created_at         DateTime            @default(now()) @db.Timestamp(6)
-  updated_at         DateTime            @default(now()) @db.Timestamp(6)
-  center_id          String              @db.Uuid
+  created_at         DateTime             @default(now()) @db.Timestamp(6)
+  updated_at         DateTime             @default(now()) @db.Timestamp(6)
+  center_id          String               @db.Uuid
   refresh_token_hash String?
   candidates_details candidates_details?
-  center_details     center_details      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  study_material     study_material[]
+  center_details     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  user_notifications user_notifications[]
 }
 
 model assessments {
@@ -224,6 +231,7 @@ model batch_enrollment {
   grade              grade_types?
   certificate_url    String?                       @unique
   enrollment_status  batch_enrollment_status_type?
+  candidate_batch_id String?                       @unique @db.VarChar(255)
   batch_details      batch_details                 @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_batch")
   candidates_details candidates_details            @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_candidate")
 
@@ -324,6 +332,45 @@ model instructor_documents {
   instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
+model notifications {
+  notification_id      String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title                String
+  notification_message String
+  notification_type    notification_type
+  reference_type       notification_reference_type?
+  reference_id         String?                      @db.Uuid
+  created_at           DateTime?                    @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?                    @default(now()) @db.Timestamp(6)
+  user_notifications   user_notifications[]
+}
+
+model study_material {
+  study_material_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id          String        @db.Uuid
+  uploaded_by       String        @db.Uuid
+  title             String
+  description       String?
+  document_link     String
+  is_show           Boolean       @default(true)
+  created_at        DateTime?     @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?     @default(now()) @db.Timestamp(6)
+  batch_details     batch_details @relation(fields: [batch_id], references: [batch_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_study_material_batch")
+  user_login        user_login    @relation(fields: [uploaded_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_study_material_uploaded_by")
+}
+
+model user_notifications {
+  user_notification_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  notification_id      String        @db.Uuid
+  user_id              String        @db.Uuid
+  is_read              Boolean       @default(false)
+  read_at              DateTime?     @db.Timestamp(6)
+  created_at           DateTime?     @default(now()) @db.Timestamp(6)
+  notifications        notifications @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, onUpdate: NoAction)
+  user_login           user_login    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([notification_id, user_id], map: "unique_notification_per_user")
+}
+
 enum attend_types {
   present
   absent
@@ -392,6 +439,7 @@ enum batch_status {
   UPCOMING
   ACTIVE
   INACTIVE
+  COMPLETED
 }
 
 enum batch_enrollment_status_type {
@@ -399,4 +447,27 @@ enum batch_enrollment_status_type {
   DROPPED
   BLACKLIST
   INACTIVE
+}
+
+enum notification_reference_type {
+  ASSESSMENT
+  ATTENDANCE_SESSION
+  STUDY_MATERIAL
+  BATCH
+  CERTIFICATE
+  RESULT
+  GENERAL
+}
+
+enum notification_type {
+  ASSESSMENT_CREATED
+  ATTENDANCE_CREATED
+  STUDY_MATERIAL_UPLOADED
+  BATCH_ASSIGNED
+  CERTIFICATE_UPLOADED
+  RESULT_PUBLISHED
+  GENERAL
+  JOB_OPPORTUNITY
+  RECRUITER_RESPONSE
+  INTERVIEW_SCHEDULED
 }

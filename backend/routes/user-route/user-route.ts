@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { login } from "../../src/controllers/user-controllers/login";
-import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
+import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-validator";
 import { loginSchema } from "../../src/services/zod/users/user-login-schema";
 
 

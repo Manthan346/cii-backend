@@ -67,7 +67,10 @@ export const ModelName = {
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
   candidate_assessment: 'candidate_assessment',
-  instructor_documents: 'instructor_documents'
+  instructor_documents: 'instructor_documents',
+  notifications: 'notifications',
+  study_material: 'study_material',
+  user_notifications: 'user_notifications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -117,7 +120,8 @@ export const Candidates_detailsScalarFieldEnum = {
   highest_qualification: 'highest_qualification',
   qualification_percentage: 'qualification_percentage',
   admin_approval: 'admin_approval',
-  candidate_skills: 'candidate_skills'
+  candidate_skills: 'candidate_skills',
+  guardian_phone_no: 'guardian_phone_no'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -149,7 +153,8 @@ export const Batch_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   instructor_id: 'instructor_id',
   batch_type: 'batch_type',
-  b_status: 'b_status'
+  b_status: 'b_status',
+  center_id: 'center_id'
 } as const
 
 export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
@@ -299,7 +304,8 @@ export const Batch_enrollmentScalarFieldEnum = {
   updated_at: 'updated_at',
   grade: 'grade',
   certificate_url: 'certificate_url',
-  enrollment_status: 'enrollment_status'
+  enrollment_status: 'enrollment_status',
+  candidate_batch_id: 'candidate_batch_id'
 } as const
 
 export type Batch_enrollmentScalarFieldEnum = (typeof Batch_enrollmentScalarFieldEnum)[keyof typeof Batch_enrollmentScalarFieldEnum]
@@ -395,6 +401,47 @@ export const Instructor_documentsScalarFieldEnum = {
 } as const
 
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
+
+
+export const NotificationsScalarFieldEnum = {
+  notification_id: 'notification_id',
+  title: 'title',
+  notification_message: 'notification_message',
+  notification_type: 'notification_type',
+  reference_type: 'reference_type',
+  reference_id: 'reference_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
+
+
+export const Study_materialScalarFieldEnum = {
+  study_material_id: 'study_material_id',
+  batch_id: 'batch_id',
+  uploaded_by: 'uploaded_by',
+  title: 'title',
+  description: 'description',
+  document_link: 'document_link',
+  is_show: 'is_show',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Study_materialScalarFieldEnum = (typeof Study_materialScalarFieldEnum)[keyof typeof Study_materialScalarFieldEnum]
+
+
+export const User_notificationsScalarFieldEnum = {
+  user_notification_id: 'user_notification_id',
+  notification_id: 'notification_id',
+  user_id: 'user_id',
+  is_read: 'is_read',
+  read_at: 'read_at',
+  created_at: 'created_at'
+} as const
+
+export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
 export const SortOrder = {
