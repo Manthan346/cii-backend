@@ -361,9 +361,9 @@ export type course_detailsUncheckedUpdateManyInput = {
   course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
 }
 
-export type Course_detailsNullableScalarRelationFilter = {
-  is?: Prisma.course_detailsWhereInput | null
-  isNot?: Prisma.course_detailsWhereInput | null
+export type Course_detailsScalarRelationFilter = {
+  is?: Prisma.course_detailsWhereInput
+  isNot?: Prisma.course_detailsWhereInput
 }
 
 export type course_detailsCountOrderByAggregateInput = {
@@ -399,6 +399,11 @@ export type course_detailsMinOrderByAggregateInput = {
   course_mode?: Prisma.SortOrder
 }
 
+export type Course_detailsNullableScalarRelationFilter = {
+  is?: Prisma.course_detailsWhereInput | null
+  isNot?: Prisma.course_detailsWhereInput | null
+}
+
 export type Course_detailsListRelationFilter = {
   every?: Prisma.course_detailsWhereInput
   some?: Prisma.course_detailsWhereInput
@@ -409,23 +414,16 @@ export type course_detailsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type Course_detailsScalarRelationFilter = {
-  is?: Prisma.course_detailsWhereInput
-  isNot?: Prisma.course_detailsWhereInput
-}
-
 export type course_detailsCreateNestedOneWithoutBatch_detailsInput = {
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutBatch_detailsInput, Prisma.course_detailsUncheckedCreateWithoutBatch_detailsInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutBatch_detailsInput
   connect?: Prisma.course_detailsWhereUniqueInput
 }
 
-export type course_detailsUpdateOneWithoutBatch_detailsNestedInput = {
+export type course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutBatch_detailsInput, Prisma.course_detailsUncheckedCreateWithoutBatch_detailsInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutBatch_detailsInput
   upsert?: Prisma.course_detailsUpsertWithoutBatch_detailsInput
-  disconnect?: Prisma.course_detailsWhereInput | boolean
-  delete?: Prisma.course_detailsWhereInput | boolean
   connect?: Prisma.course_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutBatch_detailsInput, Prisma.course_detailsUpdateWithoutBatch_detailsInput>, Prisma.course_detailsUncheckedUpdateWithoutBatch_detailsInput>
 }

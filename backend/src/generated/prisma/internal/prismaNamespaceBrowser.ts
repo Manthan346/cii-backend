@@ -67,14 +67,10 @@ export const ModelName = {
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
   candidate_assessment: 'candidate_assessment',
-<<<<<<< HEAD
-  instructor_documents: 'instructor_documents'
-=======
   instructor_documents: 'instructor_documents',
   notifications: 'notifications',
   study_material: 'study_material',
   user_notifications: 'user_notifications'
->>>>>>> manthan-backend
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -244,7 +240,10 @@ export const AssessmentsScalarFieldEnum = {
   assessment_date: 'assessment_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  questions: 'questions'
+  questions: 'questions',
+  is_show: 'is_show',
+  assessment_link: 'assessment_link',
+  assessment_duration: 'assessment_duration'
 } as const
 
 export type AssessmentsScalarFieldEnum = (typeof AssessmentsScalarFieldEnum)[keyof typeof AssessmentsScalarFieldEnum]
@@ -407,8 +406,6 @@ export const Instructor_documentsScalarFieldEnum = {
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
-<<<<<<< HEAD
-=======
 export const NotificationsScalarFieldEnum = {
   notification_id: 'notification_id',
   title: 'title',
@@ -450,7 +447,6 @@ export const User_notificationsScalarFieldEnum = {
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
->>>>>>> manthan-backend
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'

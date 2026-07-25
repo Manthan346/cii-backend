@@ -28,10 +28,12 @@ export type AggregateAssessments = {
 
 export type AssessmentsAvgAggregateOutputType = {
   questions: number | null
+  assessment_duration: number | null
 }
 
 export type AssessmentsSumAggregateOutputType = {
   questions: number | null
+  assessment_duration: number | null
 }
 
 export type AssessmentsMinAggregateOutputType = {
@@ -44,6 +46,9 @@ export type AssessmentsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   questions: number | null
+  is_show: boolean | null
+  assessment_link: string | null
+  assessment_duration: number | null
 }
 
 export type AssessmentsMaxAggregateOutputType = {
@@ -56,6 +61,9 @@ export type AssessmentsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   questions: number | null
+  is_show: boolean | null
+  assessment_link: string | null
+  assessment_duration: number | null
 }
 
 export type AssessmentsCountAggregateOutputType = {
@@ -68,16 +76,21 @@ export type AssessmentsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   questions: number
+  is_show: number
+  assessment_link: number
+  assessment_duration: number
   _all: number
 }
 
 
 export type AssessmentsAvgAggregateInputType = {
   questions?: true
+  assessment_duration?: true
 }
 
 export type AssessmentsSumAggregateInputType = {
   questions?: true
+  assessment_duration?: true
 }
 
 export type AssessmentsMinAggregateInputType = {
@@ -90,6 +103,9 @@ export type AssessmentsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   questions?: true
+  is_show?: true
+  assessment_link?: true
+  assessment_duration?: true
 }
 
 export type AssessmentsMaxAggregateInputType = {
@@ -102,6 +118,9 @@ export type AssessmentsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   questions?: true
+  is_show?: true
+  assessment_link?: true
+  assessment_duration?: true
 }
 
 export type AssessmentsCountAggregateInputType = {
@@ -114,6 +133,9 @@ export type AssessmentsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   questions?: true
+  is_show?: true
+  assessment_link?: true
+  assessment_duration?: true
   _all?: true
 }
 
@@ -213,6 +235,9 @@ export type AssessmentsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   questions: number | null
+  is_show: boolean | null
+  assessment_link: string | null
+  assessment_duration: number | null
   _count: AssessmentsCountAggregateOutputType | null
   _avg: AssessmentsAvgAggregateOutputType | null
   _sum: AssessmentsSumAggregateOutputType | null
@@ -248,6 +273,9 @@ export type assessmentsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   questions?: Prisma.IntNullableFilter<"assessments"> | number | null
+  is_show?: Prisma.BoolNullableFilter<"assessments"> | boolean | null
+  assessment_link?: Prisma.StringNullableFilter<"assessments"> | string | null
+  assessment_duration?: Prisma.IntNullableFilter<"assessments"> | number | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
 }
@@ -262,6 +290,9 @@ export type assessmentsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   questions?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_show?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessment_link?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrderInput | Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByWithRelationInput
   candidate_assessment?: Prisma.candidate_assessmentOrderByRelationAggregateInput
 }
@@ -279,6 +310,9 @@ export type assessmentsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   questions?: Prisma.IntNullableFilter<"assessments"> | number | null
+  is_show?: Prisma.BoolNullableFilter<"assessments"> | boolean | null
+  assessment_link?: Prisma.StringNullableFilter<"assessments"> | string | null
+  assessment_duration?: Prisma.IntNullableFilter<"assessments"> | number | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
 }, "assessment_id">
@@ -293,6 +327,9 @@ export type assessmentsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   questions?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_show?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessment_link?: Prisma.SortOrderInput | Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.assessmentsCountOrderByAggregateInput
   _avg?: Prisma.assessmentsAvgOrderByAggregateInput
   _max?: Prisma.assessmentsMaxOrderByAggregateInput
@@ -313,6 +350,9 @@ export type assessmentsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"assessments"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"assessments"> | Date | string
   questions?: Prisma.IntNullableWithAggregatesFilter<"assessments"> | number | null
+  is_show?: Prisma.BoolNullableWithAggregatesFilter<"assessments"> | boolean | null
+  assessment_link?: Prisma.StringNullableWithAggregatesFilter<"assessments"> | string | null
+  assessment_duration?: Prisma.IntNullableWithAggregatesFilter<"assessments"> | number | null
 }
 
 export type assessmentsCreateInput = {
@@ -324,6 +364,9 @@ export type assessmentsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutAssessmentsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutAssessmentsInput
 }
@@ -338,6 +381,9 @@ export type assessmentsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutAssessmentsInput
 }
 
@@ -350,6 +396,9 @@ export type assessmentsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutAssessmentsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutAssessmentsNestedInput
 }
@@ -364,6 +413,9 @@ export type assessmentsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutAssessmentsNestedInput
 }
 
@@ -377,6 +429,9 @@ export type assessmentsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
 }
 
 export type assessmentsUpdateManyMutationInput = {
@@ -388,6 +443,9 @@ export type assessmentsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type assessmentsUncheckedUpdateManyInput = {
@@ -400,6 +458,9 @@ export type assessmentsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type AssessmentsListRelationFilter = {
@@ -422,10 +483,14 @@ export type assessmentsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   questions?: Prisma.SortOrder
+  is_show?: Prisma.SortOrder
+  assessment_link?: Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrder
 }
 
 export type assessmentsAvgOrderByAggregateInput = {
   questions?: Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrder
 }
 
 export type assessmentsMaxOrderByAggregateInput = {
@@ -438,6 +503,9 @@ export type assessmentsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   questions?: Prisma.SortOrder
+  is_show?: Prisma.SortOrder
+  assessment_link?: Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrder
 }
 
 export type assessmentsMinOrderByAggregateInput = {
@@ -450,10 +518,14 @@ export type assessmentsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   questions?: Prisma.SortOrder
+  is_show?: Prisma.SortOrder
+  assessment_link?: Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrder
 }
 
 export type assessmentsSumOrderByAggregateInput = {
   questions?: Prisma.SortOrder
+  assessment_duration?: Prisma.SortOrder
 }
 
 export type AssessmentsScalarRelationFilter = {
@@ -530,6 +602,9 @@ export type assessmentsCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutAssessmentsInput
 }
 
@@ -542,6 +617,9 @@ export type assessmentsUncheckedCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutAssessmentsInput
 }
 
@@ -584,6 +662,9 @@ export type assessmentsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"assessments"> | Date | string
   questions?: Prisma.IntNullableFilter<"assessments"> | number | null
+  is_show?: Prisma.BoolNullableFilter<"assessments"> | boolean | null
+  assessment_link?: Prisma.StringNullableFilter<"assessments"> | string | null
+  assessment_duration?: Prisma.IntNullableFilter<"assessments"> | number | null
 }
 
 export type assessmentsCreateWithoutCandidate_assessmentInput = {
@@ -595,6 +676,9 @@ export type assessmentsCreateWithoutCandidate_assessmentInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutAssessmentsInput
 }
 
@@ -608,6 +692,9 @@ export type assessmentsUncheckedCreateWithoutCandidate_assessmentInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
 }
 
 export type assessmentsCreateOrConnectWithoutCandidate_assessmentInput = {
@@ -635,6 +722,9 @@ export type assessmentsUpdateWithoutCandidate_assessmentInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutAssessmentsNestedInput
 }
 
@@ -648,6 +738,9 @@ export type assessmentsUncheckedUpdateWithoutCandidate_assessmentInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type assessmentsCreateManyBatch_detailsInput = {
@@ -659,6 +752,9 @@ export type assessmentsCreateManyBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   questions?: number | null
+  is_show?: boolean | null
+  assessment_link?: string | null
+  assessment_duration?: number | null
 }
 
 export type assessmentsUpdateWithoutBatch_detailsInput = {
@@ -670,6 +766,9 @@ export type assessmentsUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutAssessmentsNestedInput
 }
 
@@ -682,6 +781,9 @@ export type assessmentsUncheckedUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutAssessmentsNestedInput
 }
 
@@ -694,6 +796,9 @@ export type assessmentsUncheckedUpdateManyWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  assessment_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -737,6 +842,9 @@ export type assessmentsSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   created_at?: boolean
   updated_at?: boolean
   questions?: boolean
+  is_show?: boolean
+  assessment_link?: boolean
+  assessment_duration?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.assessments$candidate_assessmentArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentsCountOutputTypeDefaultArgs<ExtArgs>
@@ -752,6 +860,9 @@ export type assessmentsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   created_at?: boolean
   updated_at?: boolean
   questions?: boolean
+  is_show?: boolean
+  assessment_link?: boolean
+  assessment_duration?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessments"]>
 
@@ -765,6 +876,9 @@ export type assessmentsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   created_at?: boolean
   updated_at?: boolean
   questions?: boolean
+  is_show?: boolean
+  assessment_link?: boolean
+  assessment_duration?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessments"]>
 
@@ -778,9 +892,12 @@ export type assessmentsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   questions?: boolean
+  is_show?: boolean
+  assessment_link?: boolean
+  assessment_duration?: boolean
 }
 
-export type assessmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"assessment_id" | "batch_id" | "title" | "assessment_desc" | "assessment_type" | "assessment_date" | "created_at" | "updated_at" | "questions", ExtArgs["result"]["assessments"]>
+export type assessmentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"assessment_id" | "batch_id" | "title" | "assessment_desc" | "assessment_type" | "assessment_date" | "created_at" | "updated_at" | "questions" | "is_show" | "assessment_link" | "assessment_duration", ExtArgs["result"]["assessments"]>
 export type assessmentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.assessments$candidate_assessmentArgs<ExtArgs>
@@ -809,6 +926,9 @@ export type $assessmentsPayload<ExtArgs extends runtime.Types.Extensions.Interna
     created_at: Date
     updated_at: Date
     questions: number | null
+    is_show: boolean | null
+    assessment_link: string | null
+    assessment_duration: number | null
   }, ExtArgs["result"]["assessments"]>
   composites: {}
 }
@@ -1243,6 +1363,9 @@ export interface assessmentsFieldRefs {
   readonly created_at: Prisma.FieldRef<"assessments", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"assessments", 'DateTime'>
   readonly questions: Prisma.FieldRef<"assessments", 'Int'>
+  readonly is_show: Prisma.FieldRef<"assessments", 'Boolean'>
+  readonly assessment_link: Prisma.FieldRef<"assessments", 'String'>
+  readonly assessment_duration: Prisma.FieldRef<"assessments", 'Int'>
 }
     
 
