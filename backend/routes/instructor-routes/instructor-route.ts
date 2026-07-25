@@ -37,12 +37,12 @@ import { createAssessmentSchema } from "../../src/services/zod/instructor/create
 import { getAssessments } from "../../src/controllers/instructor-controller/get-assessment";
 import { updateAssessmentSchema } from "../../src/services/zod/instructor/update-assessment-schema";
 import { updateAssessment } from "../../src/controllers/instructor-controller/update-assessment";
-import { loginInstructor } from "../../src/controllers/instructor-controller/login-instructor"; 
+ 
 import { createCandidateByInstructor } from "../../src/controllers/instructor-controller/create-candidate-by-instructor";
 
 const instructorRouter = Router();
 
-instructorRouter.post("/login", loginInstructor);
+
 
 
 

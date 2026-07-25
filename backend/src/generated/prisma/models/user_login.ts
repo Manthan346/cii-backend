@@ -282,11 +282,7 @@ export type user_loginCreateInput = {
   updated_at?: Date | string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -301,11 +297,7 @@ export type user_loginUncheckedCreateInput = {
   center_id: string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -318,11 +310,7 @@ export type user_loginUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -337,11 +325,7 @@ export type user_loginUncheckedUpdateInput = {
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -521,11 +505,7 @@ export type user_loginCreateWithoutCandidates_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -539,11 +519,7 @@ export type user_loginUncheckedCreateWithoutCandidates_detailsInput = {
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -571,11 +547,7 @@ export type user_loginUpdateWithoutCandidates_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -589,11 +561,7 @@ export type user_loginUncheckedUpdateWithoutCandidates_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -606,11 +574,7 @@ export type user_loginCreateWithoutCenter_detailsInput = {
   updated_at?: Date | string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
 
@@ -623,11 +587,7 @@ export type user_loginUncheckedCreateWithoutCenter_detailsInput = {
   updated_at?: Date | string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -748,11 +708,7 @@ export type user_loginCreateWithoutUser_notificationsInput = {
   updated_at?: Date | string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
 
@@ -766,11 +722,7 @@ export type user_loginUncheckedCreateWithoutUser_notificationsInput = {
   center_id: string
   refresh_token_hash?: string | null
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutInstructor_detailsInput
-=======
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
 }
 
 export type user_loginCreateOrConnectWithoutUser_notificationsInput = {
@@ -798,11 +750,7 @@ export type user_loginUpdateWithoutUser_notificationsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
 }
 
@@ -816,11 +764,7 @@ export type user_loginUncheckedUpdateWithoutUser_notificationsInput = {
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
 }
 
 export type user_loginCreateManyCenter_detailsInput = {
@@ -842,11 +786,7 @@ export type user_loginUpdateWithoutCenter_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -859,11 +799,7 @@ export type user_loginUncheckedUpdateWithoutCenter_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-<<<<<<< HEAD
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInput
-=======
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
->>>>>>> dfbd397f3cdea67d4da597b5527f6af8aed5c0ab
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
