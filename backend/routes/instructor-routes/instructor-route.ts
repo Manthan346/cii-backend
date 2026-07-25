@@ -3,8 +3,6 @@ import { Router } from "express";
 import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instructor-auth-middleware/instructor-auth-middleware";
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
-<<<<<<< HEAD
-import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
 import { createInstructorCandidateSchema } from "../../src/services/zod/instructor/create-Instructor-candidate-schema";
 import { createInstructorCandidateEnrollmentSchema } from "../../src/services/zod/instructor/create-instructor-candidate-enrollment-schema";
 import { enrollCandidate } from "../../src/controllers/instructor-controller/enroll-candidate";
@@ -12,14 +10,13 @@ import { getCandidateStatistics } from "../../src/controllers/instructor-control
 import { getAllCandidateBelongingToInstructor } from "../../src/controllers/instructor-controller/all-candidate-overview";
 import { updateCandidateBatchStatus } from "../../src/controllers/instructor-controller/update-candidate-batch-status";
 import { viewCandidateProfile } from "../../src/controllers/instructor-controller/view-candidate-profile";
-=======
 import { instructorProfileDetails } from "../../src/controllers/instructor-controller/instructor-profile";
 import { instructorAcademicDetails } from "../../src/controllers/instructor-controller/instructor-academic-details";
 import { upload } from "../../src/middlewares/multer-middleware/multer";
 import { multerErrorHandler } from "../../src/middlewares/multer-middleware/file-limit-middleware";
 import { instructorDocuments } from "../../src/controllers/instructor-controller/instructor-documents";
 import { instructorContactDetails } from "../../src/controllers/instructor-controller/instructor-contactDetails";
-import { instructorBatchCardData } from "../../src/controllers/instructor-controller/instructor-getbatchData";
+import { instructorBatchCardData } from "../../src/controllers/instructor-controller/instructor-getBatchData";
 import { paginationMiddleware } from "../../src/middlewares/pagination-middleware/pagination";
 import { getInstructorBatches } from "../../src/controllers/instructor-controller/instructor-getAllBatchDetails";
 import { validateQuery } from "../../src/middlewares/zod-middleware/zod-query-validator";
@@ -30,7 +27,6 @@ import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-vali
 import { updateBatchSchema } from "../../src/services/zod/instructor/edit-batch-schema";
 import { createBatch } from "../../src/controllers/instructor-controller/instructor-create-batch";
 import { createBatchSchema } from "../../src/services/zod/instructor/create-batch-schema";
->>>>>>> manthan-backend
 
 const instructorRouter = Router();
 

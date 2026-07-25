@@ -408,14 +408,10 @@ export const ModelName = {
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
   candidate_assessment: 'candidate_assessment',
-<<<<<<< HEAD
-  instructor_documents: 'instructor_documents'
-=======
   instructor_documents: 'instructor_documents',
   notifications: 'notifications',
   study_material: 'study_material',
   user_notifications: 'user_notifications'
->>>>>>> manthan-backend
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -431,11 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-<<<<<<< HEAD
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents"
-=======
     modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications"
->>>>>>> manthan-backend
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {

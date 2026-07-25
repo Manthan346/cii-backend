@@ -8,10 +8,8 @@ import { generateAccessToken, generateRefreshToken } from "../../utils/candidate
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor-jwt-auth/instructor-auth";
 
 const login = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password, centerId,role } = req.body;
+  const { email, password, centerId, role } = req.body;
 
-  // 1. Fetch the base user record — role-agnostic
-  //common login endpoint for all the roles
   const user = await prisma.user_login.findUnique({
     where: { user_email: email },
     select: {
@@ -29,8 +27,8 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(404, "user not found");
   }
 
-  if(user.user_role !== role){
-    throw new ApiError(404, "invalid role")
+  if (user.user_role !== role) {
+    throw new ApiError(404, "invalid role");
   }
 
   if (user.center_details.center_id !== centerId) {
@@ -42,12 +40,9 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(401, "invalid password");
   }
 
-  // 2. Fetch role-specific details + generate role-specific tokens
   let roleDetails: Record<string, any> = {};
   let accessToken: string;
   let refreshToken: string;
-
-
 
   switch (role) {
     case "candidate": {
@@ -69,7 +64,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         center_id: user.center_details.center_id,
         centre_name: user.center_details.center_name ?? "",
         email: user.user_email,
-        role: user.user_role
+        role: user.user_role,
       });
 
       refreshToken = generateRefreshToken({
@@ -108,7 +103,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         center_id: user.center_details.center_id,
         centre_name: user.center_details.center_name ?? "",
         email: user.user_email,
-        role
+        role,
       });
 
       refreshToken = generateInstructorRefreshToken({
@@ -124,25 +119,22 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         instructorId: instructor.instructor_id,
         instructorFirstName: instructor.instructor_first_name,
         instructorLastName: instructor.instructor_last_name,
-        
       };
       break;
     }
-
-    // 🔺 admin / super_admin: no token generators yet — see note below
-    // case "admin":
-    // case "super_admin": {
-    //   accessToken = generateAdminAccessToken({ ... });
-    //   refreshToken = generateAdminRefreshToken({ ... });
-    //   roleDetails = { userId: user.user_id, email: user.user_email };
-    //   break;
-    // }
 
     default:
       throw new ApiError(401, "invalid role");
   }
 
-  // 3. Set cookies — same shape for every role
+  // Hash before storing — DB only ever sees the hash, never the raw token
+  const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
+
+  await prisma.user_login.update({
+    where: { user_id: user.user_id },
+    data: { refresh_token_hash: refreshTokenHash },
+  });
+
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
     secure: true,
