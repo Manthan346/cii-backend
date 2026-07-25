@@ -30,6 +30,7 @@ import {
   ClipboardCheck,
   Bell,
   UserCircle,
+  CalendarClock,
 } from "lucide-react";
 
 export const sidebarMenu = [
@@ -99,6 +100,12 @@ export const sidebarMenu = [
         title: "Work",
         icon: BriefcaseBusiness,
         route: "/trainer/work",
+      },
+      {
+        id: "events",
+        title: "Events",
+        icon: CalendarClock,
+        route: "/trainer/events",
       },
       {
         id: "task-assigned",

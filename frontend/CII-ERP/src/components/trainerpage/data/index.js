@@ -99,6 +99,17 @@ export {
   notificationRecords,
 } from "./notificationsData";
 
+/* ---- Events additions ---- */
+export {
+  eventStats,
+  upcomingEvents,
+  eventTypeOptions,
+  eventStatusOptions,
+  eventModeOptions,
+  eventMeta,
+  eventRecords,
+} from "./eventsData";
+
 /* ---- My Profile additions ---- */
 export {
   staffProfile,

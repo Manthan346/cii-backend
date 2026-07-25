@@ -32,6 +32,10 @@ const STATUS_TONE = {
   low: "grey",
   /* ---- Profile additions (Document tab pill) ---- */
   verified: "green",
+  /* ---- Events additions ---- */
+  upcoming: "blue",
+  ongoing: "orange",
+  cancelled: "red",
 };
 
 const StatusBadge = ({ status }) => {
