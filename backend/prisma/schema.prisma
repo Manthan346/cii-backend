@@ -332,8 +332,6 @@ model instructor_documents {
   instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-<<<<<<< HEAD
-=======
 model notifications {
   notification_id      String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title                String
@@ -373,7 +371,6 @@ model user_notifications {
   @@unique([notification_id, user_id], map: "unique_notification_per_user")
 }
 
->>>>>>> manthan-backend
 enum attend_types {
   present
   absent
