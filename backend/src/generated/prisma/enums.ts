@@ -146,9 +146,7 @@ export const notification_type = {
   GENERAL: 'GENERAL',
   JOB_OPPORTUNITY: 'JOB_OPPORTUNITY',
   RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
-  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
-  ACADEMIC: 'ACADEMIC',
-  EXAMINATION: 'EXAMINATION'
+  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]

@@ -92,7 +92,7 @@ export const getInstructorDashboard = asyncHandler(
                 batchName: batch.batch_name,
 
                 courseName:
-                    batch.course_details.course_name,
+                    batch.course_details?.course_name,
 
                 candidateCount,
 

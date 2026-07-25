@@ -101,6 +101,7 @@ export const getBatchAttendance = asyncHandler(
             where:{
                 batch_id:batchId,
                 enrollment_status:"ACTIVE"
+                
             }
         });
         const sessionDateMap = new Map<string,string>();

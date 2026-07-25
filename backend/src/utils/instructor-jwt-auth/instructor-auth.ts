@@ -8,7 +8,8 @@ type InstructorAccessTokenPayload = {
     instructor_last_name: string,
     center_id?: string,
     centre_name?: string,
-    email?: string
+    email?: string,
+    role: string
 }
 
 
@@ -17,7 +18,8 @@ type InstructorRefreshTokenPayload = {
     center_id?: string,
     user_id: string,
     instructor_first_name: string,
-    instructor_last_name: string
+    instructor_last_name: string,
+    role: string
    
 }
 

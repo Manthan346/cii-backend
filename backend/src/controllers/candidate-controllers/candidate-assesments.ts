@@ -3,9 +3,14 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface";
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
+import { ApiError } from "../../helpers/ApiError";
 
 const candidateAssessments = asyncHandler(async (req: CandidateAuthRequest, res: Response) => {
   const candidateId = req.candidate?.candidate_id;
+
+  if(!candidateId){
+    throw new ApiError(404, "candidate id not found")
+  }
 
   const records = await prisma.candidate_assessment.findMany({
     where: { candidate_id: candidateId },

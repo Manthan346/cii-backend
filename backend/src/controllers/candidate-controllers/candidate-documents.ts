@@ -17,9 +17,6 @@ export const candidateCertificateUpload = asyncHandler(
     if (!candidateId) {
       throw new ApiError(404, "Candidate details not found");
     }
-
-
-
     // Multer files
     const files = req.files as {
       [fieldname: string]: Express.Multer.File[];

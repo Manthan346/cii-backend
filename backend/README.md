@@ -290,21 +290,63 @@ curl -X POST http://localhost:3000/api/v1/candidate/candidate-documents \
 #### Example Response (200)
 ```json
 {
-  "status": 200,
+  "statusCode": 200,
   "data": {
-    "success": true,
+    "month": 7,
+    "year": 2026,
+    "courseId": "d7941161-3b15-45d7-a04e-4a1ddfd3bc2a",
     "summary": {
-      "totalSessions": 45,
-      "attendedSessions": 40,
-      "missedSessions": 5,
-      "attendancePercentage": 88.89
+      "totalSessions": 1,
+      "attendedSessions": 1,
+      "missedSessions": 0,
+      "attendancePercentage": 100
     },
     "courses": [
-      { "course_id": "C001", "course_name": "Web Development" },
-      { "course_id": "C002", "course_name": "Data Science" }
+      {
+        "course_id": "d7941161-3b15-45d7-a04e-4a1ddfd3bc2a",
+        "course_name": "RAC (Refrigerator & Air Conditioning Servicing)"
+      },
+      {
+        "course_id": "2227d8d4-caa1-411c-9e87-3451a97bee27",
+        "course_name": "Cosmos Creative Academy Graphic Design Course"
+      }
+    ],
+    "calendar": [
+      { "date": "2026-07-01", "status": null },
+      { "date": "2026-07-02", "status": null },
+      { "date": "2026-07-03", "status": null },
+      { "date": "2026-07-04", "status": null },
+      { "date": "2026-07-05", "status": null },
+      { "date": "2026-07-06", "status": null },
+      { "date": "2026-07-07", "status": null },
+      { "date": "2026-07-08", "status": null },
+      { "date": "2026-07-09", "status": null },
+      { "date": "2026-07-10", "status": null },
+      { "date": "2026-07-11", "status": null },
+      { "date": "2026-07-12", "status": null },
+      { "date": "2026-07-13", "status": "present" },
+      { "date": "2026-07-14", "status": "holiday" },
+      { "date": "2026-07-15", "status": "holiday" },
+      { "date": "2026-07-16", "status": "holiday" },
+      { "date": "2026-07-17", "status": "holiday" },
+      { "date": "2026-07-18", "status": null },
+      { "date": "2026-07-19", "status": null },
+      { "date": "2026-07-20", "status": null },
+      { "date": "2026-07-21", "status": null },
+      { "date": "2026-07-22", "status": null },
+      { "date": "2026-07-23", "status": null },
+      { "date": "2026-07-24", "status": null },
+      { "date": "2026-07-25", "status": null },
+      { "date": "2026-07-26", "status": null },
+      { "date": "2026-07-27", "status": null },
+      { "date": "2026-07-28", "status": null },
+      { "date": "2026-07-29", "status": null },
+      { "date": "2026-07-30", "status": null },
+      { "date": "2026-07-31", "status": null }
     ]
   },
-  "message": "course details found successfully"
+  "message": "course attendance calendar fetched successfully",
+  "success": true
 }
 ```
 
