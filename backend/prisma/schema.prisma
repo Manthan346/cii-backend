@@ -366,7 +366,7 @@ model user_notifications {
   user_id              String        @db.Uuid
   is_read              Boolean       @default(false)
   read_at              DateTime?     @db.Timestamp(6)
-  created_at           DateTime?     @default(now()) @db.Timestamp(6)
+  created_at           DateTime      @default(now()) @db.Timestamp(6)
   notifications        notifications @relation(fields: [notification_id], references: [notification_id], onDelete: Cascade, onUpdate: NoAction)
   user_login           user_login    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
 
@@ -472,4 +472,6 @@ enum notification_type {
   JOB_OPPORTUNITY
   RECRUITER_RESPONSE
   INTERVIEW_SCHEDULED
+  ACADEMIC
+  EXAMINATION
 }
