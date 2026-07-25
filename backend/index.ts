@@ -10,6 +10,7 @@ import { upload } from "./src/middlewares/multer-middleware/multer";
 
 import { instructorRouter } from "./routes/instructor-routes/instructor-route";
 import { login } from "./src/controllers/user-controllers/login";
+import authRouter from "./routes/auth-route/auth-route";
 
 const app = Express();
 const port = 3000;
@@ -40,6 +41,7 @@ app.use("/api/v1/candidate", candidateRouter);
 app.use("/api/v1/courses", courseRouter);
 app.use("/api/v1/instructor", instructorRouter);
 app.use("/api/v1/user", userRouter)
+app.use("/api/v1/auth", authRouter)
 
 
 app.listen(port, () => {

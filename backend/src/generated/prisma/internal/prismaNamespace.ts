@@ -1837,8 +1837,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-<<<<<<< HEAD
-=======
     notifications: {
       payload: Prisma.$notificationsPayload<ExtArgs>
       fields: Prisma.notificationsFieldRefs
@@ -2061,7 +2059,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
->>>>>>> manthan-backend
   }
 } & {
   other: {
@@ -2415,8 +2412,6 @@ export const Instructor_documentsScalarFieldEnum = {
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
-<<<<<<< HEAD
-=======
 export const NotificationsScalarFieldEnum = {
   notification_id: 'notification_id',
   title: 'title',
@@ -2458,7 +2453,6 @@ export const User_notificationsScalarFieldEnum = {
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
->>>>>>> manthan-backend
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2839,12 +2833,9 @@ export type GlobalOmitConfig = {
   job_application?: Prisma.job_applicationOmit
   candidate_assessment?: Prisma.candidate_assessmentOmit
   instructor_documents?: Prisma.instructor_documentsOmit
-<<<<<<< HEAD
-=======
   notifications?: Prisma.notificationsOmit
   study_material?: Prisma.study_materialOmit
   user_notifications?: Prisma.user_notificationsOmit
->>>>>>> manthan-backend
 }
 
 /* Types for Logging */

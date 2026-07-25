@@ -5,111 +5,7 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
-import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
-import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../../utils/instructor-jwt-auth/instructor-auth";
-
-type NewTokenPair = { accessToken: string; refreshToken: string };
-
-// ---------- Per-role token builders ----------
-
-async function buildCandidateTokens(
-  userId: string,
-  userRole: string,
-  centerId: string,
-  centreName: string,
-  email: string
-): Promise<NewTokenPair> {
-  const candidate = await prisma.candidates_details.findUnique({
-    where: { user_id: userId },
-  });
-  if (!candidate) {
-    throw new ApiError(404, "candidate profile not found");
-  }
-
-  const accessToken = generateAccessToken({
-    candidate_id: candidate.candidate_id,
-    user_id: userId,
-    candidate_first_name: candidate.candidate_first_name,
-    candidate_last_name: candidate.candidate_last_name ?? "",
-    center_id: centerId,
-    centre_name: centreName,
-    email,
-    role: userRole,
-  });
-
-  const refreshToken = generateRefreshToken({
-    candidate_id: candidate.candidate_id,
-    user_id: userId,
-    role: userRole,
-    candidate_first_name: candidate.candidate_first_name,
-    candidate_last_name: candidate.candidate_last_name ?? "",
-    center_id: centerId,
-  });
-
-  return { accessToken, refreshToken };
-}
-
-async function buildInstructorTokens(
-  userId: string,
-  userRole: string,
-  centerId: string,
-  centreName: string,
-  email: string
-): Promise<NewTokenPair> {
-  const instructor = await prisma.instructor_details.findUnique({
-    where: { user_id: userId },
-  });
-  if (!instructor) {
-    throw new ApiError(404, "instructor profile not found");
-  }
-
-  const accessToken = generateInstructorAccessToken({
-    instructor_id: instructor.instructor_id,
-    user_id: userId,
-    instructor_first_name: instructor.instructor_first_name,
-    instructor_last_name: instructor.instructor_last_name ?? "",
-    center_id: centerId,
-    centre_name: centreName,
-    email,
-    role: userRole,
-  });
-
-  const refreshToken = generateInstructorRefreshToken({
-    instructor_id: instructor.instructor_id,
-    user_id: userId,
-    role: userRole,
-    instructor_first_name: instructor.instructor_first_name,
-    instructor_last_name: instructor.instructor_last_name ?? "",
-    center_id: centerId,
-  });
-
-  return { accessToken, refreshToken };
-}
-
-async function buildTokensForRole(
-  role: string,
-  userId: string,
-  centerId: string,
-  centreName: string,
-  email: string
-): Promise<NewTokenPair> {
-  switch (role) {
-    case "candidate":
-      return buildCandidateTokens(userId, role, centerId, centreName, email);
-
-    case "instructor":
-      return buildInstructorTokens(userId, role, centerId, centreName, email);
-
-    case "admin":
-    case "super_admin":
-      throw new ApiError(501, `refresh not yet implemented for role: ${role}`);
-
-    default:
-      throw new ApiError(400, `unrecognized role: ${role}`);
-  }
-}
-
-// ---------- Refresh token verification ----------
+import { buildTokensForRole } from "../../utils/roles-registry/roles-registry";
 
 function verifyIncomingRefreshToken(token: string): { user_id: string; role: string } {
   try {
@@ -119,12 +15,7 @@ function verifyIncomingRefreshToken(token: string): { user_id: string; role: str
   }
 }
 
-// ---------- Main handler ----------
-// Plain Request — this endpoint runs before any access-token verification
-// middleware, so req.candidate / req.instructor don't exist here yet.
-// It authenticates purely off the refresh token cookie.
-
-const refreshTokens = asyncHandler(async (req: Request, res: Response) => {
+const generateNewAccessTokenRefreshToken = asyncHandler(async (req: Request, res: Response) => {
   const incomingRefreshToken = req.cookies?.refreshToken;
   if (!incomingRefreshToken) {
     throw new ApiError(400, "refresh token not found, please login again");
@@ -154,13 +45,13 @@ const refreshTokens = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(401, "refresh token has been invalidated, please login again");
   }
 
-  const { accessToken, refreshToken } = await buildTokensForRole(
-    user.user_role,
-    user.user_id,
-    user.center_details.center_id,
-    user.center_details.center_name,
-    user.user_email
-  );
+  const { accessToken, refreshToken, roleDetails } = await buildTokensForRole({
+    userId: user.user_id,
+    role: user.user_role,
+    centerId: user.center_details.center_id,
+    centreName: user.center_details.center_name,
+    email: user.user_email,
+  });
 
   const newRefreshTokenHash = await bcrypt.hash(refreshToken, 10);
   await prisma.user_login.update({
@@ -184,10 +75,10 @@ const refreshTokens = asyncHandler(async (req: Request, res: Response) => {
   return res.status(200).json(
     new ApiResponse(
       200,
-      { role: user.user_role, accessToken },
+      { role: user.user_role, roleDetails, accessToken },
       "new access token and refresh token provided successfully"
     )
   );
 });
 
-export { refreshTokens };
+export { generateNewAccessTokenRefreshToken };
