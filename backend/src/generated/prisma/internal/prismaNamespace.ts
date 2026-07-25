@@ -2249,7 +2249,10 @@ export const AssessmentsScalarFieldEnum = {
   assessment_date: 'assessment_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  questions: 'questions'
+  questions: 'questions',
+  is_show: 'is_show',
+  assessment_link: 'assessment_link',
+  assessment_duration: 'assessment_duration'
 } as const
 
 export type AssessmentsScalarFieldEnum = (typeof AssessmentsScalarFieldEnum)[keyof typeof AssessmentsScalarFieldEnum]

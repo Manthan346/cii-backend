@@ -112,8 +112,6 @@ export type candidate_assessment = Prisma.candidate_assessmentModel
  * 
  */
 export type instructor_documents = Prisma.instructor_documentsModel
-<<<<<<< HEAD
-=======
 /**
  * Model notifications
  * 
@@ -129,4 +127,3 @@ export type study_material = Prisma.study_materialModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
->>>>>>> manthan-backend

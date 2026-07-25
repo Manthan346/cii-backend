@@ -27,10 +27,7 @@ export type * from './models/job_opportunity.js'
 export type * from './models/job_application.js'
 export type * from './models/candidate_assessment.js'
 export type * from './models/instructor_documents.js'
-<<<<<<< HEAD
-=======
 export type * from './models/notifications.js'
 export type * from './models/study_material.js'
 export type * from './models/user_notifications.js'
->>>>>>> manthan-backend
 export type * from './commonInputTypes.js'
