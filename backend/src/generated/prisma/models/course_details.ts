@@ -361,9 +361,9 @@ export type course_detailsUncheckedUpdateManyInput = {
   course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
 }
 
-export type Course_detailsNullableScalarRelationFilter = {
-  is?: Prisma.course_detailsWhereInput | null
-  isNot?: Prisma.course_detailsWhereInput | null
+export type Course_detailsScalarRelationFilter = {
+  is?: Prisma.course_detailsWhereInput
+  isNot?: Prisma.course_detailsWhereInput
 }
 
 export type course_detailsCountOrderByAggregateInput = {

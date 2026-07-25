@@ -79,6 +79,7 @@ instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createB
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
 
+
 instructorRouter.get(
     "/test",
     (req,res)=>{

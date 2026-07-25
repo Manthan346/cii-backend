@@ -66,7 +66,11 @@ export const ModelName = {
   job_eligible_course: 'job_eligible_course',
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
-  candidate_assessment: 'candidate_assessment'
+  candidate_assessment: 'candidate_assessment',
+  instructor_documents: 'instructor_documents',
+  notifications: 'notifications',
+  study_material: 'study_material',
+  user_notifications: 'user_notifications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -386,61 +390,6 @@ export const Candidate_assessmentScalarFieldEnum = {
 } as const
 
 export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
-
-
-export const Instructor_documentsScalarFieldEnum = {
-  instructor_doc_id: 'instructor_doc_id',
-  instructor_id: 'instructor_id',
-  past_exp_letter: 'past_exp_letter',
-  pan_card: 'pan_card',
-  aadhar_card: 'aadhar_card',
-  instructor_resume: 'instructor_resume',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
-
-
-export const NotificationsScalarFieldEnum = {
-  notification_id: 'notification_id',
-  title: 'title',
-  notification_message: 'notification_message',
-  notification_type: 'notification_type',
-  reference_type: 'reference_type',
-  reference_id: 'reference_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
-
-
-export const Study_materialScalarFieldEnum = {
-  study_material_id: 'study_material_id',
-  batch_id: 'batch_id',
-  uploaded_by: 'uploaded_by',
-  title: 'title',
-  description: 'description',
-  document_link: 'document_link',
-  is_show: 'is_show',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Study_materialScalarFieldEnum = (typeof Study_materialScalarFieldEnum)[keyof typeof Study_materialScalarFieldEnum]
-
-
-export const User_notificationsScalarFieldEnum = {
-  user_notification_id: 'user_notification_id',
-  notification_id: 'notification_id',
-  user_id: 'user_id',
-  is_read: 'is_read',
-  read_at: 'read_at',
-  created_at: 'created_at'
-} as const
-
-export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
 export const Instructor_documentsScalarFieldEnum = {
