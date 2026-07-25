@@ -15,18 +15,27 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
     }
     //verify user 
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET!) as TokenPayload
+
+
+    if (decoded.role !== "candidate") {
+      throw new ApiError(401, "you are not an candidate")
+      
+    }
      req.candidate = { 
         candidate_id: decoded.candidate_id,
-        role:  "candidate"
+        
 
          
         
 
      }
      req.user = {
-        user_id: decoded.user_id
+        user_id: decoded.user_id,
+        role: decoded.role
+        
      }
      
+   //   console.log("candidate",decoded)
    
 
      next()

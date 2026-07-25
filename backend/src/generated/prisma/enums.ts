@@ -106,7 +106,8 @@ export type training_type = (typeof training_type)[keyof typeof training_type]
 export const batch_status = {
   UPCOMING: 'UPCOMING',
   ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE'
+  INACTIVE: 'INACTIVE',
+  COMPLETED: 'COMPLETED'
 } as const
 
 export type batch_status = (typeof batch_status)[keyof typeof batch_status]
@@ -120,3 +121,32 @@ export const batch_enrollment_status_type = {
 } as const
 
 export type batch_enrollment_status_type = (typeof batch_enrollment_status_type)[keyof typeof batch_enrollment_status_type]
+
+
+export const notification_reference_type = {
+  ASSESSMENT: 'ASSESSMENT',
+  ATTENDANCE_SESSION: 'ATTENDANCE_SESSION',
+  STUDY_MATERIAL: 'STUDY_MATERIAL',
+  BATCH: 'BATCH',
+  CERTIFICATE: 'CERTIFICATE',
+  RESULT: 'RESULT',
+  GENERAL: 'GENERAL'
+} as const
+
+export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
+
+
+export const notification_type = {
+  ASSESSMENT_CREATED: 'ASSESSMENT_CREATED',
+  ATTENDANCE_CREATED: 'ATTENDANCE_CREATED',
+  STUDY_MATERIAL_UPLOADED: 'STUDY_MATERIAL_UPLOADED',
+  BATCH_ASSIGNED: 'BATCH_ASSIGNED',
+  CERTIFICATE_UPLOADED: 'CERTIFICATE_UPLOADED',
+  RESULT_PUBLISHED: 'RESULT_PUBLISHED',
+  GENERAL: 'GENERAL',
+  JOB_OPPORTUNITY: 'JOB_OPPORTUNITY',
+  RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
+  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED'
+} as const
+
+export type notification_type = (typeof notification_type)[keyof typeof notification_type]

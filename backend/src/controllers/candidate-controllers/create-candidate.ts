@@ -76,12 +76,14 @@ const [emailExists, contactNoExists, centreName] = await Promise.all([
     center_id: center_id,
     user_id: user.user_id,
     centre_name: centreName?.center_name ?? "",
+    role: user.user_role,
     email: user.user_email,
     candidate_last_name: candidate.candidate_last_name ?? "",
    })
 
    const refreshToken = generateRefreshToken({
     candidate_id: candidate.candidate_id,
+    role: user.user_role,
     user_id: user.user_id,
     candidate_first_name: candidate.candidate_first_name,
     candidate_last_name: candidate.candidate_last_name ?? "",

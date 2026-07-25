@@ -4,9 +4,15 @@ import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface"
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { tr } from "zod/v4/locales";
+import { ApiError } from "../../helpers/ApiError";
 
 const candidateAcademicDetails = asyncHandler(async(req: CandidateAuthRequest, res: Response)=> {
     const candidateId = req.candidate?.candidate_id
+
+    if (!candidateId) {
+      throw new ApiError(404, "candidate id not found")
+      
+    }
    const academics = await prisma.candidates_details.findUnique({
   where: { candidate_id: candidateId },
   select: {

@@ -408,7 +408,14 @@ export const ModelName = {
   job_opportunity: 'job_opportunity',
   job_application: 'job_application',
   candidate_assessment: 'candidate_assessment',
+<<<<<<< HEAD
   instructor_documents: 'instructor_documents'
+=======
+  instructor_documents: 'instructor_documents',
+  notifications: 'notifications',
+  study_material: 'study_material',
+  user_notifications: 'user_notifications'
+>>>>>>> manthan-backend
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +431,11 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
+<<<<<<< HEAD
     modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents"
+=======
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications"
+>>>>>>> manthan-backend
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1834,6 +1845,231 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+<<<<<<< HEAD
+=======
+    notifications: {
+      payload: Prisma.$notificationsPayload<ExtArgs>
+      fields: Prisma.notificationsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notificationsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notificationsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        findFirst: {
+          args: Prisma.notificationsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notificationsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        findMany: {
+          args: Prisma.notificationsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        create: {
+          args: Prisma.notificationsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        createMany: {
+          args: Prisma.notificationsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.notificationsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        delete: {
+          args: Prisma.notificationsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        update: {
+          args: Prisma.notificationsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        deleteMany: {
+          args: Prisma.notificationsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notificationsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.notificationsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        upsert: {
+          args: Prisma.notificationsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotifications>
+        }
+        groupBy: {
+          args: Prisma.notificationsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notificationsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationsCountAggregateOutputType> | number
+        }
+      }
+    }
+    study_material: {
+      payload: Prisma.$study_materialPayload<ExtArgs>
+      fields: Prisma.study_materialFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.study_materialFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.study_materialFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        findFirst: {
+          args: Prisma.study_materialFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.study_materialFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        findMany: {
+          args: Prisma.study_materialFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>[]
+        }
+        create: {
+          args: Prisma.study_materialCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        createMany: {
+          args: Prisma.study_materialCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.study_materialCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>[]
+        }
+        delete: {
+          args: Prisma.study_materialDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        update: {
+          args: Prisma.study_materialUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        deleteMany: {
+          args: Prisma.study_materialDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.study_materialUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.study_materialUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>[]
+        }
+        upsert: {
+          args: Prisma.study_materialUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$study_materialPayload>
+        }
+        aggregate: {
+          args: Prisma.Study_materialAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStudy_material>
+        }
+        groupBy: {
+          args: Prisma.study_materialGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Study_materialGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.study_materialCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Study_materialCountAggregateOutputType> | number
+        }
+      }
+    }
+    user_notifications: {
+      payload: Prisma.$user_notificationsPayload<ExtArgs>
+      fields: Prisma.user_notificationsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.user_notificationsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.user_notificationsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        findFirst: {
+          args: Prisma.user_notificationsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.user_notificationsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        findMany: {
+          args: Prisma.user_notificationsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>[]
+        }
+        create: {
+          args: Prisma.user_notificationsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        createMany: {
+          args: Prisma.user_notificationsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.user_notificationsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>[]
+        }
+        delete: {
+          args: Prisma.user_notificationsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        update: {
+          args: Prisma.user_notificationsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        deleteMany: {
+          args: Prisma.user_notificationsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.user_notificationsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.user_notificationsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>[]
+        }
+        upsert: {
+          args: Prisma.user_notificationsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$user_notificationsPayload>
+        }
+        aggregate: {
+          args: Prisma.User_notificationsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUser_notifications>
+        }
+        groupBy: {
+          args: Prisma.user_notificationsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_notificationsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.user_notificationsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.User_notificationsCountAggregateOutputType> | number
+        }
+      }
+    }
+>>>>>>> manthan-backend
   }
 } & {
   other: {
@@ -1937,7 +2173,8 @@ export const Batch_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   instructor_id: 'instructor_id',
   batch_type: 'batch_type',
-  b_status: 'b_status'
+  b_status: 'b_status',
+  center_id: 'center_id'
 } as const
 
 export type Batch_detailsScalarFieldEnum = (typeof Batch_detailsScalarFieldEnum)[keyof typeof Batch_detailsScalarFieldEnum]
@@ -2186,6 +2423,50 @@ export const Instructor_documentsScalarFieldEnum = {
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
+<<<<<<< HEAD
+=======
+export const NotificationsScalarFieldEnum = {
+  notification_id: 'notification_id',
+  title: 'title',
+  notification_message: 'notification_message',
+  notification_type: 'notification_type',
+  reference_type: 'reference_type',
+  reference_id: 'reference_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
+
+
+export const Study_materialScalarFieldEnum = {
+  study_material_id: 'study_material_id',
+  batch_id: 'batch_id',
+  uploaded_by: 'uploaded_by',
+  title: 'title',
+  description: 'description',
+  document_link: 'document_link',
+  is_show: 'is_show',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Study_materialScalarFieldEnum = (typeof Study_materialScalarFieldEnum)[keyof typeof Study_materialScalarFieldEnum]
+
+
+export const User_notificationsScalarFieldEnum = {
+  user_notification_id: 'user_notification_id',
+  notification_id: 'notification_id',
+  user_id: 'user_id',
+  is_read: 'is_read',
+  read_at: 'read_at',
+  created_at: 'created_at'
+} as const
+
+export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
+
+
+>>>>>>> manthan-backend
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2420,6 +2701,34 @@ export type ListEnumjob_application_statusFieldRefInput<$PrismaModel> = FieldRef
 
 
 /**
+ * Reference to a field of type 'notification_type'
+ */
+export type Enumnotification_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'notification_type'>
+    
+
+
+/**
+ * Reference to a field of type 'notification_type[]'
+ */
+export type ListEnumnotification_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'notification_type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'notification_reference_type'
+ */
+export type Enumnotification_reference_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'notification_reference_type'>
+    
+
+
+/**
+ * Reference to a field of type 'notification_reference_type[]'
+ */
+export type ListEnumnotification_reference_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'notification_reference_type[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2538,6 +2847,12 @@ export type GlobalOmitConfig = {
   job_application?: Prisma.job_applicationOmit
   candidate_assessment?: Prisma.candidate_assessmentOmit
   instructor_documents?: Prisma.instructor_documentsOmit
+<<<<<<< HEAD
+=======
+  notifications?: Prisma.notificationsOmit
+  study_material?: Prisma.study_materialOmit
+  user_notifications?: Prisma.user_notificationsOmit
+>>>>>>> manthan-backend
 }
 
 /* Types for Logging */

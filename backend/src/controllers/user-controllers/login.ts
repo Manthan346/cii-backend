@@ -69,11 +69,13 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         center_id: user.center_details.center_id,
         centre_name: user.center_details.center_name ?? "",
         email: user.user_email,
+        role: user.user_role
       });
 
       refreshToken = generateRefreshToken({
         candidate_id: candidate.candidate_id,
         user_id: user.user_id,
+        role: user.user_role,
         candidate_first_name: candidate.candidate_first_name,
         candidate_last_name: candidate.candidate_last_name ?? "",
         center_id: user.center_details.center_id,
@@ -106,11 +108,13 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         center_id: user.center_details.center_id,
         centre_name: user.center_details.center_name ?? "",
         email: user.user_email,
+        role
       });
 
       refreshToken = generateInstructorRefreshToken({
         instructor_id: instructor.instructor_id,
         user_id: user.user_id,
+        role: user.user_role,
         instructor_first_name: instructor.instructor_first_name,
         instructor_last_name: instructor.instructor_last_name ?? "",
         center_id: user.center_details.center_id,
@@ -120,6 +124,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         instructorId: instructor.instructor_id,
         instructorFirstName: instructor.instructor_first_name,
         instructorLastName: instructor.instructor_last_name,
+        
       };
       break;
     }
