@@ -158,17 +158,19 @@ model user_login {
 }
 
 model assessments {
-  assessment_id        String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  batch_id             String                   @db.Uuid
-  title                String                   @db.VarChar(255)
+  assessment_id        String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id             String                 @db.Uuid
+  title                String                 @db.VarChar(255)
   assessment_desc      String?
   assessment_type      assessment_type
-  assessment_date      DateTime                 @db.Date
-  created_at           DateTime                 @default(now()) @db.Timestamp(6)
-  updated_at           DateTime                 @default(now()) @db.Timestamp(6)
+  assessment_date      DateTime               @db.Date
+  created_at           DateTime               @default(now()) @db.Timestamp(6)
+  updated_at           DateTime               @default(now()) @db.Timestamp(6)
   questions            Int?
-  assessment_duration  Unsupported("interval")?
-  batch_details        batch_details            @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_batch")
+  is_show              Boolean?               @default(true)
+  assessment_link      String?
+  assessment_duration  Int?
+  batch_details        batch_details          @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_batch")
   candidate_assessment candidate_assessment[]
 }
 
