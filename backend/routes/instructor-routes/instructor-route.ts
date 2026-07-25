@@ -10,6 +10,7 @@ import { getCandidateStatistics } from "../../src/controllers/instructor-control
 import { getAllCandidateBelongingToInstructor } from "../../src/controllers/instructor-controller/all-candidate-overview";
 import { updateCandidateBatchStatus } from "../../src/controllers/instructor-controller/update-candidate-batch-status";
 import { viewCandidateProfile } from "../../src/controllers/instructor-controller/view-candidate-profile";
+<<<<<<< HEAD
 import { instructorProfileDetails } from "../../src/controllers/instructor-controller/instructor-profile";
 import { instructorAcademicDetails } from "../../src/controllers/instructor-controller/instructor-academic-details";
 import { upload } from "../../src/middlewares/multer-middleware/multer";
@@ -27,6 +28,18 @@ import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-vali
 import { updateBatchSchema } from "../../src/services/zod/instructor/edit-batch-schema";
 import { createBatch } from "../../src/controllers/instructor-controller/instructor-create-batch";
 import { createBatchSchema } from "../../src/services/zod/instructor/create-batch-schema";
+=======
+import { createStudyMaterial } from "../../src/controllers/instructor-controller/create-study-material";
+import { createStudyMaterialSchema } from "../../src/services/zod/instructor/create-study-material-schema";
+import { getStudyMaterial } from "../../src/controllers/instructor-controller/get-study-material";
+import { updateStudyMaterialSchema } from "../../src/services/zod/instructor/update-study-material-schema";
+import { updateStudyMaterial } from "../../src/controllers/instructor-controller/update-study-material";
+import { createAssessment } from "../../src/controllers/instructor-controller/create-assessment";
+import { createAssessmentSchema } from "../../src/services/zod/instructor/create-assessment-schema";
+import { getAssessments } from "../../src/controllers/instructor-controller/get-assessment";
+import { updateAssessmentSchema } from "../../src/services/zod/instructor/update-assessment-schema";
+import { updateAssessment } from "../../src/controllers/instructor-controller/update-assessment"; 
+>>>>>>> 25e35c5 (added all endpoints to instructor route ,)
 
 const instructorRouter = Router();
 
@@ -96,6 +109,16 @@ instructorRouter.get(
     verifyInstructorUsingAccessToken,
     viewCandidateProfile
 )
+
+instructorRouter.post("/study-material/create-material",verifyInstructorUsingAccessToken,validateBody(createStudyMaterialSchema),
+createStudyMaterial)
+
+instructorRouter.get("/study-material/get-all-material",verifyInstructorUsingAccessToken,getStudyMaterial)
+instructorRouter.patch("/study-material/update-material",verifyInstructorUsingAccessToken,validateBody(updateStudyMaterialSchema),updateStudyMaterial)
+
+instructorRouter.post("/assessment/create-assessment",verifyInstructorUsingAccessToken,validateBody(createAssessmentSchema),createAssessment)
+instructorRouter.get("/assessment/get-assessment",verifyInstructorUsingAccessToken,getAssessments)
+instructorRouter.patch("/assessment/update-assessment",verifyInstructorUsingAccessToken,validateBody(updateAssessmentSchema),updateAssessment)
 
 
 export { instructorRouter };
