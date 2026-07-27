@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { generateNewAccessTokenRefreshToken } from "../../src/controllers/auth-controllers/new-accessToken";
+import { generateNewAccessTokenRefreshToken } from "../../controllers/auth-controllers/new-accessToken";
 
 
 
