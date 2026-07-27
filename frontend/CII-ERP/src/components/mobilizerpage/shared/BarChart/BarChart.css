@@ -1,0 +1,74 @@
+.m-bar-chart {
+  display: flex;
+  gap: 12px;
+  height: 260px;
+}
+
+.m-bar-chart__y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-text-muted, #9199a6);
+  padding-bottom: 22px;
+  flex-shrink: 0;
+  text-align: right;
+  width: 24px;
+}
+
+.m-bar-chart__plot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.m-bar-chart__gridline {
+  border-top: 1px solid var(--color-border-light, #eef0f3);
+  height: calc((100% - 22px) / 5);
+}
+
+.m-bar-chart__bars {
+  position: absolute;
+  inset: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  padding-bottom: 22px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.m-bar-chart__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.m-bar-chart__bar {
+  width: 60%;
+  max-width: 46px;
+  border-radius: 6px 6px 0 0;
+  transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.m-bar-chart__label {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--color-text-muted, #9199a6);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .m-bar-chart {
+    height: 200px;
+  }
+
+  .m-bar-chart__bars {
+    gap: 8px;
+  }
+}

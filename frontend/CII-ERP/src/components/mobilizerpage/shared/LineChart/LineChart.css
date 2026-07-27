@@ -1,0 +1,28 @@
+.m-line-chart {
+  width: 100%;
+}
+
+.m-line-chart__svg {
+  width: 100%;
+  height: 260px;
+  display: block;
+  overflow: visible;
+}
+
+.m-line-chart__gridline {
+  stroke: var(--color-border-light, #eef0f3);
+  stroke-width: 1;
+}
+
+.m-line-chart__y-label,
+.m-line-chart__x-label {
+  fill: var(--color-text-muted, #9199a6);
+  font-size: 11px;
+  font-family: var(--font-family, inherit);
+}
+
+@media (max-width: 640px) {
+  .m-line-chart__svg {
+    height: 200px;
+  }
+}

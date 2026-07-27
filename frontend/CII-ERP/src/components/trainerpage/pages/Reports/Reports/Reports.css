@@ -185,7 +185,7 @@
 
 @media (max-width: 640px) {
   .reports-page {
-    padding: 0 16px 0 0;
+    padding: 0 16px;
   }
   .reports-page__stats-grid {
     grid-template-columns: 1fr;

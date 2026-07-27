@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../assets/cii-logo.png";
+import ciiLogo from "../../assets/cii-logo2.png";
 import "./Topbar.css";
 
 /**

@@ -23,6 +23,7 @@ import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";
 import CandidateDashboard from "./pages/CandidateDashboard";
 import TrainerDashboard from "./pages/TrainerDashboard";
+import MobilizerDashboard from "./pages/MobilizerDashboard";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path="/Registration" element={<Home />} />
       <Route path="/events" element={<EventsPage />} />
       <Route path="/trainer/*" element={<TrainerDashboard />} />
+      <Route path="/mobilizer/*" element={<MobilizerDashboard />} />
       <Route path="/*" element={<CandidatePage />} />
     </Routes>
   );          

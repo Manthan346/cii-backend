@@ -49,7 +49,7 @@
 
 @media (max-width: 640px) {
   .work-page {
-    padding: 0 16px 0 0;
+    padding: 0 16px;
   }
   .work-page__stats-grid {
     grid-template-columns: 1fr;

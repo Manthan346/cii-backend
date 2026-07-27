@@ -37,7 +37,7 @@
 /* ---- Task Assigned page content ---- */
 .task-assigned-page {
   position: relative;
-  padding: 0 20px 0 0;
+  padding: 0 16px 0 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -203,5 +203,9 @@
 
   .task-assigned-page__apply-wrap button {
     width: 100%;
+  }
+
+  .staff-dashboard{
+    padding: 0 0 0 16px;
   }
 }
