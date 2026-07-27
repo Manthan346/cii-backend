@@ -26,6 +26,11 @@ const STATUS_TONE = {
   "documents verified": "green",
   "documents collected": "green",
   "documents pending": "orange",
+  "dropped out": "red",
+  "visited centre": "orange",
+  verifying: "lightblue",
+  "not visited": "orange",
+  "new enquiries": "blue",
 };
 
 const StatusBadge = ({ status }) => {

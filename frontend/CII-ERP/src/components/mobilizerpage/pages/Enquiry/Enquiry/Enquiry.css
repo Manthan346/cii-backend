@@ -1,0 +1,54 @@
+.enquiry-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--color-navy-light, #e8eaf5);
+  border-radius: var(--radius-lg, 16px);
+  padding: 28px 32px;
+}
+
+/* ---- Page shell: Topbar + Sidebar composition ----
+   (this block is identical across every page file so each route
+   can mount its own Topbar/Sidebar shell independently) ---- */
+.mobilizer-enquiry {
+  min-height: 100vh;
+  background-color: var(--color-page-bg, #eef0f5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.mobilizer-enquiry__content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 20px 0px;
+  gap: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.mobilizer-enquiry__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+  height: calc(100vh - 112px - 40px);
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.mobilizer-enquiry__body {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .enquiry-page {
+    padding: 20px;
+  }
+}

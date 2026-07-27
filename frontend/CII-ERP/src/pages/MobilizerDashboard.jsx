@@ -33,7 +33,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import Dashboard from '../components/mobilizerpage/pages/Dashboard/Dashboard/Dashboard';
-// import Enquiries from '../components/mobilizerpage/pages/Enquiries/Enquiries/Enquiries';
+import Enquiries from '../components/mobilizerpage/pages/Enquiry/Enquiry/Enquiry';
 import Enrollments from '../components/mobilizerpage/pages/Enrollments/Enrollments/Enrollments';
 // import JobFairDashboard from '../components/mobilizerpage/pages/JobFair/JobFairDashboard/JobFairDashboard';
 // import RegistrationForms from '../components/mobilizerpage/pages/JobFair/RegistrationForms/RegistrationForms';
@@ -49,7 +49,7 @@ export default function MobilizerDashboard() {
       <Route path="/dashboard" element={<Dashboard />} />
 
       {/* ---- Enquiries ---- */}
-      {/* <Route path="/enquiries" element={<Enquiries />} /> */}
+      <Route path="/enquiries" element={<Enquiries />} />
 
       {/* ---- Enrollments ---- */}
       <Route path="/enrollments" element={<Enrollments />} />

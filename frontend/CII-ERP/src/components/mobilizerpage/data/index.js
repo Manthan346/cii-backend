@@ -27,3 +27,15 @@ export {
   completedEnrollments,
   enrollmentsTableColumns,
 } from "./enrollmentsData";
+
+export {
+  enquiryInfo,
+  enquiryInfoBanner,
+  enquiryStats,
+  courseFilterOptions,
+  enquiryFilterTabs,
+  enquiryStatusMeta,
+  enquiryTableColumns,
+  enquiries,
+  enquiryPaginationInfo,
+} from "./enquiryData";
