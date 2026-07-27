@@ -15,7 +15,6 @@ import { candidateAttendanceCalendar } from "../../src/controllers/candidate-con
 import allCoursesAttendance from "../../src/controllers/candidate-controllers/candidate-allcourses-attendance";
 import candidateAssessments from "../../src/controllers/candidate-controllers/candidate-assesments";
 import candidateUpcomingSessions from "../../src/controllers/candidate-controllers/candidate-sessions";
-// import { candidateRoleMiddleware } from "../../src/middlewares/roles-middleware/candidate-role";
 import { candidateRecentAttendanceLog } from "../../src/controllers/candidate-controllers/candidate-attendanceRecentLog";
 import { getCandidateNotifications } from "../../src/controllers/candidate-controllers/candidate-getAllNotification";
 

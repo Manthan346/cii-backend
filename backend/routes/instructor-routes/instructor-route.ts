@@ -27,6 +27,8 @@ import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-vali
 import { updateBatchSchema } from "../../src/services/zod/instructor/edit-batch-schema";
 import { createBatch } from "../../src/controllers/instructor-controller/instructor-create-batch";
 import { createBatchSchema } from "../../src/services/zod/instructor/create-batch-schema";
+import { createAttendanceSessionsFromExcel } from "../../src/controllers/instructor-controller/instructor-create-session";
+import { uploadExcel } from "../../src/middlewares/multer-middleware/excel-upload-multer";
 
 const instructorRouter = Router();
 
@@ -59,6 +61,7 @@ instructorRouter.get('/batch-details/:batchId',verifyInstructorUsingAccessToken,
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createBatch)
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
+instructorRouter.post('/upload-session-sheet',uploadExcel.single("file"), multerErrorHandler, verifyInstructorUsingAccessToken, createAttendanceSessionsFromExcel)
 
 
 instructorRouter.get(
