@@ -18,6 +18,8 @@ import candidateUpcomingSessions from "../../src/controllers/candidate-controlle
 // import { candidateRoleMiddleware } from "../../src/middlewares/roles-middleware/candidate-role";
 import { candidateRecentAttendanceLog } from "../../src/controllers/candidate-controllers/candidate-attendanceRecentLog";
 import { getCandidateNotifications } from "../../src/controllers/candidate-controllers/candidate-getAllNotification";
+import { paginationMiddleware } from "../../src/middlewares/pagination-middleware/pagination";
+import { getAllCandidateStudyMaterial } from "../../src/controllers/candidate-controllers/candidate-get-all-study-material";
 
 const candidateRouter = Router()
 
@@ -42,6 +44,7 @@ candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, cand
 candidateRouter.get('/get-all-notifications', verifyCandidateUsingAccessToken, getCandidateNotifications)
 
 candidateRouter.get('/candidate-attendance-recentLog', verifyCandidateUsingAccessToken, candidateRecentAttendanceLog)
+candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateStudyMaterial)
 
 
 export {
