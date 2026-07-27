@@ -67,11 +67,11 @@ const cell = row.getCell(idx);
         
 const hh = String(value.getUTCHours()).padStart(2, "0");
 const mm = String(value.getUTCMinutes()).padStart(2, "0");
-        console.log("================================== new ==============================");
-  console.log("cell.value:", cell.value);
-  console.log("cell.text:", cell.text);
-  console.log("cell.type:", cell.type);
-  console.log("cell.numFmt:", cell.numFmt);
+//         console.log("================================== new ==============================");
+//   console.log("cell.value:", cell.value);
+//   console.log("cell.text:", cell.text);
+//   console.log("cell.type:", cell.type);
+//   console.log("cell.numFmt:", cell.numFmt);
       return `${hh}:${mm}`;
       
       
