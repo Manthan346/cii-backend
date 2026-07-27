@@ -18,3 +18,12 @@ export {
   upcomingJobFairs,
   todaysFollowups,
 } from "./dashboardData";
+
+export {
+  enrollmentsInfo,
+  enrollmentInfoBanner,
+  documentStatusMeta,
+  pendingEnrollments,
+  completedEnrollments,
+  enrollmentsTableColumns,
+} from "./enrollmentsData";

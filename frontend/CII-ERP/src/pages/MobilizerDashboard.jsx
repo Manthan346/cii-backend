@@ -34,7 +34,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Dashboard from '../components/mobilizerpage/pages/Dashboard/Dashboard/Dashboard';
 // import Enquiries from '../components/mobilizerpage/pages/Enquiries/Enquiries/Enquiries';
-// import Enrollments from '../components/mobilizerpage/pages/Enrollments/Enrollments/Enrollments';
+import Enrollments from '../components/mobilizerpage/pages/Enrollments/Enrollments/Enrollments';
 // import JobFairDashboard from '../components/mobilizerpage/pages/JobFair/JobFairDashboard/JobFairDashboard';
 // import RegistrationForms from '../components/mobilizerpage/pages/JobFair/RegistrationForms/RegistrationForms';
 // import WalkInRegistrations from '../components/mobilizerpage/pages/JobFair/WalkInRegistrations/WalkInRegistrations';
@@ -52,7 +52,7 @@ export default function MobilizerDashboard() {
       {/* <Route path="/enquiries" element={<Enquiries />} /> */}
 
       {/* ---- Enrollments ---- */}
-      {/* <Route path="/enrollments" element={<Enrollments />} /> */}
+      <Route path="/enrollments" element={<Enrollments />} />
 
       {/* ---- Job Fair (expandable sidebar group) ---- */}
       {/* <Route path="/job-fair/dashboard" element={<JobFairDashboard />} /> */}

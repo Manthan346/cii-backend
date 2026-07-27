@@ -23,6 +23,9 @@ const STATUS_TONE = {
   "not interested": "red",
   called: "purple",
   "follow up": "lightblue",
+  "documents verified": "green",
+  "documents collected": "green",
+  "documents pending": "orange",
 };
 
 const StatusBadge = ({ status }) => {
