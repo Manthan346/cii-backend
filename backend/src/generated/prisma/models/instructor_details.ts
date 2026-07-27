@@ -422,6 +422,7 @@ export type instructor_detailsWhereInput = {
   highest_qualification?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   batches?: Prisma.Batch_detailsListRelationFilter
+  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
   instructor_documents?: Prisma.XOR<Prisma.Instructor_documentsNullableScalarRelationFilter, Prisma.instructor_documentsWhereInput> | null
 }
 
@@ -460,6 +461,7 @@ export type instructor_detailsOrderByWithRelationInput = {
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_sessions?: Prisma.attendance_sessionsOrderByRelationAggregateInput
   batches?: Prisma.batch_detailsOrderByRelationAggregateInput
+  user_login?: Prisma.user_loginOrderByWithRelationInput
   instructor_documents?: Prisma.instructor_documentsOrderByWithRelationInput
 }
 
@@ -501,6 +503,7 @@ export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   highest_qualification?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   batches?: Prisma.Batch_detailsListRelationFilter
+  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
   instructor_documents?: Prisma.XOR<Prisma.Instructor_documentsNullableScalarRelationFilter, Prisma.instructor_documentsWhereInput> | null
 }, "instructor_id" | "user_id" | "contact_number">
 
@@ -584,7 +587,6 @@ export type instructor_detailsScalarWhereWithAggregatesInput = {
 
 export type instructor_detailsCreateInput = {
   instructor_id?: string
-  user_id?: string | null
   instructor_first_name: string
   instructor_last_name?: string | null
   contact_number: string
@@ -617,6 +619,7 @@ export type instructor_detailsCreateInput = {
   highest_qualification?: string | null
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutInstructor_detailsInput
   batches?: Prisma.batch_detailsCreateNestedManyWithoutInstructorInput
+  user_login?: Prisma.user_loginCreateNestedOneWithoutInstructor_detailsInput
   instructor_documents?: Prisma.instructor_documentsCreateNestedOneWithoutInstructor_detailsInput
 }
 
@@ -660,7 +663,6 @@ export type instructor_detailsUncheckedCreateInput = {
 
 export type instructor_detailsUpdateInput = {
   instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -693,6 +695,7 @@ export type instructor_detailsUpdateInput = {
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutInstructor_detailsNestedInput
   batches?: Prisma.batch_detailsUpdateManyWithoutInstructorNestedInput
+  user_login?: Prisma.user_loginUpdateOneWithoutInstructor_detailsNestedInput
   instructor_documents?: Prisma.instructor_documentsUpdateOneWithoutInstructor_detailsNestedInput
 }
 
@@ -771,7 +774,6 @@ export type instructor_detailsCreateManyInput = {
 
 export type instructor_detailsUpdateManyMutationInput = {
   instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -842,6 +844,11 @@ export type instructor_detailsUncheckedUpdateManyInput = {
 export type Instructor_detailsScalarRelationFilter = {
   is?: Prisma.instructor_detailsWhereInput
   isNot?: Prisma.instructor_detailsWhereInput
+}
+
+export type Instructor_detailsNullableScalarRelationFilter = {
+  is?: Prisma.instructor_detailsWhereInput | null
+  isNot?: Prisma.instructor_detailsWhereInput | null
 }
 
 export type instructor_detailsCountOrderByAggregateInput = {
@@ -951,11 +958,6 @@ export type instructor_detailsSumOrderByAggregateInput = {
   experience_years?: Prisma.SortOrder
 }
 
-export type Instructor_detailsNullableScalarRelationFilter = {
-  is?: Prisma.instructor_detailsWhereInput | null
-  isNot?: Prisma.instructor_detailsWhereInput | null
-}
-
 export type instructor_detailsCreateNestedOneWithoutBatchesInput = {
   create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutBatchesInput, Prisma.instructor_detailsUncheckedCreateWithoutBatchesInput>
   connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutBatchesInput
@@ -968,6 +970,38 @@ export type instructor_detailsUpdateOneRequiredWithoutBatchesNestedInput = {
   upsert?: Prisma.instructor_detailsUpsertWithoutBatchesInput
   connect?: Prisma.instructor_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.instructor_detailsUpdateToOneWithWhereWithoutBatchesInput, Prisma.instructor_detailsUpdateWithoutBatchesInput>, Prisma.instructor_detailsUncheckedUpdateWithoutBatchesInput>
+}
+
+export type instructor_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.instructor_detailsWhereUniqueInput
+}
+
+export type instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.instructor_detailsWhereUniqueInput
+}
+
+export type instructor_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.instructor_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.instructor_detailsWhereInput | boolean
+  delete?: Prisma.instructor_detailsWhereInput | boolean
+  connect?: Prisma.instructor_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.instructor_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.instructor_detailsUpdateWithoutUser_loginInput>, Prisma.instructor_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.instructor_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.instructor_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.instructor_detailsWhereInput | boolean
+  delete?: Prisma.instructor_detailsWhereInput | boolean
+  connect?: Prisma.instructor_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.instructor_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.instructor_detailsUpdateWithoutUser_loginInput>, Prisma.instructor_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
 export type instructor_detailsCreatequalificationInput = {
@@ -1029,7 +1063,6 @@ export type instructor_detailsUpdateOneWithoutInstructor_documentsNestedInput = 
 
 export type instructor_detailsCreateWithoutBatchesInput = {
   instructor_id?: string
-  user_id?: string | null
   instructor_first_name: string
   instructor_last_name?: string | null
   contact_number: string
@@ -1061,6 +1094,7 @@ export type instructor_detailsCreateWithoutBatchesInput = {
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutInstructor_detailsInput
+  user_login?: Prisma.user_loginCreateNestedOneWithoutInstructor_detailsInput
   instructor_documents?: Prisma.instructor_documentsCreateNestedOneWithoutInstructor_detailsInput
 }
 
@@ -1119,7 +1153,6 @@ export type instructor_detailsUpdateToOneWithWhereWithoutBatchesInput = {
 
 export type instructor_detailsUpdateWithoutBatchesInput = {
   instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1151,6 +1184,7 @@ export type instructor_detailsUpdateWithoutBatchesInput = {
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutInstructor_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneWithoutInstructor_detailsNestedInput
   instructor_documents?: Prisma.instructor_documentsUpdateOneWithoutInstructor_detailsNestedInput
 }
 
@@ -1191,9 +1225,172 @@ export type instructor_detailsUncheckedUpdateWithoutBatchesInput = {
   instructor_documents?: Prisma.instructor_documentsUncheckedUpdateOneWithoutInstructor_detailsNestedInput
 }
 
+export type instructor_detailsCreateWithoutUser_loginInput = {
+  instructor_id?: string
+  instructor_first_name: string
+  instructor_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  specialization?: string | null
+  experience_years?: number | null
+  instructor_status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id?: string | null
+  instructor_state?: string | null
+  instructor_district?: string | null
+  instructor_taluka?: string | null
+  instructor_pin_code?: string | null
+  instructor_address?: string | null
+  qualification?: Prisma.instructor_detailsCreatequalificationInput | string[]
+  emergency_contact?: string | null
+  instructor_blood_group?: string | null
+  instructor_guardian_name?: string | null
+  instructor_guardian_relationship?: string | null
+  instructor_guardian_occupation?: string | null
+  instructor_guardian_address?: string | null
+  instructor_guardian_contact_no?: string | null
+  instructor_university?: string | null
+  instructor_passing_year?: string | null
+  instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
+  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org_designation?: string | null
+  highest_qualification?: string | null
+  attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutInstructor_detailsInput
+  batches?: Prisma.batch_detailsCreateNestedManyWithoutInstructorInput
+  instructor_documents?: Prisma.instructor_documentsCreateNestedOneWithoutInstructor_detailsInput
+}
+
+export type instructor_detailsUncheckedCreateWithoutUser_loginInput = {
+  instructor_id?: string
+  instructor_first_name: string
+  instructor_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  specialization?: string | null
+  experience_years?: number | null
+  instructor_status?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  company_id?: string | null
+  instructor_state?: string | null
+  instructor_district?: string | null
+  instructor_taluka?: string | null
+  instructor_pin_code?: string | null
+  instructor_address?: string | null
+  qualification?: Prisma.instructor_detailsCreatequalificationInput | string[]
+  emergency_contact?: string | null
+  instructor_blood_group?: string | null
+  instructor_guardian_name?: string | null
+  instructor_guardian_relationship?: string | null
+  instructor_guardian_occupation?: string | null
+  instructor_guardian_address?: string | null
+  instructor_guardian_contact_no?: string | null
+  instructor_university?: string | null
+  instructor_passing_year?: string | null
+  instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
+  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org_designation?: string | null
+  highest_qualification?: string | null
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutInstructor_detailsInput
+  batches?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutInstructorInput
+  instructor_documents?: Prisma.instructor_documentsUncheckedCreateNestedOneWithoutInstructor_detailsInput
+}
+
+export type instructor_detailsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.instructor_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type instructor_detailsUpsertWithoutUser_loginInput = {
+  update: Prisma.XOR<Prisma.instructor_detailsUpdateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.instructor_detailsCreateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.instructor_detailsWhereInput
+}
+
+export type instructor_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.instructor_detailsWhereInput
+  data: Prisma.XOR<Prisma.instructor_detailsUpdateWithoutUser_loginInput, Prisma.instructor_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type instructor_detailsUpdateWithoutUser_loginInput = {
+  instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience_years?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  instructor_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_taluka?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification?: Prisma.instructor_detailsUpdatequalificationInput | string[]
+  emergency_contact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_contact_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
+  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutInstructor_detailsNestedInput
+  batches?: Prisma.batch_detailsUpdateManyWithoutInstructorNestedInput
+  instructor_documents?: Prisma.instructor_documentsUpdateOneWithoutInstructor_detailsNestedInput
+}
+
+export type instructor_detailsUncheckedUpdateWithoutUser_loginInput = {
+  instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience_years?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  instructor_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_taluka?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification?: Prisma.instructor_detailsUpdatequalificationInput | string[]
+  emergency_contact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_guardian_contact_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
+  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutInstructor_detailsNestedInput
+  batches?: Prisma.batch_detailsUncheckedUpdateManyWithoutInstructorNestedInput
+  instructor_documents?: Prisma.instructor_documentsUncheckedUpdateOneWithoutInstructor_detailsNestedInput
+}
+
 export type instructor_detailsCreateWithoutAttendance_sessionsInput = {
   instructor_id?: string
-  user_id?: string | null
   instructor_first_name: string
   instructor_last_name?: string | null
   contact_number: string
@@ -1225,6 +1422,7 @@ export type instructor_detailsCreateWithoutAttendance_sessionsInput = {
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   batches?: Prisma.batch_detailsCreateNestedManyWithoutInstructorInput
+  user_login?: Prisma.user_loginCreateNestedOneWithoutInstructor_detailsInput
   instructor_documents?: Prisma.instructor_documentsCreateNestedOneWithoutInstructor_detailsInput
 }
 
@@ -1283,7 +1481,6 @@ export type instructor_detailsUpdateToOneWithWhereWithoutAttendance_sessionsInpu
 
 export type instructor_detailsUpdateWithoutAttendance_sessionsInput = {
   instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1315,6 +1512,7 @@ export type instructor_detailsUpdateWithoutAttendance_sessionsInput = {
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batches?: Prisma.batch_detailsUpdateManyWithoutInstructorNestedInput
+  user_login?: Prisma.user_loginUpdateOneWithoutInstructor_detailsNestedInput
   instructor_documents?: Prisma.instructor_documentsUpdateOneWithoutInstructor_detailsNestedInput
 }
 
@@ -1357,7 +1555,6 @@ export type instructor_detailsUncheckedUpdateWithoutAttendance_sessionsInput = {
 
 export type instructor_detailsCreateWithoutInstructor_documentsInput = {
   instructor_id?: string
-  user_id?: string | null
   instructor_first_name: string
   instructor_last_name?: string | null
   contact_number: string
@@ -1390,6 +1587,7 @@ export type instructor_detailsCreateWithoutInstructor_documentsInput = {
   highest_qualification?: string | null
   attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutInstructor_detailsInput
   batches?: Prisma.batch_detailsCreateNestedManyWithoutInstructorInput
+  user_login?: Prisma.user_loginCreateNestedOneWithoutInstructor_detailsInput
 }
 
 export type instructor_detailsUncheckedCreateWithoutInstructor_documentsInput = {
@@ -1447,7 +1645,6 @@ export type instructor_detailsUpdateToOneWithWhereWithoutInstructor_documentsInp
 
 export type instructor_detailsUpdateWithoutInstructor_documentsInput = {
   instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   instructor_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contact_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1480,6 +1677,7 @@ export type instructor_detailsUpdateWithoutInstructor_documentsInput = {
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutInstructor_detailsNestedInput
   batches?: Prisma.batch_detailsUpdateManyWithoutInstructorNestedInput
+  user_login?: Prisma.user_loginUpdateOneWithoutInstructor_detailsNestedInput
 }
 
 export type instructor_detailsUncheckedUpdateWithoutInstructor_documentsInput = {
@@ -1594,6 +1792,7 @@ export type instructor_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   highest_qualification?: boolean
   attendance_sessions?: boolean | Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>
   batches?: boolean | Prisma.instructor_details$batchesArgs<ExtArgs>
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
   instructor_documents?: boolean | Prisma.instructor_details$instructor_documentsArgs<ExtArgs>
   _count?: boolean | Prisma.Instructor_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_details"]>
@@ -1631,6 +1830,7 @@ export type instructor_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   instructor_prev_org?: boolean
   instructor_prev_org_designation?: boolean
   highest_qualification?: boolean
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_details"]>
 
 export type instructor_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1666,6 +1866,7 @@ export type instructor_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   instructor_prev_org?: boolean
   instructor_prev_org_designation?: boolean
   highest_qualification?: boolean
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_details"]>
 
 export type instructor_detailsSelectScalar = {
@@ -1707,17 +1908,23 @@ export type instructor_detailsOmit<ExtArgs extends runtime.Types.Extensions.Inte
 export type instructor_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_sessions?: boolean | Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>
   batches?: boolean | Prisma.instructor_details$batchesArgs<ExtArgs>
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
   instructor_documents?: boolean | Prisma.instructor_details$instructor_documentsArgs<ExtArgs>
   _count?: boolean | Prisma.Instructor_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type instructor_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type instructor_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type instructor_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
+}
+export type instructor_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user_login?: boolean | Prisma.instructor_details$user_loginArgs<ExtArgs>
+}
 
 export type $instructor_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "instructor_details"
   objects: {
     attendance_sessions: Prisma.$attendance_sessionsPayload<ExtArgs>[]
     batches: Prisma.$batch_detailsPayload<ExtArgs>[]
+    user_login: Prisma.$user_loginPayload<ExtArgs> | null
     instructor_documents: Prisma.$instructor_documentsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2149,6 +2356,7 @@ export interface Prisma__instructor_detailsClient<T, Null = never, ExtArgs exten
   readonly [Symbol.toStringTag]: "PrismaPromise"
   attendance_sessions<T extends Prisma.instructor_details$attendance_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_details$attendance_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$attendance_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   batches<T extends Prisma.instructor_details$batchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_details$batchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_login<T extends Prisma.instructor_details$user_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_details$user_loginArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   instructor_documents<T extends Prisma.instructor_details$instructor_documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_details$instructor_documentsArgs<ExtArgs>>): Prisma.Prisma__instructor_documentsClient<runtime.Types.Result.GetResult<Prisma.$instructor_documentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2460,6 +2668,10 @@ export type instructor_detailsCreateManyAndReturnArgs<ExtArgs extends runtime.Ty
    */
   data: Prisma.instructor_detailsCreateManyInput | Prisma.instructor_detailsCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.instructor_detailsIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2530,6 +2742,10 @@ export type instructor_detailsUpdateManyAndReturnArgs<ExtArgs extends runtime.Ty
    * Limit how many instructor_details to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.instructor_detailsIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2644,6 +2860,25 @@ export type instructor_details$batchesArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.Batch_detailsScalarFieldEnum | Prisma.Batch_detailsScalarFieldEnum[]
+}
+
+/**
+ * instructor_details.user_login
+ */
+export type instructor_details$user_loginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the user_login
+   */
+  select?: Prisma.user_loginSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the user_login
+   */
+  omit?: Prisma.user_loginOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.user_loginInclude<ExtArgs> | null
+  where?: Prisma.user_loginWhereInput
 }
 
 /**
