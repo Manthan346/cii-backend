@@ -20,6 +20,8 @@ import { candidateRecentAttendanceLog } from "../../src/controllers/candidate-co
 import { getCandidateNotifications } from "../../src/controllers/candidate-controllers/candidate-getAllNotification";
 import { paginationMiddleware } from "../../src/middlewares/pagination-middleware/pagination";
 import { getAllCandidateStudyMaterial } from "../../src/controllers/candidate-controllers/candidate-get-all-study-material";
+import { getAllAssessments } from "../../src/controllers/candidate-controllers/candidate-get-available-assessments";
+import { startAssessment } from "../../src/controllers/candidate-controllers/candidate-assessment-mark-attempt";
 
 const candidateRouter = Router()
 
@@ -45,7 +47,8 @@ candidateRouter.get('/get-all-notifications', verifyCandidateUsingAccessToken, g
 
 candidateRouter.get('/candidate-attendance-recentLog', verifyCandidateUsingAccessToken, candidateRecentAttendanceLog)
 candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateStudyMaterial)
-
+candidateRouter.get('/candidate-assessment/get-all-assessments',verifyCandidateUsingAccessToken,paginationMiddleware,getAllAssessments)
+candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyCandidateUsingAccessToken,startAssessment)
 
 export {
     candidateRouter
