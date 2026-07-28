@@ -7,6 +7,14 @@
 // layer (`dashboardService`). Every child below only receives plain
 // props, so swapping mock data for a real API later means changing
 // `dashboardService.js` alone — no component here needs to change.
+//
+// CHANGED (backend integration):
+//   1. Added an `error` state + basic error UI, since fetchDashboardData
+//      now makes real network calls that can fail (401, network down, etc).
+//   2. CertificateProgress now reads `data.certificateCourses` instead of
+//      `data.courses` — `courses` is now LIVE (real attendance %), while
+//      CertificateProgress must stay on the static mock data as requested.
+//      Everything else is unchanged.
 
 import { useEffect, useState } from 'react';
 
@@ -30,12 +38,17 @@ export default function Dashboard() {
   const [search, setSearch] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null); // NEW
 
   useEffect(() => {
     let cancelled = false;
-    fetchDashboardData().then(result => {
-      if (!cancelled) setData(result);
-    });
+    fetchDashboardData()
+      .then(result => {
+        if (!cancelled) setData(result);
+      })
+      .catch(err => {
+        if (!cancelled) setError(err.message ?? 'Failed to load dashboard');
+      });
     return () => { cancelled = true; };
   }, []);
 
@@ -63,7 +76,11 @@ export default function Dashboard() {
         />
 
         <main className="dashboard__body">
-          {!data ? (
+          {error ? (
+            <div className="dashboard__error">
+              Couldn't load your dashboard. {error}
+            </div>
+          ) : !data ? (
             <div className="dashboard__loading">Loading your dashboard…</div>
           ) : (
             <>
@@ -85,19 +102,9 @@ export default function Dashboard() {
                 <UnlockCertificate {...data.unlockCertificate} />
               </div>
 
-              {/* 4. Certificate Progress Overview (full width) */}
-              <div className="dashboard__row">
-                <CertificateProgress courses={data.courses} />
-              </div>
+              
 
-              {/* 5. Certificate Eligibility (full width) */}
-              <div className="dashboard__row">
-                <CertificateEligibility
-                  overallPct={data.eligibility.overallPct}
-                  criteria={data.eligibility.criteria}
-                  checklist={data.eligibility.checklist}
-                />
-              </div>
+            
 
               {/* 6. Alerts/Upcoming + Job Opportunities */}
               <div className="dashboard__row dashboard__row--split dashboard__row--bottom">

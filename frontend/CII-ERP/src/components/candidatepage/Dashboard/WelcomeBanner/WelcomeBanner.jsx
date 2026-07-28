@@ -30,7 +30,6 @@ export default function WelcomeBanner({
         </div>
         <div>
           <div className="welcome-banner__title">Welcome back, {name}</div>
-          <div className="welcome-banner__sub">{subText}</div>
         </div>
       </div>
 

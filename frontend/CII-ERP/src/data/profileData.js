@@ -76,6 +76,7 @@ export const INITIAL_DOCUMENTS = [
     uploadedOn: null,
     status: 'pending',
     kind: 'single',
+    field: 'passport_size_photo',
   },
   {
     id: 'doc-pan-card',
@@ -83,6 +84,7 @@ export const INITIAL_DOCUMENTS = [
     uploadedOn: '12 jan 2025',
     status: 'verified',
     kind: 'single',
+    field: 'pan_card',
   },
   {
     id: 'doc-aadhar-card',
@@ -90,6 +92,7 @@ export const INITIAL_DOCUMENTS = [
     uploadedOn: '12 jan 2025',
     status: 'verified',
     kind: 'single',
+    field: 'aadhar_card',
   },
   {
     id: 'doc-resume',
@@ -97,6 +100,7 @@ export const INITIAL_DOCUMENTS = [
     uploadedOn: '12 jan 2025',
     status: 'verified',
     kind: 'single',
+    field: 'resume',
   },
   {
     id: 'doc-portfolio',
@@ -104,7 +108,8 @@ export const INITIAL_DOCUMENTS = [
     uploadedOn: '12 jan 2025',
     status: 'verified',
     kind: 'single',
+    field: null, // no matching API field — can't be uploaded until backend supports it
   },
 ];
 
-export const INITIAL_SKILLS = ['python', 'SQL', 'excel', 'Communications', 'Data visualization'];
+export const INITIAL_SKILLS = ['excel', 'Communications',];

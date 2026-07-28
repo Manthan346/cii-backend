@@ -1,32 +1,29 @@
 // UploadModal.jsx
-// Generic modal for uploading a single new document.
-//
-// Props:
-//   open      {boolean}
-//   onClose   {function}
-//   onUpload  {function(file)}  – called with the selected File object
-
 import { useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import './UploadModal.css';
 
-export default function UploadModal({ open, onClose, onUpload }) {
+export default function UploadModal({ open, onClose, onUpload, uploading, error }) {
   const [file, setFile] = useState(null);
 
   if (!open) return null;
 
   const handleSubmit = () => {
-    if (!file) return;
+    if (!file || uploading) return;
     onUpload(file);
+  };
+
+  const handleClose = () => {
     setFile(null);
+    onClose();
   };
 
   return (
-    <div className="upload-modal__overlay" onClick={onClose}>
-      <div className="upload-modal" onClick={e => e.stopPropagation()}>
+    <div className="upload-modal__overlay" onClick={handleClose}>
+      <div className="upload-modal" onClick={(e) => e.stopPropagation()}>
         <div className="upload-modal__header">
-          <h3>Upload New Document</h3>
-          <button className="upload-modal__close" onClick={onClose} aria-label="Close">
+          <h3>Upload Document</h3>
+          <button className="upload-modal__close" onClick={handleClose} aria-label="Close">
             <Icon name="close" size={16} color="var(--ink-soft)" />
           </button>
         </div>
@@ -37,19 +34,23 @@ export default function UploadModal({ open, onClose, onUpload }) {
           <input
             type="file"
             accept=".pdf,.jpg,.jpeg,.png"
-            onChange={e => setFile(e.target.files?.[0] || null)}
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
             hidden
           />
         </label>
 
+        {error && <div className="upload-modal__error">{error}</div>}
+
         <div className="upload-modal__actions">
-          <button className="upload-modal__btn upload-modal__btn--ghost" onClick={onClose}>Cancel</button>
+          <button className="upload-modal__btn upload-modal__btn--ghost" onClick={handleClose} disabled={uploading}>
+            Cancel
+          </button>
           <button
             className="upload-modal__btn upload-modal__btn--primary"
-            disabled={!file}
+            disabled={!file || uploading}
             onClick={handleSubmit}
           >
-            Upload
+            {uploading ? 'Uploading…' : 'Upload'}
           </button>
         </div>
       </div>

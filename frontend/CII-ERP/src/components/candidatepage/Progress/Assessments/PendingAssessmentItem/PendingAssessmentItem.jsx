@@ -17,16 +17,12 @@ import StatusBadge from "../../../shared/StatusBadge/StatusBadge";
 import "./PendingAssessmentItem.css";
 
 const PendingAssessmentItem = ({ assessment, onStart }) => {
-  const { title, icon, course, type, dueLabel, questions, duration, ctaLabel } = assessment;
-
-  // Quiz vs assignment get a different badge icon/color, matching the design.
+  const { title, course, type, dueLabel, questions, duration, ctaLabel } = assessment;
   const isQuiz = type === "quiz";
 
   return (
     <div className="pending-item">
-      <div
-        className={`pending-item__icon ${isQuiz ? "pending-item__icon--quiz" : "pending-item__icon--assignment"}`}
-      >
+      <div className={`pending-item__icon ${isQuiz ? "pending-item__icon--quiz" : "pending-item__icon--assignment"}`}>
         <Icon name={isQuiz ? "clipboard-list" : "file-text"} size={20} />
       </div>
 
@@ -36,25 +32,27 @@ const PendingAssessmentItem = ({ assessment, onStart }) => {
           <Icon name="bookOpen" size={14} />
           <span>{course}</span>
         </p>
-        <div className="pending-item__meta">
-          <span className="pending-item__meta-entry">
-            <Icon name="helpCircle" size={13} />
-            {questions} questions
-          </span>
-          <span className="pending-item__meta-entry">
-            <Icon name="clock" size={13} />
-            {duration}
-          </span>
-        </div>
+        {(questions || duration) && (
+          <div className="pending-item__meta">
+            {questions && (
+              <span className="pending-item__meta-entry">
+                <Icon name="helpCircle" size={13} />
+                {questions} questions
+              </span>
+            )}
+            {duration && (
+              <span className="pending-item__meta-entry">
+                <Icon name="clock" size={13} />
+                {duration}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="pending-item__actions">
         <StatusBadge label={dueLabel} variant="warning" />
-        <button
-          type="button"
-          className="pending-item__cta"
-          onClick={() => onStart && onStart(assessment)}
-        >
+        <button type="button" className="pending-item__cta" onClick={() => onStart && onStart(assessment)}>
           {ctaLabel}
         </button>
       </div>

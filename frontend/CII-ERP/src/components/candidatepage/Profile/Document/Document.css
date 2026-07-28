@@ -89,7 +89,7 @@
 }
 
 .document__badge--pending {
-  background: var(--blue-light);
+  background: rgb(247, 112, 112);
   color: var(--white);
 }
 
@@ -146,6 +146,12 @@
 .document__item-date--pending {
   color: #E05A2B;
   font-style: italic;
+}
+
+.document__download-btn--disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 /* ── Responsive ── */

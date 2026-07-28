@@ -12,44 +12,12 @@
 //                                default so screens that don't wire up a
 //                                mobile toggle still render correctly.
 //
-// ── Consolidation notes (2026-06-30) ───────────────────────────
-// Merged from three near-identical copies (Dashboard/Sidebar,
-// MyCourses/Sidebar, Profile/Sidebar). All three used the exact
-// same visual styling once the CSS class prefix was normalized
-// (`dash-sidebar__*` → `sidebar__*` — a naming inconsistency only,
-// not an intentional difference). MyCourses' version was the most
-// complete: it alone supported a mobile drawer (isOpen/onClose +
-// close button + overlay). Dashboard's CSS literally set
-// `display: none` on the sidebar under 900px with no way to
-// reopen it — a real bug, now fixed for all three screens.
-//
-// ── Update (2026-07-07) ─────────────────────────────────────────
-// Wired the "Attendance" nav item to /attendance now that the
-// Attendance page exists. Point this at whatever path your router
-// uses if it differs.
-//
-// ── Visual refresh (2026-07-10) ──────────────────────────────────
-// Restyled to match the light/blue reference design (white surface,
-// bright-blue active state) instead of the previous solid navy
-// sidebar. No routing, props, or state logic changed — see the CSS
-// changelog at the top of Sidebar.css for the full list of visual
-// changes. Icons swapped from the local <Icon> component to
-// lucide-react so the linework matches the reference exactly; if
-// <Icon> is used elsewhere in the app that's untouched, this file
-// simply no longer imports it.
-//
-// Usage with the mobile drawer (see shared/Topbar's onMenuClick):
-//
-//   const [sidebarOpen, setSidebarOpen] = useState(false);
-//   <Sidebar
-//     orgLogoSrc={orgLogoSrc}
-//     activeItem="Dashboard"
-//     isOpen={sidebarOpen}
-//     onClose={() => setSidebarOpen(false)}
-//   />
-//   {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
-//   <Topbar onMenuClick={() => setSidebarOpen(o => !o)} ... />
-// ─────────────────────────────────────────────────────────────
+// ── Update (2026-07-27) ──────────────────────────────────────────
+// Profile mini-card (avatar + name/role) now pulled from useAuthUser()
+// instead of hardcoded "AS" / "Aisha Sheikh" / "Candidate". Logout link
+// now actually logs out (see useAuthUser.logout) instead of being a
+// preventDefault() no-op.
+// ──────────────────────────────────────────────────────────────
 
 import { Link } from "react-router-dom";
 import {
@@ -65,6 +33,7 @@ import {
   X,
 } from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
+import { useAuthUser } from "../../../../services/useAuthUser"; // adjust path to wherever useAuthUser.js lives
 //import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
@@ -114,6 +83,8 @@ export default function Sidebar({
   isOpen = false,
   onClose = () => {},
 }) {
+  const { fullName, initials, role, logout } = useAuthUser();
+
   return (
     <aside className={`sidebar${isOpen ? " sidebar--open" : ""}`}>
       <button
@@ -133,12 +104,11 @@ export default function Sidebar({
         </div>
 
         {/* Candidate profile mini-card */}
-        {/* TODO: replace hardcoded values with user data from auth context / API */}
         <div className="sidebar__profile">
-          <div className="sidebar__avatar">AS</div>
+          <div className="sidebar__avatar">{initials}</div>
           <div>
-            <div className="sidebar__profile-name">Aisha Sheikh</div>
-            <div className="sidebar__profile-role">Candidate</div>
+            <div className="sidebar__profile-name">{fullName || "…"}</div>
+            <div className="sidebar__profile-role">{role}</div>
           </div>
         </div>
 
@@ -183,7 +153,10 @@ export default function Sidebar({
       <div className="sidebar__logout-wrap">
         <a
           href="#"
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => {
+            e.preventDefault();
+            logout();
+          }}
           className="sidebar__logout"
         >
           <LogOut size={17} strokeWidth={2} />
