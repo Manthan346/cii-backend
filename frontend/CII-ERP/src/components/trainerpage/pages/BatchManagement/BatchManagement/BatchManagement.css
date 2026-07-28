@@ -1,0 +1,35 @@
+/* ---- Page shell: Topbar + Sidebar composition ----
+   (this block is identical across every page file so each route
+   can mount its own Topbar/Sidebar shell independently) ---- */
+.trainer-dashboard {
+  min-height: 100vh;
+  background-color: var(--bg-page, #f8fafc);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.trainer-dashboard__content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 20px 0px;
+  gap: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.trainer-dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+  height: calc(100vh - 112px - 40px);
+  box-sizing: border-box;
+}
+
+.trainer-dashboard__body {
+  flex: 1;
+}

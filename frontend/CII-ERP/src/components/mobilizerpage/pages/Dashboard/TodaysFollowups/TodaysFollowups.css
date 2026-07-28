@@ -1,0 +1,9 @@
+.todays-followups {
+  min-width: 0;
+}
+
+.todays-followups__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

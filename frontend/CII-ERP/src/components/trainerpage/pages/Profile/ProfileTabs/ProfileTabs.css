@@ -1,0 +1,65 @@
+.profile-tabs {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  box-sizing: border-box;
+  padding: 10px 30px;
+  margin-bottom: 0px;
+}
+
+.profile-tabs__pill {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 10px 10px;
+  border-radius: var(--radius-lg);
+  border: none;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.profile-tabs__pill:hover {
+  background: var(--color-page-bg);
+}
+
+.profile-tabs__pill--active {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+.profile-tabs__pill--active:hover {
+  background: var(--color-teal-dark);
+}
+
+@media (max-width: 900px) {
+  .profile-tabs__pill {
+    font-size: 13.5px;
+    padding: 14px 10px;
+  }
+}
+
+/* Below tablet width, four equal-width pills can no longer fit their
+   labels on one line without shrinking illegibly - scroll horizontally
+   instead of wrapping into an uneven, jumbled grid. */
+@media (max-width: 640px) {
+  .profile-tabs {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .profile-tabs__pill {
+    flex: 0 0 auto;
+    min-width: 140px;
+    white-space: nowrap;
+  }
+}

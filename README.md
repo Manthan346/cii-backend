@@ -26,3 +26,62 @@ Added Completed Assessments Sections
 Leave
 
 10 July 2026
+Designed the Candidate Certificates Page
+Made Changes in designs
+
+11 July 2026
+Saturday
+
+12 July 2026
+Sunday
+
+13 July 2026
+Designed the Candidate Job Opportunities Pages
+Added Hamburger Menu for responsiveness 
+Made changes in My Profile Pages
+
+14 July 2026
+Made Changes in css files of the project
+added css designs to it
+
+15 July 2026
+Started the Staff Login pages
+Designed the file Structure for Staff Login
+Completed the 80% Design of Staff Dashboard.
+
+16 July 2026
+Designed the dashboard section on the staff Login page
+Designed Candidate management section on staff login
+Integrated in the Develop file.
+
+17 July 2026
+Added the Batch Management Page on Staff Login 
+Added the Attendence Management Page on Staff Login 
+Added the Candidate Management Page on Staff Login 
+
+18 July 2026
+Added the Resourses Page on Staff Login 
+Added the Study Material Upload Page on Staff Login 
+Added the Reports Page on Staff Login
+Added the Work Page on Staff Login
+Added the Task Assigned Page on Staff Login
+
+19 July 2026
+Sunday
+
+20 July 2026
+Createded the staff Notifications page 
+Added path to Notifications page
+
+21 July 2026
+Created the My profile Page on Staff Login
+Added path to Profile Page
+MAde change in Profile Page
+
+22 July 2026
+Transformed Staff page to Trainer Page
+Made changes in the Profile section of Trainer Login
+Added "Add Candidate" form in Candidate Management section of Trainer Login
+
+23 July 2026
+

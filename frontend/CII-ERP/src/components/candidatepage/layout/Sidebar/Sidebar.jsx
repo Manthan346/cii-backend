@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
 import { useAuthUser } from "../../../../services/useAuthUser"; // adjust path to wherever useAuthUser.js lives
+import icon from "../../shared/Icon/Icon";
 //import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
@@ -46,7 +47,7 @@ const NAV_MAIN = [
 
 const NAV_PROGRESS = [
   { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
-  { icon: 'certificates', label: 'Certificates',      to: '/progress/certificates'     },
+  { icon: 'certificate', label: 'Certificates',      to: '/progress/certificates'     },
   { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 

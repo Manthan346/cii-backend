@@ -1,0 +1,209 @@
+/* ---- Page shell: Topbar + Sidebar composition ----
+   (this block is identical across every page file so each route
+   can mount its own Topbar/Sidebar shell independently) ---- */
+.staff-dashboard {
+  min-height: 100vh;
+  background-color: var(--bg-page, #f8fafc);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.staff-dashboard__content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 20px 0px;
+  gap: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.staff-dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-y: auto;
+  height: calc(100vh - 112px - 40px);
+  box-sizing: border-box;
+}
+
+.staff-dashboard__body {
+  flex: 1;
+}
+
+/* ---- Profile page content ---- */
+.profile-page {
+  position: relative;
+  padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #f8fafc;
+}
+
+/* ---- Hero: photo + teal info card ---- */
+.profile-page__hero {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-page__photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-card);
+  margin-top: 20px;
+}
+
+.profile-page__hero-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  background: var(--color-teal);
+  border-radius: var(--radius-lg);
+  padding: 28px 28px 24px;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.profile-page__edit-btn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-teal);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-page__edit-btn:hover {
+  background: var(--color-page-bg);
+}
+
+.profile-page__completed {
+  position: absolute;
+  top: 56px;
+  right: 24px;
+  margin: 0;
+  font-size: 12.5px;
+  color: #eafaf7;
+  text-align: right;
+  line-height: 1.4;
+  max-width: 130px;
+}
+
+.profile-page__name {
+  margin: 0;
+  padding-right: 110px;
+  font-size: 22px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  color: white;
+  letter-spacing: normal;
+}
+
+.profile-page__role {
+  font-size: 17px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.profile-page__id {
+  margin: 0;
+  font-size: 13px;
+  color: #d9f2ee;
+  text-transform: uppercase;
+}
+
+.profile-page__status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: #16332f;
+  color: var(--color-white);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .profile-page__photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-page__hero-card {
+    padding: 24px 20px 20px;
+  }
+
+  .profile-page__name {
+    font-size: 19px;
+    padding-right: 100px;
+  }
+
+  .profile-page__role {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-page__hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-page__hero-card {
+    align-items: center;
+    padding-top: 84px;
+  }
+
+  .profile-page__name {
+    padding-right: 0;
+    color: white;
+  }
+
+  .profile-page__edit-btn,
+  .profile-page__completed {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .profile-page__completed {
+    top: 56px;
+    text-align: center;
+    max-width: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-page__photo {
+    width: 96px;
+    height: 96px;
+  }
+}

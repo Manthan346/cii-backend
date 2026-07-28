@@ -1,0 +1,364 @@
+.content {
+  padding: 0 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.pageHeader { 
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 4px 0 0;
+}
+
+/* ---- Two-column layout: form + sidebar ---- */
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.formCard {
+  position: relative;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.successToast {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 28px rgba(16, 24, 40, 0.16);
+  padding: 24px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-green);
+  text-align: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.required {
+  color: #dc2626;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-page-bg);
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  background: var(--color-white);
+  border-color: var(--color-teal);
+}
+
+.errorText {
+  margin: 0;
+  font-size: 12px;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-page-bg);
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  background: var(--color-white);
+  border-color: var(--color-teal);
+}
+
+/* ---- Day of week toggle pills ---- */
+.dayRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dayPill {
+  min-width: 56px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-teal);
+  background: var(--color-white);
+  color: var(--color-teal);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dayPillActive {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+/* ---- Trainer assignment cards ---- */
+.trainerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.trainerCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.trainerCardActive {
+  border-color: var(--color-teal);
+  background: var(--color-teal-light);
+}
+
+.trainerRadio {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-teal);
+  flex-shrink: 0;
+}
+
+.trainerInitials {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-gray-icon-bg);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.trainerText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.trainerName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.trainerMeta {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Bottom action buttons ---- */
+.actionsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+/* ---- Sidebar: Batch Summary + Tip ---- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summaryCard {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+}
+
+.summaryTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.summarySubtitle {
+  margin: 2px 0 16px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.summaryList {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: 13px;
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summaryRow dt {
+  color: var(--color-text-secondary);
+}
+
+.summaryRow dd {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.summaryStatus {
+  color: var(--color-blue);
+}
+
+.tipCard {
+  background: #fef9e7;
+  border: 1px solid #f5e3a3;
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.tipTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #92640a;
+  margin-bottom: 8px;
+}
+
+.tipText {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b5410;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .grid2,
+  .trainerGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0 16px 0 0;
+  }
+  .formCard {
+    padding: 18px;
+  }
+  .actionsRow {
+    flex-direction: column-reverse;
+  }
+  .actionsRow button {
+    width: 100%;
+  }
+}

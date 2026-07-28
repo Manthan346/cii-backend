@@ -1,0 +1,81 @@
+.batch-overview__table {
+  display: flex;
+  flex-direction: column;
+}
+
+.batch-overview__head-row,
+.batch-overview__row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.6fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.batch-overview__head-row {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eef0f2;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8b8b8b;
+  text-transform: none;
+}
+
+.batch-overview__row {
+  padding: 14px 0;
+  border-bottom: 1px solid #f4f5f7;
+  font-size: 0.88rem;
+  color: #1a1a1a;
+}
+
+.batch-overview__row:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+.batch-overview__code {
+  font-weight: 700;
+}
+
+.batch-overview__course {
+  color: #3a3a3a;
+}
+
+.batch-overview__candidates {
+  color: #3a3a3a;
+}
+
+@media (max-width: 900px) {
+  .batch-overview__head-row {
+    display: none;
+  }
+
+  .batch-overview__row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "code status"
+      "course course"
+      "candidates candidates";
+    row-gap: 6px;
+    padding: 14px 0;
+  }
+
+  .batch-overview__code {
+    grid-area: code;
+  }
+  .batch-overview__course {
+    grid-area: course;
+    color: #6b6b6b;
+  }
+  .batch-overview__candidates {
+    grid-area: candidates;
+    font-size: 0.8rem;
+    color: #8b8b8b;
+  }
+  .batch-overview__candidates::before {
+    content: "Candidates: ";
+  }
+  .batch-overview__status {
+    grid-area: status;
+    justify-self: end;
+  }
+}

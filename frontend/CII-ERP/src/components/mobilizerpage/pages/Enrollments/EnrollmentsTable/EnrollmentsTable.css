@@ -1,0 +1,103 @@
+.enrollments-table {
+  background: var(--color-white, #ffffff);
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: var(--shadow-card, 0 2px 10px rgba(0, 0, 0, 0.05));
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.enrollments-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.enrollments-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.enrollments-table__table thead th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #9199a6);
+  padding: 22px 20px 14px;
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+  white-space: nowrap;
+}
+
+.enrollments-table__actions-head {
+  text-align: right;
+}
+
+.enrollments-table__table tbody td {
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-light, #f1f3f5);
+  font-size: 0.92rem;
+  color: var(--color-text-primary, #14141a);
+  vertical-align: top;
+}
+
+.enrollments-table__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.enrollments-table__id {
+  color: var(--color-text-secondary, #6b7280);
+  white-space: nowrap;
+}
+
+.enrollments-table__candidate {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.enrollments-table__caption {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #9199a6);
+}
+
+.enrollments-table__updated {
+  white-space: nowrap;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.enrollments-table__actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.enrollments-table__action-btn {
+  border: none;
+  cursor: pointer;
+  background: var(--color-navy, #16214b);
+  color: var(--color-white, #ffffff);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm, 8px);
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.enrollments-table__action-btn:hover {
+  background: var(--color-navy-dark, #0d1533);
+}
+
+.enrollments-table__empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+@media (max-width: 640px) {
+  .enrollments-table__table thead th,
+  .enrollments-table__table tbody td {
+    padding: 14px 14px;
+  }
+}

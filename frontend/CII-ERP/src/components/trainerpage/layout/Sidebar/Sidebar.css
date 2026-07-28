@@ -1,0 +1,183 @@
+.trainer-sidebar {
+  width: 270px;
+  flex-shrink: 0;
+  /* position: sticky; */
+  top: 112px; /* height of .trainer-topbar */
+  align-self: flex-start;
+  height: calc(100vh - 112px - 40px); /* viewport minus topbar height and content padding */
+  background: #ffffff;
+  border-radius: 0px 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 20px 14px;
+  box-sizing: border-box;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.trainer-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.trainer-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trainer-sidebar__section-title {
+  margin: 0 0 10px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #8b8b8b;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.trainer-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trainer-sidebar__item {
+  width: 88%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 09px 14px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.trainer-sidebar__icon {
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.trainer-sidebar__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.85rem;
+}
+
+/* Inactive hover */
+.trainer-sidebar__item:hover:not(.trainer-sidebar__item--active) {
+  background: #f5f7fa;
+}
+
+.trainer-sidebar__item:active {
+  transform: scale(0.98);
+}
+
+/* Active item: green pill, white icon + text */
+.trainer-sidebar__item--active {
+  background: #0f7b73;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(15, 123, 115, 0.28);
+}
+
+.trainer-sidebar__item--active .trainer-sidebar__icon {
+  color: #ffffff;
+}
+
+.trainer-sidebar__item--active:hover {
+  background: #0b5f59;
+}
+
+/* Mobile overlay, hidden by default (desktop/tablet) */
+.trainer-sidebar__overlay {
+  display: none;
+}
+
+/* --------------------------------------------------- */
+/* Collapsed state (future toggle button drives this)  */
+/* --------------------------------------------------- */
+.trainer-sidebar--collapsed {
+  width: 84px;
+  padding: 20px 10px;
+}
+
+.trainer-sidebar--collapsed .trainer-sidebar__label,
+.trainer-sidebar--collapsed .trainer-sidebar__section-title {
+  display: none;
+}
+
+.trainer-sidebar--collapsed .trainer-sidebar__item {
+  justify-content: center;
+  padding: 12px;
+}
+
+/* ---------------------------------- */
+/* Tablet: auto-collapses to icons    */
+/* ---------------------------------- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) {
+    width: 84px;
+    padding: 20px 10px;
+  }
+
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__label,
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__section-title {
+    display: none;
+  }
+
+  .trainer-sidebar:not(.trainer-sidebar--collapsed) .trainer-sidebar__item {
+    justify-content: center;
+    padding: 12px;
+  }
+}
+
+/* ------------------------------- */
+/* Mobile: drawer sidebar + overlay */
+/* ------------------------------- */
+@media (max-width: 768px) {
+  .trainer-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 82%;
+    max-width: 300px;
+    border-radius: 0 18px 18px 0;
+    transform: translateX(-100%);
+    z-index: 1001;
+    padding-top: 24px;
+  }
+
+  .trainer-sidebar--open {
+    transform: translateX(0);
+  }
+
+  .trainer-sidebar__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    animation: trainer-sidebar-fade-in 0.25s ease;
+  }
+}
+
+@keyframes trainer-sidebar-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

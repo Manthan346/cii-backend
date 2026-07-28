@@ -32,31 +32,25 @@ import Assessments from '../components/candidatepage/Progress/Assessments/Assess
 import Certificates from '../components/candidatepage/Progress/Certificates/Certificates/Certificates';
 import UpcomingClasses from '../components/candidatepage/Schedule/UpcomingClasses/ScheduleDashboard/ScheduleDashboard';
 import NotificationDashboard from '../components/candidatepage/Notification/NotificationDashboard/NotificationDashboard';
-
-
 import JobOpportunities from '../components/candidatepage/Progress/JobOpportunities/JobOpportunities/JobOpportunities';
 
 
 export default function CandidateDashboard() {
   return (
     <div>
-
-
-  
-
-    <Routes>
+      <Routes>
       
-      <Route path="/my-dashboard" element={<Dashboard />} />
-      <Route path="/my-courses"  element={<MyCourses />} />
-      <Route path="/my-profile"  element={<Profile />} />
-      <Route path="/attendance" element={<Attendance />} />
-      <Route path="/progress/assessments" element={<Assessments />} />
-      <Route path="/progress/certificates" element={<Certificates />} />
-      <Route path="/Schedule/upcomingclasses" element={<UpcomingClasses />} />
-      <Route path="/notifications" element={<NotificationDashboard />} />
-      <Route path="/progress/jobopportunities" element={<JobOpportunities />} />
+        <Route path="/my-dashboard" element={<Dashboard />} />
+        <Route path="/my-courses"  element={<MyCourses />} />
+        <Route path="/my-profile"  element={<Profile />} />
+        <Route path="/attendance" element={<Attendance />} />
+        <Route path="/progress/assessments" element={<Assessments />} />
+        <Route path="/progress/certificates" element={<Certificates />} />
+        <Route path="/Schedule/upcomingclasses" element={<UpcomingClasses />} />
+        <Route path="/notifications" element={<NotificationDashboard />} />
+        <Route path="/progress/jobopportunities" element={<JobOpportunities />} />
 
-    </Routes>
-      </div>
+      </Routes>
+    </div>
   );
 }

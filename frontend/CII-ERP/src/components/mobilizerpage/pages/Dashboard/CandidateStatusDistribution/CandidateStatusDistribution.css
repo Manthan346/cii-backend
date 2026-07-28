@@ -1,0 +1,9 @@
+.candidate-status-distribution {
+  min-width: 0;
+}
+
+.candidate-status-distribution .m-section-card__body {
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
