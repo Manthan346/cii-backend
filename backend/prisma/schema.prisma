@@ -149,21 +149,19 @@ model enquiry_records {
 }
 
 model user_login {
-  user_id                                            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_email                                         String               @unique @db.VarChar(255)
-  user_password                                      String
-  user_role                                          role_types
-  created_at                                         DateTime             @default(now()) @db.Timestamp(6)
-  updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
-  center_id                                          String               @db.Uuid
-  refresh_token_hash                                 String?
-  candidates_details                                 candidates_details?
-  event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
-  event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
-  instructor_details                                 instructor_details?
-  study_material                                     study_material[]
-  center_details                                     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
-  user_notifications                                 user_notifications[]
+  user_id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_email         String               @unique @db.VarChar(255)
+  user_password      String
+  user_role          role_types
+  created_at         DateTime             @default(now()) @db.Timestamp(6)
+  updated_at         DateTime             @default(now()) @db.Timestamp(6)
+  center_id          String               @db.Uuid
+  refresh_token_hash String?
+  candidates_details candidates_details?
+  instructor_details instructor_details?
+  study_material     study_material[]
+  center_details     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  user_notifications user_notifications[]
 }
 
 model assessments {
@@ -230,7 +228,6 @@ model instructor_details {
   highest_qualification            String?               @db.VarChar(255)
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
-  company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
   user_login                       user_login?           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
 }
