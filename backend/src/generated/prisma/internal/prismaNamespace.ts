@@ -2285,7 +2285,10 @@ export const Candidates_detailsScalarFieldEnum = {
   candidate_permanant_address: 'candidate_permanant_address',
   guardian_relationship: 'guardian_relationship',
   guardian_occupation: 'guardian_occupation',
-  candidate_unique_id: 'candidate_unique_id'
+  candidate_unique_id: 'candidate_unique_id',
+  guardian_address: 'guardian_address',
+  guardian_gender: 'guardian_gender',
+  guardian_dob: 'guardian_dob'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
