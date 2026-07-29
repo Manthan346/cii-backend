@@ -98,6 +98,14 @@ export const createInstructorEvent = asyncHandler(
             });
         });
 
+        return res.status(201).json(
+            new ApiResponse(
+                201,
+                event,
+                "Event created successfully."
+            )
+        );
+
 
     }
 )
