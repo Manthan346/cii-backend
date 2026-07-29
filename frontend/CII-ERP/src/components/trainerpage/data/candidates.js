@@ -63,7 +63,7 @@ export const candidates = [
     contact: '8734596739',
     joinDate: '12 feb 2026',
     attendance: 75,
-    status: 'Ending Soon',
+    status: 'Dropped',
   },
   {
     id: 6,

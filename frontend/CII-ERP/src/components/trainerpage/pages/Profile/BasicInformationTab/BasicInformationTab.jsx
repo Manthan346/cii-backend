@@ -1,5 +1,5 @@
-import ProfileCompletionCard from "../ProfileCompletionCard/ProfileCompletionCard";
-import "./BasicInformationTab.css";
+import ProfileCompletionCard from '../ProfileCompletionCard/ProfileCompletionCard';
+import './BasicInformationTab.css';
 
 /**
  * BasicInformationTab
@@ -18,86 +18,145 @@ import "./BasicInformationTab.css";
  * underlined "Personal Information"/"Contact" labels instead, so a
  * plain styled div matches the reference design better.
  */
-export default function BasicInformationTab({ personal, contact, address, completion }) {
+export default function BasicInformationTab({
+  personal,
+  contact,
+  address,
+  completion,
+}) {
   return (
-    <div className="basic-information-tab">
-      <div className="basic-information-tab__details">
-        <div className="basic-information-tab__columns">
-          <div className="basic-information-tab__column">
-            <h3 className="basic-information-tab__heading">Personal Information</h3>
+    <div>
+      <div className="basic-information-tab">
+        <div className="basic-information-tab__details">
+          <div className="basic-information-tab__columns">
+            <div className="basic-information-tab__column">
+              <h3 className="basic-information-tab__heading">
+                Personal Information
+              </h3>
 
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Name</span>
-              <span className="basic-information-tab__value">{personal.name}</span>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">Name</span>
+                <span className="basic-information-tab__value">
+                  {personal.name}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">Gender</span>
+                <span className="basic-information-tab__value">
+                  {personal.gender}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">
+                  Date of Birth
+                </span>
+                <span className="basic-information-tab__value">
+                  {personal.dob}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">
+                  Blood Group
+                </span>
+                <span className="basic-information-tab__value">
+                  {personal.bloodGroup}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">
+                  Highest Qalification
+                </span>
+                <span className="basic-information-tab__value">
+                  {personal.highestQualification}
+                </span>
+              </div>
             </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Gender</span>
-              <span className="basic-information-tab__value">{personal.gender}</span>
-            </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Date of Birth</span>
-              <span className="basic-information-tab__value">{personal.dob}</span>
-            </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Blood Group</span>
-              <span className="basic-information-tab__value">{personal.bloodGroup}</span>
-            </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Highest Qalification</span>
-              <span className="basic-information-tab__value">{personal.highestQualification}</span>
+
+            <div className="basic-information-tab__divider" />
+
+            <div className="basic-information-tab__column">
+              <h3 className="basic-information-tab__heading">Contact</h3>
+
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">
+                  Mobile Number
+                </span>
+                <span className="basic-information-tab__value">
+                  {contact.mobileNumber}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">
+                  Emergency Contact Number
+                </span>
+                <span className="basic-information-tab__value">
+                  {contact.emergencyContactNumber}
+                </span>
+              </div>
+              <div className="basic-information-tab__field">
+                <span className="basic-information-tab__label">Email - ID</span>
+                <span className="basic-information-tab__value">
+                  {contact.emailId}
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="basic-information-tab__divider" />
-
-          <div className="basic-information-tab__column">
-            <h3 className="basic-information-tab__heading">Contact</h3>
-
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Mobile Number</span>
-              <span className="basic-information-tab__value">{contact.mobileNumber}</span>
+          <div className="basic-information-tab__address-row">
+            <div className="basic-information-tab__address-block">
+              <h3 className="basic-information-tab__heading">Address</h3>
+              <p className="basic-information-tab__address-line">
+                {address.line}
+              </p>
             </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Emergency Contact Number</span>
-              <span className="basic-information-tab__value">{contact.emergencyContactNumber}</span>
+
+            <div className="basic-information-tab__pill-field">
+              <span className="basic-information-tab__label">State</span>
+              <span className="basic-information-tab__pill">
+                {address.state}
+              </span>
             </div>
-            <div className="basic-information-tab__field">
-              <span className="basic-information-tab__label">Email - ID</span>
-              <span className="basic-information-tab__value">{contact.emailId}</span>
+            <div className="basic-information-tab__pill-field">
+              <span className="basic-information-tab__label">District</span>
+              <span className="basic-information-tab__pill">
+                {address.district}
+              </span>
+            </div>
+            <div className="basic-information-tab__pill-field">
+              <span className="basic-information-tab__label">Taluka</span>
+              <span className="basic-information-tab__pill">
+                {address.taluka}
+              </span>
+            </div>
+            <div className="basic-information-tab__pill-field">
+              <span className="basic-information-tab__label">Pin Code</span>
+              <span className="basic-information-tab__pill">
+                {address.pinCode}
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="basic-information-tab__address-row">
-          <div className="basic-information-tab__address-block">
-            <h3 className="basic-information-tab__heading">Address</h3>
-            <p className="basic-information-tab__address-line">{address.line}</p>
-          </div>
-
-          <div className="basic-information-tab__pill-field">
-            <span className="basic-information-tab__label">State</span>
-            <span className="basic-information-tab__pill">{address.state}</span>
-          </div>
-          <div className="basic-information-tab__pill-field">
-            <span className="basic-information-tab__label">District</span>
-            <span className="basic-information-tab__pill">{address.district}</span>
-          </div>
-          <div className="basic-information-tab__pill-field">
-            <span className="basic-information-tab__label">Taluka</span>
-            <span className="basic-information-tab__pill">{address.taluka}</span>
-          </div>
-          <div className="basic-information-tab__pill-field">
-            <span className="basic-information-tab__label">Pin Code</span>
-            <span className="basic-information-tab__pill">{address.pinCode}</span>
-          </div>
-        </div>
+        <ProfileCompletionCard
+          percent={completion.percent}
+          label={completion.label}
+          checklist={completion.checklist}
+        />
       </div>
+      <div className="basic-information-address-tab">
+        <div className="basic-information-tab__details">
+          <div className="basic-information-tab__columns">
 
-      <ProfileCompletionCard
-        percent={completion.percent}
-        label={completion.label}
-        checklist={completion.checklist}
-      />
+            <h3 className="basic-information-tab__heading">Current Address</h3>
+
+            <div className="basic-information-tab__divider" />
+
+            <h3 className="basic-information-tab__heading">Permanent Address</h3>
+
+          </div>
+        </div>
+        
+      </div>
     </div>
   );
 }

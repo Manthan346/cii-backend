@@ -1,5 +1,5 @@
-import { StatusBadge, ActionButtons } from "../../../shared";
-import styles from "./MaterialTable.module.css";
+import { StatusBadge, ActionButtons } from '../../../shared';
+import './MaterialTable.css';
 
 /**
  * MaterialTable
@@ -13,13 +13,18 @@ import styles from "./MaterialTable.module.css";
  * Row actions show view/edit/delete (no lock), matching the reference
  * design, so ActionButtons is called with showLock={false}.
  */
-export default function MaterialTable({ records = [], onView, onEdit, onDelete }) {
+export default function MaterialTable({
+  records = [],
+  onView,
+  onEdit,
+  onDelete,
+}) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
+    <div className={'tableWrap'}>
+      <table className={'table'}>
         <thead>
           <tr>
-            <th className={styles.checkboxCol}>
+            <th className={'checkboxCol'}>
               <input type="checkbox" aria-label="Select all materials" />
             </th>
             <th>Material</th>
@@ -36,14 +41,18 @@ export default function MaterialTable({ records = [], onView, onEdit, onDelete }
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${record.name}`} />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  aria-label={`Select ${record.name}`}
+                />
               </td>
-              <td className={styles.nameCell}>{record.name}</td>
-              <td className={styles.nowrap}>{record.course}</td>
-              <td className={styles.nowrap}>{record.type}</td>
-              <td className={styles.nowrap}>{record.uploadedBy}</td>
-              <td className={styles.nowrap}>{record.date}</td>
-              <td className={styles.nowrap}>{record.size}</td>
+              <td className={'nameCell'}>{record.name}</td>
+              <td className={'nowrap'}>{record.course}</td>
+              <td className={'nowrap'}>{record.type}</td>
+              <td className={'nowrap'}>{record.uploadedBy}</td>
+              <td className={'nowrap'}>{record.date}</td>
+              <td className={'nowrap'}>{record.size}</td>
               <td>
                 <StatusBadge status={record.status} />
               </td>

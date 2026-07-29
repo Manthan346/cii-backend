@@ -1,5 +1,5 @@
-import { StatusBadge, Avatar, ActionButtons } from "../../../shared";
-import "./TaskTable.css";
+import { StatusBadge, Avatar, ActionButtons } from '../../../shared';
+import './TaskTable.css';
 
 /**
  * TaskTable
@@ -39,7 +39,11 @@ export default function TaskTable({ tasks = [], onView, onEdit, onDelete }) {
           {tasks.map((task) => (
             <tr key={task.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${task.title}`} />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  aria-label={`Select ${task.title}`}
+                />
               </td>
               <td>
                 <div className="task-table__task-cell">

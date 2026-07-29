@@ -1,15 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LayoutGrid, CheckCircle2, Hourglass, CalendarDays, ClipboardCheck, Bell } from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { Button } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
-import ShortcutCard from "../ShortcutCard/ShortcutCard";
-import RecentActivity from "../RecentActivity/RecentActivity";
-import { workStats, workShortcuts, recentActivity, workMeta } from "../../../data";
-import "../../../styles/variables.css";
-import "./Work.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  LayoutGrid,
+  CheckCircle2,
+  Hourglass,
+  CalendarDays,
+  ClipboardCheck,
+  Bell,
+} from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { Button } from '../../../shared';
+import StatCard from '../StatCard/StatCard';
+import ShortcutCard from '../ShortcutCard/ShortcutCard';
+import RecentActivity from '../RecentActivity/RecentActivity';
+import {
+  workStats,
+  workShortcuts,
+  recentActivity,
+  workMeta,
+} from '../../../data';
+import '../../../styles/variables.css';
+import './Work.css';
 
 /**
  * Work
@@ -41,12 +53,12 @@ const SHORTCUT_ICONS = {
 const Work = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: 'Staff Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -63,7 +75,10 @@ const Work = () => {
                   <h1 className="work-page__title">Work</h1>
                   <p className="work-page__subtitle">{workMeta.subtitle}</p>
                 </div>
-                <Button variant="primary" onClick={() => navigate(workMeta.viewTaskRoute)}>
+                <Button
+                  variant="primary"
+                  onClick={() => navigate(workMeta.viewTaskRoute)}
+                >
                   view task
                 </Button>
               </div>

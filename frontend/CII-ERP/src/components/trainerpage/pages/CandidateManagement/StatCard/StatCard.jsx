@@ -1,5 +1,5 @@
-import useCountUp from "../../../shared/hooks/useCountUp";
-import styles from "./StatCard.module.css";
+import useCountUp from '../../../shared/hooks/useCountUp';
+import './StatCard.css';
 
 /**
  * StatCard (Candidate Management)
@@ -17,16 +17,20 @@ import styles from "./StatCard.module.css";
  * The headline number counts up from 0 to `value` on mount via the
  * shared useCountUp hook.
  */
-export default function StatCard({ icon: Icon, value, label, tone = "orange" }) {
+export default function StatCard({
+  icon: Icon,
+  value,
+  label,
+  tone = 'orange',
+}) {
   const animatedValue = useCountUp(value, 1500);
-
   return (
-    <div className={styles.card}>
-      <div className={`${styles.iconWrap} ${styles[tone] || styles.orange}`}>
+    <div className={'card'}>
+      <div className={`${'iconWrap'} ${tone || 'orange'}`}>
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={styles.value}>{animatedValue}</div>
-      <div className={styles.label}>{label}</div>
+      <div className={'value'}>{animatedValue}</div>
+      <div className={'label'}>{label}</div>
     </div>
   );
 }

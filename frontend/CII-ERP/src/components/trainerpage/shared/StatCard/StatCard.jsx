@@ -1,6 +1,6 @@
-import React from "react";
-import useCountUp from "../hooks/useCountUp";
-import "./StatCard.css";
+import React from 'react';
+import useCountUp from '../hooks/useCountUp';
+import './StatCard.css';
 
 /**
  * StatCard
@@ -20,7 +20,7 @@ import "./StatCard.css";
  * The headline number counts up from 0 to `value` on mount via
  * useCountUp (handles both plain numbers and "94%"-style strings).
  */
-const StatCard = ({ icon: Icon, value, label, tone = "grey" }) => {
+const StatCard = ({ icon: Icon, value, label, tone = 'grey' }) => {
   const animatedValue = useCountUp(value, 1500);
 
   return (

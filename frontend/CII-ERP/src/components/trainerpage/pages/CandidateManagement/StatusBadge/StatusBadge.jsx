@@ -1,4 +1,4 @@
-import styles from "./StatusBadge.module.css";
+import './StatusBadge.css';
 
 /**
  * StatusBadge (Candidate Management)
@@ -10,12 +10,11 @@ import styles from "./StatusBadge.module.css";
  * words to a different, pastel-background visual style.
  */
 const STATUS_CLASS = {
-  Active: "active",
-  Dropped: "dropped",
-  "Ending Soon": "ending",
+  Active: 'active',
+  Dropped: 'dropped',
+  'Ending Soon': 'ending',
 };
-
 export default function StatusBadge({ status }) {
-  const toneClass = STATUS_CLASS[status] || "active";
-  return <span className={`${styles.badge} ${styles[toneClass]}`}>{status}</span>;
+  const toneClass = STATUS_CLASS[status] || 'active';
+  return <span className={`${'badge'} ${toneClass}`}>{status}</span>;
 }

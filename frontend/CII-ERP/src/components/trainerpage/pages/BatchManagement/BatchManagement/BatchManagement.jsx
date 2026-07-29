@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import BatchList from "../BatchList/BatchList";
-import CreateBatch from "../CreateBatch/CreateBatch";
-import { batches as initialBatches } from "../../../data";
-import "../../../styles/variables.css";
-import "./BatchManagement.css";
+import React, { useState } from 'react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import BatchList from '../BatchList/BatchList';
+import CreateBatch from '../CreateBatch/CreateBatch';
+import { batches as initialBatches } from '../../../data';
+import '../../../styles/variables.css';
+import './BatchManagement.css';
 
 /**
  * BatchManagement
@@ -22,19 +22,19 @@ import "./BatchManagement.css";
  */
 const BatchManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const [view, setView] = useState("list"); // "list" | "create"
+  const [searchValue, setSearchValue] = useState('');
+  const [view, setView] = useState('list'); // "list" | "create"
   const [batches, setBatches] = useState(initialBatches);
 
   const handleCreated = (newBatch) => {
     setBatches((prev) => [newBatch, ...prev]);
-    setView("list");
+    setView('list');
   };
 
   return (
     <div className="trainer-dashboard">
       <Topbar
-        user={{ name: "Trainer Admin" }}
+        user={{ name: 'Trainer Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -45,10 +45,16 @@ const BatchManagement = () => {
 
         <div className="trainer-dashboard__main">
           <main className="trainer-dashboard__body">
-            {view === "list" ? (
-              <BatchList batches={batches} onCreateBatch={() => setView("create")} />
+            {view === 'list' ? (
+              <BatchList
+                batches={batches}
+                onCreateBatch={() => setView('create')}
+              />
             ) : (
-              <CreateBatch onBack={() => setView("list")} onCreated={handleCreated} />
+              <CreateBatch
+                onBack={() => setView('list')}
+                onCreated={handleCreated}
+              />
             )}
           </main>
         </div>

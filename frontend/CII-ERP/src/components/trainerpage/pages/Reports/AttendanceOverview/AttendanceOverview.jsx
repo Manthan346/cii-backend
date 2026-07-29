@@ -1,5 +1,5 @@
-import { SectionCard, ProgressBar } from "../../../shared";
-import "./AttendanceOverview.css";
+import { SectionCard, ProgressBar } from '../../../shared';
+import './AttendanceOverview.css';
 
 /**
  * AttendanceOverview (Reports)

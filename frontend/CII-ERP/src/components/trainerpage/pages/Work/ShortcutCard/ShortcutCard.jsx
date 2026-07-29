@@ -1,4 +1,4 @@
-import "./ShortcutCard.css";
+import './ShortcutCard.css';
 
 /**
  * ShortcutCard (Work)
@@ -19,7 +19,13 @@ import "./ShortcutCard.css";
  *  - tone: string     -> 'dark' | 'mint', controls the badge background
  *  - onClick: function
  */
-export default function ShortcutCard({ icon: Icon, title, subtitle, tone = "mint", onClick }) {
+export default function ShortcutCard({
+  icon: Icon,
+  title,
+  subtitle,
+  tone = 'mint',
+  onClick,
+}) {
   return (
     <button type="button" className="shortcut-card" onClick={onClick}>
       <div className={`shortcut-card__icon shortcut-card__icon--${tone}`}>

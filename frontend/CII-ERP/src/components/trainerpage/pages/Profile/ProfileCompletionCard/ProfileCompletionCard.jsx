@@ -1,5 +1,5 @@
-import { CheckCircle2, AlertCircle } from "lucide-react";
-import "./ProfileCompletionCard.css";
+import { CheckCircle2, AlertCircle } from 'lucide-react';
+import './ProfileCompletionCard.css';
 
 /**
  * ProfileCompletionCard
@@ -10,10 +10,15 @@ import "./ProfileCompletionCard.css";
  * missing. Kept as its own component/folder since Profile.jsx composes
  * several tab components and this ring markup is a self-contained unit.
  */
-export default function ProfileCompletionCard({ percent = 0, label = "", checklist = [] }) {
+export default function ProfileCompletionCard({
+  percent = 0,
+  label = '',
+  checklist = [],
+}) {
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (Math.max(0, Math.min(100, percent)) / 100) * circumference;
+  const offset =
+    circumference - (Math.max(0, Math.min(100, percent)) / 100) * circumference;
 
   return (
     <div className="profile-completion-card">
@@ -48,18 +53,32 @@ export default function ProfileCompletionCard({ percent = 0, label = "", checkli
             strokeLinecap="round"
             transform="rotate(-90 60 60)"
           />
-          <text x="60" y="67" textAnchor="middle" className="profile-completion-card__ring-text">
+          <text
+            x="60"
+            y="67"
+            textAnchor="middle"
+            className="profile-completion-card__ring-text"
+          >
             {percent}%
           </text>
         </svg>
 
         <ul className="profile-completion-card__checklist">
           {checklist.map((item) => (
-            <li key={item.id} className="profile-completion-card__checklist-item">
+            <li
+              key={item.id}
+              className="profile-completion-card__checklist-item"
+            >
               {item.done ? (
-                <CheckCircle2 size={16} className="profile-completion-card__icon profile-completion-card__icon--done" />
+                <CheckCircle2
+                  size={16}
+                  className="profile-completion-card__icon profile-completion-card__icon--done"
+                />
               ) : (
-                <AlertCircle size={16} className="profile-completion-card__icon profile-completion-card__icon--pending" />
+                <AlertCircle
+                  size={16}
+                  className="profile-completion-card__icon profile-completion-card__icon--pending"
+                />
               )}
               <span>{item.label}</span>
             </li>

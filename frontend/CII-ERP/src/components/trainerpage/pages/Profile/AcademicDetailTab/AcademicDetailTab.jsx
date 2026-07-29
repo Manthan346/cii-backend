@@ -1,4 +1,4 @@
-import "./AcademicDetailTab.css";
+import './AcademicDetailTab.css';
 
 /**
  * AcademicDetailTab
@@ -15,28 +15,44 @@ export default function AcademicDetailTab({ education, experience }) {
 
         <div className="academic-detail-tab__grid">
           <div className="academic-detail-tab__field">
-            <span className="academic-detail-tab__label">Highest Education</span>
-            <span className="academic-detail-tab__value">{education.highestEducation}</span>
+            <span className="academic-detail-tab__label">
+              Highest Education
+            </span>
+            <span className="academic-detail-tab__value">
+              {education.highestEducation}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">Specialization</span>
-            <span className="academic-detail-tab__value">{education.specialization}</span>
+            <span className="academic-detail-tab__value">
+              {education.specialization}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">University</span>
-            <span className="academic-detail-tab__value">{education.university}</span>
+            <span className="academic-detail-tab__value">
+              {education.university}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">Passing year</span>
-            <span className="academic-detail-tab__value">{education.passingYear}</span>
+            <span className="academic-detail-tab__value">
+              {education.passingYear}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
-            <span className="academic-detail-tab__label">Additional Qualification</span>
-            <span className="academic-detail-tab__value">{education.additionalQualification}</span>
+            <span className="academic-detail-tab__label">
+              Additional Qualification
+            </span>
+            <span className="academic-detail-tab__value">
+              {education.additionalQualification}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">Certifications:</span>
-            <span className="academic-detail-tab__value">{education.certifications}</span>
+            <span className="academic-detail-tab__value">
+              {education.certifications}
+            </span>
           </div>
         </div>
       </div>
@@ -47,15 +63,23 @@ export default function AcademicDetailTab({ education, experience }) {
         <div className="academic-detail-tab__grid">
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">Total Experience</span>
-            <span className="academic-detail-tab__value">{experience.totalExperience}</span>
+            <span className="academic-detail-tab__value">
+              {experience.totalExperience}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
-            <span className="academic-detail-tab__label">Previous Organization</span>
-            <span className="academic-detail-tab__value">{experience.previousOrganization}</span>
+            <span className="academic-detail-tab__label">
+              Previous Organization
+            </span>
+            <span className="academic-detail-tab__value">
+              {experience.previousOrganization}
+            </span>
           </div>
           <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">Role</span>
-            <span className="academic-detail-tab__value">{experience.role}</span>
+            <span className="academic-detail-tab__value">
+              {experience.role}
+            </span>
           </div>
         </div>
       </div>

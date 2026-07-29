@@ -1,7 +1,7 @@
-import React from "react";
-import { SectionCard, PriorityDot } from "../../../shared";
-import { tasksAssigned } from "../../../data";
-import "./TaskAssigned.css";
+import React from 'react';
+import { SectionCard, PriorityDot } from '../../../shared';
+import { tasksAssigned } from '../../../data';
+import './TaskAssigned.css';
 
 /**
  * TaskAssigned

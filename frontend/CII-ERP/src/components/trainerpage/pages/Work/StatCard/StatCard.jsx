@@ -1,5 +1,5 @@
-import useCountUp from "../../../shared/hooks/useCountUp";
-import "./StatCard.css";
+import useCountUp from '../../../shared/hooks/useCountUp';
+import './StatCard.css';
 
 /**
  * StatCard (Work)
@@ -14,7 +14,7 @@ import "./StatCard.css";
  * StatCards) since this tone palette is specific to the Work page, so
  * it's kept out of /shared.
  */
-export default function StatCard({ icon: Icon, value, label, tone = "blue" }) {
+export default function StatCard({ icon: Icon, value, label, tone = 'blue' }) {
   const animatedValue = useCountUp(value, 1200);
 
   return (

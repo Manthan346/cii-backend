@@ -1,7 +1,7 @@
-import React from "react";
-import { SectionCard, StatusBadge } from "../../../shared";
-import { batchOverview } from "../../../data";
-import "./BatchOverview.css";
+import React from 'react';
+import { SectionCard, StatusBadge } from '../../../shared';
+import { batchOverview } from '../../../data';
+import './BatchOverview.css';
 
 /**
  * BatchOverview
@@ -25,7 +25,9 @@ const BatchOverview = () => {
           <div className="batch-overview__row" key={batch.id}>
             <span className="batch-overview__code">{batch.batch}</span>
             <span className="batch-overview__course">{batch.course}</span>
-            <span className="batch-overview__candidates">{batch.candidates}</span>
+            <span className="batch-overview__candidates">
+              {batch.candidates}
+            </span>
             <span className="batch-overview__status">
               <StatusBadge status={batch.status} />
             </span>

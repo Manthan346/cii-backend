@@ -1,5 +1,5 @@
-import { Eye, Trash2, UserPlus } from "lucide-react";
-import styles from "./ActionButtons.module.css";
+import { Eye, Trash2, UserPlus } from 'lucide-react';
+import './ActionButtons.css';
 
 /**
  * ActionButtons (Batch Management)
@@ -11,13 +11,18 @@ import styles from "./ActionButtons.module.css";
  */
 export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
   return (
-    <div className={styles.actions}>
-      <button type="button" className={styles.iconBtn} onClick={onView} aria-label="View batch">
+    <div className={'actions'}>
+      <button
+        type="button"
+        className={'iconBtn'}
+        onClick={onView}
+        aria-label="View batch"
+      >
         <Eye size={15} />
       </button>
       <button
         type="button"
-        className={`${styles.iconBtn} ${styles.danger}`}
+        className={'iconBtn danger'}
         onClick={onDelete}
         aria-label="Delete batch"
       >
@@ -25,7 +30,7 @@ export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
       </button>
       <button
         type="button"
-        className={styles.iconBtn}
+        className={'iconBtn'}
         onClick={onAssignTrainer}
         aria-label="Assign trainer"
       >

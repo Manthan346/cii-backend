@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { X } from "lucide-react";
-import { Button, Dropdown } from "../../../shared";
-import "./GenerateReportModal.css";
+import { useState } from 'react';
+import { X } from 'lucide-react';
+import { Button, Dropdown } from '../../../shared';
+import './GenerateReportModal.css';
 
 /**
  * GenerateReportModal (Reports)
@@ -21,18 +21,23 @@ export default function GenerateReportModal({
   onCancel,
   onGenerate,
 }) {
-  const [reportType, setReportType] = useState(reportTypeOptions[0] || "");
-  const [batch, setBatch] = useState(batchOptions[0] || "");
-  const [format, setFormat] = useState(formatOptions[0] || "");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [reportType, setReportType] = useState(reportTypeOptions[0] || '');
+  const [batch, setBatch] = useState(batchOptions[0] || '');
+  const [format, setFormat] = useState(formatOptions[0] || '');
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
 
   const handleGenerate = () => {
     onGenerate?.({ reportType, batch, format, from, to });
   };
 
   return (
-    <div className="generate-report-modal__overlay" role="dialog" aria-modal="true" aria-label="Generate report">
+    <div
+      className="generate-report-modal__overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Generate report"
+    >
       <div className="generate-report-modal">
         <div className="generate-report-modal__header">
           <h2 className="generate-report-modal__title">Generate report</h2>

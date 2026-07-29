@@ -1,4 +1,4 @@
-import styles from "./QuickAccessCard.module.css";
+import './QuickAccessCard.css';
 
 /**
  * QuickAccessCard (Resources)
@@ -13,15 +13,21 @@ import styles from "./QuickAccessCard.module.css";
  *  - subtitle: string -> caption underneath (e.g. "38 generated reports")
  *  - tone: string     -> 'teal' | 'mint', controls the badge background
  */
-export default function QuickAccessCard({ icon: Icon, title, subtitle, tone = "mint", onClick }) {
+export default function QuickAccessCard({
+  icon: Icon,
+  title,
+  subtitle,
+  tone = 'mint',
+  onClick,
+}) {
   return (
-    <button type="button" className={styles.card} onClick={onClick}>
-      <div className={`${styles.iconWrap} ${styles[tone] || styles.mint}`}>
+    <button type="button" className={'card'} onClick={onClick}>
+      <div className={`${'iconWrap'} ${tone || 'mint'}`}>
         {Icon && <Icon size={22} strokeWidth={2} />}
       </div>
-      <div className={styles.text}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{subtitle}</div>
+      <div className={'text'}>
+        <div className={'title'}>{title}</div>
+        <div className={'subtitle'}>{subtitle}</div>
       </div>
     </button>
   );

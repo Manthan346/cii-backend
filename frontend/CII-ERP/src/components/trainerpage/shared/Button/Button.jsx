@@ -1,4 +1,4 @@
-import styles from './Button.module.css';
+import './Button.css';
 
 /**
  * Reusable button used across the Staff Panel.
@@ -17,13 +17,15 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${styles.button} ${styles[variant] || styles.primary}`}
+      className={`${'button'} ${variant || 'primary'}`}
       onClick={onClick}
       {...rest}
     >
-      {Icon && iconPosition === 'left' && <Icon size={16} className={styles.icon} />}
+      {Icon && iconPosition === 'left' && <Icon size={16} className={'icon'} />}
       <span>{children}</span>
-      {Icon && iconPosition === 'right' && <Icon size={16} className={styles.icon} />}
+      {Icon && iconPosition === 'right' && (
+        <Icon size={16} className={'icon'} />
+      )}
     </button>
   );
 }

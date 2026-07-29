@@ -1,5 +1,5 @@
-import React from "react";
-import "./SectionCard.css";
+import React from 'react';
+import './SectionCard.css';
 
 /**
  * SectionCard
@@ -21,7 +21,7 @@ const SectionCard = ({
   title,
   actionLabel,
   onActionClick,
-  className = "",
+  className = '',
   children,
 }) => {
   return (

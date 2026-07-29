@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Button } from "../../../shared";
-import styles from "./EditProfileModal.module.css";
+import { useState } from 'react';
+import { Button } from '../../../shared';
+import './EditProfileModal.css';
 
 /**
  * EditProfileModal
@@ -21,13 +21,27 @@ import styles from "./EditProfileModal.module.css";
  * state.
  */
 const SECTIONS = [
-  { id: "personal", label: "Personal" },
-  { id: "contact", label: "Contact" },
-  { id: "address", label: "Address" },
-  { id: "guardian", label: "Guardian" },
-  { id: "academic", label: "Academic" },
+  {
+    id: 'personal',
+    label: 'Personal',
+  },
+  {
+    id: 'contact',
+    label: 'Contact',
+  },
+  {
+    id: 'address',
+    label: 'Address',
+  },
+  {
+    id: 'guardian',
+    label: 'Guardian',
+  },
+  {
+    id: 'academic',
+    label: 'Academic',
+  },
 ];
-
 export default function EditProfileModal({
   personal,
   contact,
@@ -39,19 +53,31 @@ export default function EditProfileModal({
   onSave,
 }) {
   const [activeSection, setActiveSection] = useState(SECTIONS[0].id);
-
-  const [personalForm, setPersonalForm] = useState({ ...personal });
-  const [contactForm, setContactForm] = useState({ ...contact });
-  const [addressForm, setAddressForm] = useState({ ...address });
-  const [guardianForm, setGuardianForm] = useState({ ...guardian });
-  const [educationForm, setEducationForm] = useState({ ...education });
-  const [experienceForm, setExperienceForm] = useState({ ...experience });
-
+  const [personalForm, setPersonalForm] = useState({
+    ...personal,
+  });
+  const [contactForm, setContactForm] = useState({
+    ...contact,
+  });
+  const [addressForm, setAddressForm] = useState({
+    ...address,
+  });
+  const [guardianForm, setGuardianForm] = useState({
+    ...guardian,
+  });
+  const [educationForm, setEducationForm] = useState({
+    ...education,
+  });
+  const [experienceForm, setExperienceForm] = useState({
+    ...experience,
+  });
   const updateField = (setter) => (field) => (event) => {
     const { value } = event.target;
-    setter((prev) => ({ ...prev, [field]: value }));
+    setter((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
-
   const handleSave = () => {
     onSave?.({
       personal: personalForm,
@@ -62,20 +88,22 @@ export default function EditProfileModal({
       experience: experienceForm,
     });
   };
-
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-label="Edit profile">
-      <div className={styles.modal}>
-        <h2 className={styles.title}>Edit Profile</h2>
+    <div
+      className={'overlay'}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Edit profile"
+    >
+      <div className={'modal'}>
+        <h2 className={'title'}>Edit Profile</h2>
 
-        <div className={styles.sectionTabs}>
+        <div className={'sectionTabs'}>
           {SECTIONS.map((section) => (
             <button
               key={section.id}
               type="button"
-              className={`${styles.sectionTab} ${
-                activeSection === section.id ? styles.sectionTabActive : ""
-              }`}
+              className={`${'sectionTab'} ${activeSection === section.id ? 'sectionTabActive' : ''}`}
               onClick={() => setActiveSection(section.id)}
             >
               {section.label}
@@ -83,303 +111,311 @@ export default function EditProfileModal({
           ))}
         </div>
 
-        <div className={styles.body}>
-          {activeSection === "personal" && (
+        <div className={'body'}>
+          {activeSection === 'personal' && (
             <>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Name</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Name</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={personalForm.name}
-                    onChange={updateField(setPersonalForm)("name")}
+                    onChange={updateField(setPersonalForm)('name')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Gender</label>
+                <div className={'field'}>
+                  <label className={'label'}>Gender</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={personalForm.gender}
-                    onChange={updateField(setPersonalForm)("gender")}
+                    onChange={updateField(setPersonalForm)('gender')}
                   />
                 </div>
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Date of Birth</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Date of Birth</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     placeholder="dd mmm yyyy"
                     value={personalForm.dob}
-                    onChange={updateField(setPersonalForm)("dob")}
+                    onChange={updateField(setPersonalForm)('dob')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Blood Group</label>
+                <div className={'field'}>
+                  <label className={'label'}>Blood Group</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={personalForm.bloodGroup}
-                    onChange={updateField(setPersonalForm)("bloodGroup")}
+                    onChange={updateField(setPersonalForm)('bloodGroup')}
                   />
                 </div>
               </div>
-              <div className={styles.field}>
-                <label className={styles.label}>Highest Qualification</label>
+              <div className={'field'}>
+                <label className={'label'}>Highest Qualification</label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   value={personalForm.highestQualification}
-                  onChange={updateField(setPersonalForm)("highestQualification")}
+                  onChange={updateField(setPersonalForm)(
+                    'highestQualification',
+                  )}
                 />
               </div>
             </>
           )}
 
-          {activeSection === "contact" && (
+          {activeSection === 'contact' && (
             <>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Mobile Number</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Mobile Number</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={contactForm.mobileNumber}
-                    onChange={updateField(setContactForm)("mobileNumber")}
+                    onChange={updateField(setContactForm)('mobileNumber')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Emergency Contact Number</label>
+                <div className={'field'}>
+                  <label className={'label'}>Emergency Contact Number</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={contactForm.emergencyContactNumber}
-                    onChange={updateField(setContactForm)("emergencyContactNumber")}
+                    onChange={updateField(setContactForm)(
+                      'emergencyContactNumber',
+                    )}
                   />
                 </div>
               </div>
-              <div className={styles.field}>
-                <label className={styles.label}>Email - ID</label>
+              <div className={'field'}>
+                <label className={'label'}>Email - ID</label>
                 <input
                   type="email"
-                  className={styles.input}
+                  className={'input'}
                   value={contactForm.emailId}
-                  onChange={updateField(setContactForm)("emailId")}
+                  onChange={updateField(setContactForm)('emailId')}
                 />
               </div>
             </>
           )}
 
-          {activeSection === "address" && (
+          {activeSection === 'address' && (
             <>
-              <div className={styles.field}>
-                <label className={styles.label}>Address Line</label>
+              <div className={'field'}>
+                <label className={'label'}>Address Line</label>
                 <textarea
-                  className={styles.textarea}
+                  className={'textarea'}
                   rows={2}
                   value={addressForm.line}
-                  onChange={updateField(setAddressForm)("line")}
+                  onChange={updateField(setAddressForm)('line')}
                 />
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>State</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>State</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={addressForm.state}
-                    onChange={updateField(setAddressForm)("state")}
+                    onChange={updateField(setAddressForm)('state')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>District</label>
+                <div className={'field'}>
+                  <label className={'label'}>District</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={addressForm.district}
-                    onChange={updateField(setAddressForm)("district")}
+                    onChange={updateField(setAddressForm)('district')}
                   />
                 </div>
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Taluka</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Taluka</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={addressForm.taluka}
-                    onChange={updateField(setAddressForm)("taluka")}
+                    onChange={updateField(setAddressForm)('taluka')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Pin Code</label>
+                <div className={'field'}>
+                  <label className={'label'}>Pin Code</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={addressForm.pinCode}
-                    onChange={updateField(setAddressForm)("pinCode")}
+                    onChange={updateField(setAddressForm)('pinCode')}
                   />
                 </div>
               </div>
             </>
           )}
 
-          {activeSection === "guardian" && (
+          {activeSection === 'guardian' && (
             <>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Name</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Name</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={guardianForm.name}
-                    onChange={updateField(setGuardianForm)("name")}
+                    onChange={updateField(setGuardianForm)('name')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Relationship</label>
+                <div className={'field'}>
+                  <label className={'label'}>Relationship</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={guardianForm.relationship}
-                    onChange={updateField(setGuardianForm)("relationship")}
+                    onChange={updateField(setGuardianForm)('relationship')}
                   />
                 </div>
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Mobile Number</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Mobile Number</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={guardianForm.mobileNumber}
-                    onChange={updateField(setGuardianForm)("mobileNumber")}
+                    onChange={updateField(setGuardianForm)('mobileNumber')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Occupation</label>
+                <div className={'field'}>
+                  <label className={'label'}>Occupation</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={guardianForm.occupation}
-                    onChange={updateField(setGuardianForm)("occupation")}
+                    onChange={updateField(setGuardianForm)('occupation')}
                   />
                 </div>
               </div>
-              <div className={styles.field}>
-                <label className={styles.label}>Address</label>
+              <div className={'field'}>
+                <label className={'label'}>Address</label>
                 <textarea
-                  className={styles.textarea}
+                  className={'textarea'}
                   rows={2}
                   value={guardianForm.address}
-                  onChange={updateField(setGuardianForm)("address")}
+                  onChange={updateField(setGuardianForm)('address')}
                 />
               </div>
             </>
           )}
 
-          {activeSection === "academic" && (
+          {activeSection === 'academic' && (
             <>
-              <h3 className={styles.subheading}>Education</h3>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Highest Education</label>
+              <h3 className={'subheading'}>Education</h3>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Highest Education</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.highestEducation}
-                    onChange={updateField(setEducationForm)("highestEducation")}
+                    onChange={updateField(setEducationForm)('highestEducation')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Specialization</label>
+                <div className={'field'}>
+                  <label className={'label'}>Specialization</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.specialization}
-                    onChange={updateField(setEducationForm)("specialization")}
+                    onChange={updateField(setEducationForm)('specialization')}
                   />
                 </div>
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>University</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>University</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.university}
-                    onChange={updateField(setEducationForm)("university")}
+                    onChange={updateField(setEducationForm)('university')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Passing Year</label>
+                <div className={'field'}>
+                  <label className={'label'}>Passing Year</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.passingYear}
-                    onChange={updateField(setEducationForm)("passingYear")}
+                    onChange={updateField(setEducationForm)('passingYear')}
                   />
                 </div>
               </div>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Additional Qualification</label>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Additional Qualification</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.additionalQualification}
-                    onChange={updateField(setEducationForm)("additionalQualification")}
+                    onChange={updateField(setEducationForm)(
+                      'additionalQualification',
+                    )}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Certifications</label>
+                <div className={'field'}>
+                  <label className={'label'}>Certifications</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={educationForm.certifications}
-                    onChange={updateField(setEducationForm)("certifications")}
+                    onChange={updateField(setEducationForm)('certifications')}
                   />
                 </div>
               </div>
 
-              <h3 className={styles.subheading}>Experience</h3>
-              <div className={styles.row}>
-                <div className={styles.field}>
-                  <label className={styles.label}>Total Experience</label>
+              <h3 className={'subheading'}>Experience</h3>
+              <div className={'row'}>
+                <div className={'field'}>
+                  <label className={'label'}>Total Experience</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={experienceForm.totalExperience}
-                    onChange={updateField(setExperienceForm)("totalExperience")}
+                    onChange={updateField(setExperienceForm)('totalExperience')}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>Previous Organization</label>
+                <div className={'field'}>
+                  <label className={'label'}>Previous Organization</label>
                   <input
                     type="text"
-                    className={styles.input}
+                    className={'input'}
                     value={experienceForm.previousOrganization}
-                    onChange={updateField(setExperienceForm)("previousOrganization")}
+                    onChange={updateField(setExperienceForm)(
+                      'previousOrganization',
+                    )}
                   />
                 </div>
               </div>
-              <div className={styles.field}>
-                <label className={styles.label}>Role</label>
+              <div className={'field'}>
+                <label className={'label'}>Role</label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   value={experienceForm.role}
-                  onChange={updateField(setExperienceForm)("role")}
+                  onChange={updateField(setExperienceForm)('role')}
                 />
               </div>
             </>
           )}
         </div>
 
-        <div className={styles.actions}>
+        <div className={'actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

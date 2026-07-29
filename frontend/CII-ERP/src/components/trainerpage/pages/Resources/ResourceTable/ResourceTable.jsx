@@ -1,5 +1,5 @@
-import { Avatar, ActionButtons } from "../../../shared";
-import styles from "./ResourceTable.module.css";
+import { Avatar, ActionButtons } from '../../../shared';
+import './ResourceTable.css';
 
 /**
  * ResourceTable
@@ -14,11 +14,11 @@ import styles from "./ResourceTable.module.css";
  */
 export default function ResourceTable({ records = [], onView, onDelete }) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
+    <div className={'tableWrap'}>
+      <table className={'table'}>
         <thead>
           <tr>
-            <th className={styles.checkboxCol}>
+            <th className={'checkboxCol'}>
               <input type="checkbox" aria-label="Select all resources" />
             </th>
             <th>Resourses</th>
@@ -33,23 +33,27 @@ export default function ResourceTable({ records = [], onView, onDelete }) {
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${record.name}`} />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  aria-label={`Select ${record.name}`}
+                />
               </td>
               <td>
-                <div className={styles.nameCell}>
-                  <span className={styles.name}>{record.name}</span>
-                  <span className={styles.subtitle}>{record.subtitle}</span>
+                <div className={'nameCell'}>
+                  <span className={'name'}>{record.name}</span>
+                  <span className={'subtitle'}>{record.subtitle}</span>
                 </div>
               </td>
-              <td className={styles.nowrap}>{record.category}</td>
+              <td className={'nowrap'}>{record.category}</td>
               <td>
-                <div className={styles.updatedByCell}>
+                <div className={'updatedByCell'}>
                   <Avatar name={record.updatedBy} tone="mint" size={28} />
                   <span>{record.updatedBy}</span>
                 </div>
               </td>
-              <td className={styles.nowrap}>{record.date}</td>
-              <td className={styles.nowrap}>{record.size}</td>
+              <td className={'nowrap'}>{record.date}</td>
+              <td className={'nowrap'}>{record.size}</td>
               <td>
                 <ActionButtons
                   showEdit={false}

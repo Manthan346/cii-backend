@@ -1,5 +1,5 @@
-import { CalendarDays, Clock, MapPin } from "lucide-react";
-import styles from "./EventCard.module.css";
+import { CalendarDays, Clock, MapPin } from 'lucide-react';
+import './EventCard.css';
 
 /**
  * EventCard (Events)
@@ -18,24 +18,32 @@ import styles from "./EventCard.module.css";
  *  - tone: string     -> "teal" | "blue" | "mint", controls the badge color
  *  - onClick: function
  */
-export default function EventCard({ title, type, date, time, venue, tone = "teal", onClick }) {
+export default function EventCard({
+  title,
+  type,
+  date,
+  time,
+  venue,
+  tone = 'teal',
+  onClick,
+}) {
   return (
-    <button type="button" className={styles.card} onClick={onClick}>
-      <span className={`${styles.typeBadge} ${styles[`typeBadge--${tone}`]}`}>{type}</span>
+    <button type="button" className={'card'} onClick={onClick}>
+      <span className={`${'typeBadge'} ${`typeBadge--${tone}`}`}>{type}</span>
 
-      <h3 className={styles.title}>{title}</h3>
+      <h3 className={'title'}>{title}</h3>
 
-      <div className={styles.metaRow}>
-        <CalendarDays size={14} className={styles.metaIcon} />
+      <div className={'metaRow'}>
+        <CalendarDays size={14} className={'metaIcon'} />
         <span>{date}</span>
       </div>
-      <div className={styles.metaRow}>
-        <Clock size={14} className={styles.metaIcon} />
+      <div className={'metaRow'}>
+        <Clock size={14} className={'metaIcon'} />
         <span>{time}</span>
       </div>
-      <div className={styles.metaRow}>
-        <MapPin size={14} className={styles.metaIcon} />
-        <span className={styles.venue}>{venue}</span>
+      <div className={'metaRow'}>
+        <MapPin size={14} className={'metaIcon'} />
+        <span className={'venue'}>{venue}</span>
       </div>
     </button>
   );

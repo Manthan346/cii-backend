@@ -1,5 +1,5 @@
-import useCountUp from "../../../shared/hooks/useCountUp";
-import styles from "./StatCard.module.css";
+import useCountUp from '../../../shared/hooks/useCountUp';
+import './StatCard.css';
 
 /**
  * StatCard (Study Material Upload)
@@ -15,18 +15,17 @@ import styles from "./StatCard.module.css";
  * the Candidate/Batch/Attendance/Resources page StatCards - the exact
  * tone palette here is specific to this page.
  */
-export default function StatCard({ icon: Icon, value, label, tone = "teal" }) {
-  const isWholeNumber = typeof value === "number" && Number.isInteger(value);
+export default function StatCard({ icon: Icon, value, label, tone = 'teal' }) {
+  const isWholeNumber = typeof value === 'number' && Number.isInteger(value);
   const animatedValue = useCountUp(isWholeNumber ? value : 0, 1200);
   const displayValue = isWholeNumber ? animatedValue : value;
-
   return (
-    <div className={styles.card}>
-      <div className={`${styles.iconWrap} ${styles[tone] || styles.teal}`}>
+    <div className={'card'}>
+      <div className={`${'iconWrap'} ${tone || 'teal'}`}>
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={styles.value}>{displayValue}</div>
-      <div className={styles.label}>{label}</div>
+      <div className={'value'}>{displayValue}</div>
+      <div className={'label'}>{label}</div>
     </div>
   );
 }

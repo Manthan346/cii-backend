@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import {
-  Plus,
-  Download,
-  Printer,
-} from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { Pagination } from "../../../shared";
-import EventCard from "../EventCard/EventCard";
-import EventFilterBar from "../EventFilterBar/EventFilterBar";
-import EventTable from "../EventTable/EventTable";
-import CreateEventModal from "../CreateEventModal/CreateEventModal";
-import ViewEventModal from "../ViewEventModal/ViewEventModal";
+import React, { useState } from 'react';
+import { Plus, Download, Printer } from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { Pagination } from '../../../shared';
+import EventCard from '../EventCard/EventCard';
+import EventFilterBar from '../EventFilterBar/EventFilterBar';
+import EventTable from '../EventTable/EventTable';
+import CreateEventModal from '../CreateEventModal/CreateEventModal';
+import ViewEventModal from '../ViewEventModal/ViewEventModal';
 import {
   upcomingEvents,
   eventTypeOptions,
@@ -19,10 +15,10 @@ import {
   eventModeOptions,
   eventMeta,
   eventRecords,
-} from "../../../data";
-import "../../../styles/variables.css";
-import "./Events.css";
-import styles from "./Events.module.css";
+} from '../../../data';
+import '../../../styles/variables.css';
+import './Events.css';
+import './Events.css';
 
 /**
  * Events
@@ -41,14 +37,12 @@ import styles from "./Events.module.css";
  */
 const Events = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [records, setRecords] = useState(eventRecords);
   const [currentPage, setCurrentPage] = useState(1);
-
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [eventBeingEdited, setEventBeingEdited] = useState(null);
   const [eventBeingViewed, setEventBeingViewed] = useState(null);
-
   const handleCreate = (formValues) => {
     setRecords((prev) => [
       {
@@ -60,17 +54,16 @@ const Events = () => {
         time: formValues.time,
         venue: formValues.venue,
         batch: formValues.batch,
-        organizer: "You",
+        organizer: 'You',
         participants: 0,
         maxParticipants: Number(formValues.maxParticipants) || 0,
-        status: "Upcoming",
+        status: 'Upcoming',
         description: formValues.description,
       },
       ...prev,
     ]);
     setIsCreateOpen(false);
   };
-
   const handleUpdate = (formValues) => {
     setRecords((prev) =>
       prev.map((record) =>
@@ -84,23 +77,24 @@ const Events = () => {
               time: formValues.time,
               venue: formValues.venue,
               batch: formValues.batch,
-              maxParticipants: Number(formValues.maxParticipants) || record.maxParticipants,
+              maxParticipants:
+                Number(formValues.maxParticipants) || record.maxParticipants,
               description: formValues.description,
             }
-          : record
-      )
+          : record,
+      ),
     );
     setEventBeingEdited(null);
   };
-
   const handleDelete = (record) => {
     setRecords((prev) => prev.filter((item) => item.id !== record.id));
   };
-
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{
+          name: 'Staff Admin',
+        }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -111,23 +105,27 @@ const Events = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className={styles.content}>
-              <div className={styles.pageHeader}>
+            <div className={'content'}>
+              <div className={'pageHeader'}>
                 <div>
-                  <h1 className={styles.title}>Events</h1>
-                  <p className={styles.subtitle}>{eventMeta.subtitle}</p>
+                  <h1 className={'title'}>Events</h1>
+                  <p className={'subtitle'}>{eventMeta.subtitle}</p>
                 </div>
-                <button type="button" className={styles.createBtn} onClick={() => setIsCreateOpen(true)}>
+                <button
+                  type="button"
+                  className={'createBtn'}
+                  onClick={() => setIsCreateOpen(true)}
+                >
                   <Plus size={16} />
                   <span>Create Event</span>
                 </button>
               </div>
 
-              <section className={styles.upcomingSection}>
-                <div className={styles.sectionHeader}>
-                  <h2 className={styles.sectionTitle}>Upcoming events</h2>
+              <section className={'upcomingSection'}>
+                <div className={'sectionHeader'}>
+                  <h2 className={'sectionTitle'}>Upcoming events</h2>
                 </div>
-                <div className={styles.upcomingGrid}>
+                <div className={'upcomingGrid'}>
                   {upcomingEvents.map((event) => (
                     <EventCard
                       key={event.id}
@@ -138,7 +136,9 @@ const Events = () => {
                       venue={event.venue}
                       tone={event.tone}
                       onClick={() => {
-                        const fullRecord = records.find((record) => record.id === event.id);
+                        const fullRecord = records.find(
+                          (record) => record.id === event.id,
+                        );
                         if (fullRecord) setEventBeingViewed(fullRecord);
                       }}
                     />
@@ -146,16 +146,27 @@ const Events = () => {
                 </div>
               </section>
 
-              <EventFilterBar typeOptions={eventTypeOptions} statusOptions={eventStatusOptions} />
+              <EventFilterBar
+                typeOptions={eventTypeOptions}
+                statusOptions={eventStatusOptions}
+              />
 
-              <section className={styles.tableSection}>
-                <div className={styles.tableHeader}>
-                  <h2 className={styles.tableTitle}>All Events</h2>
-                  <div className={styles.tableActions}>
-                    <button type="button" className={styles.iconBtn} aria-label="Download list">
+              <section className={'tableSection'}>
+                <div className={'tableHeader'}>
+                  <h2 className={'tableTitle'}>All Events</h2>
+                  <div className={'tableActions'}>
+                    <button
+                      type="button"
+                      className={'iconBtn'}
+                      aria-label="Download list"
+                    >
                       <Download size={16} />
                     </button>
-                    <button type="button" className={styles.iconBtn} aria-label="Print list">
+                    <button
+                      type="button"
+                      className={'iconBtn'}
+                      aria-label="Print list"
+                    >
                       <Printer size={16} />
                     </button>
                   </div>
@@ -184,7 +195,9 @@ const Events = () => {
 
       {isCreateOpen && (
         <CreateEventModal
-          typeOptions={eventTypeOptions.filter((option) => !option.toLowerCase().startsWith("all"))}
+          typeOptions={eventTypeOptions.filter(
+            (option) => !option.toLowerCase().startsWith('all'),
+          )}
           modeOptions={eventModeOptions}
           onCancel={() => setIsCreateOpen(false)}
           onSave={handleCreate}
@@ -193,7 +206,9 @@ const Events = () => {
 
       {eventBeingEdited && (
         <CreateEventModal
-          typeOptions={eventTypeOptions.filter((option) => !option.toLowerCase().startsWith("all"))}
+          typeOptions={eventTypeOptions.filter(
+            (option) => !option.toLowerCase().startsWith('all'),
+          )}
           modeOptions={eventModeOptions}
           initialValues={eventBeingEdited}
           onCancel={() => setEventBeingEdited(null)}
@@ -202,10 +217,12 @@ const Events = () => {
       )}
 
       {eventBeingViewed && (
-        <ViewEventModal event={eventBeingViewed} onClose={() => setEventBeingViewed(null)} />
+        <ViewEventModal
+          event={eventBeingViewed}
+          onClose={() => setEventBeingViewed(null)}
+        />
       )}
     </div>
   );
 };
-
 export default Events;

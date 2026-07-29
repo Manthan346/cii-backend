@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { UserCircle2 } from "lucide-react";
-import StatusBadge from "../StatusBadge/StatusBadge";
-import { ActionButtons } from "../../../shared";
-import ViewCandidateModal from "../ViewCandidateModal/ViewCandidateModal";
-import EditStatusModal from "../EditStatusModal/EditStatusModal";
-import styles from "./CandidateTable.module.css";
+import { useState } from 'react';
+import { UserCircle2 } from 'lucide-react';
+import StatusBadge from '../StatusBadge/StatusBadge';
+import { ActionButtons } from '../../../shared';
+import ViewCandidateModal from '../ViewCandidateModal/ViewCandidateModal';
+import EditStatusModal from '../EditStatusModal/EditStatusModal';
+import './CandidateTable.css';
 
 /**
  * CandidateTable
@@ -22,20 +22,18 @@ import styles from "./CandidateTable.module.css";
 export default function CandidateTable({ candidates = [], onStatusChange }) {
   const [viewingCandidate, setViewingCandidate] = useState(null);
   const [editingCandidate, setEditingCandidate] = useState(null);
-
   const handleSaveStatus = (newStatus) => {
     if (editingCandidate) {
       onStatusChange?.(editingCandidate.id, newStatus);
     }
     setEditingCandidate(null);
   };
-
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
+    <div className={'tableWrap'}>
+      <table className={'table'}>
         <thead>
           <tr>
-            <th className={styles.checkboxCol}>
+            <th className={'checkboxCol'}>
               <input type="checkbox" aria-label="Select all candidates" />
             </th>
             <th>Candidates ID</th>
@@ -51,18 +49,22 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
           {candidates.map((candidate) => (
             <tr key={candidate.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${candidate.name}`} />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  aria-label={`Select ${candidate.name}`}
+                />
               </td>
-              <td className={styles.idCell}>{candidate.candidateId}</td>
+              <td className={'idCell'}>{candidate.candidateId}</td>
               <td>
-                <div className={styles.nameCell}>
-                  <UserCircle2 size={22} className={styles.avatarIcon} />
+                <div className={'nameCell'}>
+                  <UserCircle2 size={22} className={'avatarIcon'} />
                   <span>{candidate.name}</span>
                 </div>
               </td>
               <td>{candidate.batch}</td>
               <td>{candidate.course}</td>
-              <td className={styles.nowrap}>{candidate.joinDate}</td>
+              <td className={'nowrap'}>{candidate.joinDate}</td>
               <td>
                 <StatusBadge status={candidate.status} />
               </td>
@@ -78,7 +80,10 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
       </table>
 
       {viewingCandidate && (
-        <ViewCandidateModal candidate={viewingCandidate} onClose={() => setViewingCandidate(null)} />
+        <ViewCandidateModal
+          candidate={viewingCandidate}
+          onClose={() => setViewingCandidate(null)}
+        />
       )}
 
       {editingCandidate && (

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { SectionCard } from "../../../shared";
-import { attendanceLast7Days } from "../../../data";
-import "./AttendanceChart.css";
+import React, { useEffect, useState } from 'react';
+import { SectionCard } from '../../../shared';
+import { attendanceLast7Days } from '../../../data';
+import './AttendanceChart.css';
 
 const Y_AXIS_STEPS = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
 
@@ -46,9 +46,9 @@ const AttendanceChart = () => {
               <div className="attendance-chart__bar-col" key={day.day}>
                 <div
                   className={`attendance-chart__bar ${
-                    day.projected ? "attendance-chart__bar--projected" : ""
+                    day.projected ? 'attendance-chart__bar--projected' : ''
                   }`}
-                  style={{ height: animate ? `${day.value}%` : "0%" }}
+                  style={{ height: animate ? `${day.value}%` : '0%' }}
                   title={`${day.day}: ${day.value}%`}
                 />
                 <span className="attendance-chart__day-label">{day.day}</span>

@@ -1,21 +1,26 @@
-import { useState } from "react";
-import { ArrowLeft, Lightbulb } from "lucide-react";
-import { Dropdown, Button } from "../../../shared";
-import { trainers, courseSelectOptions, sessionTimeOptions, classroomOptions, daysOfWeek } from "../../../data";
-import styles from "./CreateBatch.module.css";
-
+import { useState } from 'react';
+import { ArrowLeft, Lightbulb } from 'lucide-react';
+import { Dropdown, Button } from '../../../shared';
+import {
+  trainers,
+  courseSelectOptions,
+  sessionTimeOptions,
+  classroomOptions,
+  daysOfWeek,
+} from '../../../data';
+import './CreateBatch.css';
 const EMPTY_FORM = {
-  batchName: "",
-  batchCode: "",
-  course: "",
-  maxCandidates: "",
-  startDate: "",
-  endDate: "",
-  sessionTime: "",
-  classroom: "",
+  batchName: '',
+  batchCode: '',
+  course: '',
+  maxCandidates: '',
+  startDate: '',
+  endDate: '',
+  sessionTime: '',
+  classroom: '',
   selectedDays: [],
-  trainerId: "",
-  notes: "",
+  trainerId: '',
+  notes: '',
 };
 
 /**
@@ -35,11 +40,12 @@ const CreateBatch = ({ onBack, onCreated }) => {
   const [form, setForm] = useState(EMPTY_FORM);
   const [showNameError, setShowNameError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
   const updateField = (field) => (event) => {
-    setForm((prev) => ({ ...prev, [field]: event.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [field]: event.target.value,
+    }));
   };
-
   const toggleDay = (day) => {
     setForm((prev) => ({
       ...prev,
@@ -48,9 +54,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
         : [...prev.selectedDays, day],
     }));
   };
-
   const selectedTrainer = trainers.find((t) => t.id === form.trainerId);
-
   const handleCreate = () => {
     if (!form.batchName.trim()) {
       setShowNameError(true);
@@ -58,81 +62,88 @@ const CreateBatch = ({ onBack, onCreated }) => {
     }
     setShowNameError(false);
     setShowSuccess(true);
-
     const newBatch = {
       id: Date.now(),
       code: form.batchCode || form.batchName,
       schedule: form.selectedDays.length
-        ? `${form.sessionTime ? "custom" : "morning"} . ${form.selectedDays.join("-")}`
-        : "morning . Mon-Fri",
-      trainer: selectedTrainer ? selectedTrainer.name.toLowerCase() : "unassigned",
-      course: form.course || "Data science",
+        ? `${form.sessionTime ? 'custom' : 'morning'} . ${form.selectedDays.join('-')}`
+        : 'morning . Mon-Fri',
+      trainer: selectedTrainer
+        ? selectedTrainer.name.toLowerCase()
+        : 'unassigned',
+      course: form.course || 'Data science',
       progress: 0,
       candidates: 0,
-      startDate: form.startDate || "-",
-      status: "Upcoming",
+      startDate: form.startDate || '-',
+      status: 'Upcoming',
     };
-
     setTimeout(() => {
       setShowSuccess(false);
       setForm(EMPTY_FORM);
       onCreated?.(newBatch);
     }, 1400);
   };
-
   const handleCancel = () => {
     setForm(EMPTY_FORM);
     setShowNameError(false);
     onBack?.();
   };
-
   return (
-    <div className={styles.content}>
-      <div className={styles.pageHeader}>
+    <div className={'content'}>
+      <div className={'pageHeader'}>
         <div>
-          <h1 className={styles.title}>Create new Batch</h1>
-          <p className={styles.subtitle}>Set up batch details,schedule,and trainer assignment</p>
+          <h1 className={'title'}>Create new Batch</h1>
+          <p className={'subtitle'}>
+            Set up batch details,schedule,and trainer assignment
+          </p>
         </div>
-        <Button variant="primary" icon={ArrowLeft} iconPosition="left" onClick={onBack}>
+        <Button
+          variant="primary"
+          icon={ArrowLeft}
+          iconPosition="left"
+          onClick={onBack}
+        >
           back
         </Button>
       </div>
 
-      <div className={styles.layout}>
+      <div className={'layout'}>
         {/* ---- Left: form card ---- */}
-        <div className={styles.formCard}>
+        <div className={'formCard'}>
           {showSuccess && (
-            <div className={styles.successToast} role="status">
+            <div className={'successToast'} role="status">
               Batch created successfully
             </div>
           )}
 
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>BASIC DETAILS</h3>
-            <div className={styles.grid2}>
-              <div className={styles.field}>
-                <label className={styles.label}>
-                  Batch name <span className={styles.required}>*</span>
+          <section className={'section'}>
+            <h3 className={'sectionTitle'}>BASIC DETAILS</h3>
+            <div className={'grid2'}>
+              <div className={'field'}>
+                <label className={'label'}>
+                  Batch name <span className={'required'}>*</span>
                 </label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   value={form.batchName}
-                  onChange={updateField("batchName")}
+                  onChange={updateField('batchName')}
                 />
-                {showNameError && <p className={styles.errorText}>Batch name is required</p>}
+                {showNameError && (
+                  <p className={'errorText'}>Batch name is required</p>
+                )}
               </div>
 
-              <div className={styles.field}>
-                <label className={styles.label}>
-                  Batch code <span className={styles.required}>*</span>
+              <div className={'field'}>
+                <label className={'label'}>
+                  Batch code <span className={'required'}>*</span>
                 </label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   placeholder="eg DS-26"
                   value={form.batchCode}
-                  onChange={updateField("batchCode")}
+                  onChange={updateField('batchCode')}
                 />
               </div>
 
@@ -140,50 +151,55 @@ const CreateBatch = ({ onBack, onCreated }) => {
                 label="course *"
                 options={courseSelectOptions}
                 value={form.course || courseSelectOptions[0]}
-                onChange={(val) => setForm((prev) => ({ ...prev, course: val }))}
+                onChange={(val) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    course: val,
+                  }))
+                }
               />
 
-              <div className={styles.field}>
-                <label className={styles.label}>
-                  Maximum candidate <span className={styles.required}>*</span>
+              <div className={'field'}>
+                <label className={'label'}>
+                  Maximum candidate <span className={'required'}>*</span>
                 </label>
                 <input
                   type="number"
-                  className={styles.input}
+                  className={'input'}
                   placeholder="eg-30"
                   value={form.maxCandidates}
-                  onChange={updateField("maxCandidates")}
+                  onChange={updateField('maxCandidates')}
                 />
               </div>
             </div>
           </section>
 
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>SCHEDULE</h3>
-            <div className={styles.grid2}>
-              <div className={styles.field}>
-                <label className={styles.label}>
-                  Start date <span className={styles.required}>*</span>
+          <section className={'section'}>
+            <h3 className={'sectionTitle'}>SCHEDULE</h3>
+            <div className={'grid2'}>
+              <div className={'field'}>
+                <label className={'label'}>
+                  Start date <span className={'required'}>*</span>
                 </label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   placeholder="dd-mm-yy"
                   value={form.startDate}
-                  onChange={updateField("startDate")}
+                  onChange={updateField('startDate')}
                 />
               </div>
 
-              <div className={styles.field}>
-                <label className={styles.label}>
-                  End date (Expected) <span className={styles.required}>*</span>
+              <div className={'field'}>
+                <label className={'label'}>
+                  End date (Expected) <span className={'required'}>*</span>
                 </label>
                 <input
                   type="text"
-                  className={styles.input}
+                  className={'input'}
                   placeholder="dd-mm-yy"
                   value={form.endDate}
-                  onChange={updateField("endDate")}
+                  onChange={updateField('endDate')}
                 />
               </div>
 
@@ -191,29 +207,37 @@ const CreateBatch = ({ onBack, onCreated }) => {
                 label="Session time *"
                 options={sessionTimeOptions}
                 value={form.sessionTime || sessionTimeOptions[0]}
-                onChange={(val) => setForm((prev) => ({ ...prev, sessionTime: val }))}
+                onChange={(val) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    sessionTime: val,
+                  }))
+                }
               />
 
               <Dropdown
                 label="Classroom/mode"
                 options={classroomOptions}
                 value={form.classroom || classroomOptions[0]}
-                onChange={(val) => setForm((prev) => ({ ...prev, classroom: val }))}
+                onChange={(val) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    classroom: val,
+                  }))
+                }
               />
             </div>
 
-            <div className={styles.field}>
-              <label className={styles.label}>
-                Day of week <span className={styles.required}>*</span>
+            <div className={'field'}>
+              <label className={'label'}>
+                Day of week <span className={'required'}>*</span>
               </label>
-              <div className={styles.dayRow}>
+              <div className={'dayRow'}>
                 {daysOfWeek.map((day) => (
                   <button
                     key={day}
                     type="button"
-                    className={`${styles.dayPill} ${
-                      form.selectedDays.includes(day) ? styles.dayPillActive : ""
-                    }`}
+                    className={`${'dayPill'} ${form.selectedDays.includes(day) ? 'dayPillActive' : ''}`}
                     onClick={() => toggleDay(day)}
                   >
                     {day}
@@ -223,45 +247,48 @@ const CreateBatch = ({ onBack, onCreated }) => {
             </div>
           </section>
 
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>TRAINER ASSIMENT</h3>
-            <div className={styles.trainerGrid}>
+          <section className={'section'}>
+            <h3 className={'sectionTitle'}>TRAINER ASSIMENT</h3>
+            <div className={'trainerGrid'}>
               {trainers.map((trainer) => (
                 <label
                   key={trainer.id}
-                  className={`${styles.trainerCard} ${
-                    form.trainerId === trainer.id ? styles.trainerCardActive : ""
-                  }`}
+                  className={`${'trainerCard'} ${form.trainerId === trainer.id ? 'trainerCardActive' : ''}`}
                 >
                   <input
                     type="radio"
                     name="trainer"
-                    className={styles.trainerRadio}
+                    className={'trainerRadio'}
                     checked={form.trainerId === trainer.id}
-                    onChange={() => setForm((prev) => ({ ...prev, trainerId: trainer.id }))}
+                    onChange={() =>
+                      setForm((prev) => ({
+                        ...prev,
+                        trainerId: trainer.id,
+                      }))
+                    }
                   />
-                  <span className={styles.trainerInitials}>{trainer.initials}</span>
-                  <span className={styles.trainerText}>
-                    <span className={styles.trainerName}>{trainer.name}</span>
-                    <span className={styles.trainerMeta}>{trainer.meta}</span>
+                  <span className={'trainerInitials'}>{trainer.initials}</span>
+                  <span className={'trainerText'}>
+                    <span className={'trainerName'}>{trainer.name}</span>
+                    <span className={'trainerMeta'}>{trainer.meta}</span>
                   </span>
                 </label>
               ))}
             </div>
           </section>
 
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>ADDITIONAL NOTES</h3>
+          <section className={'section'}>
+            <h3 className={'sectionTitle'}>ADDITIONAL NOTES</h3>
             <textarea
-              className={styles.textarea}
+              className={'textarea'}
               placeholder="Any special instuction for this batch"
               rows={3}
               value={form.notes}
-              onChange={updateField("notes")}
+              onChange={updateField('notes')}
             />
           </section>
 
-          <div className={styles.actionsRow}>
+          <div className={'actionsRow'}>
             <Button variant="outline" onClick={handleCancel}>
               Cancle
             </Button>
@@ -272,42 +299,49 @@ const CreateBatch = ({ onBack, onCreated }) => {
         </div>
 
         {/* ---- Right: summary + tip ---- */}
-        <div className={styles.sidebar}>
-          <div className={styles.summaryCard}>
-            <h3 className={styles.summaryTitle}>Batch Summary</h3>
-            <p className={styles.summarySubtitle}>Review before creating</p>
+        <div className={'sidebar'}>
+          <div className={'summaryCard'}>
+            <h3 className={'summaryTitle'}>Batch Summary</h3>
+            <p className={'summarySubtitle'}>Review before creating</p>
 
-            <dl className={styles.summaryList}>
-              <div className={styles.summaryRow}>
+            <dl className={'summaryList'}>
+              <div className={'summaryRow'}>
                 <dt>Course</dt>
-                <dd>{form.course || "Data science"}</dd>
+                <dd>{form.course || 'Data science'}</dd>
               </div>
-              <div className={styles.summaryRow}>
+              <div className={'summaryRow'}>
                 <dt>Capacity</dt>
                 <dd>{form.maxCandidates || 30}</dd>
               </div>
-              <div className={styles.summaryRow}>
+              <div className={'summaryRow'}>
                 <dt>Schedule</dt>
-                <dd>{form.selectedDays.length ? form.selectedDays.join(", ") : "Mon -Fri"}</dd>
+                <dd>
+                  {form.selectedDays.length
+                    ? form.selectedDays.join(', ')
+                    : 'Mon -Fri'}
+                </dd>
               </div>
-              <div className={styles.summaryRow}>
+              <div className={'summaryRow'}>
                 <dt>Trainer</dt>
-                <dd>{selectedTrainer ? selectedTrainer.name : "Rohit mehta"}</dd>
+                <dd>
+                  {selectedTrainer ? selectedTrainer.name : 'Rohit mehta'}
+                </dd>
               </div>
-              <div className={styles.summaryRow}>
+              <div className={'summaryRow'}>
                 <dt>Status on save</dt>
-                <dd className={styles.summaryStatus}>Upcoming</dd>
+                <dd className={'summaryStatus'}>Upcoming</dd>
               </div>
             </dl>
           </div>
 
-          <div className={styles.tipCard}>
-            <div className={styles.tipTitle}>
+          <div className={'tipCard'}>
+            <div className={'tipTitle'}>
               <Lightbulb size={16} />
               <span>Tip</span>
             </div>
-            <p className={styles.tipText}>
-              You can add candidate to this batch right after creating it,from the batch detail page
+            <p className={'tipText'}>
+              You can add candidate to this batch right after creating it,from
+              the batch detail page
             </p>
           </div>
         </div>
@@ -315,5 +349,4 @@ const CreateBatch = ({ onBack, onCreated }) => {
     </div>
   );
 };
-
 export default CreateBatch;

@@ -1,6 +1,6 @@
-import React from "react";
-import { FileText, FileSpreadsheet, File } from "lucide-react";
-import "./FileTypeIcon.css";
+import React from 'react';
+import { FileText, FileSpreadsheet, File } from 'lucide-react';
+import './FileTypeIcon.css';
 
 /**
  * FileTypeIcon
@@ -14,20 +14,20 @@ import "./FileTypeIcon.css";
  *  - type: string -> "pdf" | "pptx" | "ppt" | "doc" | "docx" | "xlsx" | "xls" (falls back to a generic file icon)
  */
 const TYPE_CONFIG = {
-  pdf: { icon: FileText, tone: "red", label: "PDF" },
-  ppt: { icon: FileText, tone: "orange", label: "PPT" },
-  pptx: { icon: FileText, tone: "orange", label: "PPTX" },
-  doc: { icon: FileText, tone: "blue", label: "DOC" },
-  docx: { icon: FileText, tone: "blue", label: "DOCX" },
-  xls: { icon: FileSpreadsheet, tone: "green", label: "XLS" },
-  xlsx: { icon: FileSpreadsheet, tone: "green", label: "XLSX" },
+  pdf: { icon: FileText, tone: 'red', label: 'PDF' },
+  ppt: { icon: FileText, tone: 'orange', label: 'PPT' },
+  pptx: { icon: FileText, tone: 'orange', label: 'PPTX' },
+  doc: { icon: FileText, tone: 'blue', label: 'DOC' },
+  docx: { icon: FileText, tone: 'blue', label: 'DOCX' },
+  xls: { icon: FileSpreadsheet, tone: 'green', label: 'XLS' },
+  xlsx: { icon: FileSpreadsheet, tone: 'green', label: 'XLSX' },
 };
 
 const FileTypeIcon = ({ type }) => {
   const config = TYPE_CONFIG[type?.toLowerCase()] || {
     icon: File,
-    tone: "grey",
-    label: "FILE",
+    tone: 'grey',
+    label: 'FILE',
   };
   const Icon = config.icon;
 

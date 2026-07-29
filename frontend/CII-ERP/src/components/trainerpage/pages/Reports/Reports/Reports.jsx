@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   LayoutGrid,
   Clock,
@@ -7,14 +7,14 @@ import {
   Download,
   Printer,
   Plus,
-} from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
-import AttendanceOverview from "../AttendanceOverview/AttendanceOverview";
-import ReportTable from "../ReportTable/ReportTable";
-import GenerateReportModal from "../GenerateReportModal/GenerateReportModal";
+} from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { Dropdown, Button, Pagination } from '../../../shared';
+import StatCard from '../StatCard/StatCard';
+import AttendanceOverview from '../AttendanceOverview/AttendanceOverview';
+import ReportTable from '../ReportTable/ReportTable';
+import GenerateReportModal from '../GenerateReportModal/GenerateReportModal';
 import {
   reportStats,
   attendanceOverviewByBatch,
@@ -24,9 +24,9 @@ import {
   reportFormatOptions,
   reportMeta,
   reportRecords as defaultRecords,
-} from "../../../data";
-import "../../../styles/variables.css";
-import "./Reports.css";
+} from '../../../data';
+import '../../../styles/variables.css';
+import './Reports.css';
 
 /**
  * Reports
@@ -50,12 +50,12 @@ const STAT_ICONS = {
 
 const Reports = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const [reportType, setReportType] = useState(reportTypeOptions[0]);
   const [batch, setBatch] = useState(reportBatchOptions[0]);
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
   const [records, setRecords] = useState(defaultRecords);
@@ -67,15 +67,21 @@ const Reports = () => {
     // be wired to a GET /api/reports?type=&batch=&from=&to= call.
   };
 
-  const handleGenerateReport = ({ reportType: type, batch: reportBatch, format, from, to }) => {
+  const handleGenerateReport = ({
+    reportType: type,
+    batch: reportBatch,
+    format,
+    from,
+    to,
+  }) => {
     const newRecord = {
       id: Date.now(),
-      name: `${type || "New"} report${from ? ` - ${from}` : ""}`,
-      type: type || "Attendance",
-      batch: reportBatch || "All batches",
-      generatedOn: "Today",
-      generatedBy: "Staff Admin",
-      format: format || "PDF",
+      name: `${type || 'New'} report${from ? ` - ${from}` : ''}`,
+      type: type || 'Attendance',
+      batch: reportBatch || 'All batches',
+      generatedOn: 'Today',
+      generatedBy: 'Staff Admin',
+      format: format || 'PDF',
     };
 
     setRecords((prev) => [newRecord, ...prev]);
@@ -87,7 +93,7 @@ const Reports = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: 'Staff Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -109,10 +115,16 @@ const Reports = () => {
                 <div>
                   <h1 className="reports-page__title">Reports</h1>
                   <p className="reports-page__subtitle">
-                    {reportMeta.totalReports} report generated across attendance,performance and batches
+                    {reportMeta.totalReports} report generated across
+                    attendance,performance and batches
                   </p>
                 </div>
-                <Button variant="primary" icon={Plus} iconPosition="left" onClick={() => setShowModal(true)}>
+                <Button
+                  variant="primary"
+                  icon={Plus}
+                  iconPosition="left"
+                  onClick={() => setShowModal(true)}
+                >
                   Generate report
                 </Button>
               </div>
@@ -176,10 +188,18 @@ const Reports = () => {
                 <div className="reports-page__table-header">
                   <h2 className="reports-page__table-title">All reports</h2>
                   <div className="reports-page__table-actions">
-                    <button type="button" className="reports-page__icon-btn" aria-label="Download list">
+                    <button
+                      type="button"
+                      className="reports-page__icon-btn"
+                      aria-label="Download list"
+                    >
                       <Download size={16} />
                     </button>
-                    <button type="button" className="reports-page__icon-btn" aria-label="Print list">
+                    <button
+                      type="button"
+                      className="reports-page__icon-btn"
+                      aria-label="Print list"
+                    >
                       <Printer size={16} />
                     </button>
                   </div>

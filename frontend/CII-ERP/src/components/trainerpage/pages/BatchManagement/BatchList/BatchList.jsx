@@ -1,8 +1,17 @@
-import { useState } from "react";
-import { Layers, CheckCircle2, GraduationCap, Repeat, Search, Filter, Download, Printer } from "lucide-react";
-import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "./StatCard/StatCard";
-import BatchTable from "./BatchTable/BatchTable";
+import { useState } from 'react';
+import {
+  Layers,
+  CheckCircle2,
+  GraduationCap,
+  Repeat,
+  Search,
+  Filter,
+  Download,
+  Printer,
+} from 'lucide-react';
+import { Dropdown, Button, Pagination } from '../../../shared';
+import StatCard from './StatCard/StatCard';
+import BatchTable from './BatchTable/BatchTable';
 import {
   batches as defaultBatches,
   batchListMeta,
@@ -10,8 +19,8 @@ import {
   trainerFilterOptions,
   batchCourseOptions,
   batchStatusOptions,
-} from "../../../data";
-import styles from "./BatchList.module.css";
+} from '../../../data';
+import './BatchList.css';
 
 /**
  * BatchList
@@ -34,23 +43,21 @@ const STAT_ICONS = {
   completed: GraduationCap,
   repeat: Repeat,
 };
-
 const TOTAL_PAGES = 3;
-
 const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [trainer, setTrainer] = useState(trainerFilterOptions[0]);
   const [course, setCourse] = useState(batchCourseOptions[0]);
   const [status, setStatus] = useState(batchStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
-
   return (
-    <div className={styles.content}>
-      <div className={styles.pageHeader}>
+    <div className={'content'}>
+      <div className={'pageHeader'}>
         <div>
-          <h1 className={styles.title}>Batch List</h1>
-          <p className={styles.subtitle}>
-            {batchListMeta.totalBatches} batches eunning across {batchListMeta.totalCourses} courses
+          <h1 className={'title'}>Batch List</h1>
+          <p className={'subtitle'}>
+            {batchListMeta.totalBatches} batches eunning across{' '}
+            {batchListMeta.totalCourses} courses
           </p>
         </div>
         <Button variant="primary" onClick={onCreateBatch}>
@@ -58,7 +65,7 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
         </Button>
       </div>
 
-      <div className={styles.statsGrid}>
+      <div className={'statsGrid'}>
         {batchStats.map((stat) => (
           <StatCard
             key={stat.id}
@@ -70,40 +77,59 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
         ))}
       </div>
 
-      <div className={styles.filterBar}>
-        <div className={styles.searchField}>
-          <label className={styles.filterLabel}>SEARCH</label>
-          <div className={styles.searchInputWrap}>
-            <Search size={16} className={styles.searchIcon} />
+      <div className={'filterBar'}>
+        <div className={'searchField'}>
+          <label className={'filterLabel'}>SEARCH</label>
+          <div className={'searchInputWrap'}>
+            <Search size={16} className={'searchIcon'} />
             <input
               type="text"
               placeholder="Search by batch name & code"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className={styles.searchInput}
+              className={'searchInput'}
             />
           </div>
         </div>
 
-        <Dropdown label="TRAINERS" options={trainerFilterOptions} value={trainer} onChange={setTrainer} />
-        <Dropdown label="COURSES" options={batchCourseOptions} value={course} onChange={setCourse} />
-        <Dropdown label="STATUS" options={batchStatusOptions} value={status} onChange={setStatus} />
+        <Dropdown
+          label="TRAINERS"
+          options={trainerFilterOptions}
+          value={trainer}
+          onChange={setTrainer}
+        />
+        <Dropdown
+          label="COURSES"
+          options={batchCourseOptions}
+          value={course}
+          onChange={setCourse}
+        />
+        <Dropdown
+          label="STATUS"
+          options={batchStatusOptions}
+          value={status}
+          onChange={setStatus}
+        />
 
-        <div className={styles.applyWrap}>
+        <div className={'applyWrap'}>
           <Button variant="outline" icon={Filter}>
             Apply Filter
           </Button>
         </div>
       </div>
 
-      <section className={styles.tableSection}>
-        <div className={styles.tableHeader}>
-          <h2 className={styles.tableTitle}>All Batches</h2>
-          <div className={styles.tableActions}>
-            <button type="button" className={styles.iconBtn} aria-label="Download list">
+      <section className={'tableSection'}>
+        <div className={'tableHeader'}>
+          <h2 className={'tableTitle'}>All Batches</h2>
+          <div className={'tableActions'}>
+            <button
+              type="button"
+              className={'iconBtn'}
+              aria-label="Download list"
+            >
               <Download size={16} />
             </button>
-            <button type="button" className={styles.iconBtn} aria-label="Print list">
+            <button type="button" className={'iconBtn'} aria-label="Print list">
               <Printer size={16} />
             </button>
           </div>
@@ -122,5 +148,4 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
     </div>
   );
 };
-
 export default BatchList;

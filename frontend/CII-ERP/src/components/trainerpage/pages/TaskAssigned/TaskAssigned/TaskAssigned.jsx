@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   LayoutGrid,
   History,
@@ -9,11 +9,11 @@ import {
   Plus,
   Download,
   Printer,
-} from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { StatCard, Dropdown, Button, Pagination } from "../../../shared";
-import TaskTable from "../TaskTable/TaskTable";
+} from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { StatCard, Dropdown, Button, Pagination } from '../../../shared';
+import TaskTable from '../TaskTable/TaskTable';
 import {
   taskAssignedStats,
   taskAssignedMeta,
@@ -21,9 +21,9 @@ import {
   taskAssigneeOptions,
   taskPriorityOptions,
   taskStatusOptions,
-} from "../../../data";
-import "../../../styles/variables.css";
-import "./TaskAssigned.css";
+} from '../../../data';
+import '../../../styles/variables.css';
+import './TaskAssigned.css';
 
 /**
  * TaskAssigned (full page)
@@ -48,9 +48,9 @@ const STAT_ICONS = {
 
 const TaskAssigned = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
-  const [searchTask, setSearchTask] = useState("");
+  const [searchTask, setSearchTask] = useState('');
   const [assignee, setAssignee] = useState(taskAssigneeOptions[0]);
   const [priority, setPriority] = useState(taskPriorityOptions[0]);
   const [status, setStatus] = useState(taskStatusOptions[0]);
@@ -59,7 +59,7 @@ const TaskAssigned = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: 'Staff Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -75,7 +75,8 @@ const TaskAssigned = () => {
                 <div>
                   <h1 className="task-assigned-page__title">Task assigned</h1>
                   <p className="task-assigned-page__subtitle">
-                    {taskAssignedMeta.totalRecords} task. {taskAssignedMeta.pendingCount} pending across the team
+                    {taskAssignedMeta.totalRecords} task.{' '}
+                    {taskAssignedMeta.pendingCount} pending across the team
                   </p>
                 </div>
                 <Button variant="primary" icon={Plus} iconPosition="left">
@@ -97,9 +98,14 @@ const TaskAssigned = () => {
 
               <div className="task-assigned-page__filter-bar">
                 <div className="task-assigned-page__field">
-                  <label className="task-assigned-page__label">Search Task</label>
+                  <label className="task-assigned-page__label">
+                    Search Task
+                  </label>
                   <div className="task-assigned-page__search-input-wrap">
-                    <Search size={16} className="task-assigned-page__search-icon" />
+                    <Search
+                      size={16}
+                      className="task-assigned-page__search-icon"
+                    />
                     <input
                       type="text"
                       placeholder="search task"

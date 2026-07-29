@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   LayoutGrid,
   CheckCircle2,
@@ -12,13 +12,13 @@ import {
   Download,
   Printer,
   Upload,
-} from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
-import QuickAccessCard from "../QuickAccessCard/QuickAccessCard";
-import ResourceTable from "../ResourceTable/ResourceTable";
+} from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { Dropdown, Button, Pagination } from '../../../shared';
+import StatCard from '../StatCard/StatCard';
+import QuickAccessCard from '../QuickAccessCard/QuickAccessCard';
+import ResourceTable from '../ResourceTable/ResourceTable';
 import {
   resourceStats,
   quickAccessCards,
@@ -26,10 +26,10 @@ import {
   resourceTypeOptions,
   resourceMeta,
   resourceRecords,
-} from "../../../data/resourcesData";
-import "../../../styles/variables.css";
-import "./Resources.css";
-import styles from "./Resources.module.css";
+} from '../../../data/resourcesData';
+import '../../../styles/variables.css';
+import './Resources.css';
+import './Resources.css';
 
 /**
  * Resources
@@ -47,31 +47,29 @@ const STAT_ICONS = {
   hourglass: Hourglass,
   calendar: CalendarDays,
 };
-
 const QUICK_ACCESS_ICONS = {
   layers: Layers,
   chart: BarChart3,
   bookmark: Bookmark,
 };
-
 const QUICK_ACCESS_TONES = {
-  "study-material": "teal",
-  reports: "mint",
-  guidelines: "mint",
+  'study-material': 'teal',
+  reports: 'mint',
+  guidelines: 'mint',
 };
-
 const Resources = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState(resourceCategoryOptions[0]);
   const [type, setType] = useState(resourceTypeOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
-
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{
+          name: 'Staff Admin',
+        }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -82,11 +80,11 @@ const Resources = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className={styles.content}>
-              <div className={styles.pageHeader}>
+            <div className={'content'}>
+              <div className={'pageHeader'}>
                 <div>
-                  <h1 className={styles.title}>Resources</h1>
-                  <p className={styles.subtitle}>
+                  <h1 className={'title'}>Resources</h1>
+                  <p className={'subtitle'}>
                     Study material, reports, and shared documents in one place
                   </p>
                 </div>
@@ -95,7 +93,7 @@ const Resources = () => {
                 </Button>
               </div>
 
-              <div className={styles.statsGrid}>
+              <div className={'statsGrid'}>
                 {resourceStats.map((stat) => (
                   <StatCard
                     key={stat.id}
@@ -107,7 +105,7 @@ const Resources = () => {
                 ))}
               </div>
 
-              <div className={styles.quickAccessGrid}>
+              <div className={'quickAccessGrid'}>
                 {quickAccessCards.map((card) => (
                   <QuickAccessCard
                     key={card.id}
@@ -119,39 +117,57 @@ const Resources = () => {
                 ))}
               </div>
 
-              <div className={styles.filterBar}>
-                <div className={styles.searchField}>
-                  <label className={styles.filterLabel}>SEARCH</label>
-                  <div className={styles.searchInputWrap}>
-                    <Search size={16} className={styles.searchIcon} />
+              <div className={'filterBar'}>
+                <div className={'searchField'}>
+                  <label className={'filterLabel'}>SEARCH</label>
+                  <div className={'searchInputWrap'}>
+                    <Search size={16} className={'searchIcon'} />
                     <input
                       type="text"
                       placeholder="Search by name or course"
                       value={searchTerm}
                       onChange={(event) => setSearchTerm(event.target.value)}
-                      className={styles.searchInput}
+                      className={'searchInput'}
                     />
                   </div>
                 </div>
 
-                <Dropdown label="CATEGORY" options={resourceCategoryOptions} value={category} onChange={setCategory} />
-                <Dropdown label="TYPE" options={resourceTypeOptions} value={type} onChange={setType} />
+                <Dropdown
+                  label="CATEGORY"
+                  options={resourceCategoryOptions}
+                  value={category}
+                  onChange={setCategory}
+                />
+                <Dropdown
+                  label="TYPE"
+                  options={resourceTypeOptions}
+                  value={type}
+                  onChange={setType}
+                />
 
-                <div className={styles.applyWrap}>
+                <div className={'applyWrap'}>
                   <Button variant="outline" icon={Filter}>
                     Apply Filter
                   </Button>
                 </div>
               </div>
 
-              <section className={styles.tableSection}>
-                <div className={styles.tableHeader}>
-                  <h2 className={styles.tableTitle}>All Task</h2>
-                  <div className={styles.tableActions}>
-                    <button type="button" className={styles.iconBtn} aria-label="Download list">
+              <section className={'tableSection'}>
+                <div className={'tableHeader'}>
+                  <h2 className={'tableTitle'}>All Task</h2>
+                  <div className={'tableActions'}>
+                    <button
+                      type="button"
+                      className={'iconBtn'}
+                      aria-label="Download list"
+                    >
                       <Download size={16} />
                     </button>
-                    <button type="button" className={styles.iconBtn} aria-label="Print list">
+                    <button
+                      type="button"
+                      className={'iconBtn'}
+                      aria-label="Print list"
+                    >
                       <Printer size={16} />
                     </button>
                   </div>
@@ -175,5 +191,4 @@ const Resources = () => {
     </div>
   );
 };
-
 export default Resources;

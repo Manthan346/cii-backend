@@ -1,6 +1,6 @@
-import { Users } from "lucide-react";
-import { Avatar, StatusBadge, ActionButtons } from "../../../shared";
-import styles from "./EventTable.module.css";
+import { Users } from 'lucide-react';
+import { Avatar, StatusBadge, ActionButtons } from '../../../shared';
+import './EventTable.css';
 
 /**
  * EventTable (Events)
@@ -16,8 +16,8 @@ import styles from "./EventTable.module.css";
  */
 export default function EventTable({ records = [], onView, onEdit, onDelete }) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
+    <div className={'tableWrap'}>
+      <table className={'table'}>
         <thead>
           <tr>
             <th>Event</th>
@@ -35,29 +35,29 @@ export default function EventTable({ records = [], onView, onEdit, onDelete }) {
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <div className={styles.nameCell}>
-                  <span className={styles.name}>{record.title}</span>
-                  <span className={styles.subtitle}>{record.type}</span>
+                <div className={'nameCell'}>
+                  <span className={'name'}>{record.title}</span>
+                  <span className={'subtitle'}>{record.type}</span>
                 </div>
               </td>
-              <td className={styles.nowrap}>{record.mode}</td>
+              <td className={'nowrap'}>{record.mode}</td>
               <td>
-                <div className={styles.nameCell}>
-                  <span className={styles.name}>{record.date}</span>
-                  <span className={styles.subtitle}>{record.time}</span>
+                <div className={'nameCell'}>
+                  <span className={'name'}>{record.date}</span>
+                  <span className={'subtitle'}>{record.time}</span>
                 </div>
               </td>
-              <td className={styles.venueCell}>{record.venue}</td>
-              <td className={styles.nowrap}>{record.batch}</td>
+              <td className={'venueCell'}>{record.venue}</td>
+              <td className={'nowrap'}>{record.batch}</td>
               <td>
-                <div className={styles.organizerCell}>
+                <div className={'organizerCell'}>
                   <Avatar name={record.organizer} tone="teal" size={28} />
                   <span>{record.organizer}</span>
                 </div>
               </td>
-              <td className={styles.nowrap}>
-                <div className={styles.participantsCell}>
-                  <Users size={14} className={styles.participantsIcon} />
+              <td className={'nowrap'}>
+                <div className={'participantsCell'}>
+                  <Users size={14} className={'participantsIcon'} />
                   <span>
                     {record.participants}/{record.maxParticipants}
                   </span>

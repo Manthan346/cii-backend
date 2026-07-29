@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Pencil } from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import ProfileTabs from "../ProfileTabs/ProfileTabs";
-import BasicInformationTab from "../BasicInformationTab/BasicInformationTab";
-import AcademicDetailTab from "../AcademicDetailTab/AcademicDetailTab";
-import DocumentTab from "../DocumentTab/DocumentTab";
-import ContactDetailsTab from "../ContactDetailsTab/ContactDetailsTab";
-import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import React, { useState } from 'react';
+import { Pencil } from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import ProfileTabs from '../ProfileTabs/ProfileTabs';
+import BasicInformationTab from '../BasicInformationTab/BasicInformationTab';
+import AcademicDetailTab from '../AcademicDetailTab/AcademicDetailTab';
+import DocumentTab from '../DocumentTab/DocumentTab';
+import ContactDetailsTab from '../ContactDetailsTab/ContactDetailsTab';
+import EditProfileModal from '../EditProfileModal/EditProfileModal';
 import {
   staffProfile,
   profileTabs,
@@ -18,9 +18,9 @@ import {
   profileDocuments,
   profileDocumentNote,
   profileGuardianDetail,
-} from "../../../data";
-import "../../../styles/variables.css";
-import "./Profile.css";
+} from '../../../data';
+import '../../../styles/variables.css';
+import './Profile.css';
 
 /**
  * Profile (full page, "My Profile")
@@ -48,7 +48,7 @@ import "./Profile.css";
  */
 const Profile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [activeTab, setActiveTab] = useState(profileTabs[0].id);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -71,7 +71,7 @@ const Profile = () => {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case "basic-information":
+      case 'basic-information':
         return (
           <BasicInformationTab
             personal={personal}
@@ -80,11 +80,18 @@ const Profile = () => {
             completion={profileCompletion}
           />
         );
-      case "academic-detail":
-        return <AcademicDetailTab education={education} experience={experience} />;
-      case "document":
-        return <DocumentTab documents={profileDocuments} note={profileDocumentNote} />;
-      case "contact-details":
+      case 'academic-detail':
+        return (
+          <AcademicDetailTab education={education} experience={experience} />
+        );
+      case 'document':
+        return (
+          <DocumentTab
+            documents={profileDocuments}
+            note={profileDocumentNote}
+          />
+        );
+      case 'contact-details':
         return <ContactDetailsTab guardian={guardian} />;
       default:
         return null;
@@ -94,7 +101,7 @@ const Profile = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: 'Staff Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -107,7 +114,11 @@ const Profile = () => {
           <main className="staff-dashboard__body">
             <div className="profile-page">
               <div className="profile-page__hero">
-                <img src={staffProfile.avatar} alt={staffProfile.name} className="profile-page__photo" />
+                <img
+                  src={staffProfile.avatar}
+                  alt={staffProfile.name}
+                  className="profile-page__photo"
+                />
 
                 <div className="profile-page__hero-card">
                   <button
@@ -124,15 +135,26 @@ const Profile = () => {
                   </p>
 
                   <h1 className="profile-page__name">
-                    {personal.name} <span className="profile-page__role">({staffProfile.role})</span>
+                    {personal.name}{' '}
+                    <span className="profile-page__role">
+                      ({staffProfile.role})
+                    </span>
                   </h1>
-                  <p className="profile-page__id">ID : {staffProfile.employeeId}</p>
+                  <p className="profile-page__id">
+                    ID : {staffProfile.employeeId}
+                  </p>
 
-                  <span className="profile-page__status">{staffProfile.status}</span>
+                  <span className="profile-page__status">
+                    {staffProfile.status}
+                  </span>
                 </div>
               </div>
 
-              <ProfileTabs tabs={profileTabs} activeTab={activeTab} onChange={setActiveTab} />
+              <ProfileTabs
+                tabs={profileTabs}
+                activeTab={activeTab}
+                onChange={setActiveTab}
+              />
 
               {renderTabContent()}
             </div>

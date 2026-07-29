@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { sidebarMenu } from "../../data";
-import "./Sidebar.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { sidebarMenu } from '../../data';
+import './Sidebar.css';
 
 /**
  * Sidebar
@@ -35,8 +35,8 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
       )}
 
       <aside
-        className={`trainer-sidebar ${isOpen ? "trainer-sidebar--open" : ""} ${
-          isCollapsed ? "trainer-sidebar--collapsed" : ""
+        className={`trainer-sidebar ${isOpen ? 'trainer-sidebar--open' : ''} ${
+          isCollapsed ? 'trainer-sidebar--collapsed' : ''
         }`}
         aria-label="Trainer navigation"
       >
@@ -56,7 +56,7 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
                         onClick={onClose}
                         className={({ isActive }) =>
                           `trainer-sidebar__item ${
-                            isActive ? "trainer-sidebar__item--active" : ""
+                            isActive ? 'trainer-sidebar__item--active' : ''
                           }`
                         }
                       >

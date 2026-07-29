@@ -1,6 +1,6 @@
-import { FileText, AlertCircle, Download } from "lucide-react";
-import { StatusBadge, Button } from "../../../shared";
-import "./DocumentTab.css";
+import { FileText, AlertCircle, Download } from 'lucide-react';
+import { StatusBadge, Button } from '../../../shared';
+import './DocumentTab.css';
 
 /**
  * DocumentTab
@@ -28,16 +28,21 @@ export default function DocumentTab({ documents = [], note }) {
               {doc.uploaded ? (
                 <FileText size={18} className="document-tab__file-icon" />
               ) : (
-                <AlertCircle size={18} className="document-tab__file-icon document-tab__file-icon--missing" />
+                <AlertCircle
+                  size={18}
+                  className="document-tab__file-icon document-tab__file-icon--missing"
+                />
               )}
               <div className="document-tab__text">
                 <p className="document-tab__name">
                   {doc.name}
-                  {doc.required && <span className="document-tab__required">*</span>}
+                  {doc.required && (
+                    <span className="document-tab__required">*</span>
+                  )}
                 </p>
                 <p
                   className={`document-tab__meta${
-                    doc.uploaded ? "" : " document-tab__meta--missing"
+                    doc.uploaded ? '' : ' document-tab__meta--missing'
                   }`}
                 >
                   {doc.uploadedOn}
@@ -49,7 +54,11 @@ export default function DocumentTab({ documents = [], note }) {
               {doc.uploaded ? (
                 <>
                   <StatusBadge status={doc.status} />
-                  <button type="button" className="document-tab__download" aria-label={`Download ${doc.name}`}>
+                  <button
+                    type="button"
+                    className="document-tab__download"
+                    aria-label={`Download ${doc.name}`}
+                  >
                     <Download size={15} />
                   </button>
                 </>
@@ -65,7 +74,8 @@ export default function DocumentTab({ documents = [], note }) {
         <div className="document-tab__note">
           <span className="document-tab__note-label">Note</span>
           <p className="document-tab__note-text">
-            File Size Should be <strong>less than 200KB</strong> <strong>(PDF Format only)</strong>
+            File Size Should be <strong>less than 200KB</strong>{' '}
+            <strong>(PDF Format only)</strong>
           </p>
         </div>
       )}

@@ -1,4 +1,4 @@
-import "./NotificationTabs.css";
+import './NotificationTabs.css';
 
 /**
  * NotificationTabs
@@ -18,15 +18,15 @@ export default function NotificationTabs({ tabs = [], activeTab, onChange }) {
           <button
             key={tab.id}
             type="button"
-            className={`notification-tabs__pill${isActive ? " notification-tabs__pill--active" : ""}`}
+            className={`notification-tabs__pill${isActive ? ' notification-tabs__pill--active' : ''}`}
             onClick={() => onChange?.(tab.id)}
           >
             <span>{tab.label}</span>
-            {typeof tab.count === "number" && (
+            {typeof tab.count === 'number' && (
               <span
                 className={`notification-tabs__count${
-                  tab.id === "unread" ? " notification-tabs__count--red" : ""
-                }${isActive ? " notification-tabs__count--active" : ""}`}
+                  tab.id === 'unread' ? ' notification-tabs__count--red' : ''
+                }${isActive ? ' notification-tabs__count--active' : ''}`}
               >
                 {tab.count}
               </span>

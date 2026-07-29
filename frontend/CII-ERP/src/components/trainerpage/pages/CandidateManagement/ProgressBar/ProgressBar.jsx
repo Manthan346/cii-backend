@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import useCountUp from "../../../shared/hooks/useCountUp";
-import styles from "./ProgressBar.module.css";
+import { useEffect, useState } from 'react';
+import useCountUp from '../../../shared/hooks/useCountUp';
+import './ProgressBar.css';
 
 /**
  * ProgressBar (Candidate Management)
@@ -19,18 +19,21 @@ export default function ProgressBar({ percent = 0 }) {
   const clamped = Math.max(0, Math.min(100, percent));
   const [width, setWidth] = useState(0);
   const animatedPercent = useCountUp(clamped);
-
   useEffect(() => {
     const raf = requestAnimationFrame(() => setWidth(clamped));
     return () => cancelAnimationFrame(raf);
   }, [clamped]);
-
   return (
-    <div className={styles.wrap}>
-      <div className={styles.track}>
-        <div className={styles.fill} style={{ width: `${width}%` }} />
+    <div className={'wrap'}>
+      <div className={'track'}>
+        <div
+          className={'fill'}
+          style={{
+            width: `${width}%`,
+          }}
+        />
       </div>
-      <span className={styles.percent}>{animatedPercent}%</span>
+      <span className={'percent'}>{animatedPercent}%</span>
     </div>
   );
 }

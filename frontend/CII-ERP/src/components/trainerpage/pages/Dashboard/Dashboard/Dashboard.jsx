@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import WorkspaceHeader from "../WorkspaceHeader/WorkspaceHeader";
-import BatchOverview from "../BatchOverview/BatchOverview";
-import TaskAssigned from "../TaskAssigned/TaskAssigned";
-import AttendanceChart from "../AttendanceChart/AttendanceChart";
-import RecentUploads from "../RecentUploads/RecentUploads";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import "./Dashboard.css";
+import React, { useState } from 'react';
+import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader';
+import BatchOverview from '../BatchOverview/BatchOverview';
+import TaskAssigned from '../TaskAssigned/TaskAssigned';
+import AttendanceChart from '../AttendanceChart/AttendanceChart';
+import RecentUploads from '../RecentUploads/RecentUploads';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import './Dashboard.css';
 
 /**
  * Dashboard
@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: "Staff Admin" }}
+        user={{ name: 'Staff Admin' }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}

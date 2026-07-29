@@ -1,4 +1,4 @@
-import "./ProfileTabs.css";
+import './ProfileTabs.css';
 
 /**
  * ProfileTabs
@@ -17,7 +17,7 @@ export default function ProfileTabs({ tabs = [], activeTab, onChange }) {
           <button
             key={tab.id}
             type="button"
-            className={`profile-tabs__pill${isActive ? " profile-tabs__pill--active" : ""}`}
+            className={`profile-tabs__pill${isActive ? ' profile-tabs__pill--active' : ''}`}
             onClick={() => onChange?.(tab.id)}
           >
             {tab.label}

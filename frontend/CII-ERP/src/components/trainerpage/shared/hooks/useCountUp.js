@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * useCountUp
@@ -24,7 +24,7 @@ export default function useCountUp(value, duration = 900) {
   // Split "94%" -> target 94, suffix "%". Plain numbers get suffix "".
   const match = String(value).match(/^(-?\d+(?:\.\d+)?)(.*)$/);
   const target = match ? parseFloat(match[1]) : 0;
-  const suffix = match ? match[2] : "";
+  const suffix = match ? match[2] : '';
 
   useEffect(() => {
     const start = performance.now();

@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { UserRound, CheckCircle2, Clock, Phone } from "lucide-react";
-import Sidebar from "../../../layout/Sidebar/Sidebar";
-import Topbar from "../../../layout/Topbar/Topbar";
-import { FilterBar, Pagination, Button } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
-import CandidateTable from "../CandidateTable/CandidateTable";
-import AddCandidateModal from "../AddCandidateModal/AddCandidateModal";
-import { candidateStats } from "../../../data/stats";
-import { candidates as defaultCandidates } from "../../../data/candidates";
-import { batchOptions, courseOptions, statusOptions } from "../../../data/filterOptions";
-import "../../../styles/variables.css";
-import styles from "./CandidateManagement.module.css";
+import React, { useState } from 'react';
+import { UserRound, CheckCircle2, Clock, Phone } from 'lucide-react';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
+import Topbar from '../../../layout/Topbar/Topbar';
+import { FilterBar, Pagination, Button } from '../../../shared';
+import StatCard from '../StatCard/StatCard';
+import CandidateTable from '../CandidateTable/CandidateTable';
+// import AddCandidateModal from "../AddCandidateModal/AddCandidateModal";
+import { candidateStats } from '../../../data/stats';
+import { candidates as defaultCandidates } from '../../../data/candidates';
+import {
+  batchOptions,
+  courseOptions,
+  statusOptions,
+} from '../../../data/filterOptions';
+import '../../../styles/variables.css';
+import './CandidateManagement.css';
 
 /**
  * CandidateManagement
@@ -26,50 +30,59 @@ const STAT_ICONS = {
   clock: Clock,
   phone: Phone,
 };
-
 const TOTAL_CANDIDATES = 128;
 const TOTAL_BATCHES = 6;
 const TOTAL_PAGES = 22;
-
 const CandidateManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [candidates, setCandidates] = useState(defaultCandidates);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
-
-  const handleSaveCandidate = ({ name, candidateId, batch, course, contact, joinDate, status }) => {
+  const handleSaveCandidate = ({
+    name,
+    candidateId,
+    batch,
+    course,
+    contact,
+    joinDate,
+    status,
+  }) => {
     const newCandidate = {
       id: Date.now(),
-      candidateId: candidateId || "CII-DS-1042",
+      candidateId: candidateId || 'CII-DS-1042',
       name,
       batch,
       course,
       progress: 0,
-      contact: contact || "—",
-      joinDate: joinDate || "—",
+      contact: contact || '—',
+      joinDate: joinDate || '—',
       attendance: 0,
       status,
     };
-
     setCandidates((prev) => [newCandidate, ...prev]);
     setShowAddModal(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
   };
-
   const handleStatusChange = (candidateId, newStatus) => {
     setCandidates((prev) =>
       prev.map((candidate) =>
-        candidate.id === candidateId ? { ...candidate, status: newStatus } : candidate
-      )
+        candidate.id === candidateId
+          ? {
+              ...candidate,
+              status: newStatus,
+            }
+          : candidate,
+      ),
     );
   };
-
   return (
     <div className="trainer-dashboard">
       <Topbar
-        user={{ name: "Trainer Admin" }}
+        user={{
+          name: 'Trainer Admin',
+        }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
         onSearch={setSearchValue}
@@ -80,21 +93,21 @@ const CandidateManagement = () => {
 
         <div className="trainer-dashboard__main">
           <main className="trainer-dashboard__body">
-            <div className={styles.content}>
+            <div className={'content'}>
               {showToast && (
-                <div className={styles.toast} role="status">
+                <div className={'toast'} role="status">
                   Candidate added successfully
                 </div>
               )}
 
-              <div className={styles.pageHeader}>
-                <h1 className={styles.title}>Candidate List</h1>
-                <p className={styles.subtitle}>
+              <div className={'pageHeader'}>
+                <h1 className={'title'}>Candidate List</h1>
+                <p className={'subtitle'}>
                   {TOTAL_CANDIDATES} candidate across {TOTAL_BATCHES} batches
                 </p>
               </div>
 
-              <div className={styles.statsGrid}>
+              <div className={'statsGrid'}>
                 {candidateStats.map((stat) => (
                   <StatCard
                     key={stat.id}
@@ -112,17 +125,20 @@ const CandidateManagement = () => {
                 statusOptions={statusOptions}
               />
 
-              <section className={styles.tableSection}>
-                <div className={styles.tableHeader}>
-                  <h2 className={styles.tableTitle}>All Candidates</h2>
-                  <div className={styles.tableActions}>
+              <section className={'tableSection'}>
+                <div className={'tableHeader'}>
+                  <h2 className={'tableTitle'}>All Candidates</h2>
+                  {/* <div className={styles.tableActions}>
                     <Button variant="primary" onClick={() => setShowAddModal(true)}>
                       Add Candidate
                     </Button>
-                  </div>
+                   </div> */}
                 </div>
 
-                <CandidateTable candidates={candidates} onStatusChange={handleStatusChange} />
+                <CandidateTable
+                  candidates={candidates}
+                  onStatusChange={handleStatusChange}
+                />
 
                 <Pagination
                   showing={candidates.length}
@@ -145,5 +161,4 @@ const CandidateManagement = () => {
     </div>
   );
 };
-
 export default CandidateManagement;

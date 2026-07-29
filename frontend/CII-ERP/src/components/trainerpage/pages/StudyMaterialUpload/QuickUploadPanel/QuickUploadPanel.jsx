@@ -1,6 +1,6 @@
-import { FolderOpen } from "lucide-react";
-import { Button } from "../../../shared";
-import styles from "./QuickUploadPanel.module.css";
+import { FolderOpen } from 'lucide-react';
+import { Button } from '../../../shared';
+import './QuickUploadPanel.css';
 
 /**
  * QuickUploadPanel (Study Material Upload)
@@ -14,16 +14,23 @@ import styles from "./QuickUploadPanel.module.css";
  */
 export default function QuickUploadPanel({ onBrowse }) {
   return (
-    <section className={styles.panel}>
-      <h2 className={styles.title}>Quick Upload</h2>
+    <section className={'panel'}>
+      <h2 className={'title'}>Quick Upload</h2>
 
-      <div className={styles.dropzone}>
-        <div className={styles.dropzoneBar} />
+      <div className={'dropzone'}>
+        <div className={'dropzoneBar'} />
 
-        <p className={styles.dropzoneTitle}>Drag &amp; drop Files here</p>
-        <p className={styles.dropzoneSubtitle}>Support PDF, DOCX, PPTX, MP4 up to 500 MB</p>
+        <p className={'dropzoneTitle'}>Drag &amp; drop Files here</p>
+        <p className={'dropzoneSubtitle'}>
+          Support PDF, DOCX, PPTX, MP4 up to 500 MB
+        </p>
 
-        <Button variant="outline" icon={FolderOpen} iconPosition="left" onClick={onBrowse}>
+        <Button
+          variant="outline"
+          icon={FolderOpen}
+          iconPosition="left"
+          onClick={onBrowse}
+        >
           Browse Files
         </Button>
       </div>

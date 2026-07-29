@@ -1,6 +1,6 @@
-import { UserCircle2 } from "lucide-react";
-import { StatusBadge, ProgressBar, ActionButtons } from "../../../shared";
-import styles from "./AttendanceTable.module.css";
+import { UserCircle2 } from 'lucide-react';
+import { StatusBadge, ProgressBar, ActionButtons } from '../../../shared';
+import './AttendanceTable.css';
 
 /**
  * AttendanceTable
@@ -15,13 +15,18 @@ import styles from "./AttendanceTable.module.css";
  * The row action buttons only show view/edit/delete (no lock), so
  * ActionButtons is called with showLock={false}.
  */
-export default function AttendanceTable({ records = [], onView, onEdit, onDelete }) {
+export default function AttendanceTable({
+  records = [],
+  onView,
+  onEdit,
+  onDelete,
+}) {
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
+    <div className={'tableWrap'}>
+      <table className={'table'}>
         <thead>
           <tr>
-            <th className={styles.checkboxCol}>
+            <th className={'checkboxCol'}>
               <input type="checkbox" aria-label="Select all candidates" />
             </th>
             <th>Candidate id</th>
@@ -39,12 +44,16 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <input type="checkbox" defaultChecked aria-label={`Select ${record.name}`} />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  aria-label={`Select ${record.name}`}
+                />
               </td>
-              <td className={styles.idCell}>{record.candidateId}</td>
+              <td className={'idCell'}>{record.candidateId}</td>
               <td>
-                <div className={styles.nameCell}>
-                  <UserCircle2 size={22} className={styles.avatarIcon} />
+                <div className={'nameCell'}>
+                  <UserCircle2 size={22} className={'avatarIcon'} />
                   <span>{record.name}</span>
                 </div>
               </td>
@@ -54,9 +63,9 @@ export default function AttendanceTable({ records = [], onView, onEdit, onDelete
                   <span>{record.course}</span>
                   <ProgressBar value={record.progress} />
                 </div>
-              </td> */}
-              <td className={styles.nowrap}>{record.timeIn}</td>
-              <td className={styles.nowrap}>{record.timeOut}</td>
+               </td> */}
+              <td className={'nowrap'}>{record.timeIn}</td>
+              <td className={'nowrap'}>{record.timeOut}</td>
               <td>
                 <StatusBadge status={record.status} />
               </td>

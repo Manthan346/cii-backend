@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { UserCircle2 } from "lucide-react";
-import { Button } from "../../../shared";
-import styles from "./MarkAttendanceModal.module.css";
+import { useState } from 'react';
+import { UserCircle2 } from 'lucide-react';
+import { Button } from '../../../shared';
+import './MarkAttendanceModal.css';
 
 /**
  * MarkAttendanceModal
@@ -15,18 +15,23 @@ import styles from "./MarkAttendanceModal.module.css";
  * Fires onSave(attendanceList) with one entry per student so the
  * parent (AttendanceTracker) can turn it into table rows.
  */
-export default function MarkAttendanceModal({ students = [], defaultDate = "", onCancel, onSave }) {
+export default function MarkAttendanceModal({
+  students = [],
+  defaultDate = '',
+  onCancel,
+  onSave,
+}) {
   const [date, setDate] = useState(defaultDate);
   // Map of candidateId -> "Present" | "Absent". Missing entries default
   // to Present, so nothing needs pre-seeding here.
   const [statusById, setStatusById] = useState({});
-
-  const getStatus = (student) => statusById[student.id] || "Present";
-
+  const getStatus = (student) => statusById[student.id] || 'Present';
   const setStatus = (student, status) => {
-    setStatusById((prev) => ({ ...prev, [student.id]: status }));
+    setStatusById((prev) => ({
+      ...prev,
+      [student.id]: status,
+    }));
   };
-
   const handleSave = () => {
     const attendanceList = students.map((student) => ({
       id: student.id,
@@ -36,57 +41,64 @@ export default function MarkAttendanceModal({ students = [], defaultDate = "", o
       course: student.course,
       status: getStatus(student),
     }));
-    onSave?.({ date, attendanceList });
+    onSave?.({
+      date,
+      attendanceList,
+    });
   };
-
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-label="Mark attendance">
-      <div className={styles.modal}>
-        <h2 className={styles.title}>Mark Attendance</h2>
+    <div
+      className={'overlay'}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mark attendance"
+    >
+      <div className={'modal'}>
+        <h2 className={'title'}>Mark Attendance</h2>
 
-        <div className={styles.field}>
-          <label className={styles.label}>Date</label>
+        <div className={'field'}>
+          <label className={'label'}>Date</label>
           <input
             type="text"
-            className={styles.input}
+            className={'input'}
             placeholder="dd-mm-yy"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
         </div>
 
-        <div className={styles.studentList}>
+        <div className={'studentList'}>
           {students.map((student) => {
             const status = getStatus(student);
-            const isPresent = status === "Present";
+            const isPresent = status === 'Present';
             return (
-              <div key={student.id} className={styles.studentRow}>
-                <div className={styles.studentInfo}>
-                  <UserCircle2 size={22} className={styles.studentAvatar} />
-                  <div className={styles.studentText}>
-                    <span className={styles.studentName}>{student.name}</span>
-                    <span className={styles.studentId}>{student.candidateId}</span>
+              <div key={student.id} className={'studentRow'}>
+                <div className={'studentInfo'}>
+                  <UserCircle2 size={22} className={'studentAvatar'} />
+                  <div className={'studentText'}>
+                    <span className={'studentName'}>{student.name}</span>
+                    <span className={'studentId'}>{student.candidateId}</span>
                   </div>
                 </div>
 
-                <div className={styles.toggle} role="group" aria-label={`${student.name} attendance`}>
+                <div
+                  className={'toggle'}
+                  role="group"
+                  aria-label={`${student.name} attendance`}
+                >
                   <button
                     type="button"
-                    className={`${styles.toggleBtn} ${styles.toggleBtnPresent} ${
-                      isPresent ? styles.toggleBtnActive : ""
-                    }`}
+                    className={`${'toggleBtn'} ${'toggleBtnPresent'} ${isPresent ? 'toggleBtnActive' : ''}`}
                     aria-pressed={isPresent}
-                    onClick={() => setStatus(student, "Present")}
+                    onClick={() => setStatus(student, 'Present')}
                   >
                     Present
                   </button>
                   <button
                     type="button"
-                    className={`${styles.toggleBtn} ${styles.toggleBtnAbsent} ${
-                      !isPresent ? styles.toggleBtnActive : ""
-                    }`}
+                    className={`${'toggleBtn'} ${'toggleBtnAbsent'} ${!isPresent ? 'toggleBtnActive' : ''}`}
                     aria-pressed={!isPresent}
-                    onClick={() => setStatus(student, "Absent")}
+                    onClick={() => setStatus(student, 'Absent')}
                   >
                     Absent
                   </button>
@@ -96,7 +108,7 @@ export default function MarkAttendanceModal({ students = [], defaultDate = "", o
           })}
         </div>
 
-        <div className={styles.actions}>
+        <div className={'actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

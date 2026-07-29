@@ -1,6 +1,6 @@
-import { ClipboardList, CalendarClock, PlusCircle, Bell } from "lucide-react";
-import { SectionCard } from "../../../shared";
-import "./NotificationList.css";
+import { ClipboardList, CalendarClock, PlusCircle, Bell } from 'lucide-react';
+import { SectionCard } from '../../../shared';
+import './NotificationList.css';
 
 // icon key -> lucide component (mirrors the STAT_ICONS/ACTIVITY_ICONS
 // lookup pattern already used in TaskAssigned/RecentActivity)
@@ -12,9 +12,9 @@ const NOTIFICATION_ICONS = {
 
 // notification category -> icon badge tone
 const CATEGORY_TONE = {
-  task: "navy",
-  resources: "blue",
-  system: "blue",
+  task: 'navy',
+  resources: 'blue',
+  system: 'blue',
 };
 
 /**
@@ -32,15 +32,17 @@ export default function NotificationList({ notifications = [] }) {
       <ul className="notification-list__list">
         {notifications.map((item) => {
           const Icon = NOTIFICATION_ICONS[item.icon] || Bell;
-          const tone = CATEGORY_TONE[item.category] || "navy";
+          const tone = CATEGORY_TONE[item.category] || 'navy';
           return (
             <li
               key={item.id}
               className={`notification-list__item${
-                item.unread ? " notification-list__item--unread" : ""
+                item.unread ? ' notification-list__item--unread' : ''
               }`}
             >
-              <div className={`notification-list__icon notification-list__icon--${tone}`}>
+              <div
+                className={`notification-list__icon notification-list__icon--${tone}`}
+              >
                 <Icon size={18} strokeWidth={2} />
               </div>
               <div className="notification-list__content">
@@ -52,7 +54,9 @@ export default function NotificationList({ notifications = [] }) {
         })}
 
         {notifications.length === 0 && (
-          <li className="notification-list__empty">No notifications in this category.</li>
+          <li className="notification-list__empty">
+            No notifications in this category.
+          </li>
         )}
       </ul>
     </SectionCard>

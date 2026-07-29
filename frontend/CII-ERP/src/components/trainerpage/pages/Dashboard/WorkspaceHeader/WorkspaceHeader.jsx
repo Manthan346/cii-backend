@@ -1,7 +1,7 @@
-import React from "react";
-import { StatCard } from "../../../shared";
-import { workspaceInfo, dashboardStats } from "../../../data";
-import "./WorkspaceHeader.css";
+import React from 'react';
+import { StatCard } from '../../../shared';
+import { workspaceInfo, dashboardStats } from '../../../data';
+import './WorkspaceHeader.css';
 
 /**
  * WorkspaceHeader

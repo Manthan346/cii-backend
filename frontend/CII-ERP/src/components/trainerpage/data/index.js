@@ -7,7 +7,7 @@
  * modules (e.g. topbarConfig, userRoles) here as they're created.
  */
 
-export { sidebarMenu } from "./sidebarMenu";
+export { sidebarMenu } from './sidebarMenu';
 export {
   workspaceInfo,
   dashboardStats,
@@ -15,36 +15,36 @@ export {
   tasksAssigned,
   attendanceLast7Days,
   recentUploads,
-} from "./dashboardData";
+} from './dashboardData';
 
 /* ---- Candidate Management additions ---- */
-export { candidateStats } from "./stats";
-export { candidates } from "./candidates";
-export { batchOptions, courseOptions, statusOptions } from "./filterOptions";
+export { candidateStats } from './stats';
+export { candidates } from './candidates';
+export { batchOptions, courseOptions, statusOptions } from './filterOptions';
 
 /* ---- Batch Management additions ---- */
-export { batches, batchListMeta } from "./batches";
-export { batchStats } from "./batchStats";
-export { trainers } from "./trainers";
+export { batches, batchListMeta } from './batches';
+export { batchStats } from './batchStats';
+export { trainers } from './trainers';
 export {
   courseSelectOptions,
   sessionTimeOptions,
   classroomOptions,
   daysOfWeek,
-} from "./batchFormOptions";
+} from './batchFormOptions';
 export {
   trainerFilterOptions,
   batchCourseOptions,
   batchStatusOptions,
-} from "./filterOptions";
+} from './filterOptions';
 
 /* ---- Attendance Management additions ---- */
-export { attendanceStatusOptions } from "./filterOptions";
+export { attendanceStatusOptions } from './filterOptions';
 export {
   attendanceStats,
   attendanceMeta,
   attendanceRecords,
-} from "./attendanceData";
+} from './attendanceData';
 
 /* ---- Resources additions ---- */
 export {
@@ -54,15 +54,15 @@ export {
   resourceTypeOptions,
   resourceMeta,
   resourceRecords,
-} from "./resourcesData";
+} from './resourcesData';
 
 /* ---- Study Material Upload additions ---- */
-export { materialTypeOptions, materialStatusOptions } from "./filterOptions";
+export { materialTypeOptions, materialStatusOptions } from './filterOptions';
 export {
   materialStats,
   materialMeta,
   materialRecords,
-} from "./studyMaterialData";
+} from './studyMaterialData';
 
 /* ---- Reports additions ---- */
 export {
@@ -74,30 +74,29 @@ export {
   reportFormatOptions,
   reportMeta,
   reportRecords,
-} from "./reportsData";
+} from './reportsData';
 
 /* ---- Work additions ---- */
-export {
-  workStats,
-  workShortcuts,
-  recentActivity,
-  workMeta,
-} from "./workData";
+export { workStats, workShortcuts, recentActivity, workMeta } from './workData';
 
 /* ---- Task Assigned (full page) additions ---- */
-export { taskAssigneeOptions, taskPriorityOptions, taskStatusOptions } from "./filterOptions";
+export {
+  taskAssigneeOptions,
+  taskPriorityOptions,
+  taskStatusOptions,
+} from './filterOptions';
 export {
   taskAssignedStats,
   taskAssignedMeta,
   taskAssignedRecords,
-} from "./tasksAssignedData";
+} from './tasksAssignedData';
 
 /* ---- Notifications additions ---- */
 export {
   notificationTabs,
   notificationMeta,
   notificationRecords,
-} from "./notificationsData";
+} from './notificationsData';
 
 /* ---- Events additions ---- */
 export {
@@ -108,7 +107,7 @@ export {
   eventModeOptions,
   eventMeta,
   eventRecords,
-} from "./eventsData";
+} from './eventsData';
 
 /* ---- My Profile additions ---- */
 export {
@@ -121,4 +120,4 @@ export {
   profileDocuments,
   profileDocumentNote,
   profileGuardianDetail,
-} from "./profileData";
+} from './profileData';

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "./ProgressBar.css";
+import React, { useEffect, useState } from 'react';
+import './ProgressBar.css';
 
 /**
  * ProgressBar
@@ -17,7 +17,7 @@ import "./ProgressBar.css";
  * in ProgressBar.css does the actual easing; this component just flips
  * the width from 0 -> value one tick after mount to trigger it).
  */
-const ProgressBar = ({ value = 0, tone = "teal" }) => {
+const ProgressBar = ({ value = 0, tone = 'teal' }) => {
   const clamped = Math.max(0, Math.min(100, value));
   const [width, setWidth] = useState(0);
 

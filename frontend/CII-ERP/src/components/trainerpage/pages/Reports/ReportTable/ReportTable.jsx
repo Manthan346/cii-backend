@@ -1,5 +1,5 @@
-import { ActionButtons } from "../../../shared";
-import "./ReportTable.css";
+import { ActionButtons } from '../../../shared';
+import './ReportTable.css';
 
 /**
  * ReportTable
@@ -12,7 +12,12 @@ import "./ReportTable.css";
  * Row actions show view/edit/delete (no lock), matching the reference
  * design, so ActionButtons is called with showLock={false}.
  */
-export default function ReportTable({ records = [], onView, onEdit, onDelete }) {
+export default function ReportTable({
+  records = [],
+  onView,
+  onEdit,
+  onDelete,
+}) {
   return (
     <div className="report-table__wrap">
       <table className="report-table">
@@ -31,12 +36,16 @@ export default function ReportTable({ records = [], onView, onEdit, onDelete }) 
           {records.map((record) => (
             <tr key={record.id}>
               <td className="report-table__name">{record.name}</td>
-              <td className="report-table__nowrap report-table__type">{record.type}</td>
+              <td className="report-table__nowrap report-table__type">
+                {record.type}
+              </td>
               <td className="report-table__nowrap">{record.batch}</td>
               <td className="report-table__nowrap">{record.generatedOn}</td>
               <td className="report-table__nowrap">{record.generatedBy}</td>
               <td>
-                <span className="report-table__format-badge">{record.format}</span>
+                <span className="report-table__format-badge">
+                  {record.format}
+                </span>
               </td>
               <td>
                 <ActionButtons

@@ -1,4 +1,4 @@
-import "./ContactDetailsTab.css";
+import './ContactDetailsTab.css';
 
 /**
  * ContactDetailsTab
@@ -19,15 +19,21 @@ export default function ContactDetailsTab({ guardian }) {
         </div>
         <div className="contact-details-tab__field">
           <span className="contact-details-tab__label">Relationship</span>
-          <span className="contact-details-tab__value">{guardian.relationship}</span>
+          <span className="contact-details-tab__value">
+            {guardian.relationship}
+          </span>
         </div>
         <div className="contact-details-tab__field">
           <span className="contact-details-tab__label">Mobile Number</span>
-          <span className="contact-details-tab__value">{guardian.mobileNumber}</span>
+          <span className="contact-details-tab__value">
+            {guardian.mobileNumber}
+          </span>
         </div>
         <div className="contact-details-tab__field">
           <span className="contact-details-tab__label">Occupation</span>
-          <span className="contact-details-tab__value">{guardian.occupation}</span>
+          <span className="contact-details-tab__value">
+            {guardian.occupation}
+          </span>
         </div>
         <div className="contact-details-tab__field contact-details-tab__field--wide">
           <span className="contact-details-tab__label">Address</span>

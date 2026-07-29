@@ -1,5 +1,5 @@
-import React from "react";
-import "./PriorityDot.css";
+import React from 'react';
+import './PriorityDot.css';
 
 /**
  * PriorityDot
@@ -13,15 +13,17 @@ import "./PriorityDot.css";
  *  - priority: string -> "High" | "Medium" | "Low"
  */
 const PRIORITY_TONE = {
-  high: "red",
-  medium: "orange",
-  low: "green",
+  high: 'red',
+  medium: 'orange',
+  low: 'green',
 };
 
 const PriorityDot = ({ priority }) => {
-  const tone = PRIORITY_TONE[priority?.toLowerCase()] || "grey";
+  const tone = PRIORITY_TONE[priority?.toLowerCase()] || 'grey';
 
-  return <span className={`priority-dot priority-dot--${tone}`} aria-hidden="true" />;
+  return (
+    <span className={`priority-dot priority-dot--${tone}`} aria-hidden="true" />
+  );
 };
 
 export default PriorityDot;

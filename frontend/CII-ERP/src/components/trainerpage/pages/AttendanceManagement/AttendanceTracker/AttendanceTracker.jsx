@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Calendar,
   CheckSquare,
@@ -7,11 +7,11 @@ import {
   Search,
   Filter,
   Plus,
-} from "lucide-react";
-import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
-import AttendanceTable from "../AttendanceTable/AttendanceTable";
-import MarkAttendanceModal from "../MarkAttendanceModal/MarkAttendanceModal";
+} from 'lucide-react';
+import { Dropdown, Button, Pagination } from '../../../shared';
+import StatCard from '../StatCard/StatCard';
+import AttendanceTable from '../AttendanceTable/AttendanceTable';
+import MarkAttendanceModal from '../MarkAttendanceModal/MarkAttendanceModal';
 import {
   attendanceStats,
   attendanceMeta,
@@ -19,8 +19,8 @@ import {
   batchOptions,
   attendanceStatusOptions,
   candidates as students,
-} from "../../../data";
-import styles from "./AttendanceTracker.module.css";
+} from '../../../data';
+import './AttendanceTracker.css';
 
 /**
  * AttendanceTracker
@@ -42,17 +42,15 @@ const STAT_ICONS = {
   close: XSquare,
   refresh: RefreshCw,
 };
-
 export default function AttendanceTracker() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [batch, setBatch] = useState(batchOptions[0]);
-  const [date, setDate] = useState("08-07-26");
+  const [date, setDate] = useState('08-07-26');
   const [status, setStatus] = useState(attendanceStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const [records, setRecords] = useState(defaultRecords);
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
-
   const handleSaveAttendance = ({ attendanceList }) => {
     const newRecords = attendanceList.map((entry) => ({
       id: `${entry.id}-${Date.now()}`,
@@ -61,40 +59,44 @@ export default function AttendanceTracker() {
       batch: entry.batch,
       course: entry.course,
       progress: 0,
-      timeIn: entry.status === "Absent" ? "—" : "9:00",
-      timeOut: entry.status === "Absent" ? "—" : "5:00",
+      timeIn: entry.status === 'Absent' ? '—' : '9:00',
+      timeOut: entry.status === 'Absent' ? '—' : '5:00',
       status: entry.status,
     }));
-
     setRecords((prev) => [...newRecords, ...prev]);
     setShowModal(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
   };
-
   return (
-    <div className={styles.content}>
+    <div className={'content'}>
       {showToast && (
-        <div className={styles.toast} role="status">
+        <div className={'toast'} role="status">
           Attendance saved successfully
         </div>
       )}
 
-      <div className={styles.pageHeader}>
+      <div className={'pageHeader'}>
         <div>
-          <h1 className={styles.title}>Attendance tracker</h1>
-          <p className={styles.subtitle}>
-            Track daily attendance across {attendanceMeta.totalActiveBatches} active batches
+          <h1 className={'title'}>Attendance tracker</h1>
+          <p className={'subtitle'}>
+            Track daily attendance across {attendanceMeta.totalActiveBatches}{' '}
+            active batches
           </p>
         </div>
-        <div className={styles.headerActions}>
-          <Button variant="primary" icon={Plus} iconPosition="left" onClick={() => setShowModal(true)}>
+        <div className={'headerActions'}>
+          <Button
+            variant="primary"
+            icon={Plus}
+            iconPosition="left"
+            onClick={() => setShowModal(true)}
+          >
             Mark attendance
           </Button>
         </div>
       </div>
 
-      <div className={styles.statsGrid}>
+      <div className={'statsGrid'}>
         {attendanceStats.map((stat) => (
           <StatCard
             key={stat.id}
@@ -106,46 +108,59 @@ export default function AttendanceTracker() {
         ))}
       </div>
 
-      <div className={styles.filterBar}>
-        <div className={styles.searchField}>
-          <label className={styles.filterLabel}>SEARCH</label>
-          <div className={styles.searchInputWrap}>
-            <Search size={16} className={styles.searchIcon} />
+      <div className={'filterBar'}>
+        <div className={'searchField'}>
+          <label className={'filterLabel'}>SEARCH</label>
+          <div className={'searchInputWrap'}>
+            <Search size={16} className={'searchIcon'} />
             <input
               type="text"
               placeholder="Search by name & ID"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className={styles.searchInput}
+              className={'searchInput'}
             />
           </div>
         </div>
 
-        <Dropdown label="BATCH" options={batchOptions} value={batch} onChange={setBatch} />
+        <Dropdown
+          label="BATCH"
+          options={batchOptions}
+          value={batch}
+          onChange={setBatch}
+        />
 
-        <div className={styles.dateField}>
-          <label className={styles.filterLabel}>DATE</label>
+        <div className={'dateField'}>
+          <label className={'filterLabel'}>DATE</label>
           <input
             type="text"
-            className={styles.dateInput}
+            className={'dateInput'}
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
         </div>
 
-        <Dropdown label="STATUS" options={attendanceStatusOptions} value={status} onChange={setStatus} />
+        <Dropdown
+          label="STATUS"
+          options={attendanceStatusOptions}
+          value={status}
+          onChange={setStatus}
+        />
 
-        <div className={styles.applyWrap}>
+        <div className={'applyWrap'}>
           <Button variant="outline" icon={Filter}>
             Apply Filter
           </Button>
         </div>
       </div>
 
-      <section className={styles.tableSection}>
-        <div className={styles.tableHeader}>
-          <h2 className={styles.tableTitle}>
-            Today's Attendance <span className={styles.tableDate}>. {attendanceMeta.attendanceDate}</span>
+      <section className={'tableSection'}>
+        <div className={'tableHeader'}>
+          <h2 className={'tableTitle'}>
+            Today's Attendance{' '}
+            <span className={'tableDate'}>
+              . {attendanceMeta.attendanceDate}
+            </span>
           </h2>
         </div>
 

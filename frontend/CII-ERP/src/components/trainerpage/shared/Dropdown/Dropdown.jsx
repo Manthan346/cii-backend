@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import styles from './Dropdown.module.css';
+import './Dropdown.css';
 
 /**
  * Labeled select-style dropdown (Batches / Courses / Status filters).
@@ -11,23 +11,24 @@ import styles from './Dropdown.module.css';
 export default function Dropdown({ label, options = [], value, onChange }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
-
   useEffect(() => {
     function handleClickOutside(event) {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
   return (
-    <div className={styles.field} ref={containerRef}>
-      <label className={styles.label}>{label}</label>
+    <div className={'field'} ref={containerRef}>
+      <label className={'label'}>{label}</label>
       <button
         type="button"
-        className={`${styles.trigger} ${open ? styles.triggerOpen : ''}`}
+        className={`${'trigger'} ${open ? 'triggerOpen' : ''}`}
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -37,13 +38,13 @@ export default function Dropdown({ label, options = [], value, onChange }) {
       </button>
 
       {open && (
-        <ul className={styles.menu} role="listbox">
+        <ul className={'menu'} role="listbox">
           {options.map((option) => (
             <li
               key={option}
               role="option"
               aria-selected={option === value}
-              className={`${styles.option} ${option === value ? styles.optionActive : ''}`}
+              className={`${'option'} ${option === value ? 'optionActive' : ''}`}
               onClick={() => {
                 onChange?.(option);
                 setOpen(false);

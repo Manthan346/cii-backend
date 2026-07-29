@@ -1,7 +1,7 @@
-import React from "react";
-import { SectionCard, FileTypeIcon } from "../../../shared";
-import { recentUploads } from "../../../data";
-import "./RecentUploads.css";
+import React from 'react';
+import { SectionCard, FileTypeIcon } from '../../../shared';
+import { recentUploads } from '../../../data';
+import './RecentUploads.css';
 
 /**
  * RecentUploads

@@ -1,9 +1,9 @@
-import { SectionCard } from "../../../shared";
-import { FileCheck2, Bell, Layers } from "lucide-react";
-import "./RecentActivity.css";
+import { SectionCard } from '../../../shared';
+import { FileCheck2, Bell, Layers } from 'lucide-react';
+import './RecentActivity.css';
 
 const ACTIVITY_ICONS = {
-  "file-check": FileCheck2,
+  'file-check': FileCheck2,
   bell: Bell,
   layers: Layers,
 };
@@ -19,7 +19,12 @@ const ACTIVITY_ICONS = {
  */
 export default function RecentActivity({ items = [], onViewAll }) {
   return (
-    <SectionCard title="Recent activity" actionLabel="View all" onActionClick={onViewAll} className="recent-activity">
+    <SectionCard
+      title="Recent activity"
+      actionLabel="View all"
+      onActionClick={onViewAll}
+      className="recent-activity"
+    >
       <ul className="recent-activity__list">
         {items.map((item) => {
           const Icon = ACTIVITY_ICONS[item.icon] || Bell;

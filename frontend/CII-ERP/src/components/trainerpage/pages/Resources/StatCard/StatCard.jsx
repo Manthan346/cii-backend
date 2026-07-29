@@ -1,5 +1,5 @@
-import useCountUp from "../../../shared/hooks/useCountUp";
-import styles from "./StatCard.module.css";
+import useCountUp from '../../../shared/hooks/useCountUp';
+import './StatCard.css';
 
 /**
  * StatCard (Resources)
@@ -14,16 +14,15 @@ import styles from "./StatCard.module.css";
  * the Candidate/Batch/Attendance page StatCards - the tone palette
  * here (skyblue + yellow in particular) is specific to this page.
  */
-export default function StatCard({ icon: Icon, value, label, tone = "blue" }) {
+export default function StatCard({ icon: Icon, value, label, tone = 'blue' }) {
   const animatedValue = useCountUp(value, 1200);
-
   return (
-    <div className={styles.card}>
-      <div className={`${styles.iconWrap} ${styles[tone] || styles.blue}`}>
+    <div className={'card'}>
+      <div className={`${'iconWrap'} ${tone || 'blue'}`}>
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={styles.value}>{animatedValue}</div>
-      <div className={styles.label}>{label}</div>
+      <div className={'value'}>{animatedValue}</div>
+      <div className={'label'}>{label}</div>
     </div>
   );
 }

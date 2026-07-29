@@ -1,5 +1,5 @@
-import React from "react";
-import "./Avatar.css";
+import React from 'react';
+import './Avatar.css';
 
 /**
  * Avatar
@@ -16,14 +16,14 @@ import "./Avatar.css";
  *  - size: number   -> diameter in px (default 38)
  *  - tone: string   -> background tone when showing initials: "teal" | "orange" | "blue" | "grey"
  */
-const getInitials = (name = "") => {
-  const parts = name.trim().split(" ").filter(Boolean);
-  if (parts.length === 0) return "";
+const getInitials = (name = '') => {
+  const parts = name.trim().split(' ').filter(Boolean);
+  if (parts.length === 0) return '';
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
-const Avatar = ({ name = "", src, size = 38, tone = "teal" }) => {
+const Avatar = ({ name = '', src, size = 38, tone = 'teal' }) => {
   return (
     <span
       className={`avatar avatar--${tone}`}
