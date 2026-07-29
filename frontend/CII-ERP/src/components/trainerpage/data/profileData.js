@@ -31,7 +31,7 @@ export const profileTabs = [
   { id: 'basic-information', label: 'Basic Information' },
   { id: 'academic-detail', label: 'Academic Detail' },
   { id: 'document', label: 'Document' },
-  { id: 'contact-details', label: 'Contact Details' },
+  { id: 'guardian-details', label: 'Guardian Details' },
 ];
 
 // ---- Basic Information tab ----
@@ -39,6 +39,11 @@ export const profileTabs = [
 // now live here so all of a staff member's core info sits in one place.
 // Guardian info moved the other way - see profileGuardianDetail below,
 // which now surfaces inside the "Contact Details" tab.
+//
+// currentAddress and permanentAddress are kept as two separate objects
+// (rather than one `address` + a "same as current" flag) since the
+// Basic Information tab now renders both side by side as their own
+// section, each sourced strictly from its own prop with no fallback.
 export const profileBasicInfo = {
   personal: {
     name: 'Anjali Sharma',
@@ -52,8 +57,15 @@ export const profileBasicInfo = {
     emergencyContactNumber: '+91 3423567543',
     emailId: 'anjalisharma22@gmail.com',
   },
-  address: {
-    line: "'E' 205 Shree sai,om nagar kandivali ,(w)",
+  currentAddress: {
+    line: "'E' 205, Shree Sai Housing Society, Om Nagar, Kandivali (w)",
+    state: 'Maharashtra',
+    district: 'Mumbai suburban District',
+    taluka: 'Kandivali',
+    pinCode: '400067',
+  },
+  permanentAddress: {
+    line: "'E' 205, Shree Sai Housing Society, Om Nagar, Kandivali (w)",
     state: 'Maharashtra',
     district: 'Mumbai suburban District',
     taluka: 'Kandivali',

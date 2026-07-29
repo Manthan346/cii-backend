@@ -41,6 +41,10 @@ import './Profile.css';
  * Information (moved out of Basic Information) - see EditProfileModal
  * and the data/profileData.js comments for the full picture.
  *
+ * Address is now two separate objects - currentAddress and
+ * permanentAddress - each rendered from its own prop with no
+ * fallback between the two (see BasicInformationTab.jsx).
+ *
  * This is also where the Topbar's avatar button lands: Topbar.jsx
  * navigates to this page's route by default when no onAvatarClick
  * override is passed in, the same way its bell icon defaults to the
@@ -54,7 +58,12 @@ const Profile = () => {
 
   const [personal, setPersonal] = useState(profileBasicInfo.personal);
   const [contact, setContact] = useState(profileBasicInfo.contact);
-  const [address, setAddress] = useState(profileBasicInfo.address);
+  const [currentAddress, setCurrentAddress] = useState(
+    profileBasicInfo.currentAddress
+  );
+  const [permanentAddress, setPermanentAddress] = useState(
+    profileBasicInfo.permanentAddress
+  );
   const [guardian, setGuardian] = useState(profileGuardianDetail.guardian);
   const [education, setEducation] = useState(profileEducation);
   const [experience, setExperience] = useState(profileExperience);
@@ -62,7 +71,8 @@ const Profile = () => {
   const handleSaveProfile = (updated) => {
     setPersonal(updated.personal);
     setContact(updated.contact);
-    setAddress(updated.address);
+    setCurrentAddress(updated.currentAddress);
+    setPermanentAddress(updated.permanentAddress);
     setGuardian(updated.guardian);
     setEducation(updated.education);
     setExperience(updated.experience);
@@ -76,7 +86,8 @@ const Profile = () => {
           <BasicInformationTab
             personal={personal}
             contact={contact}
-            address={address}
+            currentAddress={currentAddress}
+            permanentAddress={permanentAddress}
             completion={profileCompletion}
           />
         );
@@ -91,7 +102,7 @@ const Profile = () => {
             note={profileDocumentNote}
           />
         );
-      case 'contact-details':
+      case 'guardian-details':
         return <ContactDetailsTab guardian={guardian} />;
       default:
         return null;
@@ -166,7 +177,8 @@ const Profile = () => {
         <EditProfileModal
           personal={personal}
           contact={contact}
-          address={address}
+          currentAddress={currentAddress}
+          permanentAddress={permanentAddress}
           guardian={guardian}
           education={education}
           experience={experience}

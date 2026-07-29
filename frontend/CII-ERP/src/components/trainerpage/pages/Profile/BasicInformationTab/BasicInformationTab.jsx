@@ -5,25 +5,22 @@ import './BasicInformationTab.css';
  * BasicInformationTab
  *
  * "Basic Information" tab content: Personal Information + Contact side
- * by side, an Address block below (state/district/taluka/pin code as
- * read-only pills), and the Profile completion ring/checklist in a
- * second card alongside it.
- *
- * Contact + Address used to live in the separate "Contact Details" tab;
- * both now live here so a staff member's core info sits in one place.
- * Guardian Information moved the other way into the Contact Details tab.
- *
- * Note: this doesn't use the shared <SectionCard> - SectionCard always
- * renders its own title bar, but this panel's heading is the inline
- * underlined "Personal Information"/"Contact" labels instead, so a
- * plain styled div matches the reference design better.
+ * by side, with the Profile completion ring/checklist alongside them.
+ * Below that, a separate full-width card shows Current Address and
+ * Permanent Address side by side (state/district/taluka/pin code as
+ * read-only pills).
  */
 export default function BasicInformationTab({
   personal,
   contact,
-  address,
+  currentAddress,
+  permanentAddress,
+  address, // legacy fallback, used as currentAddress if currentAddress isn't passed
   completion,
 }) {
+  const current = currentAddress;
+  const permanent = permanentAddress;
+
   return (
     <div>
       <div className="basic-information-tab">
@@ -101,40 +98,6 @@ export default function BasicInformationTab({
               </div>
             </div>
           </div>
-
-          <div className="basic-information-tab__address-row">
-            <div className="basic-information-tab__address-block">
-              <h3 className="basic-information-tab__heading">Address</h3>
-              <p className="basic-information-tab__address-line">
-                {address.line}
-              </p>
-            </div>
-
-            <div className="basic-information-tab__pill-field">
-              <span className="basic-information-tab__label">State</span>
-              <span className="basic-information-tab__pill">
-                {address.state}
-              </span>
-            </div>
-            <div className="basic-information-tab__pill-field">
-              <span className="basic-information-tab__label">District</span>
-              <span className="basic-information-tab__pill">
-                {address.district}
-              </span>
-            </div>
-            <div className="basic-information-tab__pill-field">
-              <span className="basic-information-tab__label">Taluka</span>
-              <span className="basic-information-tab__pill">
-                {address.taluka}
-              </span>
-            </div>
-            <div className="basic-information-tab__pill-field">
-              <span className="basic-information-tab__label">Pin Code</span>
-              <span className="basic-information-tab__pill">
-                {address.pinCode}
-              </span>
-            </div>
-          </div>
         </div>
 
         <ProfileCompletionCard
@@ -142,20 +105,97 @@ export default function BasicInformationTab({
           label={completion.label}
           checklist={completion.checklist}
         />
+        
       </div>
+
       <div className="basic-information-address-tab">
         <div className="basic-information-tab__details">
           <div className="basic-information-tab__columns">
+            <div className="basic-information-tab__column">
+              <h3 className="basic-information-tab__heading">
+                Current Address
+              </h3>
 
-            <h3 className="basic-information-tab__heading">Current Address</h3>
+              <p className="basic-information-tab__address-line">
+                {current?.line}
+              </p>
+
+              <div className="basic-information-tab__address-pills">
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">State</span>
+                  <span className="basic-information-tab__pill">
+                    {current?.state}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">
+                    District
+                  </span>
+                  <span className="basic-information-tab__pill">
+                    {current?.district}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">Taluka</span>
+                  <span className="basic-information-tab__pill">
+                    {current?.taluka}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">
+                    Pin Code
+                  </span>
+                  <span className="basic-information-tab__pill">
+                    {current?.pinCode}
+                  </span>
+                </div>
+              </div>
+            </div>
 
             <div className="basic-information-tab__divider" />
 
-            <h3 className="basic-information-tab__heading">Permanent Address</h3>
+            <div className="basic-information-tab__column">
+              <h3 className="basic-information-tab__heading">
+                Permanent Address
+              </h3>
 
+              <p className="basic-information-tab__address-line">
+                {permanent?.line}
+              </p>
+
+              <div className="basic-information-tab__address-pills">
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">State</span>
+                  <span className="basic-information-tab__pill">
+                    {permanent?.state}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">
+                    District
+                  </span>
+                  <span className="basic-information-tab__pill">
+                    {permanent?.district}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">Taluka</span>
+                  <span className="basic-information-tab__pill">
+                    {permanent?.taluka}
+                  </span>
+                </div>
+                <div className="basic-information-tab__pill-field">
+                  <span className="basic-information-tab__label">
+                    Pin Code
+                  </span>
+                  <span className="basic-information-tab__pill">
+                    {permanent?.pinCode}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
       </div>
     </div>
   );
