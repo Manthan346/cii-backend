@@ -500,6 +500,40 @@ export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
 }
 
+export type Enumevent_modeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel> | $Enums.event_mode | null
+}
+
+export type Enumevent_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_type | Prisma.Enumevent_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel> | $Enums.event_type | null
+}
+
+export type Enumevent_modeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_modeNullableWithAggregatesFilter<$PrismaModel> | $Enums.event_mode | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel>
+}
+
+export type Enumevent_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_type | Prisma.Enumevent_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.event_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -993,6 +1027,40 @@ export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumevent_modeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel> | $Enums.event_mode | null
+}
+
+export type NestedEnumevent_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_type | Prisma.Enumevent_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel> | $Enums.event_type | null
+}
+
+export type NestedEnumevent_modeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_modeNullableWithAggregatesFilter<$PrismaModel> | $Enums.event_mode | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumevent_modeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumevent_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.event_type | Prisma.Enumevent_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.event_type[] | Prisma.ListEnumevent_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumevent_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.event_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumevent_typeNullableFilter<$PrismaModel>
 }
 
 
