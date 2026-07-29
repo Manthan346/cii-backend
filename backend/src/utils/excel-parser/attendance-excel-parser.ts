@@ -42,7 +42,7 @@ export async function parseAttendanceExcelBuffer(buffer: Buffer): Promise<RawExc
     if (h) colIndex[h] = idx;
   });
 
-  const rows: RawExcelRow[] = [];
+  const rows:  RawExcelRow[] = [];
 
   worksheet.eachRow((row, rowNumber) => {
     if (rowNumber === 1) return;

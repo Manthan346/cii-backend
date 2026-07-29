@@ -34,7 +34,7 @@ const candidateProfileDetails = asyncHandler(async(req: CandidateAuthRequest, re
             },
             date_of_birth: true,
             blood_group: true,
-            candidate_address: true,
+            candidate_current_address: true,
             state_name: true,
             district: true,
             pin_code: true,

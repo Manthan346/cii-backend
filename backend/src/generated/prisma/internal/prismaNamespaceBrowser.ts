@@ -70,7 +70,9 @@ export const ModelName = {
   instructor_documents: 'instructor_documents',
   notifications: 'notifications',
   study_material: 'study_material',
-  user_notifications: 'user_notifications'
+  user_notifications: 'user_notifications',
+  event_batches: 'event_batches',
+  event_details: 'event_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -97,7 +99,7 @@ export const Candidates_detailsScalarFieldEnum = {
   gender: 'gender',
   date_of_birth: 'date_of_birth',
   education: 'education',
-  candidate_address: 'candidate_address',
+  candidate_current_address: 'candidate_current_address',
   enquiry_source: 'enquiry_source',
   aadhar_card_no: 'aadhar_card_no',
   pan_card_no: 'pan_card_no',
@@ -121,7 +123,11 @@ export const Candidates_detailsScalarFieldEnum = {
   qualification_percentage: 'qualification_percentage',
   admin_approval: 'admin_approval',
   candidate_skills: 'candidate_skills',
-  guardian_phone_no: 'guardian_phone_no'
+  guardian_phone_no: 'guardian_phone_no',
+  guardian_blood_group: 'guardian_blood_group',
+  candidate_permanant_address: 'candidate_permanant_address',
+  guardian_relationship: 'guardian_relationship',
+  guardian_occupation: 'guardian_occupation'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -445,6 +451,36 @@ export const User_notificationsScalarFieldEnum = {
 } as const
 
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
+
+
+export const Event_batchesScalarFieldEnum = {
+  event_batch_id: 'event_batch_id',
+  event_id: 'event_id',
+  batch_id: 'batch_id'
+} as const
+
+export type Event_batchesScalarFieldEnum = (typeof Event_batchesScalarFieldEnum)[keyof typeof Event_batchesScalarFieldEnum]
+
+
+export const Event_detailsScalarFieldEnum = {
+  event_id: 'event_id',
+  center_id: 'center_id',
+  event_title: 'event_title',
+  event_description: 'event_description',
+  event_date: 'event_date',
+  event_time: 'event_time',
+  venue: 'venue',
+  is_show: 'is_show',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  event_link: 'event_link',
+  eventmode: 'eventmode',
+  eventtype: 'eventtype'
+} as const
+
+export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
 
 
 export const SortOrder = {
