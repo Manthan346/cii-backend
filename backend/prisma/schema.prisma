@@ -45,6 +45,7 @@ model candidates_details {
   candidate_permanant_address String?
   guardian_relationship       String?
   guardian_occupation         String?
+  candidate_unique_id         String?                @unique
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -393,25 +394,26 @@ model event_batches {
 }
 
 model event_details {
-  event_id                                        String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_id                                       String          @db.Uuid
-  event_title                                     String          @db.VarChar(255)
+  event_id                                        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  center_id                                       String             @db.Uuid
+  event_title                                     String             @db.VarChar(255)
   event_description                               String?
-  event_date                                      DateTime        @db.Date
-  event_time                                      DateTime        @db.Time(6)
-  venue                                           String?         @db.VarChar(255)
-  is_show                                         Boolean?        @default(true)
-  created_by                                      String          @db.Uuid
-  created_at                                      DateTime?       @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime?       @default(now()) @db.Timestamp(6)
-  updated_by                                      String          @db.Uuid
+  event_date                                      DateTime           @db.Date
+  event_time                                      DateTime           @db.Time(6)
+  venue                                           String?            @db.VarChar(255)
+  is_show                                         Boolean?           @default(true)
+  created_by                                      String             @db.Uuid
+  created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at                                      DateTime?          @default(now()) @db.Timestamp(6)
+  updated_by                                      String             @db.Uuid
   event_link                                      String?
   eventmode                                       event_mode?
   eventtype                                       event_type?
+  target_type                                     event_target_type?
   event_batches                                   event_batches[]
-  center_details                                  center_details  @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
-  user_login_event_details_created_byTouser_login user_login      @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  user_login_event_details_updated_byTouser_login user_login      @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  center_details                                  center_details     @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
+  user_login_event_details_created_byTouser_login user_login         @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  user_login_event_details_updated_byTouser_login user_login         @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum attend_types {

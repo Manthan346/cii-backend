@@ -127,7 +127,8 @@ export const Candidates_detailsScalarFieldEnum = {
   guardian_blood_group: 'guardian_blood_group',
   candidate_permanant_address: 'candidate_permanant_address',
   guardian_relationship: 'guardian_relationship',
-  guardian_occupation: 'guardian_occupation'
+  guardian_occupation: 'guardian_occupation',
+  candidate_unique_id: 'candidate_unique_id'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -477,7 +478,8 @@ export const Event_detailsScalarFieldEnum = {
   updated_by: 'updated_by',
   event_link: 'event_link',
   eventmode: 'eventmode',
-  eventtype: 'eventtype'
+  eventtype: 'eventtype',
+  target_type: 'target_type'
 } as const
 
 export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
