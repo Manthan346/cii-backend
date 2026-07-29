@@ -46,6 +46,9 @@ model candidates_details {
   guardian_relationship       String?
   guardian_occupation         String?
   candidate_unique_id         String?                @unique
+  guardian_address            String?
+  guardian_gender             String?                @db.VarChar(10)
+  guardian_dob                DateTime?              @db.Date
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -196,7 +199,7 @@ model company_details {
 
 model instructor_details {
   instructor_id                    String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id                          String?               @unique @db.Uuid
+  user_id                          String                @unique @db.Uuid
   instructor_first_name            String                @db.VarChar(100)
   instructor_last_name             String?               @db.VarChar(100)
   contact_number                   String                @unique @db.VarChar(10)
@@ -229,7 +232,8 @@ model instructor_details {
   highest_qualification            String?               @db.VarChar(255)
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
-  user_login                       user_login?           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
+  company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
+  user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
 }
 
