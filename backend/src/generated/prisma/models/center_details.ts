@@ -200,6 +200,7 @@ export type center_detailsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   batch_details?: Prisma.Batch_detailsListRelationFilter
   center_company?: Prisma.Center_companyListRelationFilter
+  event_details?: Prisma.Event_detailsListRelationFilter
   user_login?: Prisma.User_loginListRelationFilter
 }
 
@@ -213,6 +214,7 @@ export type center_detailsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByRelationAggregateInput
   center_company?: Prisma.center_companyOrderByRelationAggregateInput
+  event_details?: Prisma.event_detailsOrderByRelationAggregateInput
   user_login?: Prisma.user_loginOrderByRelationAggregateInput
 }
 
@@ -229,6 +231,7 @@ export type center_detailsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   batch_details?: Prisma.Batch_detailsListRelationFilter
   center_company?: Prisma.Center_companyListRelationFilter
+  event_details?: Prisma.Event_detailsListRelationFilter
   user_login?: Prisma.User_loginListRelationFilter
 }, "center_id" | "center_name" | "center_email">
 
@@ -268,6 +271,7 @@ export type center_detailsCreateInput = {
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -281,6 +285,7 @@ export type center_detailsUncheckedCreateInput = {
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginUncheckedCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -294,6 +299,7 @@ export type center_detailsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -307,6 +313,7 @@ export type center_detailsUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -424,6 +431,20 @@ export type center_detailsUpdateOneRequiredWithoutUser_loginNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.center_detailsUpdateWithoutUser_loginInput>, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
+export type center_detailsCreateNestedOneWithoutEvent_detailsInput = {
+  create?: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
+  connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutEvent_detailsInput
+  connect?: Prisma.center_detailsWhereUniqueInput
+}
+
+export type center_detailsUpdateOneRequiredWithoutEvent_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
+  connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutEvent_detailsInput
+  upsert?: Prisma.center_detailsUpsertWithoutEvent_detailsInput
+  connect?: Prisma.center_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutEvent_detailsInput, Prisma.center_detailsUpdateWithoutEvent_detailsInput>, Prisma.center_detailsUncheckedUpdateWithoutEvent_detailsInput>
+}
+
 export type center_detailsCreateWithoutBatch_detailsInput = {
   center_id?: string
   center_name: string
@@ -433,6 +454,7 @@ export type center_detailsCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -445,6 +467,7 @@ export type center_detailsUncheckedCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginUncheckedCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -473,6 +496,7 @@ export type center_detailsUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -485,6 +509,7 @@ export type center_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -497,6 +522,7 @@ export type center_detailsCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -509,6 +535,7 @@ export type center_detailsUncheckedCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   user_login?: Prisma.user_loginUncheckedCreateNestedManyWithoutCenter_detailsInput
 }
 
@@ -537,6 +564,7 @@ export type center_detailsUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -549,6 +577,7 @@ export type center_detailsUncheckedUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   user_login?: Prisma.user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput
 }
 
@@ -562,6 +591,7 @@ export type center_detailsCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
 }
 
 export type center_detailsUncheckedCreateWithoutUser_loginInput = {
@@ -574,6 +604,7 @@ export type center_detailsUncheckedCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
+  event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
 }
 
 export type center_detailsCreateOrConnectWithoutUser_loginInput = {
@@ -602,6 +633,7 @@ export type center_detailsUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
 }
 
 export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
@@ -614,6 +646,75 @@ export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
+}
+
+export type center_detailsCreateWithoutEvent_detailsInput = {
+  center_id?: string
+  center_name: string
+  center_address: string
+  center_email: string
+  center_contact: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
+  center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
+  user_login?: Prisma.user_loginCreateNestedManyWithoutCenter_detailsInput
+}
+
+export type center_detailsUncheckedCreateWithoutEvent_detailsInput = {
+  center_id?: string
+  center_name: string
+  center_address: string
+  center_email: string
+  center_contact: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
+  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
+  user_login?: Prisma.user_loginUncheckedCreateNestedManyWithoutCenter_detailsInput
+}
+
+export type center_detailsCreateOrConnectWithoutEvent_detailsInput = {
+  where: Prisma.center_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
+}
+
+export type center_detailsUpsertWithoutEvent_detailsInput = {
+  update: Prisma.XOR<Prisma.center_detailsUpdateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedUpdateWithoutEvent_detailsInput>
+  create: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
+  where?: Prisma.center_detailsWhereInput
+}
+
+export type center_detailsUpdateToOneWithWhereWithoutEvent_detailsInput = {
+  where?: Prisma.center_detailsWhereInput
+  data: Prisma.XOR<Prisma.center_detailsUpdateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedUpdateWithoutEvent_detailsInput>
+}
+
+export type center_detailsUpdateWithoutEvent_detailsInput = {
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  center_name?: Prisma.StringFieldUpdateOperationsInput | string
+  center_address?: Prisma.StringFieldUpdateOperationsInput | string
+  center_email?: Prisma.StringFieldUpdateOperationsInput | string
+  center_contact?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
+  center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateManyWithoutCenter_detailsNestedInput
+}
+
+export type center_detailsUncheckedUpdateWithoutEvent_detailsInput = {
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  center_name?: Prisma.StringFieldUpdateOperationsInput | string
+  center_address?: Prisma.StringFieldUpdateOperationsInput | string
+  center_email?: Prisma.StringFieldUpdateOperationsInput | string
+  center_contact?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
+  user_login?: Prisma.user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput
 }
 
 
@@ -624,12 +725,14 @@ export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
 export type Center_detailsCountOutputType = {
   batch_details: number
   center_company: number
+  event_details: number
   user_login: number
 }
 
 export type Center_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Center_detailsCountOutputTypeCountBatch_detailsArgs
   center_company?: boolean | Center_detailsCountOutputTypeCountCenter_companyArgs
+  event_details?: boolean | Center_detailsCountOutputTypeCountEvent_detailsArgs
   user_login?: boolean | Center_detailsCountOutputTypeCountUser_loginArgs
 }
 
@@ -660,6 +763,13 @@ export type Center_detailsCountOutputTypeCountCenter_companyArgs<ExtArgs extends
 /**
  * Center_detailsCountOutputType without action
  */
+export type Center_detailsCountOutputTypeCountEvent_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.event_detailsWhereInput
+}
+
+/**
+ * Center_detailsCountOutputType without action
+ */
 export type Center_detailsCountOutputTypeCountUser_loginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.user_loginWhereInput
 }
@@ -675,6 +785,7 @@ export type center_detailsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   updated_at?: boolean
   batch_details?: boolean | Prisma.center_details$batch_detailsArgs<ExtArgs>
   center_company?: boolean | Prisma.center_details$center_companyArgs<ExtArgs>
+  event_details?: boolean | Prisma.center_details$event_detailsArgs<ExtArgs>
   user_login?: boolean | Prisma.center_details$user_loginArgs<ExtArgs>
   _count?: boolean | Prisma.Center_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["center_details"]>
@@ -713,6 +824,7 @@ export type center_detailsOmit<ExtArgs extends runtime.Types.Extensions.Internal
 export type center_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.center_details$batch_detailsArgs<ExtArgs>
   center_company?: boolean | Prisma.center_details$center_companyArgs<ExtArgs>
+  event_details?: boolean | Prisma.center_details$event_detailsArgs<ExtArgs>
   user_login?: boolean | Prisma.center_details$user_loginArgs<ExtArgs>
   _count?: boolean | Prisma.Center_detailsCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -724,6 +836,7 @@ export type $center_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     batch_details: Prisma.$batch_detailsPayload<ExtArgs>[]
     center_company: Prisma.$center_companyPayload<ExtArgs>[]
+    event_details: Prisma.$event_detailsPayload<ExtArgs>[]
     user_login: Prisma.$user_loginPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1130,6 +1243,7 @@ export interface Prisma__center_detailsClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   batch_details<T extends Prisma.center_details$batch_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_details$batch_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   center_company<T extends Prisma.center_details$center_companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_details$center_companyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$center_companyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  event_details<T extends Prisma.center_details$event_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_details$event_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$event_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user_login<T extends Prisma.center_details$user_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_details$user_loginArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1600,6 +1714,30 @@ export type center_details$center_companyArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.Center_companyScalarFieldEnum | Prisma.Center_companyScalarFieldEnum[]
+}
+
+/**
+ * center_details.event_details
+ */
+export type center_details$event_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the event_details
+   */
+  select?: Prisma.event_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the event_details
+   */
+  omit?: Prisma.event_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.event_detailsInclude<ExtArgs> | null
+  where?: Prisma.event_detailsWhereInput
+  orderBy?: Prisma.event_detailsOrderByWithRelationInput | Prisma.event_detailsOrderByWithRelationInput[]
+  cursor?: Prisma.event_detailsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Event_detailsScalarFieldEnum | Prisma.Event_detailsScalarFieldEnum[]
 }
 
 /**
