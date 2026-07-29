@@ -53,7 +53,7 @@ export const batches = [
     progress: 75,
     candidates: 35,
     startDate: '12 feb 2026',
-    status: 'Ending Soon',
+    status: 'Dropped',
   },
   {
     id: 6,

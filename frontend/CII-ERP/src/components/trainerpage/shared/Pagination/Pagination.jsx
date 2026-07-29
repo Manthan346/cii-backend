@@ -1,5 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import './Pagination.css';
+
 export default function Pagination({
   currentPage = 1,
   totalPages = 22,
@@ -9,18 +10,21 @@ export default function Pagination({
   label,
 }) {
   const leadingPages = [1, 2, 3].filter((page) => page <= totalPages);
+
   return (
-    <div className={'footer'}>
-      <span className={'info'}>
+    <div className="pagination-footer">
+      <span className="pagination-info">
         {label || `showing ${showing} out of ${total}`}
       </span>
 
-      <div className={'pages'}>
+      <div className="pagination-pages">
         {leadingPages.map((page) => (
           <button
             key={page}
             type="button"
-            className={`${'pageBtn'} ${page === currentPage ? 'pageBtnActive' : ''}`}
+            className={`pagination-page-btn ${
+              page === currentPage ? 'pagination-page-btn--active' : ''
+            }`}
             onClick={() => onPageChange?.(page)}
           >
             {page}
@@ -28,13 +32,15 @@ export default function Pagination({
         ))}
 
         {totalPages > leadingPages.length + 1 && (
-          <span className={'dots'}>......</span>
+          <span className="pagination-dots">......</span>
         )}
 
         {totalPages > leadingPages.length && (
           <button
             type="button"
-            className={`${'pageBtn'} ${totalPages === currentPage ? 'pageBtnActive' : ''}`}
+            className={`pagination-page-btn ${
+              totalPages === currentPage ? 'pagination-page-btn--active' : ''
+            }`}
             onClick={() => onPageChange?.(totalPages)}
           >
             {totalPages}
@@ -43,7 +49,7 @@ export default function Pagination({
 
         <button
           type="button"
-          className={'arrowBtn'}
+          className="pagination-arrow-btn"
           onClick={() => onPageChange?.(Math.min(currentPage + 1, totalPages))}
           aria-label="Next page"
         >
