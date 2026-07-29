@@ -69,22 +69,29 @@ export default function AttendanceTracker() {
     setTimeout(() => setShowToast(false), 2500);
   };
   return (
-    <div className={'content'}>
+    <div className={'attendance-management-attendance-tracker-content'}>
       {showToast && (
-        <div className={'toast'} role="status">
+        <div
+          className={'attendance-management-attendance-tracker-toast'}
+          role="status"
+        >
           Attendance saved successfully
         </div>
       )}
 
-      <div className={'pageHeader'}>
+      <div className={'attendance-management-attendance-tracker-page-header'}>
         <div>
-          <h1 className={'title'}>Attendance tracker</h1>
-          <p className={'subtitle'}>
+          <h1 className={'attendance-management-attendance-tracker-title'}>
+            Attendance tracker
+          </h1>
+          <p className={'attendance-management-attendance-tracker-subtitle'}>
             Track daily attendance across {attendanceMeta.totalActiveBatches}{' '}
             active batches
           </p>
         </div>
-        <div className={'headerActions'}>
+        <div
+          className={'attendance-management-attendance-tracker-header-actions'}
+        >
           <Button
             variant="primary"
             icon={Plus}
@@ -96,7 +103,7 @@ export default function AttendanceTracker() {
         </div>
       </div>
 
-      <div className={'statsGrid'}>
+      <div className={'attendance-management-attendance-tracker-stats-grid'}>
         {attendanceStats.map((stat) => (
           <StatCard
             key={stat.id}
@@ -108,17 +115,32 @@ export default function AttendanceTracker() {
         ))}
       </div>
 
-      <div className={'filterBar'}>
-        <div className={'searchField'}>
-          <label className={'filterLabel'}>SEARCH</label>
-          <div className={'searchInputWrap'}>
-            <Search size={16} className={'searchIcon'} />
+      <div className={'attendance-management-attendance-tracker-filter-bar'}>
+        <div
+          className={'attendance-management-attendance-tracker-search-field'}
+        >
+          <label
+            className={'attendance-management-attendance-tracker-filter-label'}
+          >
+            SEARCH
+          </label>
+          <div
+            className={
+              'attendance-management-attendance-tracker-search-input-wrap'
+            }
+          >
+            <Search
+              size={16}
+              className={'attendance-management-attendance-tracker-search-icon'}
+            />
             <input
               type="text"
               placeholder="Search by name & ID"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className={'searchInput'}
+              className={
+                'attendance-management-attendance-tracker-search-input'
+              }
             />
           </div>
         </div>
@@ -130,11 +152,15 @@ export default function AttendanceTracker() {
           onChange={setBatch}
         />
 
-        <div className={'dateField'}>
-          <label className={'filterLabel'}>DATE</label>
+        <div className={'attendance-management-attendance-tracker-date-field'}>
+          <label
+            className={'attendance-management-attendance-tracker-filter-label'}
+          >
+            DATE
+          </label>
           <input
             type="text"
-            className={'dateInput'}
+            className={'attendance-management-attendance-tracker-date-input'}
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
@@ -147,18 +173,26 @@ export default function AttendanceTracker() {
           onChange={setStatus}
         />
 
-        <div className={'applyWrap'}>
+        <div className={'attendance-management-attendance-tracker-apply-wrap'}>
           <Button variant="outline" icon={Filter}>
             Apply Filter
           </Button>
         </div>
       </div>
 
-      <section className={'tableSection'}>
-        <div className={'tableHeader'}>
-          <h2 className={'tableTitle'}>
+      <section
+        className={'attendance-management-attendance-tracker-table-section'}
+      >
+        <div
+          className={'attendance-management-attendance-tracker-table-header'}
+        >
+          <h2
+            className={'attendance-management-attendance-tracker-table-title'}
+          >
             Today's Attendance{' '}
-            <span className={'tableDate'}>
+            <span
+              className={'attendance-management-attendance-tracker-table-date'}
+            >
               . {attendanceMeta.attendanceDate}
             </span>
           </h2>

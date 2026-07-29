@@ -92,17 +92,19 @@ const StudyMaterialUpload = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className={'content'}>
+            <div className={'study-material-upload-content'}>
               {showToast && (
-                <div className={'toast'} role="status">
+                <div className={'study-material-upload-toast'} role="status">
                   Material uploaded successfully!!
                 </div>
               )}
 
-              <div className={'pageHeader'}>
+              <div className={'study-material-upload-page-header'}>
                 <div>
-                  <h1 className={'title'}>Study Material Upload</h1>
-                  <p className={'subtitle'}>
+                  <h1 className={'study-material-upload-title'}>
+                    Study Material Upload
+                  </h1>
+                  <p className={'study-material-upload-subtitle'}>
                     {materialMeta.totalMaterials} materials shared across{' '}
                     {materialMeta.totalActiveBatches} active batches
                   </p>
@@ -117,7 +119,7 @@ const StudyMaterialUpload = () => {
                 </Button>
               </div>
 
-              <div className={'statsGrid'}>
+              <div className={'study-material-upload-stats-grid'}>
                 {materialStats.map((stat) => (
                   <StatCard
                     key={stat.id}
@@ -131,17 +133,22 @@ const StudyMaterialUpload = () => {
 
               <QuickUploadPanel onBrowse={() => setShowModal(true)} />
 
-              <div className={'filterBar'}>
-                <div className={'searchField'}>
-                  <label className={'filterLabel'}>SEARCH MATERIAL</label>
-                  <div className={'searchInputWrap'}>
-                    <Search size={16} className={'searchIcon'} />
+              <div className={'study-material-upload-filter-bar'}>
+                <div className={'study-material-upload-search-field'}>
+                  <label className={'study-material-upload-filter-label'}>
+                    SEARCH MATERIAL
+                  </label>
+                  <div className={'study-material-upload-search-input-wrap'}>
+                    <Search
+                      size={16}
+                      className={'study-material-upload-search-icon'}
+                    />
                     <input
                       type="text"
                       placeholder="Search by Title or course"
                       value={searchTerm}
                       onChange={(event) => setSearchTerm(event.target.value)}
-                      className={'searchInput'}
+                      className={'study-material-upload-search-input'}
                     />
                   </div>
                 </div>
@@ -165,27 +172,29 @@ const StudyMaterialUpload = () => {
                   onChange={setStatus}
                 />
 
-                <div className={'applyWrap'}>
+                <div className={'study-material-upload-apply-wrap'}>
                   <Button variant="outline" icon={Filter}>
                     Apply Filter
                   </Button>
                 </div>
               </div>
 
-              <section className={'tableSection'}>
-                <div className={'tableHeader'}>
-                  <h2 className={'tableTitle'}>All Materials</h2>
-                  <div className={'tableActions'}>
+              <section className={'study-material-upload-table-section'}>
+                <div className={'study-material-upload-table-header'}>
+                  <h2 className={'study-material-upload-table-title'}>
+                    All Materials
+                  </h2>
+                  <div className={'study-material-upload-table-actions'}>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'study-material-upload-icon-btn'}
                       aria-label="Download list"
                     >
                       <Download size={16} />
                     </button>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'study-material-upload-icon-btn'}
                       aria-label="Print list"
                     >
                       <Printer size={16} />

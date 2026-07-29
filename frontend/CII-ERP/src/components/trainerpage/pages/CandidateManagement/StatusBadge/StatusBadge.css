@@ -1,4 +1,4 @@
-.badge {
+.candidate-management-status-badge-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -12,17 +12,17 @@
   min-width: 64px;
 }
 
-.active {
+.candidate-management-status-badge-active {
   background: var(--color-green);
   color: var(--color-white);
 }
 
-.dropped {
+.candidate-management-status-badge-dropped {
   background: var(--color-dropped-bg);
   color: var(--color-white);
 }
 
-.ending {
+.candidate-management-status-badge-ending {
   background: var(--color-peach-bg);
   color: var(--color-peach-text);
   white-space: normal;

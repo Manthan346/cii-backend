@@ -22,11 +22,13 @@ export default function AttendanceTable({
   onDelete,
 }) {
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'attendance-management-attendance-table-table-wrap'}>
+      <table className={'attendance-management-attendance-table-table'}>
         <thead>
           <tr>
-            <th className={'checkboxCol'}>
+            <th
+              className={'attendance-management-attendance-table-checkbox-col'}
+            >
               <input type="checkbox" aria-label="Select all candidates" />
             </th>
             <th>Candidate id</th>
@@ -50,10 +52,19 @@ export default function AttendanceTable({
                   aria-label={`Select ${record.name}`}
                 />
               </td>
-              <td className={'idCell'}>{record.candidateId}</td>
+              <td className={'attendance-management-attendance-table-id-cell'}>
+                {record.candidateId}
+              </td>
               <td>
-                <div className={'nameCell'}>
-                  <UserCircle2 size={22} className={'avatarIcon'} />
+                <div
+                  className={'attendance-management-attendance-table-name-cell'}
+                >
+                  <UserCircle2
+                    size={22}
+                    className={
+                      'attendance-management-attendance-table-avatar-icon'
+                    }
+                  />
                   <span>{record.name}</span>
                 </div>
               </td>
@@ -64,8 +75,12 @@ export default function AttendanceTable({
                   <ProgressBar value={record.progress} />
                 </div>
                </td> */}
-              <td className={'nowrap'}>{record.timeIn}</td>
-              <td className={'nowrap'}>{record.timeOut}</td>
+              <td className={'attendance-management-attendance-table-nowrap'}>
+                {record.timeIn}
+              </td>
+              <td className={'attendance-management-attendance-table-nowrap'}>
+                {record.timeOut}
+              </td>
               <td>
                 <StatusBadge status={record.status} />
               </td>

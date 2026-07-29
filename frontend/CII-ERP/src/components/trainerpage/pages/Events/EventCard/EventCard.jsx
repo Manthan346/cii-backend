@@ -28,22 +28,30 @@ export default function EventCard({
   onClick,
 }) {
   return (
-    <button type="button" className={'card'} onClick={onClick}>
-      <span className={`${'typeBadge'} ${`typeBadge--${tone}`}`}>{type}</span>
+    <button
+      type="button"
+      className={'events-event-card-card'}
+      onClick={onClick}
+    >
+      <span
+        className={`events-event-card-type-badge events-event-card-type-badge--${tone}`}
+      >
+        {type}
+      </span>
 
-      <h3 className={'title'}>{title}</h3>
+      <h3 className={'events-event-card-title'}>{title}</h3>
 
-      <div className={'metaRow'}>
-        <CalendarDays size={14} className={'metaIcon'} />
+      <div className={'events-event-card-meta-row'}>
+        <CalendarDays size={14} className={'events-event-card-meta-icon'} />
         <span>{date}</span>
       </div>
-      <div className={'metaRow'}>
-        <Clock size={14} className={'metaIcon'} />
+      <div className={'events-event-card-meta-row'}>
+        <Clock size={14} className={'events-event-card-meta-icon'} />
         <span>{time}</span>
       </div>
-      <div className={'metaRow'}>
-        <MapPin size={14} className={'metaIcon'} />
-        <span className={'venue'}>{venue}</span>
+      <div className={'events-event-card-meta-row'}>
+        <MapPin size={14} className={'events-event-card-meta-icon'} />
+        <span className={'events-event-card-venue'}>{venue}</span>
       </div>
     </button>
   );

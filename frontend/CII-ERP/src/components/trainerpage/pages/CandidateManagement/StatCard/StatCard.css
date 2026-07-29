@@ -1,4 +1,4 @@
-.card {
+.candidate-management-stat-card-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -8,7 +8,7 @@
   gap: 10px;
 }
 
-.iconWrap {
+.candidate-management-stat-card-icon-wrap {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
@@ -17,27 +17,27 @@
   justify-content: center;
 }
 
-.orange {
+.candidate-management-stat-card-orange {
   background: var(--color-orange);
   color: var(--color-white);
 }
 
-.green {
+.candidate-management-stat-card-green {
   background: var(--color-green);
   color: var(--color-white);
 }
 
-.gray {
+.candidate-management-stat-card-gray {
   background: var(--color-gray-icon-bg);
   color: var(--color-gray-icon);
 }
 
-.blue {
+.candidate-management-stat-card-blue {
   background: var(--color-blue-bg);
   color: var(--color-blue);
 }
 
-.value {
+.candidate-management-stat-card-value {
   font-family: var(--font-family);
   font-size: 28px;
   line-height: 1.1;
@@ -45,7 +45,7 @@
   color: var(--color-text-primary);
 }
 
-.label {
+.candidate-management-stat-card-label {
   font-family: var(--font-family);
   font-size: 14px;
   color: var(--color-text-secondary);

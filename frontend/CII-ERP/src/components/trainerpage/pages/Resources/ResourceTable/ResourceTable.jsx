@@ -14,11 +14,11 @@ import './ResourceTable.css';
  */
 export default function ResourceTable({ records = [], onView, onDelete }) {
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'resources-resource-table-table-wrap'}>
+      <table className={'resources-resource-table-table'}>
         <thead>
           <tr>
-            <th className={'checkboxCol'}>
+            <th className={'resources-resource-table-checkbox-col'}>
               <input type="checkbox" aria-label="Select all resources" />
             </th>
             <th>Resourses</th>
@@ -40,20 +40,30 @@ export default function ResourceTable({ records = [], onView, onDelete }) {
                 />
               </td>
               <td>
-                <div className={'nameCell'}>
-                  <span className={'name'}>{record.name}</span>
-                  <span className={'subtitle'}>{record.subtitle}</span>
+                <div className={'resources-resource-table-name-cell'}>
+                  <span className={'resources-resource-table-name'}>
+                    {record.name}
+                  </span>
+                  <span className={'resources-resource-table-subtitle'}>
+                    {record.subtitle}
+                  </span>
                 </div>
               </td>
-              <td className={'nowrap'}>{record.category}</td>
+              <td className={'resources-resource-table-nowrap'}>
+                {record.category}
+              </td>
               <td>
-                <div className={'updatedByCell'}>
+                <div className={'resources-resource-table-updated-by-cell'}>
                   <Avatar name={record.updatedBy} tone="mint" size={28} />
                   <span>{record.updatedBy}</span>
                 </div>
               </td>
-              <td className={'nowrap'}>{record.date}</td>
-              <td className={'nowrap'}>{record.size}</td>
+              <td className={'resources-resource-table-nowrap'}>
+                {record.date}
+              </td>
+              <td className={'resources-resource-table-nowrap'}>
+                {record.size}
+              </td>
               <td>
                 <ActionButtons
                   showEdit={false}

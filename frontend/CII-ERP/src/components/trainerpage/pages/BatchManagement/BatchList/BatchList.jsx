@@ -51,11 +51,11 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
   const [status, setStatus] = useState(batchStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
   return (
-    <div className={'content'}>
-      <div className={'pageHeader'}>
+    <div className={'batch-management-batch-list-content'}>
+      <div className={'batch-management-batch-list-page-header'}>
         <div>
-          <h1 className={'title'}>Batch List</h1>
-          <p className={'subtitle'}>
+          <h1 className={'batch-management-batch-list-title'}>Batch List</h1>
+          <p className={'batch-management-batch-list-subtitle'}>
             {batchListMeta.totalBatches} batches eunning across{' '}
             {batchListMeta.totalCourses} courses
           </p>
@@ -65,7 +65,7 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
         </Button>
       </div>
 
-      <div className={'statsGrid'}>
+      <div className={'batch-management-batch-list-stats-grid'}>
         {batchStats.map((stat) => (
           <StatCard
             key={stat.id}
@@ -77,17 +77,22 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
         ))}
       </div>
 
-      <div className={'filterBar'}>
-        <div className={'searchField'}>
-          <label className={'filterLabel'}>SEARCH</label>
-          <div className={'searchInputWrap'}>
-            <Search size={16} className={'searchIcon'} />
+      <div className={'batch-management-batch-list-filter-bar'}>
+        <div className={'batch-management-batch-list-search-field'}>
+          <label className={'batch-management-batch-list-filter-label'}>
+            SEARCH
+          </label>
+          <div className={'batch-management-batch-list-search-input-wrap'}>
+            <Search
+              size={16}
+              className={'batch-management-batch-list-search-icon'}
+            />
             <input
               type="text"
               placeholder="Search by batch name & code"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              className={'searchInput'}
+              className={'batch-management-batch-list-search-input'}
             />
           </div>
         </div>
@@ -111,25 +116,31 @@ const BatchList = ({ batches = defaultBatches, onCreateBatch }) => {
           onChange={setStatus}
         />
 
-        <div className={'applyWrap'}>
+        <div className={'batch-management-batch-list-apply-wrap'}>
           <Button variant="outline" icon={Filter}>
             Apply Filter
           </Button>
         </div>
       </div>
 
-      <section className={'tableSection'}>
-        <div className={'tableHeader'}>
-          <h2 className={'tableTitle'}>All Batches</h2>
-          <div className={'tableActions'}>
+      <section className={'batch-management-batch-list-table-section'}>
+        <div className={'batch-management-batch-list-table-header'}>
+          <h2 className={'batch-management-batch-list-table-title'}>
+            All Batches
+          </h2>
+          <div className={'batch-management-batch-list-table-actions'}>
             <button
               type="button"
-              className={'iconBtn'}
+              className={'batch-management-batch-list-icon-btn'}
               aria-label="Download list"
             >
               <Download size={16} />
             </button>
-            <button type="button" className={'iconBtn'} aria-label="Print list">
+            <button
+              type="button"
+              className={'batch-management-batch-list-icon-btn'}
+              aria-label="Print list"
+            >
               <Printer size={16} />
             </button>
           </div>

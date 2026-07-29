@@ -53,9 +53,7 @@ export default function GuardianDetailsTab({ guardian }) {
       <div className="guardian-details-tab__address-section">
         <div className="guardian-details-tab__address-columns">
           <div className="guardian-details-tab__address-column">
-            <h3 className="guardian-details-tab__heading">
-              Current Address
-            </h3>
+            <h3 className="guardian-details-tab__heading">Current Address</h3>
 
             <p className="guardian-details-tab__address-line">
               {guardian.currentAddress?.line}
@@ -92,9 +90,7 @@ export default function GuardianDetailsTab({ guardian }) {
           <div className="guardian-details-tab__address-divider" />
 
           <div className="guardian-details-tab__address-column">
-            <h3 className="guardian-details-tab__heading">
-              Permanent Address
-            </h3>
+            <h3 className="guardian-details-tab__heading">Permanent Address</h3>
 
             <p className="guardian-details-tab__address-line">
               {guardian.permanentAddress?.line}

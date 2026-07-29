@@ -20,12 +20,16 @@ export default function StatCard({ icon: Icon, value, label, tone = 'teal' }) {
   const animatedValue = useCountUp(isWholeNumber ? value : 0, 1200);
   const displayValue = isWholeNumber ? animatedValue : value;
   return (
-    <div className={'card'}>
-      <div className={`${'iconWrap'} ${tone || 'teal'}`}>
+    <div className={'study-material-upload-stat-card-card'}>
+      <div
+        className={`study-material-upload-stat-card-icon-wrap study-material-upload-stat-card-${tone || 'teal'}`}
+      >
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={'value'}>{displayValue}</div>
-      <div className={'label'}>{label}</div>
+      <div className={'study-material-upload-stat-card-value'}>
+        {displayValue}
+      </div>
+      <div className={'study-material-upload-stat-card-label'}>{label}</div>
     </div>
   );
 }

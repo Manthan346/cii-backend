@@ -18,5 +18,11 @@ const STATUS_CLASS = {
 };
 export default function StatusBadge({ status }) {
   const toneClass = STATUS_CLASS[status] || 'active';
-  return <span className={`${'badge'} ${toneClass}`}>{status}</span>;
+  return (
+    <span
+      className={`${'batch-management-batch-list-status-badge-badge'} ${toneClass}`}
+    >
+      {status}
+    </span>
+  );
 }

@@ -1,16 +1,16 @@
-.tableWrap {
+.study-material-upload-material-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.study-material-upload-material-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 900px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.study-material-upload-material-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.study-material-upload-material-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,16 +28,16 @@
   vertical-align: middle;
 }
 
-.checkboxCol {
+.study-material-upload-material-table-checkbox-col {
   width: 32px;
 }
 
-.nameCell {
+.study-material-upload-material-table-name-cell {
   font-weight: 700;
   min-width: 220px;
 }
 
-.nowrap {
+.study-material-upload-material-table-nowrap {
   white-space: nowrap;
   color: var(--color-text-secondary);
 }

@@ -20,11 +20,11 @@ export default function MaterialTable({
   onDelete,
 }) {
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'study-material-upload-material-table-table-wrap'}>
+      <table className={'study-material-upload-material-table-table'}>
         <thead>
           <tr>
-            <th className={'checkboxCol'}>
+            <th className={'study-material-upload-material-table-checkbox-col'}>
               <input type="checkbox" aria-label="Select all materials" />
             </th>
             <th>Material</th>
@@ -47,12 +47,24 @@ export default function MaterialTable({
                   aria-label={`Select ${record.name}`}
                 />
               </td>
-              <td className={'nameCell'}>{record.name}</td>
-              <td className={'nowrap'}>{record.course}</td>
-              <td className={'nowrap'}>{record.type}</td>
-              <td className={'nowrap'}>{record.uploadedBy}</td>
-              <td className={'nowrap'}>{record.date}</td>
-              <td className={'nowrap'}>{record.size}</td>
+              <td className={'study-material-upload-material-table-name-cell'}>
+                {record.name}
+              </td>
+              <td className={'study-material-upload-material-table-nowrap'}>
+                {record.course}
+              </td>
+              <td className={'study-material-upload-material-table-nowrap'}>
+                {record.type}
+              </td>
+              <td className={'study-material-upload-material-table-nowrap'}>
+                {record.uploadedBy}
+              </td>
+              <td className={'study-material-upload-material-table-nowrap'}>
+                {record.date}
+              </td>
+              <td className={'study-material-upload-material-table-nowrap'}>
+                {record.size}
+              </td>
               <td>
                 <StatusBadge status={record.status} />
               </td>

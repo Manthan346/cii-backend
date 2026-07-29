@@ -24,16 +24,18 @@ export default function ProgressBar({ percent = 0 }) {
     return () => cancelAnimationFrame(raf);
   }, [clamped]);
   return (
-    <div className={'wrap'}>
-      <div className={'track'}>
+    <div className={'candidate-management-progress-bar-wrap'}>
+      <div className={'candidate-management-progress-bar-track'}>
         <div
-          className={'fill'}
+          className={'candidate-management-progress-bar-fill'}
           style={{
             width: `${width}%`,
           }}
         />
       </div>
-      <span className={'percent'}>{animatedPercent}%</span>
+      <span className={'candidate-management-progress-bar-percent'}>
+        {animatedPercent}%
+      </span>
     </div>
   );
 }

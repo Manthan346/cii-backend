@@ -1,16 +1,16 @@
-.tableWrap {
+.candidate-management-candidate-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.candidate-management-candidate-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 720px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.candidate-management-candidate-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.candidate-management-candidate-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,17 +28,17 @@
   vertical-align: middle;
 }
 
-.checkboxCol {
+.candidate-management-candidate-table-checkbox-col {
   width: 32px;
 }
 
-.idCell {
+.candidate-management-candidate-table-id-cell {
   color: var(--color-text-secondary);
   font-weight: 500;
   white-space: nowrap;
 }
 
-.nameCell {
+.candidate-management-candidate-table-name-cell {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -46,11 +46,11 @@
   white-space: nowrap;
 }
 
-.avatarIcon {
+.candidate-management-candidate-table-avatar-icon {
   color: #9ca3af;
   flex-shrink: 0;
 }
 
-.nowrap {
+.candidate-management-candidate-table-nowrap {
   white-space: nowrap;
 }

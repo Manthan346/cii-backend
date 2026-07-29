@@ -16,12 +16,18 @@ import './StatCard.css';
 export default function StatCard({ icon: Icon, value, label, tone = 'blue' }) {
   const animatedValue = useCountUp(value, 1200);
   return (
-    <div className={'card'}>
-      <div className={`${'iconWrap'} ${tone || 'blue'}`}>
+    <div className={'batch-management-batch-list-stat-card-card'}>
+      <div
+        className={`batch-management-batch-list-stat-card-icon-wrap batch-management-batch-list-stat-card-${tone || 'blue'}`}
+      >
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={'value'}>{animatedValue}</div>
-      <div className={'label'}>{label}</div>
+      <div className={'batch-management-batch-list-stat-card-value'}>
+        {animatedValue}
+      </div>
+      <div className={'batch-management-batch-list-stat-card-label'}>
+        {label}
+      </div>
     </div>
   );
 }

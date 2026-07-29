@@ -105,15 +105,15 @@ const Events = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className={'content'}>
-              <div className={'pageHeader'}>
+            <div className={'events-content'}>
+              <div className={'events-page-header'}>
                 <div>
-                  <h1 className={'title'}>Events</h1>
-                  <p className={'subtitle'}>{eventMeta.subtitle}</p>
+                  <h1 className={'events-title'}>Events</h1>
+                  <p className={'events-subtitle'}>{eventMeta.subtitle}</p>
                 </div>
                 <button
                   type="button"
-                  className={'createBtn'}
+                  className={'events-create-btn'}
                   onClick={() => setIsCreateOpen(true)}
                 >
                   <Plus size={16} />
@@ -121,11 +121,11 @@ const Events = () => {
                 </button>
               </div>
 
-              <section className={'upcomingSection'}>
-                <div className={'sectionHeader'}>
-                  <h2 className={'sectionTitle'}>Upcoming events</h2>
+              <section className={'events-upcoming-section'}>
+                <div className={'events-section-header'}>
+                  <h2 className={'events-section-title'}>Upcoming events</h2>
                 </div>
-                <div className={'upcomingGrid'}>
+                <div className={'events-upcoming-grid'}>
                   {upcomingEvents.map((event) => (
                     <EventCard
                       key={event.id}
@@ -151,20 +151,20 @@ const Events = () => {
                 statusOptions={eventStatusOptions}
               />
 
-              <section className={'tableSection'}>
-                <div className={'tableHeader'}>
-                  <h2 className={'tableTitle'}>All Events</h2>
-                  <div className={'tableActions'}>
+              <section className={'events-table-section'}>
+                <div className={'events-table-header'}>
+                  <h2 className={'events-table-title'}>All Events</h2>
+                  <div className={'events-table-actions'}>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'events-icon-btn'}
                       aria-label="Download list"
                     >
                       <Download size={16} />
                     </button>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'events-icon-btn'}
                       aria-label="Print list"
                     >
                       <Printer size={16} />

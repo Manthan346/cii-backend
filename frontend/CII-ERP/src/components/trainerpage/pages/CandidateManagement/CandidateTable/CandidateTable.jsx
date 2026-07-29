@@ -29,11 +29,11 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
     setEditingCandidate(null);
   };
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'candidate-management-candidate-table-table-wrap'}>
+      <table className={'candidate-management-candidate-table-table'}>
         <thead>
           <tr>
-            <th className={'checkboxCol'}>
+            <th className={'candidate-management-candidate-table-checkbox-col'}>
               <input type="checkbox" aria-label="Select all candidates" />
             </th>
             <th>Candidates ID</th>
@@ -55,16 +55,27 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
                   aria-label={`Select ${candidate.name}`}
                 />
               </td>
-              <td className={'idCell'}>{candidate.candidateId}</td>
+              <td className={'candidate-management-candidate-table-id-cell'}>
+                {candidate.candidateId}
+              </td>
               <td>
-                <div className={'nameCell'}>
-                  <UserCircle2 size={22} className={'avatarIcon'} />
+                <div
+                  className={'candidate-management-candidate-table-name-cell'}
+                >
+                  <UserCircle2
+                    size={22}
+                    className={
+                      'candidate-management-candidate-table-avatar-icon'
+                    }
+                  />
                   <span>{candidate.name}</span>
                 </div>
               </td>
               <td>{candidate.batch}</td>
               <td>{candidate.course}</td>
-              <td className={'nowrap'}>{candidate.joinDate}</td>
+              <td className={'candidate-management-candidate-table-nowrap'}>
+                {candidate.joinDate}
+              </td>
               <td>
                 <StatusBadge status={candidate.status} />
               </td>

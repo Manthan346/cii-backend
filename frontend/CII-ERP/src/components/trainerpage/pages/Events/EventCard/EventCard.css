@@ -1,4 +1,4 @@
-.card {
+.events-event-card-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -17,11 +17,11 @@
   box-sizing: border-box;
 }
 
-.card:hover {
+.events-event-card-card:hover {
   box-shadow: 0 4px 14px rgba(16, 24, 40, 0.1);
 }
 
-.typeBadge {
+.events-event-card-type-badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
@@ -32,22 +32,22 @@
   text-transform: uppercase;
 }
 
-.typeBadge--teal {
+.events-event-card-type-badge--teal {
   background: var(--color-teal-light);
   color: var(--color-teal-dark);
 }
 
-.typeBadge--blue {
+.events-event-card-type-badge--blue {
   background: var(--color-blue-bg);
   color: #1a56db;
 }
 
-.typeBadge--mint {
+.events-event-card-type-badge--mint {
   background: #cdf3ea;
   color: #0f7b73;
 }
 
-.title {
+.events-event-card-title {
   margin: 2px 0 0;
   font-size: 16px;
   font-weight: 700;
@@ -55,7 +55,7 @@
   line-height: 1.3;
 }
 
-.metaRow {
+.events-event-card-meta-row {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -63,19 +63,19 @@
   color: var(--color-text-secondary);
 }
 
-.metaIcon {
+.events-event-card-meta-icon {
   flex-shrink: 0;
   color: var(--color-text-muted);
 }
 
-.venue {
+.events-event-card-venue {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 @media (max-width: 640px) {
-  .card {
+  .events-event-card-card {
     padding: 14px 16px;
   }
 }

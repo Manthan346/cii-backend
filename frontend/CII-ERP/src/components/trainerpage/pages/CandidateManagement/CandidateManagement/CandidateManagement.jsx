@@ -93,21 +93,21 @@ const CandidateManagement = () => {
 
         <div className="trainer-dashboard__main">
           <main className="trainer-dashboard__body">
-            <div className={'content'}>
+            <div className={'candidate-management-content'}>
               {showToast && (
-                <div className={'toast'} role="status">
+                <div className={'candidate-management-toast'} role="status">
                   Candidate added successfully
                 </div>
               )}
 
-              <div className={'pageHeader'}>
-                <h1 className={'title'}>Candidate List</h1>
-                <p className={'subtitle'}>
+              <div className={'candidate-management-page-header'}>
+                <h1 className={'candidate-management-title'}>Candidate List</h1>
+                <p className={'candidate-management-subtitle'}>
                   {TOTAL_CANDIDATES} candidate across {TOTAL_BATCHES} batches
                 </p>
               </div>
 
-              <div className={'statsGrid'}>
+              <div className={'candidate-management-stats-grid'}>
                 {candidateStats.map((stat) => (
                   <StatCard
                     key={stat.id}
@@ -125,9 +125,11 @@ const CandidateManagement = () => {
                 statusOptions={statusOptions}
               />
 
-              <section className={'tableSection'}>
-                <div className={'tableHeader'}>
-                  <h2 className={'tableTitle'}>All Candidates</h2>
+              <section className={'candidate-management-table-section'}>
+                <div className={'candidate-management-table-header'}>
+                  <h2 className={'candidate-management-table-title'}>
+                    All Candidates
+                  </h2>
                   {/* <div className={styles.tableActions}>
                     <Button variant="primary" onClick={() => setShowAddModal(true)}>
                       Add Candidate

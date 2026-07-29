@@ -19,11 +19,13 @@ export default function BatchTable({
   onAssignTrainer,
 }) {
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'batch-management-batch-list-batch-table-table-wrap'}>
+      <table className={'batch-management-batch-list-batch-table-table'}>
         <thead>
           <tr>
-            <th className={'checkboxCol'}>
+            <th
+              className={'batch-management-batch-list-batch-table-checkbox-col'}
+            >
               <input type="checkbox" aria-label="Select all batches" />
             </th>
             <th>Batch</th>
@@ -46,20 +48,46 @@ export default function BatchTable({
                 />
               </td>
               <td>
-                <div className={'batchCell'}>
-                  <span className={'batchIcon'} aria-hidden="true" />
-                  <span className={'batchCode'}>{batch.code}</span>
+                <div
+                  className={
+                    'batch-management-batch-list-batch-table-batch-cell'
+                  }
+                >
+                  <span
+                    className={
+                      'batch-management-batch-list-batch-table-batch-icon'
+                    }
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={
+                      'batch-management-batch-list-batch-table-batch-code'
+                    }
+                  >
+                    {batch.code}
+                  </span>
                 </div>
               </td>
               <td>
-                <div className={'trainerCell'}>
-                  <UserCircle2 size={20} className={'trainerIcon'} />
+                <div
+                  className={
+                    'batch-management-batch-list-batch-table-trainer-cell'
+                  }
+                >
+                  <UserCircle2
+                    size={20}
+                    className={
+                      'batch-management-batch-list-batch-table-trainer-icon'
+                    }
+                  />
                   <span>{batch.trainer}</span>
                 </div>
               </td>
               <td>{batch.course}</td>
               <td>{batch.candidates}</td>
-              <td className={'nowrap'}>{batch.startDate}</td>
+              <td className={'batch-management-batch-list-batch-table-nowrap'}>
+                {batch.startDate}
+              </td>
               <td>
                 <StatusBadge status={batch.status} />
               </td>

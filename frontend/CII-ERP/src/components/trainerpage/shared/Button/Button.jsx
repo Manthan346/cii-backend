@@ -17,14 +17,16 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${'button'} ${variant || 'primary'}`}
+      className={`shared-button-button shared-button-${variant || 'primary'}`}
       onClick={onClick}
       {...rest}
     >
-      {Icon && iconPosition === 'left' && <Icon size={16} className={'icon'} />}
+      {Icon && iconPosition === 'left' && (
+        <Icon size={16} className={'shared-button-icon'} />
+      )}
       <span>{children}</span>
       {Icon && iconPosition === 'right' && (
-        <Icon size={16} className={'icon'} />
+        <Icon size={16} className={'shared-button-icon'} />
       )}
     </button>
   );

@@ -17,18 +17,25 @@ export default function EditStatusModal({ candidate, onCancel, onSave }) {
   if (!candidate) return null;
   return (
     <div
-      className={'overlay'}
+      className={'candidate-management-edit-status-modal-overlay'}
       role="dialog"
       aria-modal="true"
       aria-label="Edit candidate status"
     >
-      <div className={'modal'}>
-        <h2 className={'title'}>Edit Status</h2>
-        <p className={'subtitle'}>{candidate.name}</p>
+      <div className={'candidate-management-edit-status-modal-modal'}>
+        <h2 className={'candidate-management-edit-status-modal-title'}>
+          Edit Status
+        </h2>
+        <p className={'candidate-management-edit-status-modal-subtitle'}>
+          {candidate.name}
+        </p>
 
-        <div className={'radioGroup'}>
+        <div className={'candidate-management-edit-status-modal-radio-group'}>
           {STATUS_OPTIONS.map((option) => (
-            <label key={option} className={'radioOption'}>
+            <label
+              key={option}
+              className={'candidate-management-edit-status-modal-radio-option'}
+            >
               <input
                 type="radio"
                 name="candidate-edit-status"
@@ -41,7 +48,7 @@ export default function EditStatusModal({ candidate, onCancel, onSave }) {
           ))}
         </div>
 
-        <div className={'actions'}>
+        <div className={'candidate-management-edit-status-modal-actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

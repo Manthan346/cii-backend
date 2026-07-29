@@ -1,4 +1,4 @@
-.overlay {
+.events-view-event-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.modal {
+.events-view-event-modal-modal {
   position: relative;
   width: 100%;
   max-width: 480px;
@@ -26,7 +26,7 @@
   box-sizing: border-box;
 }
 
-.closeBtn {
+.events-view-event-modal-close-btn {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -42,18 +42,18 @@
   color: var(--color-text-secondary);
 }
 
-.closeBtn:hover {
+.events-view-event-modal-close-btn:hover {
   background: #f3f4f6;
 }
 
-.header {
+.events-view-event-modal-header {
   display: flex;
   align-items: center;
   gap: 14px;
   padding-right: 24px;
 }
 
-.iconBadge {
+.events-view-event-modal-icon-badge {
   width: 46px;
   height: 46px;
   border-radius: var(--radius-md);
@@ -65,37 +65,37 @@
   flex-shrink: 0;
 }
 
-.headerText {
+.events-view-event-modal-header-text {
   flex: 1;
   min-width: 0;
 }
 
-.name {
+.events-view-event-modal-name {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.type {
+.events-view-event-modal-type {
   margin: 2px 0 0;
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
-.grid {
+.events-view-event-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.field {
+.events-view-event-modal-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.label {
+.events-view-event-modal-label {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -103,13 +103,13 @@
   color: var(--color-text-secondary);
 }
 
-.value {
+.events-view-event-modal-value {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.organizerValue {
+.events-view-event-modal-organizer-value {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -118,7 +118,7 @@
   color: var(--color-text-primary);
 }
 
-.descriptionField {
+.events-view-event-modal-description-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -126,7 +126,7 @@
   padding-top: 14px;
 }
 
-.description {
+.events-view-event-modal-description {
   margin: 0;
   font-size: 14px;
   line-height: 1.5;
@@ -134,7 +134,7 @@
 }
 
 @media (max-width: 480px) {
-  .grid {
+  .events-view-event-modal-grid {
     grid-template-columns: 1fr;
   }
 }

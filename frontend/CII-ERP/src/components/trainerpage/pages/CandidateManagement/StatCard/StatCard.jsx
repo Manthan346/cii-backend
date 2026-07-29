@@ -25,12 +25,16 @@ export default function StatCard({
 }) {
   const animatedValue = useCountUp(value, 1500);
   return (
-    <div className={'card'}>
-      <div className={`${'iconWrap'} ${tone || 'orange'}`}>
+    <div className={'candidate-management-stat-card-card'}>
+      <div
+        className={`candidate-management-stat-card-icon-wrap candidate-management-stat-card-${tone || 'orange'}`}
+      >
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={'value'}>{animatedValue}</div>
-      <div className={'label'}>{label}</div>
+      <div className={'candidate-management-stat-card-value'}>
+        {animatedValue}
+      </div>
+      <div className={'candidate-management-stat-card-label'}>{label}</div>
     </div>
   );
 }

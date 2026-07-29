@@ -1,10 +1,10 @@
-.actions {
+.batch-management-batch-list-action-buttons-actions {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.iconBtn {
+.batch-management-batch-list-action-buttons-icon-btn {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -18,11 +18,11 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.iconBtn:hover {
+.batch-management-batch-list-action-buttons-icon-btn:hover {
   background: #e5e7eb;
 }
 
-.danger:hover {
+.batch-management-batch-list-action-buttons-danger:hover {
   background: #fee2e2;
   color: #dc2626;
 }

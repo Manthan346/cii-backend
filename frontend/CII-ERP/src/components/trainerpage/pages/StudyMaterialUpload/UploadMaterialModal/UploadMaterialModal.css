@@ -1,4 +1,4 @@
-.overlay {
+.study-material-upload-upload-material-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.modal {
+.study-material-upload-upload-material-modal-modal {
   width: 100%;
   max-width: 460px;
   background: var(--color-white);
@@ -24,20 +24,20 @@
   overflow-y: auto;
 }
 
-.header {
+.study-material-upload-upload-material-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.title {
+.study-material-upload-upload-material-modal-title {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.closeBtn {
+.study-material-upload-upload-material-modal-close-btn {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -50,24 +50,24 @@
   color: var(--color-text-secondary);
 }
 
-.closeBtn:hover {
+.study-material-upload-upload-material-modal-close-btn:hover {
   background: #f3f4f6;
 }
 
-.field {
+.study-material-upload-upload-material-modal-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.label {
+.study-material-upload-upload-material-modal-label {
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.input,
-.textarea {
+.study-material-upload-upload-material-modal-input,
+.study-material-upload-upload-material-modal-textarea {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -78,17 +78,17 @@
   outline: none;
 }
 
-.input:focus,
-.textarea:focus {
+.study-material-upload-upload-material-modal-input:focus,
+.study-material-upload-upload-material-modal-textarea:focus {
   border-color: var(--color-teal);
 }
 
-.textarea {
+.study-material-upload-upload-material-modal-textarea {
   resize: vertical;
   min-height: 64px;
 }
 
-.fileDropzone {
+.study-material-upload-upload-material-modal-file-dropzone {
   border: 1px dashed var(--color-border);
   border-radius: var(--radius-sm);
   padding: 20px 16px;
@@ -101,22 +101,22 @@
   text-align: center;
 }
 
-.fileIcon {
+.study-material-upload-upload-material-modal-file-icon {
   color: var(--color-text-secondary);
 }
 
-.fileText {
+.study-material-upload-upload-material-modal-file-text {
   font-size: 14px;
   color: var(--color-text-secondary);
   margin: 0;
 }
 
-.browseLink {
+.study-material-upload-upload-material-modal-browse-link {
   color: var(--color-teal);
   font-weight: 700;
 }
 
-.actions {
+.study-material-upload-upload-material-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;

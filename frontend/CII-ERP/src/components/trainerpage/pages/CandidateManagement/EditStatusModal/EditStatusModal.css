@@ -1,4 +1,4 @@
-.overlay {
+.candidate-management-edit-status-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.modal {
+.candidate-management-edit-status-modal-modal {
   width: 100%;
   max-width: 320px;
   background: var(--color-white);
@@ -22,26 +22,26 @@
   font-family: var(--font-family);
 }
 
-.title {
+.candidate-management-edit-status-modal-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.subtitle {
+.candidate-management-edit-status-modal-subtitle {
   margin: -12px 0 0;
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
-.radioGroup {
+.candidate-management-edit-status-modal-radio-group {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.radioOption {
+.candidate-management-edit-status-modal-radio-option {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -51,14 +51,14 @@
   cursor: pointer;
 }
 
-.radioOption input[type="radio"] {
+.candidate-management-edit-status-modal-radio-option input[type="radio"] {
   accent-color: var(--color-teal);
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
 
-.actions {
+.candidate-management-edit-status-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;

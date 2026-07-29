@@ -24,11 +24,11 @@ export default function Dropdown({ label, options = [], value, onChange }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
   return (
-    <div className={'field'} ref={containerRef}>
-      <label className={'label'}>{label}</label>
+    <div className={'shared-dropdown-field'} ref={containerRef}>
+      <label className={'shared-dropdown-label'}>{label}</label>
       <button
         type="button"
-        className={`${'trigger'} ${open ? 'triggerOpen' : ''}`}
+        className={`${'shared-dropdown-trigger'} ${open ? 'shared-dropdown-trigger-open' : ''}`}
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -38,13 +38,13 @@ export default function Dropdown({ label, options = [], value, onChange }) {
       </button>
 
       {open && (
-        <ul className={'menu'} role="listbox">
+        <ul className={'shared-dropdown-menu'} role="listbox">
           {options.map((option) => (
             <li
               key={option}
               role="option"
               aria-selected={option === value}
-              className={`${'option'} ${option === value ? 'optionActive' : ''}`}
+              className={`${'shared-dropdown-option'} ${option === value ? 'shared-dropdown-option-active' : ''}`}
               onClick={() => {
                 onChange?.(option);
                 setOpen(false);

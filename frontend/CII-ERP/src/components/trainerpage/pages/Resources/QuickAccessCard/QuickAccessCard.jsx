@@ -21,13 +21,19 @@ export default function QuickAccessCard({
   onClick,
 }) {
   return (
-    <button type="button" className={'card'} onClick={onClick}>
-      <div className={`${'iconWrap'} ${tone || 'mint'}`}>
+    <button
+      type="button"
+      className={'resources-quick-access-card-card'}
+      onClick={onClick}
+    >
+      <div
+        className={`resources-quick-access-card-icon-wrap resources-quick-access-card-${tone || 'mint'}`}
+      >
         {Icon && <Icon size={22} strokeWidth={2} />}
       </div>
-      <div className={'text'}>
-        <div className={'title'}>{title}</div>
-        <div className={'subtitle'}>{subtitle}</div>
+      <div className={'resources-quick-access-card-text'}>
+        <div className={'resources-quick-access-card-title'}>{title}</div>
+        <div className={'resources-quick-access-card-subtitle'}>{subtitle}</div>
       </div>
     </button>
   );

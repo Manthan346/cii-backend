@@ -1,4 +1,4 @@
-.content {
+.study-material-upload-content {
   position: relative;
   padding: 0 20px 0 0;
   display: flex;
@@ -10,7 +10,7 @@
 }
 
 /* ---- Success toast ("Material uploaded successfully!!") ---- */
-.toast {
+.study-material-upload-toast {
   position: absolute;
   top: 118px;
   left: 50%;
@@ -47,7 +47,7 @@
   }
 }
 
-.pageHeader {
+.study-material-upload-page-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -55,27 +55,27 @@
   flex-wrap: wrap;
 }
 
-.title {
+.study-material-upload-title {
   font-size: 24px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.subtitle {
+.study-material-upload-subtitle {
   font-size: 14px;
   color: var(--color-text-secondary);
   margin: 4px 0 0;
 }
 
-.statsGrid {
+.study-material-upload-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
 /* ---- Filter bar (Search / Course / Type / Status / Apply) ---- */
-.filterBar {
+.study-material-upload-filter-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr) auto;
   gap: 16px;
@@ -86,14 +86,14 @@
   box-shadow: var(--shadow-card);
 }
 
-.searchField {
+.study-material-upload-search-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
 }
 
-.filterLabel {
+.study-material-upload-filter-label {
   font-family: var(--font-family);
   font-size: 12px;
   font-weight: 700;
@@ -102,7 +102,7 @@
   color: var(--color-text-secondary);
 }
 
-.searchInputWrap {
+.study-material-upload-search-input-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -112,12 +112,12 @@
   background: var(--color-white);
 }
 
-.searchIcon {
+.study-material-upload-search-icon {
   color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 
-.searchInput {
+.study-material-upload-search-input {
   border: none;
   outline: none;
   flex: 1;
@@ -127,12 +127,12 @@
   min-width: 0;
 }
 
-.applyWrap {
+.study-material-upload-apply-wrap {
   display: flex;
 }
 
 /* ---- All Materials table section ---- */
-.tableSection {
+.study-material-upload-table-section {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
@@ -142,7 +142,7 @@
   box-shadow: var(--shadow-card);
 }
 
-.tableHeader {
+.study-material-upload-table-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -150,7 +150,7 @@
   gap: 12px;
 }
 
-.tableTitle {
+.study-material-upload-table-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
@@ -160,12 +160,12 @@
   text-underline-offset: 6px;
 }
 
-.tableActions {
+.study-material-upload-table-actions {
   display: flex;
   gap: 8px;
 }
 
-.iconBtn {
+.study-material-upload-icon-btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -178,40 +178,40 @@
   cursor: pointer;
 }
 
-.iconBtn:hover {
+.study-material-upload-icon-btn:hover {
   background: #e5e7eb;
 }
 
 @media (max-width: 1024px) {
-  .statsGrid {
+  .study-material-upload-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .filterBar {
+  .study-material-upload-filter-bar {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .content {
+  .study-material-upload-content {
     padding: 0 16px;
   }
-  .statsGrid {
+  .study-material-upload-stats-grid {
     grid-template-columns: 1fr;
   }
-  .filterBar {
+  .study-material-upload-filter-bar {
     grid-template-columns: 1fr;
   }
-  .applyWrap button {
+  .study-material-upload-apply-wrap button {
     width: 100%;
   }
-  .tableSection {
+  .study-material-upload-table-section {
     padding: 16px;
   }
-  .tableHeader {
+  .study-material-upload-table-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .pageHeader {
+  .study-material-upload-page-header {
     flex-direction: column;
   }
 }

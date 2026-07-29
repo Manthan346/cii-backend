@@ -1,4 +1,4 @@
-.content {
+.batch-management-batch-list-content {
   padding: 0 20px 0 0;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.pageHeader {
+.batch-management-batch-list-page-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -16,27 +16,27 @@
   flex-wrap: wrap;
 }
 
-.title {
+.batch-management-batch-list-title {
   font-size: 24px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.subtitle {
+.batch-management-batch-list-subtitle {
   font-size: 14px;
   color: var(--color-text-secondary);
   margin: 4px 0 0;
 }
 
-.statsGrid {
+.batch-management-batch-list-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
 /* ---- Filter bar (Search / Trainers / Courses / Status / Apply) ---- */
-.filterBar {
+.batch-management-batch-list-filter-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr) auto;
   gap: 16px;
@@ -47,14 +47,14 @@
   box-shadow: var(--shadow-card);
 }
 
-.searchField {
+.batch-management-batch-list-search-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
 }
 
-.filterLabel {
+.batch-management-batch-list-filter-label {
   font-family: var(--font-family);
   font-size: 12px;
   font-weight: 700;
@@ -63,7 +63,7 @@
   color: var(--color-text-secondary);
 }
 
-.searchInputWrap {
+.batch-management-batch-list-search-input-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -73,12 +73,12 @@
   background: var(--color-white);
 }
 
-.searchIcon {
+.batch-management-batch-list-search-icon {
   color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 
-.searchInput {
+.batch-management-batch-list-search-input {
   border: none;
   outline: none;
   flex: 1;
@@ -88,12 +88,12 @@
   min-width: 0;
 }
 
-.applyWrap {
+.batch-management-batch-list-apply-wrap {
   display: flex;
 }
 
 /* ---- All Batches table section ---- */
-.tableSection {
+.batch-management-batch-list-table-section {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
@@ -103,7 +103,7 @@
   box-shadow: var(--shadow-card);
 }
 
-.tableHeader {
+.batch-management-batch-list-table-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,7 +111,7 @@
   gap: 12px;
 }
 
-.tableTitle {
+.batch-management-batch-list-table-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
@@ -121,12 +121,12 @@
   text-underline-offset: 6px;
 }
 
-.tableActions {
+.batch-management-batch-list-table-actions {
   display: flex;
   gap: 8px;
 }
 
-.iconBtn {
+.batch-management-batch-list-icon-btn {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -139,36 +139,36 @@
   cursor: pointer;
 }
 
-.iconBtn:hover {
+.batch-management-batch-list-icon-btn:hover {
   background: #e5e7eb;
 }
 
 @media (max-width: 1024px) {
-  .statsGrid {
+  .batch-management-batch-list-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .filterBar {
+  .batch-management-batch-list-filter-bar {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .content {
+  .batch-management-batch-list-content {
     padding: 0 16px;
   }
-  .statsGrid {
+  .batch-management-batch-list-stats-grid {
     grid-template-columns: 1fr;
   }
-  .filterBar {
+  .batch-management-batch-list-filter-bar {
     grid-template-columns: 1fr;
   }
-  .applyWrap button {
+  .batch-management-batch-list-apply-wrap button {
     width: 100%;
   }
-  .tableSection {
+  .batch-management-batch-list-table-section {
     padding: 16px;
   }
-  .tableHeader {
+  .batch-management-batch-list-table-header {
     flex-direction: column;
     align-items: flex-start;
   }

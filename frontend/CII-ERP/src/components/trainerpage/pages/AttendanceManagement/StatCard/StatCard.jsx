@@ -17,12 +17,16 @@ import './StatCard.css';
 export default function StatCard({ icon: Icon, value, label, tone = 'teal' }) {
   const animatedValue = useCountUp(value, 1200);
   return (
-    <div className={'card'}>
-      <div className={`${'iconWrap'} ${tone || 'teal'}`}>
+    <div className={'attendance-management-stat-card-card'}>
+      <div
+        className={`attendance-management-stat-card-icon-wrap attendance-management-stat-card-${tone || 'teal'}`}
+      >
         {Icon && <Icon size={20} strokeWidth={2.25} />}
       </div>
-      <div className={'value'}>{animatedValue}</div>
-      <div className={'label'}>{label}</div>
+      <div className={'attendance-management-stat-card-value'}>
+        {animatedValue}
+      </div>
+      <div className={'attendance-management-stat-card-label'}>{label}</div>
     </div>
   );
 }

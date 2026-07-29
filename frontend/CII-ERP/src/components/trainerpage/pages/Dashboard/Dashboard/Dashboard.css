@@ -25,6 +25,7 @@
   .dashboard__row--primary,
   .dashboard__row--secondary {
     grid-template-columns: 1fr;
+  }
 }
 
 /* ---- Page shell: Topbar + Sidebar composition ----

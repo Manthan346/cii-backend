@@ -1,16 +1,16 @@
-.tableWrap {
+.events-event-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.events-event-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 980px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.events-event-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.events-event-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,47 +28,47 @@
   vertical-align: middle;
 }
 
-.nameCell {
+.events-event-table-name-cell {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 180px;
 }
 
-.name {
+.events-event-table-name {
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.subtitle {
+.events-event-table-subtitle {
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
-.venueCell {
+.events-event-table-venue-cell {
   min-width: 180px;
   color: var(--color-text-secondary);
 }
 
-.organizerCell {
+.events-event-table-organizer-cell {
   display: flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
 }
 
-.participantsCell {
+.events-event-table-participants-cell {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.participantsIcon {
+.events-event-table-participants-icon {
   color: var(--color-text-muted);
   flex-shrink: 0;
 }
 
-.nowrap {
+.events-event-table-nowrap {
   white-space: nowrap;
   color: var(--color-text-secondary);
 }

@@ -1,4 +1,4 @@
-.card {
+.attendance-management-stat-card-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -10,7 +10,7 @@
   min-width: 0;
 }
 
-.iconWrap {
+.attendance-management-stat-card-icon-wrap {
   width: 36px;
   height: 36px;
   border-radius: 10px;
@@ -19,27 +19,27 @@
   justify-content: center;
 }
 
-.teal {
+.attendance-management-stat-card-teal {
   background: var(--color-teal);
   color: var(--color-white);
 }
 
-.green {
+.attendance-management-stat-card-green {
   background: var(--color-green-bg);
   color: var(--color-green);
 }
 
-.peach {
+.attendance-management-stat-card-peach {
   background: var(--color-peach-bg);
   color: var(--color-peach-text);
 }
 
-.yellow {
+.attendance-management-stat-card-yellow {
   background: #fdf3d3;
   color: #c48a1f;
 }
 
-.value {
+.attendance-management-stat-card-value {
   font-family: var(--font-family);
   font-size: 28px;
   line-height: 1.1;
@@ -47,18 +47,18 @@
   color: var(--color-text-primary);
 }
 
-.label {
+.attendance-management-stat-card-label {
   font-family: var(--font-family);
   font-size: 14px;
   color: var(--color-text-secondary);
 }
 
 @media (max-width: 640px) {
-  .card {
+  .attendance-management-stat-card-card {
     padding: 14px 16px;
   }
 
-  .value {
+  .attendance-management-stat-card-value {
     font-size: 22px;
   }
 }

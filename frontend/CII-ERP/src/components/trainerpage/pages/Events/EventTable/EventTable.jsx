@@ -16,8 +16,8 @@ import './EventTable.css';
  */
 export default function EventTable({ records = [], onView, onEdit, onDelete }) {
   return (
-    <div className={'tableWrap'}>
-      <table className={'table'}>
+    <div className={'events-event-table-table-wrap'}>
+      <table className={'events-event-table-table'}>
         <thead>
           <tr>
             <th>Event</th>
@@ -35,29 +35,42 @@ export default function EventTable({ records = [], onView, onEdit, onDelete }) {
           {records.map((record) => (
             <tr key={record.id}>
               <td>
-                <div className={'nameCell'}>
-                  <span className={'name'}>{record.title}</span>
-                  <span className={'subtitle'}>{record.type}</span>
+                <div className={'events-event-table-name-cell'}>
+                  <span className={'events-event-table-name'}>
+                    {record.title}
+                  </span>
+                  <span className={'events-event-table-subtitle'}>
+                    {record.type}
+                  </span>
                 </div>
               </td>
-              <td className={'nowrap'}>{record.mode}</td>
+              <td className={'events-event-table-nowrap'}>{record.mode}</td>
               <td>
-                <div className={'nameCell'}>
-                  <span className={'name'}>{record.date}</span>
-                  <span className={'subtitle'}>{record.time}</span>
+                <div className={'events-event-table-name-cell'}>
+                  <span className={'events-event-table-name'}>
+                    {record.date}
+                  </span>
+                  <span className={'events-event-table-subtitle'}>
+                    {record.time}
+                  </span>
                 </div>
               </td>
-              <td className={'venueCell'}>{record.venue}</td>
-              <td className={'nowrap'}>{record.batch}</td>
+              <td className={'events-event-table-venue-cell'}>
+                {record.venue}
+              </td>
+              <td className={'events-event-table-nowrap'}>{record.batch}</td>
               <td>
-                <div className={'organizerCell'}>
+                <div className={'events-event-table-organizer-cell'}>
                   <Avatar name={record.organizer} tone="teal" size={28} />
                   <span>{record.organizer}</span>
                 </div>
               </td>
-              <td className={'nowrap'}>
-                <div className={'participantsCell'}>
-                  <Users size={14} className={'participantsIcon'} />
+              <td className={'events-event-table-nowrap'}>
+                <div className={'events-event-table-participants-cell'}>
+                  <Users
+                    size={14}
+                    className={'events-event-table-participants-icon'}
+                  />
                   <span>
                     {record.participants}/{record.maxParticipants}
                   </span>

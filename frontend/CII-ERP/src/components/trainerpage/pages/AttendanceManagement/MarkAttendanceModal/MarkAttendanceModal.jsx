@@ -48,47 +48,87 @@ export default function MarkAttendanceModal({
   };
   return (
     <div
-      className={'overlay'}
+      className={'attendance-management-mark-attendance-modal-overlay'}
       role="dialog"
       aria-modal="true"
       aria-label="Mark attendance"
     >
-      <div className={'modal'}>
-        <h2 className={'title'}>Mark Attendance</h2>
+      <div className={'attendance-management-mark-attendance-modal-modal'}>
+        <h2 className={'attendance-management-mark-attendance-modal-title'}>
+          Mark Attendance
+        </h2>
 
-        <div className={'field'}>
-          <label className={'label'}>Date</label>
+        <div className={'attendance-management-mark-attendance-modal-field'}>
+          <label
+            className={'attendance-management-mark-attendance-modal-label'}
+          >
+            Date
+          </label>
           <input
             type="text"
-            className={'input'}
+            className={'attendance-management-mark-attendance-modal-input'}
             placeholder="dd-mm-yy"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />
         </div>
 
-        <div className={'studentList'}>
+        <div
+          className={'attendance-management-mark-attendance-modal-student-list'}
+        >
           {students.map((student) => {
             const status = getStatus(student);
             const isPresent = status === 'Present';
             return (
-              <div key={student.id} className={'studentRow'}>
-                <div className={'studentInfo'}>
-                  <UserCircle2 size={22} className={'studentAvatar'} />
-                  <div className={'studentText'}>
-                    <span className={'studentName'}>{student.name}</span>
-                    <span className={'studentId'}>{student.candidateId}</span>
+              <div
+                key={student.id}
+                className={
+                  'attendance-management-mark-attendance-modal-student-row'
+                }
+              >
+                <div
+                  className={
+                    'attendance-management-mark-attendance-modal-student-info'
+                  }
+                >
+                  <UserCircle2
+                    size={22}
+                    className={
+                      'attendance-management-mark-attendance-modal-student-avatar'
+                    }
+                  />
+                  <div
+                    className={
+                      'attendance-management-mark-attendance-modal-student-text'
+                    }
+                  >
+                    <span
+                      className={
+                        'attendance-management-mark-attendance-modal-student-name'
+                      }
+                    >
+                      {student.name}
+                    </span>
+                    <span
+                      className={
+                        'attendance-management-mark-attendance-modal-student-id'
+                      }
+                    >
+                      {student.candidateId}
+                    </span>
                   </div>
                 </div>
 
                 <div
-                  className={'toggle'}
+                  className={
+                    'attendance-management-mark-attendance-modal-toggle'
+                  }
                   role="group"
                   aria-label={`${student.name} attendance`}
                 >
                   <button
                     type="button"
-                    className={`${'toggleBtn'} ${'toggleBtnPresent'} ${isPresent ? 'toggleBtnActive' : ''}`}
+                    className={`${'attendance-management-mark-attendance-modal-toggle-btn'} ${'attendance-management-mark-attendance-modal-toggle-btn-present'} ${isPresent ? 'attendance-management-mark-attendance-modal-toggle-btn-active' : ''}`}
                     aria-pressed={isPresent}
                     onClick={() => setStatus(student, 'Present')}
                   >
@@ -96,7 +136,7 @@ export default function MarkAttendanceModal({
                   </button>
                   <button
                     type="button"
-                    className={`${'toggleBtn'} ${'toggleBtnAbsent'} ${!isPresent ? 'toggleBtnActive' : ''}`}
+                    className={`${'attendance-management-mark-attendance-modal-toggle-btn'} ${'attendance-management-mark-attendance-modal-toggle-btn-absent'} ${!isPresent ? 'attendance-management-mark-attendance-modal-toggle-btn-active' : ''}`}
                     aria-pressed={!isPresent}
                     onClick={() => setStatus(student, 'Absent')}
                   >
@@ -108,7 +148,7 @@ export default function MarkAttendanceModal({
           })}
         </div>
 
-        <div className={'actions'}>
+        <div className={'attendance-management-mark-attendance-modal-actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

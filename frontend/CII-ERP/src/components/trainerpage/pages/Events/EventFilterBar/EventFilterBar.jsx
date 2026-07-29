@@ -31,17 +31,17 @@ export default function EventFilterBar({
     });
   };
   return (
-    <div className={'bar'}>
-      <div className={'searchField'}>
-        <label className={'label'}>Search</label>
-        <div className={'searchInputWrap'}>
-          <Search size={16} className={'searchIcon'} />
+    <div className={'events-event-filter-bar-bar'}>
+      <div className={'events-event-filter-bar-search-field'}>
+        <label className={'events-event-filter-bar-label'}>Search</label>
+        <div className={'events-event-filter-bar-search-input-wrap'}>
+          <Search size={16} className={'events-event-filter-bar-search-icon'} />
           <input
             type="text"
             placeholder="Search by event title or venue"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
-            className={'searchInput'}
+            className={'events-event-filter-bar-search-input'}
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function EventFilterBar({
         onChange={setStatus}
       />
 
-      <div className={'applyWrap'}>
+      <div className={'events-event-filter-bar-apply-wrap'}>
         <Button variant="outline" icon={Filter} onClick={handleApply}>
           Apply Filter
         </Button>

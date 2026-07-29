@@ -1,4 +1,4 @@
-.field {
+.shared-dropdown-field {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.label {
+.shared-dropdown-label {
   font-family: var(--font-family);
   font-size: 12px;
   font-weight: 700;
@@ -15,7 +15,7 @@
   color: var(--color-text-secondary);
 }
 
-.trigger {
+.shared-dropdown-trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,13 +32,13 @@
   text-align: left;
 }
 
-.triggerOpen {
+.shared-dropdown-trigger-open {
   background: var(--color-teal);
   border-color: var(--color-teal);
   color: var(--color-white);
 }
 
-.menu {
+.shared-dropdown-menu {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
@@ -54,7 +54,7 @@
   padding: 4px 0;
 }
 
-.option {
+.shared-dropdown-option {
   padding: 10px 14px;
   font-family: var(--font-family);
   font-size: 14px;
@@ -62,11 +62,11 @@
   cursor: pointer;
 }
 
-.option:hover {
+.shared-dropdown-option:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.optionActive {
+.shared-dropdown-option-active {
   background: rgba(255, 255, 255, 0.18);
   font-weight: 600;
 }

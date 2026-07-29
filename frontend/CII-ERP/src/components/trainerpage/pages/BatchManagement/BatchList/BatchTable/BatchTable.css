@@ -1,16 +1,16 @@
-.tableWrap {
+.batch-management-batch-list-batch-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.batch-management-batch-list-batch-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.batch-management-batch-list-batch-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.batch-management-batch-list-batch-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,18 +28,18 @@
   vertical-align: middle;
 }
 
-.checkboxCol {
+.batch-management-batch-list-batch-table-checkbox-col {
   width: 32px;
 }
 
-.batchCell {
+.batch-management-batch-list-batch-table-batch-cell {
   display: flex;
   align-items: center;
   gap: 10px;
   white-space: nowrap;
 }
 
-.batchIcon {
+.batch-management-batch-list-batch-table-batch-icon {
   width: 22px;
   height: 22px;
   border-radius: 6px;
@@ -47,11 +47,11 @@
   flex-shrink: 0;
 }
 
-.batchCode {
+.batch-management-batch-list-batch-table-batch-code {
   font-weight: 700;
 }
 
-.trainerCell {
+.batch-management-batch-list-batch-table-trainer-cell {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -59,11 +59,11 @@
   white-space: nowrap;
 }
 
-.trainerIcon {
+.batch-management-batch-list-batch-table-trainer-icon {
   color: #9ca3af;
   flex-shrink: 0;
 }
 
-.nowrap {
+.batch-management-batch-list-batch-table-nowrap {
   white-space: nowrap;
 }

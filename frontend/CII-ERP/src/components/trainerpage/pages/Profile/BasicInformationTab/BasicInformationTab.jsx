@@ -105,7 +105,6 @@ export default function BasicInformationTab({
           label={completion.label}
           checklist={completion.checklist}
         />
-        
       </div>
 
       <div className="basic-information-address-tab">
@@ -128,9 +127,7 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">
-                    District
-                  </span>
+                  <span className="basic-information-tab__label">District</span>
                   <span className="basic-information-tab__pill">
                     {current?.district}
                   </span>
@@ -142,9 +139,7 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">
-                    Pin Code
-                  </span>
+                  <span className="basic-information-tab__label">Pin Code</span>
                   <span className="basic-information-tab__pill">
                     {current?.pinCode}
                   </span>
@@ -171,9 +166,7 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">
-                    District
-                  </span>
+                  <span className="basic-information-tab__label">District</span>
                   <span className="basic-information-tab__pill">
                     {permanent?.district}
                   </span>
@@ -185,9 +178,7 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">
-                    Pin Code
-                  </span>
+                  <span className="basic-information-tab__label">Pin Code</span>
                   <span className="basic-information-tab__pill">
                     {permanent?.pinCode}
                   </span>

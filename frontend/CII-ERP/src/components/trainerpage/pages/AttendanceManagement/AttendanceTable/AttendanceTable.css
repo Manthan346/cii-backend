@@ -1,16 +1,16 @@
-.tableWrap {
+.attendance-management-attendance-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.attendance-management-attendance-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 920px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.attendance-management-attendance-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.attendance-management-attendance-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,17 +28,17 @@
   vertical-align: middle;
 }
 
-.checkboxCol {
+.attendance-management-attendance-table-checkbox-col {
   width: 32px;
 }
 
-.idCell {
+.attendance-management-attendance-table-id-cell {
   color: var(--color-text-secondary);
   font-weight: 500;
   white-space: nowrap;
 }
 
-.nameCell {
+.attendance-management-attendance-table-name-cell {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -46,12 +46,12 @@
   white-space: nowrap;
 }
 
-.avatarIcon {
+.attendance-management-attendance-table-avatar-icon {
   color: #9ca3af;
   flex-shrink: 0;
 }
 
-.courseCell {
+.attendance-management-attendance-table-course-cell {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -60,7 +60,7 @@
   min-width: 130px;
 }
 
-.nowrap {
+.attendance-management-attendance-table-nowrap {
   white-space: nowrap;
   color: var(--color-text-secondary);
 }

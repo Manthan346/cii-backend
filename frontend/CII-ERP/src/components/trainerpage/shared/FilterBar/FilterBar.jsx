@@ -27,17 +27,17 @@ export default function FilterBar({
     });
   };
   return (
-    <div className={'bar'}>
-      <div className={'field'}>
-        <label className={'label'}>Search</label>
-        <div className={'searchInputWrap'}>
-          <Search size={16} className={'searchIcon'} />
+    <div className={'shared-filter-bar-bar'}>
+      <div className={'shared-filter-bar-field'}>
+        <label className={'shared-filter-bar-label'}>Search</label>
+        <div className={'shared-filter-bar-search-input-wrap'}>
+          <Search size={16} className={'shared-filter-bar-search-icon'} />
           <input
             type="text"
             placeholder="Search by name,ID or phone"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
-            className={'searchInput'}
+            className={'shared-filter-bar-search-input'}
           />
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function FilterBar({
         onChange={setStatus}
       />
 
-      <div className={'applyWrap'}>
+      <div className={'shared-filter-bar-apply-wrap'}>
         <Button variant="outline" icon={Filter} onClick={handleApply}>
           Apply Filter
         </Button>

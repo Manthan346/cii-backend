@@ -80,11 +80,11 @@ const Resources = () => {
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
-            <div className={'content'}>
-              <div className={'pageHeader'}>
+            <div className={'resources-content'}>
+              <div className={'resources-page-header'}>
                 <div>
-                  <h1 className={'title'}>Resources</h1>
-                  <p className={'subtitle'}>
+                  <h1 className={'resources-title'}>Resources</h1>
+                  <p className={'resources-subtitle'}>
                     Study material, reports, and shared documents in one place
                   </p>
                 </div>
@@ -93,7 +93,7 @@ const Resources = () => {
                 </Button>
               </div>
 
-              <div className={'statsGrid'}>
+              <div className={'resources-stats-grid'}>
                 {resourceStats.map((stat) => (
                   <StatCard
                     key={stat.id}
@@ -105,7 +105,7 @@ const Resources = () => {
                 ))}
               </div>
 
-              <div className={'quickAccessGrid'}>
+              <div className={'resources-quick-access-grid'}>
                 {quickAccessCards.map((card) => (
                   <QuickAccessCard
                     key={card.id}
@@ -117,17 +117,17 @@ const Resources = () => {
                 ))}
               </div>
 
-              <div className={'filterBar'}>
-                <div className={'searchField'}>
-                  <label className={'filterLabel'}>SEARCH</label>
-                  <div className={'searchInputWrap'}>
-                    <Search size={16} className={'searchIcon'} />
+              <div className={'resources-filter-bar'}>
+                <div className={'resources-search-field'}>
+                  <label className={'resources-filter-label'}>SEARCH</label>
+                  <div className={'resources-search-input-wrap'}>
+                    <Search size={16} className={'resources-search-icon'} />
                     <input
                       type="text"
                       placeholder="Search by name or course"
                       value={searchTerm}
                       onChange={(event) => setSearchTerm(event.target.value)}
-                      className={'searchInput'}
+                      className={'resources-search-input'}
                     />
                   </div>
                 </div>
@@ -145,27 +145,27 @@ const Resources = () => {
                   onChange={setType}
                 />
 
-                <div className={'applyWrap'}>
+                <div className={'resources-apply-wrap'}>
                   <Button variant="outline" icon={Filter}>
                     Apply Filter
                   </Button>
                 </div>
               </div>
 
-              <section className={'tableSection'}>
-                <div className={'tableHeader'}>
-                  <h2 className={'tableTitle'}>All Task</h2>
-                  <div className={'tableActions'}>
+              <section className={'resources-table-section'}>
+                <div className={'resources-table-header'}>
+                  <h2 className={'resources-table-title'}>All Task</h2>
+                  <div className={'resources-table-actions'}>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'resources-icon-btn'}
                       aria-label="Download list"
                     >
                       <Download size={16} />
                     </button>
                     <button
                       type="button"
-                      className={'iconBtn'}
+                      className={'resources-icon-btn'}
                       aria-label="Print list"
                     >
                       <Printer size={16} />

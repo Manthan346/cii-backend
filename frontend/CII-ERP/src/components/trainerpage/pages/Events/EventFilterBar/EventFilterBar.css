@@ -1,4 +1,4 @@
-.bar {
+.events-event-filter-bar-bar {
   display: grid;
   grid-template-columns: minmax(220px, 2fr) 1fr 1fr auto;
   gap: 16px;
@@ -9,14 +9,14 @@
   box-shadow: var(--shadow-card);
 }
 
-.searchField {
+.events-event-filter-bar-search-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
 }
 
-.label {
+.events-event-filter-bar-label {
   font-family: var(--font-family);
   font-size: 12px;
   font-weight: 700;
@@ -25,7 +25,7 @@
   color: var(--color-text-secondary);
 }
 
-.searchInputWrap {
+.events-event-filter-bar-search-input-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -35,12 +35,12 @@
   background: var(--color-white);
 }
 
-.searchIcon {
+.events-event-filter-bar-search-icon {
   color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 
-.searchInput {
+.events-event-filter-bar-search-input {
   border: none;
   outline: none;
   flex: 1;
@@ -50,21 +50,21 @@
   min-width: 0;
 }
 
-.applyWrap {
+.events-event-filter-bar-apply-wrap {
   display: flex;
 }
 
 @media (max-width: 1024px) {
-  .bar {
+  .events-event-filter-bar-bar {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .bar {
+  .events-event-filter-bar-bar {
     grid-template-columns: 1fr;
   }
-  .applyWrap button {
+  .events-event-filter-bar-apply-wrap button {
     width: 100%;
   }
 }

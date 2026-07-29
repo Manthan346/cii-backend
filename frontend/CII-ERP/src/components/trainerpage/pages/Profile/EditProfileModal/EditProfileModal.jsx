@@ -90,20 +90,20 @@ export default function EditProfileModal({
   };
   return (
     <div
-      className={'overlay'}
+      className={'profile-edit-profile-modal-overlay'}
       role="dialog"
       aria-modal="true"
       aria-label="Edit profile"
     >
-      <div className={'modal'}>
-        <h2 className={'title'}>Edit Profile</h2>
+      <div className={'profile-edit-profile-modal-modal'}>
+        <h2 className={'profile-edit-profile-modal-title'}>Edit Profile</h2>
 
-        <div className={'sectionTabs'}>
+        <div className={'profile-edit-profile-modal-section-tabs'}>
           {SECTIONS.map((section) => (
             <button
               key={section.id}
               type="button"
-              className={`${'sectionTab'} ${activeSection === section.id ? 'sectionTabActive' : ''}`}
+              className={`${'profile-edit-profile-modal-section-tab'} ${activeSection === section.id ? 'profile-edit-profile-modal-section-tab-active' : ''}`}
               onClick={() => setActiveSection(section.id)}
             >
               {section.label}
@@ -111,55 +111,65 @@ export default function EditProfileModal({
           ))}
         </div>
 
-        <div className={'body'}>
+        <div className={'profile-edit-profile-modal-body'}>
           {activeSection === 'personal' && (
             <>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Name</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Name
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={personalForm.name}
                     onChange={updateField(setPersonalForm)('name')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Gender</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Gender
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={personalForm.gender}
                     onChange={updateField(setPersonalForm)('gender')}
                   />
                 </div>
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Date of Birth</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Date of Birth
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     placeholder="dd mmm yyyy"
                     value={personalForm.dob}
                     onChange={updateField(setPersonalForm)('dob')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Blood Group</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Blood Group
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={personalForm.bloodGroup}
                     onChange={updateField(setPersonalForm)('bloodGroup')}
                   />
                 </div>
               </div>
-              <div className={'field'}>
-                <label className={'label'}>Highest Qualification</label>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Highest Qualification
+                </label>
                 <input
                   type="text"
-                  className={'input'}
+                  className={'profile-edit-profile-modal-input'}
                   value={personalForm.highestQualification}
                   onChange={updateField(setPersonalForm)(
                     'highestQualification',
@@ -171,21 +181,25 @@ export default function EditProfileModal({
 
           {activeSection === 'contact' && (
             <>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Mobile Number</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Mobile Number
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={contactForm.mobileNumber}
                     onChange={updateField(setContactForm)('mobileNumber')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Emergency Contact Number</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Emergency Contact Number
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={contactForm.emergencyContactNumber}
                     onChange={updateField(setContactForm)(
                       'emergencyContactNumber',
@@ -193,11 +207,13 @@ export default function EditProfileModal({
                   />
                 </div>
               </div>
-              <div className={'field'}>
-                <label className={'label'}>Email - ID</label>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Email - ID
+                </label>
                 <input
                   type="email"
-                  className={'input'}
+                  className={'profile-edit-profile-modal-input'}
                   value={contactForm.emailId}
                   onChange={updateField(setContactForm)('emailId')}
                 />
@@ -207,50 +223,60 @@ export default function EditProfileModal({
 
           {activeSection === 'address' && (
             <>
-              <div className={'field'}>
-                <label className={'label'}>Address Line</label>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Address Line
+                </label>
                 <textarea
-                  className={'textarea'}
+                  className={'profile-edit-profile-modal-textarea'}
                   rows={2}
                   value={addressForm.line}
                   onChange={updateField(setAddressForm)('line')}
                 />
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>State</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    State
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={addressForm.state}
                     onChange={updateField(setAddressForm)('state')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>District</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    District
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={addressForm.district}
                     onChange={updateField(setAddressForm)('district')}
                   />
                 </div>
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Taluka</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Taluka
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={addressForm.taluka}
                     onChange={updateField(setAddressForm)('taluka')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Pin Code</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Pin Code
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={addressForm.pinCode}
                     onChange={updateField(setAddressForm)('pinCode')}
                   />
@@ -261,50 +287,60 @@ export default function EditProfileModal({
 
           {activeSection === 'guardian' && (
             <>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Name</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Name
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={guardianForm.name}
                     onChange={updateField(setGuardianForm)('name')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Relationship</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Relationship
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={guardianForm.relationship}
                     onChange={updateField(setGuardianForm)('relationship')}
                   />
                 </div>
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Mobile Number</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Mobile Number
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={guardianForm.mobileNumber}
                     onChange={updateField(setGuardianForm)('mobileNumber')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Occupation</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Occupation
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={guardianForm.occupation}
                     onChange={updateField(setGuardianForm)('occupation')}
                   />
                 </div>
               </div>
-              <div className={'field'}>
-                <label className={'label'}>Address</label>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Address
+                </label>
                 <textarea
-                  className={'textarea'}
+                  className={'profile-edit-profile-modal-textarea'}
                   rows={2}
                   value={guardianForm.address}
                   onChange={updateField(setGuardianForm)('address')}
@@ -315,86 +351,106 @@ export default function EditProfileModal({
 
           {activeSection === 'academic' && (
             <>
-              <h3 className={'subheading'}>Education</h3>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Highest Education</label>
+              <h3 className={'profile-edit-profile-modal-subheading'}>
+                Education
+              </h3>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Highest Education
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.highestEducation}
                     onChange={updateField(setEducationForm)('highestEducation')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Specialization</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Specialization
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.specialization}
                     onChange={updateField(setEducationForm)('specialization')}
                   />
                 </div>
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>University</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    University
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.university}
                     onChange={updateField(setEducationForm)('university')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Passing Year</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Passing Year
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.passingYear}
                     onChange={updateField(setEducationForm)('passingYear')}
                   />
                 </div>
               </div>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Additional Qualification</label>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Additional Qualification
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.additionalQualification}
                     onChange={updateField(setEducationForm)(
                       'additionalQualification',
                     )}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Certifications</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Certifications
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={educationForm.certifications}
                     onChange={updateField(setEducationForm)('certifications')}
                   />
                 </div>
               </div>
 
-              <h3 className={'subheading'}>Experience</h3>
-              <div className={'row'}>
-                <div className={'field'}>
-                  <label className={'label'}>Total Experience</label>
+              <h3 className={'profile-edit-profile-modal-subheading'}>
+                Experience
+              </h3>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Total Experience
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={experienceForm.totalExperience}
                     onChange={updateField(setExperienceForm)('totalExperience')}
                   />
                 </div>
-                <div className={'field'}>
-                  <label className={'label'}>Previous Organization</label>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Previous Organization
+                  </label>
                   <input
                     type="text"
-                    className={'input'}
+                    className={'profile-edit-profile-modal-input'}
                     value={experienceForm.previousOrganization}
                     onChange={updateField(setExperienceForm)(
                       'previousOrganization',
@@ -402,11 +458,13 @@ export default function EditProfileModal({
                   />
                 </div>
               </div>
-              <div className={'field'}>
-                <label className={'label'}>Role</label>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Role
+                </label>
                 <input
                   type="text"
-                  className={'input'}
+                  className={'profile-edit-profile-modal-input'}
                   value={experienceForm.role}
                   onChange={updateField(setExperienceForm)('role')}
                 />
@@ -415,7 +473,7 @@ export default function EditProfileModal({
           )}
         </div>
 
-        <div className={'actions'}>
+        <div className={'profile-edit-profile-modal-actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

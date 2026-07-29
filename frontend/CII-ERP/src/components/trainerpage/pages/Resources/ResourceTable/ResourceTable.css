@@ -1,16 +1,16 @@
-.tableWrap {
+.resources-resource-table-table-wrap {
   width: 100%;
   overflow-x: auto;
 }
 
-.table {
+.resources-resource-table-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 820px;
   font-family: var(--font-family);
 }
 
-.table thead th {
+.resources-resource-table-table thead th {
   text-align: left;
   font-size: 13px;
   font-weight: 600;
@@ -20,7 +20,7 @@
   white-space: nowrap;
 }
 
-.table tbody td {
+.resources-resource-table-table tbody td {
   padding: 14px 10px;
   font-size: 14px;
   color: var(--color-text-primary);
@@ -28,35 +28,35 @@
   vertical-align: middle;
 }
 
-.checkboxCol {
+.resources-resource-table-checkbox-col {
   width: 32px;
 }
 
-.nameCell {
+.resources-resource-table-name-cell {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 220px;
 }
 
-.name {
+.resources-resource-table-name {
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.subtitle {
+.resources-resource-table-subtitle {
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
-.updatedByCell {
+.resources-resource-table-updated-by-cell {
   display: flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
 }
 
-.nowrap {
+.resources-resource-table-nowrap {
   white-space: nowrap;
   color: var(--color-text-secondary);
 }

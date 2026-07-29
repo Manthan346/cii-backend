@@ -11,10 +11,10 @@ import './ActionButtons.css';
  */
 export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
   return (
-    <div className={'actions'}>
+    <div className={'batch-management-batch-list-action-buttons-actions'}>
       <button
         type="button"
-        className={'iconBtn'}
+        className={'batch-management-batch-list-action-buttons-icon-btn'}
         onClick={onView}
         aria-label="View batch"
       >
@@ -22,7 +22,9 @@ export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
       </button>
       <button
         type="button"
-        className={'iconBtn danger'}
+        className={
+          'batch-management-batch-list-action-buttons-icon-btn batch-management-batch-list-action-buttons-danger'
+        }
         onClick={onDelete}
         aria-label="Delete batch"
       >
@@ -30,7 +32,7 @@ export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
       </button>
       <button
         type="button"
-        className={'iconBtn'}
+        className={'batch-management-batch-list-action-buttons-icon-btn'}
         onClick={onAssignTrainer}
         aria-label="Assign trainer"
       >

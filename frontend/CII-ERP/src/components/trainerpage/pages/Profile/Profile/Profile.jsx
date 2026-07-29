@@ -61,10 +61,10 @@ const Profile = () => {
   const [personal, setPersonal] = useState(profileBasicInfo.personal);
   const [contact, setContact] = useState(profileBasicInfo.contact);
   const [currentAddress, setCurrentAddress] = useState(
-    profileBasicInfo.currentAddress
+    profileBasicInfo.currentAddress,
   );
   const [permanentAddress, setPermanentAddress] = useState(
-    profileBasicInfo.permanentAddress
+    profileBasicInfo.permanentAddress,
   );
   const [guardian, setGuardian] = useState(profileGuardianDetail.guardian);
   const [education, setEducation] = useState(profileEducation);
@@ -105,11 +105,7 @@ const Profile = () => {
           />
         );
       case 'guardian-details':
-        return (
-          <ContactDetailsTab
-            guardian={guardian}
-          />
-        );
+        return <ContactDetailsTab guardian={guardian} />;
       default:
         return null;
     }

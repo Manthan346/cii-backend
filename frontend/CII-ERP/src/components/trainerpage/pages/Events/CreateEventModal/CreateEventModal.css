@@ -1,4 +1,4 @@
-.overlay {
+.events-create-event-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.modal {
+.events-create-event-modal-modal {
   width: 100%;
   max-width: 520px;
   background: var(--color-white);
@@ -25,20 +25,20 @@
   box-sizing: border-box;
 }
 
-.header {
+.events-create-event-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.title {
+.events-create-event-modal-title {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.closeBtn {
+.events-create-event-modal-close-btn {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -52,35 +52,35 @@
   flex-shrink: 0;
 }
 
-.closeBtn:hover {
+.events-create-event-modal-close-btn:hover {
   background: #f3f4f6;
 }
 
-.row {
+.events-create-event-modal-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.field {
+.events-create-event-modal-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.label {
+.events-create-event-modal-label {
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.required {
+.events-create-event-modal-required {
   color: #dc2626;
 }
 
-.input,
-.select,
-.textarea {
+.events-create-event-modal-input,
+.events-create-event-modal-select,
+.events-create-event-modal-textarea {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -93,24 +93,24 @@
   box-sizing: border-box;
 }
 
-.select {
+.events-create-event-modal-select {
   cursor: pointer;
   appearance: auto;
 }
 
-.textarea {
+.events-create-event-modal-textarea {
   resize: vertical;
   min-height: 72px;
   font-family: var(--font-family);
 }
 
-.input:focus,
-.select:focus,
-.textarea:focus {
+.events-create-event-modal-input:focus,
+.events-create-event-modal-select:focus,
+.events-create-event-modal-textarea:focus {
   border-color: var(--color-teal);
 }
 
-.actions {
+.events-create-event-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -118,11 +118,11 @@
 }
 
 @media (max-width: 480px) {
-  .row {
+  .events-create-event-modal-row {
     grid-template-columns: 1fr;
   }
 
-  .overlay {
+  .events-create-event-modal-overlay {
     padding: 40px 16px;
   }
 }

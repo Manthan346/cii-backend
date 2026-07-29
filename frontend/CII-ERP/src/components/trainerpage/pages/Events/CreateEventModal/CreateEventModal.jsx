@@ -60,17 +60,19 @@ export default function CreateEventModal({
   };
   return (
     <div
-      className={'overlay'}
+      className={'events-create-event-modal-overlay'}
       role="dialog"
       aria-modal="true"
       aria-label={isEdit ? 'Edit event' : 'Create event'}
     >
-      <div className={'modal'}>
-        <div className={'header'}>
-          <h2 className={'title'}>{isEdit ? 'Edit Event' : 'Create Event'}</h2>
+      <div className={'events-create-event-modal-modal'}>
+        <div className={'events-create-event-modal-header'}>
+          <h2 className={'events-create-event-modal-title'}>
+            {isEdit ? 'Edit Event' : 'Create Event'}
+          </h2>
           <button
             type="button"
-            className={'closeBtn'}
+            className={'events-create-event-modal-close-btn'}
             onClick={onCancel}
             aria-label="Close"
           >
@@ -78,24 +80,27 @@ export default function CreateEventModal({
           </button>
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>
-            Event title <span className={'required'}>*</span>
+        <div className={'events-create-event-modal-field'}>
+          <label className={'events-create-event-modal-label'}>
+            Event title{' '}
+            <span className={'events-create-event-modal-required'}>*</span>
           </label>
           <input
             type="text"
-            className={'input'}
+            className={'events-create-event-modal-input'}
             placeholder="eg AI in Industry - Seminar"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
         </div>
 
-        <div className={'row'}>
-          <div className={'field'}>
-            <label className={'label'}>Event type</label>
+        <div className={'events-create-event-modal-row'}>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>
+              Event type
+            </label>
             <select
-              className={'select'}
+              className={'events-create-event-modal-select'}
               value={type}
               onChange={(event) => setType(event.target.value)}
             >
@@ -107,10 +112,10 @@ export default function CreateEventModal({
             </select>
           </div>
 
-          <div className={'field'}>
-            <label className={'label'}>Mode</label>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>Mode</label>
             <select
-              className={'select'}
+              className={'events-create-event-modal-select'}
               value={mode}
               onChange={(event) => setMode(event.target.value)}
             >
@@ -123,24 +128,25 @@ export default function CreateEventModal({
           </div>
         </div>
 
-        <div className={'row'}>
-          <div className={'field'}>
-            <label className={'label'}>
-              Date <span className={'required'}>*</span>
+        <div className={'events-create-event-modal-row'}>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>
+              Date{' '}
+              <span className={'events-create-event-modal-required'}>*</span>
             </label>
             <input
               type="date"
-              className={'input'}
+              className={'events-create-event-modal-input'}
               value={date}
               onChange={(event) => setDate(event.target.value)}
             />
           </div>
 
-          <div className={'field'}>
-            <label className={'label'}>Time</label>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>Time</label>
             <input
               type="text"
-              className={'input'}
+              className={'events-create-event-modal-input'}
               placeholder="eg 10:00 AM - 12:00 PM"
               value={time}
               onChange={(event) => setTime(event.target.value)}
@@ -148,22 +154,24 @@ export default function CreateEventModal({
           </div>
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>Venue / meeting link</label>
+        <div className={'events-create-event-modal-field'}>
+          <label className={'events-create-event-modal-label'}>
+            Venue / meeting link
+          </label>
           <input
             type="text"
-            className={'input'}
+            className={'events-create-event-modal-input'}
             placeholder="eg CII Auditorium, Mumbai or Zoom link"
             value={venue}
             onChange={(event) => setVenue(event.target.value)}
           />
         </div>
 
-        <div className={'row'}>
-          <div className={'field'}>
-            <label className={'label'}>Batch</label>
+        <div className={'events-create-event-modal-row'}>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>Batch</label>
             <select
-              className={'select'}
+              className={'events-create-event-modal-select'}
               value={batch}
               onChange={(event) => setBatch(event.target.value)}
             >
@@ -175,12 +183,14 @@ export default function CreateEventModal({
             </select>
           </div>
 
-          <div className={'field'}>
-            <label className={'label'}>Max participants</label>
+          <div className={'events-create-event-modal-field'}>
+            <label className={'events-create-event-modal-label'}>
+              Max participants
+            </label>
             <input
               type="number"
               min="0"
-              className={'input'}
+              className={'events-create-event-modal-input'}
               placeholder="eg 100"
               value={maxParticipants}
               onChange={(event) => setMaxParticipants(event.target.value)}
@@ -188,10 +198,12 @@ export default function CreateEventModal({
           </div>
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>Description</label>
+        <div className={'events-create-event-modal-field'}>
+          <label className={'events-create-event-modal-label'}>
+            Description
+          </label>
           <textarea
-            className={'textarea'}
+            className={'events-create-event-modal-textarea'}
             rows={3}
             placeholder="Short description shown to candidates when they view this event"
             value={description}
@@ -199,7 +211,7 @@ export default function CreateEventModal({
           />
         </div>
 
-        <div className={'actions'}>
+        <div className={'events-create-event-modal-actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>

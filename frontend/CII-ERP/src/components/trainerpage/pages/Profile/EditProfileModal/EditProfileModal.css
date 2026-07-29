@@ -1,4 +1,4 @@
-.overlay {
+.profile-edit-profile-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -9,7 +9,7 @@
   z-index: 100;
 }
 
-.modal {
+.profile-edit-profile-modal-modal {
   width: 100%;
   max-width: 640px;
   max-height: 85vh;
@@ -23,14 +23,14 @@
   font-family: var(--font-family);
 }
 
-.title {
+.profile-edit-profile-modal-title {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.sectionTabs {
+.profile-edit-profile-modal-section-tabs {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -38,7 +38,7 @@
   padding-bottom: 12px;
 }
 
-.sectionTab {
+.profile-edit-profile-modal-section-tab {
   border: none;
   background: var(--color-page-bg);
   color: var(--color-text-secondary);
@@ -51,20 +51,20 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.sectionTab:hover {
+.profile-edit-profile-modal-section-tab:hover {
   background: #e5e7eb;
 }
 
-.sectionTabActive {
+.profile-edit-profile-modal-section-tab-active {
   background: var(--color-teal);
   color: var(--color-white);
 }
 
-.sectionTabActive:hover {
+.profile-edit-profile-modal-section-tab-active:hover {
   background: var(--color-teal-dark);
 }
 
-.body {
+.profile-edit-profile-modal-body {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -72,33 +72,33 @@
   padding-right: 4px;
 }
 
-.subheading {
+.profile-edit-profile-modal-subheading {
   margin: 4px 0 -4px;
   font-size: 14px;
   font-weight: 700;
   color: var(--color-teal);
 }
 
-.row {
+.profile-edit-profile-modal-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.field {
+.profile-edit-profile-modal-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.label {
+.profile-edit-profile-modal-label {
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.input,
-.textarea {
+.profile-edit-profile-modal-input,
+.profile-edit-profile-modal-textarea {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -110,12 +110,12 @@
   resize: vertical;
 }
 
-.input:focus,
-.textarea:focus {
+.profile-edit-profile-modal-input:focus,
+.profile-edit-profile-modal-textarea:focus {
   border-color: var(--color-teal);
 }
 
-.actions {
+.profile-edit-profile-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -125,15 +125,15 @@
 }
 
 @media (max-width: 480px) {
-  .row {
+  .profile-edit-profile-modal-row {
     grid-template-columns: 1fr;
   }
 
-  .overlay {
+  .profile-edit-profile-modal-overlay {
     padding: 30px 16px;
   }
 
-  .modal {
+  .profile-edit-profile-modal-modal {
     max-height: 90vh;
   }
 }

@@ -1,4 +1,4 @@
-.content {
+.batch-management-create-batch-content {
   padding: 0 20px 0 0;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.pageHeader { 
+.batch-management-create-batch-page-header { 
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -16,28 +16,28 @@
   flex-wrap: wrap;
 }
 
-.title {
+.batch-management-create-batch-title {
   font-size: 24px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.subtitle {
+.batch-management-create-batch-subtitle {
   font-size: 14px;
   color: var(--color-text-secondary);
   margin: 4px 0 0;
 }
 
 /* ---- Two-column layout: form + sidebar ---- */
-.layout {
+.batch-management-create-batch-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   align-items: start;
 }
 
-.formCard {
+.batch-management-create-batch-form-card {
   position: relative;
   background: var(--color-white);
   border-radius: var(--radius-lg);
@@ -48,7 +48,7 @@
   gap: 24px;
 }
 
-.successToast {
+.batch-management-create-batch-success-toast {
   position: absolute;
   top: 40px;
   left: 50%;
@@ -65,7 +65,7 @@
   text-align: center;
 }
 
-.section {
+.batch-management-create-batch-section {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -73,12 +73,12 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 
-.section:last-of-type {
+.batch-management-create-batch-section:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.sectionTitle {
+.batch-management-create-batch-section-title {
   margin: 0;
   font-size: 12px;
   font-weight: 700;
@@ -87,31 +87,31 @@
   text-transform: uppercase;
 }
 
-.grid2 {
+.batch-management-create-batch-grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
-.field {
+.batch-management-create-batch-field {
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 100%;
 }
 
-.label {
+.batch-management-create-batch-label {
   font-family: var(--font-family);
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.required {
+.batch-management-create-batch-required {
   color: #dc2626;
 }
 
-.input {
+.batch-management-create-batch-input {
   width: 100%;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
@@ -123,20 +123,20 @@
   box-sizing: border-box;
 }
 
-.input:focus {
+.batch-management-create-batch-input:focus {
   outline: none;
   background: var(--color-white);
   border-color: var(--color-teal);
 }
 
-.errorText {
+.batch-management-create-batch-error-text {
   margin: 0;
   font-size: 12px;
   color: #dc2626;
   font-weight: 500;
 }
 
-.textarea {
+.batch-management-create-batch-textarea {
   width: 100%;
   padding: 12px;
   border-radius: var(--radius-sm);
@@ -149,20 +149,20 @@
   box-sizing: border-box;
 }
 
-.textarea:focus {
+.batch-management-create-batch-textarea:focus {
   outline: none;
   background: var(--color-white);
   border-color: var(--color-teal);
 }
 
 /* ---- Day of week toggle pills ---- */
-.dayRow {
+.batch-management-create-batch-day-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.dayPill {
+.batch-management-create-batch-day-pill {
   min-width: 56px;
   padding: 8px 14px;
   border-radius: var(--radius-pill);
@@ -176,19 +176,19 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.dayPillActive {
+.batch-management-create-batch-day-pill-active {
   background: var(--color-teal);
   color: var(--color-white);
 }
 
 /* ---- Trainer assignment cards ---- */
-.trainerGrid {
+.batch-management-create-batch-trainer-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
 
-.trainerCard {
+.batch-management-create-batch-trainer-card {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -199,19 +199,19 @@
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
-.trainerCardActive {
+.batch-management-create-batch-trainer-card-active {
   border-color: var(--color-teal);
   background: var(--color-teal-light);
 }
 
-.trainerRadio {
+.batch-management-create-batch-trainer-radio {
   width: 16px;
   height: 16px;
   accent-color: var(--color-teal);
   flex-shrink: 0;
 }
 
-.trainerInitials {
+.batch-management-create-batch-trainer-initials {
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -225,26 +225,26 @@
   flex-shrink: 0;
 }
 
-.trainerText {
+.batch-management-create-batch-trainer-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
 }
 
-.trainerName {
+.batch-management-create-batch-trainer-name {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-.trainerMeta {
+.batch-management-create-batch-trainer-meta {
   font-size: 12px;
   color: var(--color-text-secondary);
 }
 
 /* ---- Bottom action buttons ---- */
-.actionsRow {
+.batch-management-create-batch-actions-row {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -252,39 +252,39 @@
 }
 
 /* ---- Sidebar: Batch Summary + Tip ---- */
-.sidebar {
+.batch-management-create-batch-sidebar {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.summaryCard {
+.batch-management-create-batch-summary-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   padding: 20px;
 }
 
-.summaryTitle {
+.batch-management-create-batch-summary-title {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
-.summarySubtitle {
+.batch-management-create-batch-summary-subtitle {
   margin: 2px 0 16px;
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
-.summaryList {
+.batch-management-create-batch-summary-list {
   margin: 0;
   display: flex;
   flex-direction: column;
 }
 
-.summaryRow {
+.batch-management-create-batch-summary-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -294,34 +294,34 @@
   font-size: 13px;
 }
 
-.summaryRow:last-child {
+.batch-management-create-batch-summary-row:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.summaryRow dt {
+.batch-management-create-batch-summary-row dt {
   color: var(--color-text-secondary);
 }
 
-.summaryRow dd {
+.batch-management-create-batch-summary-row dd {
   margin: 0;
   font-weight: 700;
   color: var(--color-text-primary);
   text-align: right;
 }
 
-.summaryStatus {
+.batch-management-create-batch-summary-status {
   color: var(--color-blue);
 }
 
-.tipCard {
+.batch-management-create-batch-tip-card {
   background: #fef9e7;
   border: 1px solid #f5e3a3;
   border-radius: var(--radius-lg);
   padding: 18px;
 }
 
-.tipTitle {
+.batch-management-create-batch-tip-title {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -331,7 +331,7 @@
   margin-bottom: 8px;
 }
 
-.tipText {
+.batch-management-create-batch-tip-text {
   margin: 0;
   font-size: 13px;
   line-height: 1.5;
@@ -339,26 +339,26 @@
 }
 
 @media (max-width: 1024px) {
-  .layout {
+  .batch-management-create-batch-layout {
     grid-template-columns: 1fr;
   }
-  .grid2,
-  .trainerGrid {
+  .batch-management-create-batch-grid2,
+  .batch-management-create-batch-trainer-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .content {
+  .batch-management-create-batch-content {
     padding: 0 16px 0 0;
   }
-  .formCard {
+  .batch-management-create-batch-form-card {
     padding: 18px;
   }
-  .actionsRow {
+  .batch-management-create-batch-actions-row {
     flex-direction: column-reverse;
   }
-  .actionsRow button {
+  .batch-management-create-batch-actions-row button {
     width: 100%;
   }
 }

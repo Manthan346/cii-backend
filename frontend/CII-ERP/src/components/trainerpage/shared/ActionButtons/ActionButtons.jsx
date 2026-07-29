@@ -9,10 +9,10 @@ export default function ActionButtons({
   showEdit = true,
 }) {
   return (
-    <div className={'actions'}>
+    <div className={'shared-action-buttons-actions'}>
       <button
         type="button"
-        className={'iconBtn'}
+        className={'shared-action-buttons-icon-btn'}
         onClick={onView}
         aria-label="View candidate"
       >
@@ -21,7 +21,7 @@ export default function ActionButtons({
       {showEdit && (
         <button
           type="button"
-          className={'iconBtn'}
+          className={'shared-action-buttons-icon-btn'}
           onClick={onEdit}
           aria-label="Edit candidate"
         >
@@ -31,7 +31,7 @@ export default function ActionButtons({
       {showLock && (
         <button
           type="button"
-          className={'iconBtn'}
+          className={'shared-action-buttons-icon-btn'}
           onClick={onLock}
           aria-label="Lock candidate"
         >
@@ -40,7 +40,9 @@ export default function ActionButtons({
       )}
       <button
         type="button"
-        className={'iconBtn danger'}
+        className={
+          'shared-action-buttons-icon-btn shared-action-buttons-danger'
+        }
         onClick={onDelete}
         aria-label="Delete candidate"
       >

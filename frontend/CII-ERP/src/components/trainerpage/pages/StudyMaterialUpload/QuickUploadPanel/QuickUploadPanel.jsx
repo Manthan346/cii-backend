@@ -14,14 +14,26 @@ import './QuickUploadPanel.css';
  */
 export default function QuickUploadPanel({ onBrowse }) {
   return (
-    <section className={'panel'}>
-      <h2 className={'title'}>Quick Upload</h2>
+    <section className={'study-material-upload-quick-upload-panel-panel'}>
+      <h2 className={'study-material-upload-quick-upload-panel-title'}>
+        Quick Upload
+      </h2>
 
-      <div className={'dropzone'}>
-        <div className={'dropzoneBar'} />
+      <div className={'study-material-upload-quick-upload-panel-dropzone'}>
+        <div
+          className={'study-material-upload-quick-upload-panel-dropzone-bar'}
+        />
 
-        <p className={'dropzoneTitle'}>Drag &amp; drop Files here</p>
-        <p className={'dropzoneSubtitle'}>
+        <p
+          className={'study-material-upload-quick-upload-panel-dropzone-title'}
+        >
+          Drag &amp; drop Files here
+        </p>
+        <p
+          className={
+            'study-material-upload-quick-upload-panel-dropzone-subtitle'
+          }
+        >
           Support PDF, DOCX, PPTX, MP4 up to 500 MB
         </p>
 

@@ -1,4 +1,4 @@
-.panel {
+.study-material-upload-quick-upload-panel-panel {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -8,7 +8,7 @@
   gap: 16px;
 }
 
-.title {
+.study-material-upload-quick-upload-panel-title {
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: 700;
@@ -16,7 +16,7 @@
   margin: 0;
 }
 
-.dropzone {
+.study-material-upload-quick-upload-panel-dropzone {
   background: #ece9e4;
   border-radius: var(--radius-md);
   padding: 32px 24px 28px;
@@ -27,7 +27,7 @@
   text-align: center;
 }
 
-.dropzoneBar {
+.study-material-upload-quick-upload-panel-dropzone-bar {
   width: 100%;
   max-width: 820px;
   height: 38px;
@@ -36,7 +36,7 @@
   margin-bottom: 8px;
 }
 
-.dropzoneTitle {
+.study-material-upload-quick-upload-panel-dropzone-title {
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: 700;
@@ -44,7 +44,7 @@
   margin: 0;
 }
 
-.dropzoneSubtitle {
+.study-material-upload-quick-upload-panel-dropzone-subtitle {
   font-family: var(--font-family);
   font-size: 13px;
   color: var(--color-text-secondary);
@@ -52,7 +52,7 @@
 }
 
 @media (max-width: 640px) {
-  .dropzone {
+  .study-material-upload-quick-upload-panel-dropzone {
     padding: 24px 16px;
   }
 }

@@ -34,17 +34,19 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
   };
   return (
     <div
-      className={'overlay'}
+      className={'study-material-upload-upload-material-modal-overlay'}
       role="dialog"
       aria-modal="true"
       aria-label="Upload study material"
     >
-      <div className={'modal'}>
-        <div className={'header'}>
-          <h2 className={'title'}>Upload Study Material</h2>
+      <div className={'study-material-upload-upload-material-modal-modal'}>
+        <div className={'study-material-upload-upload-material-modal-header'}>
+          <h2 className={'study-material-upload-upload-material-modal-title'}>
+            Upload Study Material
+          </h2>
           <button
             type="button"
-            className={'closeBtn'}
+            className={'study-material-upload-upload-material-modal-close-btn'}
             onClick={onCancel}
             aria-label="Close"
           >
@@ -52,32 +54,44 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
           </button>
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>Title</label>
+        <div className={'study-material-upload-upload-material-modal-field'}>
+          <label
+            className={'study-material-upload-upload-material-modal-label'}
+          >
+            Title
+          </label>
           <input
             type="text"
-            className={'input'}
+            className={'study-material-upload-upload-material-modal-input'}
             placeholder="eg data science module 7-notes"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>Course</label>
+        <div className={'study-material-upload-upload-material-modal-field'}>
+          <label
+            className={'study-material-upload-upload-material-modal-label'}
+          >
+            Course
+          </label>
           <input
             type="text"
-            className={'input'}
+            className={'study-material-upload-upload-material-modal-input'}
             placeholder="Data science"
             value={course}
             onChange={(event) => setCourse(event.target.value)}
           />
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>Description(optional)</label>
+        <div className={'study-material-upload-upload-material-modal-field'}>
+          <label
+            className={'study-material-upload-upload-material-modal-label'}
+          >
+            Description(optional)
+          </label>
           <textarea
-            className={'textarea'}
+            className={'study-material-upload-upload-material-modal-textarea'}
             placeholder="Add a short description...."
             rows={3}
             value={description}
@@ -85,21 +99,46 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
           />
         </div>
 
-        <div className={'field'}>
-          <label className={'label'}>File</label>
-          <div className={'fileDropzone'} onClick={handleBrowseClick}>
-            <UploadCloud size={22} className={'fileIcon'} />
-            <p className={'fileText'}>
+        <div className={'study-material-upload-upload-material-modal-field'}>
+          <label
+            className={'study-material-upload-upload-material-modal-label'}
+          >
+            File
+          </label>
+          <div
+            className={
+              'study-material-upload-upload-material-modal-file-dropzone'
+            }
+            onClick={handleBrowseClick}
+          >
+            <UploadCloud
+              size={22}
+              className={
+                'study-material-upload-upload-material-modal-file-icon'
+              }
+            />
+            <p
+              className={
+                'study-material-upload-upload-material-modal-file-text'
+              }
+            >
               {fileName || (
                 <>
-                  Drag file here or <span className={'browseLink'}>Browse</span>
+                  Drag file here or{' '}
+                  <span
+                    className={
+                      'study-material-upload-upload-material-modal-browse-link'
+                    }
+                  >
+                    Browse
+                  </span>
                 </>
               )}
             </p>
           </div>
         </div>
 
-        <div className={'actions'}>
+        <div className={'study-material-upload-upload-material-modal-actions'}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>
