@@ -38,12 +38,15 @@ export const profileTabs = [
 // NOTE: Contact + Address (previously the separate "Contact Details" tab)
 // now live here so all of a staff member's core info sits in one place.
 // Guardian info moved the other way - see profileGuardianDetail below,
-// which now surfaces inside the "Contact Details" tab.
+// which now surfaces inside the "Guardian Details" tab.
 //
 // currentAddress and permanentAddress are kept as two separate objects
 // (rather than one `address` + a "same as current" flag) since the
 // Basic Information tab now renders both side by side as their own
 // section, each sourced strictly from its own prop with no fallback.
+// This is the STAFF MEMBER's own address - not the guardian's (see
+// profileGuardianDetail.guardian.currentAddress/permanentAddress below
+// for the guardian's own address, which is a separate pair of fields).
 export const profileBasicInfo = {
   personal: {
     name: 'Anjali Sharma',
@@ -148,13 +151,32 @@ export const profileDocuments = [
 export const profileDocumentNote =
   'File Size Should be less than 200KB (PDF Format only)';
 
-// ---- Contact Details tab (now shows Guardian Information) ----
+// ---- Guardian Details tab ----
+// Guardian's own address is split into currentAddress/permanentAddress
+// (same shape as profileBasicInfo above: line/state/district/taluka/
+// pinCode), replacing the old single flat `address` string. This is
+// the GUARDIAN's address - separate from the staff member's own
+// currentAddress/permanentAddress in profileBasicInfo above.
 export const profileGuardianDetail = {
   guardian: {
     name: 'Ram Sharma',
     relationship: 'Father',
     mobileNumber: '8723456284',
     occupation: 'Retired Govt. officer',
-    address: 'shree Complex ,thane400101',
+    bloodGroup: 'B+',
+    currentAddress: {
+      line: 'Shree Complex, Thane (w)',
+      state: 'Maharashtra',
+      district: 'Thane District',
+      taluka: 'Thane',
+      pinCode: '400101',
+    },
+    permanentAddress: {
+      line: 'Shree Complex, Thane (w)',
+      state: 'Maharashtra',
+      district: 'Thane District',
+      taluka: 'Thane',
+      pinCode: '400101',
+    },
   },
 };

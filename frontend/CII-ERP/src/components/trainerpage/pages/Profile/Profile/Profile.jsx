@@ -6,7 +6,7 @@ import ProfileTabs from '../ProfileTabs/ProfileTabs';
 import BasicInformationTab from '../BasicInformationTab/BasicInformationTab';
 import AcademicDetailTab from '../AcademicDetailTab/AcademicDetailTab';
 import DocumentTab from '../DocumentTab/DocumentTab';
-import ContactDetailsTab from '../ContactDetailsTab/ContactDetailsTab';
+import ContactDetailsTab from '../GuardianDetailsTab/GuardianDetailsTab';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
 import {
   staffProfile,
@@ -43,7 +43,9 @@ import './Profile.css';
  *
  * Address is now two separate objects - currentAddress and
  * permanentAddress - each rendered from its own prop with no
- * fallback between the two (see BasicInformationTab.jsx).
+ * fallback between the two (see BasicInformationTab.jsx). Both tabs
+ * that show address (Basic Information and Guardian Details) receive
+ * the same two state values from here.
  *
  * This is also where the Topbar's avatar button lands: Topbar.jsx
  * navigates to this page's route by default when no onAvatarClick
@@ -103,7 +105,11 @@ const Profile = () => {
           />
         );
       case 'guardian-details':
-        return <ContactDetailsTab guardian={guardian} />;
+        return (
+          <ContactDetailsTab
+            guardian={guardian}
+          />
+        );
       default:
         return null;
     }
