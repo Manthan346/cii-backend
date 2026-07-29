@@ -6,6 +6,7 @@ export interface InstructorAuthRequest extends Request {
         
         instructor_id?: string,
         email?: string,
+        company_id?:string
         
     },
 

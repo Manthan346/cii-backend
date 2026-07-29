@@ -130,7 +130,8 @@ export const notification_reference_type = {
   BATCH: 'BATCH',
   CERTIFICATE: 'CERTIFICATE',
   RESULT: 'RESULT',
-  GENERAL: 'GENERAL'
+  GENERAL: 'GENERAL',
+  EVENT: 'EVENT'
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -148,7 +149,37 @@ export const notification_type = {
   RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
   INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
   ACADEMIC: 'ACADEMIC',
-  EXAMINATION: 'EXAMINATION'
+  EXAMINATION: 'EXAMINATION',
+  EVENT_CREATED: 'EVENT_CREATED',
+  EVENT_UPDATED: 'EVENT_UPDATED'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
+
+
+export const event_mode = {
+  ONLINE: 'ONLINE',
+  OFFLINE: 'OFFLINE',
+  HYBRID: 'HYBRID'
+} as const
+
+export type event_mode = (typeof event_mode)[keyof typeof event_mode]
+
+
+export const event_type = {
+  WEBINAR: 'WEBINAR',
+  SEMINAR: 'SEMINAR',
+  UPSKILLING: 'UPSKILLING',
+  WORKSHOP: 'WORKSHOP'
+} as const
+
+export type event_type = (typeof event_type)[keyof typeof event_type]
+
+
+export const event_target_type = {
+  BATCH: 'BATCH',
+  ALL_BATCHES: 'ALL_BATCHES',
+  DEPARTMENT: 'DEPARTMENT'
+} as const
+
+export type event_target_type = (typeof event_target_type)[keyof typeof event_target_type]

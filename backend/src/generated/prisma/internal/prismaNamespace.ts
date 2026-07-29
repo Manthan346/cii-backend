@@ -411,7 +411,9 @@ export const ModelName = {
   instructor_documents: 'instructor_documents',
   notifications: 'notifications',
   study_material: 'study_material',
-  user_notifications: 'user_notifications'
+  user_notifications: 'user_notifications',
+  event_batches: 'event_batches',
+  event_details: 'event_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -427,7 +429,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications"
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2059,6 +2061,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    event_batches: {
+      payload: Prisma.$event_batchesPayload<ExtArgs>
+      fields: Prisma.event_batchesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.event_batchesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.event_batchesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        findFirst: {
+          args: Prisma.event_batchesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.event_batchesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        findMany: {
+          args: Prisma.event_batchesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
+        }
+        create: {
+          args: Prisma.event_batchesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        createMany: {
+          args: Prisma.event_batchesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.event_batchesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
+        }
+        delete: {
+          args: Prisma.event_batchesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        update: {
+          args: Prisma.event_batchesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        deleteMany: {
+          args: Prisma.event_batchesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.event_batchesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.event_batchesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
+        }
+        upsert: {
+          args: Prisma.event_batchesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
+        }
+        aggregate: {
+          args: Prisma.Event_batchesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvent_batches>
+        }
+        groupBy: {
+          args: Prisma.event_batchesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_batchesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.event_batchesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_batchesCountAggregateOutputType> | number
+        }
+      }
+    }
+    event_details: {
+      payload: Prisma.$event_detailsPayload<ExtArgs>
+      fields: Prisma.event_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.event_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.event_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.event_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.event_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.event_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.event_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.event_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.event_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.event_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        update: {
+          args: Prisma.event_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.event_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.event_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.event_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.event_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Event_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEvent_details>
+        }
+        groupBy: {
+          args: Prisma.event_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.event_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Event_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2106,7 +2256,7 @@ export const Candidates_detailsScalarFieldEnum = {
   gender: 'gender',
   date_of_birth: 'date_of_birth',
   education: 'education',
-  candidate_address: 'candidate_address',
+  candidate_current_address: 'candidate_current_address',
   enquiry_source: 'enquiry_source',
   aadhar_card_no: 'aadhar_card_no',
   pan_card_no: 'pan_card_no',
@@ -2130,7 +2280,12 @@ export const Candidates_detailsScalarFieldEnum = {
   qualification_percentage: 'qualification_percentage',
   admin_approval: 'admin_approval',
   candidate_skills: 'candidate_skills',
-  guardian_phone_no: 'guardian_phone_no'
+  guardian_phone_no: 'guardian_phone_no',
+  guardian_blood_group: 'guardian_blood_group',
+  candidate_permanant_address: 'candidate_permanant_address',
+  guardian_relationship: 'guardian_relationship',
+  guardian_occupation: 'guardian_occupation',
+  candidate_unique_id: 'candidate_unique_id'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -2456,6 +2611,37 @@ export const User_notificationsScalarFieldEnum = {
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
+export const Event_batchesScalarFieldEnum = {
+  event_batch_id: 'event_batch_id',
+  event_id: 'event_id',
+  batch_id: 'batch_id'
+} as const
+
+export type Event_batchesScalarFieldEnum = (typeof Event_batchesScalarFieldEnum)[keyof typeof Event_batchesScalarFieldEnum]
+
+
+export const Event_detailsScalarFieldEnum = {
+  event_id: 'event_id',
+  center_id: 'center_id',
+  event_title: 'event_title',
+  event_description: 'event_description',
+  event_date: 'event_date',
+  event_time: 'event_time',
+  venue: 'venue',
+  is_show: 'is_show',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by',
+  event_link: 'event_link',
+  eventmode: 'eventmode',
+  eventtype: 'eventtype',
+  target_type: 'target_type'
+} as const
+
+export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2718,6 +2904,48 @@ export type ListEnumnotification_reference_typeFieldRefInput<$PrismaModel> = Fie
 
 
 /**
+ * Reference to a field of type 'event_mode'
+ */
+export type Enumevent_modeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_mode'>
+    
+
+
+/**
+ * Reference to a field of type 'event_mode[]'
+ */
+export type ListEnumevent_modeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_mode[]'>
+    
+
+
+/**
+ * Reference to a field of type 'event_type'
+ */
+export type Enumevent_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_type'>
+    
+
+
+/**
+ * Reference to a field of type 'event_type[]'
+ */
+export type ListEnumevent_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'event_target_type'
+ */
+export type Enumevent_target_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_target_type'>
+    
+
+
+/**
+ * Reference to a field of type 'event_target_type[]'
+ */
+export type ListEnumevent_target_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_target_type[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2839,6 +3067,8 @@ export type GlobalOmitConfig = {
   notifications?: Prisma.notificationsOmit
   study_material?: Prisma.study_materialOmit
   user_notifications?: Prisma.user_notificationsOmit
+  event_batches?: Prisma.event_batchesOmit
+  event_details?: Prisma.event_detailsOmit
 }
 
 /* Types for Logging */
