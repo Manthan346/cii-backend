@@ -2637,8 +2637,8 @@ export const Event_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   updated_by: 'updated_by',
   event_link: 'event_link',
-  eventmode: 'eventmode',
-  eventtype: 'eventtype',
+  event_mode: 'event_mode',
+  event_type: 'event_type',
   target_type: 'target_type'
 } as const
 

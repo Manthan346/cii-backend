@@ -173,7 +173,7 @@ export type NotificationsGroupByOutputType = {
   reference_type: $Enums.notification_reference_type | null
   reference_id: string | null
   created_at: Date | null
-  updated_at: Date | null
+  updated_at: Date
   _count: NotificationsCountAggregateOutputType | null
   _min: NotificationsMinAggregateOutputType | null
   _max: NotificationsMaxAggregateOutputType | null
@@ -205,7 +205,7 @@ export type notificationsWhereInput = {
   reference_type?: Prisma.Enumnotification_reference_typeNullableFilter<"notifications"> | $Enums.notification_reference_type | null
   reference_id?: Prisma.UuidNullableFilter<"notifications"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"notifications"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"notifications"> | Date | string | null
+  updated_at?: Prisma.DateTimeFilter<"notifications"> | Date | string
   user_notifications?: Prisma.User_notificationsListRelationFilter
 }
 
@@ -217,7 +217,7 @@ export type notificationsOrderByWithRelationInput = {
   reference_type?: Prisma.SortOrderInput | Prisma.SortOrder
   reference_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   user_notifications?: Prisma.user_notificationsOrderByRelationAggregateInput
 }
 
@@ -232,7 +232,7 @@ export type notificationsWhereUniqueInput = Prisma.AtLeast<{
   reference_type?: Prisma.Enumnotification_reference_typeNullableFilter<"notifications"> | $Enums.notification_reference_type | null
   reference_id?: Prisma.UuidNullableFilter<"notifications"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"notifications"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableFilter<"notifications"> | Date | string | null
+  updated_at?: Prisma.DateTimeFilter<"notifications"> | Date | string
   user_notifications?: Prisma.User_notificationsListRelationFilter
 }, "notification_id">
 
@@ -244,7 +244,7 @@ export type notificationsOrderByWithAggregationInput = {
   reference_type?: Prisma.SortOrderInput | Prisma.SortOrder
   reference_id?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.notificationsCountOrderByAggregateInput
   _max?: Prisma.notificationsMaxOrderByAggregateInput
   _min?: Prisma.notificationsMinOrderByAggregateInput
@@ -261,7 +261,7 @@ export type notificationsScalarWhereWithAggregatesInput = {
   reference_type?: Prisma.Enumnotification_reference_typeNullableWithAggregatesFilter<"notifications"> | $Enums.notification_reference_type | null
   reference_id?: Prisma.UuidNullableWithAggregatesFilter<"notifications"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"notifications"> | Date | string | null
-  updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"notifications"> | Date | string | null
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"notifications"> | Date | string
 }
 
 export type notificationsCreateInput = {
@@ -272,7 +272,7 @@ export type notificationsCreateInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at?: Date | string
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutNotificationsInput
 }
 
@@ -284,7 +284,7 @@ export type notificationsUncheckedCreateInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at?: Date | string
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutNotificationsInput
 }
 
@@ -296,7 +296,7 @@ export type notificationsUpdateInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutNotificationsNestedInput
 }
 
@@ -308,7 +308,7 @@ export type notificationsUncheckedUpdateInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutNotificationsNestedInput
 }
 
@@ -320,7 +320,7 @@ export type notificationsCreateManyInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at?: Date | string
 }
 
 export type notificationsUpdateManyMutationInput = {
@@ -331,7 +331,7 @@ export type notificationsUpdateManyMutationInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type notificationsUncheckedUpdateManyInput = {
@@ -342,7 +342,7 @@ export type notificationsUncheckedUpdateManyInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type notificationsCountOrderByAggregateInput = {
@@ -413,7 +413,7 @@ export type notificationsCreateWithoutUser_notificationsInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at?: Date | string
 }
 
 export type notificationsUncheckedCreateWithoutUser_notificationsInput = {
@@ -424,7 +424,7 @@ export type notificationsUncheckedCreateWithoutUser_notificationsInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at?: Date | string
 }
 
 export type notificationsCreateOrConnectWithoutUser_notificationsInput = {
@@ -451,7 +451,7 @@ export type notificationsUpdateWithoutUser_notificationsInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type notificationsUncheckedUpdateWithoutUser_notificationsInput = {
@@ -462,7 +462,7 @@ export type notificationsUncheckedUpdateWithoutUser_notificationsInput = {
   reference_type?: Prisma.NullableEnumnotification_reference_typeFieldUpdateOperationsInput | $Enums.notification_reference_type | null
   reference_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -563,7 +563,7 @@ export type $notificationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     reference_type: $Enums.notification_reference_type | null
     reference_id: string | null
     created_at: Date | null
-    updated_at: Date | null
+    updated_at: Date
   }, ExtArgs["result"]["notifications"]>
   composites: {}
 }

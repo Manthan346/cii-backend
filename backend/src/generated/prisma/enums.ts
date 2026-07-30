@@ -151,7 +151,8 @@ export const notification_type = {
   ACADEMIC: 'ACADEMIC',
   EXAMINATION: 'EXAMINATION',
   EVENT_CREATED: 'EVENT_CREATED',
-  EVENT_UPDATED: 'EVENT_UPDATED'
+  EVENT_UPDATED: 'EVENT_UPDATED',
+  EVENT_DELETED: 'EVENT_DELETED'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]

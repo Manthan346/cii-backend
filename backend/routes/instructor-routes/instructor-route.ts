@@ -36,7 +36,14 @@ import { createAssessment } from "../../src/controllers/instructor-controller/cr
 import { createAssessmentSchema } from "../../src/services/zod/instructor/create-assessment-schema";
 import { getAssessments } from "../../src/controllers/instructor-controller/get-assessment";
 import { updateAssessmentSchema } from "../../src/services/zod/instructor/update-assessment-schema";
-import { updateAssessment } from "../../src/controllers/instructor-controller/update-assessment"; 
+import { updateAssessment } from "../../src/controllers/instructor-controller/update-assessment";
+import { createCandidateByInstructor } from "../../src/controllers/instructor-controller/create-candidate-by-instructor";
+import { createEventSchema } from "../../src/services/zod/event-schema/eventValidation";
+import { updateEventSchema } from "../../src/services/zod/event-schema/eventValidation";
+import { createInstructorEvent } from "../../src/controllers/instructor-controller/instructor-create-event";
+import { updateInstructorEvent } from "../../src/controllers/instructor-controller/instructor-update-event";
+import { getAllInstructorEvents } from "../../src/controllers/instructor-controller/get-instructor-events"; 
+import { deleteInstructorEvent } from "../../src/controllers/instructor-controller/delete-instructor-event";
 
 const instructorRouter = Router();
 
@@ -117,6 +124,10 @@ instructorRouter.patch("/study-material/update-material",verifyInstructorUsingAc
 instructorRouter.post("/assessment/create-assessment",verifyInstructorUsingAccessToken,validateBody(createAssessmentSchema),createAssessment)
 instructorRouter.get("/assessment/get-assessment",verifyInstructorUsingAccessToken,getAssessments)
 instructorRouter.patch("/assessment/update-assessment",verifyInstructorUsingAccessToken,validateBody(updateAssessmentSchema),updateAssessment)
+instructorRouter.post("/instructor-events/create-event",verifyInstructorUsingAccessToken,validateBody(createEventSchema),createInstructorEvent)
+instructorRouter.patch("/instructor-events/update-event/:event_id",verifyInstructorUsingAccessToken,validateBody(updateEventSchema),updateInstructorEvent)
+instructorRouter.get("/instructor-events/get-event",verifyInstructorUsingAccessToken,paginationMiddleware,getAllInstructorEvents)
+instructorRouter.delete("/instructor-events/delete-event/:event_id",verifyInstructorUsingAccessToken,deleteInstructorEvent)
 
 
 export { instructorRouter };
