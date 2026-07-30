@@ -52,7 +52,7 @@ export const createEventSchema = z.object({
       if (!data.event_link) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["meeting_link"],
+          path: ["event_link"],
           message: "Meeting link is required for online events",
         });
       }
@@ -81,7 +81,7 @@ export const createEventSchema = z.object({
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["event_link"],
-          message: "Event link is required for hybrid events",
+          message: "Meeting link is required for hybrid events",
         });
       }
 

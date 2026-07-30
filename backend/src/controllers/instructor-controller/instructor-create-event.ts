@@ -3,15 +3,19 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { prisma } from "../../lib/prisma";
 import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interface";
 import { ApiResponse } from "../../helpers/ApiResponse";
-import { batch_status,event_target_type } from "../../generated/prisma/enums";
+import { batch_status,event_target_type,batch_enrollment_status_type,notification_reference_type,notification_type } from "../../generated/prisma/enums";
 import { ApiError } from "../../helpers/ApiError";
 import { createEventSchema } from "../../services/zod/event-schema/eventValidation";
 
 export const createInstructorEvent = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) =>{
+        console.log("Controller started");
         const {company_id,instructor_id} = req.instructor!;
         let targetBatchIds: string [] = [];
+        let instructorUserIds: string[] = [];
+        console.log("Before parse");
         const data = createEventSchema.parse(req.body);
+        console.log("After parse");
 
         switch (data.target_type) {
             case event_target_type.BATCH:
@@ -24,6 +28,7 @@ export const createInstructorEvent = asyncHandler(
                         batch_id: {
                             in: data.batch_ids,
                         },
+                        instructor_id,
                         course_details:{
                             company_id
                         },
@@ -55,6 +60,15 @@ export const createInstructorEvent = asyncHandler(
                         batch_id:true
                     }
                 }) 
+
+                if (batches.length === 0) {
+                    throw new ApiError(
+                        404,
+                        "No batches found for the instructor."
+                    );
+                }
+
+                targetBatchIds = batches.map(batch => batch.batch_id);
             }
             break;
 
@@ -75,11 +89,22 @@ export const createInstructorEvent = asyncHandler(
                 }
 
                 targetBatchIds = batches.map(batch => batch.batch_id);
+
+                const instructors = await prisma.instructor_details.findMany({
+                    where:{
+                        company_id
+                    },
+                    select:{
+                        user_id:true
+                    }
+                })
+
+                instructorUserIds = instructors.map(instructor => instructor.user_id);
             }
                 break;
         }
 
-        await prisma.$transaction(async (tx) => {
+        const createdEvent = await prisma.$transaction(async (tx) => {
             const event = await tx.event_details.create({
                 data: {
                     center_id: req.user.center_id,
@@ -96,12 +121,68 @@ export const createInstructorEvent = asyncHandler(
                     updated_by: req.user.user_id,
                 },
             });
+
+            await tx.event_batches.createMany({
+                data: targetBatchIds.map(batchId => ({
+                    event_id: event.event_id,
+                    batch_id: batchId,
+                })),
+            });
+
+            const enrollments = await tx.batch_enrollment.findMany({
+                where: {
+                    batch_id: {
+                        in: targetBatchIds,
+                    },
+                    enrollment_status: batch_enrollment_status_type.ACTIVE,
+                },
+                select: {
+                    candidates_details: {
+                        select: {
+                            user_id: true,
+                        },
+                    },
+                },
+            });
+
+            const studentUserIds = enrollments.map(
+            enrollment => enrollment.candidates_details.user_id
+            );
+
+            const recipientUserIds = [
+                ...new Set([
+                    req.user.user_id,
+                    ...studentUserIds,
+                    ...instructorUserIds,
+                ]),
+            ];
+
+            const notification = await tx.notifications.create({
+                data: {
+                    title: data.event_title,
+                    notification_message: `${data.event_title} has been scheduled on ${data.event_date}.`,
+                    notification_type: notification_type.EVENT_CREATED,
+                    reference_type: notification_reference_type.EVENT,
+                    reference_id: event.event_id,
+                },
+            });
+
+            if (recipientUserIds.length > 0) {
+                await tx.user_notifications.createMany({
+                    data: recipientUserIds.map(userId => ({
+                        user_id: userId,
+                        notification_id: notification.notification_id,
+                    })),
+                });
+            }
+
+            return event;
         });
 
         return res.status(201).json(
             new ApiResponse(
                 201,
-                event,
+                createdEvent,
                 "Event created successfully."
             )
         );
