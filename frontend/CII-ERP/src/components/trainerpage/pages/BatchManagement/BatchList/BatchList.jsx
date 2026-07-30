@@ -10,8 +10,8 @@ import {
   Printer,
 } from 'lucide-react';
 import { Dropdown, Button, Pagination } from '../../../shared';
-import StatCard from './StatCard/StatCard';
-import BatchTable from './BatchTable/BatchTable';
+import StatCard from '../StatCard/StatCard';
+import BatchTable from '../BatchTable/BatchTable';
 import {
   batches as defaultBatches,
   batchListMeta,

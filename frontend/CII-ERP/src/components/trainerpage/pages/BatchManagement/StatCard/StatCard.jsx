@@ -1,4 +1,4 @@
-import useCountUp from '../../../../shared/hooks/useCountUp';
+import useCountUp from '../../../shared/hooks/useCountUp';
 import './StatCard.css';
 
 /**

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useCountUp from '../../../../shared/hooks/useCountUp';
+import useCountUp from '../../../shared/hooks/useCountUp';
 import './ProgressBar.css';
 
 /**
