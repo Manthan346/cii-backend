@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader';
 import BatchOverview from '../BatchOverview/BatchOverview';
-import TaskAssigned from '../TaskAssigned/TaskAssigned';
-import AttendanceChart from '../AttendanceChart/AttendanceChart';
-import RecentUploads from '../RecentUploads/RecentUploads';
+// import TaskAssigned from '../TaskAssigned/TaskAssigned';
+// import AttendanceChart from '../AttendanceChart/AttendanceChart';
+// import RecentUploads from '../RecentUploads/RecentUploads';
 import Sidebar from '../../../layout/Sidebar/Sidebar';
 import Topbar from '../../../layout/Topbar/Topbar';
 import './Dashboard.css';
@@ -37,15 +37,15 @@ const Dashboard = () => {
             <div className="dashboard">
               <WorkspaceHeader />
 
-              <div className="dashboard__row dashboard__row--primary">
+              <div className="dashboard__row">
                 <BatchOverview />
-                <TaskAssigned />
+                {/* <TaskAssigned /> */}
               </div>
 
-              <div className="dashboard__row dashboard__row--secondary">
+              {/* <div className="dashboard__row dashboard__row--secondary">
                 <AttendanceChart />
                 <RecentUploads />
-              </div>
+              </div>*/}
             </div>
           </main>
         </div>
