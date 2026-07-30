@@ -1184,6 +1184,10 @@ export type candidates_detailsCreatecandidate_skillsInput = {
   set: string[]
 }
 
+export type candidates_detailsCreatecandidate_skillsInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -1214,6 +1218,15 @@ export type NullableDecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
+export type candidates_detailsUpdatecandidate_skillsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type NullableBoolFieldUpdateOperationsInput = {

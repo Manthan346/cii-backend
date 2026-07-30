@@ -127,6 +127,7 @@ export type study_material = Prisma.study_materialModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
+<<<<<<< HEAD
 /**
  * Model event_batches
  * 
@@ -137,3 +138,5 @@ export type event_batches = Prisma.event_batchesModel
  * 
  */
 export type event_details = Prisma.event_detailsModel
+=======
+>>>>>>> varun-backend

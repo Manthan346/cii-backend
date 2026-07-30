@@ -500,6 +500,7 @@ export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
 }
 
+<<<<<<< HEAD
 export type Enumevent_modeNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
   in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
@@ -551,6 +552,8 @@ export type Enumevent_target_typeNullableWithAggregatesFilter<$PrismaModel = nev
   _max?: Prisma.NestedEnumevent_target_typeNullableFilter<$PrismaModel>
 }
 
+=======
+>>>>>>> varun-backend
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1046,6 +1049,7 @@ export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
 }
 
+<<<<<<< HEAD
 export type NestedEnumevent_modeNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.event_mode | Prisma.Enumevent_modeFieldRefInput<$PrismaModel> | null
   in?: $Enums.event_mode[] | Prisma.ListEnumevent_modeFieldRefInput<$PrismaModel> | null
@@ -1097,4 +1101,6 @@ export type NestedEnumevent_target_typeNullableWithAggregatesFilter<$PrismaModel
   _max?: Prisma.NestedEnumevent_target_typeNullableFilter<$PrismaModel>
 }
 
+=======
+>>>>>>> varun-backend
 

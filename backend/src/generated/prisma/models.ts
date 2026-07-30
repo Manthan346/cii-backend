@@ -30,6 +30,9 @@ export type * from './models/instructor_documents.js'
 export type * from './models/notifications.js'
 export type * from './models/study_material.js'
 export type * from './models/user_notifications.js'
+<<<<<<< HEAD
 export type * from './models/event_batches.js'
 export type * from './models/event_details.js'
+=======
+>>>>>>> varun-backend
 export type * from './commonInputTypes.js'

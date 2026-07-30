@@ -130,8 +130,12 @@ export const notification_reference_type = {
   BATCH: 'BATCH',
   CERTIFICATE: 'CERTIFICATE',
   RESULT: 'RESULT',
+<<<<<<< HEAD
   GENERAL: 'GENERAL',
   EVENT: 'EVENT'
+=======
+  GENERAL: 'GENERAL'
+>>>>>>> varun-backend
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -147,6 +151,7 @@ export const notification_type = {
   GENERAL: 'GENERAL',
   JOB_OPPORTUNITY: 'JOB_OPPORTUNITY',
   RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
+<<<<<<< HEAD
   INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
   ACADEMIC: 'ACADEMIC',
   EXAMINATION: 'EXAMINATION',
@@ -183,3 +188,9 @@ export const event_type = {
 } as const
 
 export type event_type = (typeof event_type)[keyof typeof event_type]
+=======
+  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED'
+} as const
+
+export type notification_type = (typeof notification_type)[keyof typeof notification_type]
+>>>>>>> varun-backend
