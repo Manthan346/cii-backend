@@ -21,7 +21,7 @@ const candidateAssessments = asyncHandler(async (req: CandidateAuthRequest, res:
         select: {
           title: true,
           assessment_type: true,
-          assessment_date: true,
+          assessment_date: true,      
         },
       },
     },

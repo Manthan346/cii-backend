@@ -163,7 +163,7 @@ model user_login {
   study_material     study_material[]
   center_details     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
   user_notifications user_notifications[]
-=======
+=========
   user_id                                            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_email                                         String               @unique @db.VarChar(255)
   user_password                                      String
@@ -179,7 +179,7 @@ model user_login {
   study_material                                     study_material[]
   center_details                                     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
   user_notifications                                 user_notifications[]
->>>>>>> origin/manthan-backend
+>>>>>>>>> Temporary merge branch 2
 }
 
 model assessments {
@@ -246,10 +246,10 @@ model instructor_details {
   highest_qualification            String?               @db.VarChar(255)
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
-<<<<<<< HEAD
-=======
+<<<<<<<<< Temporary merge branch 1
+=========
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
->>>>>>> origin/manthan-backend
+>>>>>>>>> Temporary merge branch 2
   user_login                       user_login?           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
 }
