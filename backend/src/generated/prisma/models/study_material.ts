@@ -215,7 +215,7 @@ export type study_materialWhereInput = {
   created_at?: Prisma.DateTimeNullableFilter<"study_material"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"study_material"> | Date | string | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
-  instructor_details?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }
 
 export type study_materialOrderByWithRelationInput = {
@@ -229,7 +229,7 @@ export type study_materialOrderByWithRelationInput = {
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByWithRelationInput
-  instructor_details?: Prisma.user_loginOrderByWithRelationInput
+  user_login?: Prisma.user_loginOrderByWithRelationInput
 }
 
 export type study_materialWhereUniqueInput = Prisma.AtLeast<{
@@ -246,7 +246,7 @@ export type study_materialWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeNullableFilter<"study_material"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"study_material"> | Date | string | null
   batch_details?: Prisma.XOR<Prisma.Batch_detailsScalarRelationFilter, Prisma.batch_detailsWhereInput>
-  instructor_details?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }, "study_material_id">
 
 export type study_materialOrderByWithAggregationInput = {
@@ -288,7 +288,7 @@ export type study_materialCreateInput = {
   created_at?: Date | string | null
   updated_at?: Date | string | null
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutStudy_materialInput
-  instructor_details: Prisma.user_loginCreateNestedOneWithoutStudy_materialInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutStudy_materialInput
 }
 
 export type study_materialUncheckedCreateInput = {
@@ -312,7 +312,7 @@ export type study_materialUpdateInput = {
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutStudy_materialNestedInput
-  instructor_details?: Prisma.user_loginUpdateOneRequiredWithoutStudy_materialNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutStudy_materialNestedInput
 }
 
 export type study_materialUncheckedUpdateInput = {
@@ -449,45 +449,45 @@ export type study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput = {
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
-export type study_materialCreateNestedManyWithoutInstructor_detailsInput = {
-  create?: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput> | Prisma.study_materialCreateWithoutInstructor_detailsInput[] | Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput[]
-  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput | Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput[]
-  createMany?: Prisma.study_materialCreateManyInstructor_detailsInputEnvelope
+export type study_materialCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.study_materialCreateManyUser_loginInputEnvelope
   connect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
 }
 
-export type study_materialUncheckedCreateNestedManyWithoutInstructor_detailsInput = {
-  create?: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput> | Prisma.study_materialCreateWithoutInstructor_detailsInput[] | Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput[]
-  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput | Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput[]
-  createMany?: Prisma.study_materialCreateManyInstructor_detailsInputEnvelope
+export type study_materialUncheckedCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.study_materialCreateManyUser_loginInputEnvelope
   connect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
 }
 
-export type study_materialUpdateManyWithoutInstructor_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput> | Prisma.study_materialCreateWithoutInstructor_detailsInput[] | Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput[]
-  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput | Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput[]
-  upsert?: Prisma.study_materialUpsertWithWhereUniqueWithoutInstructor_detailsInput | Prisma.study_materialUpsertWithWhereUniqueWithoutInstructor_detailsInput[]
-  createMany?: Prisma.study_materialCreateManyInstructor_detailsInputEnvelope
+export type study_materialUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.study_materialUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.study_materialUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.study_materialCreateManyUser_loginInputEnvelope
   set?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   disconnect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   delete?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   connect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
-  update?: Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput | Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput[]
-  updateMany?: Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput | Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput[]
+  update?: Prisma.study_materialUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.study_materialUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.study_materialUpdateManyWithWhereWithoutUser_loginInput | Prisma.study_materialUpdateManyWithWhereWithoutUser_loginInput[]
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
-export type study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput> | Prisma.study_materialCreateWithoutInstructor_detailsInput[] | Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput[]
-  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput | Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput[]
-  upsert?: Prisma.study_materialUpsertWithWhereUniqueWithoutInstructor_detailsInput | Prisma.study_materialUpsertWithWhereUniqueWithoutInstructor_detailsInput[]
-  createMany?: Prisma.study_materialCreateManyInstructor_detailsInputEnvelope
+export type study_materialUncheckedUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.study_materialUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.study_materialUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.study_materialCreateManyUser_loginInputEnvelope
   set?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   disconnect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   delete?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
   connect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
-  update?: Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput | Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput[]
-  updateMany?: Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput | Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput[]
+  update?: Prisma.study_materialUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.study_materialUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.study_materialUpdateManyWithWhereWithoutUser_loginInput | Prisma.study_materialUpdateManyWithWhereWithoutUser_loginInput[]
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
@@ -503,7 +503,7 @@ export type study_materialCreateWithoutBatch_detailsInput = {
   is_show?: boolean
   created_at?: Date | string | null
   updated_at?: Date | string | null
-  instructor_details: Prisma.user_loginCreateNestedOneWithoutStudy_materialInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutStudy_materialInput
 }
 
 export type study_materialUncheckedCreateWithoutBatch_detailsInput = {
@@ -558,7 +558,7 @@ export type study_materialScalarWhereInput = {
   updated_at?: Prisma.DateTimeNullableFilter<"study_material"> | Date | string | null
 }
 
-export type study_materialCreateWithoutInstructor_detailsInput = {
+export type study_materialCreateWithoutUser_loginInput = {
   study_material_id?: string
   title: string
   description?: string | null
@@ -569,7 +569,7 @@ export type study_materialCreateWithoutInstructor_detailsInput = {
   batch_details: Prisma.batch_detailsCreateNestedOneWithoutStudy_materialInput
 }
 
-export type study_materialUncheckedCreateWithoutInstructor_detailsInput = {
+export type study_materialUncheckedCreateWithoutUser_loginInput = {
   study_material_id?: string
   batch_id: string
   title: string
@@ -580,30 +580,30 @@ export type study_materialUncheckedCreateWithoutInstructor_detailsInput = {
   updated_at?: Date | string | null
 }
 
-export type study_materialCreateOrConnectWithoutInstructor_detailsInput = {
+export type study_materialCreateOrConnectWithoutUser_loginInput = {
   where: Prisma.study_materialWhereUniqueInput
-  create: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput>
+  create: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput>
 }
 
-export type study_materialCreateManyInstructor_detailsInputEnvelope = {
-  data: Prisma.study_materialCreateManyInstructor_detailsInput | Prisma.study_materialCreateManyInstructor_detailsInput[]
+export type study_materialCreateManyUser_loginInputEnvelope = {
+  data: Prisma.study_materialCreateManyUser_loginInput | Prisma.study_materialCreateManyUser_loginInput[]
   skipDuplicates?: boolean
 }
 
-export type study_materialUpsertWithWhereUniqueWithoutInstructor_detailsInput = {
+export type study_materialUpsertWithWhereUniqueWithoutUser_loginInput = {
   where: Prisma.study_materialWhereUniqueInput
-  update: Prisma.XOR<Prisma.study_materialUpdateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedUpdateWithoutInstructor_detailsInput>
-  create: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput>
+  update: Prisma.XOR<Prisma.study_materialUpdateWithoutUser_loginInput, Prisma.study_materialUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput>
 }
 
-export type study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput = {
+export type study_materialUpdateWithWhereUniqueWithoutUser_loginInput = {
   where: Prisma.study_materialWhereUniqueInput
-  data: Prisma.XOR<Prisma.study_materialUpdateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedUpdateWithoutInstructor_detailsInput>
+  data: Prisma.XOR<Prisma.study_materialUpdateWithoutUser_loginInput, Prisma.study_materialUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type study_materialUpdateManyWithWhereWithoutInstructor_detailsInput = {
+export type study_materialUpdateManyWithWhereWithoutUser_loginInput = {
   where: Prisma.study_materialScalarWhereInput
-  data: Prisma.XOR<Prisma.study_materialUpdateManyMutationInput, Prisma.study_materialUncheckedUpdateManyWithoutInstructor_detailsInput>
+  data: Prisma.XOR<Prisma.study_materialUpdateManyMutationInput, Prisma.study_materialUncheckedUpdateManyWithoutUser_loginInput>
 }
 
 export type study_materialCreateManyBatch_detailsInput = {
@@ -625,7 +625,7 @@ export type study_materialUpdateWithoutBatch_detailsInput = {
   is_show?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  instructor_details?: Prisma.user_loginUpdateOneRequiredWithoutStudy_materialNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutStudy_materialNestedInput
 }
 
 export type study_materialUncheckedUpdateWithoutBatch_detailsInput = {
@@ -650,7 +650,7 @@ export type study_materialUncheckedUpdateManyWithoutBatch_detailsInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type study_materialCreateManyInstructor_detailsInput = {
+export type study_materialCreateManyUser_loginInput = {
   study_material_id?: string
   batch_id: string
   title: string
@@ -661,7 +661,7 @@ export type study_materialCreateManyInstructor_detailsInput = {
   updated_at?: Date | string | null
 }
 
-export type study_materialUpdateWithoutInstructor_detailsInput = {
+export type study_materialUpdateWithoutUser_loginInput = {
   study_material_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -672,7 +672,7 @@ export type study_materialUpdateWithoutInstructor_detailsInput = {
   batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutStudy_materialNestedInput
 }
 
-export type study_materialUncheckedUpdateWithoutInstructor_detailsInput = {
+export type study_materialUncheckedUpdateWithoutUser_loginInput = {
   study_material_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
@@ -683,7 +683,7 @@ export type study_materialUncheckedUpdateWithoutInstructor_detailsInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type study_materialUncheckedUpdateManyWithoutInstructor_detailsInput = {
+export type study_materialUncheckedUpdateManyWithoutUser_loginInput = {
   study_material_id?: Prisma.StringFieldUpdateOperationsInput | string
   batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
@@ -707,7 +707,7 @@ export type study_materialSelect<ExtArgs extends runtime.Types.Extensions.Intern
   created_at?: boolean
   updated_at?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["study_material"]>
 
 export type study_materialSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -721,7 +721,7 @@ export type study_materialSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   created_at?: boolean
   updated_at?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["study_material"]>
 
 export type study_materialSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -735,7 +735,7 @@ export type study_materialSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   created_at?: boolean
   updated_at?: boolean
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["study_material"]>
 
 export type study_materialSelectScalar = {
@@ -753,22 +753,22 @@ export type study_materialSelectScalar = {
 export type study_materialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"study_material_id" | "batch_id" | "uploaded_by" | "title" | "description" | "document_link" | "is_show" | "created_at" | "updated_at", ExtArgs["result"]["study_material"]>
 export type study_materialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 export type study_materialIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 export type study_materialIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.batch_detailsDefaultArgs<ExtArgs>
-  instructor_details?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 
 export type $study_materialPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "study_material"
   objects: {
     batch_details: Prisma.$batch_detailsPayload<ExtArgs>
-    instructor_details: Prisma.$user_loginPayload<ExtArgs>
+    user_login: Prisma.$user_loginPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     study_material_id: string
@@ -1175,7 +1175,7 @@ readonly fields: study_materialFieldRefs;
 export interface Prisma__study_materialClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   batch_details<T extends Prisma.batch_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__batch_detailsClient<runtime.Types.Result.GetResult<Prisma.$batch_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  instructor_details<T extends Prisma.user_loginDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_loginDefaultArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user_login<T extends Prisma.user_loginDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_loginDefaultArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
