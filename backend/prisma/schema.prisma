@@ -45,6 +45,10 @@ model candidates_details {
   candidate_permanant_address String?
   guardian_relationship       String?
   guardian_occupation         String?
+  candidate_unique_id         String?                @unique
+  guardian_address            String?
+  guardian_gender             String?                @db.VarChar(10)
+  guardian_dob                DateTime?              @db.Date
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -213,7 +217,7 @@ model company_details {
 
 model instructor_details {
   instructor_id                    String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id                          String?               @unique @db.Uuid
+  user_id                          String                @unique @db.Uuid
   instructor_first_name            String                @db.VarChar(100)
   instructor_last_name             String?               @db.VarChar(100)
   contact_number                   String                @unique @db.VarChar(10)
@@ -246,11 +250,16 @@ model instructor_details {
   highest_qualification            String?               @db.VarChar(255)
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
+<<<<<<< HEAD
 <<<<<<<<< Temporary merge branch 1
 =========
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
 >>>>>>>>> Temporary merge branch 2
   user_login                       user_login?           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
+=======
+  company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
+  user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
+>>>>>>> dd0b0536fb7367bb5dd563b5e65a60d1acf8d74f
   instructor_documents             instructor_documents?
 }
 
@@ -415,25 +424,26 @@ model event_batches {
 }
 
 model event_details {
-  event_id                                        String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_id                                       String          @db.Uuid
-  event_title                                     String          @db.VarChar(255)
+  event_id                                        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  center_id                                       String             @db.Uuid
+  event_title                                     String             @db.VarChar(255)
   event_description                               String?
-  event_date                                      DateTime        @db.Date
-  event_time                                      DateTime        @db.Time(6)
-  venue                                           String?         @db.VarChar(255)
-  is_show                                         Boolean?        @default(true)
-  created_by                                      String          @db.Uuid
-  created_at                                      DateTime?       @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime?       @default(now()) @db.Timestamp(6)
-  updated_by                                      String          @db.Uuid
+  event_date                                      DateTime           @db.Date
+  event_time                                      DateTime           @db.Time(6)
+  venue                                           String?            @db.VarChar(255)
+  is_show                                         Boolean?           @default(true)
+  created_by                                      String             @db.Uuid
+  created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at                                      DateTime?          @default(now()) @db.Timestamp(6)
+  updated_by                                      String             @db.Uuid
   event_link                                      String?
   eventmode                                       event_mode?
   eventtype                                       event_type?
+  target_type                                     event_target_type?
   event_batches                                   event_batches[]
-  center_details                                  center_details  @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
-  user_login_event_details_created_byTouser_login user_login      @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  user_login_event_details_updated_byTouser_login user_login      @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  center_details                                  center_details     @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
+  user_login_event_details_created_byTouser_login user_login         @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  user_login_event_details_updated_byTouser_login user_login         @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum attend_types {

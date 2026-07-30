@@ -17,6 +17,7 @@ import candidateAssessments from "../../controllers/candidate-controllers/candid
 import candidateUpcomingSessions from "../../controllers/candidate-controllers/candidate-sessions";
 import { candidateRecentAttendanceLog } from "../../controllers/candidate-controllers/candidate-attendanceRecentLog";
 import { getCandidateNotifications } from "../../controllers/candidate-controllers/candidate-getAllNotification";
+import { candidateGuardianDetails } from "../../controllers/candidate-controllers/candidate-guardian-details";
 
 const candidateRouter = Router()
 
@@ -39,6 +40,7 @@ candidateRouter.get('/candidate-allCourses-attendance', verifyCandidateUsingAcce
 candidateRouter.get('/candidate-assesment', verifyCandidateUsingAccessToken, candidateAssessments)
 candidateRouter.get('/candidate-sessions', verifyCandidateUsingAccessToken, candidateUpcomingSessions)
 candidateRouter.get('/get-all-notifications', verifyCandidateUsingAccessToken, getCandidateNotifications)
+candidateRouter.get('/guardian-details', verifyCandidateUsingAccessToken, candidateGuardianDetails)
 
 candidateRouter.get('/candidate-attendance-recentLog', verifyCandidateUsingAccessToken, candidateRecentAttendanceLog)
 

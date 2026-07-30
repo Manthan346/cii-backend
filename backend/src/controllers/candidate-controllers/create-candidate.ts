@@ -4,14 +4,18 @@ import bcrypt from "bcrypt"
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
+
 import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
+import { getNextSequenceGuess, buildStudentId } from "../../utils/candidate-utils/generate-student-id";
 
 const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
   const {first_name, last_name,email_id,contact_number,center_id,password } = req.body
 
   const hashPassword = await bcrypt.hash(password, 10)
-  
-const [emailExists, contactNoExists, centreName] = await Promise.all([
+    const MAX_RETRIES = 5;
+  let lastError: any;
+
+  const [emailExists, contactNoExists, centreName] = await Promise.all([
   prisma.user_login.findUnique({
     where: { user_email: email_id },
   }),
@@ -44,9 +48,8 @@ const [emailExists, contactNoExists, centreName] = await Promise.all([
     
   }
 
-   
-
- const { user, candidate } = await prisma.$transaction(async (tx) => {
+  for(let attempt= 0; attempt< MAX_RETRIES; attempt++){
+     const { user, candidate } = await prisma.$transaction(async (tx) => {
   const user = await tx.user_login.create({
     data: {
       user_email: email_id,
@@ -56,18 +59,25 @@ const [emailExists, contactNoExists, centreName] = await Promise.all([
     },
   });
 
+       const sequence = (await getNextSequenceGuess(tx)) + attempt; // bump per retry attempt
+        const studentUniqueId = buildStudentId(sequence, centreName!.center_name.toUpperCase().slice(0,3));
+
   const candidate = await tx.candidates_details.create({
     data: {
       candidate_first_name: first_name,
       candidate_last_name: last_name,
+      candidate_unique_id: studentUniqueId,
+      
      
       contact_number,
       user_id: user.user_id, // or user.id depending on your schema
     },
   });
 
+
   return { user, candidate };
 });
+
 
 
   const accessToken= generateAccessToken({
@@ -90,6 +100,20 @@ const [emailExists, contactNoExists, centreName] = await Promise.all([
     center_id: center_id
    })
 
+    const refreshTokenHash = await bcrypt.hash(refreshToken, 10);
+    await prisma.user_login.update({
+      where:{
+        user_id: user.user_id
+        
+      },
+      data: {
+        refresh_token_hash: refreshTokenHash
+      }
+      
+    })
+
+   
+
    res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: true,
@@ -104,13 +128,28 @@ const [emailExists, contactNoExists, centreName] = await Promise.all([
     })
    return res.status(201).json(
     new ApiResponse(201, {
-      user,
+      userId: user.user_id,
+      userEmail: user.user_email,
+      userRole: user.user_role,
+      userCenterId: user.center_id,
       candidate,
       accessToken: accessToken
       
     }, "user added successfully")
     
    )
+
+
+    
+  }
+  
+
+
+   
+
+
+
+
  
  } 
   

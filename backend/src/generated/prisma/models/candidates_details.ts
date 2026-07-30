@@ -74,6 +74,10 @@ export type Candidates_detailsMinAggregateOutputType = {
   candidate_permanant_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
+  candidate_unique_id: string | null
+  guardian_address: string | null
+  guardian_gender: string | null
+  guardian_dob: Date | null
 }
 
 export type Candidates_detailsMaxAggregateOutputType = {
@@ -112,6 +116,10 @@ export type Candidates_detailsMaxAggregateOutputType = {
   candidate_permanant_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
+  candidate_unique_id: string | null
+  guardian_address: string | null
+  guardian_gender: string | null
+  guardian_dob: Date | null
 }
 
 export type Candidates_detailsCountAggregateOutputType = {
@@ -151,6 +159,10 @@ export type Candidates_detailsCountAggregateOutputType = {
   candidate_permanant_address: number
   guardian_relationship: number
   guardian_occupation: number
+  candidate_unique_id: number
+  guardian_address: number
+  guardian_gender: number
+  guardian_dob: number
   _all: number
 }
 
@@ -203,6 +215,10 @@ export type Candidates_detailsMinAggregateInputType = {
   candidate_permanant_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
+  candidate_unique_id?: true
+  guardian_address?: true
+  guardian_gender?: true
+  guardian_dob?: true
 }
 
 export type Candidates_detailsMaxAggregateInputType = {
@@ -241,6 +257,10 @@ export type Candidates_detailsMaxAggregateInputType = {
   candidate_permanant_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
+  candidate_unique_id?: true
+  guardian_address?: true
+  guardian_gender?: true
+  guardian_dob?: true
 }
 
 export type Candidates_detailsCountAggregateInputType = {
@@ -280,6 +300,10 @@ export type Candidates_detailsCountAggregateInputType = {
   candidate_permanant_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
+  candidate_unique_id?: true
+  guardian_address?: true
+  guardian_gender?: true
+  guardian_dob?: true
   _all?: true
 }
 
@@ -406,6 +430,10 @@ export type Candidates_detailsGroupByOutputType = {
   candidate_permanant_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
+  candidate_unique_id: string | null
+  guardian_address: string | null
+  guardian_gender: string | null
+  guardian_dob: Date | null
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -468,6 +496,10 @@ export type candidates_detailsWhereInput = {
   candidate_permanant_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_unique_id?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_dob?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -513,6 +545,10 @@ export type candidates_detailsOrderByWithRelationInput = {
   candidate_permanant_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_dob?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
   candidate_assessment?: Prisma.candidate_assessmentOrderByRelationAggregateInput
@@ -526,6 +562,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   contact_number?: string
   user_id?: string
   guardian_phone_no?: string
+  candidate_unique_id?: string
   AND?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
   OR?: Prisma.candidates_detailsWhereInput[]
   NOT?: Prisma.candidates_detailsWhereInput | Prisma.candidates_detailsWhereInput[]
@@ -561,13 +598,16 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   candidate_permanant_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  guardian_dob?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
   candidate_documents?: Prisma.XOR<Prisma.Candidate_documentsNullableScalarRelationFilter, Prisma.candidate_documentsWhereInput> | null
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   job_application?: Prisma.Job_applicationListRelationFilter
-}, "candidate_id" | "contact_number" | "user_id" | "guardian_phone_no">
+}, "candidate_id" | "contact_number" | "user_id" | "guardian_phone_no" | "candidate_unique_id">
 
 export type candidates_detailsOrderByWithAggregationInput = {
   candidate_id?: Prisma.SortOrder
@@ -606,6 +646,10 @@ export type candidates_detailsOrderByWithAggregationInput = {
   candidate_permanant_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  guardian_dob?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -653,6 +697,10 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   candidate_permanant_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  candidate_unique_id?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  guardian_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  guardian_gender?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  guardian_dob?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
 }
 
 export type candidates_detailsCreateInput = {
@@ -691,6 +739,10 @@ export type candidates_detailsCreateInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -736,6 +788,10 @@ export type candidates_detailsUncheckedCreateInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -779,6 +835,10 @@ export type candidates_detailsUpdateInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -824,6 +884,10 @@ export type candidates_detailsUncheckedUpdateInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -868,6 +932,10 @@ export type candidates_detailsCreateManyInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
@@ -906,6 +974,10 @@ export type candidates_detailsUpdateManyMutationInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
@@ -945,6 +1017,10 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -992,6 +1068,10 @@ export type candidates_detailsCountOrderByAggregateInput = {
   candidate_permanant_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
+  candidate_unique_id?: Prisma.SortOrder
+  guardian_address?: Prisma.SortOrder
+  guardian_gender?: Prisma.SortOrder
+  guardian_dob?: Prisma.SortOrder
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
@@ -1036,6 +1116,10 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   candidate_permanant_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
+  candidate_unique_id?: Prisma.SortOrder
+  guardian_address?: Prisma.SortOrder
+  guardian_gender?: Prisma.SortOrder
+  guardian_dob?: Prisma.SortOrder
 }
 
 export type candidates_detailsMinOrderByAggregateInput = {
@@ -1074,6 +1158,10 @@ export type candidates_detailsMinOrderByAggregateInput = {
   candidate_permanant_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
+  candidate_unique_id?: Prisma.SortOrder
+  guardian_address?: Prisma.SortOrder
+  guardian_gender?: Prisma.SortOrder
+  guardian_dob?: Prisma.SortOrder
 }
 
 export type candidates_detailsSumOrderByAggregateInput = {
@@ -1275,6 +1363,10 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1319,6 +1411,10 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1377,6 +1473,10 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1421,6 +1521,10 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -1463,6 +1567,10 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1506,6 +1614,10 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1565,6 +1677,10 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1608,6 +1724,10 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1651,6 +1771,10 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1695,6 +1819,10 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1753,6 +1881,10 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1797,6 +1929,10 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -1839,6 +1975,10 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1883,6 +2023,10 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1941,6 +2085,10 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1985,6 +2133,10 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -2027,6 +2179,10 @@ export type candidates_detailsCreateWithoutJob_applicationInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -2071,6 +2227,10 @@ export type candidates_detailsUncheckedCreateWithoutJob_applicationInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -2129,6 +2289,10 @@ export type candidates_detailsUpdateWithoutJob_applicationInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -2173,6 +2337,10 @@ export type candidates_detailsUncheckedUpdateWithoutJob_applicationInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -2215,6 +2383,10 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -2259,6 +2431,10 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   candidate_permanant_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -2317,6 +2493,10 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -2361,6 +2541,10 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -2462,6 +2646,10 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   candidate_permanant_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
+  candidate_unique_id?: boolean
+  guardian_address?: boolean
+  guardian_gender?: boolean
+  guardian_dob?: boolean
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.candidates_details$candidate_assessmentArgs<ExtArgs>
@@ -2508,6 +2696,10 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   candidate_permanant_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
+  candidate_unique_id?: boolean
+  guardian_address?: boolean
+  guardian_gender?: boolean
+  guardian_dob?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2548,6 +2740,10 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   candidate_permanant_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
+  candidate_unique_id?: boolean
+  guardian_address?: boolean
+  guardian_gender?: boolean
+  guardian_dob?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2588,9 +2784,13 @@ export type candidates_detailsSelectScalar = {
   candidate_permanant_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
+  candidate_unique_id?: boolean
+  guardian_address?: boolean
+  guardian_gender?: boolean
+  guardian_dob?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -2654,6 +2854,10 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     candidate_permanant_address: string | null
     guardian_relationship: string | null
     guardian_occupation: string | null
+    candidate_unique_id: string | null
+    guardian_address: string | null
+    guardian_gender: string | null
+    guardian_dob: Date | null
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -3119,6 +3323,10 @@ export interface candidates_detailsFieldRefs {
   readonly candidate_permanant_address: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_relationship: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_occupation: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_unique_id: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly guardian_address: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly guardian_gender: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly guardian_dob: Prisma.FieldRef<"candidates_details", 'DateTime'>
 }
     
 
