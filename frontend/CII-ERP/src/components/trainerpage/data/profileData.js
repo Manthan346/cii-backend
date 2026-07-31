@@ -215,6 +215,13 @@ export const profileGuardianDetail = {
         taluka: 'Thane',
         pinCode: '400101',
       },
+      permanentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
     }
   ]
 };
