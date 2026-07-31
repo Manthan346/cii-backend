@@ -435,48 +435,6 @@ export type batch_enrollmentMinOrderByAggregateInput = {
   candidate_batch_id?: Prisma.SortOrder
 }
 
-export type batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput = {
-  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
-  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
-  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-}
-
-export type batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput = {
-  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
-  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
-  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-}
-
-export type batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
-  upsert?: Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
-  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
-  set?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  disconnect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  delete?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  update?: Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
-  updateMany?: Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
-  deleteMany?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
-}
-
-export type batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
-  upsert?: Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
-  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
-  set?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  disconnect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  delete?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
-  update?: Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
-  updateMany?: Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
-  deleteMany?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
-}
-
 export type batch_enrollmentCreateNestedManyWithoutBatch_detailsInput = {
   create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutBatch_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutBatch_detailsInput> | Prisma.batch_enrollmentCreateWithoutBatch_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutBatch_detailsInput[]
   connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutBatch_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutBatch_detailsInput[]
@@ -527,70 +485,46 @@ export type NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput =
   set?: $Enums.batch_enrollment_status_type | null
 }
 
-export type batch_enrollmentCreateWithoutCandidates_detailsInput = {
-  enrollment_id?: string
-  enrollment_date?: Date | string
-  created_at?: Date | string
-  updated_at?: Date | string
-  grade?: $Enums.grade_types | null
-  certificate_url?: string | null
-  enrollment_status?: $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: string | null
-  batch_details: Prisma.batch_detailsCreateNestedOneWithoutBatch_enrollmentInput
+export type batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput = {
+  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
+  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
+  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
 }
 
-export type batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput = {
-  enrollment_id?: string
-  batch_id: string
-  enrollment_date?: Date | string
-  created_at?: Date | string
-  updated_at?: Date | string
-  grade?: $Enums.grade_types | null
-  certificate_url?: string | null
-  enrollment_status?: $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: string | null
+export type batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput = {
+  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
+  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
+  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
 }
 
-export type batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput = {
-  where: Prisma.batch_enrollmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput>
+export type batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
+  upsert?: Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
+  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
+  set?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  disconnect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  delete?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  update?: Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
+  updateMany?: Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
+  deleteMany?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
 }
 
-export type batch_enrollmentCreateManyCandidates_detailsInputEnvelope = {
-  data: Prisma.batch_enrollmentCreateManyCandidates_detailsInput | Prisma.batch_enrollmentCreateManyCandidates_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput = {
-  where: Prisma.batch_enrollmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.batch_enrollmentUpdateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput>
-  create: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput>
-}
-
-export type batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput = {
-  where: Prisma.batch_enrollmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.batch_enrollmentUpdateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput>
-}
-
-export type batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput = {
-  where: Prisma.batch_enrollmentScalarWhereInput
-  data: Prisma.XOR<Prisma.batch_enrollmentUpdateManyMutationInput, Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsInput>
-}
-
-export type batch_enrollmentScalarWhereInput = {
-  AND?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
-  OR?: Prisma.batch_enrollmentScalarWhereInput[]
-  NOT?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
-  enrollment_id?: Prisma.UuidFilter<"batch_enrollment"> | string
-  candidate_id?: Prisma.UuidFilter<"batch_enrollment"> | string
-  batch_id?: Prisma.UuidFilter<"batch_enrollment"> | string
-  enrollment_date?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  created_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
-  grade?: Prisma.Enumgrade_typesNullableFilter<"batch_enrollment"> | $Enums.grade_types | null
-  certificate_url?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
-  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
+export type batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput[] | Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput[]
+  upsert?: Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
+  createMany?: Prisma.batch_enrollmentCreateManyCandidates_detailsInputEnvelope
+  set?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  disconnect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  delete?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  connect?: Prisma.batch_enrollmentWhereUniqueInput | Prisma.batch_enrollmentWhereUniqueInput[]
+  update?: Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
+  updateMany?: Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
+  deleteMany?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
 }
 
 export type batch_enrollmentCreateWithoutBatch_detailsInput = {
@@ -643,7 +577,35 @@ export type batch_enrollmentUpdateManyWithWhereWithoutBatch_detailsInput = {
   data: Prisma.XOR<Prisma.batch_enrollmentUpdateManyMutationInput, Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsInput>
 }
 
-export type batch_enrollmentCreateManyCandidates_detailsInput = {
+export type batch_enrollmentScalarWhereInput = {
+  AND?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
+  OR?: Prisma.batch_enrollmentScalarWhereInput[]
+  NOT?: Prisma.batch_enrollmentScalarWhereInput | Prisma.batch_enrollmentScalarWhereInput[]
+  enrollment_id?: Prisma.UuidFilter<"batch_enrollment"> | string
+  candidate_id?: Prisma.UuidFilter<"batch_enrollment"> | string
+  batch_id?: Prisma.UuidFilter<"batch_enrollment"> | string
+  enrollment_date?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"batch_enrollment"> | Date | string
+  grade?: Prisma.Enumgrade_typesNullableFilter<"batch_enrollment"> | $Enums.grade_types | null
+  certificate_url?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
+  enrollment_status?: Prisma.Enumbatch_enrollment_status_typeNullableFilter<"batch_enrollment"> | $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: Prisma.StringNullableFilter<"batch_enrollment"> | string | null
+}
+
+export type batch_enrollmentCreateWithoutCandidates_detailsInput = {
+  enrollment_id?: string
+  enrollment_date?: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  grade?: $Enums.grade_types | null
+  certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: string | null
+  batch_details: Prisma.batch_detailsCreateNestedOneWithoutBatch_enrollmentInput
+}
+
+export type batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput = {
   enrollment_id?: string
   batch_id: string
   enrollment_date?: Date | string
@@ -655,40 +617,30 @@ export type batch_enrollmentCreateManyCandidates_detailsInput = {
   candidate_batch_id?: string | null
 }
 
-export type batch_enrollmentUpdateWithoutCandidates_detailsInput = {
-  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
+export type batch_enrollmentCreateOrConnectWithoutCandidates_detailsInput = {
+  where: Prisma.batch_enrollmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput>
 }
 
-export type batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput = {
-  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
-  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type batch_enrollmentCreateManyCandidates_detailsInputEnvelope = {
+  data: Prisma.batch_enrollmentCreateManyCandidates_detailsInput | Prisma.batch_enrollmentCreateManyCandidates_detailsInput[]
+  skipDuplicates?: boolean
 }
 
-export type batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
-  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
-  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
-  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type batch_enrollmentUpsertWithWhereUniqueWithoutCandidates_detailsInput = {
+  where: Prisma.batch_enrollmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.batch_enrollmentUpdateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput>
+  create: Prisma.XOR<Prisma.batch_enrollmentCreateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedCreateWithoutCandidates_detailsInput>
+}
+
+export type batch_enrollmentUpdateWithWhereUniqueWithoutCandidates_detailsInput = {
+  where: Prisma.batch_enrollmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.batch_enrollmentUpdateWithoutCandidates_detailsInput, Prisma.batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput>
+}
+
+export type batch_enrollmentUpdateManyWithWhereWithoutCandidates_detailsInput = {
+  where: Prisma.batch_enrollmentScalarWhereInput
+  data: Prisma.XOR<Prisma.batch_enrollmentUpdateManyMutationInput, Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsInput>
 }
 
 export type batch_enrollmentCreateManyBatch_detailsInput = {
@@ -730,6 +682,54 @@ export type batch_enrollmentUncheckedUpdateWithoutBatch_detailsInput = {
 export type batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsInput = {
   enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type batch_enrollmentCreateManyCandidates_detailsInput = {
+  enrollment_id?: string
+  batch_id: string
+  enrollment_date?: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  grade?: $Enums.grade_types | null
+  certificate_url?: string | null
+  enrollment_status?: $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: string | null
+}
+
+export type batch_enrollmentUpdateWithoutCandidates_detailsInput = {
+  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batch_details?: Prisma.batch_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput
+}
+
+export type batch_enrollmentUncheckedUpdateWithoutCandidates_detailsInput = {
+  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  certificate_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enrollment_status?: Prisma.NullableEnumbatch_enrollment_status_typeFieldUpdateOperationsInput | $Enums.batch_enrollment_status_type | null
+  candidate_batch_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
+  enrollment_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
   enrollment_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string

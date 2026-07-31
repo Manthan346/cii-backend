@@ -69,7 +69,7 @@ export const getInstructorDashboard = asyncHandler(
         let activeBatches = 0;
 
 
-        const batchOverview = batches.map((batch) => {
+        const batchOverview = batches.map((batch: any) => {
 
             const candidateCount =
                 batch._count.batch_enrollment;

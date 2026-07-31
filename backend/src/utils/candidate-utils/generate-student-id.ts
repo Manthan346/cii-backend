@@ -1,5 +1,6 @@
 
 import { Prisma } from "../../generated/prisma/client";
+import { prisma } from "../../lib/prisma";
 
 
 function buildStudentId(sequence: number, centerName: string): string {
@@ -17,7 +18,7 @@ async function getNextSequenceGuess(tx: Prisma.TransactionClient): Promise<numbe
   const yy = String(now.getUTCFullYear()).slice(-2);
   const datePart = `${dd}${mm}${yy}`;
 
-  const todayCount = await tx.candidates_details.count({
+  const todayCount = await prisma.candidates_details.count({
     where: { candidate_unique_id: { contains: datePart } },
   });
 

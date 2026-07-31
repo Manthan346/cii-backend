@@ -9,71 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const attend_types = {
-  present: 'present',
-  absent: 'absent',
-  late: 'late'
-} as const
-
-export type attend_types = (typeof attend_types)[keyof typeof attend_types]
-
-
-export const role_types = {
-  candidate: 'candidate',
-  instructor: 'instructor',
-  admin: 'admin',
-  super_admin: 'super_admin'
-} as const
-
-export type role_types = (typeof role_types)[keyof typeof role_types]
-
-
-export const enquiry_status_type = {
-  Pending: 'Pending',
-  Verified: 'Verified',
-  Rejected: 'Rejected',
-  Converted: 'Converted'
-} as const
-
-export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]
-
-
-export const attendance_mode_type = {
-  offline: 'offline',
-  online: 'online'
-} as const
-
-export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]
-
-
-export const grade_types = {
-  A: 'A',
-  B: 'B',
-  C: 'C',
-  D: 'D',
-  F: 'F'
-} as const
-
-export type grade_types = (typeof grade_types)[keyof typeof grade_types]
-
-
-export const course_type = {
-  online: 'online',
-  offline: 'offline',
-  hybrid: 'hybrid'
-} as const
-
-export type course_type = (typeof course_type)[keyof typeof course_type]
-
-
-export const job_application_status = {
-  Applied: 'Applied',
-  Shortlisted: 'Shortlisted'
-} as const
-
-export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
-
-
 export const assessment_type = {
   APTITUDE: 'APTITUDE',
   TECHNICAL: 'TECHNICAL',
@@ -85,32 +20,21 @@ export const assessment_type = {
 export type assessment_type = (typeof assessment_type)[keyof typeof assessment_type]
 
 
-export const ca_status_types = {
-  SUBMITTED: 'SUBMITTED',
-  NOT_SUBMITTED: 'NOT_SUBMITTED'
+export const attend_types = {
+  present: 'present',
+  absent: 'absent',
+  late: 'late'
 } as const
 
-export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
+export type attend_types = (typeof attend_types)[keyof typeof attend_types]
 
 
-export const training_type = {
-  ACADEMIC: 'ACADEMIC',
-  WORKSHOP: 'WORKSHOP',
-  UPSKILLING: 'UPSKILLING',
-  SEMINAR: 'SEMINAR'
+export const attendance_mode_type = {
+  offline: 'offline',
+  online: 'online'
 } as const
 
-export type training_type = (typeof training_type)[keyof typeof training_type]
-
-
-export const batch_status = {
-  UPCOMING: 'UPCOMING',
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-  COMPLETED: 'COMPLETED'
-} as const
-
-export type batch_status = (typeof batch_status)[keyof typeof batch_status]
+export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]
 
 
 export const batch_enrollment_status_type = {
@@ -123,43 +47,41 @@ export const batch_enrollment_status_type = {
 export type batch_enrollment_status_type = (typeof batch_enrollment_status_type)[keyof typeof batch_enrollment_status_type]
 
 
-export const notification_reference_type = {
-  ASSESSMENT: 'ASSESSMENT',
-  ATTENDANCE_SESSION: 'ATTENDANCE_SESSION',
-  STUDY_MATERIAL: 'STUDY_MATERIAL',
-  BATCH: 'BATCH',
-  CERTIFICATE: 'CERTIFICATE',
-  RESULT: 'RESULT',
-<<<<<<< HEAD
-  GENERAL: 'GENERAL',
-  EVENT: 'EVENT'
-=======
-  GENERAL: 'GENERAL'
->>>>>>> varun-backend
+export const batch_status = {
+  UPCOMING: 'UPCOMING',
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  COMPLETED: 'COMPLETED'
 } as const
 
-export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
+export type batch_status = (typeof batch_status)[keyof typeof batch_status]
 
 
-export const notification_type = {
-  ASSESSMENT_CREATED: 'ASSESSMENT_CREATED',
-  ATTENDANCE_CREATED: 'ATTENDANCE_CREATED',
-  STUDY_MATERIAL_UPLOADED: 'STUDY_MATERIAL_UPLOADED',
-  BATCH_ASSIGNED: 'BATCH_ASSIGNED',
-  CERTIFICATE_UPLOADED: 'CERTIFICATE_UPLOADED',
-  RESULT_PUBLISHED: 'RESULT_PUBLISHED',
-  GENERAL: 'GENERAL',
-  JOB_OPPORTUNITY: 'JOB_OPPORTUNITY',
-  RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
-<<<<<<< HEAD
-  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
-  ACADEMIC: 'ACADEMIC',
-  EXAMINATION: 'EXAMINATION',
-  EVENT_CREATED: 'EVENT_CREATED',
-  EVENT_UPDATED: 'EVENT_UPDATED'
+export const ca_status_types = {
+  SUBMITTED: 'SUBMITTED',
+  NOT_SUBMITTED: 'NOT_SUBMITTED'
 } as const
 
-export type notification_type = (typeof notification_type)[keyof typeof notification_type]
+export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
+
+
+export const course_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
+} as const
+
+export type course_type = (typeof course_type)[keyof typeof course_type]
+
+
+export const enquiry_status_type = {
+  Pending: 'Pending',
+  Verified: 'Verified',
+  Rejected: 'Rejected',
+  Converted: 'Converted'
+} as const
+
+export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]
 
 
 export const event_mode = {
@@ -188,9 +110,77 @@ export const event_type = {
 } as const
 
 export type event_type = (typeof event_type)[keyof typeof event_type]
-=======
-  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED'
+
+
+export const grade_types = {
+  A: 'A',
+  B: 'B',
+  C: 'C',
+  D: 'D',
+  F: 'F'
+} as const
+
+export type grade_types = (typeof grade_types)[keyof typeof grade_types]
+
+
+export const job_application_status = {
+  Applied: 'Applied',
+  Shortlisted: 'Shortlisted'
+} as const
+
+export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
+
+
+export const notification_reference_type = {
+  ASSESSMENT: 'ASSESSMENT',
+  ATTENDANCE_SESSION: 'ATTENDANCE_SESSION',
+  STUDY_MATERIAL: 'STUDY_MATERIAL',
+  BATCH: 'BATCH',
+  CERTIFICATE: 'CERTIFICATE',
+  RESULT: 'RESULT',
+  GENERAL: 'GENERAL',
+  EVENT: 'EVENT'
+} as const
+
+export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
+
+
+export const notification_type = {
+  ASSESSMENT_CREATED: 'ASSESSMENT_CREATED',
+  ATTENDANCE_CREATED: 'ATTENDANCE_CREATED',
+  STUDY_MATERIAL_UPLOADED: 'STUDY_MATERIAL_UPLOADED',
+  BATCH_ASSIGNED: 'BATCH_ASSIGNED',
+  CERTIFICATE_UPLOADED: 'CERTIFICATE_UPLOADED',
+  RESULT_PUBLISHED: 'RESULT_PUBLISHED',
+  GENERAL: 'GENERAL',
+  JOB_OPPORTUNITY: 'JOB_OPPORTUNITY',
+  RECRUITER_RESPONSE: 'RECRUITER_RESPONSE',
+  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
+  ACADEMIC: 'ACADEMIC',
+  EXAMINATION: 'EXAMINATION',
+  EVENT_CREATED: 'EVENT_CREATED',
+  EVENT_UPDATED: 'EVENT_UPDATED',
+  EVENT_DELETED: 'EVENT_DELETED'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
->>>>>>> varun-backend
+
+
+export const role_types = {
+  candidate: 'candidate',
+  instructor: 'instructor',
+  admin: 'admin',
+  super_admin: 'super_admin'
+} as const
+
+export type role_types = (typeof role_types)[keyof typeof role_types]
+
+
+export const training_type = {
+  ACADEMIC: 'ACADEMIC',
+  WORKSHOP: 'WORKSHOP',
+  UPSKILLING: 'UPSKILLING',
+  SEMINAR: 'SEMINAR'
+} as const
+
+export type training_type = (typeof training_type)[keyof typeof training_type]

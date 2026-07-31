@@ -84,6 +84,7 @@ const mm = String(value.getUTCMinutes()).padStart(2, "0");
 rows.push({
   rowNumber,
   batch_code: (getCell("batch_code") as string) ?? "",
+  
   session_date: getCell("session_date") ?? "",
   attendance_mode: ((getCell("attendance_mode") as string) ?? "").toLowerCase(),
   session_time: getCell("session_time") as string | undefined,

@@ -65,7 +65,7 @@ export const getInstructorBatches = asyncHandler(
       prisma.batch_details.count({ where: whereClause }),
     ]);
 
-    const data = batches.map((b) => ({
+    const data = batches.map((b:any) => ({
       batch_id: b.batch_id,
       batch_name: b.batch_name,
       batch_code: b.batch_code,
@@ -85,7 +85,7 @@ export const getInstructorBatches = asyncHandler(
         200,
         {
           batches: data,
-          courses: data.map((c)=> ({
+          courses: data.map((c: any)=> ({
            courseName:  c.course_name
 
           })),

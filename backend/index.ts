@@ -11,12 +11,17 @@ import { upload } from "./src/middlewares/multer-middleware/multer";
 import { instructorRouter } from "./src/routes/instructor-routes/instructor-route";
 import { login } from "./src/controllers/user-controllers/login";
 import authRouter from "./src/routes/auth-route/auth-route";
+import dotenv from 'dotenv'
+import { redis } from "./src/lib/redis";
 
 const app = Express();
 const port = 3000;
 
 app.use(json());
+// dotenv.config()
 app.use(cookieParser());
+
+
 
 // ADD THIS BLOCK
 app.use(
@@ -25,6 +30,8 @@ app.use(
     credentials: true,
   }),
 );
+
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("server is running hello ");

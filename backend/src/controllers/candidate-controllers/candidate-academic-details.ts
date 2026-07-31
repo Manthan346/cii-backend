@@ -41,7 +41,7 @@ const candidateAcademicDetails = asyncHandler(async(req: CandidateAuthRequest, r
             batch_type: true,
             
             batch_end_date: true,
-            instructor: {
+            instructor_details: {
                 select: {
                     instructor_first_name: true,
                     instructor_last_name: true,
@@ -99,12 +99,12 @@ const academicDetails = {
     enrolled_date: enrollment.enrollment_date,
     starting_date: enrollment.batch_details.batch_start_date,
     end_date: enrollment.batch_details.batch_end_date,
-   trainer_name: enrollment.batch_details.instructor
-  ? `${enrollment.batch_details.instructor.instructor_first_name} ${enrollment.batch_details.instructor.instructor_last_name}`
+   trainer_name: enrollment.batch_details.instructor_details
+  ? `${enrollment.batch_details.instructor_details.instructor_first_name} ${enrollment.batch_details.instructor_details.instructor_last_name}`
   : null,
     supervisor_name:
-       enrollment.batch_details.instructor
-  ? `${enrollment.batch_details.instructor.instructor_first_name} ${enrollment.batch_details.instructor.instructor_last_name}`
+       enrollment.batch_details.instructor_details
+  ? `${enrollment.batch_details.instructor_details.instructor_first_name} ${enrollment.batch_details.instructor_details.instructor_last_name}`
   : null,
     description:
       enrollment.batch_details.course_details?.course_desc

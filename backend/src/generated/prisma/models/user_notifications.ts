@@ -159,11 +159,7 @@ export type User_notificationsGroupByOutputType = {
   user_id: string
   is_read: boolean
   read_at: Date | null
-<<<<<<< HEAD
   created_at: Date
-=======
-  created_at: Date | null
->>>>>>> varun-backend
   _count: User_notificationsCountAggregateOutputType | null
   _min: User_notificationsMinAggregateOutputType | null
   _max: User_notificationsMaxAggregateOutputType | null
@@ -193,11 +189,7 @@ export type user_notificationsWhereInput = {
   user_id?: Prisma.UuidFilter<"user_notifications"> | string
   is_read?: Prisma.BoolFilter<"user_notifications"> | boolean
   read_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFilter<"user_notifications"> | Date | string
-=======
-  created_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
->>>>>>> varun-backend
   notifications?: Prisma.XOR<Prisma.NotificationsScalarRelationFilter, Prisma.notificationsWhereInput>
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }
@@ -208,11 +200,7 @@ export type user_notificationsOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   is_read?: Prisma.SortOrder
   read_at?: Prisma.SortOrderInput | Prisma.SortOrder
-<<<<<<< HEAD
   created_at?: Prisma.SortOrder
-=======
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
->>>>>>> varun-backend
   notifications?: Prisma.notificationsOrderByWithRelationInput
   user_login?: Prisma.user_loginOrderByWithRelationInput
 }
@@ -227,11 +215,7 @@ export type user_notificationsWhereUniqueInput = Prisma.AtLeast<{
   user_id?: Prisma.UuidFilter<"user_notifications"> | string
   is_read?: Prisma.BoolFilter<"user_notifications"> | boolean
   read_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFilter<"user_notifications"> | Date | string
-=======
-  created_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
->>>>>>> varun-backend
   notifications?: Prisma.XOR<Prisma.NotificationsScalarRelationFilter, Prisma.notificationsWhereInput>
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }, "user_notification_id" | "notification_id_user_id">
@@ -242,11 +226,7 @@ export type user_notificationsOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   is_read?: Prisma.SortOrder
   read_at?: Prisma.SortOrderInput | Prisma.SortOrder
-<<<<<<< HEAD
   created_at?: Prisma.SortOrder
-=======
-  created_at?: Prisma.SortOrderInput | Prisma.SortOrder
->>>>>>> varun-backend
   _count?: Prisma.user_notificationsCountOrderByAggregateInput
   _max?: Prisma.user_notificationsMaxOrderByAggregateInput
   _min?: Prisma.user_notificationsMinOrderByAggregateInput
@@ -261,22 +241,14 @@ export type user_notificationsScalarWhereWithAggregatesInput = {
   user_id?: Prisma.UuidWithAggregatesFilter<"user_notifications"> | string
   is_read?: Prisma.BoolWithAggregatesFilter<"user_notifications"> | boolean
   read_at?: Prisma.DateTimeNullableWithAggregatesFilter<"user_notifications"> | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeWithAggregatesFilter<"user_notifications"> | Date | string
-=======
-  created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"user_notifications"> | Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsCreateInput = {
   user_notification_id?: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
   notifications: Prisma.notificationsCreateNestedOneWithoutUser_notificationsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutUser_notificationsInput
 }
@@ -287,22 +259,14 @@ export type user_notificationsUncheckedCreateInput = {
   user_id: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsUpdateInput = {
   user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
   notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_notificationsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutUser_notificationsNestedInput
 }
@@ -313,11 +277,7 @@ export type user_notificationsUncheckedUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsCreateManyInput = {
@@ -326,22 +286,14 @@ export type user_notificationsCreateManyInput = {
   user_id: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsUpdateManyMutationInput = {
   user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsUncheckedUpdateManyInput = {
@@ -350,11 +302,7 @@ export type user_notificationsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
 }
 
 export type User_notificationsListRelationFilter = {
@@ -399,48 +347,6 @@ export type user_notificationsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
 }
 
-export type user_notificationsCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-}
-
-export type user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-}
-
-export type user_notificationsUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
-  set?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  disconnect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  delete?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  update?: Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput | Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
-}
-
-export type user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
-  set?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  disconnect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  delete?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
-  update?: Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput | Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
-}
-
 export type user_notificationsCreateNestedManyWithoutNotificationsInput = {
   create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutNotificationsInput, Prisma.user_notificationsUncheckedCreateWithoutNotificationsInput> | Prisma.user_notificationsCreateWithoutNotificationsInput[] | Prisma.user_notificationsUncheckedCreateWithoutNotificationsInput[]
   connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutNotificationsInput | Prisma.user_notificationsCreateOrConnectWithoutNotificationsInput[]
@@ -483,81 +389,53 @@ export type user_notificationsUncheckedUpdateManyWithoutNotificationsNestedInput
   deleteMany?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
 }
 
-export type user_notificationsCreateWithoutUser_loginInput = {
-  user_notification_id?: string
-  is_read?: boolean
-  read_at?: Date | string | null
-<<<<<<< HEAD
-  created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
-  notifications: Prisma.notificationsCreateNestedOneWithoutUser_notificationsInput
+export type user_notificationsCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
+  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
 }
 
-export type user_notificationsUncheckedCreateWithoutUser_loginInput = {
-  user_notification_id?: string
-  notification_id: string
-  is_read?: boolean
-  read_at?: Date | string | null
-<<<<<<< HEAD
-  created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
+export type user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
+  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
 }
 
-export type user_notificationsCreateOrConnectWithoutUser_loginInput = {
-  where: Prisma.user_notificationsWhereUniqueInput
-  create: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput>
+export type user_notificationsUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
+  set?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  disconnect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  delete?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  update?: Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput | Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput[]
+  deleteMany?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
 }
 
-export type user_notificationsCreateManyUser_loginInputEnvelope = {
-  data: Prisma.user_notificationsCreateManyUser_loginInput | Prisma.user_notificationsCreateManyUser_loginInput[]
-  skipDuplicates?: boolean
-}
-
-export type user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.user_notificationsWhereUniqueInput
-  update: Prisma.XOR<Prisma.user_notificationsUpdateWithoutUser_loginInput, Prisma.user_notificationsUncheckedUpdateWithoutUser_loginInput>
-  create: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput>
-}
-
-export type user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.user_notificationsWhereUniqueInput
-  data: Prisma.XOR<Prisma.user_notificationsUpdateWithoutUser_loginInput, Prisma.user_notificationsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type user_notificationsUpdateManyWithWhereWithoutUser_loginInput = {
-  where: Prisma.user_notificationsScalarWhereInput
-  data: Prisma.XOR<Prisma.user_notificationsUpdateManyMutationInput, Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginInput>
-}
-
-export type user_notificationsScalarWhereInput = {
-  AND?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
-  OR?: Prisma.user_notificationsScalarWhereInput[]
-  NOT?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
-  user_notification_id?: Prisma.UuidFilter<"user_notifications"> | string
-  notification_id?: Prisma.UuidFilter<"user_notifications"> | string
-  user_id?: Prisma.UuidFilter<"user_notifications"> | string
-  is_read?: Prisma.BoolFilter<"user_notifications"> | boolean
-  read_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
-<<<<<<< HEAD
-  created_at?: Prisma.DateTimeFilter<"user_notifications"> | Date | string
-=======
-  created_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
->>>>>>> varun-backend
+export type user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput> | Prisma.user_notificationsCreateWithoutUser_loginInput[] | Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput | Prisma.user_notificationsCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.user_notificationsCreateManyUser_loginInputEnvelope
+  set?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  disconnect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  delete?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  connect?: Prisma.user_notificationsWhereUniqueInput | Prisma.user_notificationsWhereUniqueInput[]
+  update?: Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput | Prisma.user_notificationsUpdateManyWithWhereWithoutUser_loginInput[]
+  deleteMany?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
 }
 
 export type user_notificationsCreateWithoutNotificationsInput = {
   user_notification_id?: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
   user_login: Prisma.user_loginCreateNestedOneWithoutUser_notificationsInput
 }
 
@@ -566,11 +444,7 @@ export type user_notificationsUncheckedCreateWithoutNotificationsInput = {
   user_id: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsCreateOrConnectWithoutNotificationsInput = {
@@ -599,52 +473,58 @@ export type user_notificationsUpdateManyWithWhereWithoutNotificationsInput = {
   data: Prisma.XOR<Prisma.user_notificationsUpdateManyMutationInput, Prisma.user_notificationsUncheckedUpdateManyWithoutNotificationsInput>
 }
 
-export type user_notificationsCreateManyUser_loginInput = {
+export type user_notificationsScalarWhereInput = {
+  AND?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
+  OR?: Prisma.user_notificationsScalarWhereInput[]
+  NOT?: Prisma.user_notificationsScalarWhereInput | Prisma.user_notificationsScalarWhereInput[]
+  user_notification_id?: Prisma.UuidFilter<"user_notifications"> | string
+  notification_id?: Prisma.UuidFilter<"user_notifications"> | string
+  user_id?: Prisma.UuidFilter<"user_notifications"> | string
+  is_read?: Prisma.BoolFilter<"user_notifications"> | boolean
+  read_at?: Prisma.DateTimeNullableFilter<"user_notifications"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"user_notifications"> | Date | string
+}
+
+export type user_notificationsCreateWithoutUser_loginInput = {
+  user_notification_id?: string
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+  notifications: Prisma.notificationsCreateNestedOneWithoutUser_notificationsInput
+}
+
+export type user_notificationsUncheckedCreateWithoutUser_loginInput = {
   user_notification_id?: string
   notification_id: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
 }
 
-export type user_notificationsUpdateWithoutUser_loginInput = {
-  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
-  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
-  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_notificationsNestedInput
+export type user_notificationsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.user_notificationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput>
 }
 
-export type user_notificationsUncheckedUpdateWithoutUser_loginInput = {
-  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
-  notification_id?: Prisma.StringFieldUpdateOperationsInput | string
-  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
+export type user_notificationsCreateManyUser_loginInputEnvelope = {
+  data: Prisma.user_notificationsCreateManyUser_loginInput | Prisma.user_notificationsCreateManyUser_loginInput[]
+  skipDuplicates?: boolean
 }
 
-export type user_notificationsUncheckedUpdateManyWithoutUser_loginInput = {
-  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
-  notification_id?: Prisma.StringFieldUpdateOperationsInput | string
-  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
+export type user_notificationsUpsertWithWhereUniqueWithoutUser_loginInput = {
+  where: Prisma.user_notificationsWhereUniqueInput
+  update: Prisma.XOR<Prisma.user_notificationsUpdateWithoutUser_loginInput, Prisma.user_notificationsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.user_notificationsCreateWithoutUser_loginInput, Prisma.user_notificationsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type user_notificationsUpdateWithWhereUniqueWithoutUser_loginInput = {
+  where: Prisma.user_notificationsWhereUniqueInput
+  data: Prisma.XOR<Prisma.user_notificationsUpdateWithoutUser_loginInput, Prisma.user_notificationsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type user_notificationsUpdateManyWithWhereWithoutUser_loginInput = {
+  where: Prisma.user_notificationsScalarWhereInput
+  data: Prisma.XOR<Prisma.user_notificationsUpdateManyMutationInput, Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginInput>
 }
 
 export type user_notificationsCreateManyNotificationsInput = {
@@ -652,22 +532,14 @@ export type user_notificationsCreateManyNotificationsInput = {
   user_id: string
   is_read?: boolean
   read_at?: Date | string | null
-<<<<<<< HEAD
   created_at?: Date | string
-=======
-  created_at?: Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsUpdateWithoutNotificationsInput = {
   user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutUser_notificationsNestedInput
 }
 
@@ -676,11 +548,7 @@ export type user_notificationsUncheckedUpdateWithoutNotificationsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
 }
 
 export type user_notificationsUncheckedUpdateManyWithoutNotificationsInput = {
@@ -688,11 +556,39 @@ export type user_notificationsUncheckedUpdateManyWithoutNotificationsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-<<<<<<< HEAD
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-=======
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
->>>>>>> varun-backend
+}
+
+export type user_notificationsCreateManyUser_loginInput = {
+  user_notification_id?: string
+  notification_id: string
+  is_read?: boolean
+  read_at?: Date | string | null
+  created_at?: Date | string
+}
+
+export type user_notificationsUpdateWithoutUser_loginInput = {
+  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_notificationsNestedInput
+}
+
+export type user_notificationsUncheckedUpdateWithoutUser_loginInput = {
+  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
+  notification_id?: Prisma.StringFieldUpdateOperationsInput | string
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type user_notificationsUncheckedUpdateManyWithoutUser_loginInput = {
+  user_notification_id?: Prisma.StringFieldUpdateOperationsInput | string
+  notification_id?: Prisma.StringFieldUpdateOperationsInput | string
+  is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -765,11 +661,7 @@ export type $user_notificationsPayload<ExtArgs extends runtime.Types.Extensions.
     user_id: string
     is_read: boolean
     read_at: Date | null
-<<<<<<< HEAD
     created_at: Date
-=======
-    created_at: Date | null
->>>>>>> varun-backend
   }, ExtArgs["result"]["user_notifications"]>
   composites: {}
 }

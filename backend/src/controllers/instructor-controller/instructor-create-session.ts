@@ -58,13 +58,14 @@ export const createAttendanceSessionsFromExcel = asyncHandler(
         session_time: rawRow.session_time || undefined,
         room_no: rawRow.room_no || undefined,
         topic_name: rawRow.topic_name || undefined,
+
       });
 
       if (!parsed.success) {
         results.push({
           rowNumber: rawRow.rowNumber,
           status: "failed",
-          reason: parsed.error.issues.map((i) => i.message).join("; "),
+          reason: parsed.error.issues.map((i: any) => i.message).join("; "),
         });
         continue;
       }

@@ -369,48 +369,6 @@ export type candidate_assessmentMinOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
 }
 
-export type candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput = {
-  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
-  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
-  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-}
-
-export type candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput = {
-  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
-  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
-  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-}
-
-export type candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
-  upsert?: Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
-  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
-  set?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  disconnect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  delete?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  update?: Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
-  updateMany?: Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
-  deleteMany?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
-}
-
-export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
-  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
-  upsert?: Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
-  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
-  set?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  disconnect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  delete?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
-  update?: Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
-  updateMany?: Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
-  deleteMany?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
-}
-
 export type candidate_assessmentCreateNestedManyWithoutAssessmentsInput = {
   create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutAssessmentsInput, Prisma.candidate_assessmentUncheckedCreateWithoutAssessmentsInput> | Prisma.candidate_assessmentCreateWithoutAssessmentsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutAssessmentsInput[]
   connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutAssessmentsInput | Prisma.candidate_assessmentCreateOrConnectWithoutAssessmentsInput[]
@@ -453,61 +411,46 @@ export type candidate_assessmentUncheckedUpdateManyWithoutAssessmentsNestedInput
   deleteMany?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
 }
 
-export type candidate_assessmentCreateWithoutCandidates_detailsInput = {
-  ca_record_id?: string
-  attempted_at?: Date | string
-  assessment_grade?: $Enums.grade_types | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  assessments: Prisma.assessmentsCreateNestedOneWithoutCandidate_assessmentInput
+export type candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput = {
+  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
+  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
+  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
 }
 
-export type candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput = {
-  ca_record_id?: string
-  assessment_id: string
-  attempted_at?: Date | string
-  assessment_grade?: $Enums.grade_types | null
-  created_at?: Date | string
-  updated_at?: Date | string
+export type candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput = {
+  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
+  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
+  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
 }
 
-export type candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput = {
-  where: Prisma.candidate_assessmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput>
+export type candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
+  upsert?: Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
+  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
+  set?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  disconnect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  delete?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  update?: Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
+  updateMany?: Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
+  deleteMany?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
 }
 
-export type candidate_assessmentCreateManyCandidates_detailsInputEnvelope = {
-  data: Prisma.candidate_assessmentCreateManyCandidates_detailsInput | Prisma.candidate_assessmentCreateManyCandidates_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput = {
-  where: Prisma.candidate_assessmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.candidate_assessmentUpdateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput>
-  create: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput>
-}
-
-export type candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput = {
-  where: Prisma.candidate_assessmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.candidate_assessmentUpdateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput>
-}
-
-export type candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput = {
-  where: Prisma.candidate_assessmentScalarWhereInput
-  data: Prisma.XOR<Prisma.candidate_assessmentUpdateManyMutationInput, Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInput>
-}
-
-export type candidate_assessmentScalarWhereInput = {
-  AND?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
-  OR?: Prisma.candidate_assessmentScalarWhereInput[]
-  NOT?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
-  ca_record_id?: Prisma.UuidFilter<"candidate_assessment"> | string
-  assessment_id?: Prisma.UuidFilter<"candidate_assessment"> | string
-  candidate_id?: Prisma.UuidFilter<"candidate_assessment"> | string
-  attempted_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
-  assessment_grade?: Prisma.Enumgrade_typesNullableFilter<"candidate_assessment"> | $Enums.grade_types | null
-  created_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput> | Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput[] | Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput[]
+  connectOrCreate?: Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput | Prisma.candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput[]
+  upsert?: Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput[]
+  createMany?: Prisma.candidate_assessmentCreateManyCandidates_detailsInputEnvelope
+  set?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  disconnect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  delete?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  connect?: Prisma.candidate_assessmentWhereUniqueInput | Prisma.candidate_assessmentWhereUniqueInput[]
+  update?: Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput[]
+  updateMany?: Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput | Prisma.candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput[]
+  deleteMany?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
 }
 
 export type candidate_assessmentCreateWithoutAssessmentsInput = {
@@ -554,7 +497,29 @@ export type candidate_assessmentUpdateManyWithWhereWithoutAssessmentsInput = {
   data: Prisma.XOR<Prisma.candidate_assessmentUpdateManyMutationInput, Prisma.candidate_assessmentUncheckedUpdateManyWithoutAssessmentsInput>
 }
 
-export type candidate_assessmentCreateManyCandidates_detailsInput = {
+export type candidate_assessmentScalarWhereInput = {
+  AND?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
+  OR?: Prisma.candidate_assessmentScalarWhereInput[]
+  NOT?: Prisma.candidate_assessmentScalarWhereInput | Prisma.candidate_assessmentScalarWhereInput[]
+  ca_record_id?: Prisma.UuidFilter<"candidate_assessment"> | string
+  assessment_id?: Prisma.UuidFilter<"candidate_assessment"> | string
+  candidate_id?: Prisma.UuidFilter<"candidate_assessment"> | string
+  attempted_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+  assessment_grade?: Prisma.Enumgrade_typesNullableFilter<"candidate_assessment"> | $Enums.grade_types | null
+  created_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+}
+
+export type candidate_assessmentCreateWithoutCandidates_detailsInput = {
+  ca_record_id?: string
+  attempted_at?: Date | string
+  assessment_grade?: $Enums.grade_types | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  assessments: Prisma.assessmentsCreateNestedOneWithoutCandidate_assessmentInput
+}
+
+export type candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput = {
   ca_record_id?: string
   assessment_id: string
   attempted_at?: Date | string
@@ -563,31 +528,30 @@ export type candidate_assessmentCreateManyCandidates_detailsInput = {
   updated_at?: Date | string
 }
 
-export type candidate_assessmentUpdateWithoutCandidates_detailsInput = {
-  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assessments?: Prisma.assessmentsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
+export type candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput = {
+  where: Prisma.candidate_assessmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput>
 }
 
-export type candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput = {
-  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
-  assessment_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type candidate_assessmentCreateManyCandidates_detailsInputEnvelope = {
+  data: Prisma.candidate_assessmentCreateManyCandidates_detailsInput | Prisma.candidate_assessmentCreateManyCandidates_detailsInput[]
+  skipDuplicates?: boolean
 }
 
-export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
-  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
-  assessment_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type candidate_assessmentUpsertWithWhereUniqueWithoutCandidates_detailsInput = {
+  where: Prisma.candidate_assessmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.candidate_assessmentUpdateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput>
+  create: Prisma.XOR<Prisma.candidate_assessmentCreateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput>
+}
+
+export type candidate_assessmentUpdateWithWhereUniqueWithoutCandidates_detailsInput = {
+  where: Prisma.candidate_assessmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.candidate_assessmentUpdateWithoutCandidates_detailsInput, Prisma.candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput>
+}
+
+export type candidate_assessmentUpdateManyWithWhereWithoutCandidates_detailsInput = {
+  where: Prisma.candidate_assessmentScalarWhereInput
+  data: Prisma.XOR<Prisma.candidate_assessmentUpdateManyMutationInput, Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInput>
 }
 
 export type candidate_assessmentCreateManyAssessmentsInput = {
@@ -620,6 +584,42 @@ export type candidate_assessmentUncheckedUpdateWithoutAssessmentsInput = {
 export type candidate_assessmentUncheckedUpdateManyWithoutAssessmentsInput = {
   ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
   candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type candidate_assessmentCreateManyCandidates_detailsInput = {
+  ca_record_id?: string
+  assessment_id: string
+  attempted_at?: Date | string
+  assessment_grade?: $Enums.grade_types | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type candidate_assessmentUpdateWithoutCandidates_detailsInput = {
+  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessments?: Prisma.assessmentsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
+}
+
+export type candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput = {
+  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessment_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
+  ca_record_id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessment_id?: Prisma.StringFieldUpdateOperationsInput | string
   attempted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
