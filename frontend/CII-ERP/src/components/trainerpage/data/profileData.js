@@ -207,6 +207,7 @@ export const profileGuardianDetail = {
       relationship: 'Brother',
       mobileNumber: '9123456789',
       occupation: 'Software Engineer',
+      bloodGroup: 'A+',
     }
   ]
 };
