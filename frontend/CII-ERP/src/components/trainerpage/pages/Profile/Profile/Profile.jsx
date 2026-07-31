@@ -66,7 +66,10 @@ const Profile = () => {
   const [permanentAddress, setPermanentAddress] = useState(
     profileBasicInfo.permanentAddress,
   );
-  const [guardian, setGuardian] = useState(profileGuardianDetail.guardian);
+
+  const [guardians, setGuardians] = useState(profileGuardianDetail.guardians);
+  const [activeGuardianIndex, setActiveGuardianIndex] = useState(0);
+
   const [education, setEducation] = useState(profileEducation);
   const [experience, setExperience] = useState(profileExperience);
 
@@ -75,7 +78,7 @@ const Profile = () => {
     setContact(updated.contact);
     setCurrentAddress(updated.currentAddress);
     setPermanentAddress(updated.permanentAddress);
-    setGuardian(updated.guardian);
+    setGuardian(updated.guardians);
     setEducation(updated.education);
     setExperience(updated.experience);
     setShowEditModal(false);
@@ -105,7 +108,8 @@ const Profile = () => {
           />
         );
       case 'guardian-details':
-        return <ContactDetailsTab guardian={guardian} />;
+        return <ContactDetailsTab guardians={guardians} activeIndex={activeGuardianIndex} onIndexChange={setActiveGuardianIndex} />;
+        // return <GuardianDetailsTab guardian={guardian} />;
       default:
         return null;
     }
@@ -181,7 +185,7 @@ const Profile = () => {
           contact={contact}
           currentAddress={currentAddress}
           permanentAddress={permanentAddress}
-          guardian={guardian}
+          guardians={guardians}
           education={education}
           experience={experience}
           onCancel={() => setShowEditModal(false)}

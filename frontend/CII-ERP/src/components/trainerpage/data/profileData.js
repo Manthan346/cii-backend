@@ -158,25 +158,49 @@ export const profileDocumentNote =
 // the GUARDIAN's address - separate from the staff member's own
 // currentAddress/permanentAddress in profileBasicInfo above.
 export const profileGuardianDetail = {
-  guardian: {
-    name: 'Ram Sharma',
-    relationship: 'Father',
-    mobileNumber: '8723456284',
-    occupation: 'Retired Govt. officer',
-    bloodGroup: 'B+',
-    currentAddress: {
-      line: 'Shree Complex, Thane (w)',
-      state: 'Maharashtra',
-      district: 'Thane District',
-      taluka: 'Thane',
-      pinCode: '400101',
+  guardians:
+  [
+    {
+      name: 'Ram Sharma',
+      relationship: 'Father',
+      mobileNumber: '8723456284',
+      occupation: 'Retired Govt. officer',
+      bloodGroup: 'B+',
+      currentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
+      permanentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
     },
-    permanentAddress: {
-      line: 'Shree Complex, Thane (w)',
-      state: 'Maharashtra',
-      district: 'Thane District',
-      taluka: 'Thane',
-      pinCode: '400101',
+    {
+      name: 'Sunita Sharma',
+      relationship: 'Mother',
+      mobileNumber: '9876543210',
+      occupation: 'Homemaker',
+      bloodGroup: 'O+',
+      currentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
+      permanentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
     },
-  },
+  ]
 };
