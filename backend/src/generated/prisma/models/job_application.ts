@@ -389,6 +389,10 @@ export type job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInp
   deleteMany?: Prisma.job_applicationScalarWhereInput | Prisma.job_applicationScalarWhereInput[]
 }
 
+export type NullableEnumjob_application_statusFieldUpdateOperationsInput = {
+  set?: $Enums.job_application_status | null
+}
+
 export type job_applicationCreateNestedManyWithoutJob_opportunityInput = {
   create?: Prisma.XOR<Prisma.job_applicationCreateWithoutJob_opportunityInput, Prisma.job_applicationUncheckedCreateWithoutJob_opportunityInput> | Prisma.job_applicationCreateWithoutJob_opportunityInput[] | Prisma.job_applicationUncheckedCreateWithoutJob_opportunityInput[]
   connectOrCreate?: Prisma.job_applicationCreateOrConnectWithoutJob_opportunityInput | Prisma.job_applicationCreateOrConnectWithoutJob_opportunityInput[]
@@ -429,10 +433,6 @@ export type job_applicationUncheckedUpdateManyWithoutJob_opportunityNestedInput 
   update?: Prisma.job_applicationUpdateWithWhereUniqueWithoutJob_opportunityInput | Prisma.job_applicationUpdateWithWhereUniqueWithoutJob_opportunityInput[]
   updateMany?: Prisma.job_applicationUpdateManyWithWhereWithoutJob_opportunityInput | Prisma.job_applicationUpdateManyWithWhereWithoutJob_opportunityInput[]
   deleteMany?: Prisma.job_applicationScalarWhereInput | Prisma.job_applicationScalarWhereInput[]
-}
-
-export type NullableEnumjob_application_statusFieldUpdateOperationsInput = {
-  set?: $Enums.job_application_status | null
 }
 
 export type job_applicationCreateWithoutCandidates_detailsInput = {

@@ -449,10 +449,14 @@ export type study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput = {
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
-export type study_materialCreateNestedManyWithoutInstructor_detailsInput = {
-  create?: Prisma.XOR<Prisma.study_materialCreateWithoutInstructor_detailsInput, Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput> | Prisma.study_materialCreateWithoutInstructor_detailsInput[] | Prisma.study_materialUncheckedCreateWithoutInstructor_detailsInput[]
-  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput | Prisma.study_materialCreateOrConnectWithoutInstructor_detailsInput[]
-  createMany?: Prisma.study_materialCreateManyInstructor_detailsInputEnvelope
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type study_materialCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.study_materialCreateManyUser_loginInputEnvelope
   connect?: Prisma.study_materialWhereUniqueInput | Prisma.study_materialWhereUniqueInput[]
 }
 
@@ -489,10 +493,6 @@ export type study_materialUncheckedUpdateManyWithoutInstructor_detailsNestedInpu
   update?: Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput | Prisma.study_materialUpdateWithWhereUniqueWithoutInstructor_detailsInput[]
   updateMany?: Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput | Prisma.study_materialUpdateManyWithWhereWithoutInstructor_detailsInput[]
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
 }
 
 export type study_materialCreateWithoutBatch_detailsInput = {

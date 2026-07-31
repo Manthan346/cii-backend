@@ -560,20 +560,6 @@ export type job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput 
   deleteMany?: Prisma.job_opportunityScalarWhereInput | Prisma.job_opportunityScalarWhereInput[]
 }
 
-export type job_opportunityCreateNestedOneWithoutJob_eligible_courseInput = {
-  create?: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
-  connectOrCreate?: Prisma.job_opportunityCreateOrConnectWithoutJob_eligible_courseInput
-  connect?: Prisma.job_opportunityWhereUniqueInput
-}
-
-export type job_opportunityUpdateOneRequiredWithoutJob_eligible_courseNestedInput = {
-  create?: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
-  connectOrCreate?: Prisma.job_opportunityCreateOrConnectWithoutJob_eligible_courseInput
-  upsert?: Prisma.job_opportunityUpsertWithoutJob_eligible_courseInput
-  connect?: Prisma.job_opportunityWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.job_opportunityUpdateToOneWithWhereWithoutJob_eligible_courseInput, Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput>, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
-}
-
 export type job_opportunityCreateNestedOneWithoutJob_applicationInput = {
   create?: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_applicationInput, Prisma.job_opportunityUncheckedCreateWithoutJob_applicationInput>
   connectOrCreate?: Prisma.job_opportunityCreateOrConnectWithoutJob_applicationInput
@@ -586,6 +572,20 @@ export type job_opportunityUpdateOneRequiredWithoutJob_applicationNestedInput = 
   upsert?: Prisma.job_opportunityUpsertWithoutJob_applicationInput
   connect?: Prisma.job_opportunityWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.job_opportunityUpdateToOneWithWhereWithoutJob_applicationInput, Prisma.job_opportunityUpdateWithoutJob_applicationInput>, Prisma.job_opportunityUncheckedUpdateWithoutJob_applicationInput>
+}
+
+export type job_opportunityCreateNestedOneWithoutJob_eligible_courseInput = {
+  create?: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
+  connectOrCreate?: Prisma.job_opportunityCreateOrConnectWithoutJob_eligible_courseInput
+  connect?: Prisma.job_opportunityWhereUniqueInput
+}
+
+export type job_opportunityUpdateOneRequiredWithoutJob_eligible_courseNestedInput = {
+  create?: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
+  connectOrCreate?: Prisma.job_opportunityCreateOrConnectWithoutJob_eligible_courseInput
+  upsert?: Prisma.job_opportunityUpsertWithoutJob_eligible_courseInput
+  connect?: Prisma.job_opportunityWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.job_opportunityUpdateToOneWithWhereWithoutJob_eligible_courseInput, Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput>, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
 }
 
 export type job_opportunityCreateWithoutCompany_detailsInput = {
@@ -659,82 +659,6 @@ export type job_opportunityScalarWhereInput = {
   status?: Prisma.StringFilter<"job_opportunity"> | string
   created_at?: Prisma.DateTimeFilter<"job_opportunity"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"job_opportunity"> | Date | string
-}
-
-export type job_opportunityCreateWithoutJob_eligible_courseInput = {
-  job_id?: string
-  job_title: string
-  description?: string | null
-  location?: string | null
-  salary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vacancies?: number | null
-  last_apply_date?: Date | string | null
-  status?: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  job_application?: Prisma.job_applicationCreateNestedManyWithoutJob_opportunityInput
-  company_details: Prisma.company_detailsCreateNestedOneWithoutJob_opportunityInput
-}
-
-export type job_opportunityUncheckedCreateWithoutJob_eligible_courseInput = {
-  job_id?: string
-  company_id: string
-  job_title: string
-  description?: string | null
-  location?: string | null
-  salary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vacancies?: number | null
-  last_apply_date?: Date | string | null
-  status?: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  job_application?: Prisma.job_applicationUncheckedCreateNestedManyWithoutJob_opportunityInput
-}
-
-export type job_opportunityCreateOrConnectWithoutJob_eligible_courseInput = {
-  where: Prisma.job_opportunityWhereUniqueInput
-  create: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
-}
-
-export type job_opportunityUpsertWithoutJob_eligible_courseInput = {
-  update: Prisma.XOR<Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
-  create: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
-  where?: Prisma.job_opportunityWhereInput
-}
-
-export type job_opportunityUpdateToOneWithWhereWithoutJob_eligible_courseInput = {
-  where?: Prisma.job_opportunityWhereInput
-  data: Prisma.XOR<Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
-}
-
-export type job_opportunityUpdateWithoutJob_eligible_courseInput = {
-  job_id?: Prisma.StringFieldUpdateOperationsInput | string
-  job_title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  salary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vacancies?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  last_apply_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  job_application?: Prisma.job_applicationUpdateManyWithoutJob_opportunityNestedInput
-  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutJob_opportunityNestedInput
-}
-
-export type job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput = {
-  job_id?: Prisma.StringFieldUpdateOperationsInput | string
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  job_title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  salary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vacancies?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  last_apply_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutJob_opportunityNestedInput
 }
 
 export type job_opportunityCreateWithoutJob_applicationInput = {
@@ -811,6 +735,82 @@ export type job_opportunityUncheckedUpdateWithoutJob_applicationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutJob_opportunityNestedInput
+}
+
+export type job_opportunityCreateWithoutJob_eligible_courseInput = {
+  job_id?: string
+  job_title: string
+  description?: string | null
+  location?: string | null
+  salary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vacancies?: number | null
+  last_apply_date?: Date | string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  job_application?: Prisma.job_applicationCreateNestedManyWithoutJob_opportunityInput
+  company_details: Prisma.company_detailsCreateNestedOneWithoutJob_opportunityInput
+}
+
+export type job_opportunityUncheckedCreateWithoutJob_eligible_courseInput = {
+  job_id?: string
+  company_id: string
+  job_title: string
+  description?: string | null
+  location?: string | null
+  salary?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vacancies?: number | null
+  last_apply_date?: Date | string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  job_application?: Prisma.job_applicationUncheckedCreateNestedManyWithoutJob_opportunityInput
+}
+
+export type job_opportunityCreateOrConnectWithoutJob_eligible_courseInput = {
+  where: Prisma.job_opportunityWhereUniqueInput
+  create: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
+}
+
+export type job_opportunityUpsertWithoutJob_eligible_courseInput = {
+  update: Prisma.XOR<Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
+  create: Prisma.XOR<Prisma.job_opportunityCreateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedCreateWithoutJob_eligible_courseInput>
+  where?: Prisma.job_opportunityWhereInput
+}
+
+export type job_opportunityUpdateToOneWithWhereWithoutJob_eligible_courseInput = {
+  where?: Prisma.job_opportunityWhereInput
+  data: Prisma.XOR<Prisma.job_opportunityUpdateWithoutJob_eligible_courseInput, Prisma.job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput>
+}
+
+export type job_opportunityUpdateWithoutJob_eligible_courseInput = {
+  job_id?: Prisma.StringFieldUpdateOperationsInput | string
+  job_title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vacancies?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_apply_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  job_application?: Prisma.job_applicationUpdateManyWithoutJob_opportunityNestedInput
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutJob_opportunityNestedInput
+}
+
+export type job_opportunityUncheckedUpdateWithoutJob_eligible_courseInput = {
+  job_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  job_title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vacancies?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  last_apply_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutJob_opportunityNestedInput
 }
 
 export type job_opportunityCreateManyCompany_detailsInput = {

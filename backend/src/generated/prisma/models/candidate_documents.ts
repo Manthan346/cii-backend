@@ -302,11 +302,6 @@ export type candidate_documentsUncheckedUpdateManyInput = {
   candidate_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type Candidate_documentsNullableScalarRelationFilter = {
-  is?: Prisma.candidate_documentsWhereInput | null
-  isNot?: Prisma.candidate_documentsWhereInput | null
-}
-
 export type candidate_documentsCountOrderByAggregateInput = {
   document_id?: Prisma.SortOrder
   candidate_id?: Prisma.SortOrder
@@ -332,6 +327,11 @@ export type candidate_documentsMinOrderByAggregateInput = {
   candidate_aadhar_card?: Prisma.SortOrder
   candidate_pan_card?: Prisma.SortOrder
   candidate_resume?: Prisma.SortOrder
+}
+
+export type Candidate_documentsNullableScalarRelationFilter = {
+  is?: Prisma.candidate_documentsWhereInput | null
+  isNot?: Prisma.candidate_documentsWhereInput | null
 }
 
 export type candidate_documentsCreateNestedOneWithoutCandidates_detailsInput = {

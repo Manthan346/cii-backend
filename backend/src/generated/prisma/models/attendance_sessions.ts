@@ -393,16 +393,6 @@ export type Attendance_sessionsScalarRelationFilter = {
   isNot?: Prisma.attendance_sessionsWhereInput
 }
 
-export type Attendance_sessionsListRelationFilter = {
-  every?: Prisma.attendance_sessionsWhereInput
-  some?: Prisma.attendance_sessionsWhereInput
-  none?: Prisma.attendance_sessionsWhereInput
-}
-
-export type attendance_sessionsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type attendance_sessionsBatch_idSession_dateCompoundUniqueInput = {
   batch_id: string
   session_date: Date | string
@@ -447,6 +437,16 @@ export type attendance_sessionsMinOrderByAggregateInput = {
   topic_name?: Prisma.SortOrder
 }
 
+export type Attendance_sessionsListRelationFilter = {
+  every?: Prisma.attendance_sessionsWhereInput
+  some?: Prisma.attendance_sessionsWhereInput
+  none?: Prisma.attendance_sessionsWhereInput
+}
+
+export type attendance_sessionsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type attendance_sessionsCreateNestedOneWithoutAttendance_recordsInput = {
   create?: Prisma.XOR<Prisma.attendance_sessionsCreateWithoutAttendance_recordsInput, Prisma.attendance_sessionsUncheckedCreateWithoutAttendance_recordsInput>
   connectOrCreate?: Prisma.attendance_sessionsCreateOrConnectWithoutAttendance_recordsInput
@@ -459,6 +459,14 @@ export type attendance_sessionsUpdateOneRequiredWithoutAttendance_recordsNestedI
   upsert?: Prisma.attendance_sessionsUpsertWithoutAttendance_recordsInput
   connect?: Prisma.attendance_sessionsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.attendance_sessionsUpdateToOneWithWhereWithoutAttendance_recordsInput, Prisma.attendance_sessionsUpdateWithoutAttendance_recordsInput>, Prisma.attendance_sessionsUncheckedUpdateWithoutAttendance_recordsInput>
+}
+
+export type Enumattendance_mode_typeFieldUpdateOperationsInput = {
+  set?: $Enums.attendance_mode_type
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type attendance_sessionsCreateNestedManyWithoutBatch_detailsInput = {
@@ -543,10 +551,6 @@ export type attendance_sessionsUncheckedUpdateManyWithoutInstructor_detailsNeste
   update?: Prisma.attendance_sessionsUpdateWithWhereUniqueWithoutInstructor_detailsInput | Prisma.attendance_sessionsUpdateWithWhereUniqueWithoutInstructor_detailsInput[]
   updateMany?: Prisma.attendance_sessionsUpdateManyWithWhereWithoutInstructor_detailsInput | Prisma.attendance_sessionsUpdateManyWithWhereWithoutInstructor_detailsInput[]
   deleteMany?: Prisma.attendance_sessionsScalarWhereInput | Prisma.attendance_sessionsScalarWhereInput[]
-}
-
-export type Enumattendance_mode_typeFieldUpdateOperationsInput = {
-  set?: $Enums.attendance_mode_type
 }
 
 export type attendance_sessionsCreateWithoutAttendance_recordsInput = {
