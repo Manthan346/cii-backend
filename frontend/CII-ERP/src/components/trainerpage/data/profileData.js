@@ -208,6 +208,13 @@ export const profileGuardianDetail = {
       mobileNumber: '9123456789',
       occupation: 'Software Engineer',
       bloodGroup: 'A+',
+      currentAddress: {
+        line: 'Shree Complex, Thane (w)',
+        state: 'Maharashtra',
+        district: 'Thane District',
+        taluka: 'Thane',
+        pinCode: '400101',
+      },
     }
   ]
 };
