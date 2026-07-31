@@ -239,7 +239,17 @@ export const Candidates_detailsScalarFieldEnum = {
   candidate_unique_id: 'candidate_unique_id',
   guardian_address: 'guardian_address',
   guardian_gender: 'guardian_gender',
-  guardian_dob: 'guardian_dob'
+  guardian_dob: 'guardian_dob',
+  father_name: 'father_name',
+  father_occupation: 'father_occupation',
+  father_phone_no: 'father_phone_no',
+  father_blood_group: 'father_blood_group',
+  mother_name: 'mother_name',
+  mother_occupation: 'mother_occupation',
+  mother_blood_group: 'mother_blood_group',
+  mother_phone_no: 'mother_phone_no',
+  father_address: 'father_address',
+  mother_address: 'mother_address'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -376,7 +386,17 @@ export const Instructor_detailsScalarFieldEnum = {
   instructor_certificates: 'instructor_certificates',
   instructor_prev_org: 'instructor_prev_org',
   instructor_prev_org_designation: 'instructor_prev_org_designation',
-  highest_qualification: 'highest_qualification'
+  highest_qualification: 'highest_qualification',
+  father_name: 'father_name',
+  father_occupation: 'father_occupation',
+  father_phone_no: 'father_phone_no',
+  father_blood_group: 'father_blood_group',
+  mother_name: 'mother_name',
+  mother_occupation: 'mother_occupation',
+  mother_blood_group: 'mother_blood_group',
+  mother_phone_no: 'mother_phone_no',
+  father_current_address: 'father_current_address',
+  mother_current_address: 'mother_current_address'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]

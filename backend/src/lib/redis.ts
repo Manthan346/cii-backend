@@ -7,3 +7,6 @@ redis.on("connect", () => console.log("Connected"));
 redis.on("ready", () => console.log("Ready"));
 redis.on("close", () => console.log("Closed"));
 redis.on("error", (err) => console.error(err));
+
+//expiry time for data
+export const ATTENDANCE_CACHE_TTL_SECONDS = 60 * 10;

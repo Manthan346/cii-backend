@@ -162,6 +162,16 @@ model candidates_details {
   guardian_address            String?
   guardian_gender             String?                @db.VarChar(10)
   guardian_dob                DateTime?              @db.Date
+  father_name                 String?
+  father_occupation           String?
+  father_phone_no             String?                @db.VarChar(10)
+  father_blood_group          String?                @db.VarChar(10)
+  mother_name                 String?
+  mother_occupation           String?
+  mother_blood_group          String?                @db.VarChar(10)
+  mother_phone_no             String?                @db.VarChar(10)
+  father_address              String?
+  mother_address              String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -306,6 +316,16 @@ model instructor_details {
   instructor_prev_org              String[]
   instructor_prev_org_designation  String?               @db.VarChar(255)
   highest_qualification            String?               @db.VarChar(255)
+  father_name                      String?
+  father_occupation                String?
+  father_phone_no                  String?               @db.VarChar(10)
+  father_blood_group               String?               @db.VarChar(10)
+  mother_name                      String?
+  mother_occupation                String?
+  mother_blood_group               String?               @db.VarChar(10)
+  mother_phone_no                  String?               @db.VarChar(10)
+  father_current_address           String?
+  mother_current_address           String?
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
