@@ -204,6 +204,9 @@ export const profileGuardianDetail = {
     },
     {
       name: 'Ramesh Sharma',
+      relationship: 'Brother',
+      mobileNumber: '9123456789',
+      occupation: 'Software Engineer',
     }
   ]
 };
