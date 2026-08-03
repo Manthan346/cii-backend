@@ -63,15 +63,16 @@ export const profileBasicInfo = {
   currentAddress: {
     line: "'E' 205, Shree Sai Housing Society, Om Nagar, Kandivali (w)",
     state: 'Maharashtra',
+    city: 'Kandivali',
     district: 'Mumbai suburban District',
-    taluka: 'Kandivali',
     pinCode: '400067',
   },
   permanentAddress: {
     line: "'E' 205, Shree Sai Housing Society, Om Nagar, Kandivali (w)",
+    // line: "'E' 205, Kandivali (w)",
     state: 'Maharashtra',
+    city: 'Kandivali',
     district: 'Mumbai suburban District',
-    taluka: 'Kandivali',
     pinCode: '400067',
   },
 };
@@ -152,11 +153,10 @@ export const profileDocumentNote =
   'File Size Should be less than 200KB (PDF Format only)';
 
 // ---- Guardian Details tab ----
-// Guardian's own address is split into currentAddress/permanentAddress
-// (same shape as profileBasicInfo above: line/state/district/taluka/
-// pinCode), replacing the old single flat `address` string. This is
-// the GUARDIAN's address - separate from the staff member's own
-// currentAddress/permanentAddress in profileBasicInfo above.
+// Guardian's own address is a single flat text field (`address`) -
+// unlike the staff member's own address above, which is split into
+// separate currentAddress/permanentAddress objects with
+// line/state/city/district/pinCode.
 export const profileGuardianDetail = {
   guardians: [
     {

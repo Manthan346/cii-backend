@@ -37,6 +37,7 @@ import Notifications from '../components/trainerpage/pages/Notifications/Notific
 import TaskAssigned from '../components/trainerpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
 import Profile from '../components/trainerpage/pages/Profile/Profile/Profile';
 import Events from '../components/trainerpage/pages/Events/Events/Events';
+import Logout from '../components/trainerpage/pages/Logout/Logout';
 
 export default function TrainerDashboard() {
   return (
@@ -55,6 +56,7 @@ export default function TrainerDashboard() {
       <Route path="/events" element={<Events />} />
       {/* Default redirect to dashboard */}
       <Route path="/" element={<Dashboard />} />
+      <Route path="/logout" element={<Logout />} />
     </Routes>
   );
 }

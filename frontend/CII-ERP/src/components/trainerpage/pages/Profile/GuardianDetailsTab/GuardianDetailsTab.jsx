@@ -3,12 +3,10 @@ import './GuardianDetailsTab.css';
 /**
  * GuardianDetailsTab
  *
- * "Contact Details" tab content. Shows Guardian Information, followed
- * by the guardian's own Current Address and Permanent Address - both
- * sourced from guardian.currentAddress / guardian.permanentAddress
- * (not the staff member's address, which lives in Basic Information).
- * The old flat `guardian.address` string field has been removed now
- * that address is fully represented by the two structured objects.
+ * "Guardian Details" tab content. Shows Guardian Information for the
+ * active guardian, including a single flat `guardian.address` text
+ * field (not the staff member's own address, which lives in Basic
+ * Information as separate currentAddress/permanentAddress objects).
  */
 export default function GuardianDetailsTab({ guardians, activeIndex, onIndexChange }) {
   if (!guardians || guardians.length === 0) {
@@ -85,81 +83,6 @@ const guardian = guardians[activeIndex];
         </div>
       </div>
 
-      {/* <div className="guardian-details-tab__address-section">
-        <div className="guardian-details-tab__address-columns">
-          <div className="guardian-details-tab__address-column">
-            <h3 className="guardian-details-tab__heading">Current Address</h3>
-
-            <p className="guardian-details-tab__address-line">
-              {guardian.currentAddress?.line}
-            </p>
-
-            <div className="guardian-details-tab__pill-row">
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">State</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.currentAddress?.state}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">District</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.currentAddress?.district}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">Taluka</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.currentAddress?.taluka}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">Pin Code</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.currentAddress?.pinCode}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="guardian-details-tab__address-divider" />
-
-          <div className="guardian-details-tab__address-column">
-            <h3 className="guardian-details-tab__heading">Permanent Address</h3>
-
-            <p className="guardian-details-tab__address-line">
-              {guardian.permanentAddress?.line}
-            </p>
-
-            <div className="guardian-details-tab__pill-row">
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">State</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.permanentAddress?.state}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">District</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.permanentAddress?.district}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">Taluka</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.permanentAddress?.taluka}
-                </span>
-              </div>
-              <div className="guardian-details-tab__pill-field">
-                <span className="guardian-details-tab__label">Pin Code</span>
-                <span className="guardian-details-tab__pill">
-                  {guardian.permanentAddress?.pinCode}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div className="guardian-details-tab__nav">
         <button
           type="button"

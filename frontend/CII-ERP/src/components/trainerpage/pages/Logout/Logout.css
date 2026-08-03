@@ -1,0 +1,52 @@
+.logout-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 24px;
+  font-family: var(--font-family);
+}
+
+.logout-page__card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.logout-page__logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.logout-page__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 6px 0 0;
+}
+
+.logout-page__subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 14px;
+  max-width: 340px;
+}
+
+.logout-page__card .shared-button-button {
+  width: 100%;
+  justify-content: center;
+}
+
+.logout-page__card .shared-button-primary {
+  margin-bottom: 10px;
+}

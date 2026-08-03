@@ -31,6 +31,7 @@ import {
   Bell,
   UserCircle,
   CalendarClock,
+  LogOut,
 } from 'lucide-react';
 
 export const sidebarMenu = [
@@ -119,6 +120,12 @@ export const sidebarMenu = [
       //   icon: Bell,
       //   route: "/trainer/notifications",
       // },
+      {
+        id: 'logout',
+        title: 'Logout',
+        icon: LogOut,
+        route: '/trainer/logout',
+      },
     ],
   },
 ];

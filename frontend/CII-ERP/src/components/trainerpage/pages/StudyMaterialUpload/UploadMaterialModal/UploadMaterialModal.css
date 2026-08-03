@@ -91,7 +91,7 @@
 .study-material-upload-upload-material-modal-file-dropzone {
   border: 1px dashed var(--color-border);
   border-radius: var(--radius-sm);
-  padding: 20px 16px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,6 +99,12 @@
   cursor: pointer;
   background: #fafafa;
   text-align: center;
+  margin-top: 8px;
+}
+
+.study-material-upload-upload-material-modal-file-dropzone:hover {
+  background: #f3f4f6;
+  border-color: var(--color-teal);
 }
 
 .study-material-upload-upload-material-modal-file-icon {

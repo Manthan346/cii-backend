@@ -78,7 +78,7 @@ const Profile = () => {
     setContact(updated.contact);
     setCurrentAddress(updated.currentAddress);
     setPermanentAddress(updated.permanentAddress);
-    setGuardian(updated.guardians);
+    setGuardians(updated.guardians);
     setEducation(updated.education);
     setExperience(updated.experience);
     setShowEditModal(false);
@@ -186,6 +186,7 @@ const Profile = () => {
           currentAddress={currentAddress}
           permanentAddress={permanentAddress}
           guardians={guardians}
+          activeGuardianIndex={activeGuardianIndex}
           education={education}
           experience={experience}
           onCancel={() => setShowEditModal(false)}

@@ -30,14 +30,14 @@ export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
       >
         <Trash2 size={15} />
       </button>
-      <button
+      {/* <button
         type="button"
         className={'batch-management-batch-list-action-buttons-icon-btn'}
         onClick={onAssignTrainer}
         aria-label="Assign trainer"
       >
         <UserPlus size={15} />
-      </button>
+      </button> */}
     </div>
   );
 }

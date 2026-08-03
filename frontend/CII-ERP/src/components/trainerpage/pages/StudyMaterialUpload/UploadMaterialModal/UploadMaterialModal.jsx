@@ -7,9 +7,14 @@ import './UploadMaterialModal.css';
  * UploadMaterialModal (Study Material Upload)
  *
  * "Upload Study Material" popup form: Title, Course, Description
- * (optional), and a File drag/browse zone. Fires onSave(formValues) so
- * the parent page can push a new row into the "All Materials" table
- * and show the success toast.
+ * (optional), and a File field. There's no real backend here to
+ * receive an uploaded file, so instead of a drag/browse dropzone the
+ * material's location is captured as a pasted link (e.g. a Google
+ * Drive / OneDrive / other hosted URL) - matches the reference
+ * "Upload Study Material" screen, which has a "paste link here" input
+ * plus a large paste-target box beneath it. Fires onSave(formValues)
+ * so the parent page can push a new row into the "All Materials"
+ * table and show the success toast.
  *
  * Kept page-local (not /shared) since the field set is specific to
  * uploading study material.
@@ -18,18 +23,25 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
   const [title, setTitle] = useState('');
   const [course, setCourse] = useState('');
   const [description, setDescription] = useState('');
-  const [fileName, setFileName] = useState('');
-  const handleBrowseClick = () => {
-    // No real backend to upload to here - just simulate a selected file
-    // so the "Upload Material" button has something to reference.
-    setFileName((prev) => prev || 'selected-file.pdf');
+  const [link, setLink] = useState('');
+  const handlePasteBoxClick = async () => {
+    // Best-effort: read a link straight from the clipboard when the
+    // browser allows it, otherwise this just acts as a visual prompt
+    // pointing at the input above.
+    try {
+      const clipboardText = await navigator.clipboard?.readText?.();
+      if (clipboardText) setLink(clipboardText.trim());
+    } catch {
+      // Clipboard permission denied / unsupported - no-op, user can
+      // still paste manually into the input above.
+    }
   };
   const handleSave = () => {
     onSave?.({
       title,
       course,
       description,
-      fileName,
+      link,
     });
   };
   return (
@@ -105,11 +117,20 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
           >
             File
           </label>
+          <input
+            type="url"
+            className={'study-material-upload-upload-material-modal-input'}
+            placeholder="paste link here..."
+            value={link}
+            onChange={(event) => setLink(event.target.value)}
+          />
           <div
             className={
               'study-material-upload-upload-material-modal-file-dropzone'
             }
-            onClick={handleBrowseClick}
+            onClick={handlePasteBoxClick}
+            role="button"
+            tabIndex={0}
           >
             <UploadCloud
               size={22}
@@ -122,18 +143,13 @@ export default function UploadMaterialModal({ onCancel, onSave }) {
                 'study-material-upload-upload-material-modal-file-text'
               }
             >
-              {fileName || (
-                <>
-                  Drag file here or{' '}
-                  <span
-                    className={
-                      'study-material-upload-upload-material-modal-browse-link'
-                    }
-                  >
-                    Browse
-                  </span>
-                </>
-              )}
+              <span
+                className={
+                  'study-material-upload-upload-material-modal-browse-link'
+                }
+              >
+                Paste link here
+              </span>
             </p>
           </div>
         </div>

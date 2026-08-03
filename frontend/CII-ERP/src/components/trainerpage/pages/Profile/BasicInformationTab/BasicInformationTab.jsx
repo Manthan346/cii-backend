@@ -7,7 +7,7 @@ import './BasicInformationTab.css';
  * "Basic Information" tab content: Personal Information + Contact side
  * by side, with the Profile completion ring/checklist alongside them.
  * Below that, a separate full-width card shows Current Address and
- * Permanent Address side by side (state/district/taluka/pin code as
+ * Permanent Address side by side (state/district/city/pin code as
  * read-only pills).
  */
 export default function BasicInformationTab({
@@ -133,9 +133,9 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">Taluka</span>
+                  <span className="basic-information-tab__label">City</span>
                   <span className="basic-information-tab__pill">
-                    {current?.taluka}
+                    {current?.city}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
@@ -172,9 +172,9 @@ export default function BasicInformationTab({
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
-                  <span className="basic-information-tab__label">Taluka</span>
+                  <span className="basic-information-tab__label">City</span>
                   <span className="basic-information-tab__pill">
-                    {permanent?.taluka}
+                    {permanent?.city}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">

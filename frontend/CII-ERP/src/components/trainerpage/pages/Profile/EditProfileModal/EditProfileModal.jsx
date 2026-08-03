@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Plus, Trash2 } from 'lucide-react';
 import { Button } from '../../../shared';
 import './EditProfileModal.css';
 
@@ -19,6 +20,16 @@ import './EditProfileModal.css';
  * Fires onSave(updatedProfile) with the same shape as the props it was
  * given, so the parent (Profile.jsx) can merge it straight back into
  * state.
+ *
+ * Personal no longer edits any address fields - Current Address and
+ * Permanent Address (each with Address Line/State/City/District/Pin
+ * Code) live only in the Address section below.
+ *
+ * Guardian is now an array editor: up to 3 guardians can be added
+ * (e.g. Father, Mother, and one more), each with its own
+ * name/relationship/mobile/occupation/blood group and a single
+ * address textfield. At least one guardian (with a name) is required
+ * to save - see handleSave's validation.
  */
 const SECTIONS = [
   {
@@ -45,8 +56,10 @@ const SECTIONS = [
 export default function EditProfileModal({
   personal,
   contact,
-  address,
-  guardian,
+  currentAddress,
+  permanentAddress,
+  guardians,
+  activeGuardianIndex,
   education,
   experience,
   onCancel,
@@ -60,14 +73,28 @@ export default function EditProfileModal({
     ...contact,
   });
   const [addressForm, setAddressForm] = useState({
-    ...address,
+    ...currentAddress,
   });
   const [permanentAddressForm, setPermanentAddressForm] = useState({
-    ...address.permanentAddress,
+    ...permanentAddress,
   });
-  const [guardianForm, setGuardianForm] = useState({
-    ...guardian,
-  });
+  // Up to 3 guardians can be added (Father / Mother / one extra); at
+  // least one is mandatory, so this always starts with at least one
+  // (blank) entry rather than an empty array.
+  const EMPTY_GUARDIAN = {
+    name: '',
+    relationship: '',
+    mobileNumber: '',
+    occupation: '',
+    bloodGroup: '',
+    address: '',
+  };
+  const [guardianForms, setGuardianForms] = useState(() =>
+    guardians && guardians.length > 0
+      ? guardians.slice(0, 3).map((g) => ({ ...EMPTY_GUARDIAN, ...g }))
+      : [{ ...EMPTY_GUARDIAN, relationship: 'Father' }],
+  );
+  const [guardianError, setGuardianError] = useState('');
   const [educationForm, setEducationForm] = useState({
     ...education,
   });
@@ -81,12 +108,37 @@ export default function EditProfileModal({
       [field]: value,
     }));
   };
+  const updateGuardianField = (index, field) => (event) => {
+    const { value } = event.target;
+    setGuardianForms((prev) =>
+      prev.map((g, i) => (i === index ? { ...g, [field]: value } : g)),
+    );
+    if (guardianError) setGuardianError('');
+  };
+  const handleAddGuardian = () => {
+    if (guardianForms.length >= 3) return;
+    setGuardianForms((prev) => [...prev, { ...EMPTY_GUARDIAN }]);
+  };
+  const handleRemoveGuardian = (index) => {
+    // At least one guardian is mandatory, so the last remaining entry
+    // can't be removed.
+    setGuardianForms((prev) =>
+      prev.length <= 1 ? prev : prev.filter((_, i) => i !== index),
+    );
+  };
   const handleSave = () => {
+    const filledGuardians = guardianForms.filter((g) => g.name?.trim());
+    if (filledGuardians.length === 0) {
+      setGuardianError('Please add at least one guardian’s name.');
+      setActiveSection('guardian');
+      return;
+    }
     onSave?.({
       personal: personalForm,
       contact: contactForm,
-      address: addressForm,
-      guardian: guardianForm,
+      currentAddress: addressForm,
+      permanentAddress: permanentAddressForm,
+      guardians: filledGuardians,
       education: educationForm,
       experience: experienceForm,
     });
@@ -179,17 +231,6 @@ export default function EditProfileModal({
                   )}
                 />
               </div>
-              <div className={'profile-edit-profile-modal-field'}>
-                <label className={'profile-edit-profile-modal-label'}>
-                  Permanent Address
-                </label>
-                <textarea
-                  className={'profile-edit-profile-modal-textarea'}
-                  rows={2}
-                  value={permanentAddressForm.line}
-                  onChange={updateField(setPermanentAddressForm)('line')}
-                />
-              </div>
             </>
           )}
 
@@ -237,6 +278,9 @@ export default function EditProfileModal({
 
           {activeSection === 'address' && (
             <>
+              <h3 className={'profile-edit-profile-modal-subheading'}>
+                Current Address
+              </h3>
               <div className={'profile-edit-profile-modal-field'}>
                 <label className={'profile-edit-profile-modal-label'}>
                   Address Line
@@ -262,6 +306,19 @@ export default function EditProfileModal({
                 </div>
                 <div className={'profile-edit-profile-modal-field'}>
                   <label className={'profile-edit-profile-modal-label'}>
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={addressForm.city}
+                    onChange={updateField(setAddressForm)('city')}
+                  />
+                </div>
+              </div>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
                     District
                   </label>
                   <input
@@ -269,19 +326,6 @@ export default function EditProfileModal({
                     className={'profile-edit-profile-modal-input'}
                     value={addressForm.district}
                     onChange={updateField(setAddressForm)('district')}
-                  />
-                </div>
-              </div>
-              <div className={'profile-edit-profile-modal-row'}>
-                <div className={'profile-edit-profile-modal-field'}>
-                  <label className={'profile-edit-profile-modal-label'}>
-                    Taluka
-                  </label>
-                  <input
-                    type="text"
-                    className={'profile-edit-profile-modal-input'}
-                    value={addressForm.taluka}
-                    onChange={updateField(setAddressForm)('taluka')}
                   />
                 </div>
                 <div className={'profile-edit-profile-modal-field'}>
@@ -296,70 +340,198 @@ export default function EditProfileModal({
                   />
                 </div>
               </div>
+
+              <h3 className={'profile-edit-profile-modal-subheading'}>
+                Permanent Address
+              </h3>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Address Line
+                </label>
+                <textarea
+                  className={'profile-edit-profile-modal-textarea'}
+                  rows={2}
+                  value={permanentAddressForm.line}
+                  onChange={updateField(setPermanentAddressForm)('line')}
+                />
+              </div>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={permanentAddressForm.state}
+                    onChange={updateField(setPermanentAddressForm)('state')}
+                  />
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={permanentAddressForm.city}
+                    onChange={updateField(setPermanentAddressForm)('city')}
+                  />
+                </div>
+              </div>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    District
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={permanentAddressForm.district}
+                    onChange={updateField(setPermanentAddressForm)(
+                      'district',
+                    )}
+                  />
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Pin Code
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={permanentAddressForm.pinCode}
+                    onChange={updateField(setPermanentAddressForm)(
+                      'pinCode',
+                    )}
+                  />
+                </div>
+              </div>
             </>
           )}
 
           {activeSection === 'guardian' && (
             <>
-              <div className={'profile-edit-profile-modal-row'}>
-                <div className={'profile-edit-profile-modal-field'}>
-                  <label className={'profile-edit-profile-modal-label'}>
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className={'profile-edit-profile-modal-input'}
-                    value={guardianForm.name}
-                    onChange={updateField(setGuardianForm)('name')}
-                  />
+              <p className={'profile-edit-profile-modal-guardian-hint'}>
+                Add up to 3 guardians (e.g. Father, Mother, and one more) -
+                at least one is required.
+              </p>
+
+              {guardianError && (
+                <p className={'profile-edit-profile-modal-error'}>
+                  {guardianError}
+                </p>
+              )}
+
+              {guardianForms.map((guardianForm, index) => (
+                <div
+                  className={'profile-edit-profile-modal-guardian-card'}
+                  key={index}
+                >
+                  <div className={'profile-edit-profile-modal-guardian-card-header'}>
+                    <h3 className={'profile-edit-profile-modal-subheading'}>
+                      Guardian {index + 1}
+                    </h3>
+                    {guardianForms.length > 1 && (
+                      <button
+                        type="button"
+                        className={
+                          'profile-edit-profile-modal-guardian-remove-btn'
+                        }
+                        onClick={() => handleRemoveGuardian(index)}
+                        aria-label={`Remove guardian ${index + 1}`}
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className={'profile-edit-profile-modal-row'}>
+                    <div className={'profile-edit-profile-modal-field'}>
+                      <label className={'profile-edit-profile-modal-label'}>
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        className={'profile-edit-profile-modal-input'}
+                        value={guardianForm.name}
+                        onChange={updateGuardianField(index, 'name')}
+                      />
+                    </div>
+                    <div className={'profile-edit-profile-modal-field'}>
+                      <label className={'profile-edit-profile-modal-label'}>
+                        Relationship
+                      </label>
+                      <input
+                        type="text"
+                        className={'profile-edit-profile-modal-input'}
+                        placeholder="Father / Mother / Guardian"
+                        value={guardianForm.relationship}
+                        onChange={updateGuardianField(index, 'relationship')}
+                      />
+                    </div>
+                  </div>
+                  <div className={'profile-edit-profile-modal-row'}>
+                    <div className={'profile-edit-profile-modal-field'}>
+                      <label className={'profile-edit-profile-modal-label'}>
+                        Mobile Number
+                      </label>
+                      <input
+                        type="text"
+                        className={'profile-edit-profile-modal-input'}
+                        value={guardianForm.mobileNumber}
+                        onChange={updateGuardianField(index, 'mobileNumber')}
+                      />
+                    </div>
+                    <div className={'profile-edit-profile-modal-field'}>
+                      <label className={'profile-edit-profile-modal-label'}>
+                        Occupation
+                      </label>
+                      <input
+                        type="text"
+                        className={'profile-edit-profile-modal-input'}
+                        value={guardianForm.occupation}
+                        onChange={updateGuardianField(index, 'occupation')}
+                      />
+                    </div>
+                  </div>
+                  <div className={'profile-edit-profile-modal-row'}>
+                    <div className={'profile-edit-profile-modal-field'}>
+                      <label className={'profile-edit-profile-modal-label'}>
+                        Blood Group
+                      </label>
+                      <input
+                        type="text"
+                        className={'profile-edit-profile-modal-input'}
+                        value={guardianForm.bloodGroup}
+                        onChange={updateGuardianField(index, 'bloodGroup')}
+                      />
+                    </div>
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>
+                      Address
+                    </label>
+                    <textarea
+                      className={'profile-edit-profile-modal-textarea'}
+                      rows={2}
+                      value={guardianForm.address}
+                      onChange={updateGuardianField(index, 'address')}
+                    />
+                  </div>
                 </div>
-                <div className={'profile-edit-profile-modal-field'}>
-                  <label className={'profile-edit-profile-modal-label'}>
-                    Relationship
-                  </label>
-                  <input
-                    type="text"
-                    className={'profile-edit-profile-modal-input'}
-                    value={guardianForm.relationship}
-                    onChange={updateField(setGuardianForm)('relationship')}
-                  />
-                </div>
-              </div>
-              <div className={'profile-edit-profile-modal-row'}>
-                <div className={'profile-edit-profile-modal-field'}>
-                  <label className={'profile-edit-profile-modal-label'}>
-                    Mobile Number
-                  </label>
-                  <input
-                    type="text"
-                    className={'profile-edit-profile-modal-input'}
-                    value={guardianForm.mobileNumber}
-                    onChange={updateField(setGuardianForm)('mobileNumber')}
-                  />
-                </div>
-                <div className={'profile-edit-profile-modal-field'}>
-                  <label className={'profile-edit-profile-modal-label'}>
-                    Occupation
-                  </label>
-                  <input
-                    type="text"
-                    className={'profile-edit-profile-modal-input'}
-                    value={guardianForm.occupation}
-                    onChange={updateField(setGuardianForm)('occupation')}
-                  />
-                </div>
-              </div>
-              <div className={'profile-edit-profile-modal-field'}>
-                <label className={'profile-edit-profile-modal-label'}>
-                  Address
-                </label>
-                <textarea
-                  className={'profile-edit-profile-modal-textarea'}
-                  rows={2}
-                  value={guardianForm.address}
-                  onChange={updateField(setGuardianForm)('address')}
-                />
-              </div>
+              ))}
+
+              {guardianForms.length < 3 && (
+                <button
+                  type="button"
+                  className={'profile-edit-profile-modal-guardian-add-btn'}
+                  onClick={handleAddGuardian}
+                >
+                  <Plus size={14} />
+                  Add another guardian
+                </button>
+              )}
             </>
           )}
 

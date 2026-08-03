@@ -60,16 +60,21 @@ const StudyMaterialUpload = () => {
   const [records, setRecords] = useState(defaultRecords);
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const handleSaveMaterial = ({ title, course: materialCourse, fileName }) => {
+  const handleSaveMaterial = ({ title, course: materialCourse, link }) => {
+    // No file upload here - materials are referenced by a pasted link,
+    // so infer a rough "type" from the link's extension when present
+    // (falls back to a generic "Link" badge otherwise).
+    const linkExtension = (link || '').split('.').pop()?.toUpperCase();
     const newRecord = {
       id: Date.now(),
-      name: title || fileName || 'Untitled material',
+      name: title || 'Untitled material',
       course: materialCourse || '—',
-      type: (fileName || '').split('.').pop()?.toUpperCase() || 'PDF',
+      type: linkExtension && linkExtension.length <= 5 ? linkExtension : 'Link',
       uploadedBy: 'Staff Admin',
       date: 'Today',
       size: '—',
       status: 'Draft',
+      link,
     };
     setRecords((prev) => [newRecord, ...prev]);
     setShowModal(false);
