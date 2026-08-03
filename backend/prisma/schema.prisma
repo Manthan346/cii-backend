@@ -8,6 +8,123 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model assessments {
+  assessment_id        String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id             String                 @db.Uuid
+  title                String                 @db.VarChar(255)
+  assessment_desc      String?
+  assessment_type      assessment_type
+  assessment_date      DateTime               @db.Date
+  created_at           DateTime               @default(now()) @db.Timestamp(6)
+  updated_at           DateTime               @default(now()) @db.Timestamp(6)
+  questions            Int?
+  is_show              Boolean?               @default(true)
+  assessment_link      String?
+  assessment_duration  Int?
+  batch_details        batch_details          @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_batch")
+  candidate_assessment candidate_assessment[]
+}
+
+model attendance_records {
+  attendance_id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id          String              @db.Uuid
+  attendance_status     attend_types
+  remarks               String?
+  created_at            DateTime            @default(now()) @db.Timestamp(6)
+  updated_at            DateTime            @default(now()) @db.Timestamp(6)
+  attendance_session_id String              @db.Uuid
+  candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
+  attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
+}
+
+model attendance_sessions {
+  attendance_session_id String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id              String               @db.Uuid
+  instructor_id         String               @db.Uuid
+  session_date          DateTime             @db.Date
+  attendance_mode       attendance_mode_type
+  created_at            DateTime             @default(now()) @db.Timestamp(6)
+  updated_at            DateTime             @default(now()) @db.Timestamp(6)
+  session_time          DateTime?            @db.Time(6)
+  room_no               String?              @db.VarChar(100)
+  topic_name            String?
+  attendance_records    attendance_records[]
+  batch_details         batch_details        @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_session_batch")
+  instructor_details    instructor_details   @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_session_instructor")
+
+  @@unique([batch_id, session_date], map: "uq_batch_session")
+}
+
+model batch_details {
+  batch_id            String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_name          String                @db.VarChar(100)
+  batch_code          String                @unique @db.VarChar(255)
+  batch_desc          String
+  course_id           String                @db.Uuid
+  batch_start_date    DateTime              @db.Date
+  batch_end_date      DateTime              @db.Date
+  max_candidates      Int
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  updated_at          DateTime              @default(now()) @db.Timestamp(6)
+  instructor_id       String                @db.Uuid
+  batch_type          training_type
+  b_status            batch_status
+  center_id           String?               @db.Uuid
+  assessments         assessments[]
+  attendance_sessions attendance_sessions[]
+  center_details      center_details?       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
+
+  instructor          instructor_details    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
+  course_details      course_details        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
+
+  instructor          instructor_details?    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
+  course_details      course_details?        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
+  batch_enrollment    batch_enrollment[]
+  event_batches       event_batches[]
+  study_material      study_material[]
+}
+
+model batch_enrollment {
+  enrollment_id      String                        @id(map: "course_enrollment_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id       String                        @db.Uuid
+  batch_id           String                        @db.Uuid
+  enrollment_date    DateTime                      @default(dbgenerated("CURRENT_DATE")) @db.Date
+  created_at         DateTime                      @default(now()) @db.Timestamp(6)
+  updated_at         DateTime                      @default(now()) @db.Timestamp(6)
+  grade              grade_types?
+  certificate_url    String?                       @unique
+  enrollment_status  batch_enrollment_status_type?
+  candidate_batch_id String?                       @unique @db.VarChar(255)
+  batch_details      batch_details                 @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_batch")
+  candidates_details candidates_details            @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_candidate")
+
+  @@unique([candidate_id, batch_id], map: "uq_candidate_batch")
+}
+
+model candidate_assessment {
+  ca_record_id       String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  assessment_id      String             @db.Uuid
+  candidate_id       String             @db.Uuid
+  attempted_at       DateTime           @default(now()) @db.Timestamp(6)
+  assessment_grade   grade_types?
+  created_at         DateTime           @default(now()) @db.Timestamp(6)
+  updated_at         DateTime           @default(now()) @db.Timestamp(6)
+  assessments        assessments        @relation(fields: [assessment_id], references: [assessment_id], onDelete: NoAction, onUpdate: NoAction)
+  candidates_details candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([assessment_id, candidate_id])
+}
+
+model candidate_documents {
+  document_id           String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_id          String             @unique(map: "uq_candidate_documents_candidate") @db.Uuid
+  candidate_photo       String?
+  candidate_aadhar_card String?
+  candidate_pan_card    String?
+  candidate_resume      String?
+  candidates_details    candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model candidates_details {
   candidate_id                String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   candidate_first_name        String                 @db.VarChar(100)
@@ -49,64 +166,22 @@ model candidates_details {
   guardian_address            String?
   guardian_gender             String?                @db.VarChar(10)
   guardian_dob                DateTime?              @db.Date
+  father_name                 String?
+  father_occupation           String?
+  father_phone_no             String?                @db.VarChar(10)
+  father_blood_group          String?                @db.VarChar(10)
+  mother_name                 String?
+  mother_occupation           String?
+  mother_blood_group          String?                @db.VarChar(10)
+  mother_phone_no             String?                @db.VarChar(10)
+  father_address              String?
+  mother_address              String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
   candidate_documents         candidate_documents?
   user_login                  user_login             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_user")
   job_application             job_application[]
-}
-
-model attendance_records {
-  attendance_id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  candidate_id          String              @db.Uuid
-  attendance_status     attend_types
-  remarks               String?
-  created_at            DateTime            @default(now()) @db.Timestamp(6)
-  updated_at            DateTime            @default(now()) @db.Timestamp(6)
-  attendance_session_id String              @db.Uuid
-  candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
-  attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
-}
-
-model batch_details {
-  batch_id            String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  batch_name          String                @db.VarChar(100)
-  batch_code          String                @unique @db.VarChar(255)
-  batch_desc          String
-  course_id           String                @db.Uuid
-  batch_start_date    DateTime              @db.Date
-  batch_end_date      DateTime              @db.Date
-  max_candidates      Int
-  created_at          DateTime              @default(now()) @db.Timestamp(6)
-  updated_at          DateTime              @default(now()) @db.Timestamp(6)
-  instructor_id       String                @db.Uuid
-  batch_type          training_type
-  b_status            batch_status
-  center_id           String?               @db.Uuid
-  assessments         assessments[]
-  attendance_sessions attendance_sessions[]
-  center_details      center_details?       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction)
-  instructor          instructor_details    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
-  course_details      course_details        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
-  batch_enrollment    batch_enrollment[]
-  event_batches       event_batches[]
-  study_material      study_material[]
-}
-
-model course_details {
-  course_id           String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  course_name         String                @db.VarChar(100)
-  course_desc         String
-  course_duration     String                @db.VarChar(100)
-  created_at          DateTime              @default(now()) @db.Timestamp(6)
-  updated_at          DateTime              @default(now()) @db.Timestamp(6)
-  company_id          String                @db.Uuid
-  course_mode         course_type
-  batch_details       batch_details[]
-  company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
-  enquiry_records     enquiry_records[]
-  job_eligible_course job_eligible_course[]
 }
 
 model center_company {
@@ -134,6 +209,33 @@ model center_details {
   user_login     user_login[]
 }
 
+model company_details {
+  company_id          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name        String               @unique @db.VarChar(255)
+  company_description String?
+  created_at          DateTime             @default(now()) @db.Timestamp(6)
+  updated_at          DateTime             @default(now()) @db.Timestamp(6)
+  center_company      center_company[]
+  course_details      course_details[]
+  instructor_details  instructor_details[]
+  job_opportunity     job_opportunity[]
+}
+
+model course_details {
+  course_id           String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  course_name         String                @db.VarChar(100)
+  course_desc         String
+  course_duration     String                @db.VarChar(100)
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  updated_at          DateTime              @default(now()) @db.Timestamp(6)
+  company_id          String                @db.Uuid
+  course_mode         course_type
+  batch_details       batch_details[]
+  company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
+  enquiry_records     enquiry_records[]
+  job_eligible_course job_eligible_course[]
+}
+
 model enquiry_records {
   enquiry_id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   enquiry_first_name String          @db.VarChar(100)
@@ -153,51 +255,20 @@ model enquiry_records {
 }
 
 model user_login {
-  user_id                                            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_email                                         String               @unique @db.VarChar(255)
-  user_password                                      String
-  user_role                                          role_types
-  created_at                                         DateTime             @default(now()) @db.Timestamp(6)
-  updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
-  center_id                                          String               @db.Uuid
-  refresh_token_hash                                 String?
-  candidates_details                                 candidates_details?
-  event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
-  event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
-  instructor_details                                 instructor_details?
-  study_material                                     study_material[]
-  center_details                                     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
-  user_notifications                                 user_notifications[]
+  user_id            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_email         String               @unique @db.VarChar(255)
+  user_password      String
+  user_role          role_types
+  created_at         DateTime             @default(now()) @db.Timestamp(6)
+  updated_at         DateTime             @default(now()) @db.Timestamp(6)
+  center_id          String               @db.Uuid
+  refresh_token_hash String?
+  candidates_details candidates_details?
+  study_material     study_material[]
+  center_details     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  user_notifications user_notifications[]
 }
 
-model assessments {
-  assessment_id        String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  batch_id             String                 @db.Uuid
-  title                String                 @db.VarChar(255)
-  assessment_desc      String?
-  assessment_type      assessment_type
-  assessment_date      DateTime               @db.Date
-  created_at           DateTime               @default(now()) @db.Timestamp(6)
-  updated_at           DateTime               @default(now()) @db.Timestamp(6)
-  questions            Int?
-  is_show              Boolean?               @default(true)
-  assessment_link      String?
-  assessment_duration  Int?
-  batch_details        batch_details          @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assessment_batch")
-  candidate_assessment candidate_assessment[]
-}
-
-model company_details {
-  company_id          String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  company_name        String               @unique @db.VarChar(255)
-  company_description String?
-  created_at          DateTime             @default(now()) @db.Timestamp(6)
-  updated_at          DateTime             @default(now()) @db.Timestamp(6)
-  center_company      center_company[]
-  course_details      course_details[]
-  instructor_details  instructor_details[]
-  job_opportunity     job_opportunity[]
-}
 
 model instructor_details {
   instructor_id                    String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -232,56 +303,44 @@ model instructor_details {
   instructor_prev_org              String[]
   instructor_prev_org_designation  String?               @db.VarChar(255)
   highest_qualification            String?               @db.VarChar(255)
+  father_name                      String?
+  father_occupation                String?
+  father_phone_no                  String?               @db.VarChar(10)
+  father_blood_group               String?               @db.VarChar(10)
+  mother_name                      String?
+  mother_occupation                String?
+  mother_blood_group               String?               @db.VarChar(10)
+  mother_phone_no                  String?               @db.VarChar(10)
+  father_current_address           String?
+  mother_current_address           String?
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
-  company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
-  user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
 }
 
-model batch_enrollment {
-  enrollment_id      String                        @id(map: "course_enrollment_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  candidate_id       String                        @db.Uuid
-  batch_id           String                        @db.Uuid
-  enrollment_date    DateTime                      @default(dbgenerated("CURRENT_DATE")) @db.Date
-  created_at         DateTime                      @default(now()) @db.Timestamp(6)
-  updated_at         DateTime                      @default(now()) @db.Timestamp(6)
-  grade              grade_types?
-  certificate_url    String?                       @unique
-  enrollment_status  batch_enrollment_status_type?
-  candidate_batch_id String?                       @unique @db.VarChar(255)
-  batch_details      batch_details                 @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_batch")
-  candidates_details candidates_details            @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enrollment_candidate")
-
-  @@unique([candidate_id, batch_id], map: "uq_candidate_batch")
+model instructor_documents {
+  instructor_doc_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  instructor_id      String?             @unique @db.Uuid
+  past_exp_letter    String?
+  pan_card           String?
+  aadhar_card        String?
+  instructor_resume  String?
+  created_at         DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?           @default(now()) @db.Timestamp(6)
+  instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model attendance_sessions {
-  attendance_session_id String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  batch_id              String               @db.Uuid
-  instructor_id         String               @db.Uuid
-  session_date          DateTime             @db.Date
-  attendance_mode       attendance_mode_type
-  created_at            DateTime             @default(now()) @db.Timestamp(6)
-  updated_at            DateTime             @default(now()) @db.Timestamp(6)
-  session_time          DateTime?            @db.Time(6)
-  room_no               String?              @db.VarChar(100)
-  topic_name            String?
-  attendance_records    attendance_records[]
-  batch_details         batch_details        @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_session_batch")
-  instructor_details    instructor_details   @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_session_instructor")
+model job_application {
+  application_id     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  job_id             String                  @db.Uuid
+  candidate_id       String                  @db.Uuid
+  application_status job_application_status?
+  applied_at         DateTime?               @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?               @default(now()) @db.Timestamp(6)
+  candidates_details candidates_details      @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+  job_opportunity    job_opportunity         @relation(fields: [job_id], references: [job_id], onDelete: NoAction, onUpdate: NoAction)
 
-  @@unique([batch_id, session_date], map: "uq_batch_session")
-}
-
-model candidate_documents {
-  document_id           String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  candidate_id          String             @unique(map: "uq_candidate_documents_candidate") @db.Uuid
-  candidate_photo       String?
-  candidate_aadhar_card String?
-  candidate_pan_card    String?
-  candidate_resume      String?
-  candidates_details    candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
+  @@unique([job_id, candidate_id], map: "uq_job_candidate")
 }
 
 model job_eligible_course {
@@ -311,45 +370,6 @@ model job_opportunity {
   company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model job_application {
-  application_id     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  job_id             String                  @db.Uuid
-  candidate_id       String                  @db.Uuid
-  application_status job_application_status?
-  applied_at         DateTime?               @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?               @default(now()) @db.Timestamp(6)
-  candidates_details candidates_details      @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
-  job_opportunity    job_opportunity         @relation(fields: [job_id], references: [job_id], onDelete: NoAction, onUpdate: NoAction)
-
-  @@unique([job_id, candidate_id], map: "uq_job_candidate")
-}
-
-model candidate_assessment {
-  ca_record_id       String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  assessment_id      String             @db.Uuid
-  candidate_id       String             @db.Uuid
-  attempted_at       DateTime           @default(now()) @db.Timestamp(6)
-  assessment_grade   grade_types?
-  created_at         DateTime           @default(now()) @db.Timestamp(6)
-  updated_at         DateTime           @default(now()) @db.Timestamp(6)
-  assessments        assessments        @relation(fields: [assessment_id], references: [assessment_id], onDelete: NoAction, onUpdate: NoAction)
-  candidates_details candidates_details @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
-
-  @@unique([assessment_id, candidate_id])
-}
-
-model instructor_documents {
-  instructor_doc_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  instructor_id      String?             @unique @db.Uuid
-  past_exp_letter    String?
-  pan_card           String?
-  aadhar_card        String?
-  instructor_resume  String?
-  created_at         DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?           @default(now()) @db.Timestamp(6)
-  instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
-}
-
 model notifications {
   notification_id      String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title                String
@@ -358,7 +378,7 @@ model notifications {
   reference_type       notification_reference_type?
   reference_id         String?                      @db.Uuid
   created_at           DateTime?                    @default(now()) @db.Timestamp(6)
-  updated_at           DateTime                     @updatedAt @db.Timestamp(6)
+  updated_at           DateTime?                    @default(now()) @db.Timestamp(6)
   user_notifications   user_notifications[]
 }
 
@@ -389,50 +409,40 @@ model user_notifications {
   @@unique([notification_id, user_id], map: "unique_notification_per_user")
 }
 
-model event_batches {
-  event_batch_id String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  event_id       String        @db.Uuid
-  batch_id       String        @db.Uuid
-  batch_details  batch_details @relation(fields: [batch_id], references: [batch_id], onDelete: Cascade, onUpdate: NoAction)
-  event_details  event_details @relation(fields: [event_id], references: [event_id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@unique([event_id, batch_id])
-}
-
-model event_details {
-  event_id                                        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_id                                       String             @db.Uuid
-  event_title                                     String             @db.VarChar(255)
-  event_description                               String?
-  event_date                                      DateTime           @db.Date
-  event_time                                      DateTime           @db.Time(6)
-  venue                                           String?            @db.VarChar(255)
-  is_show                                         Boolean?           @default(true)
-  created_by                                      String             @db.Uuid
-  created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime           @updatedAt @db.Timestamp(6)
-  updated_by                                      String             @db.Uuid
-  event_link                                      String?
-  event_mode                                      event_mode?
-  event_type                                      event_type?
-  target_type                                     event_target_type?
-  event_batches                                   event_batches[]
-  center_details                                  center_details     @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
-  user_login_event_details_created_byTouser_login user_login         @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-  user_login_event_details_updated_byTouser_login user_login         @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-}
-
 enum attend_types {
   present
   absent
   late
 }
 
-enum role_types {
-  candidate
-  instructor
-  admin
-  super_admin @map("super-admin")
+enum attendance_mode_type {
+  offline
+  online
+}
+
+enum batch_enrollment_status_type {
+  ACTIVE
+  DROPPED
+  BLACKLIST
+  INACTIVE
+}
+
+enum batch_status {
+  UPCOMING
+  ACTIVE
+  INACTIVE
+  COMPLETED
+}
+
+enum ca_status_types {
+  SUBMITTED
+  NOT_SUBMITTED @map("NOT SUBMITTED")
+}
+
+enum course_type {
+  online
+  offline
+  hybrid
 }
 
 enum enquiry_status_type {
@@ -442,9 +452,23 @@ enum enquiry_status_type {
   Converted
 }
 
-enum attendance_mode_type {
-  offline
-  online
+enum event_mode {
+  ONLINE
+  OFFLINE
+  HYBRID
+}
+
+enum event_target_type {
+  BATCH
+  ALL_BATCHES @map("ALL BATCHES")
+  DEPARTMENT
+}
+
+enum event_type {
+  WEBINAR
+  SEMINAR
+  UPSKILLING
+  WORKSHOP
 }
 
 enum grade_types {
@@ -455,49 +479,9 @@ enum grade_types {
   F
 }
 
-enum course_type {
-  online
-  offline
-  hybrid
-}
-
 enum job_application_status {
   Applied
   Shortlisted
-}
-
-enum assessment_type {
-  APTITUDE
-  TECHNICAL
-  COMMUNICATION
-  MOCK_INTERVIEW
-  FINAL_ASSESSMENT
-}
-
-enum ca_status_types {
-  SUBMITTED
-  NOT_SUBMITTED @map("NOT SUBMITTED")
-}
-
-enum training_type {
-  ACADEMIC
-  WORKSHOP
-  UPSKILLING
-  SEMINAR
-}
-
-enum batch_status {
-  UPCOMING
-  ACTIVE
-  INACTIVE
-  COMPLETED
-}
-
-enum batch_enrollment_status_type {
-  ACTIVE
-  DROPPED
-  BLACKLIST
-  INACTIVE
 }
 
 enum notification_reference_type {
@@ -524,26 +508,4 @@ enum notification_type {
   INTERVIEW_SCHEDULED
   ACADEMIC
   EXAMINATION
-  EVENT_CREATED
-  EVENT_UPDATED
-  EVENT_DELETED
-}
-
-enum event_mode {
-  ONLINE
-  OFFLINE
-  HYBRID
-}
-
-enum event_type {
-  WEBINAR
-  SEMINAR
-  UPSKILLING
-  WORKSHOP
-}
-
-enum event_target_type {
-  BATCH
-  ALL_BATCHES @map("ALL BATCHES")
-  DEPARTMENT
 }

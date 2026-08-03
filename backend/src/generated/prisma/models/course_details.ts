@@ -364,6 +364,19 @@ export type course_detailsUncheckedUpdateManyInput = {
 export type Course_detailsScalarRelationFilter = {
   is?: Prisma.course_detailsWhereInput
   isNot?: Prisma.course_detailsWhereInput
+<<<<<<< HEAD
+=======
+}
+
+export type Course_detailsListRelationFilter = {
+  every?: Prisma.course_detailsWhereInput
+  some?: Prisma.course_detailsWhereInput
+  none?: Prisma.course_detailsWhereInput
+}
+
+export type course_detailsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type course_detailsCountOrderByAggregateInput = {
@@ -404,16 +417,6 @@ export type Course_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.course_detailsWhereInput | null
 }
 
-export type Course_detailsListRelationFilter = {
-  every?: Prisma.course_detailsWhereInput
-  some?: Prisma.course_detailsWhereInput
-  none?: Prisma.course_detailsWhereInput
-}
-
-export type course_detailsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type course_detailsCreateNestedOneWithoutBatch_detailsInput = {
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutBatch_detailsInput, Prisma.course_detailsUncheckedCreateWithoutBatch_detailsInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutBatch_detailsInput
@@ -426,26 +429,6 @@ export type course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput = {
   upsert?: Prisma.course_detailsUpsertWithoutBatch_detailsInput
   connect?: Prisma.course_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutBatch_detailsInput, Prisma.course_detailsUpdateWithoutBatch_detailsInput>, Prisma.course_detailsUncheckedUpdateWithoutBatch_detailsInput>
-}
-
-export type Enumcourse_typeFieldUpdateOperationsInput = {
-  set?: $Enums.course_type
-}
-
-export type course_detailsCreateNestedOneWithoutEnquiry_recordsInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
-  connect?: Prisma.course_detailsWhereUniqueInput
-}
-
-export type course_detailsUpdateOneWithoutEnquiry_recordsNestedInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
-  upsert?: Prisma.course_detailsUpsertWithoutEnquiry_recordsInput
-  disconnect?: Prisma.course_detailsWhereInput | boolean
-  delete?: Prisma.course_detailsWhereInput | boolean
-  connect?: Prisma.course_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput, Prisma.course_detailsUpdateWithoutEnquiry_recordsInput>, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
 }
 
 export type course_detailsCreateNestedManyWithoutCompany_detailsInput = {
@@ -488,6 +471,26 @@ export type course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput =
   update?: Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput | Prisma.course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput[]
   updateMany?: Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput | Prisma.course_detailsUpdateManyWithWhereWithoutCompany_detailsInput[]
   deleteMany?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
+}
+
+export type Enumcourse_typeFieldUpdateOperationsInput = {
+  set?: $Enums.course_type
+}
+
+export type course_detailsCreateNestedOneWithoutEnquiry_recordsInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
+  connect?: Prisma.course_detailsWhereUniqueInput
+}
+
+export type course_detailsUpdateOneWithoutEnquiry_recordsNestedInput = {
+  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
+  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
+  upsert?: Prisma.course_detailsUpsertWithoutEnquiry_recordsInput
+  disconnect?: Prisma.course_detailsWhereInput | boolean
+  delete?: Prisma.course_detailsWhereInput | boolean
+  connect?: Prisma.course_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput, Prisma.course_detailsUpdateWithoutEnquiry_recordsInput>, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
 }
 
 export type course_detailsCreateNestedOneWithoutJob_eligible_courseInput = {
@@ -572,6 +575,72 @@ export type course_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
+export type course_detailsCreateWithoutCompany_detailsInput = {
+  course_id?: string
+  course_name: string
+  course_desc: string
+  course_duration: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_mode: $Enums.course_type
+  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
+  enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
+  job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
+}
+
+export type course_detailsUncheckedCreateWithoutCompany_detailsInput = {
+  course_id?: string
+  course_name: string
+  course_desc: string
+  course_duration: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  course_mode: $Enums.course_type
+  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
+  job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
+}
+
+export type course_detailsCreateOrConnectWithoutCompany_detailsInput = {
+  where: Prisma.course_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
+}
+
+export type course_detailsCreateManyCompany_detailsInputEnvelope = {
+  data: Prisma.course_detailsCreateManyCompany_detailsInput | Prisma.course_detailsCreateManyCompany_detailsInput[]
+  skipDuplicates?: boolean
+}
+
+export type course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput = {
+  where: Prisma.course_detailsWhereUniqueInput
+  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
+  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
+}
+
+export type course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput = {
+  where: Prisma.course_detailsWhereUniqueInput
+  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
+}
+
+export type course_detailsUpdateManyWithWhereWithoutCompany_detailsInput = {
+  where: Prisma.course_detailsScalarWhereInput
+  data: Prisma.XOR<Prisma.course_detailsUpdateManyMutationInput, Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsInput>
+}
+
+export type course_detailsScalarWhereInput = {
+  AND?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
+  OR?: Prisma.course_detailsScalarWhereInput[]
+  NOT?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
+  course_id?: Prisma.UuidFilter<"course_details"> | string
+  course_name?: Prisma.StringFilter<"course_details"> | string
+  course_desc?: Prisma.StringFilter<"course_details"> | string
+  course_duration?: Prisma.StringFilter<"course_details"> | string
+  created_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
+  company_id?: Prisma.UuidFilter<"course_details"> | string
+  course_mode?: Prisma.Enumcourse_typeFilter<"course_details"> | $Enums.course_type
+}
+
 export type course_detailsCreateWithoutEnquiry_recordsInput = {
   course_id?: string
   course_name: string
@@ -638,72 +707,6 @@ export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
   job_eligible_course?: Prisma.job_eligible_courseUncheckedUpdateManyWithoutCourse_detailsNestedInput
-}
-
-export type course_detailsCreateWithoutCompany_detailsInput = {
-  course_id?: string
-  course_name: string
-  course_desc: string
-  course_duration: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  course_mode: $Enums.course_type
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCourse_detailsInput
-  job_eligible_course?: Prisma.job_eligible_courseCreateNestedManyWithoutCourse_detailsInput
-}
-
-export type course_detailsUncheckedCreateWithoutCompany_detailsInput = {
-  course_id?: string
-  course_name: string
-  course_desc: string
-  course_duration: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  course_mode: $Enums.course_type
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCourse_detailsInput
-  job_eligible_course?: Prisma.job_eligible_courseUncheckedCreateNestedManyWithoutCourse_detailsInput
-}
-
-export type course_detailsCreateOrConnectWithoutCompany_detailsInput = {
-  where: Prisma.course_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
-}
-
-export type course_detailsCreateManyCompany_detailsInputEnvelope = {
-  data: Prisma.course_detailsCreateManyCompany_detailsInput | Prisma.course_detailsCreateManyCompany_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type course_detailsUpsertWithWhereUniqueWithoutCompany_detailsInput = {
-  where: Prisma.course_detailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedCreateWithoutCompany_detailsInput>
-}
-
-export type course_detailsUpdateWithWhereUniqueWithoutCompany_detailsInput = {
-  where: Prisma.course_detailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutCompany_detailsInput, Prisma.course_detailsUncheckedUpdateWithoutCompany_detailsInput>
-}
-
-export type course_detailsUpdateManyWithWhereWithoutCompany_detailsInput = {
-  where: Prisma.course_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateManyMutationInput, Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsInput>
-}
-
-export type course_detailsScalarWhereInput = {
-  AND?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
-  OR?: Prisma.course_detailsScalarWhereInput[]
-  NOT?: Prisma.course_detailsScalarWhereInput | Prisma.course_detailsScalarWhereInput[]
-  course_id?: Prisma.UuidFilter<"course_details"> | string
-  course_name?: Prisma.StringFilter<"course_details"> | string
-  course_desc?: Prisma.StringFilter<"course_details"> | string
-  course_duration?: Prisma.StringFilter<"course_details"> | string
-  created_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"course_details"> | Date | string
-  company_id?: Prisma.UuidFilter<"course_details"> | string
-  course_mode?: Prisma.Enumcourse_typeFilter<"course_details"> | $Enums.course_type
 }
 
 export type course_detailsCreateWithoutJob_eligible_courseInput = {

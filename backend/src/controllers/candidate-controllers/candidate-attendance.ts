@@ -2,17 +2,44 @@ import { Response } from "express";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface";
 import { prisma } from "../../lib/prisma";
+import { redis } from "../../lib/redis";
+import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
+import { CANDIDATE_REDIS_KEYS } from "../../constants/candidate-keys/candidate-keys";
+
+const CALENDAR_CACHE_TTL_SECONDS = 60 * 5;
 
 export const candidateAttendanceCalendar = asyncHandler(
   async (req: CandidateAuthRequest, res: Response) => {
     const candidateId = req.candidate?.candidate_id;
     const courseId = req.query.courseId as string | undefined;
-    const month = req.query.month ? Number(req.query.month) : new Date().getMonth() + 1; // 1-12
+    const month = req.query.month ? Number(req.query.month) : new Date().getMonth() + 1;
     const year = req.query.year ? Number(req.query.year) : new Date().getFullYear();
 
-    // Course list is always useful for the frontend's course selector,
-    // regardless of whether a courseId is selected yet.
+    if (!candidateId) {
+      throw new ApiError(404, "candidate id not found");
+    }
+
+    const cacheKey = CANDIDATE_REDIS_KEYS.candidate_attendance_calendar_key(
+      candidateId,
+      courseId ?? "all",
+      month,
+      year
+    );
+
+    // ---- Try Redis first (fail-open) ----
+    let cached: string | null = null;
+    try {
+      cached = await redis.get(cacheKey);
+    } catch (err) {
+      console.error("Redis GET failed, falling back to DB:", err);
+    }
+
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
+    }
+
+    // ---- Cache miss — compute as before ----
     const enrollments = await prisma.batch_enrollment.findMany({
       where: { candidate_id: candidateId },
       select: {
@@ -36,7 +63,6 @@ export const candidateAttendanceCalendar = asyncHandler(
       ).values()
     );
 
-    // ---------- CASE 1: no courseId -> overall summary, no calendar ----------
     if (!courseId) {
       const whereClause = { candidate_id: candidateId };
 
@@ -51,36 +77,47 @@ export const candidateAttendanceCalendar = asyncHandler(
       const attendancePercentage =
         totalSessions === 0 ? 0 : Number(((attendedSessions / totalSessions) * 100).toFixed(2));
 
-      return res.status(200).json(
-        new ApiResponse(
-          200,
-          {
-            summary: { totalSessions, attendedSessions, missedSessions, attendancePercentage },
-            courses,
-            calendar: null,
-          },
-          "overall attendance summary fetched successfully"
-        )
+      const responseBody = new ApiResponse(
+        200,
+        {
+          summary: { totalSessions, attendedSessions, missedSessions, attendancePercentage },
+          courses,
+          calendar: null,
+        },
+        "overall attendance summary fetched successfully"
       );
+
+      try {
+        await redis.set(cacheKey, JSON.stringify(responseBody), "EX", CALENDAR_CACHE_TTL_SECONDS);
+      } catch (err) {
+        console.error("Redis SET failed, continuing without caching:", err);
+      }
+
+      return res.status(200).json(responseBody);
     }
 
-    // ---------- CASE 2: courseId selected -> course-scoped summary + calendar ----------
     const batches = enrollments
       .map((e) => e.batch_details)
       .filter((b) => b.course_details?.course_id === courseId);
 
     if (batches.length === 0) {
-      return res.status(200).json(
-        new ApiResponse(
-          200,
-          {
-            summary: { totalSessions: 0, attendedSessions: 0, missedSessions: 0, attendancePercentage: 0 },
-            courses,
-            calendar: [],
-          },
-          "not enrolled in this course"
-        )
+      const responseBody = new ApiResponse(
+        200,
+        {
+          summary: { totalSessions: 0, attendedSessions: 0, missedSessions: 0, attendancePercentage: 0 },
+          courses,
+          calendar: [],
+        },
+        "not enrolled in this course"
       );
+
+      try {
+        await redis.set(cacheKey, JSON.stringify(responseBody), "EX", CALENDAR_CACHE_TTL_SECONDS);
+      } catch (err) {
+        console.error("Redis SET failed, continuing without caching:", err);
+      }
+
+      return res.status(200).json(responseBody);
     }
 
     const batchIds = batches.map((b) => b.batch_id);
@@ -102,14 +139,12 @@ export const candidateAttendanceCalendar = asyncHandler(
     });
 
     const statusByDate = new Map<string, "present" | "absent" | "late">();
-    const sessionDates = new Set<string>()
+    const sessionDates = new Set<string>();
     for (const session of sessions) {
       const key = session.session_date.toISOString().slice(0, 10);
       const record = session.attendance_records[0];
-      sessionDates.add(key)
-      
-      console.log(record)
-      if (record) statusByDate.set(key, record.attendance_status as any);
+      sessionDates.add(key);
+      statusByDate.set(key, record ? (record.attendance_status as any) : "absent");
     }
 
     let totalSessions = 0;
@@ -122,54 +157,56 @@ export const candidateAttendanceCalendar = asyncHandler(
     const attendancePercentage =
       totalSessions === 0 ? 0 : Number(((attendedSessions / totalSessions) * 100).toFixed(2));
 
-    // Day-by-day grid. ASSUMPTION (no holiday table exists yet): a weekday
-    // inside the batch's date range with no session row is treated as a holiday.
     const calendar: { date: string; status: "present" | "absent" | "late" | "holiday" | "today" | "unmarked" | null }[] = [];
     const cursor = new Date(monthStart);
+    const today = new Date();
+    const todayUTC = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
 
     while (cursor <= monthEnd) {
       const dateKey = cursor.toISOString().slice(0, 10);
       const dayOfWeek = cursor.getUTCDay();
       const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+      const isFuture = cursor > todayUTC;
 
       const withinAnyBatch = batches.some(
         (b) => cursor >= b.batch_start_date && cursor <= b.batch_end_date
       );
 
-     const today = new Date();
-const todayUTC = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
-
-// ... inside the loop:
-const isFuture = cursor > todayUTC;
-
-let status: typeof calendar[number]["status"] = null;
-if (statusByDate.has(dateKey)) {
-  status = statusByDate.get(dateKey)!;
-} else if (sessionDates.has(dateKey)) {
-  status = null
-} else if (withinAnyBatch && !isFuture && !isWeekend) {
-  status = "holiday";
-} else if (withinAnyBatch && isWeekend) {
-  status = "holiday";
-}
+      let status: typeof calendar[number]["status"] = null;
+      if (statusByDate.has(dateKey)) {
+        status = statusByDate.get(dateKey)!;
+      } else if (sessionDates.has(dateKey)) {
+        status = "absent";
+      } else if (withinAnyBatch && !isFuture && !isWeekend) {
+        status = "holiday";
+      } else if (withinAnyBatch && isWeekend) {
+        status = "holiday";
+      }
 
       calendar.push({ date: dateKey, status });
       cursor.setUTCDate(cursor.getUTCDate() + 1);
     }
 
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          month,
-          year,
-          courseId,
-          summary: { totalSessions, attendedSessions, missedSessions, attendancePercentage },
-          courses,
-          calendar,
-        },
-        "course attendance calendar fetched successfully"
-      )
+    const responseBody = new ApiResponse(
+      200,
+      {
+        month,
+        year,
+        courseId,
+        summary: { totalSessions, attendedSessions, missedSessions, attendancePercentage },
+        courses,
+        calendar,
+      },
+      "course attendance calendar fetched successfully"
     );
+
+    // ---- Populate the cache for next time (fail-open) ----
+    try {
+      await redis.set(cacheKey, JSON.stringify(responseBody), "EX", CALENDAR_CACHE_TTL_SECONDS);
+    } catch (err) {
+      console.error("Redis SET failed, continuing without caching:", err);
+    }
+
+    return res.status(200).json(responseBody);
   }
 );

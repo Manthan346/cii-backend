@@ -9,24 +9,19 @@ cloudnary.config({
 })
 
 //file upload logic to cloudnary
-export const uploadCloudnary = async(localFilePath: string) => {
+export const uploadCloudnary = async (localFilePath: string) => {
+  try {
+    const response = await cloudnary.uploader.upload(localFilePath, {
+      resource_type: "auto",
+    });
 
-   try {
-   const response =  cloudnary.uploader.upload(localFilePath, {
-        resource_type: "auto"
- 
-     })
-     
-     console.log("file uploaded successfully", response)
-     return response
-   } catch (error: any) {
-    fs.unlinkSync(localFilePath)
-    
-
-    console.log(error.message)
-    return null
-    
-   }
-
-
-}
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  } finally {
+    if (fs.existsSync(localFilePath)) {
+      fs.unlinkSync(localFilePath);
+    }
+  }
+};

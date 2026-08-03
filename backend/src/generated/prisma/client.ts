@@ -29,8 +29,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Candidates_details
- * const candidates_details = await prisma.candidates_details.findMany()
+ * // Fetch zero or more Assessments
+ * const assessments = await prisma.assessments.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -45,25 +45,45 @@ path.join(__dirname, "query_engine-windows.dll.node")
 path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
 
 /**
- * Model candidates_details
+ * Model assessments
  * 
  */
-export type candidates_details = Prisma.candidates_detailsModel
+export type assessments = Prisma.assessmentsModel
 /**
  * Model attendance_records
  * 
  */
 export type attendance_records = Prisma.attendance_recordsModel
 /**
+ * Model attendance_sessions
+ * 
+ */
+export type attendance_sessions = Prisma.attendance_sessionsModel
+/**
  * Model batch_details
  * 
  */
 export type batch_details = Prisma.batch_detailsModel
 /**
- * Model course_details
+ * Model batch_enrollment
  * 
  */
-export type course_details = Prisma.course_detailsModel
+export type batch_enrollment = Prisma.batch_enrollmentModel
+/**
+ * Model candidate_assessment
+ * 
+ */
+export type candidate_assessment = Prisma.candidate_assessmentModel
+/**
+ * Model candidate_documents
+ * 
+ */
+export type candidate_documents = Prisma.candidate_documentsModel
+/**
+ * Model candidates_details
+ * 
+ */
+export type candidates_details = Prisma.candidates_detailsModel
 /**
  * Model center_company
  * 
@@ -75,45 +95,45 @@ export type center_company = Prisma.center_companyModel
  */
 export type center_details = Prisma.center_detailsModel
 /**
+ * Model company_details
+ * 
+ */
+export type company_details = Prisma.company_detailsModel
+/**
+ * Model course_details
+ * 
+ */
+export type course_details = Prisma.course_detailsModel
+/**
  * Model enquiry_records
  * 
  */
 export type enquiry_records = Prisma.enquiry_recordsModel
 /**
- * Model user_login
+ * Model event_batches
  * 
  */
-export type user_login = Prisma.user_loginModel
+export type event_batches = Prisma.event_batchesModel
 /**
- * Model assessments
+ * Model event_details
  * 
  */
-export type assessments = Prisma.assessmentsModel
-/**
- * Model company_details
- * 
- */
-export type company_details = Prisma.company_detailsModel
+export type event_details = Prisma.event_detailsModel
 /**
  * Model instructor_details
  * 
  */
 export type instructor_details = Prisma.instructor_detailsModel
 /**
- * Model batch_enrollment
+ * Model instructor_documents
  * 
  */
-export type batch_enrollment = Prisma.batch_enrollmentModel
+export type instructor_documents = Prisma.instructor_documentsModel
 /**
- * Model attendance_sessions
+ * Model job_application
  * 
  */
-export type attendance_sessions = Prisma.attendance_sessionsModel
-/**
- * Model candidate_documents
- * 
- */
-export type candidate_documents = Prisma.candidate_documentsModel
+export type job_application = Prisma.job_applicationModel
 /**
  * Model job_eligible_course
  * 
@@ -125,21 +145,6 @@ export type job_eligible_course = Prisma.job_eligible_courseModel
  */
 export type job_opportunity = Prisma.job_opportunityModel
 /**
- * Model job_application
- * 
- */
-export type job_application = Prisma.job_applicationModel
-/**
- * Model candidate_assessment
- * 
- */
-export type candidate_assessment = Prisma.candidate_assessmentModel
-/**
- * Model instructor_documents
- * 
- */
-export type instructor_documents = Prisma.instructor_documentsModel
-/**
  * Model notifications
  * 
  */
@@ -149,6 +154,11 @@ export type notifications = Prisma.notificationsModel
  * 
  */
 export type study_material = Prisma.study_materialModel
+/**
+ * Model user_login
+ * 
+ */
+export type user_login = Prisma.user_loginModel
 /**
  * Model user_notifications
  * 

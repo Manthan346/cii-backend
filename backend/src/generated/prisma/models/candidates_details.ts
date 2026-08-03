@@ -78,6 +78,19 @@ export type Candidates_detailsMinAggregateOutputType = {
   guardian_address: string | null
   guardian_gender: string | null
   guardian_dob: Date | null
+<<<<<<< HEAD
+=======
+  father_name: string | null
+  father_occupation: string | null
+  father_phone_no: string | null
+  father_blood_group: string | null
+  mother_name: string | null
+  mother_occupation: string | null
+  mother_blood_group: string | null
+  mother_phone_no: string | null
+  father_address: string | null
+  mother_address: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type Candidates_detailsMaxAggregateOutputType = {
@@ -120,6 +133,19 @@ export type Candidates_detailsMaxAggregateOutputType = {
   guardian_address: string | null
   guardian_gender: string | null
   guardian_dob: Date | null
+<<<<<<< HEAD
+=======
+  father_name: string | null
+  father_occupation: string | null
+  father_phone_no: string | null
+  father_blood_group: string | null
+  mother_name: string | null
+  mother_occupation: string | null
+  mother_blood_group: string | null
+  mother_phone_no: string | null
+  father_address: string | null
+  mother_address: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type Candidates_detailsCountAggregateOutputType = {
@@ -163,6 +189,19 @@ export type Candidates_detailsCountAggregateOutputType = {
   guardian_address: number
   guardian_gender: number
   guardian_dob: number
+<<<<<<< HEAD
+=======
+  father_name: number
+  father_occupation: number
+  father_phone_no: number
+  father_blood_group: number
+  mother_name: number
+  mother_occupation: number
+  mother_blood_group: number
+  mother_phone_no: number
+  father_address: number
+  mother_address: number
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   _all: number
 }
 
@@ -219,6 +258,19 @@ export type Candidates_detailsMinAggregateInputType = {
   guardian_address?: true
   guardian_gender?: true
   guardian_dob?: true
+<<<<<<< HEAD
+=======
+  father_name?: true
+  father_occupation?: true
+  father_phone_no?: true
+  father_blood_group?: true
+  mother_name?: true
+  mother_occupation?: true
+  mother_blood_group?: true
+  mother_phone_no?: true
+  father_address?: true
+  mother_address?: true
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type Candidates_detailsMaxAggregateInputType = {
@@ -261,6 +313,19 @@ export type Candidates_detailsMaxAggregateInputType = {
   guardian_address?: true
   guardian_gender?: true
   guardian_dob?: true
+<<<<<<< HEAD
+=======
+  father_name?: true
+  father_occupation?: true
+  father_phone_no?: true
+  father_blood_group?: true
+  mother_name?: true
+  mother_occupation?: true
+  mother_blood_group?: true
+  mother_phone_no?: true
+  father_address?: true
+  mother_address?: true
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type Candidates_detailsCountAggregateInputType = {
@@ -304,6 +369,19 @@ export type Candidates_detailsCountAggregateInputType = {
   guardian_address?: true
   guardian_gender?: true
   guardian_dob?: true
+<<<<<<< HEAD
+=======
+  father_name?: true
+  father_occupation?: true
+  father_phone_no?: true
+  father_blood_group?: true
+  mother_name?: true
+  mother_occupation?: true
+  mother_blood_group?: true
+  mother_phone_no?: true
+  father_address?: true
+  mother_address?: true
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   _all?: true
 }
 
@@ -434,6 +512,19 @@ export type Candidates_detailsGroupByOutputType = {
   guardian_address: string | null
   guardian_gender: string | null
   guardian_dob: Date | null
+<<<<<<< HEAD
+=======
+  father_name: string | null
+  father_occupation: string | null
+  father_phone_no: string | null
+  father_blood_group: string | null
+  mother_name: string | null
+  mother_occupation: string | null
+  mother_blood_group: string | null
+  mother_phone_no: string | null
+  father_address: string | null
+  mother_address: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -500,6 +591,19 @@ export type candidates_detailsWhereInput = {
   guardian_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_dob?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -549,6 +653,19 @@ export type candidates_detailsOrderByWithRelationInput = {
   guardian_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_gender?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_dob?: Prisma.SortOrderInput | Prisma.SortOrder
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_address?: Prisma.SortOrderInput | Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
   candidate_assessment?: Prisma.candidate_assessmentOrderByRelationAggregateInput
@@ -601,6 +718,19 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   guardian_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_gender?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_dob?: Prisma.DateTimeNullableFilter<"candidates_details"> | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  father_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  mother_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -650,6 +780,19 @@ export type candidates_detailsOrderByWithAggregationInput = {
   guardian_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_gender?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_dob?: Prisma.SortOrderInput | Prisma.SortOrder
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  father_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  mother_address?: Prisma.SortOrderInput | Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -701,6 +844,19 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   guardian_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_gender?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_dob?: Prisma.DateTimeNullableWithAggregatesFilter<"candidates_details"> | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  father_occupation?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  father_phone_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  father_blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  mother_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  mother_occupation?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  mother_blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  mother_phone_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  father_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  mother_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsCreateInput = {
@@ -743,6 +899,19 @@ export type candidates_detailsCreateInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -792,6 +961,19 @@ export type candidates_detailsUncheckedCreateInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -839,6 +1021,19 @@ export type candidates_detailsUpdateInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -888,6 +1083,19 @@ export type candidates_detailsUncheckedUpdateInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -936,6 +1144,19 @@ export type candidates_detailsCreateManyInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
@@ -978,6 +1199,19 @@ export type candidates_detailsUpdateManyMutationInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
@@ -1021,6 +1255,24 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type Candidates_detailsScalarRelationFilter = {
+  is?: Prisma.candidates_detailsWhereInput
+  isNot?: Prisma.candidates_detailsWhereInput
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type StringNullableListFilter<$PrismaModel = never> = {
@@ -1072,6 +1324,19 @@ export type candidates_detailsCountOrderByAggregateInput = {
   guardian_address?: Prisma.SortOrder
   guardian_gender?: Prisma.SortOrder
   guardian_dob?: Prisma.SortOrder
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.SortOrder
+  father_occupation?: Prisma.SortOrder
+  father_phone_no?: Prisma.SortOrder
+  father_blood_group?: Prisma.SortOrder
+  mother_name?: Prisma.SortOrder
+  mother_occupation?: Prisma.SortOrder
+  mother_blood_group?: Prisma.SortOrder
+  mother_phone_no?: Prisma.SortOrder
+  father_address?: Prisma.SortOrder
+  mother_address?: Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
@@ -1120,6 +1385,19 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   guardian_address?: Prisma.SortOrder
   guardian_gender?: Prisma.SortOrder
   guardian_dob?: Prisma.SortOrder
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.SortOrder
+  father_occupation?: Prisma.SortOrder
+  father_phone_no?: Prisma.SortOrder
+  father_blood_group?: Prisma.SortOrder
+  mother_name?: Prisma.SortOrder
+  mother_occupation?: Prisma.SortOrder
+  mother_blood_group?: Prisma.SortOrder
+  mother_phone_no?: Prisma.SortOrder
+  father_address?: Prisma.SortOrder
+  mother_address?: Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsMinOrderByAggregateInput = {
@@ -1162,6 +1440,19 @@ export type candidates_detailsMinOrderByAggregateInput = {
   guardian_address?: Prisma.SortOrder
   guardian_gender?: Prisma.SortOrder
   guardian_dob?: Prisma.SortOrder
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.SortOrder
+  father_occupation?: Prisma.SortOrder
+  father_phone_no?: Prisma.SortOrder
+  father_blood_group?: Prisma.SortOrder
+  mother_name?: Prisma.SortOrder
+  mother_occupation?: Prisma.SortOrder
+  mother_blood_group?: Prisma.SortOrder
+  mother_phone_no?: Prisma.SortOrder
+  father_address?: Prisma.SortOrder
+  mother_address?: Prisma.SortOrder
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type candidates_detailsSumOrderByAggregateInput = {
@@ -1170,59 +1461,9 @@ export type candidates_detailsSumOrderByAggregateInput = {
   qualification_percentage?: Prisma.SortOrder
 }
 
-export type Candidates_detailsScalarRelationFilter = {
-  is?: Prisma.candidates_detailsWhereInput
-  isNot?: Prisma.candidates_detailsWhereInput
-}
-
 export type Candidates_detailsNullableScalarRelationFilter = {
   is?: Prisma.candidates_detailsWhereInput | null
   isNot?: Prisma.candidates_detailsWhereInput | null
-}
-
-export type candidates_detailsCreatecandidate_skillsInput = {
-  set: string[]
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
-}
-
-export type candidates_detailsUpdatecandidate_skillsInput = {
-  set?: string[]
-  push?: string | string[]
 }
 
 export type candidates_detailsCreateNestedOneWithoutAttendance_recordsInput = {
@@ -1237,6 +1478,79 @@ export type candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedIn
   upsert?: Prisma.candidates_detailsUpsertWithoutAttendance_recordsInput
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutAttendance_recordsInput, Prisma.candidates_detailsUpdateWithoutAttendance_recordsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput>
+}
+
+export type candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutBatch_enrollmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutBatch_enrollmentInput, Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+}
+
+export type candidates_detailsCreateNestedOneWithoutCandidate_assessmentInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_assessmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_assessmentInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutCandidate_assessmentInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentInput, Prisma.candidates_detailsUpdateWithoutCandidate_assessmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput>
+}
+
+export type candidates_detailsCreateNestedOneWithoutCandidate_documentsInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_documentsInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneRequiredWithoutCandidate_documentsNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_documentsInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutCandidate_documentsInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_documentsInput, Prisma.candidates_detailsUpdateWithoutCandidate_documentsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput>
+}
+
+export type candidates_detailsCreatecandidate_skillsInput = {
+  set: string[]
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type candidates_detailsUpdatecandidate_skillsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type candidates_detailsCreateNestedOneWithoutJob_applicationInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutJob_applicationInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+}
+
+export type candidates_detailsUpdateOneRequiredWithoutJob_applicationNestedInput = {
+  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
+  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutJob_applicationInput
+  upsert?: Prisma.candidates_detailsUpsertWithoutJob_applicationInput
+  connect?: Prisma.candidates_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutJob_applicationInput, Prisma.candidates_detailsUpdateWithoutJob_applicationInput>, Prisma.candidates_detailsUncheckedUpdateWithoutJob_applicationInput>
 }
 
 export type candidates_detailsCreateNestedOneWithoutUser_loginInput = {
@@ -1269,62 +1583,6 @@ export type candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
   delete?: Prisma.candidates_detailsWhereInput | boolean
   connect?: Prisma.candidates_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.candidates_detailsUpdateWithoutUser_loginInput>, Prisma.candidates_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type candidates_detailsCreateNestedOneWithoutBatch_enrollmentInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-}
-
-export type candidates_detailsUpdateOneRequiredWithoutBatch_enrollmentNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput
-  upsert?: Prisma.candidates_detailsUpsertWithoutBatch_enrollmentInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutBatch_enrollmentInput, Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
-}
-
-export type candidates_detailsCreateNestedOneWithoutCandidate_documentsInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_documentsInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-}
-
-export type candidates_detailsUpdateOneRequiredWithoutCandidate_documentsNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_documentsInput
-  upsert?: Prisma.candidates_detailsUpsertWithoutCandidate_documentsInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_documentsInput, Prisma.candidates_detailsUpdateWithoutCandidate_documentsInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput>
-}
-
-export type candidates_detailsCreateNestedOneWithoutJob_applicationInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutJob_applicationInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-}
-
-export type candidates_detailsUpdateOneRequiredWithoutJob_applicationNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutJob_applicationInput
-  upsert?: Prisma.candidates_detailsUpsertWithoutJob_applicationInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutJob_applicationInput, Prisma.candidates_detailsUpdateWithoutJob_applicationInput>, Prisma.candidates_detailsUncheckedUpdateWithoutJob_applicationInput>
-}
-
-export type candidates_detailsCreateNestedOneWithoutCandidate_assessmentInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_assessmentInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-}
-
-export type candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentNestedInput = {
-  create?: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
-  connectOrCreate?: Prisma.candidates_detailsCreateOrConnectWithoutCandidate_assessmentInput
-  upsert?: Prisma.candidates_detailsUpsertWithoutCandidate_assessmentInput
-  connect?: Prisma.candidates_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentInput, Prisma.candidates_detailsUpdateWithoutCandidate_assessmentInput>, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput>
 }
 
 export type candidates_detailsCreateWithoutAttendance_recordsInput = {
@@ -1367,6 +1625,19 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1415,6 +1686,19 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1477,6 +1761,19 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1525,10 +1822,1001 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
   job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationUncheckedCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsCreateOrConnectWithoutBatch_enrollmentInput = {
+  where: Prisma.candidates_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+}
+
+export type candidates_detailsUpsertWithoutBatch_enrollmentInput = {
+  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput>
+  where?: Prisma.candidates_detailsWhereInput
+}
+
+export type candidates_detailsUpdateToOneWithWhereWithoutBatch_enrollmentInput = {
+  where?: Prisma.candidates_detailsWhereInput
+  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutBatch_enrollmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput>
+}
+
+export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationUncheckedCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsCreateOrConnectWithoutCandidate_assessmentInput = {
+  where: Prisma.candidates_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
+}
+
+export type candidates_detailsUpsertWithoutCandidate_assessmentInput = {
+  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput>
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput>
+  where?: Prisma.candidates_detailsWhereInput
+}
+
+export type candidates_detailsUpdateToOneWithWhereWithoutCandidate_assessmentInput = {
+  where?: Prisma.candidates_detailsWhereInput
+  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCandidate_assessmentInput, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput>
+}
+
+export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsCreateWithoutCandidate_documentsInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  job_application?: Prisma.job_applicationUncheckedCreateNestedManyWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsCreateOrConnectWithoutCandidate_documentsInput = {
+  where: Prisma.candidates_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
+}
+
+export type candidates_detailsUpsertWithoutCandidate_documentsInput = {
+  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput>
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedCreateWithoutCandidate_documentsInput>
+  where?: Prisma.candidates_detailsWhereInput
+}
+
+export type candidates_detailsUpdateToOneWithWhereWithoutCandidate_documentsInput = {
+  where?: Prisma.candidates_detailsWhereInput
+  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutCandidate_documentsInput, Prisma.candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput>
+}
+
+export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsCreateWithoutJob_applicationInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsUncheckedCreateWithoutJob_applicationInput = {
+  candidate_id?: string
+  candidate_first_name: string
+  candidate_last_name?: string | null
+  contact_number: string
+  gender?: string | null
+  date_of_birth?: Date | string | null
+  education?: string | null
+  candidate_current_address?: string | null
+  enquiry_source?: string | null
+  aadhar_card_no?: string | null
+  pan_card_no?: string | null
+  guardian_name?: string | null
+  nearest_station?: string | null
+  pin_code?: number | null
+  district?: string | null
+  state_name?: string | null
+  salary?: number | null
+  training_start_date?: Date | string | null
+  training_end_date?: Date | string | null
+  job_location?: string | null
+  candidate_status?: string | null
+  verification_status?: string | null
+  blood_group?: string | null
+  category?: string | null
+  user_id: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  highest_qualification?: string | null
+  qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: boolean | null
+  candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
+  guardian_phone_no?: string | null
+  guardian_blood_group?: string | null
+  candidate_permanant_address?: string | null
+  guardian_relationship?: string | null
+  guardian_occupation?: string | null
+  candidate_unique_id?: string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
+}
+
+export type candidates_detailsCreateOrConnectWithoutJob_applicationInput = {
+  where: Prisma.candidates_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
+}
+
+export type candidates_detailsUpsertWithoutJob_applicationInput = {
+  update: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedUpdateWithoutJob_applicationInput>
+  create: Prisma.XOR<Prisma.candidates_detailsCreateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedCreateWithoutJob_applicationInput>
+  where?: Prisma.candidates_detailsWhereInput
+}
+
+export type candidates_detailsUpdateToOneWithWhereWithoutJob_applicationInput = {
+  where?: Prisma.candidates_detailsWhereInput
+  data: Prisma.XOR<Prisma.candidates_detailsUpdateWithoutJob_applicationInput, Prisma.candidates_detailsUncheckedUpdateWithoutJob_applicationInput>
+}
+
+export type candidates_detailsUpdateWithoutJob_applicationInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutCandidates_detailsNestedInput
+}
+
+export type candidates_detailsUncheckedUpdateWithoutJob_applicationInput = {
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_number?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_current_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aadhar_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pan_card_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nearest_station?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  training_start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  training_end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  job_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
+  guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
+  candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
 }
 
 export type candidates_detailsCreateWithoutUser_loginInput = {
@@ -1571,6 +2859,17 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -1618,6 +2917,19 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   guardian_address?: string | null
   guardian_gender?: string | null
   guardian_dob?: Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: string | null
+  father_occupation?: string | null
+  father_phone_no?: string | null
+  father_blood_group?: string | null
+  mother_name?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_phone_no?: string | null
+  father_address?: string | null
+  mother_address?: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -1681,6 +2993,19 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1728,6 +3053,19 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+<<<<<<< HEAD
+=======
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1735,6 +3073,7 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
+<<<<<<< HEAD
 export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   candidate_id?: string
   candidate_first_name: string
@@ -2551,6 +3890,8 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   job_application?: Prisma.job_applicationUncheckedUpdateManyWithoutCandidates_detailsNestedInput
 }
 
+=======
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 
 /**
  * Count Type Candidates_detailsCountOutputType
@@ -2650,6 +3991,19 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   guardian_address?: boolean
   guardian_gender?: boolean
   guardian_dob?: boolean
+<<<<<<< HEAD
+=======
+  father_name?: boolean
+  father_occupation?: boolean
+  father_phone_no?: boolean
+  father_blood_group?: boolean
+  mother_name?: boolean
+  mother_occupation?: boolean
+  mother_blood_group?: boolean
+  mother_phone_no?: boolean
+  father_address?: boolean
+  mother_address?: boolean
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.candidates_details$candidate_assessmentArgs<ExtArgs>
@@ -2700,6 +4054,19 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   guardian_address?: boolean
   guardian_gender?: boolean
   guardian_dob?: boolean
+<<<<<<< HEAD
+=======
+  father_name?: boolean
+  father_occupation?: boolean
+  father_phone_no?: boolean
+  father_blood_group?: boolean
+  mother_name?: boolean
+  mother_occupation?: boolean
+  mother_blood_group?: boolean
+  mother_phone_no?: boolean
+  father_address?: boolean
+  mother_address?: boolean
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2744,6 +4111,19 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   guardian_address?: boolean
   guardian_gender?: boolean
   guardian_dob?: boolean
+<<<<<<< HEAD
+=======
+  father_name?: boolean
+  father_occupation?: boolean
+  father_phone_no?: boolean
+  father_blood_group?: boolean
+  mother_name?: boolean
+  mother_occupation?: boolean
+  mother_blood_group?: boolean
+  mother_phone_no?: boolean
+  father_address?: boolean
+  mother_address?: boolean
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -2788,9 +4168,25 @@ export type candidates_detailsSelectScalar = {
   guardian_address?: boolean
   guardian_gender?: boolean
   guardian_dob?: boolean
+<<<<<<< HEAD
 }
 
 export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob", ExtArgs["result"]["candidates_details"]>
+=======
+  father_name?: boolean
+  father_occupation?: boolean
+  father_phone_no?: boolean
+  father_blood_group?: boolean
+  mother_name?: boolean
+  mother_occupation?: boolean
+  mother_blood_group?: boolean
+  mother_phone_no?: boolean
+  father_address?: boolean
+  mother_address?: boolean
+}
+
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address", ExtArgs["result"]["candidates_details"]>
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -2858,6 +4254,19 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     guardian_address: string | null
     guardian_gender: string | null
     guardian_dob: Date | null
+<<<<<<< HEAD
+=======
+    father_name: string | null
+    father_occupation: string | null
+    father_phone_no: string | null
+    father_blood_group: string | null
+    mother_name: string | null
+    mother_occupation: string | null
+    mother_blood_group: string | null
+    mother_phone_no: string | null
+    father_address: string | null
+    mother_address: string | null
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -3327,6 +4736,19 @@ export interface candidates_detailsFieldRefs {
   readonly guardian_address: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_gender: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_dob: Prisma.FieldRef<"candidates_details", 'DateTime'>
+<<<<<<< HEAD
+=======
+  readonly father_name: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly father_occupation: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly father_phone_no: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly father_blood_group: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly mother_name: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly mother_occupation: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly mother_blood_group: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly mother_phone_no: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly father_address: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly mother_address: Prisma.FieldRef<"candidates_details", 'String'>
+>>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
     
 
