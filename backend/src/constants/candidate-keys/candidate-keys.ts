@@ -10,6 +10,12 @@ export const CANDIDATE_REDIS_KEYS = {
      candidate_all_courses_attendance_key: (id: string) => `allCoursesAttendance:${id}`,
   candidate_attendance_calendar_key: (candidateId: string, courseId: string, month: number, year: number) =>
     `attendanceCalendar:${candidateId}:${courseId}:${month}:${year}`,
+  candidate_recent_attendance_log_key: (id: string) => `recentAttendanceLog:${id}`,
+  candidate_dashboard_key: (id: string) => `candidateDashboard:${id}`,
+  candidate_study_material_key: (candidateId: string, batchId: string, page: number, limit: number) =>
+    `studyMaterial:${candidateId}:${batchId}:${page}:${limit}`,
+  candidate_available_assessments_key: (candidateId: string, page: number, limit: number) =>
+    `availableAssessments:${candidateId}:${page}:${limit}`,
 
 
     

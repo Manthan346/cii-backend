@@ -9,4 +9,4 @@ redis.on("close", () => console.log("Closed"));
 redis.on("error", (err) => console.error(err));
 
 //expiry time for data
-export const ATTENDANCE_CACHE_TTL_SECONDS = 60 * 10;
+export const CANDIDATE_REDIS_CACHE = 60 * 10;
