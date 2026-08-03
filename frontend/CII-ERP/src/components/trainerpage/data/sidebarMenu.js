@@ -72,24 +72,24 @@ export const sidebarMenu = [
   {
     title: 'RESOURCES',
     items: [
-      {
-        id: 'resources',
-        title: 'Resources',
-        icon: Boxes,
-        route: '/trainer/resources',
-      },
+      // {
+      //   id: 'resources',
+      //   title: 'Resources',
+      //   icon: Boxes,
+      //   route: '/trainer/resources',
+      // },
       {
         id: 'study-material-upload',
         title: 'Study Material Upload',
         icon: Upload,
         route: '/trainer/study-material',
       },
-      {
-        id: 'reports',
-        title: 'Reports',
-        icon: BarChart3,
-        route: '/trainer/reports',
-      },
+      // {
+      //   id: 'reports',
+      //   title: 'Reports',
+      //   icon: BarChart3,
+      //   route: '/trainer/reports',
+      // },
     ],
   },
   {

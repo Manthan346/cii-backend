@@ -36,7 +36,8 @@ const guardian = guardians[activeIndex];
             }`}
             onClick={() => onIndexChange(index)}
           >
-            {index + 1}.Guardian detail
+            {/* {index + 1}.Guardian detail */}
+            {g.relationship}'s detail
           </button>
         ))}
       </div>
@@ -75,9 +76,16 @@ const guardian = guardians[activeIndex];
             {guardian.bloodGroup}
           </span>
         </div>
+
+        <div className="guardian-details-tab__field">
+          <span className="guardian-details-tab__label">Address</span>
+          <span className="guardian-details-tab__value">
+            {guardian.address}
+          </span>
+        </div>
       </div>
 
-      <div className="guardian-details-tab__address-section">
+      {/* <div className="guardian-details-tab__address-section">
         <div className="guardian-details-tab__address-columns">
           <div className="guardian-details-tab__address-column">
             <h3 className="guardian-details-tab__heading">Current Address</h3>
@@ -151,7 +159,7 @@ const guardian = guardians[activeIndex];
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="guardian-details-tab__nav">
         <button
           type="button"

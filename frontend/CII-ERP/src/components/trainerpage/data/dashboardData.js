@@ -87,7 +87,7 @@ export const batchOverview = [
     course: 'Business Comm.',
     candidates: 22,
     progress: 40,
-    status: 'Ending Soon',
+    status: 'Completed',
   },
   {
     id: 'sqi-05',

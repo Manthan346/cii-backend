@@ -158,28 +158,14 @@ export const profileDocumentNote =
 // the GUARDIAN's address - separate from the staff member's own
 // currentAddress/permanentAddress in profileBasicInfo above.
 export const profileGuardianDetail = {
-  guardians:
-  [
+  guardians: [
     {
       name: 'Ram Sharma',
       relationship: 'Father',
       mobileNumber: '8723456284',
       occupation: 'Retired Govt. officer',
       bloodGroup: 'B+',
-      currentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
-      permanentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
+      address: 'Shree Complex, Thane (w), Mumbai',
     },
     {
       name: 'Sunita Sharma',
@@ -187,20 +173,7 @@ export const profileGuardianDetail = {
       mobileNumber: '9876543210',
       occupation: 'Homemaker',
       bloodGroup: 'O+',
-      currentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
-      permanentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
+      address: 'Shree Complex, Thane (w), Mumbai',
     },
     {
       name: 'Ramesh Sharma',
@@ -208,20 +181,7 @@ export const profileGuardianDetail = {
       mobileNumber: '9123456789',
       occupation: 'Software Engineer',
       bloodGroup: 'A+',
-      currentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
-      permanentAddress: {
-        line: 'Shree Complex, Thane (w)',
-        state: 'Maharashtra',
-        district: 'Thane District',
-        taluka: 'Thane',
-        pinCode: '400101',
-      },
-    }
-  ]
+      address: 'Shree Complex, Thane (w), Mumbai',
+    },
+  ],
 };

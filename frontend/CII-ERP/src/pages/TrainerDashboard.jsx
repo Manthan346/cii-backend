@@ -1,5 +1,5 @@
-// StaffDashboard.jsx
-// Top-level page for the staff portal. Mounts this once in your app
+// TrainerDashboard.jsx
+// Top-level page for the trainer portal. Mounts this once in your app
 // router (see usage notes below). This file ONLY defines which page
 // renders at which path — the Topbar + Sidebar shell is mounted inside
 // each individual page component (Dashboard.jsx, CandidateManagement.jsx,
@@ -29,9 +29,9 @@ import Dashboard from '../components/trainerpage/pages/Dashboard/Dashboard/Dashb
 import CandidateManagement from '../components/trainerpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
 import BatchManagement from '../components/trainerpage/pages/BatchManagement/BatchManagement/BatchManagement';
 import AttendanceManagement from '../components/trainerpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
-import Resources from '../components/trainerpage/pages/Resources/Resources/Resources';
+// import Resources from '../components/trainerpage/pages/Resources/Resources/Resources';
 import StudyMaterialUpload from '../components/trainerpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
-import Reports from '../components/trainerpage/pages/Reports/Reports/Reports';
+// import Reports from '../components/trainerpage/pages/Reports/Reports/Reports';
 import Work from '../components/trainerpage/pages/Work/Work/Work';
 import Notifications from '../components/trainerpage/pages/Notifications/Notifications/Notifications';
 import TaskAssigned from '../components/trainerpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
@@ -45,9 +45,9 @@ export default function TrainerDashboard() {
       <Route path="/candidates" element={<CandidateManagement />} />
       <Route path="/batch-management" element={<BatchManagement />} />
       <Route path="/attendance" element={<AttendanceManagement />} />
-      <Route path="/resources" element={<Resources />} />
+      {/* <Route path="/resources" element={<Resources />} /> */}
       <Route path="/study-material" element={<StudyMaterialUpload />} />
-      <Route path="/reports" element={<Reports />} />
+      {/* <Route path="/reports" element={<Reports />} /> */}
       <Route path="/work" element={<Work />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/task-assigned" element={<TaskAssigned />} />

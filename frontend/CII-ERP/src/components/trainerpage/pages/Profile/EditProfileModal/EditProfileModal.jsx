@@ -62,6 +62,9 @@ export default function EditProfileModal({
   const [addressForm, setAddressForm] = useState({
     ...address,
   });
+  const [permanentAddressForm, setPermanentAddressForm] = useState({
+    ...address.permanentAddress,
+  });
   const [guardianForm, setGuardianForm] = useState({
     ...guardian,
   });
@@ -174,6 +177,17 @@ export default function EditProfileModal({
                   onChange={updateField(setPersonalForm)(
                     'highestQualification',
                   )}
+                />
+              </div>
+              <div className={'profile-edit-profile-modal-field'}>
+                <label className={'profile-edit-profile-modal-label'}>
+                  Permanent Address
+                </label>
+                <textarea
+                  className={'profile-edit-profile-modal-textarea'}
+                  rows={2}
+                  value={permanentAddressForm.line}
+                  onChange={updateField(setPermanentAddressForm)('line')}
                 />
               </div>
             </>
