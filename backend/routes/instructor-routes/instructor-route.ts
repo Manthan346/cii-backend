@@ -4,7 +4,7 @@ import { verifyInstructorUsingAccessToken } from "../../src/middlewares/instruct
 import { getInstructorDashboard } from "../../src/controllers/instructor-controller/instructor-dashboard";
 import { getBatchAttendance } from "../../src/controllers/instructor-controller/instructor-batch-attendance";
 import { createCandidateByInstructor } from "../../src/controllers/instructor-controller/create-candidate-by-instructor";
-import { validateBody } from "../../src/middlewares/zod-middleware/zod-middleware";
+import { validateBody } from "../../src/middlewares/zod-middleware/zod-body-validator";
 import { createInstructorCandidateSchema } from "../../src/services/zod/instructor/create-Instructor-candidate-schema";
 import { createInstructorCandidateEnrollmentSchema } from "../../src/services/zod/instructor/create-instructor-candidate-enrollment-schema";
 import { enrollCandidate } from "../../src/controllers/instructor-controller/enroll-candidate";
