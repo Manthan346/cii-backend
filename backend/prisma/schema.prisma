@@ -326,6 +326,9 @@ model instructor_details {
   mother_phone_no                  String?               @db.VarChar(10)
   father_current_address           String?
   mother_current_address           String?
+  guardian_dob                     DateTime?             @db.Date
+  father_dob                       DateTime?             @db.Date
+  mother_dob                       DateTime?             @db.Date
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")

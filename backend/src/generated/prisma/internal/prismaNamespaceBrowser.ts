@@ -396,7 +396,10 @@ export const Instructor_detailsScalarFieldEnum = {
   mother_blood_group: 'mother_blood_group',
   mother_phone_no: 'mother_phone_no',
   father_current_address: 'father_current_address',
-  mother_current_address: 'mother_current_address'
+  mother_current_address: 'mother_current_address',
+  guardian_dob: 'guardian_dob',
+  father_dob: 'father_dob',
+  mother_dob: 'mother_dob'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
