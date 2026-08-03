@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import { Button } from '../../../shared';
-import ciiLogo from '../../../assets/cii-logo2.png';
-import '../../../styles/variables.css';
+import Sidebar from '../../layout/Sidebar/Sidebar';
+import Topbar from '../../layout/Topbar/Topbar';
+import { Button } from '../../shared';
+import ciiLogo from '../../assets/cii-logo2.png';
+import '../../styles/variables.css';
 import './Logout.css';
 
 /**
