@@ -31,76 +31,9 @@ export const createEventSchema = z.object({
     .max(255, "Venue cannot exceed 255 characters"),
 
   batch_ids: z
-  .array(z.string().uuid("Invalid batch ID"))
-  .optional(),
-
-  event_mode: z.nativeEnum(event_mode),
-
-  event_type: z.nativeEnum(event_type),
-
-  target_type: z.nativeEnum(event_target_type),
-})
-.superRefine((data, ctx) => {
-    if (data.event_mode === event_mode.ONLINE) {
-      if (!data.event_link) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["event_link"],
-          message: "Meeting link is required for online events",
-        });
-      }
-    }
-
-    if (data.event_mode === event_mode.OFFLINE) {
-      if (!data.venue) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["venue"],
-          message: "Venue is required for offline events",
-        });
-      }
-    }
-
-    if (data.event_mode === event_mode.HYBRID) {
-      if (!data.venue) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["venue"],
-          message: "Venue is required for hybrid events",
-        });
-      }
-
-      if (!data.event_link) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["event_link"],
-          message: "Meeting link is required for hybrid events",
-        });
-      }
-
-      if (data.target_type === event_target_type.BATCH) {
-        if (!data.batch_ids || data.batch_ids.length === 0) {
-            ctx.addIssue({
-                code: z.ZodIssueCode.custom,
-                path: ["batch_ids"],
-                message: "Please select at least one batch."
-            });
-        }
-     }
-
-     if (
-          data.target_type !== event_target_type.BATCH &&
-          data.batch_ids &&
-          data.batch_ids.length > 0
-      ) {
-          ctx.addIssue({
-              code: z.ZodIssueCode.custom,
-              path: ["batch_ids"],
-              message: "Batch selection is only allowed when target type is BATCH."
-          });
-      }
-    }
-  });
+    .array(z.string().uuid("Invalid batch ID"))
+    .min(1, "At least one batch must be selected"),
+});
 
 
 
