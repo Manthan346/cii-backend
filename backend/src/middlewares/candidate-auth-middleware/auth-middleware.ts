@@ -35,7 +35,7 @@ export const verifyCandidateUsingAccessToken = asyncHandler(async(req: Candidate
         
      }
      
-   //   console.log("candidate",decoded)
+     console.log("=== GUARDIAN DEBUG ===", decoded)
    
 
      next()

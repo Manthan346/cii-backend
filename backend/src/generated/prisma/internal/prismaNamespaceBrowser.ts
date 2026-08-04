@@ -396,7 +396,10 @@ export const Instructor_detailsScalarFieldEnum = {
   mother_blood_group: 'mother_blood_group',
   mother_phone_no: 'mother_phone_no',
   father_current_address: 'father_current_address',
-  mother_current_address: 'mother_current_address'
+  mother_current_address: 'mother_current_address',
+  guardian_dob: 'guardian_dob',
+  father_dob: 'father_dob',
+  mother_dob: 'mother_dob'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -506,37 +509,6 @@ export const User_notificationsScalarFieldEnum = {
 } as const
 
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
-
-
-export const Event_batchesScalarFieldEnum = {
-  event_batch_id: 'event_batch_id',
-  event_id: 'event_id',
-  batch_id: 'batch_id'
-} as const
-
-export type Event_batchesScalarFieldEnum = (typeof Event_batchesScalarFieldEnum)[keyof typeof Event_batchesScalarFieldEnum]
-
-
-export const Event_detailsScalarFieldEnum = {
-  event_id: 'event_id',
-  center_id: 'center_id',
-  event_title: 'event_title',
-  event_description: 'event_description',
-  event_date: 'event_date',
-  event_time: 'event_time',
-  venue: 'venue',
-  is_show: 'is_show',
-  created_by: 'created_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  updated_by: 'updated_by',
-  event_link: 'event_link',
-  event_mode: 'event_mode',
-  event_type: 'event_type',
-  target_type: 'target_type'
-} as const
-
-export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
 
 
 export const SortOrder = {

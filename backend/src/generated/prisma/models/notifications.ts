@@ -272,7 +272,7 @@ export type notificationsCreateInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string
+  updated_at: Date | string
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutNotificationsInput
 }
 
@@ -284,7 +284,7 @@ export type notificationsUncheckedCreateInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string
+  updated_at: Date | string
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutNotificationsInput
 }
 
@@ -320,7 +320,7 @@ export type notificationsCreateManyInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string
+  updated_at: Date | string
 }
 
 export type notificationsUpdateManyMutationInput = {
@@ -413,7 +413,7 @@ export type notificationsCreateWithoutUser_notificationsInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string
+  updated_at: Date | string
 }
 
 export type notificationsUncheckedCreateWithoutUser_notificationsInput = {
@@ -424,7 +424,7 @@ export type notificationsUncheckedCreateWithoutUser_notificationsInput = {
   reference_type?: $Enums.notification_reference_type | null
   reference_id?: string | null
   created_at?: Date | string | null
-  updated_at?: Date | string
+  updated_at: Date | string
 }
 
 export type notificationsCreateOrConnectWithoutUser_notificationsInput = {
