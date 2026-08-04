@@ -51,6 +51,16 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
       state_name: true,
       district: true,
       pin_code: true,
+      batch_enrollment: {
+        
+        select: {
+          batch_details: {
+            select: {
+              batch_code: true
+            }
+          }
+        }
+      }
     },
   });
 
