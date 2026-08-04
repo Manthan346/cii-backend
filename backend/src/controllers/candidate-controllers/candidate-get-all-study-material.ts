@@ -6,17 +6,23 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
 import { batch_enrollment_status_type } from "../../generated/prisma/enums";
 import { z } from "zod";
+import { Prisma } from "../../generated/prisma/client";
 
 export const getAllCandidateStudyMaterial = asyncHandler(
     async(req:CandidateAuthRequest,res:Response) => {
         const candidate_id = req.candidate?.candidate_id;
+
+        if (!candidate_id) {
+            throw new ApiError(401, "Unauthorized");
+        }
         
 
-        const batchIdSchema = z.object({
-            batch_id: z.string().uuid("Invalid Batch ID"),
+        const studyMaterialSchema = z.object({
+            batch_id: z.string().uuid("Invalid Batch ID").optional(),
+            search: z.string().trim().optional(),
         });
 
-        const validation = batchIdSchema.safeParse(req.query);
+        const validation = studyMaterialSchema.safeParse(req.query);
 
         if (!validation.success) {
             throw new ApiError(
@@ -25,23 +31,25 @@ export const getAllCandidateStudyMaterial = asyncHandler(
             );
         }
 
-        const { batch_id } = validation.data;
+        const { batch_id, search } = validation.data;
+
+        const enrollments = await prisma.batch_enrollment.findMany({
+            where: {
+                candidate_id,
+                enrollment_status: batch_enrollment_status_type.ACTIVE,
+            },
+            select: {
+                batch_id: true,
+            },
+        });
+
         
 
-        if (!batch_id) {
-            throw new ApiError(400, "Batch ID is required");
-        }
+        const enrolledBatchIds = enrollments.map(
+            (enrollment) => enrollment.batch_id
+        );
 
-        const enrollment = await prisma.batch_enrollment.findFirst({
-            where : {
-                 candidate_id,
-                 batch_id,
-                 enrollment_status: batch_enrollment_status_type.ACTIVE
-            },
-        }
-        )
-
-        if (!enrollment) {
+        if (batch_id && !enrolledBatchIds.includes(batch_id)) {
             throw new ApiError(403, "You are not enrolled in this batch");
         }
 
@@ -60,12 +68,35 @@ export const getAllCandidateStudyMaterial = asyncHandler(
             throw new ApiError(400, "Limit must be between 1 and 50");
         }
 
+        const where: Prisma.study_materialWhereInput = {
+            is_show: true,
+            batch_id: batch_id
+                ? batch_id
+                : {
+                    in: enrolledBatchIds,
+                },
+        };
+
+        if (search) {
+            where.OR = [
+                {
+                    title: {
+                        contains: search,
+                        mode: "insensitive",
+                    },
+                },
+                {
+                    description: {
+                        contains: search,
+                        mode: "insensitive",
+                    },
+                },
+            ];
+        }
+
         const [studyMaterials, totalItems] = await Promise.all([
             prisma.study_material.findMany({
-                where: {
-                    batch_id,
-                    is_show: true,
-                },
+                where,
                 include: {
                     batch_details: {
                         select: {
@@ -91,10 +122,7 @@ export const getAllCandidateStudyMaterial = asyncHandler(
             }),
 
             prisma.study_material.count({
-                where: {
-                    batch_id,
-                    is_show: true,
-                },
+                where,
             }),
         ]);
 
