@@ -23,7 +23,6 @@ import { getAllCandidateStudyMaterial } from "../../src/controllers/candidate-co
 import { getAllAssessments } from "../../src/controllers/candidate-controllers/candidate-get-available-assessments";
 import { startAssessment } from "../../src/controllers/candidate-controllers/candidate-assessment-mark-attempt";
 import { getAllCandidateEvents } from "../../src/controllers/candidate-controllers/candidate-events";
-
 const candidateRouter = Router()
 
 candidateRouter.post('/create-candidate', validateBody(createCandidateSchema), createCandidate)
