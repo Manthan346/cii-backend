@@ -7,7 +7,7 @@
 //   onClose   {function}
 //   onUpload  {function({ pan: File, aadhar: File })}
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import './GovtIdModal.css';
 
@@ -27,31 +27,36 @@ function FilePicker({ label, file, onChange }) {
       <input
         type="file"
         accept=".pdf,.jpg,.jpeg,.png"
-        onChange={e => onChange(e.target.files?.[0] || null)}
+        onChange={(e) => onChange(e.target.files?.[0] || null)}
         hidden
       />
     </label>
   );
 }
 
-export default function GovtIdModal({ open, onClose, onUpload }) {
+export default function GovtIdModal({ open, onClose, onUpload, uploading, error }) {
   const [pan, setPan] = useState(null);
   const [aadhar, setAadhar] = useState(null);
 
+  useEffect(() => {
+    if (!open) {
+      setPan(null);
+      setAadhar(null);
+    }
+  }, [open]);
+
   if (!open) return null;
 
-  const canSubmit = pan && aadhar;
+  const canSubmit = pan && aadhar && !uploading;
 
   const handleSubmit = () => {
     if (!canSubmit) return;
     onUpload({ pan, aadhar });
-    setPan(null);
-    setAadhar(null);
   };
 
   return (
     <div className="govt-id-modal__overlay" onClick={onClose}>
-      <div className="govt-id-modal" onClick={e => e.stopPropagation()}>
+      <div className="govt-id-modal" onClick={(e) => e.stopPropagation()}>
         <div className="govt-id-modal__header">
           <h3>Upload Government ID Proof</h3>
           <button className="govt-id-modal__close" onClick={onClose} aria-label="Close">
@@ -66,14 +71,18 @@ export default function GovtIdModal({ open, onClose, onUpload }) {
         <FilePicker label="PAN Card" file={pan} onChange={setPan} />
         <FilePicker label="Aadhaar Card" file={aadhar} onChange={setAadhar} />
 
+        {error && <div className="govt-id-modal__error">{error}</div>}
+
         <div className="govt-id-modal__actions">
-          <button className="govt-id-modal__btn govt-id-modal__btn--ghost" onClick={onClose}>Cancel</button>
+          <button className="govt-id-modal__btn govt-id-modal__btn--ghost" onClick={onClose} disabled={uploading}>
+            Cancel
+          </button>
           <button
             className="govt-id-modal__btn govt-id-modal__btn--primary"
             disabled={!canSubmit}
             onClick={handleSubmit}
           >
-            Upload Both
+            {uploading ? 'Uploading…' : 'Upload Both'}
           </button>
         </div>
       </div>

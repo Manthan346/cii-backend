@@ -48,6 +48,18 @@ function Field({ label, value }) {
   );
 }
 
+function formatDate(dateStr) {
+  if (!dateStr) return '-';
+  const date = new Date(dateStr);
+  if (isNaN(date)) return dateStr;
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
 export default function PersonalInfo({ info, checklist, completionPct }) {
   const { displayPct, offset } = useDonutAnimation(completionPct);
 
@@ -62,7 +74,7 @@ export default function PersonalInfo({ info, checklist, completionPct }) {
           <Field label="PHONE NUMBER" value={info.phoneno} />
           <Field label="EMAIL-ID" value={info.email} />
           <Field label="GENDER" value={info.gender} />
-          <Field label="DATE OF BIRTH" value={info.dob} />
+          <Field label="DATE OF BIRTH" value={formatDate(info.dob)} />
           <Field label="CATEGORY" value={info.category} />
           <Field label="BLOOD GROUP" value={info.bloodGroup} />
           <Field label="HIGHEST QUALIFICATION" value={info.Qualification} />

@@ -17,7 +17,7 @@
 //   <Route path="/*" element={<CandidatePage/>} />
 
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Homepage/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
 import CandidatePage from "./pages/CandidateDashboard";

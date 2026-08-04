@@ -5,14 +5,19 @@
 //   monthLabel  {string}    – e.g. "July 2026"
 //   year        {number}
 //   month       {number}    – 1-12
-//   days        {Array}     – [{ date: number, status: 'present'|'absent'|'holiday' }]
-//   todayDate   {number|null} – day-of-month to outline as "today"
+//   days        {Array|null} – [{ date: number, status: 'present'|'absent'|'late'|'holiday' }]
+//                               Pass `null` (not []) when no course is
+//                               selected yet — the backend can't build
+//                               a day grid without one, so this renders
+//                               a placeholder instead of a misleading
+//                               empty grid. Pass [] for "course selected,
+//                               genuinely no marked days this month."
+//   todayDate   {number|null} – day-of-month to outline as "today";
+//                               pass null when viewing a month other
+//                               than the current one
 //   onPrevMonth {function}
 //   onNextMonth {function}
-//
-// Backend hookup: replace the static `days` array (currently coming
-// from attendanceService.js) with a per-month API response — this
-// component only ever needs { date, status } pairs.
+//   navDisabled {boolean}    – disables both arrows while a fetch is in flight
 
 import Icon from '../../shared/Icon/Icon';
 import './AttendanceCalendar.css';
@@ -30,6 +35,33 @@ function mondayFirstIndex(jsDay) {
   return (jsDay + 6) % 7;
 }
 
+function CalendarHeader({ monthLabel, onPrevMonth, onNextMonth, navDisabled }) {
+  return (
+    <div className="calendar__header">
+      <h3 className="calendar__title">{monthLabel}</h3>
+      <div className="calendar__nav">
+        <button
+          className="calendar__nav-btn"
+          onClick={onPrevMonth}
+          disabled={navDisabled}
+          aria-label="Previous month"
+        >
+          <Icon name="chevronLeft" size={16} color="var(--ink)" />
+        </button>
+        <span className="calendar__nav-label">This month</span>
+        <button
+          className="calendar__nav-btn"
+          onClick={onNextMonth}
+          disabled={navDisabled}
+          aria-label="Next month"
+        >
+          <Icon name="chevronRight" size={16} color="var(--ink)" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function AttendanceCalendar({
   monthLabel,
   year,
@@ -38,7 +70,28 @@ export default function AttendanceCalendar({
   todayDate = null,
   onPrevMonth = () => {},
   onNextMonth = () => {},
+  navDisabled = false,
 }) {
+  // No course selected yet — the backend has nothing to show.
+  if (days === null) {
+    return (
+      <section className="calendar" aria-label="Attendance calendar">
+        <CalendarHeader
+          monthLabel={monthLabel}
+          onPrevMonth={onPrevMonth}
+          onNextMonth={onNextMonth}
+          navDisabled={navDisabled}
+        />
+        <div
+          className="calendar__empty"
+          style={{ padding: '32px 8px', textAlign: 'center', color: '#8a93a3', fontSize: 14 }}
+        >
+          Select a course above to see the day-by-day calendar.
+        </div>
+      </section>
+    );
+  }
+
   const statusByDate = Object.fromEntries(days.map(d => [d.date, d.status]));
   const total = daysInMonth(year, month);
   const firstWeekday = mondayFirstIndex(new Date(year, month - 1, 1).getDay());
@@ -49,18 +102,12 @@ export default function AttendanceCalendar({
 
   return (
     <section className="calendar" aria-label="Attendance calendar">
-      <div className="calendar__header">
-        <h3 className="calendar__title">{monthLabel}</h3>
-        <div className="calendar__nav">
-          <button className="calendar__nav-btn" onClick={onPrevMonth} aria-label="Previous month">
-            <Icon name="chevronLeft" size={16} color="var(--ink)" />
-          </button>
-          <span className="calendar__nav-label">This month</span>
-          <button className="calendar__nav-btn" onClick={onNextMonth} aria-label="Next month">
-            <Icon name="chevronRight" size={16} color="var(--ink)" />
-          </button>
-        </div>
-      </div>
+      <CalendarHeader
+        monthLabel={monthLabel}
+        onPrevMonth={onPrevMonth}
+        onNextMonth={onNextMonth}
+        navDisabled={navDisabled}
+      />
 
       <div className="calendar__weekdays">
         {WEEKDAYS.map(w => (

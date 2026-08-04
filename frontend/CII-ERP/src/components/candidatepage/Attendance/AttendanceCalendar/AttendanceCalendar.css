@@ -170,9 +170,64 @@
 }
 
 @media (max-width: 480px) {
-  .calendar__cell {
-    width: 28px;
-    height: 28px;
+
+  .calendar {
+    width: 100%;
+    padding: 16px;
+    min-height: 370px;
+    box-sizing: border-box;
+  }
+
+  .calendar__header {
+    margin-bottom: 12px;
+  }
+
+  .calendar__title {
+    font-size: 15px;
+  }
+
+  .calendar__nav {
+    gap: 8px;
+  }
+
+  .calendar__nav-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .calendar__nav-label {
     font-size: 12px;
+    min-width: 70px;
+  }
+
+  .calendar__weekday {
+    font-size: 10px;
+  }
+
+  .calendar__grid {
+    row-gap: 4px;
+    column-gap: 2px;
+  }
+
+  .calendar__cell {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+
+  .calendar__legend {
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+
+  .calendar__legend-item {
+    font-size: 11px;
+  }
+
+  .calendar__legend-swatch {
+    width: 12px;
+    height: 12px;
   }
 }

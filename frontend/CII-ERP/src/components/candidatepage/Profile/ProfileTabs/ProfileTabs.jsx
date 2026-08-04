@@ -8,10 +8,10 @@
 import './ProfileTabs.css';
 
 const TABS = [
-  { id: 'personal',  label: 'Personal Info'   },
-  { id: 'academic',  label: 'Academic Detail' },
-  { id: 'document',  label: 'Document'        },
-  { id: 'skills',    label: 'Skills'   },
+  { id: 'personal',  label: 'Personal Info'    },
+  { id: 'academic',  label: 'Academic Detail'  },
+  { id: 'document',  label: 'Document'         },
+  { id: 'guardian',  label: 'Guardian Details' },
 ];
 
 export default function ProfileTabs({ active, onChange = () => {} }) {

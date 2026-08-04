@@ -17,13 +17,14 @@ import Icon from "../../../shared/Icon/Icon";
 import "./CompletedAssessmentItem.css";
 
 const getScoreClass = (score) => {
+  if (score === null || score === undefined) return "completed-item__score--mid";
   if (score >= 90) return "completed-item__score--high";
   if (score >= 75) return "completed-item__score--mid";
   return "completed-item__score--low";
 };
 
 const CompletedAssessmentItem = ({ assessment, onReview }) => {
-  const { title, course, score, submittedOn } = assessment;
+  const { title, course, score, grade, submittedOn } = assessment;
 
   return (
     <div className="completed-item">
@@ -44,12 +45,10 @@ const CompletedAssessmentItem = ({ assessment, onReview }) => {
       </div>
 
       <div className="completed-item__actions">
-        <span className={`completed-item__score ${getScoreClass(score)}`}>{score}%</span>
-        <button
-          type="button"
-          className="completed-item__cta"
-          onClick={() => onReview && onReview(assessment)}
-        >
+        <span className={`completed-item__score ${getScoreClass(score)}`}>
+          {score !== null && score !== undefined ? `${score}%` : grade ?? "-"}
+        </span>
+        <button type="button" className="completed-item__cta" onClick={() => onReview && onReview(assessment)}>
           Review
         </button>
       </div>

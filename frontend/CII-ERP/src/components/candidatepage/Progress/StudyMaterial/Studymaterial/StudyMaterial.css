@@ -1,0 +1,34 @@
+/* StudyMaterial.css
+   Same fixed-sidebar offset as Task.css — Sidebar.css sets
+   `.sidebar { position: fixed; width: 268px; }`, which removes it from
+   normal flow, so the main column needs a matching margin-left instead
+   of relying on flexbox to reserve space for it. */
+
+.study-material-layout {
+  min-height: 100vh;
+  background: var(--white);
+}
+
+.study-material-layout__main {
+  margin-left: 268px; /* matches .sidebar width in Sidebar.css */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.study-material-layout__content {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+@media (max-width: 900px) {
+  .study-material-layout__main {
+    margin-left: 0; /* sidebar becomes an off-canvas drawer below 900px */
+  }
+}
+
+@media (max-width: 760px) {
+  .study-material-layout__content {
+    padding: 16px;
+  }
+}

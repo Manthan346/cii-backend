@@ -1,0 +1,114 @@
+// StudyMaterialList.jsx
+// "Study Materials" page content — search/filter toolbar + date-grouped
+// list of course notes/files, each linking out to Drive.
+//
+// Props:
+//   search         {string}
+//   onSearch       {function}
+//   courseOptions  {array}    – [{ value, label }]
+//   course         {string}
+//   onCourseChange {function}
+//   date           {string}
+//   onDateChange   {function}
+//   groups         {array}    – [{ label, items: [{ id, type, title, course, uploader, date, driveUrl }] }]
+
+import Icon from '../../../shared/Icon/Icon';
+import './StudyMaterialList.css';
+
+const FILE_TYPE_LABEL = {
+  pdf: 'PDF',
+  ppt: 'PPT',
+  doc: 'DOC',
+  xls: 'XLS',
+};
+
+function MaterialCard({ type, title, course, uploader, date, driveUrl }) {
+  return (
+    <div className="material-card">
+      <div className="material-card__badge">
+        {FILE_TYPE_LABEL[type] || type.toUpperCase()}
+      </div>
+
+      <div className="material-card__body">
+        <div className="material-card__title">{title}</div>
+        <div className="material-card__meta">
+          <span>{course}</span>
+          <span className="material-card__meta-sep">
+            <Icon name="person" size={12} color="var(--ink-soft)" />
+            {uploader}
+          </span>
+          <span>{date}</span>
+        </div>
+      </div>
+
+      <a className="material-card__drive" href={driveUrl} target="_blank" rel="noreferrer">
+        <Icon name="share" size={13} color="var(--white)" />
+        Open Drive
+      </a>
+    </div>
+  );
+}
+
+export default function StudyMaterialList({
+  search = '',
+  onSearch = () => {},
+  courseOptions = [],
+  course = '',
+  onCourseChange = () => {},
+  date = '',
+  onDateChange = () => {},
+  groups = [],
+}) {
+  return (
+    <div className="study-material">
+      <h1 className="study-material__title">Study Materials</h1>
+      <p className="study-material__subtitle">Study materials across all courses</p>
+
+      <div className="study-material__toolbar">
+        <div className="study-material__search">
+          <Icon name="search" size={16} color="var(--ink-soft)" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => onSearch(e.target.value)}
+            placeholder="Search notes by course name..."
+          />
+        </div>
+
+        <select
+          className="study-material__course-select"
+          value={course}
+          onChange={(e) => onCourseChange(e.target.value)}
+        >
+          <option value="">All courses</option>
+          {courseOptions.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+
+        <input
+          className="study-material__date"
+          type="text"
+          value={date}
+          onChange={(e) => onDateChange(e.target.value)}
+          placeholder="DD/MM/YYYY"
+        />
+      </div>
+
+      <div className="study-material__list">
+        {groups.length === 0 ? (
+          <div className="study-material__empty">No study materials yet.</div>
+        ) : (
+          groups.map(group => (
+            <div className="study-material__group" key={group.label}>
+              <div className="study-material__group-label">{group.label}</div>
+              {group.items.map(item => (
+                <MaterialCard key={item.id} {...item} />
+              ))}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}

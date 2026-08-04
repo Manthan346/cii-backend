@@ -1,50 +1,51 @@
 // CourseProgressList.jsx
-// "My Courses Progress" panel — animated progress bars per enrolled course.
-// Consumes the same `courses` shape shared with CertificateProgress, so
-// course identity (name/icon) is defined once in mockDashboardData.js.
+// "My Courses" panel — lists enrolled courses only.
+//
+// CHANGED: progress bars removed per product request. This panel now just
+// shows the course name/icon and an "Enrolled" tag instead of a percentage.
 //
 // Props:
-//   courses  {Array}  – [{ id, name, icon, iconBg, iconColor, courseProgressPct }]
-//                       TODO: from /api/candidate/courses
+//   courses  {Array}  – [{ id, name, icon?, iconBg?, iconColor? }]
+//                       `icon`/`iconBg`/`iconColor` are optional — if a
+//                       course doesn't provide them (e.g. live API data that
+//                       only has id/name), sensible defaults are used below
+//                       so this doesn't break on the current dashboardService
+//                       shape ({ id, name, progress }).
 
-import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../../shared/Icon/Icon';
 import './CourseProgressList.css';
 
-function CourseRow({ name, icon, iconBg, iconColor, pct, animate }) {
-  const fillRef = useRef(null);
+const DEFAULT_ICON = 'book';
+const DEFAULT_ICON_BG = '#EEF2FF';
+const DEFAULT_ICON_COLOR = '#4F63D2';
 
-  useEffect(() => {
-    if (!fillRef.current) return;
-    const t = setTimeout(() => {
-      if (fillRef.current) {
-        fillRef.current.style.width = animate ? `${pct}%` : `${pct}%`;
-      }
-    }, 80);
-    return () => clearTimeout(t);
-  }, [pct, animate]);
-
+function CourseRow({ name, icon, iconBg, iconColor }) {
   return (
     <div className="course-row">
-      <div className="course-row__icon" style={{ background: iconBg }}>
-        <Icon name={icon} size={16} color={iconColor} />
+      <div
+        className="course-row__icon"
+        style={{ background: iconBg ?? DEFAULT_ICON_BG }}
+      >
+        <Icon name={icon ?? DEFAULT_ICON} size={16} color={iconColor ?? DEFAULT_ICON_COLOR} />
       </div>
       <div className="course-row__info">
         <div className="course-row__name-row">
           <span className="course-row__name">{name}</span>
-          <span className="course-row__pct">{pct}%</span>
-        </div>
-        <div className="course-row__track">
-          <div
-            ref={fillRef}
-            className="course-row__fill"
-            style={{ width: '0%' }}
-            role="progressbar"
-            aria-valuenow={pct}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          />
+          <span
+            className="course-row__enrolled-tag"
+            style={{
+              fontSize: '12px',
+              fontWeight: 600,
+              color: '#3B7A3B',
+              background: '#E6F4EA',
+              padding: '2px 10px',
+              borderRadius: '999px',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Enrolled
+          </span>
         </div>
       </div>
     </div>
@@ -52,17 +53,10 @@ function CourseRow({ name, icon, iconBg, iconColor, pct, animate }) {
 }
 
 export default function CourseProgressList({ courses = [] }) {
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    const t = requestAnimationFrame(() => setAnimate(true));
-    return () => cancelAnimationFrame(t);
-  }, []);
-
   return (
     <div className="dash-my-courses">
       <div className="dash-my-courses__header">
-        <span className="dash-my-courses__title">My Courses Progress</span>
+        <span className="dash-my-courses__title">My Courses</span>
         <Link to="/my-courses" className="dash-my-courses__view-all">
           View all
         </Link>
@@ -75,8 +69,6 @@ export default function CourseProgressList({ courses = [] }) {
           icon={c.icon}
           iconBg={c.iconBg}
           iconColor={c.iconColor}
-          pct={c.courseProgressPct}
-          animate={animate}
         />
       ))}
     </div>

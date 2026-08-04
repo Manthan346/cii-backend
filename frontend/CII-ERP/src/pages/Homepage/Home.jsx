@@ -1,14 +1,14 @@
-import Header      from "../components/homepage/header/Header";
-import Navbar      from "../components/homepage/navbar/Navbar";
-import HeroSection from "../components/homepage/herosection/HeroSection";
-import AboutUs     from "../components/homepage/aboutus/AboutUs";
-import Courses     from "../components/homepage/courses/Courses";
-import Showcase    from "../components/homepage/showcase/Showcase";
-import Testimonials from "../components/homepage/testimonials/Testimonials";
-import Footer      from "../components/homepage/footer/Footer";
+import Header      from "../../components/homepage/header/Header";
+import Navbar      from "../../components/homepage/navbar/Navbar";
+import HeroSection from "../../components/homepage/herosection/HeroSection";
+import AboutUs     from "../../components/homepage/aboutus/AboutUs";
+import Courses     from "../../components/homepage/courses/Courses";
+import Showcase    from "../../components/homepage/showcase/Showcase";
+import Testimonials from "../../components/homepage/testimonials/Testimonials";
+import Footer      from "../../components/homepage/footer/Footer";
 // import Registration from "../components/homepage/registration/Registration";
-import EnquiryForm from "../components/enquiryform/EnquiryForm";
-import buildingImg  from "../assets/abvkvk.jpg";
+import EnquiryForm from "../../components/enquiryform/EnquiryForm";
+import buildingImg  from "../../assets/abvkvk.jpg";
 
 import "./Home.css";
 

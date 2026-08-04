@@ -5,23 +5,33 @@
 // Props:
 //   search       {string}    – Controlled search query value.
 //   onSearch     {function}  – Callback(value: string) on input change.
-//   userInitials {string}    – Two-letter initials shown in the avatar.
-//                              TODO: derive from auth context / user API.
 //   onMenuClick  {function}  – Opens the mobile sidebar drawer. Optional;
 //                              defaults to a no-op so screens that don't
 //                              wire up a mobile drawer still work fine.
+//
+// ── Update (2026-07-27) ──────────────────────────────────────────
+// Avatar initials now always come from useAuthUser() — the old
+// `userInitials` prop is REMOVED. Some pages were still passing a
+// hardcoded userInitials="AS" leftover from the mock-data days, and since
+// that prop used to override the real user, it silently hid the real name
+// on any page that still passed it. If any call site still passes
+// userInitials={...}, it'll now just be ignored (React drops unknown
+// props on a DOM element, but here it's simply unused) — safe to leave in
+// place while you clean those call sites up, but worth removing them.
+// ──────────────────────────────────────────────────────────────
 
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../shared/Icon/Icon';
+import { useAuthUser } from '../../../../services/useAuthUser'; // adjust path to wherever useAuthUser.js lives
 import './Topbar.css';
 
 export default function Topbar({
   search = '',
   onSearch = () => {},
-  userInitials = 'AS',
   onMenuClick = () => {},
 }) {
   const navigate = useNavigate();
+  const { initials } = useAuthUser();
 
   return (
     <header className="topbar">
@@ -53,11 +63,10 @@ export default function Topbar({
         </button>
 
         {/* User avatar */}
-        {/* TODO: replace initials with <img> when profile photo is available */}
-        
+        {/* TODO: replace initials with <img> when profile photo is available
         <div className="topbar__avatar" role="button" aria-label="User menu" onClick={() => navigate('/my-profile')}>
-          {userInitials}
-        </div>
+          {initials}
+        </div> */}
 
       </div>
     </header>
