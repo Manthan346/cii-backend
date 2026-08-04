@@ -164,13 +164,3 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
-/**
- * Model event_batches
- * 
- */
-export type event_batches = Prisma.event_batchesModel
-/**
- * Model event_details
- * 
- */
-export type event_details = Prisma.event_detailsModel

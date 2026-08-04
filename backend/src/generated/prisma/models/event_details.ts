@@ -378,11 +378,7 @@ export type event_detailsCreateInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -404,11 +400,7 @@ export type event_detailsUncheckedCreateInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -468,11 +460,7 @@ export type event_detailsCreateManyInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -629,8 +617,6 @@ export type event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput = {
   deleteMany?: Prisma.event_detailsScalarWhereInput | Prisma.event_detailsScalarWhereInput[]
 }
 
-<<<<<<< HEAD
-=======
 export type event_detailsCreateNestedOneWithoutEvent_batchesInput = {
   create?: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
   connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutEvent_batchesInput
@@ -657,7 +643,6 @@ export type NullableEnumevent_target_typeFieldUpdateOperationsInput = {
   set?: $Enums.event_target_type | null
 }
 
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 export type event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput = {
   create?: Prisma.XOR<Prisma.event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput, Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_created_byTouser_loginInput> | Prisma.event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput[] | Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_created_byTouser_loginInput[]
   connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutUser_login_event_details_created_byTouser_loginInput | Prisma.event_detailsCreateOrConnectWithoutUser_login_event_details_created_byTouser_loginInput[]
@@ -742,35 +727,6 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_upda
   deleteMany?: Prisma.event_detailsScalarWhereInput | Prisma.event_detailsScalarWhereInput[]
 }
 
-<<<<<<< HEAD
-export type event_detailsCreateNestedOneWithoutEvent_batchesInput = {
-  create?: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
-  connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutEvent_batchesInput
-  connect?: Prisma.event_detailsWhereUniqueInput
-}
-
-export type event_detailsUpdateOneRequiredWithoutEvent_batchesNestedInput = {
-  create?: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
-  connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutEvent_batchesInput
-  upsert?: Prisma.event_detailsUpsertWithoutEvent_batchesInput
-  connect?: Prisma.event_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.event_detailsUpdateToOneWithWhereWithoutEvent_batchesInput, Prisma.event_detailsUpdateWithoutEvent_batchesInput>, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
-}
-
-export type NullableEnumevent_modeFieldUpdateOperationsInput = {
-  set?: $Enums.event_mode | null
-}
-
-export type NullableEnumevent_typeFieldUpdateOperationsInput = {
-  set?: $Enums.event_type | null
-}
-
-export type NullableEnumevent_target_typeFieldUpdateOperationsInput = {
-  set?: $Enums.event_target_type | null
-}
-
-=======
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 export type event_detailsCreateWithoutCenter_detailsInput = {
   event_id?: string
   event_title: string
@@ -780,11 +736,7 @@ export type event_detailsCreateWithoutCenter_detailsInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -804,11 +756,7 @@ export type event_detailsUncheckedCreateWithoutCenter_detailsInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -865,137 +813,6 @@ export type event_detailsScalarWhereInput = {
   target_type?: Prisma.Enumevent_target_typeNullableFilter<"event_details"> | $Enums.event_target_type | null
 }
 
-<<<<<<< HEAD
-export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput = {
-  event_id?: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_at?: Date | string | null
-  updated_at?: Date | string
-  event_link?: string | null
-  event_mode?: $Enums.event_mode | null
-  event_type?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-  event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
-  user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
-}
-
-export type event_detailsUncheckedCreateWithoutUser_login_event_details_created_byTouser_loginInput = {
-  event_id?: string
-  center_id: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_at?: Date | string | null
-  updated_at?: Date | string
-  updated_by: string
-  event_link?: string | null
-  event_mode?: $Enums.event_mode | null
-  event_type?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-  event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
-}
-
-export type event_detailsCreateOrConnectWithoutUser_login_event_details_created_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput, Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_created_byTouser_loginInput>
-}
-
-export type event_detailsCreateManyUser_login_event_details_created_byTouser_loginInputEnvelope = {
-  data: Prisma.event_detailsCreateManyUser_login_event_details_created_byTouser_loginInput | Prisma.event_detailsCreateManyUser_login_event_details_created_byTouser_loginInput[]
-  skipDuplicates?: boolean
-}
-
-export type event_detailsCreateWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  event_id?: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_at?: Date | string | null
-  updated_at?: Date | string
-  event_link?: string | null
-  event_mode?: $Enums.event_mode | null
-  event_type?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-  event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
-  user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
-}
-
-export type event_detailsUncheckedCreateWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  event_id?: string
-  center_id: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_by: string
-  created_at?: Date | string | null
-  updated_at?: Date | string
-  event_link?: string | null
-  event_mode?: $Enums.event_mode | null
-  event_type?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-  event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
-}
-
-export type event_detailsCreateOrConnectWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutUser_login_event_details_updated_byTouser_loginInput, Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_updated_byTouser_loginInput>
-}
-
-export type event_detailsCreateManyUser_login_event_details_updated_byTouser_loginInputEnvelope = {
-  data: Prisma.event_detailsCreateManyUser_login_event_details_updated_byTouser_loginInput | Prisma.event_detailsCreateManyUser_login_event_details_updated_byTouser_loginInput[]
-  skipDuplicates?: boolean
-}
-
-export type event_detailsUpsertWithWhereUniqueWithoutUser_login_event_details_created_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.event_detailsUpdateWithoutUser_login_event_details_created_byTouser_loginInput, Prisma.event_detailsUncheckedUpdateWithoutUser_login_event_details_created_byTouser_loginInput>
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput, Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_created_byTouser_loginInput>
-}
-
-export type event_detailsUpdateWithWhereUniqueWithoutUser_login_event_details_created_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.event_detailsUpdateWithoutUser_login_event_details_created_byTouser_loginInput, Prisma.event_detailsUncheckedUpdateWithoutUser_login_event_details_created_byTouser_loginInput>
-}
-
-export type event_detailsUpdateManyWithWhereWithoutUser_login_event_details_created_byTouser_loginInput = {
-  where: Prisma.event_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.event_detailsUpdateManyMutationInput, Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginInput>
-}
-
-export type event_detailsUpsertWithWhereUniqueWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.event_detailsUpdateWithoutUser_login_event_details_updated_byTouser_loginInput, Prisma.event_detailsUncheckedUpdateWithoutUser_login_event_details_updated_byTouser_loginInput>
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutUser_login_event_details_updated_byTouser_loginInput, Prisma.event_detailsUncheckedCreateWithoutUser_login_event_details_updated_byTouser_loginInput>
-}
-
-export type event_detailsUpdateWithWhereUniqueWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.event_detailsUpdateWithoutUser_login_event_details_updated_byTouser_loginInput, Prisma.event_detailsUncheckedUpdateWithoutUser_login_event_details_updated_byTouser_loginInput>
-}
-
-export type event_detailsUpdateManyWithWhereWithoutUser_login_event_details_updated_byTouser_loginInput = {
-  where: Prisma.event_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.event_detailsUpdateManyMutationInput, Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginInput>
-}
-
-=======
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 export type event_detailsCreateWithoutEvent_batchesInput = {
   event_id?: string
   event_title: string
@@ -1005,11 +822,7 @@ export type event_detailsCreateWithoutEvent_batchesInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
   updated_at: Date | string
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -1030,11 +843,7 @@ export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
   updated_at: Date | string
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1096,8 +905,6 @@ export type event_detailsUncheckedUpdateWithoutEvent_batchesInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
 }
 
-<<<<<<< HEAD
-=======
 export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput = {
   event_id?: string
   event_title: string
@@ -1107,7 +914,7 @@ export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -1127,7 +934,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_created_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1155,7 +962,7 @@ export type event_detailsCreateWithoutUser_login_event_details_updated_byTouser_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -1176,7 +983,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_updated_
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at?: Date | string | null
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -1226,99 +1033,6 @@ export type event_detailsUpdateManyWithWhereWithoutUser_login_event_details_upda
   data: Prisma.XOR<Prisma.event_detailsUpdateManyMutationInput, Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginInput>
 }
 
-export type event_detailsCreateWithoutEvent_batchesInput = {
-  event_id?: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  event_link?: string | null
-  eventmode?: $Enums.event_mode | null
-  eventtype?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-  center_details: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
-  user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
-  user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
-}
-
-export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
-  event_id?: string
-  center_id: string
-  event_title: string
-  event_description?: string | null
-  event_date: Date | string
-  event_time: Date | string
-  venue?: string | null
-  is_show?: boolean | null
-  created_by: string
-  created_at?: Date | string | null
-  updated_at?: Date | string | null
-  updated_by: string
-  event_link?: string | null
-  eventmode?: $Enums.event_mode | null
-  eventtype?: $Enums.event_type | null
-  target_type?: $Enums.event_target_type | null
-}
-
-export type event_detailsCreateOrConnectWithoutEvent_batchesInput = {
-  where: Prisma.event_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
-}
-
-export type event_detailsUpsertWithoutEvent_batchesInput = {
-  update: Prisma.XOR<Prisma.event_detailsUpdateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
-  create: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
-  where?: Prisma.event_detailsWhereInput
-}
-
-export type event_detailsUpdateToOneWithWhereWithoutEvent_batchesInput = {
-  where?: Prisma.event_detailsWhereInput
-  data: Prisma.XOR<Prisma.event_detailsUpdateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
-}
-
-export type event_detailsUpdateWithoutEvent_batchesInput = {
-  event_id?: Prisma.StringFieldUpdateOperationsInput | string
-  event_title?: Prisma.StringFieldUpdateOperationsInput | string
-  event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  event_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  eventmode?: Prisma.NullableEnumevent_modeFieldUpdateOperationsInput | $Enums.event_mode | null
-  eventtype?: Prisma.NullableEnumevent_typeFieldUpdateOperationsInput | $Enums.event_type | null
-  target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
-  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutEvent_detailsNestedInput
-  user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
-  user_login_event_details_updated_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_updated_byTouser_loginNestedInput
-}
-
-export type event_detailsUncheckedUpdateWithoutEvent_batchesInput = {
-  event_id?: Prisma.StringFieldUpdateOperationsInput | string
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  event_title?: Prisma.StringFieldUpdateOperationsInput | string
-  event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  updated_by?: Prisma.StringFieldUpdateOperationsInput | string
-  event_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  eventmode?: Prisma.NullableEnumevent_modeFieldUpdateOperationsInput | $Enums.event_mode | null
-  eventtype?: Prisma.NullableEnumevent_typeFieldUpdateOperationsInput | $Enums.event_type | null
-  target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
-}
-
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 export type event_detailsCreateManyCenter_detailsInput = {
   event_id?: string
   event_title: string
@@ -1329,11 +1043,7 @@ export type event_detailsCreateManyCenter_detailsInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1407,11 +1117,7 @@ export type event_detailsCreateManyUser_login_event_details_created_byTouser_log
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1430,11 +1136,7 @@ export type event_detailsCreateManyUser_login_event_details_updated_byTouser_log
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-<<<<<<< HEAD
-  updated_at?: Date | string
-=======
-  updated_at?: Date | string | null
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
+  updated_at: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null

@@ -118,24 +118,6 @@ export type job_eligible_course = Prisma.job_eligible_courseModel
  */
 export type job_opportunity = Prisma.job_opportunityModel
 /**
-<<<<<<< HEAD
- * Model job_application
- * 
- */
-export type job_application = Prisma.job_applicationModel
-/**
- * Model candidate_assessment
- * 
- */
-export type candidate_assessment = Prisma.candidate_assessmentModel
-/**
- * Model instructor_documents
- * 
- */
-export type instructor_documents = Prisma.instructor_documentsModel
-/**
-=======
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
  * Model notifications
  * 
  */
@@ -155,16 +137,3 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
-<<<<<<< HEAD
-/**
- * Model event_batches
- * 
- */
-export type event_batches = Prisma.event_batchesModel
-/**
- * Model event_details
- * 
- */
-export type event_details = Prisma.event_detailsModel
-=======
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf

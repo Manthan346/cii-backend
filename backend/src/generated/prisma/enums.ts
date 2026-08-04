@@ -166,29 +166,21 @@ export const notification_type = {
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
 
 
-export const event_mode = {
-  ONLINE: 'ONLINE',
-  OFFLINE: 'OFFLINE',
-  HYBRID: 'HYBRID'
+export const role_types = {
+  candidate: 'candidate',
+  instructor: 'instructor',
+  admin: 'admin',
+  super_admin: 'super_admin'
 } as const
 
-export type event_mode = (typeof event_mode)[keyof typeof event_mode]
+export type role_types = (typeof role_types)[keyof typeof role_types]
 
 
-export const event_type = {
-  WEBINAR: 'WEBINAR',
-  SEMINAR: 'SEMINAR',
+export const training_type = {
+  ACADEMIC: 'ACADEMIC',
+  WORKSHOP: 'WORKSHOP',
   UPSKILLING: 'UPSKILLING',
-  WORKSHOP: 'WORKSHOP'
+  SEMINAR: 'SEMINAR'
 } as const
 
-export type event_type = (typeof event_type)[keyof typeof event_type]
-
-
-export const event_target_type = {
-  BATCH: 'BATCH',
-  ALL_BATCHES: 'ALL_BATCHES',
-  DEPARTMENT: 'DEPARTMENT'
-} as const
-
-export type event_target_type = (typeof event_target_type)[keyof typeof event_target_type]
+export type training_type = (typeof training_type)[keyof typeof training_type]

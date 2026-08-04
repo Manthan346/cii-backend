@@ -412,14 +412,8 @@ export const ModelName = {
   job_opportunity: 'job_opportunity',
   notifications: 'notifications',
   study_material: 'study_material',
-<<<<<<< HEAD
-  user_notifications: 'user_notifications',
-  event_batches: 'event_batches',
-  event_details: 'event_details'
-=======
   user_login: 'user_login',
   user_notifications: 'user_notifications'
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -435,11 +429,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-<<<<<<< HEAD
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "job_eligible_course" | "job_opportunity" | "job_application" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details"
-=======
     modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications"
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2219,154 +2209,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    event_batches: {
-      payload: Prisma.$event_batchesPayload<ExtArgs>
-      fields: Prisma.event_batchesFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.event_batchesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.event_batchesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        findFirst: {
-          args: Prisma.event_batchesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.event_batchesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        findMany: {
-          args: Prisma.event_batchesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
-        }
-        create: {
-          args: Prisma.event_batchesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        createMany: {
-          args: Prisma.event_batchesCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.event_batchesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
-        }
-        delete: {
-          args: Prisma.event_batchesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        update: {
-          args: Prisma.event_batchesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        deleteMany: {
-          args: Prisma.event_batchesDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.event_batchesUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.event_batchesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>[]
-        }
-        upsert: {
-          args: Prisma.event_batchesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_batchesPayload>
-        }
-        aggregate: {
-          args: Prisma.Event_batchesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEvent_batches>
-        }
-        groupBy: {
-          args: Prisma.event_batchesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Event_batchesGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.event_batchesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Event_batchesCountAggregateOutputType> | number
-        }
-      }
-    }
-    event_details: {
-      payload: Prisma.$event_detailsPayload<ExtArgs>
-      fields: Prisma.event_detailsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.event_detailsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.event_detailsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        findFirst: {
-          args: Prisma.event_detailsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.event_detailsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        findMany: {
-          args: Prisma.event_detailsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
-        }
-        create: {
-          args: Prisma.event_detailsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        createMany: {
-          args: Prisma.event_detailsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.event_detailsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
-        }
-        delete: {
-          args: Prisma.event_detailsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        update: {
-          args: Prisma.event_detailsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        deleteMany: {
-          args: Prisma.event_detailsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.event_detailsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.event_detailsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>[]
-        }
-        upsert: {
-          args: Prisma.event_detailsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$event_detailsPayload>
-        }
-        aggregate: {
-          args: Prisma.Event_detailsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEvent_details>
-        }
-        groupBy: {
-          args: Prisma.event_detailsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Event_detailsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.event_detailsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Event_detailsCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -2554,9 +2396,6 @@ export const Candidates_detailsScalarFieldEnum = {
   candidate_unique_id: 'candidate_unique_id',
   guardian_address: 'guardian_address',
   guardian_gender: 'guardian_gender',
-<<<<<<< HEAD
-  guardian_dob: 'guardian_dob'
-=======
   guardian_dob: 'guardian_dob',
   father_name: 'father_name',
   father_occupation: 'father_occupation',
@@ -2568,7 +2407,6 @@ export const Candidates_detailsScalarFieldEnum = {
   mother_phone_no: 'mother_phone_no',
   father_address: 'father_address',
   mother_address: 'mother_address'
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -2715,7 +2553,10 @@ export const Instructor_detailsScalarFieldEnum = {
   mother_blood_group: 'mother_blood_group',
   mother_phone_no: 'mother_phone_no',
   father_current_address: 'father_current_address',
-  mother_current_address: 'mother_current_address'
+  mother_current_address: 'mother_current_address',
+  guardian_dob: 'guardian_dob',
+  father_dob: 'father_dob',
+  mother_dob: 'mother_dob'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -2825,42 +2666,6 @@ export const User_notificationsScalarFieldEnum = {
 } as const
 
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
-
-
-<<<<<<< HEAD
-export const Event_batchesScalarFieldEnum = {
-  event_batch_id: 'event_batch_id',
-  event_id: 'event_id',
-  batch_id: 'batch_id'
-} as const
-
-export type Event_batchesScalarFieldEnum = (typeof Event_batchesScalarFieldEnum)[keyof typeof Event_batchesScalarFieldEnum]
-
-
-export const Event_detailsScalarFieldEnum = {
-  event_id: 'event_id',
-  center_id: 'center_id',
-  event_title: 'event_title',
-  event_description: 'event_description',
-  event_date: 'event_date',
-  event_time: 'event_time',
-  venue: 'venue',
-  is_show: 'is_show',
-  created_by: 'created_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  updated_by: 'updated_by',
-  event_link: 'event_link',
-  event_mode: 'event_mode',
-  event_type: 'event_type',
-  target_type: 'target_type'
-} as const
-
-export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
-=======
-
-
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 
 
 export const SortOrder = {
@@ -3153,56 +2958,16 @@ export type ListEnumnotification_reference_typeFieldRefInput<$PrismaModel> = Fie
 
 
 /**
-<<<<<<< HEAD
- * Reference to a field of type 'event_mode'
- */
-export type Enumevent_modeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_mode'>
-=======
  * Reference to a field of type 'role_types'
  */
 export type Enumrole_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'role_types'>
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
     
 
 
 /**
-<<<<<<< HEAD
- * Reference to a field of type 'event_mode[]'
- */
-export type ListEnumevent_modeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_mode[]'>
-    
-
-
-/**
- * Reference to a field of type 'event_type'
- */
-export type Enumevent_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_type'>
-    
-
-
-/**
- * Reference to a field of type 'event_type[]'
- */
-export type ListEnumevent_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_type[]'>
-    
-
-
-/**
- * Reference to a field of type 'event_target_type'
- */
-export type Enumevent_target_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_target_type'>
-    
-
-
-/**
- * Reference to a field of type 'event_target_type[]'
- */
-export type ListEnumevent_target_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'event_target_type[]'>
-=======
  * Reference to a field of type 'role_types[]'
  */
 export type ListEnumrole_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'role_types[]'>
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
     
 
 
@@ -3330,8 +3095,6 @@ export type GlobalOmitConfig = {
   study_material?: Prisma.study_materialOmit
   user_login?: Prisma.user_loginOmit
   user_notifications?: Prisma.user_notificationsOmit
-  event_batches?: Prisma.event_batchesOmit
-  event_details?: Prisma.event_detailsOmit
 }
 
 /* Types for Logging */

@@ -364,8 +364,6 @@ export type course_detailsUncheckedUpdateManyInput = {
 export type Course_detailsScalarRelationFilter = {
   is?: Prisma.course_detailsWhereInput
   isNot?: Prisma.course_detailsWhereInput
-<<<<<<< HEAD
-=======
 }
 
 export type Course_detailsListRelationFilter = {
@@ -376,7 +374,6 @@ export type Course_detailsListRelationFilter = {
 
 export type course_detailsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
->>>>>>> 478bc0671eabd615ff29d48075ecde2c726f2bdf
 }
 
 export type course_detailsCountOrderByAggregateInput = {
