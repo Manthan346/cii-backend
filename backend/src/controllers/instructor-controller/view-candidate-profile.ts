@@ -8,11 +8,16 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 export const viewCandidateProfile = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) => {
-        
 
-        console.log(req.query);
-        console.log(req.params);
-        console.log(req.body);
+        const { company_id } = req.instructor!;
+
+        if (!company_id) {
+            throw new ApiError(
+                403,
+                "Company not found."
+            );
+        }
+        
         const enrollment_id =req.query.enrollment_id?.toString().trim();
         if(!enrollment_id){
             throw new ApiError(
@@ -30,7 +35,11 @@ export const viewCandidateProfile = asyncHandler(
                         user_login:true
                     }
                 },
-                batch_details:true
+                batch_details: {
+                    include: {
+                        course_details: true
+                    }
+                }
             }
 
         });
@@ -42,10 +51,11 @@ export const viewCandidateProfile = asyncHandler(
                 "Enrollment Not Found."
             )
         }
-        if(
-            enrollment.batch_details?.instructor_id !==
-            req.instructor?.instructor_id
-        ){
+
+        if (
+            enrollment.batch_details.course_details.company_id !==
+            company_id
+        ) {
             throw new ApiError(
                 403,
                 "You don't have permission to view this candidate's profile."

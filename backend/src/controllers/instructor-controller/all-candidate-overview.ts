@@ -9,7 +9,7 @@ import {batch_enrollment_status_type} from "../../generated/prisma/enums";
 
 export const getAllCandidateBelongingToInstructor = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) => {
-        const {instructor_id} = req.instructor!;
+        const {instructor_id,company_id} = req.instructor!;
         const page = Math.max(
             1,
             Number(req.query.page) || 1
@@ -22,16 +22,25 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
             )
         );
 
+        if (!company_id) {
+            throw new ApiError(
+                403,
+                "Company not found."
+            );
+        }
+
         const status = req.query.status?.toString().trim();
         const batch_id = req.query.batch_id?.toString().trim();
         const search = req.query.search?.toString().trim();
 
         const skip = (page-1)*limit;
 
-        const whereClause:any = {
-            batch_details:{
-                instructor_id,
-                b_status:"ACTIVE"
+        const whereClause: any = {
+            batch_details: {
+                b_status: "ACTIVE",
+                course_details: {
+                    company_id
+                }
             }
         };
 
