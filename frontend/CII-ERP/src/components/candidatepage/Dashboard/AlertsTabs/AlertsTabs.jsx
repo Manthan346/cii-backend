@@ -1,12 +1,13 @@
 // AlertsTabs.jsx
-// Tabbed panel with "Alerts" and "Upcoming" tabs as shown in the screenshot.
-// Skeleton lines shown in the Upcoming tab until data arrives.
+// Single-panel Alerts list. The "Upcoming" tab has been removed per product
+// request — this component no longer accepts or renders an `upcoming` prop.
+// Header now matches the same left-title / right-"View all" pattern used by
+// My Courses and Job Opportunities.
 //
 // Props:
-//   alerts    {Array}  – [{ text, meta }]  TODO: /api/candidate/alerts
-//   upcoming  {Array}  – [{ text, meta }]  TODO: /api/candidate/upcoming
+//   alerts  {Array}  – [{ text, meta }]  TODO: /api/candidate/alerts
 
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './AlertsTabs.css';
 
 const DEFAULT_ALERTS = [
@@ -15,18 +16,10 @@ const DEFAULT_ALERTS = [
   { text: "Attendance marked for today's session",     meta: 'Housekeeping · Today'        },
 ];
 
-const DEFAULT_UPCOMING = [
-  { text: 'Graphic Design live session',   meta: 'Tomorrow · 10:00 AM'   },
-  { text: 'Cyber Security assessment',     meta: 'Wed, 02 Jul · 2:00 PM' },
-  { text: 'Housekeeping practical test',   meta: 'Fri, 04 Jul · 11:00 AM'},
-];
-
-const TABS = ['Alerts', 'Upcoming'];
-
-function ItemList({ items, dot }) {
+function ItemList({ items }) {
   return items.map((item, i) => (
     <div key={i} className="alert-item">
-      <span className={dot} aria-hidden="true" />
+      <span className="alert-item__dot" aria-hidden="true" />
       <div>
         <div className="alert-item__text">{item.text}</div>
         <div className="alert-item__meta">{item.meta}</div>
@@ -35,46 +28,18 @@ function ItemList({ items, dot }) {
   ));
 }
 
-export default function AlertsTabs({
-  alerts   = DEFAULT_ALERTS,
-  upcoming = DEFAULT_UPCOMING,
-}) {
-  const [activeTab, setActiveTab] = useState('Alerts');
-
-  function handleTab(tab) {
-    if (tab !== activeTab) setActiveTab(tab);
-  }
-
-  const offset = activeTab === 'Alerts' ? 0 : -50;
-
+export default function AlertsTabs({ alerts = DEFAULT_ALERTS }) {
   return (
     <div className="alerts-tabs">
-      <div className="alerts-tabs__bar" role="tablist">
-        {TABS.map(tab => (
-          <button
-            key={tab}
-            role="tab"
-            aria-selected={activeTab === tab}
-            className={`alerts-tabs__tab${activeTab === tab ? ' alerts-tabs__tab--active' : ''}`}
-            onClick={() => handleTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
+      <div className="alerts-tabs__header">
+        <span className="alerts-tabs__title">Alerts</span>
+        <Link to="/alerts" className="alerts-tabs__view-all">
+          View all
+        </Link>
       </div>
 
-      <div className="alerts-tabs__viewport">
-        <div
-          className="alerts-tabs__track"
-          style={{ transform: `translateX(${offset}%)` }}
-        >
-          <div className="alerts-tabs__panel" role="tabpanel">
-            <ItemList items={alerts}   dot="alert-item__dot" />
-          </div>
-          <div className="alerts-tabs__panel" role="tabpanel">
-            <ItemList items={upcoming} dot="alert-item__dot alert-item__dot--upcoming" />
-          </div>
-        </div>
+      <div className="alerts-tabs__panel">
+        <ItemList items={alerts} />
       </div>
     </div>
   );

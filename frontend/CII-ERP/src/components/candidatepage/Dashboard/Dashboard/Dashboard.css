@@ -7,14 +7,14 @@
 }
 
 /* ── Right side (topbar + scrollable body) ──
-   FIX: Sidebar.css uses `position: fixed` (by design — it's the shared
-   drawer used across Dashboard/My Courses/Profile), which takes it out
-   of normal flow. Without this margin, .dashboard__main doesn't know
-   the sidebar occupies 240px and stretches underneath it, causing the
-   sidebar to visually overlap the page content. This margin is the
-   single, minimal fix — Sidebar.css itself is untouched. It's removed
-   below the same 900px breakpoint where the sidebar already slides
-   off-canvas via `transform: translateX(-100%)`. */
+   Sidebar.css uses `position: fixed` (by design — it's the shared drawer
+   used across Dashboard/My Courses/Profile), which takes it out of normal
+   flow. Without this margin, .dashboard__main doesn't know the sidebar
+   occupies 240px and stretches underneath it, causing the sidebar to
+   visually overlap the page content. This margin is the single, minimal
+   fix — Sidebar.css itself is untouched. It's removed below the same
+   900px breakpoint where the sidebar already slides off-canvas via
+   `transform: translateX(-100%)`. */
 .dashboard__main {
   flex: 1;
   display: flex;
@@ -31,12 +31,13 @@
 
 .dashboard__body {
   flex: 1;
-  padding: 16px 16px 16px 40px;
+  padding: 24px 40px 40px;
   display: flex;
   flex-direction: column;
 }
 
-.dashboard__loading {
+.dashboard__loading,
+.dashboard__error {
   padding: 60px 0;
   text-align: center;
   color: #6B7A94;
@@ -47,33 +48,23 @@
    WelcomeBanner and StatGrid already carry their own bottom margins
    (defined in their own CSS, reused as-is from other screens), so we
    don't double up on those. Every .dashboard__row below them just adds
-   its own top margin — the same pattern the original file used for
-   .dashboard__grid. */
+   its own top margin. */
 .dashboard__row {
   margin-top: 20px;
 }
 
-/* ── Two-column rows (My Courses/Unlock Certificate, Alerts/Jobs) ── */
-/* ── Two-column rows (My Courses/Unlock Certificate) ── */
+/* ── Two-column rows (My Courses / Unlock Certificate, Alerts / Jobs) ──
+   Left column expands to fill available space; right column stays only
+   as wide as its content needs (or a fixed width for the bottom row). */
 .dashboard__row--split {
   display: grid;
-  /* 
-     Change: The left side (1fr) expands to fill space, 
-     the right side (auto) stays only as wide as its content. 
-  */
-  grid-template-columns: 1fr auto; 
+  grid-template-columns: 1fr auto;
   gap: 20px;
   align-items: stretch;
 }
 
-/* Ensure the Unlock Certificate card doesn't stretch too thin or wide */
-/* .dashboard__row--split > :last-child {
-  min-width: 320px; /* Adjust this value to match your design's preferred width 
-  max-width: 400px;
-} */
-
 .dashboard__row--bottom {
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 370px;
 }
 
 @media (max-width: 1100px) {

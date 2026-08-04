@@ -1,10 +1,9 @@
 // Profile.jsx
 // Root page — "My Profile" section. Composes the sidebar, topbar, identity
 // header, tab navigation, and the four tab panels (personal info, academic
-// detail, document, skills & links).
+// detail, document, guardian details).
 
 import { useState, useEffect } from "react";
-import API from "../../../../../api/api";
 
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
@@ -14,14 +13,18 @@ import ProfileTabs from "../ProfileTabs/ProfileTabs";
 import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import AcademicDetail from "../AcademicDetail/AcademicDetail";
 import Document from "../Document/Document";
-import Skills from "../Skills/Skills";
+import GuardianDetails from "../GuardianDetails/GuardianDetails";
+
+import {
+  fetchCandidateProfile,
+  fetchCandidateAcademics,
+  fetchCandidateDocuments,
+  fetchCandidateGuardianDetails,
+} from "../../../../services/profileService";
 
 import "./Profile.css";
 import orgLogo from "../../../../assets/Logo.png";
-import {
-  INITIAL_DOCUMENTS,
-  INITIAL_SKILLS,
-} from "../../../../data/profileData";
+import { INITIAL_DOCUMENTS } from "../../../../data/profileData";
 
 // ─── Mappers (pure functions, no hooks — safe at top level) ───────────────
 
@@ -112,6 +115,42 @@ function mapAppliedCourses(academicDetails) {
   }));
 }
 
+// Maps a single section (father / mother / guardian) from the API shape
+// { name, blood_group, occupation, phone_no, address, relationship?, gender?, dob? }
+// into the shape GuardianDetails.jsx expects. `defaults` fills in
+// relationship/gender for father & mother, since the API omits them there.
+function mapGuardianSection(details, defaults = {}) {
+  if (!details) return null;
+
+  return {
+    name: details.name ?? "-",
+    relationship: details.relationship ?? defaults.relationship ?? "-",
+    gender: details.gender ?? defaults.gender ?? "-",
+    bloodGroup: details.blood_group ?? "-",
+    occupation: details.occupation ?? "-",
+    address: details.address ?? "-",
+    phone: details.phone_no ?? "-",
+    dob: formatDate(details.dob),
+  };
+}
+
+// guardianPayload = { fatherDetails, motherDetails, guardianDetails }
+function mapGuardianInfo(guardianPayload) {
+  if (!guardianPayload) return null;
+
+  return {
+    father: mapGuardianSection(guardianPayload.fatherDetails, {
+      relationship: "Father",
+      gender: "Male",
+    }),
+    mother: mapGuardianSection(guardianPayload.motherDetails, {
+      relationship: "Mother",
+      gender: "Female",
+    }),
+    guardian: mapGuardianSection(guardianPayload.guardianDetails, {}),
+  };
+}
+
 function formatDocumentDate() {
   return new Date().toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -151,11 +190,11 @@ export default function Profile() {
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState("personal");
   const [documents, setDocuments] = useState(INITIAL_DOCUMENTS);
-  const [skills, setSkills] = useState(INITIAL_SKILLS);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [personalInfo, setPersonalInfo] = useState(null);
   const [academicDetails, setAcademicDetails] = useState(null);
+  const [guardianDetails, setGuardianDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -165,11 +204,12 @@ export default function Profile() {
     async function loadProfile() {
       try {
         setLoading(true);
-        const [profileRes, academicsRes, documentsRes] =
+        const [profileRes, academicsRes, documentsRes, guardianRes] =
           await Promise.allSettled([
-            API.get("candidate/candidate-profile"),
-            API.get("candidate/candidate-academics"),
-            API.post("candidate/candidate-documents", {}),
+            fetchCandidateProfile(),
+            fetchCandidateAcademics(),
+            fetchCandidateDocuments(),
+            fetchCandidateGuardianDetails(),
           ]);
 
         if (!cancelled) {
@@ -187,6 +227,12 @@ export default function Profile() {
             const payload =
               documentsRes.value.data?.data ?? documentsRes.value.data ?? {};
             setDocuments(mapDocumentsFromApi(payload, INITIAL_DOCUMENTS));
+          }
+
+          if (guardianRes.status === "fulfilled") {
+            setGuardianDetails(
+              guardianRes.value.data?.data?.guardianDetails ?? null,
+            );
           }
         }
       } catch (err) {
@@ -206,6 +252,7 @@ export default function Profile() {
   const { checklist, completionPct } = buildChecklist(mappedInfo);
   const candidateHeader = mapCandidateHeader(personalInfo, completionPct);
   const appliedCourses = mapAppliedCourses(academicDetails);
+  const mappedGuardian = mapGuardianInfo(guardianDetails);
 
   const orgLogoSrc = orgLogo;
 
@@ -255,8 +302,8 @@ export default function Profile() {
             <Document documents={documents} onDocumentsChange={setDocuments} />
           )}
 
-          {activeTab === "skills" && (
-            <Skills skills={skills} onSkillsChange={setSkills} />
+          {activeTab === "guardian" && (
+            <GuardianDetails guardian={mappedGuardian} />
           )}
         </main>
       </div>

@@ -11,21 +11,17 @@ import { fetchNotifications } from "../../../../services/Notificationservice";
 import {
   getNotificationTypeConfig,
   buildNotificationLink,
+  REFERENCE_TYPE_OPTIONS,
 } from "../../../../config/notificationTypeConfig";
 
 import styles from "./NotificationDashboard.module.css";
 
 import orgLogo from "../../../../assets/Logo.png";
 
-// "Finance" removed from the tab list — the backend has no matching
-// category yet (see notificationService.js). Add it back once the
-// backend's CATEGORY_MAP grows a `finance` group.
-const TAB_CONFIG = [
-  { id: "All", label: "All" },
-  { id: "Job", label: "Job" },
-  { id: "Examination", label: "Examination" },
-  { id: "Academics", label: "Academics" },
-];
+// Reference-type ids to hide from the filter row entirely. "INTERVIEW" and
+// "EXAMINATION" were removed per product request — "EXAM" already covers
+// the examination case, and "INTERVIEW" wasn't needed as a separate tab.
+const HIDDEN_REFERENCE_TYPES = ["INTERVIEW", "EXAMINATION"];
 
 function formatRelativeTime(isoDate) {
   const diffMs = Date.now() - new Date(isoDate).getTime();
@@ -43,7 +39,10 @@ function formatRelativeTime(isoDate) {
 
 // Backend shape -> what NotificationCard renders.
 function mapNotification(raw) {
-  const { category, icon, color } = getNotificationTypeConfig(raw.notification_type);
+  const { category, icon, color } = getNotificationTypeConfig(
+    raw.notification_type,
+    raw.reference_type
+  );
   return {
     id: raw.user_notification_id,
     title: raw.title,
@@ -51,6 +50,7 @@ function mapNotification(raw) {
     category,
     icon,
     color,
+    referenceType: raw.reference_type, // used for the reference-type filter
     // is_read here is the value captured BEFORE the backend's GET-marks-read
     // side effect — i.e. "was this unread when the user opened this page".
     isUnread: !raw.is_read,
@@ -64,7 +64,13 @@ function NotificationDashboard() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [activeTab, setActiveTab] = useState("All");
+  const [referenceTypeFilter, setReferenceTypeFilter] = useState("ALL");
+
+  // The category tabs (All/Job/Examination/Academics/Events) were removed
+  // from the UI, but fetchNotifications still takes a category param.
+  // We just always fetch the unfiltered "All" category now; filtering by
+  // reference type happens client-side below, same as before.
+  const activeTab = "All";
 
   const [buckets, setBuckets] = useState({ today: [], yesterday: [], older: [] });
   const [unreadCount, setUnreadCount] = useState(0);
@@ -117,19 +123,30 @@ function NotificationDashboard() {
     [buckets]
   );
 
+  // Filters applied client-side, on top of whatever page/tab is already
+  // loaded. Neither `searchValue` nor `referenceTypeFilter` re-fetches or
+  // searches across unloaded pages — same limitation as before.
   const filteredBuckets = useMemo(() => {
     const query = searchValue.trim().toLowerCase();
-    if (!query) return buckets;
 
-    const matches = (n) =>
-      n.title.toLowerCase().includes(query) || n.category.toLowerCase().includes(query);
+    const matches = (n) => {
+      const matchesQuery =
+        !query ||
+        n.title.toLowerCase().includes(query) ||
+        n.category.toLowerCase().includes(query);
+
+      const matchesReferenceType =
+        referenceTypeFilter === "ALL" || n.referenceType === referenceTypeFilter;
+
+      return matchesQuery && matchesReferenceType;
+    };
 
     return {
       today: buckets.today.filter(matches),
       yesterday: buckets.yesterday.filter(matches),
       older: buckets.older.filter(matches),
     };
-  }, [buckets, searchValue]);
+  }, [buckets, searchValue, referenceTypeFilter]);
 
   const groupedNotifications = useMemo(
     () =>
@@ -141,10 +158,32 @@ function NotificationDashboard() {
     [filteredBuckets]
   );
 
-  // NOTE: tab badge counts (e.g. "JOB 4") aren't shown here — the API only
-  // returns counts for whichever single category is currently loaded, not
-  // totals per category. That needs a dedicated counts endpoint.
-  const tabs = useMemo(() => TAB_CONFIG.map(({ id, label }) => ({ id, label })), []);
+  // Counts per reference type, computed from whatever's currently loaded
+  // (allLoaded). NOTE: this is a client-side count of loaded pages only —
+  // not a true global total. If the user hasn't paged through everything,
+  // these numbers only reflect what's been fetched so far. A dedicated
+  // counts endpoint would be needed for accurate totals across all pages.
+  const referenceTypeCounts = useMemo(() => {
+    const counts = {};
+    allLoaded.forEach((n) => {
+      if (!n.referenceType) return;
+      counts[n.referenceType] = (counts[n.referenceType] ?? 0) + 1;
+    });
+    return counts;
+  }, [allLoaded]);
+
+  // Reference-type filter tabs: REFERENCE_TYPE_OPTIONS minus the hidden
+  // ids, with a `count` field NotificationTabs renders in its own badge span.
+  const referenceTypeTabs = useMemo(
+    () =>
+      REFERENCE_TYPE_OPTIONS.filter((opt) => !HIDDEN_REFERENCE_TYPES.includes(opt.id)).map(
+        ({ id, label }) => {
+          const count = id === "ALL" ? allLoaded.length : referenceTypeCounts[id] ?? 0;
+          return { id, label, count };
+        }
+      ),
+    [referenceTypeCounts, allLoaded]
+  );
 
   // Clicking just navigates. There's no PATCH /notifications/:id/read
   // endpoint — the backend already marks a page's items read the moment
@@ -184,7 +223,15 @@ function NotificationDashboard() {
             subtitle={`${unreadCount} Unread · Stay On Top of Deadlines, Classes, and Updates`}
           />
 
-          <NotificationTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+          <div className={styles.referenceTypeRow}>
+            <NotificationTabs
+              tabs={referenceTypeTabs}
+              activeTab={referenceTypeFilter}
+              onTabChange={setReferenceTypeFilter}
+              className={styles.referenceTypeFilter}
+              compact
+            />
+          </div>
 
           <section className={styles.notificationColumn} aria-label="Notification list">
             {error && <p className={styles.emptyState}>{error}</p>}

@@ -91,8 +91,8 @@ const Assessments = () => {
   const stats = [
     { id: "pending", icon: "hourGlass", iconBg: "#FDECE3", iconColor: "#E8834A", value: String(pendingCount), label: "Pending" },
     { id: "completed", icon: "checkCircle", iconBg: "#E1F5EA", iconColor: "#2FAE60", value: String(completedCount), label: "Completed" },
-    { id: "average", icon: "trendingUp", iconBg: "#E8E9FB", iconColor: "#5B5FEF", value: "0%", label: "Average score" },
-    { id: "best", icon: "trophy", iconBg: "#FBE9E4", iconColor: "#E8834A", value: "0%", label: "Best score" },
+    // { id: "average", icon: "trendingUp", iconBg: "#E8E9FB", iconColor: "#5B5FEF", value: "0%", label: "Average score" },
+    // { id: "best", icon: "trophy", iconBg: "#FBE9E4", iconColor: "#E8834A", value: "0%", label: "Best score" },
   ];
 
   const handleStartAssessment = (assessment) => {

@@ -17,6 +17,18 @@
 // instead of hardcoded "AS" / "Aisha Sheikh" / "Candidate". Logout link
 // now actually logs out (see useAuthUser.logout) instead of being a
 // preventDefault() no-op.
+//
+// ── Update (2026-08-03) ───────────────────────────────────────────
+// Fixed: NAV_PROGRESS entries use string icon names (e.g. 'assessments',
+// 'upload') meant to be looked up in the custom Icon component's PATHS
+// map, but NavItem was rendering `icon` directly as a JSX tag
+// (`<IconComp .../>`), which only works for the lucide-react component
+// references used by NAV_MAIN/NAV_SCHEDULE. A string there just produced
+// an unrecognized lowercase tag with nothing visible. NavItem now checks
+// typeof icon and renders through the custom Icon component when it's a
+// string. Also: `icon` was imported but never used — renamed to `Icon`
+// (matching the component-name convention) since it's the thing that
+// actually fixes this.
 // ──────────────────────────────────────────────────────────────
 
 import { Link } from "react-router-dom";
@@ -25,6 +37,7 @@ import {
   User,
   GraduationCap,
   CalendarCheck,
+  ClipboardList,
   Star,
   Award,
   Briefcase,
@@ -34,7 +47,7 @@ import {
 } from "lucide-react";
 import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
 import { useAuthUser } from "../../../../services/useAuthUser"; // adjust path to wherever useAuthUser.js lives
-import icon from "../../shared/Icon/Icon";
+import Icon from "../../shared/Icon/Icon";
 //import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
@@ -43,11 +56,13 @@ const NAV_MAIN = [
   { icon: User,            label: "My Profile", to: "/my-profile"   },
   { icon: GraduationCap,   label: "My Courses", to: "/my-courses"   },
   { icon: CalendarCheck,   label: "Attendance", to: "/attendance"   },
+  { icon: ClipboardList,   label: "Task",       to: "/tasks"        },
 ];
 
 const NAV_PROGRESS = [
   { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
-  { icon: 'certificate', label: 'Certificates',      to: '/progress/certificates'     },
+  { icon: 'upload',       label: 'Study Material',    to: '/progress/studymaterial'    },
+  { icon: 'certificate',  label: 'Certificates',      to: '/progress/certificates'     },
   { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 
@@ -55,11 +70,24 @@ const NAV_SCHEDULE = [
   { icon: Clock, label: "Upcoming Classes", to: "/Schedule/upcomingclasses" },
 ];
 
-function NavItem({ icon: IconComp, label, active, to }) {
+function NavItem({ icon, label, active, to }) {
   const cls = `sidebar__nav-item${active ? " sidebar__nav-item--active" : ""}`;
+
+  // NAV_MAIN / NAV_SCHEDULE pass lucide-react component references;
+  // NAV_PROGRESS passes plain strings that map to the custom Icon
+  // component's PATHS. Render each the way it actually needs to be
+  // rendered instead of assuming one shape for both.
+  let iconEl;
+  if (typeof icon === "string") {
+    iconEl = <Icon name={icon} size={18} color="currentColor" className="sidebar__nav-icon" />;
+  } else {
+    const IconComp = icon;
+    iconEl = <IconComp size={18} strokeWidth={2} className="sidebar__nav-icon" />;
+  }
+
   const content = (
     <>
-      <IconComp size={18} strokeWidth={2} className="sidebar__nav-icon" />
+      {iconEl}
       <span>{label}</span>
     </>
   );
@@ -108,7 +136,7 @@ export default function Sidebar({
         <div className="sidebar__profile">
           <div className="sidebar__avatar">{initials}</div>
           <div>
-            <div className="sidebar__profile-name">{fullName || "…"}</div>
+            <div className="sidebar__profile-name">{fullName || ""}</div>
             <div className="sidebar__profile-role">{role}</div>
           </div>
         </div>
@@ -137,8 +165,9 @@ export default function Sidebar({
           />
         ))}
 
+
         {/* Schedule navigation */}
-        <SectionLabel>Schedule</SectionLabel>
+        {/* <SectionLabel>Schedule</SectionLabel>
         {NAV_SCHEDULE.map((item) => (
           <NavItem
             key={item.label}
@@ -147,7 +176,7 @@ export default function Sidebar({
             to={item.to}
             active={activeItem === item.label}
           />
-        ))}
+        ))} */}
       </div>
 
       {/* Logout */}

@@ -44,7 +44,7 @@ const STAT_META = [
     icon: "attendance",
     iconBg: "#E6EEF8",
     iconColor: "#2F6FB0",
-    label: "Overall attendance",
+    label: "Attendance",
     suffix: "%",
   },
   {
@@ -63,14 +63,14 @@ const STAT_META = [
     label: "Sessions missed",
     suffix: "",
   },
-  {
-    key: "lateArrivals",
-    icon: "clock",
-    iconBg: "#FCEFD9",
-    iconColor: "#B8892A",
-    label: "Late arrivals",
-    suffix: "",
-  },
+  // {
+  //   key: "lateArrivals",
+  //   icon: "clock",
+  //   iconBg: "#FCEFD9",
+  //   iconColor: "#B8892A",
+  //   label: "Late arrivals",
+  //   suffix: "",
+  // },
 ];
 
 export default function Attendance() {
@@ -263,10 +263,15 @@ export default function Attendance() {
               {/* 1. Page title */}
               <div className="attendance-page__heading">
                 <h1 className="attendance-page__title">Attendence</h1>
-                <p className="attendance-page__subtitle">
-                  Your session-wise attendance across all enrolled courses.
-                </p>
               </div>
+
+              {/* 4. Course/batch filter */}
+              <AttendanceCourseFilter
+                courses={courseOptions}
+                value={selectedCourseId}
+                onChange={setSelectedCourseId}
+                loading={refreshing}
+              />
 
               {/* 2. Eligibility warning */}
               <AttendanceBanner
@@ -276,14 +281,6 @@ export default function Attendance() {
 
               {/* 3. Stat tiles */}
               <StatGrid stats={stats} />
-
-              {/* 4. Course/batch filter */}
-              <AttendanceCourseFilter
-                courses={courseOptions}
-                value={selectedCourseId}
-                onChange={setSelectedCourseId}
-                loading={refreshing}
-              />
 
               {/* 5. Calendar + By Courses */}
               <div className="attendance-page__row attendance-page__row--split">

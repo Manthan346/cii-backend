@@ -63,10 +63,10 @@ export default function Topbar({
         </button>
 
         {/* User avatar */}
-        {/* TODO: replace initials with <img> when profile photo is available */}
+        {/* TODO: replace initials with <img> when profile photo is available
         <div className="topbar__avatar" role="button" aria-label="User menu" onClick={() => navigate('/my-profile')}>
           {initials}
-        </div>
+        </div> */}
 
       </div>
     </header>

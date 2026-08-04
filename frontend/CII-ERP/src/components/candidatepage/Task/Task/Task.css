@@ -1,0 +1,36 @@
+/* Task.css
+   Sidebar.css sets `.sidebar { position: fixed; width: 268px; }`, which
+   removes it from normal flow — flex/grid siblings won't reserve space
+   for it automatically. So instead of relying on flexbox, the main
+   column is offset by margin-left matching the sidebar's width, and
+   that offset is removed below 900px where Sidebar.css turns the
+   sidebar into an off-canvas drawer (transform: translateX(-100%)). */
+
+.task-layout {
+  min-height: 100vh;
+  background: var(--bg, #F3F5FB);
+}
+
+.task-layout__main {
+  margin-left: 268px; /* matches .sidebar width in Sidebar.css */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-layout__content {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+@media (max-width: 900px) {
+  .task-layout__main {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .task-layout__content {
+    padding: 16px;
+  }
+}

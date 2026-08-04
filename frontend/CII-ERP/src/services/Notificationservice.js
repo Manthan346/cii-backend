@@ -9,6 +9,8 @@ const CATEGORY_PARAM = {
   Job: "job",
   Examination: "examination",
   Academics: "academics",
+  Events: "events", // ⚠️ needs a matching "events" group in the backend's
+                     // CATEGORY_MAP — see note below.
 };
 
 /**

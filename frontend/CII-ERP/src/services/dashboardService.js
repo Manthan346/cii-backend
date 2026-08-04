@@ -26,6 +26,37 @@
 import API from '../../api/api'; // <-- adjust path to wherever your API.js lives
 import { MOCK_DASHBOARD_DATA } from '../data/mockDashboardData';
 
+// ── Session date/time formatting ──
+// `session_date` arrives as a full ISO datetime (e.g. "2026-07-13T00:00:00.000Z").
+// `session_time` arrives as a TIME-only value serialized against the Unix
+// epoch (e.g. "1970-01-01T05:00:00.000Z") — only the time-of-day part is
+// meaningful, the date part is always 1970-01-01 and should be ignored.
+//
+// ASSUMPTION (please confirm with backend if this looks wrong): both values
+// are read here as UTC wall-clock time with NO timezone conversion — i.e.
+// "05:00:00.000Z" is displayed as "5:00 AM" as-is, not shifted to IST. If
+// these timestamps are meant to be genuine UTC instants that should be
+// converted for an India-based audience, change `timeZone: 'UTC'` to
+// `timeZone: 'Asia/Kolkata'` in both functions below.
+
+function formatSessionDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('en-US', {
+    weekday: 'short', day: '2-digit', month: 'short', timeZone: 'UTC',
+  });
+}
+
+function formatSessionTime(timeStr) {
+  if (!timeStr) return '';
+  const d = new Date(timeStr);
+  if (isNaN(d)) return '';
+  return d.toLocaleTimeString('en-US', {
+    hour: 'numeric', minute: '2-digit', timeZone: 'UTC',
+  });
+}
+
 export async function fetchDashboardData() {
   const [
     dashboardRes,
@@ -65,8 +96,8 @@ export async function fetchDashboardData() {
       { icon: 'courses', label: 'Enrolled courses', value: dashboardData.enrolledCourses },
       { icon: 'calendar', label: 'Attendance rate', value: `${Math.round(attendanceSummary.attendancePercentage)}%` },
       { icon: 'pending', label: 'Pending assessments', value: dashboardData.pendingAssesment },
-      // No "certificates earned" endpoint yet — pulled from mock:
-      MOCK_DASHBOARD_DATA.stats.find((s) => s.icon === 'certificates'),
+      // "Certificates earned" tile removed per product request — the
+      // mock-data stat entry is no longer pulled in here at all.
     ],
 
     // -> feeds <CourseProgressList />, now LIVE
@@ -85,9 +116,15 @@ export async function fetchDashboardData() {
     eligibility: MOCK_DASHBOARD_DATA.eligibility,             // kept static per your instruction
 
     // -> feeds the "Upcoming" tab of <AlertsTabs />, now LIVE
+    // text/meta restore the original prop contract AlertsTabs.jsx expects
+    // (see DEFAULT_UPCOMING in that file) — no changes needed there anymore.
     upcoming: upcomingSessions.map((s) => ({
       id: s.session_id,
-      title: s.topic_name,
+      text: s.topic_name,
+      meta: [formatSessionDate(s.session_date), formatSessionTime(s.session_time)]
+              .filter(Boolean)
+              .join(' · '),
+      // Raw fields kept in case a future detail view needs them.
       date: s.session_date,
       time: s.session_time,
       instructor: s.instructor,

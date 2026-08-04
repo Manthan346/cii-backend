@@ -69,7 +69,7 @@ export default function ProfileHeader({ candidate, onEdit = () => {} }) {
           <div>
             <div className="profile-header__name">{name}</div>
             <div className="profile-header__meta">
-              candidate ID: {candidateId} &nbsp;&nbsp; Batch:{batch}
+              candidate ID: {candidateId}
             </div>
           </div>
 

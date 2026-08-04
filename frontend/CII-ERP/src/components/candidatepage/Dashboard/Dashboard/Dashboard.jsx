@@ -15,6 +15,14 @@
 //      `data.courses` — `courses` is now LIVE (real attendance %), while
 //      CertificateProgress must stay on the static mock data as requested.
 //      Everything else is unchanged.
+//
+// CHANGED (this pass):
+//   3. Stopped passing `streakDays` and `certificates` into WelcomeBanner —
+//      those badges are being removed. NOTE: WelcomeBanner.jsx itself
+//      still needs its JSX updated to stop rendering the streak/certificate
+//      badge markup (it wasn't shared, so this only removes the data feed;
+//      if WelcomeBanner renders a badge unconditionally with `undefined`,
+//      it may show a blank/broken badge until that component is edited too).
 
 import { useEffect, useState } from 'react';
 
@@ -24,8 +32,6 @@ import { StatGrid }           from '../../shared/StatCard/StatCard';
 import WelcomeBanner          from '../WelcomeBanner/WelcomeBanner';
 import CourseProgressList     from '../CourseProgressList/CourseProgressList';
 import UnlockCertificate      from '../UnlockCertificate/UnlockCertificate';
-import CertificateProgress    from '../CertificateProgress/CertificateProgress';
-import CertificateEligibility from '../CertificateEligibility/CertificateEligibility';
 import AlertsTabs             from '../AlertsTabs/AlertsTabs';
 import JobOpportunities       from '../JobOpportunities/JobOpportunities';
 
@@ -84,12 +90,10 @@ export default function Dashboard() {
             <div className="dashboard__loading">Loading your dashboard…</div>
           ) : (
             <>
-              {/* 1. Welcome banner */}
+              {/* 1. Welcome banner — streak/certificate badges removed */}
               <WelcomeBanner
                 name={data.candidate.name}
                 subText="You're 3 sessions away from completing. Keep going!"
-                streakDays={data.candidate.streakDays}
-                certificates={data.stats.find(s => s.icon === 'certificates')?.value}
                 avatarSrc={data.candidate.avatarSrc}
               />
 
@@ -102,11 +106,7 @@ export default function Dashboard() {
                 <UnlockCertificate {...data.unlockCertificate} />
               </div>
 
-              
-
-            
-
-              {/* 6. Alerts/Upcoming + Job Opportunities */}
+              {/* 4. Alerts/Upcoming + Job Opportunities */}
               <div className="dashboard__row dashboard__row--split dashboard__row--bottom">
                 <AlertsTabs alerts={data.alerts} upcoming={data.upcoming} />
                 <JobOpportunities jobs={data.jobs} />

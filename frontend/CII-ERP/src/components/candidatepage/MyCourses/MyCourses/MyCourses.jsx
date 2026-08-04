@@ -69,13 +69,13 @@ function computeStats(academicDetails) {
       icon: "certificates",
     },
     // No data source for learning hours yet — left static
-    {
-      label: "Learning time of courses",
-      value: "42h",
-      iconBg: "#FFF0EB",
-      iconColor: "#E05A2B",
-      icon: "assessments",
-    },
+    // {
+    //   label: "Learning time of courses",
+    //   value: "42h",
+    //   iconBg: "#FFF0EB",
+    //   iconColor: "#E05A2B",
+    //   icon: "assessments",
+    // },
   ];
 }
 

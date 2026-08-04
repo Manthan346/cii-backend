@@ -1,8 +1,8 @@
 /* Topbar.css */
 
 .topbar {
-  background: #FFFFFF;
-  border-bottom: 1px solid #E0E8F0;
+  background:  #f6f8fc;
+  /* border-bottom: 1px solid #E0E8F0; */
   padding: 10px 28px;
   height: 64px;
   display: flex;

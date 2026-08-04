@@ -6,6 +6,10 @@
   gap: 18px;
   align-items: start;
 }
+/* PersonalInfo.css 
+.personal-info {
+  margin-top: 32px;
+} */
 
 .personal-info__card,
 .personal-info__side {
@@ -37,8 +41,8 @@
 }
 
 .personal-info__grid_mainaddress {
-  grid-template-columns: 1fr;
   margin-bottom: 25px;
+  display: flow-root; 
 }
 
 .personal-info__grid_address {

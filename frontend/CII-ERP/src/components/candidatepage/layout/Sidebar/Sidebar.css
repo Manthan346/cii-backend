@@ -49,7 +49,7 @@
   width: 268px;
   height: 100vh;
   background: var(--sidebar-bg);
-  border-right: 1px solid var(--sidebar-border);
+  /* border-right: 1px solid var(--sidebar-border); */
   padding: 15px 16px;
   position: fixed;
   top: 0;

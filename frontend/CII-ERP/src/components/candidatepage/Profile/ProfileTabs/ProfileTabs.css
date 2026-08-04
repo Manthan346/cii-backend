@@ -9,7 +9,7 @@
   border-radius: 30px;
   padding: 6px;
   width: fit-content;
-  margin-bottom: 18px;
+  margin-bottom: 18px !important; 
   flex-wrap: wrap;
 }
 
