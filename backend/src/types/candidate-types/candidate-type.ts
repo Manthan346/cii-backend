@@ -13,7 +13,7 @@ export type CandidateProfile = {
   state_name: string | null;
   district: string | null;
   pin_code: number | null;
-  batch_code: string[] | null
+  candidate_code: string | null
 };
 
 

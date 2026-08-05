@@ -89,7 +89,7 @@ export const viewCandidateProfile = asyncHandler(
                     date_of_birth:enrollment.candidates_details.date_of_birth,
                     email_id:enrollment.candidates_details.user_login.user_email,
                     category : enrollment.candidates_details.category,
-                    address: enrollment.candidates_details.candidate_address,
+                    address: enrollment.candidates_details.candidate_current_address,
                     pin_code: enrollment.candidates_details.pin_code,
                     candidate_batch_id:enrollment.candidate_batch_id
                     
