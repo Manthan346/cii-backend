@@ -3,15 +3,25 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interface";
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse"
+import { ApiError } from "../../helpers/ApiError";
 
 export const getCandidateStatistics = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) =>{
-         const {instructor_id} =req.instructor!;
+         const {instructor_id,company_id} =req.instructor!;
+         if (!company_id) {
+            throw new ApiError(
+                403,
+                "Company not found."
+            );
+        }
+         
          const enrollments = await prisma.batch_enrollment.findMany({
             where: {
                 batch_details: {
-                    instructor_id,
-                    b_status: 'ACTIVE'
+                    b_status:"ACTIVE",
+                course_details:{
+                    company_id
+                }
                 }
             },
             select: {

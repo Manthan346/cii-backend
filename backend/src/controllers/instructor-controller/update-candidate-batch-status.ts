@@ -11,7 +11,16 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 export const updateCandidateBatchStatus = asyncHandler(
     async(req:InstructorAuthRequest,res:Response)=>{
+        const { company_id } = req.instructor!;
         const{enrollment_id,enrollment_status} = req.body;
+
+        if (!company_id) {
+            throw new ApiError(
+                403,
+                "Company not found."
+            );
+        }
+
         const enrollment = await prisma.batch_enrollment.findUnique({
             where:{
                 enrollment_id
@@ -26,14 +35,24 @@ export const updateCandidateBatchStatus = asyncHandler(
         }
 
         const batch = await prisma.batch_details.findUnique({
-            where:{
-                batch_id:enrollment.batch_id
+            where: {
+                batch_id: enrollment.batch_id
+            },
+            include: {
+                course_details: true
             }
-        })
+        });
+
+        if (!batch) {
+            throw new ApiError(
+                404,
+                "Batch not found."
+            );
+        }
 
         if(
-            batch?.instructor_id !==
-            req.instructor?.instructor_id
+            batch?.course_details.company_id !==
+            company_id
         ){
             throw new ApiError(
                 403,
