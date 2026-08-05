@@ -271,7 +271,7 @@ model event_details {
   is_show                                         Boolean?           @default(true)
   created_by                                      String             @db.Uuid
   created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime           @db.Timestamp(6)
+  updated_at                                      DateTime           @updatedAt @db.Timestamp(6)
   updated_by                                      String             @db.Uuid
   event_link                                      String?
   event_mode                                      event_mode?
@@ -396,7 +396,7 @@ model notifications {
   reference_type       notification_reference_type?
   reference_id         String?                      @db.Uuid
   created_at           DateTime?                    @default(now()) @db.Timestamp(6)
-  updated_at           DateTime    @updatedAt @db.Timestamp(6)
+  updated_at           DateTime                     @default(now()) @updatedAt @db.Timestamp(6)
   user_notifications   user_notifications[]
 }
 
@@ -505,7 +505,8 @@ enum event_mode {
 enum event_target_type {
   BATCH
   ALL_BATCHES @map("ALL BATCHES")
-  DEPARTMENT
+  A_C_BATCHES
+  COMPLETED
 }
 
 enum event_type {
