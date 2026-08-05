@@ -12,6 +12,7 @@ export const updateAssessment = asyncHandler(
 
         const user_id =req.user?.user_id;
         const instructor_id =req.instructor?.instructor_id;
+        const company_id = req.instructor?.company_id;
 
         if(!user_id){
             throw new ApiError(
@@ -25,6 +26,13 @@ export const updateAssessment = asyncHandler(
                 401,
                 "Unauthorized access."
             );
+        }
+
+        if(!company_id){
+            throw new ApiError(
+                401,
+                "Unauthorized access."
+            )
         }
 
         const user =await prisma.user_login.findUnique({
@@ -43,15 +51,10 @@ export const updateAssessment = asyncHandler(
             );
         }
 
-
-        if(
-            user.user_role
-            !==
-            "instructor"
-        ){
+        if (!assessment_id) {
             throw new ApiError(
-                403,
-                "You are not authorized to update assessments."
+                400,
+                "Assessment id is required."
             );
         }
 
@@ -62,7 +65,11 @@ export const updateAssessment = asyncHandler(
             select:{
                 batch_details:{
                     select:{
-                        instructor_id:true
+                        course_details:{
+                            select:{
+                                company_id:true
+                            }
+                        }
                     }
                 }
             }
@@ -78,9 +85,10 @@ export const updateAssessment = asyncHandler(
         if(
             assessment
             .batch_details
-            .instructor_id
+            .course_details
+            .company_id
             !==
-            instructor_id
+            company_id
         ){
             throw new ApiError(
                 403,
