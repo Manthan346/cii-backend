@@ -169,6 +169,8 @@ export const createStudyMaterial = asyncHandler(
                     notification_reference_type.STUDY_MATERIAL,
                     reference_id:
                     studyMaterial.study_material_id,
+                    
+                    
 
                 }
             });

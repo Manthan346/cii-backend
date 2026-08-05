@@ -23,7 +23,8 @@ const instructorAcademicDetails = asyncHandler(async(req: InstructorAuthRequest,
             instructor_certificates: true,
             experience_years: true,
             instructor_prev_org_designation: true,
-            instructor_prev_org: true
+            instructor_prev_org: true,
+            
             
             
          }
