@@ -18,6 +18,7 @@ type accessTokenPayload = {
 type refreshTokenPayload = {
     candidate_id: string,
     center_id?: string,
+    
     user_id: string,
     role: string,
 
