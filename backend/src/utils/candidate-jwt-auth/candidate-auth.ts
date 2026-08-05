@@ -13,7 +13,7 @@ type accessTokenPayload = {
    
     email?: string
 }
-
+    
 
 type refreshTokenPayload = {
     candidate_id: string,
