@@ -17,8 +17,8 @@ export const loginSchema = z.object({
   role: z.enum([
     "candidate",
     "faculty",
-    "instructor"
-    // "admin",
+    "instructor",
+    "admin",
     // "superadmin",
   ], {
     error: "Invalid user role",

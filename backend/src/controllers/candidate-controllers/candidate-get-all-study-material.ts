@@ -8,6 +8,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { batch_enrollment_status_type } from "../../generated/prisma/enums";
 import { z } from "zod";
 import { Prisma } from "../../generated/prisma/client";
+import { CANDIDATE_REDIS_CACHE } from "../../lib/redis";
 
  // uploads are infrequent, long TTL is fine
 CANDIDATE_REDIS_CACHE

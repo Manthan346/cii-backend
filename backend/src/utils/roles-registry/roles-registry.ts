@@ -4,6 +4,7 @@ import { generateAccessToken, generateRefreshToken } from "../candidate-jwt-auth
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../instructor-jwt-auth/instructor-auth";
 // import { generateAdminAccessToken, generateAdminRefreshToken } from "../../";
 import { ApiError } from "../../helpers/ApiError";
+import { generateAdminAccessToken, generateAdminRefreshToken } from "../admin-jwt-auth/admin-auth";
 
 type TokenContext = {
   userId: string;
@@ -68,32 +69,35 @@ const buildInstructorTokens: RoleHandler = async (ctx) => {
 };
 
 // ---------- Admin: NO first/last name, HAS capabilities ----------
-// const buildAdminTokens: RoleHandler = async (ctx) => {
-//   const admin = await prisma.admin_details.findUnique({ where: { user_id: ctx.userId } });
-//   if (!admin) throw new ApiError(404, "admin profile not found");
+const buildAdminTokens: RoleHandler = async (ctx) => {
+  const admin = await prisma.user_login.findUnique({ where: { user_id: ctx.userId } });
+  if (!admin) throw new ApiError(404, "admin profile not found");
 
-//   const shared = {
-//     admin_id: admin.admin_id,
-//     capabilities: admin.capabilities, // e.g. ["BLACKLIST_CANDIDATE", "GENERATE_REPORTS"]
-//     user_id: ctx.userId,
-//     role: ctx.role,
-//   };
+  const shared = {
+    
+    // capabilities: admin.capabilities, // e.g. ["BLACKLIST_CANDIDATE", "GENERATE_REPORTS"]
+    user_id: ctx.userId,
+    role: ctx.role,
+    centerName: ctx.centreName,
+    email: ctx.email
+    
+  };
 
-//   return {
-//     accessToken: generateAdminAccessToken({ ...shared, email: ctx.email }),
-//     refreshToken: generateAdminRefreshToken(shared),
-//     roleDetails: {
-//       adminId: admin.admin_id,
-//       capabilities: admin.capabilities,
-//     },
-//   };
-// };
+  return {
+    accessToken: generateAdminAccessToken({ ...shared, email: ctx.email }),
+    refreshToken: generateAdminRefreshToken(shared),
+    roleDetails: {
+      // adminId: admin.user_id,
+      // capabilities: admin.capabilities,
+    },
+  };
+};
 
 // ---------- The one registry both login.ts and refresh.ts call ----------
 const roleRegistry: Record<string, RoleHandler> = {
   candidate: buildCandidateTokens,
   instructor: buildInstructorTokens,
-//   admin: buildAdminTokens,
+  admin: buildAdminTokens,
   // super_admin: buildSuperAdminTokens,   <- add when built
   // mobilizer: buildMobilizerTokens,       <- add when built
 };
