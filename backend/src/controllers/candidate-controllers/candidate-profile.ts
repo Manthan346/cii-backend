@@ -77,6 +77,7 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
     candidate_permanent_address: candidateProfile.candidate_permanant_address,
     state_name: candidateProfile.state_name,
     district: candidateProfile.district,
+    batch_code: candidateProfile.batch_enrollment.map((batchCode)=> batchCode.batch_details.batch_code),
     pin_code: candidateProfile.pin_code,
   };
 
