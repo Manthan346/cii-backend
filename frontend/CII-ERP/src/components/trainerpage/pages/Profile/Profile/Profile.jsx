@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pencil } from 'lucide-react';
 import Sidebar from '../../../layout/Sidebar/Sidebar';
 import Topbar from '../../../layout/Topbar/Topbar';
@@ -8,13 +8,12 @@ import AcademicDetailTab from '../AcademicDetailTab/AcademicDetailTab';
 import DocumentTab from '../DocumentTab/DocumentTab';
 import ContactDetailsTab from '../GuardianDetailsTab/GuardianDetailsTab';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
+import { fetchAcademicDetails } from '../../../../../../api/trainer/academicService';
+import { fetchInstructorProfile } from '../../../../../../api/trainer/profileService';
+import { getCompletionLabel, getCompletionChecklist } from '../../../data/getCompletionMeta';
 import {
   staffProfile,
   profileTabs,
-  profileBasicInfo,
-  profileCompletion,
-  profileEducation,
-  profileExperience,
   profileDocuments,
   profileDocumentNote,
   profileGuardianDetail,
@@ -25,32 +24,27 @@ import './Profile.css';
 /**
  * Profile (full page, "My Profile")
  *
- * Staff profile page. Mounts the shared Topbar + Sidebar shell
- * (identical composition to every other staff page) around the teal
- * hero card, the 4-way tab strip, and whichever tab panel is active.
- * All fake data comes from data/profileData.js so it can be swapped
- * for API responses later without touching this file.
+ * Basic Information (personal + contact + both addresses + completion)
+ * is now fetched from GET /instructor-profile on mount, replacing the
+ * profileBasicInfo / profileCompletion mocks. See
+ * api/trainer/profileService.js and data/getCompletionMeta.js.
  *
- * Personal/Contact/Address/Guardian/Education/Experience are lifted
- * into state here (instead of read directly off the imported data) so
- * the "Edit Profile" popup can save changes and have them show up
- * immediately across whichever tab is open.
+ * The backend returns one `profileCompletion` number, not two - so the
+ * hero card's "% Profile Completed" and the ProfileCompletionCard ring
+ * now both read from the same completionPercent state, instead of the
+ * old mock's two different values (staffProfile.profileCompletedPercent
+ * vs profileCompletion.percent).
  *
- * Basic Information now also carries Contact + Address (moved out of
- * the old Contact Details tab), and Contact Details now shows Guardian
- * Information (moved out of Basic Information) - see EditProfileModal
- * and the data/profileData.js comments for the full picture.
+ * The checklist under the completion ring is derived live from which
+ * basicInformation fields are actually filled (see getCompletionMeta.js)
+ * rather than hardcoded booleans - it only covers the 2 items this
+ * endpoint can know about (Basic Information, Contact). "Upload ID
+ * Proof" / "Resume Added" were dropped until Documents is wired the
+ * same way.
  *
- * Address is now two separate objects - currentAddress and
- * permanentAddress - each rendered from its own prop with no
- * fallback between the two (see BasicInformationTab.jsx). Both tabs
- * that show address (Basic Information and Guardian Details) receive
- * the same two state values from here.
- *
- * This is also where the Topbar's avatar button lands: Topbar.jsx
- * navigates to this page's route by default when no onAvatarClick
- * override is passed in, the same way its bell icon defaults to the
- * Notifications route.
+ * Academic Detail (education + experience) is still fetched separately
+ * from GET /academics-details - see the previous header notes, which
+ * still apply to that part of this file.
  */
 const Profile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -58,20 +52,90 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState(profileTabs[0].id);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const [personal, setPersonal] = useState(profileBasicInfo.personal);
-  const [contact, setContact] = useState(profileBasicInfo.contact);
-  const [currentAddress, setCurrentAddress] = useState(
-    profileBasicInfo.currentAddress,
-  );
-  const [permanentAddress, setPermanentAddress] = useState(
-    profileBasicInfo.permanentAddress,
-  );
+  const [personal, setPersonal] = useState(null);
+  const [contact, setContact] = useState(null);
+  const [currentAddress, setCurrentAddress] = useState(null);
+  const [permanentAddress, setPermanentAddress] = useState(null);
+  const [completionPercent, setCompletionPercent] = useState(0);
+  const [completionChecklist, setCompletionChecklist] = useState([]);
+  const [basicInfoLoading, setBasicInfoLoading] = useState(true);
+  const [basicInfoError, setBasicInfoError] = useState(null);
 
   const [guardians, setGuardians] = useState(profileGuardianDetail.guardians);
   const [activeGuardianIndex, setActiveGuardianIndex] = useState(0);
 
-  const [education, setEducation] = useState(profileEducation);
-  const [experience, setExperience] = useState(profileExperience);
+  const [education, setEducation] = useState(null);
+  const [experience, setExperience] = useState(null);
+  const [academicLoading, setAcademicLoading] = useState(true);
+  const [academicError, setAcademicError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadBasicInfo() {
+      setBasicInfoLoading(true);
+      setBasicInfoError(null);
+      try {
+        const { profileCompletion, basicInformation } = await fetchInstructorProfile();
+        if (!cancelled) {
+          const personalInfo = basicInformation?.response?.basicInformation?.personalInformation
+            ?? basicInformation?.basicInformation?.personalInformation
+            ?? basicInformation?.personalInformation
+            ?? null;
+          const contactDetails = basicInformation?.response?.contactDetails
+            ?? basicInformation?.contactDetails
+            ?? null;
+          const currentAddressData = basicInformation?.response?.currentAddress
+            ?? basicInformation?.currentAddress
+            ?? null;
+          const permanentAddressData = basicInformation?.response?.permanentAddress
+            ?? basicInformation?.permanentAddress
+            ?? null;
+
+          setPersonal(personalInfo);
+          setContact(contactDetails);
+          setCurrentAddress(currentAddressData);
+          setPermanentAddress(permanentAddressData);
+          setCompletionPercent(profileCompletion ?? 0);
+          setCompletionChecklist(getCompletionChecklist(basicInformation));
+        }
+      } catch (err) {
+        if (!cancelled) setBasicInfoError(err.message || 'Failed to load profile');
+      } finally {
+        if (!cancelled) setBasicInfoLoading(false);
+      }
+    }
+
+    loadBasicInfo();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadAcademicDetails() {
+      setAcademicLoading(true);
+      setAcademicError(null);
+      try {
+        const details = await fetchAcademicDetails();
+        if (!cancelled) {
+          setEducation(details.education);
+          setExperience(details.experience);
+        }
+      } catch (err) {
+        if (!cancelled) setAcademicError(err.message || 'Failed to load academic details');
+      } finally {
+        if (!cancelled) setAcademicLoading(false);
+      }
+    }
+
+    loadAcademicDetails();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleSaveProfile = (updated) => {
     setPersonal(updated.personal);
@@ -87,16 +151,24 @@ const Profile = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'basic-information':
+        if (basicInfoLoading) return <p>Loading profile…</p>;
+        if (basicInfoError) return <p>Error: {basicInfoError}</p>;
         return (
           <BasicInformationTab
             personal={personal}
             contact={contact}
             currentAddress={currentAddress}
             permanentAddress={permanentAddress}
-            completion={profileCompletion}
+            completion={{
+              percent: completionPercent,
+              label: getCompletionLabel(completionPercent),
+              checklist: completionChecklist,
+            }}
           />
         );
       case 'academic-detail':
+        if (academicLoading) return <p>Loading academic details…</p>;
+        if (academicError) return <p>Error: {academicError}</p>;
         return (
           <AcademicDetailTab education={education} experience={experience} />
         );
@@ -108,8 +180,13 @@ const Profile = () => {
           />
         );
       case 'guardian-details':
-        return <ContactDetailsTab guardians={guardians} activeIndex={activeGuardianIndex} onIndexChange={setActiveGuardianIndex} />;
-        // return <GuardianDetailsTab guardian={guardian} />;
+        return (
+          <ContactDetailsTab
+            guardians={guardians}
+            activeIndex={activeGuardianIndex}
+            onIndexChange={setActiveGuardianIndex}
+          />
+        );
       default:
         return null;
     }
@@ -148,11 +225,11 @@ const Profile = () => {
                   </button>
 
                   <p className="profile-page__completed">
-                    {staffProfile.profileCompletedPercent} % Profile Completed
+                    {basicInfoLoading ? '—' : completionPercent} % Profile Completed
                   </p>
 
                   <h1 className="profile-page__name">
-                    {personal.name}{' '}
+                    {personal?.name ?? staffProfile.name}{' '}
                     <span className="profile-page__role">
                       ({staffProfile.role})
                     </span>

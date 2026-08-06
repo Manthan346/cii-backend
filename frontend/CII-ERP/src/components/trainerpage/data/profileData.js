@@ -14,7 +14,7 @@
 // same convention as other quirks preserved elsewhere in this data
 // folder (e.g. "15 july 20264" in tasksAssignedData.js).
 
-import staffAvatar from '../assets/staff-avatar.jpg';
+import staffAvatar from '../assets/staff-avatar.jpeg';
 
 // ---- Hero card (name shown in the teal banner across all tabs) ----
 export const staffProfile = {

@@ -6,6 +6,11 @@ import './AcademicDetailTab.css';
  * "Academic Detail" tab content. Education and Experience are each
  * rendered in their own separate card container (per explicit request),
  * rather than sharing one panel like the reference screenshot did.
+ *
+ * Field names here match the backend response from
+ * GET /academics-details directly (highestQualification,
+ * additionalQualifications, previousOrganisation) - no mapper layer,
+ * so if the backend renames these, update here.
  */
 export default function AcademicDetailTab({ education, experience }) {
   return (
@@ -19,7 +24,7 @@ export default function AcademicDetailTab({ education, experience }) {
               Highest Education
             </span>
             <span className="academic-detail-tab__value">
-              {education.highestEducation}
+              {education.highestQualification}
             </span>
           </div>
           <div className="academic-detail-tab__field">
@@ -40,12 +45,12 @@ export default function AcademicDetailTab({ education, experience }) {
               {education.passingYear}
             </span>
           </div>
-          <div className="academic-detail-tab__field">
+          {/* <div className="academic-detail-tab__field">
             <span className="academic-detail-tab__label">
               Additional Qualification
             </span>
             <span className="academic-detail-tab__value">
-              {education.additionalQualification}
+              {education.additionalQualifications}
             </span>
           </div>
           <div className="academic-detail-tab__field">
@@ -53,7 +58,7 @@ export default function AcademicDetailTab({ education, experience }) {
             <span className="academic-detail-tab__value">
               {education.certifications}
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -72,7 +77,7 @@ export default function AcademicDetailTab({ education, experience }) {
               Previous Organization
             </span>
             <span className="academic-detail-tab__value">
-              {experience.previousOrganization}
+              {experience.previousOrganisation}
             </span>
           </div>
           <div className="academic-detail-tab__field">
