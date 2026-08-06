@@ -9,6 +9,8 @@ import { role_types } from "../../generated/prisma/enums";
 
 const adminDashboardData = asyncHandler(async(req: adminAuthRequest, res: Response) => {
     const centerId = req.user.center_id
+    const date = new Date()
+    const month = date.getUTCMonth()
     const [totalUser, totalCandidates, totalStaff, monthlyEnrollment] = await Promise.allSettled([
         prisma.user_login.count({
              where:{
@@ -16,15 +18,33 @@ const adminDashboardData = asyncHandler(async(req: adminAuthRequest, res: Respon
              }
 
         }),
+
+        prisma.user_login.count({
+            where: {
+                center_id: centerId,
+                user_role: "candidate"
+
+            }
+        }),
+
         prisma.user_login.count({
              where:{
                 center_id: centerId,
                 user_role: {
-                    in: ["admin", "instructor", "super_admin" ]
+                    in: ["admin", "instructor",  ]
                 }
              }
 
         }), 
+
+        prisma.batch_enrollment.count({
+            where: {
+                enrollment_date: month
+            }
+        })
+
+
+       
 
         
 
