@@ -22,6 +22,18 @@ import './BasicInformationTab.css';
 //  * renders when one is present - it just won't show up until/unless a
 //  * line field is added on the backend.**/
  
+function formatDate(dateStr) {
+  if (!dateStr) return '-';
+  const date = new Date(dateStr);
+  if (isNaN(date)) return dateStr;
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
 export default function BasicInformationTab({
   personal,
   contact,
@@ -59,7 +71,7 @@ export default function BasicInformationTab({
                   Date of Birth
                 </span>
                 <span className="basic-information-tab__value">
-                  {personal.dateOfBirth}
+                  {formatDate(personal.dateOfBirth)}
                 </span>
               </div>
               <div className="basic-information-tab__field">
@@ -126,9 +138,9 @@ export default function BasicInformationTab({
                 Current Address
               </h3>
 
-              {current?.line && (
+              {current?.currentAddress && (
                 <p className="basic-information-tab__address-line">
-                  {current.line}
+                  {current.currentAddress}
                 </p>
               )}
 
@@ -167,9 +179,9 @@ export default function BasicInformationTab({
                 Permanent Address
               </h3>
 
-              {permanent?.line && (
+              {permanent?.permanentAddress && (
                 <p className="basic-information-tab__address-line">
-                  {permanent.line}
+                  {permanent.permanentAddress}
                 </p>
               )}
 
