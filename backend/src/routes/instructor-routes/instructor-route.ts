@@ -44,6 +44,7 @@ import { createInstructorEvent } from "../../controllers/instructor-controller/i
 import { updateInstructorEvent } from "../../controllers/instructor-controller/instructor-update-event";
 import { getAllInstructorEvents } from "../../controllers/instructor-controller/get-instructor-events"; 
 import { deleteInstructorEvent } from "../../controllers/instructor-controller/delete-instructor-event";
+import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 
 const instructorRouter = Router();
 
@@ -135,6 +136,7 @@ instructorRouter.post("/instructor-events/create-event",verifyInstructorUsingAcc
 instructorRouter.patch("/instructor-events/update-event/:event_id",verifyInstructorUsingAccessToken,validateBody(updateEventSchema),updateInstructorEvent)
 instructorRouter.get("/instructor-events/get-event",verifyInstructorUsingAccessToken,paginationMiddleware,getAllInstructorEvents)
 instructorRouter.delete("/instructor-events/delete-event/:event_id",verifyInstructorUsingAccessToken,deleteInstructorEvent)
+instructorRouter.get("/attendance-management/get-sessions",verifyInstructorUsingAccessToken,paginationMiddleware,getAllAttendanceSessions);
 
 export { instructorRouter };
 
