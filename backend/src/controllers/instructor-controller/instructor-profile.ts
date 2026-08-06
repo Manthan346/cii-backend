@@ -68,7 +68,10 @@ export const instructorProfileDetails = asyncHandler(
     };
 
     return res.status(200).json(
-      new ApiResponse(200, response, "Instructor profile fetched successfully.")
+      new ApiResponse(200, {
+        profile,
+        profileCompletion
+      }, "Instructor profile fetched successfully.")
     );
   }
 );
