@@ -56,6 +56,10 @@ candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,p
 candidateRouter.get('/candidate-assessment/get-all-assessments',verifyCandidateUsingAccessToken,paginationMiddleware,getAllAssessments)
 candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyCandidateUsingAccessToken,startAssessment)
 candidateRouter.get('/events/get-event', verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateEvents)
+candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateStudyMaterial)
+candidateRouter.get('/candidate-assessment/get-all-assessments',verifyCandidateUsingAccessToken,paginationMiddleware,getAllAssessments)
+candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyCandidateUsingAccessToken,startAssessment)
+candidateRouter.get('/events/get-event',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateEvents)
 
 export {
     candidateRouter

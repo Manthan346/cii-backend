@@ -1,5 +1,6 @@
-import { create } from "node:domain";
+import { event_type,event_mode,event_target_type} from "../../../generated/prisma/enums";
 import { z } from "zod";
+import { superRefine } from "zod";
 
 export const createEventSchema = z.object({
   event_title: z
@@ -27,8 +28,14 @@ export const createEventSchema = z.object({
   venue: z
     .string()
     .trim()
-    .min(1, "Venue is required")
-    .max(255, "Venue cannot exceed 255 characters"),
+    .max(255)
+    .optional(),
+
+  event_link: z
+  .string()
+  .trim()
+  .url("Invalid event link")
+  .optional(),
 
   batch_ids: z
     .array(z.string().uuid("Invalid batch ID"))
