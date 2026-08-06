@@ -315,7 +315,7 @@ model instructor_details {
   instructor_university            String?
   instructor_passing_year          String?               @db.VarChar(10)
   instructor_certificates          String[]
-  instructor_prev_org              String[]
+  instructor_prev_org              String?
   instructor_prev_org_designation  String?               @db.VarChar(255)
   highest_qualification            String?               @db.VarChar(255)
   father_name                      String?
@@ -331,6 +331,16 @@ model instructor_details {
   guardian_dob                     DateTime?             @db.Date
   father_dob                       DateTime?             @db.Date
   mother_dob                       DateTime?             @db.Date
+  current_city                     String?
+  current_state                    String?
+  current_district                 String?
+  current_taluka                   String?
+  current_pincode                  String?               @db.VarChar(6)
+  permanant_city                   String?
+  permanant_state                  String?
+  permanant_district               String?
+  permanant_taluka                 String?
+  permanant_pincode                String?               @db.VarChar(6)
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
