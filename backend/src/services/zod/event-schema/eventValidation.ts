@@ -1,7 +1,7 @@
 import { event_type,event_mode,event_target_type} from "../../../generated/prisma/enums";
 import { z } from "zod";
 import { superRefine } from "zod";
-
+console.log("Heloo");
 export const createEventSchema = z.object({
   event_title: z
     .string()
