@@ -8,50 +8,21 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 export const updateStudyMaterial = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) => {
-        const {study_material_id,title,description,document_link,is_show}=req.body
+        const {study_material_id,title,description,document_link,is_show}=req.body;
+        const company_id = req.instructor?.company_id;
 
-        const user_id =req.user?.user_id;
-        const instructor_id =req.instructor?.instructor_id;
 
-        if(!user_id){
+        if(!company_id){
             throw new ApiError(
                 401,
-                "Unauthorized access."
-            );
+                "Unauthorized access"
+            )
         }
 
-        if(!instructor_id){
+        if (!study_material_id) {
             throw new ApiError(
-                401,
-                "Unauthorized access."
-            );
-        }
-
-        const user =await prisma.user_login.findUnique({
-            where:{
-                user_id
-            },
-            select:{
-                user_role:true
-            }
-        });
-
-        if(!user){
-            throw new ApiError(
-                404,
-                "User not found."
-            );
-        }
-
-
-        if(
-            user.user_role
-            !==
-            "instructor"
-        ){
-            throw new ApiError(
-                403,
-                "You are not authorized to update study materials."
+                400,
+                "Study material id is required."
             );
         }
 
@@ -62,7 +33,12 @@ export const updateStudyMaterial = asyncHandler(
             select:{
                 batch_details:{
                     select:{
-                        instructor_id:true
+                        course_details:{
+                            select:{
+                                company_id:true
+                            }
+                            
+                        }
                     }
                 }
             }
@@ -78,9 +54,11 @@ export const updateStudyMaterial = asyncHandler(
         if(
             studyMaterial
             .batch_details
-            .instructor_id
+            .course_details
+            .company_id
+            
             !==
-            instructor_id
+            company_id
         ){
             throw new ApiError(
                 403,
@@ -115,12 +93,20 @@ export const updateStudyMaterial = asyncHandler(
             };
         }
 
+        if (Object.keys(updateData).length === 0) {
+            throw new ApiError(
+                400,
+                "At least one field must be provided for update."
+            );
+        }
+
         const updatedStudyMaterial =await prisma.study_material.update({
             where:{
                 study_material_id
             },
             data:updateData
         });
+
 
         return res.status(200).json(
             new ApiResponse(

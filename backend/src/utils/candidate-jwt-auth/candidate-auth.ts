@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
 import { ApiError } from '../../helpers/ApiError'
+import { Candidates_detailsScalarFieldEnum } from "../../generated/prisma/internal/prismaNamespace"
 
 type accessTokenPayload = {
     candidate_id: string,
@@ -56,5 +57,4 @@ type refreshTokenPayload = {
 export {
     generateAccessToken,
     generateRefreshToken
-
 }

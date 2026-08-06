@@ -145,7 +145,7 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
             batch_name:
                 candidate.batch_details.batch_name,
             course_name:
-                candidate.batch_details.course_details.course_name,
+                candidate.batch_details.course_details?.course_name,
             contact_number:
                 candidate.candidates_details.contact_number,
             enrollment_date:

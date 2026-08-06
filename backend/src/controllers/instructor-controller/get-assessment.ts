@@ -16,7 +16,7 @@ export const getAssessments = asyncHandler(
         const page = req.query.page? Number(req.query.page):1;
         const limit = req.query.limit? Number(req.query.limit):10;
         const skip = (page-1)*limit;
-        const instructor_id = req.instructor?.instructor_id;
+        const company_id = req.instructor?.company_id
         
         const batchId =  String(req.query.batch_id || "");
         const search = String(req.query.search || "").trim();
@@ -30,14 +30,16 @@ export const getAssessments = asyncHandler(
                 "Unauthorized access."
             );
         }
-        
 
-        if(!instructor_id){
+        if(!company_id){
             throw new ApiError(
                 401,
-                "Unauthorized access."
-            );
+                "Unauthorized Access."
+            )
         }
+        
+
+        
 
         if(isNaN(page)){
             throw new ApiError(
@@ -103,7 +105,12 @@ export const getAssessments = asyncHandler(
                 },
                 select: {
                     batch_id: true,
-                    instructor_id: true
+                    course_details:{
+                        select:{
+                            company_id:true
+                        }
+                        
+                    }
                 }
             });
 
@@ -111,7 +118,7 @@ export const getAssessments = asyncHandler(
                 throw new ApiError(404, "Batch not found.");
             }
 
-            if (batch.instructor_id !== instructor_id) {
+            if (batch.course_details.company_id !== company_id) {
                 throw new ApiError(
                     403,
                     "You are not authorized to access this batch."
@@ -229,7 +236,9 @@ export const getAssessments = asyncHandler(
                 ...assessmentFilter,
                 ...searchFilter,
                 batch_details:{
-                    instructor_id,
+                    course_details:{
+                        company_id
+                    },
                     ...batchFilter
                 }
             }
@@ -244,7 +253,9 @@ export const getAssessments = asyncHandler(
                 ...assessmentFilter,
                 ...searchFilter,
                 batch_details: {
-                    instructor_id,
+                    course_details:{
+                        company_id
+                    },
                     ...batchFilter
                 }
             },

@@ -55,6 +55,7 @@ const buildInstructorTokens: RoleHandler = async (ctx) => {
     user_id: ctx.userId,
     role: ctx.role,
     center_id: ctx.centerId,
+    company_id: instructor.company_id
   };
 
   return {

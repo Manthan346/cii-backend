@@ -18,6 +18,14 @@ export const createAssessment = asyncHandler(
         assessment_desc?.trim() ?? null;
         const trimmedAssessmentLink =
         assessment_link?.trim() ?? null;
+        const company_id = req.instructor?.company_id
+
+        if(!company_id){
+            throw new ApiError(
+                401,
+                "Unauthorized access"
+            )
+        }
 
         const user_id = req.user?.user_id;
         if(!user_id){
@@ -92,8 +100,8 @@ export const createAssessment = asyncHandler(
         switch(user.user_role){
             case "instructor":
                 if(
-                    batch.instructor_id !==
-                    req.instructor?.instructor_id
+                    batch.course_details.company_id !==
+                    req.instructor?.company_id
                 ){
                     throw new ApiError(
                         403,
