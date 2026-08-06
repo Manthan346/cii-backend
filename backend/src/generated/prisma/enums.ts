@@ -96,7 +96,8 @@ export type event_mode = (typeof event_mode)[keyof typeof event_mode]
 export const event_target_type = {
   BATCH: 'BATCH',
   ALL_BATCHES: 'ALL_BATCHES',
-  DEPARTMENT: 'DEPARTMENT'
+  A_C_BATCHES: 'A_C_BATCHES',
+  COMPLETED: 'COMPLETED'
 } as const
 
 export type event_target_type = (typeof event_target_type)[keyof typeof event_target_type]
