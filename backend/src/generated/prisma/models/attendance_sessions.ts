@@ -465,10 +465,6 @@ export type Enumattendance_mode_typeFieldUpdateOperationsInput = {
   set?: $Enums.attendance_mode_type
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type attendance_sessionsCreateNestedManyWithoutBatch_detailsInput = {
   create?: Prisma.XOR<Prisma.attendance_sessionsCreateWithoutBatch_detailsInput, Prisma.attendance_sessionsUncheckedCreateWithoutBatch_detailsInput> | Prisma.attendance_sessionsCreateWithoutBatch_detailsInput[] | Prisma.attendance_sessionsUncheckedCreateWithoutBatch_detailsInput[]
   connectOrCreate?: Prisma.attendance_sessionsCreateOrConnectWithoutBatch_detailsInput | Prisma.attendance_sessionsCreateOrConnectWithoutBatch_detailsInput[]

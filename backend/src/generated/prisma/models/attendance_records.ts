@@ -32,6 +32,8 @@ export type Attendance_recordsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   attendance_session_id: string | null
+  time_in: Date | null
+  time_out: Date | null
 }
 
 export type Attendance_recordsMaxAggregateOutputType = {
@@ -42,6 +44,8 @@ export type Attendance_recordsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   attendance_session_id: string | null
+  time_in: Date | null
+  time_out: Date | null
 }
 
 export type Attendance_recordsCountAggregateOutputType = {
@@ -52,6 +56,8 @@ export type Attendance_recordsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   attendance_session_id: number
+  time_in: number
+  time_out: number
   _all: number
 }
 
@@ -64,6 +70,8 @@ export type Attendance_recordsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   attendance_session_id?: true
+  time_in?: true
+  time_out?: true
 }
 
 export type Attendance_recordsMaxAggregateInputType = {
@@ -74,6 +82,8 @@ export type Attendance_recordsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   attendance_session_id?: true
+  time_in?: true
+  time_out?: true
 }
 
 export type Attendance_recordsCountAggregateInputType = {
@@ -84,6 +94,8 @@ export type Attendance_recordsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   attendance_session_id?: true
+  time_in?: true
+  time_out?: true
   _all?: true
 }
 
@@ -167,6 +179,8 @@ export type Attendance_recordsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   attendance_session_id: string
+  time_in: Date | null
+  time_out: Date | null
   _count: Attendance_recordsCountAggregateOutputType | null
   _min: Attendance_recordsMinAggregateOutputType | null
   _max: Attendance_recordsMaxAggregateOutputType | null
@@ -198,6 +212,8 @@ export type attendance_recordsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   attendance_session_id?: Prisma.UuidFilter<"attendance_records"> | string
+  time_in?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+  time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
   attendance_sessions?: Prisma.XOR<Prisma.Attendance_sessionsScalarRelationFilter, Prisma.attendance_sessionsWhereInput>
 }
@@ -210,6 +226,8 @@ export type attendance_recordsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   attendance_session_id?: Prisma.SortOrder
+  time_in?: Prisma.SortOrderInput | Prisma.SortOrder
+  time_out?: Prisma.SortOrderInput | Prisma.SortOrder
   candidates_details?: Prisma.candidates_detailsOrderByWithRelationInput
   attendance_sessions?: Prisma.attendance_sessionsOrderByWithRelationInput
 }
@@ -225,6 +243,8 @@ export type attendance_recordsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   attendance_session_id?: Prisma.UuidFilter<"attendance_records"> | string
+  time_in?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+  time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
   attendance_sessions?: Prisma.XOR<Prisma.Attendance_sessionsScalarRelationFilter, Prisma.attendance_sessionsWhereInput>
 }, "attendance_id">
@@ -237,6 +257,8 @@ export type attendance_recordsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   attendance_session_id?: Prisma.SortOrder
+  time_in?: Prisma.SortOrderInput | Prisma.SortOrder
+  time_out?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.attendance_recordsCountOrderByAggregateInput
   _max?: Prisma.attendance_recordsMaxOrderByAggregateInput
   _min?: Prisma.attendance_recordsMinOrderByAggregateInput
@@ -253,6 +275,8 @@ export type attendance_recordsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"attendance_records"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"attendance_records"> | Date | string
   attendance_session_id?: Prisma.UuidWithAggregatesFilter<"attendance_records"> | string
+  time_in?: Prisma.DateTimeNullableWithAggregatesFilter<"attendance_records"> | Date | string | null
+  time_out?: Prisma.DateTimeNullableWithAggregatesFilter<"attendance_records"> | Date | string | null
 }
 
 export type attendance_recordsCreateInput = {
@@ -261,6 +285,8 @@ export type attendance_recordsCreateInput = {
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutAttendance_recordsInput
   attendance_sessions: Prisma.attendance_sessionsCreateNestedOneWithoutAttendance_recordsInput
 }
@@ -273,6 +299,8 @@ export type attendance_recordsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   attendance_session_id: string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsUpdateInput = {
@@ -281,6 +309,8 @@ export type attendance_recordsUpdateInput = {
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUpdateOneRequiredWithoutAttendance_recordsNestedInput
 }
@@ -293,6 +323,8 @@ export type attendance_recordsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsCreateManyInput = {
@@ -303,6 +335,8 @@ export type attendance_recordsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   attendance_session_id: string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsUpdateManyMutationInput = {
@@ -311,6 +345,8 @@ export type attendance_recordsUpdateManyMutationInput = {
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsUncheckedUpdateManyInput = {
@@ -321,6 +357,8 @@ export type attendance_recordsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsCountOrderByAggregateInput = {
@@ -331,6 +369,8 @@ export type attendance_recordsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   attendance_session_id?: Prisma.SortOrder
+  time_in?: Prisma.SortOrder
+  time_out?: Prisma.SortOrder
 }
 
 export type attendance_recordsMaxOrderByAggregateInput = {
@@ -341,6 +381,8 @@ export type attendance_recordsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   attendance_session_id?: Prisma.SortOrder
+  time_in?: Prisma.SortOrder
+  time_out?: Prisma.SortOrder
 }
 
 export type attendance_recordsMinOrderByAggregateInput = {
@@ -351,6 +393,8 @@ export type attendance_recordsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   attendance_session_id?: Prisma.SortOrder
+  time_in?: Prisma.SortOrder
+  time_out?: Prisma.SortOrder
 }
 
 export type Attendance_recordsListRelationFilter = {
@@ -365,6 +409,10 @@ export type attendance_recordsOrderByRelationAggregateInput = {
 
 export type Enumattend_typesFieldUpdateOperationsInput = {
   set?: $Enums.attend_types
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput = {
@@ -457,6 +505,8 @@ export type attendance_recordsCreateWithoutAttendance_sessionsInput = {
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutAttendance_recordsInput
 }
 
@@ -467,6 +517,8 @@ export type attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput = {
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput = {
@@ -506,6 +558,8 @@ export type attendance_recordsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
   attendance_session_id?: Prisma.UuidFilter<"attendance_records"> | string
+  time_in?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+  time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
 }
 
 export type attendance_recordsCreateWithoutCandidates_detailsInput = {
@@ -514,6 +568,8 @@ export type attendance_recordsCreateWithoutCandidates_detailsInput = {
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
   attendance_sessions: Prisma.attendance_sessionsCreateNestedOneWithoutAttendance_recordsInput
 }
 
@@ -524,6 +580,8 @@ export type attendance_recordsUncheckedCreateWithoutCandidates_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   attendance_session_id: string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsCreateOrConnectWithoutCandidates_detailsInput = {
@@ -559,6 +617,8 @@ export type attendance_recordsCreateManyAttendance_sessionsInput = {
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsUpdateWithoutAttendance_sessionsInput = {
@@ -567,6 +627,8 @@ export type attendance_recordsUpdateWithoutAttendance_sessionsInput = {
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput
 }
 
@@ -577,6 +639,8 @@ export type attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput = {
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput = {
@@ -586,6 +650,8 @@ export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsCreateManyCandidates_detailsInput = {
@@ -595,6 +661,8 @@ export type attendance_recordsCreateManyCandidates_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   attendance_session_id: string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
 }
 
 export type attendance_recordsUpdateWithoutCandidates_detailsInput = {
@@ -603,6 +671,8 @@ export type attendance_recordsUpdateWithoutCandidates_detailsInput = {
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   attendance_sessions?: Prisma.attendance_sessionsUpdateOneRequiredWithoutAttendance_recordsNestedInput
 }
 
@@ -613,6 +683,8 @@ export type attendance_recordsUncheckedUpdateWithoutCandidates_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsInput = {
@@ -622,6 +694,8 @@ export type attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsInput 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -634,6 +708,8 @@ export type attendance_recordsSelect<ExtArgs extends runtime.Types.Extensions.In
   created_at?: boolean
   updated_at?: boolean
   attendance_session_id?: boolean
+  time_in?: boolean
+  time_out?: boolean
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.attendance_sessionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance_records"]>
@@ -646,6 +722,8 @@ export type attendance_recordsSelectCreateManyAndReturn<ExtArgs extends runtime.
   created_at?: boolean
   updated_at?: boolean
   attendance_session_id?: boolean
+  time_in?: boolean
+  time_out?: boolean
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.attendance_sessionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance_records"]>
@@ -658,6 +736,8 @@ export type attendance_recordsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   created_at?: boolean
   updated_at?: boolean
   attendance_session_id?: boolean
+  time_in?: boolean
+  time_out?: boolean
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.attendance_sessionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attendance_records"]>
@@ -670,9 +750,11 @@ export type attendance_recordsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   attendance_session_id?: boolean
+  time_in?: boolean
+  time_out?: boolean
 }
 
-export type attendance_recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"attendance_id" | "candidate_id" | "attendance_status" | "remarks" | "created_at" | "updated_at" | "attendance_session_id", ExtArgs["result"]["attendance_records"]>
+export type attendance_recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"attendance_id" | "candidate_id" | "attendance_status" | "remarks" | "created_at" | "updated_at" | "attendance_session_id" | "time_in" | "time_out", ExtArgs["result"]["attendance_records"]>
 export type attendance_recordsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
   attendance_sessions?: boolean | Prisma.attendance_sessionsDefaultArgs<ExtArgs>
@@ -700,6 +782,8 @@ export type $attendance_recordsPayload<ExtArgs extends runtime.Types.Extensions.
     created_at: Date
     updated_at: Date
     attendance_session_id: string
+    time_in: Date | null
+    time_out: Date | null
   }, ExtArgs["result"]["attendance_records"]>
   composites: {}
 }
@@ -1132,6 +1216,8 @@ export interface attendance_recordsFieldRefs {
   readonly created_at: Prisma.FieldRef<"attendance_records", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"attendance_records", 'DateTime'>
   readonly attendance_session_id: Prisma.FieldRef<"attendance_records", 'String'>
+  readonly time_in: Prisma.FieldRef<"attendance_records", 'DateTime'>
+  readonly time_out: Prisma.FieldRef<"attendance_records", 'DateTime'>
 }
     
 

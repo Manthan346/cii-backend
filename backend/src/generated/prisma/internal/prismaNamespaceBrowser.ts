@@ -116,7 +116,9 @@ export const Attendance_recordsScalarFieldEnum = {
   remarks: 'remarks',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  attendance_session_id: 'attendance_session_id'
+  attendance_session_id: 'attendance_session_id',
+  time_in: 'time_in',
+  time_out: 'time_out'
 } as const
 
 export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]

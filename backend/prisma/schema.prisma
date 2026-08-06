@@ -33,6 +33,8 @@ model attendance_records {
   created_at            DateTime            @default(now()) @db.Timestamp(6)
   updated_at            DateTime            @default(now()) @db.Timestamp(6)
   attendance_session_id String              @db.Uuid
+  time_in               DateTime?           @db.Timestamp(6)
+  time_out              DateTime?           @db.Timestamp(6)
   candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
   attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
 }
