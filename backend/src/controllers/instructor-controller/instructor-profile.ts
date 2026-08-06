@@ -4,10 +4,12 @@ import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interfac
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
+import { InstructorProfileResponse } from "../../types/instructor-types/instructor-type";
 
 export const instructorProfileDetails = asyncHandler(
   async (req: InstructorAuthRequest, res: Response) => {
     const instructorId = req.instructor?.instructor_id;
+    const email = req.instructor?.email;
 
     if (!instructorId) {
       throw new ApiError(404, "Instructor id not found");
@@ -23,57 +25,48 @@ export const instructorProfileDetails = asyncHandler(
       throw new ApiError(404, "Instructor profile not found");
     }
 
-    // Fields that should not be considered for profile completion
-    const excludedFields = [
-      "instructor_id",
-      "user_id",
-      "created_at",
-      "updated_at",
-    ];
+    const excludedFields = ["instructor_id", "user_id", "created_at", "updated_at"];
 
     const values = Object.entries(profile)
       .filter(([key]) => !excludedFields.includes(key))
       .map(([_, value]) => value);
 
-    const completedFields = values.filter(
-      (value) => value !== null && value !== ""
-    ).length;
+    const completedFields = values.filter((value) => value !== null && value !== "").length;
 
+    const profileCompletion = Math.round((completedFields / values.length) * 100);
 
-    //this is for all the fields in instructor 
-    const profileCompletion = Math.round(
-      (completedFields / values.length) * 100
-    );
-
-    //filtering as per the need of information
-
-    const basicInformation = {
-      personalInformation: {
-        name: `${profile.instructor_first_name} ${profile.instructor_last_name}`,
-        gender: profile.gender,
-        dateOfBirth: profile.date_of_birth,
-        bloodGroup: profile.instructor_blood_group,
-        highestQualification: profile.highest_qualification,
-      },
-
-      guardianInformation: {
-        name: profile.instructor_guardian_name,
-        relationship: profile.instructor_guardian_relationship,
-        mobileNo: profile.instructor_guardian_contact_no,
-        occupation: profile.instructor_guardian_occupation,
-        address: profile.instructor_guardian_address,
+    const response: InstructorProfileResponse = {
+      profileCompletion,
+      basicInformation: {
+        personalInformation: {
+          name: `${profile.instructor_first_name} ${profile.instructor_last_name ?? ""}`.trim(),
+          gender: profile.gender,
+          dateOfBirth: profile.date_of_birth,
+          bloodGroup: profile.instructor_blood_group,
+          highestQualification: profile.highest_qualification,
+        },
+        contactDetails: {
+          mobileNumber: profile.contact_number,
+          emergencyContact: profile.emergency_contact,
+          email,
+        },
+        currentAddress: {
+          currentState: profile.current_state,
+          currentDistrict: profile.current_district,
+          currentTaluka: profile.current_taluka,
+          currentCity: profile.current_city,
+        },
+        permanentAddress: {
+          permanenetCity: profile.permanant_city,
+          permanenetState: profile.permanant_state,
+          permanentTaluka: profile.permanant_taluka,
+          permanentDistrict: profile.permanant_district,
+        },
       },
     };
 
     return res.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          profileCompletion,
-          basicInformation,
-        },
-        "Instructor profile fetched successfully."
-      )
+      new ApiResponse(200, response, "Instructor profile fetched successfully.")
     );
   }
 );
