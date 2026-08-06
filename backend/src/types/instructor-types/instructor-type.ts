@@ -20,6 +20,7 @@ type CurrentAddress = {
   currentTaluka: string | null;
   currentCity: string | null;
   currentPincode: string | null;
+  currentAddress: string | null
 };
 
 type PermanentAddress = {
@@ -27,7 +28,8 @@ type PermanentAddress = {
   permanenetState: string | null;
   permanentTaluka: string | null;
   permanentDistrict: string | null;
-  permanentPincode: string | null
+  permanentPincode: string | null,
+  permanentAddress: string | null
 };
 
 export type InstructorBasicInformation = {

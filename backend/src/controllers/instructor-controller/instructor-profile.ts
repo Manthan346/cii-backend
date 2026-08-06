@@ -55,14 +55,17 @@ export const instructorProfileDetails = asyncHandler(
           currentDistrict: profile.current_district,
           currentTaluka: profile.current_taluka,
           currentCity: profile.current_city,
-          currentPincode: profile.current_pincode
+          currentPincode: profile.current_pincode,
+          currentAddress: profile.current_address,
+          
         },
         permanentAddress: {
           permanenetCity: profile.permanant_city,
           permanenetState: profile.permanant_state,
           permanentTaluka: profile.permanant_taluka,
           permanentDistrict: profile.permanant_district,
-          permanentPincode: profile.permanant_pincode
+          permanentPincode: profile.permanant_pincode,
+          permanentAddress: profile.permanant_address
         },
       },
     };
