@@ -315,7 +315,7 @@ model instructor_details {
   instructor_university            String?
   instructor_passing_year          String?               @db.VarChar(10)
   instructor_certificates          String[]
-  instructor_prev_org              String[]
+  instructor_prev_org              String?
   instructor_prev_org_designation  String?               @db.VarChar(255)
   highest_qualification            String?               @db.VarChar(255)
   father_name                      String?

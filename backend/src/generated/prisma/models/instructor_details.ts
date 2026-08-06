@@ -62,6 +62,7 @@ export type Instructor_detailsMinAggregateOutputType = {
   instructor_guardian_contact_no: string | null
   instructor_university: string | null
   instructor_passing_year: string | null
+  instructor_prev_org: string | null
   instructor_prev_org_designation: string | null
   highest_qualification: string | null
   father_name: string | null
@@ -117,6 +118,7 @@ export type Instructor_detailsMaxAggregateOutputType = {
   instructor_guardian_contact_no: string | null
   instructor_university: string | null
   instructor_passing_year: string | null
+  instructor_prev_org: string | null
   instructor_prev_org_designation: string | null
   highest_qualification: string | null
   father_name: string | null
@@ -240,6 +242,7 @@ export type Instructor_detailsMinAggregateInputType = {
   instructor_guardian_contact_no?: true
   instructor_university?: true
   instructor_passing_year?: true
+  instructor_prev_org?: true
   instructor_prev_org_designation?: true
   highest_qualification?: true
   father_name?: true
@@ -295,6 +298,7 @@ export type Instructor_detailsMaxAggregateInputType = {
   instructor_guardian_contact_no?: true
   instructor_university?: true
   instructor_passing_year?: true
+  instructor_prev_org?: true
   instructor_prev_org_designation?: true
   highest_qualification?: true
   father_name?: true
@@ -497,7 +501,7 @@ export type Instructor_detailsGroupByOutputType = {
   instructor_university: string | null
   instructor_passing_year: string | null
   instructor_certificates: string[]
-  instructor_prev_org: string[]
+  instructor_prev_org: string | null
   instructor_prev_org_designation: string | null
   highest_qualification: string | null
   father_name: string | null
@@ -578,7 +582,7 @@ export type instructor_detailsWhereInput = {
   instructor_university?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_passing_year?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_certificates?: Prisma.StringNullableListFilter<"instructor_details">
-  instructor_prev_org?: Prisma.StringNullableListFilter<"instructor_details">
+  instructor_prev_org?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_prev_org_designation?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   highest_qualification?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   father_name?: Prisma.StringNullableFilter<"instructor_details"> | string | null
@@ -641,7 +645,7 @@ export type instructor_detailsOrderByWithRelationInput = {
   instructor_university?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_passing_year?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_certificates?: Prisma.SortOrder
-  instructor_prev_org?: Prisma.SortOrder
+  instructor_prev_org?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_prev_org_designation?: Prisma.SortOrderInput | Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   father_name?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -707,7 +711,7 @@ export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   instructor_university?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_passing_year?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_certificates?: Prisma.StringNullableListFilter<"instructor_details">
-  instructor_prev_org?: Prisma.StringNullableListFilter<"instructor_details">
+  instructor_prev_org?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_prev_org_designation?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   highest_qualification?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   father_name?: Prisma.StringNullableFilter<"instructor_details"> | string | null
@@ -770,7 +774,7 @@ export type instructor_detailsOrderByWithAggregationInput = {
   instructor_university?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_passing_year?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_certificates?: Prisma.SortOrder
-  instructor_prev_org?: Prisma.SortOrder
+  instructor_prev_org?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_prev_org_designation?: Prisma.SortOrderInput | Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   father_name?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -836,7 +840,7 @@ export type instructor_detailsScalarWhereWithAggregatesInput = {
   instructor_university?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
   instructor_passing_year?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
   instructor_certificates?: Prisma.StringNullableListFilter<"instructor_details">
-  instructor_prev_org?: Prisma.StringNullableListFilter<"instructor_details">
+  instructor_prev_org?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
   instructor_prev_org_designation?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
   highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
   father_name?: Prisma.StringNullableWithAggregatesFilter<"instructor_details"> | string | null
@@ -892,7 +896,7 @@ export type instructor_detailsCreateInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -955,7 +959,7 @@ export type instructor_detailsUncheckedCreateInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -1014,7 +1018,7 @@ export type instructor_detailsUpdateInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1077,7 +1081,7 @@ export type instructor_detailsUncheckedUpdateInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1138,7 +1142,7 @@ export type instructor_detailsCreateManyInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -1194,7 +1198,7 @@ export type instructor_detailsUpdateManyMutationInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1252,7 +1256,7 @@ export type instructor_detailsUncheckedUpdateManyInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1385,6 +1389,7 @@ export type instructor_detailsMaxOrderByAggregateInput = {
   instructor_guardian_contact_no?: Prisma.SortOrder
   instructor_university?: Prisma.SortOrder
   instructor_passing_year?: Prisma.SortOrder
+  instructor_prev_org?: Prisma.SortOrder
   instructor_prev_org_designation?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   father_name?: Prisma.SortOrder
@@ -1440,6 +1445,7 @@ export type instructor_detailsMinOrderByAggregateInput = {
   instructor_guardian_contact_no?: Prisma.SortOrder
   instructor_university?: Prisma.SortOrder
   instructor_passing_year?: Prisma.SortOrder
+  instructor_prev_org?: Prisma.SortOrder
   instructor_prev_org_designation?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   father_name?: Prisma.SortOrder
@@ -1554,21 +1560,12 @@ export type instructor_detailsCreateinstructor_certificatesInput = {
   set: string[]
 }
 
-export type instructor_detailsCreateinstructor_prev_orgInput = {
-  set: string[]
-}
-
 export type instructor_detailsUpdatequalificationInput = {
   set?: string[]
   push?: string | string[]
 }
 
 export type instructor_detailsUpdateinstructor_certificatesInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
-export type instructor_detailsUpdateinstructor_prev_orgInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -1649,7 +1646,7 @@ export type instructor_detailsCreateWithoutAttendance_sessionsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -1711,7 +1708,7 @@ export type instructor_detailsUncheckedCreateWithoutAttendance_sessionsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -1785,7 +1782,7 @@ export type instructor_detailsUpdateWithoutAttendance_sessionsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1847,7 +1844,7 @@ export type instructor_detailsUncheckedUpdateWithoutAttendance_sessionsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1905,7 +1902,7 @@ export type instructor_detailsCreateWithoutBatch_detailsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -1967,7 +1964,7 @@ export type instructor_detailsUncheckedCreateWithoutBatch_detailsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2041,7 +2038,7 @@ export type instructor_detailsUpdateWithoutBatch_detailsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2103,7 +2100,7 @@ export type instructor_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2161,7 +2158,7 @@ export type instructor_detailsCreateWithoutCompany_detailsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2222,7 +2219,7 @@ export type instructor_detailsUncheckedCreateWithoutCompany_detailsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2312,7 +2309,7 @@ export type instructor_detailsScalarWhereInput = {
   instructor_university?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_passing_year?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_certificates?: Prisma.StringNullableListFilter<"instructor_details">
-  instructor_prev_org?: Prisma.StringNullableListFilter<"instructor_details">
+  instructor_prev_org?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   instructor_prev_org_designation?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   highest_qualification?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   father_name?: Prisma.StringNullableFilter<"instructor_details"> | string | null
@@ -2368,7 +2365,7 @@ export type instructor_detailsCreateWithoutInstructor_documentsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2430,7 +2427,7 @@ export type instructor_detailsUncheckedCreateWithoutInstructor_documentsInput = 
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2504,7 +2501,7 @@ export type instructor_detailsUpdateWithoutInstructor_documentsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2566,7 +2563,7 @@ export type instructor_detailsUncheckedUpdateWithoutInstructor_documentsInput = 
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2624,7 +2621,7 @@ export type instructor_detailsCreateWithoutUser_loginInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2685,7 +2682,7 @@ export type instructor_detailsUncheckedCreateWithoutUser_loginInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2760,7 +2757,7 @@ export type instructor_detailsUpdateWithoutUser_loginInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2821,7 +2818,7 @@ export type instructor_detailsUncheckedUpdateWithoutUser_loginInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2881,7 +2878,7 @@ export type instructor_detailsCreateManyCompany_detailsInput = {
   instructor_university?: string | null
   instructor_passing_year?: string | null
   instructor_certificates?: Prisma.instructor_detailsCreateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsCreateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: string | null
   instructor_prev_org_designation?: string | null
   highest_qualification?: string | null
   father_name?: string | null
@@ -2937,7 +2934,7 @@ export type instructor_detailsUpdateWithoutCompany_detailsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2998,7 +2995,7 @@ export type instructor_detailsUncheckedUpdateWithoutCompany_detailsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3058,7 +3055,7 @@ export type instructor_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
   instructor_university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_passing_year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_certificates?: Prisma.instructor_detailsUpdateinstructor_certificatesInput | string[]
-  instructor_prev_org?: Prisma.instructor_detailsUpdateinstructor_prev_orgInput | string[]
+  instructor_prev_org?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_prev_org_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3425,7 +3422,7 @@ export type $instructor_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     instructor_university: string | null
     instructor_passing_year: string | null
     instructor_certificates: string[]
-    instructor_prev_org: string[]
+    instructor_prev_org: string | null
     instructor_prev_org_designation: string | null
     highest_qualification: string | null
     father_name: string | null
@@ -3908,7 +3905,7 @@ export interface instructor_detailsFieldRefs {
   readonly instructor_university: Prisma.FieldRef<"instructor_details", 'String'>
   readonly instructor_passing_year: Prisma.FieldRef<"instructor_details", 'String'>
   readonly instructor_certificates: Prisma.FieldRef<"instructor_details", 'String[]'>
-  readonly instructor_prev_org: Prisma.FieldRef<"instructor_details", 'String[]'>
+  readonly instructor_prev_org: Prisma.FieldRef<"instructor_details", 'String'>
   readonly instructor_prev_org_designation: Prisma.FieldRef<"instructor_details", 'String'>
   readonly highest_qualification: Prisma.FieldRef<"instructor_details", 'String'>
   readonly father_name: Prisma.FieldRef<"instructor_details", 'String'>
