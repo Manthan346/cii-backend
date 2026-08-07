@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchInstructorDashboard } from '../../../../../../api/trainer/dashboardService';
 import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader';
 import BatchOverview from '../BatchOverview/BatchOverview';
 // import TaskAssigned from '../TaskAssigned/TaskAssigned';
@@ -19,6 +20,16 @@ import './Dashboard.css';
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchInstructorDashboard()
+      .then(setDashboardData)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className="staff-dashboard">
@@ -35,12 +46,19 @@ const Dashboard = () => {
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
             <div className="dashboard">
-              <WorkspaceHeader />
+              {loading && <p>Loading dashboard…</p>}
+              {error && <p className="dashboard__error">Failed to load dashboard: {error}</p>}
 
-              <div className="dashboard__row">
-                <BatchOverview />
-                {/* <TaskAssigned /> */}
-              </div>
+              {dashboardData && (
+                <>
+                  <WorkspaceHeader summary={dashboardData.summary} />
+
+                  <div className="dashboard__row">
+                    <BatchOverview batches={dashboardData.batchOverview} />
+                    {/* <TaskAssigned /> */}
+                  </div>
+                </>
+              )}
 
               {/* <div className="dashboard__row dashboard__row--secondary">
                 <AttendanceChart />

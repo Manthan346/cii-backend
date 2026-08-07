@@ -1,21 +1,44 @@
 import ProfileCompletionCard from '../ProfileCompletionCard/ProfileCompletionCard';
 import './BasicInformationTab.css';
 
-/**
- * BasicInformationTab
- *
- * "Basic Information" tab content: Personal Information + Contact side
- * by side, with the Profile completion ring/checklist alongside them.
- * Below that, a separate full-width card shows Current Address and
- * Permanent Address side by side (state/district/city/pin code as
- * read-only pills).
- */
+// /**
+//  * BasicInformationTab
+//  *
+//  * "Basic Information" tab content: Personal Information + Contact side
+//  * by side, with the Profile completion ring/checklist alongside them.
+//  * Below that, a separate full-width card shows Current Address and
+//  * Permanent Address side by side (state/district/city/pin code as
+//  * read-only pills).
+//  *
+//  * Field names match GET /instructor-profile directly (personal.dateOfBirth,
+//  * contact.emergencyContact/email, currentAddress.current*, permanentAddress
+//  * .permanenet*/permanent* - note the backend's own "permanenet" typo on
+//  * two of the five permanent-address fields, kept as-is here rather than
+//  * silently "fixed", since fixing it here would just break the mapping) -
+//  * no separate mapper layer, same convention as AcademicDetailTab.
+//  *
+//  * The backend has no free-text address "line" field at all (only
+//  * state/district/taluka/city/pincode), so the line paragraph only
+//  * renders when one is present - it just won't show up until/unless a
+//  * line field is added on the backend.**/
+ 
+function formatDate(dateStr) {
+  if (!dateStr) return '-';
+  const date = new Date(dateStr);
+  if (isNaN(date)) return dateStr;
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
 export default function BasicInformationTab({
   personal,
   contact,
   currentAddress,
   permanentAddress,
-  address, // legacy fallback, used as currentAddress if currentAddress isn't passed
   completion,
 }) {
   const current = currentAddress;
@@ -48,7 +71,7 @@ export default function BasicInformationTab({
                   Date of Birth
                 </span>
                 <span className="basic-information-tab__value">
-                  {personal.dob}
+                  {formatDate(personal.dateOfBirth)}
                 </span>
               </div>
               <div className="basic-information-tab__field">
@@ -87,13 +110,13 @@ export default function BasicInformationTab({
                   Emergency Contact Number
                 </span>
                 <span className="basic-information-tab__value">
-                  {contact.emergencyContactNumber}
+                  {contact.emergencyContact}
                 </span>
               </div>
               <div className="basic-information-tab__field">
                 <span className="basic-information-tab__label">Email - ID</span>
                 <span className="basic-information-tab__value">
-                  {contact.emailId}
+                  {contact.email}
                 </span>
               </div>
             </div>
@@ -115,33 +138,35 @@ export default function BasicInformationTab({
                 Current Address
               </h3>
 
-              <p className="basic-information-tab__address-line">
-                {current?.line}
-              </p>
+              {current?.currentAddress && (
+                <p className="basic-information-tab__address-line">
+                  {current.currentAddress}
+                </p>
+              )}
 
               <div className="basic-information-tab__address-pills">
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">State</span>
                   <span className="basic-information-tab__pill">
-                    {current?.state}
+                    {current?.currentState}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">District</span>
                   <span className="basic-information-tab__pill">
-                    {current?.district}
+                    {current?.currentDistrict}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">City</span>
                   <span className="basic-information-tab__pill">
-                    {current?.city}
+                    {current?.currentCity}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">Pin Code</span>
                   <span className="basic-information-tab__pill">
-                    {current?.pinCode}
+                    {current?.currentPincode}
                   </span>
                 </div>
               </div>
@@ -154,33 +179,35 @@ export default function BasicInformationTab({
                 Permanent Address
               </h3>
 
-              <p className="basic-information-tab__address-line">
-                {permanent?.line}
-              </p>
+              {permanent?.permanentAddress && (
+                <p className="basic-information-tab__address-line">
+                  {permanent.permanentAddress}
+                </p>
+              )}
 
               <div className="basic-information-tab__address-pills">
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">State</span>
                   <span className="basic-information-tab__pill">
-                    {permanent?.state}
+                    {permanent?.permanenetState}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">District</span>
                   <span className="basic-information-tab__pill">
-                    {permanent?.district}
+                    {permanent?.permanentDistrict}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">City</span>
                   <span className="basic-information-tab__pill">
-                    {permanent?.city}
+                    {permanent?.permanenetCity}
                   </span>
                 </div>
                 <div className="basic-information-tab__pill-field">
                   <span className="basic-information-tab__label">Pin Code</span>
                   <span className="basic-information-tab__pill">
-                    {permanent?.pinCode}
+                    {permanent?.permanentPincode}
                   </span>
                 </div>
               </div>

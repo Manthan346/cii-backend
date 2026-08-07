@@ -1,6 +1,5 @@
 import React from 'react';
 import { SectionCard, StatusBadge } from '../../../shared';
-import { batchOverview } from '../../../data';
 import './BatchOverview.css';
 
 /**
@@ -10,7 +9,7 @@ import './BatchOverview.css';
  * count, and status pill. Composed with the reusable <SectionCard> and
  * <StatusBadge> from /shared. (Progress column removed per request.)
  */
-const BatchOverview = () => {
+const BatchOverview = ({ batches = [] }) => {
   return (
     <SectionCard title="Batch Overview" className="batch-overview">
       <div className="batch-overview__table">
@@ -21,15 +20,15 @@ const BatchOverview = () => {
           <span>Status</span>
         </div>
 
-        {batchOverview.map((batch) => (
-          <div className="batch-overview__row" key={batch.id}>
-            <span className="batch-overview__code">{batch.batch}</span>
-            <span className="batch-overview__course">{batch.course}</span>
+        {batches.map((batch) => (
+          <div className="batch-overview__row" key={batch.batchId}>
+            <span className="batch-overview__code">{batch.batchName}</span>
+            <span className="batch-overview__course">{batch.courseName}</span>
             <span className="batch-overview__candidates">
-              {batch.candidates}
+              {batch.candidateCount}
             </span>
             <span className="batch-overview__status">
-              <StatusBadge status={batch.status} />
+              <StatusBadge status={batch.batchStatus} />
             </span>
           </div>
         ))}

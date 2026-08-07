@@ -4,6 +4,22 @@ import logo from "../../assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../../../api/api"; // adjust path to match your actual file location
 
+// ---------------------------------------------------------------------------
+// Display labels — edit these freely. The KEY (left side) must exactly match
+// the real value (role_name / center_id) used by the backend. The VALUE
+// (right side) is whatever text you want shown to the user.
+// ---------------------------------------------------------------------------
+const ROLE_LABELS = {
+  candidate: "Candidate",
+  instructor: "Instructor",
+  admin: "Admin",
+  "super-admin": "Super Admin",
+};
+
+const CENTER_LABELS = {
+  "54520921-f3ec-4211-87c1-a0dcec343070": "Kandivali",
+};
+
 function EyeIcon({ open }) {
   return open ? (
     <svg
@@ -211,18 +227,33 @@ function LoginPage() {
         email,
         password,
         role,
-        centerId: center, // this is now a UUID string, matches center_id type
+        centerId: center,
       });
 
-      const { userDetails, candidateDetails, accessToken } = res.data.data;
+      const { userDetails, roleDetails, accessToken } = res.data.data;
 
       localStorage.setItem("token", accessToken);
       localStorage.setItem(
-        "candidate",
-        JSON.stringify({ userDetails, candidateDetails }),
+        "userSession",
+        JSON.stringify({ userDetails, roleDetails })
       );
 
-      navigate("/my-dashboard");
+      // route based on the role returned by the backend, not just the
+      // dropdown selection — this is the value the server actually validated
+      switch (userDetails.role) {
+        case "instructor":
+          navigate("/trainer/dashboard"); // match your actual trainer dashboard route
+          break;
+        case "candidate":
+          navigate("/my-dashboard");
+          break;
+        case "admin":
+        case "super-admin":
+          navigate("/admin/dashboard");
+          break;
+        default:
+          navigate("/my-dashboard");
+      }
     } catch (err) {
       const msg =
         err.response?.data?.message || "Invalid credentials. Please try again.";
@@ -316,8 +347,8 @@ function LoginPage() {
                 value={role}
                 onChange={setRole}
                 options={roles.map((r) => ({
-                  value: r.role_name,
-                  label: r.role_name,
+                  value: r.role_name, // sent to backend, unchanged
+                  label: ROLE_LABELS[r.role_name] || r.role_name, // shown to user
                 }))}
               />
 
@@ -328,8 +359,8 @@ function LoginPage() {
                 value={center}
                 onChange={setCenter}
                 options={centers.map((c) => ({
-                  value: c.center_id,
-                  label: c.center_name,
+                  value: c.center_id, // sent to backend, unchanged
+                  label: CENTER_LABELS[c.center_id] || c.center_name, // shown to user
                 }))}
               />
             </div>
