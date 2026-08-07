@@ -18,25 +18,19 @@ const CandidateJourney = ({ steps = [] }) => {
   return (
     <SectionCard title="Candidate Journey">
       <div className="admin-journey">
-        {steps.map((step, index) => (
-          <div className="admin-journey__step-wrap" key={step.id}>
-            <div
-              className={`admin-journey__step ${
-                step.active ? 'admin-journey__step--active' : ''
-              }`}
-            >
-              <span className="admin-journey__step-label">{step.label}</span>
-            </div>
-            {index < steps.length - 1 && (
-              <ChevronRight
-                size={16}
-                className="admin-journey__arrow"
-                strokeWidth={2.5}
-              />
-            )}
-          </div>
-        ))}
-      </div>
+  {steps.map((step) => (
+    <div
+      key={step.id}
+      className={`admin-journey__step ${
+        step.active ? "admin-journey__step--active" : ""
+      }`}
+    >
+      <span className="admin-journey__step-label">
+        {step.label}
+      </span>
+    </div>
+  ))}
+</div>
 
       <div className="admin-journey__counts">
         {steps.map((step) => (
