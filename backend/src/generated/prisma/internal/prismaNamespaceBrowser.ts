@@ -251,7 +251,8 @@ export const Candidates_detailsScalarFieldEnum = {
   mother_blood_group: 'mother_blood_group',
   mother_phone_no: 'mother_phone_no',
   father_address: 'father_address',
-  mother_address: 'mother_address'
+  mother_address: 'mother_address',
+  profile_photo: 'profile_photo'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -413,7 +414,9 @@ export const Instructor_detailsScalarFieldEnum = {
   permanant_taluka: 'permanant_taluka',
   permanant_pincode: 'permanant_pincode',
   permanant_address: 'permanant_address',
-  current_address: 'current_address'
+  current_address: 'current_address',
+  profile_photo: 'profile_photo',
+  instructor_guardian_blood_group: 'instructor_guardian_blood_group'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]

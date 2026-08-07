@@ -88,6 +88,7 @@ export type Candidates_detailsMinAggregateOutputType = {
   mother_phone_no: string | null
   father_address: string | null
   mother_address: string | null
+  profile_photo: string | null
 }
 
 export type Candidates_detailsMaxAggregateOutputType = {
@@ -140,6 +141,7 @@ export type Candidates_detailsMaxAggregateOutputType = {
   mother_phone_no: string | null
   father_address: string | null
   mother_address: string | null
+  profile_photo: string | null
 }
 
 export type Candidates_detailsCountAggregateOutputType = {
@@ -193,6 +195,7 @@ export type Candidates_detailsCountAggregateOutputType = {
   mother_phone_no: number
   father_address: number
   mother_address: number
+  profile_photo: number
   _all: number
 }
 
@@ -259,6 +262,7 @@ export type Candidates_detailsMinAggregateInputType = {
   mother_phone_no?: true
   father_address?: true
   mother_address?: true
+  profile_photo?: true
 }
 
 export type Candidates_detailsMaxAggregateInputType = {
@@ -311,6 +315,7 @@ export type Candidates_detailsMaxAggregateInputType = {
   mother_phone_no?: true
   father_address?: true
   mother_address?: true
+  profile_photo?: true
 }
 
 export type Candidates_detailsCountAggregateInputType = {
@@ -364,6 +369,7 @@ export type Candidates_detailsCountAggregateInputType = {
   mother_phone_no?: true
   father_address?: true
   mother_address?: true
+  profile_photo?: true
   _all?: true
 }
 
@@ -504,6 +510,7 @@ export type Candidates_detailsGroupByOutputType = {
   mother_phone_no: string | null
   father_address: string | null
   mother_address: string | null
+  profile_photo: string | null
   _count: Candidates_detailsCountAggregateOutputType | null
   _avg: Candidates_detailsAvgAggregateOutputType | null
   _sum: Candidates_detailsSumAggregateOutputType | null
@@ -580,6 +587,7 @@ export type candidates_detailsWhereInput = {
   mother_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   father_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   mother_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  profile_photo?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -639,6 +647,7 @@ export type candidates_detailsOrderByWithRelationInput = {
   mother_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   father_address?: Prisma.SortOrderInput | Prisma.SortOrder
   mother_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_photo?: Prisma.SortOrderInput | Prisma.SortOrder
   attendance_records?: Prisma.attendance_recordsOrderByRelationAggregateInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
   candidate_assessment?: Prisma.candidate_assessmentOrderByRelationAggregateInput
@@ -701,6 +710,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   mother_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   father_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   mother_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  profile_photo?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   attendance_records?: Prisma.Attendance_recordsListRelationFilter
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
   candidate_assessment?: Prisma.Candidate_assessmentListRelationFilter
@@ -760,6 +770,7 @@ export type candidates_detailsOrderByWithAggregationInput = {
   mother_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   father_address?: Prisma.SortOrderInput | Prisma.SortOrder
   mother_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_photo?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.candidates_detailsCountOrderByAggregateInput
   _avg?: Prisma.candidates_detailsAvgOrderByAggregateInput
   _max?: Prisma.candidates_detailsMaxOrderByAggregateInput
@@ -821,6 +832,7 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   mother_phone_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   father_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   mother_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  profile_photo?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
 }
 
 export type candidates_detailsCreateInput = {
@@ -873,6 +885,7 @@ export type candidates_detailsCreateInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -932,6 +945,7 @@ export type candidates_detailsUncheckedCreateInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -989,6 +1003,7 @@ export type candidates_detailsUpdateInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -1048,6 +1063,7 @@ export type candidates_detailsUncheckedUpdateInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -1106,6 +1122,7 @@ export type candidates_detailsCreateManyInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
 }
 
 export type candidates_detailsUpdateManyMutationInput = {
@@ -1158,6 +1175,7 @@ export type candidates_detailsUpdateManyMutationInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type candidates_detailsUncheckedUpdateManyInput = {
@@ -1211,6 +1229,7 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Candidates_detailsScalarRelationFilter = {
@@ -1277,6 +1296,7 @@ export type candidates_detailsCountOrderByAggregateInput = {
   mother_phone_no?: Prisma.SortOrder
   father_address?: Prisma.SortOrder
   mother_address?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
 }
 
 export type candidates_detailsAvgOrderByAggregateInput = {
@@ -1335,6 +1355,7 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   mother_phone_no?: Prisma.SortOrder
   father_address?: Prisma.SortOrder
   mother_address?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
 }
 
 export type candidates_detailsMinOrderByAggregateInput = {
@@ -1387,6 +1408,7 @@ export type candidates_detailsMinOrderByAggregateInput = {
   mother_phone_no?: Prisma.SortOrder
   father_address?: Prisma.SortOrder
   mother_address?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
 }
 
 export type candidates_detailsSumOrderByAggregateInput = {
@@ -1569,6 +1591,7 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1627,6 +1650,7 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1699,6 +1723,7 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -1757,6 +1782,7 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -1813,6 +1839,7 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -1871,6 +1898,7 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -1943,6 +1971,7 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -2001,6 +2030,7 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -2057,6 +2087,7 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsCreateNestedOneWithoutCandidates_detailsInput
@@ -2115,6 +2146,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_documents?: Prisma.candidate_documentsUncheckedCreateNestedOneWithoutCandidates_detailsInput
@@ -2187,6 +2219,7 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUpdateOneWithoutCandidates_detailsNestedInput
@@ -2245,6 +2278,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_documents?: Prisma.candidate_documentsUncheckedUpdateOneWithoutCandidates_detailsNestedInput
@@ -2301,6 +2335,7 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -2359,6 +2394,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -2431,6 +2467,7 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -2489,6 +2526,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -2545,6 +2583,7 @@ export type candidates_detailsCreateWithoutJob_applicationInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -2603,6 +2642,7 @@ export type candidates_detailsUncheckedCreateWithoutJob_applicationInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -2675,6 +2715,7 @@ export type candidates_detailsUpdateWithoutJob_applicationInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -2733,6 +2774,7 @@ export type candidates_detailsUncheckedUpdateWithoutJob_applicationInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -2789,6 +2831,7 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput
@@ -2846,6 +2889,7 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   mother_phone_no?: string | null
   father_address?: string | null
   mother_address?: string | null
+  profile_photo?: string | null
   attendance_records?: Prisma.attendance_recordsUncheckedCreateNestedManyWithoutCandidates_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedCreateNestedManyWithoutCandidates_detailsInput
@@ -2919,6 +2963,7 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUpdateManyWithoutCandidates_detailsNestedInput
@@ -2976,6 +3021,7 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   mother_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_records?: Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
   candidate_assessment?: Prisma.candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsNestedInput
@@ -3092,6 +3138,7 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   mother_phone_no?: boolean
   father_address?: boolean
   mother_address?: boolean
+  profile_photo?: boolean
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
   candidate_assessment?: boolean | Prisma.candidates_details$candidate_assessmentArgs<ExtArgs>
@@ -3152,6 +3199,7 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   mother_phone_no?: boolean
   father_address?: boolean
   mother_address?: boolean
+  profile_photo?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -3206,6 +3254,7 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   mother_phone_no?: boolean
   father_address?: boolean
   mother_address?: boolean
+  profile_photo?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidates_details"]>
 
@@ -3260,9 +3309,10 @@ export type candidates_detailsSelectScalar = {
   mother_phone_no?: boolean
   father_address?: boolean
   mother_address?: boolean
+  profile_photo?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "pin_code" | "district" | "state_name" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address" | "profile_photo", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -3340,6 +3390,7 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     mother_phone_no: string | null
     father_address: string | null
     mother_address: string | null
+    profile_photo: string | null
   }, ExtArgs["result"]["candidates_details"]>
   composites: {}
 }
@@ -3819,6 +3870,7 @@ export interface candidates_detailsFieldRefs {
   readonly mother_phone_no: Prisma.FieldRef<"candidates_details", 'String'>
   readonly father_address: Prisma.FieldRef<"candidates_details", 'String'>
   readonly mother_address: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly profile_photo: Prisma.FieldRef<"candidates_details", 'String'>
 }
     
 

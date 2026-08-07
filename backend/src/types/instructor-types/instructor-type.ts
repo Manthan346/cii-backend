@@ -1,8 +1,30 @@
-// types/instructor-profile.type.ts
+
+
+type ParentDetails = {
+  name: string | null;
+  blood_group: string | null;
+  occupation: string | null;
+  phone_no: string | null;
+  address: string | null;
+  dob: Date | null;
+  
+};
+
+type GuardianDetails = ParentDetails & {
+  relationship: string | null;
+ 
+  
+};
+
+export type InstructorGuardianDetails = {
+  fatherDetails: ParentDetails;  // father
+  motherDetails: ParentDetails;  // mother
+  guardianDetails: GuardianDetails; // guardian (has extra fields: relationship, gender, dob)
+};
 
 type PersonalInformation = {
   name: string;
-  gender: string | null;
+  gender: string | null
   dateOfBirth: Date | null;
   bloodGroup: string | null;
   highestQualification: string | null;
