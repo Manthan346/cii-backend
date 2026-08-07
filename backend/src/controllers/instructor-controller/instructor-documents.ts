@@ -23,6 +23,7 @@ const instructorDocuments = asyncHandler(async(req: InstructorAuthRequest, res: 
     const panCard = files?.pan_card[0]?.path
     const aadhar_card = files?.aadhar_card[0]?.path
     const instructor_resume = files?.instructor_resume[0].path
+    const highest_qualification_document = files?.highest_qualification_document[0].path
 
     console.log("pancard from files",panCard)
 
@@ -30,6 +31,9 @@ const instructorDocuments = asyncHandler(async(req: InstructorAuthRequest, res: 
     const panCardUpload = panCard ? await uploadCloudnary(panCard) : null
     const aadharUpload = aadhar_card ? await uploadCloudnary(aadhar_card) : null
     const instructorResumeUpload = instructor_resume ? await uploadCloudnary(instructor_resume) : null
+     const highestQualificationDocumentUpload = highest_qualification_document ? await uploadCloudnary(highest_qualification_document) : null
+    
+
 
 
     const documents = await prisma.instructor_documents.upsert({
@@ -41,7 +45,8 @@ const instructorDocuments = asyncHandler(async(req: InstructorAuthRequest, res: 
             pan_card: panCardUpload?.secure_url ?? undefined,
             aadhar_card: aadharUpload?.secure_url ?? undefined,
             instructor_resume: instructorResumeUpload?.secure_url ?? undefined,
-            instructor_id: instructorId
+            instructor_id: instructorId,
+            instructor_highest_qualification_documents: highestQualificationDocumentUpload?.secure_url ?? undefined
             
         },
         update: {
@@ -49,6 +54,7 @@ const instructorDocuments = asyncHandler(async(req: InstructorAuthRequest, res: 
             pan_card: panCardUpload?.secure_url ?? undefined,
             aadhar_card: aadharUpload?.secure_url ?? undefined,
             instructor_resume: instructorResumeUpload?.secure_url ?? undefined,
+            instructor_highest_qualification_documents: highestQualificationDocumentUpload?.secure_url ?? undefined,
             instructor_id: instructorId
 
         }

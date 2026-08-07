@@ -72,6 +72,7 @@ const candidateGuardianDetails = asyncHandler(async (req: CandidateAuthRequest, 
       occupation: record.father_occupation,
       phone_no: record.father_phone_no,
       address: record.father_address,
+      
     },
     motherDetails: {
       name: record.mother_name,
