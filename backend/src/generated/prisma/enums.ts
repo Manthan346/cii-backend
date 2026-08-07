@@ -23,7 +23,8 @@ export type assessment_type = (typeof assessment_type)[keyof typeof assessment_t
 export const attend_types = {
   present: 'present',
   absent: 'absent',
-  late: 'late'
+  late: 'late',
+  half_day: 'half_day'
 } as const
 
 export type attend_types = (typeof attend_types)[keyof typeof attend_types]

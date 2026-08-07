@@ -174,6 +174,7 @@ model candidates_details {
   mother_phone_no             String?                @db.VarChar(10)
   father_address              String?
   mother_address              String?
+  profile_photo               String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -341,6 +342,10 @@ model instructor_details {
   permanant_district               String?
   permanant_taluka                 String?
   permanant_pincode                String?               @db.VarChar(6)
+  permanant_address                String?
+  current_address                  String?
+  profile_photo                    String?
+  instructor_guardian_blood_group  String?               @db.VarChar(6)
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
@@ -349,15 +354,16 @@ model instructor_details {
 }
 
 model instructor_documents {
-  instructor_doc_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  instructor_id      String?             @unique @db.Uuid
-  past_exp_letter    String?
-  pan_card           String?
-  aadhar_card        String?
-  instructor_resume  String?
-  created_at         DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?           @default(now()) @db.Timestamp(6)
-  instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
+  instructor_doc_id                          String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  instructor_id                              String?             @unique @db.Uuid
+  past_exp_letter                            String?
+  pan_card                                   String?
+  aadhar_card                                String?
+  instructor_resume                          String?
+  created_at                                 DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at                                 DateTime?           @default(now()) @db.Timestamp(6)
+  instructor_highest_qualification_documents String?
+  instructor_details                         instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model job_application {
@@ -469,6 +475,7 @@ enum attend_types {
   present
   absent
   late
+  half_day @map("half-day")
 }
 
 enum attendance_mode_type {
