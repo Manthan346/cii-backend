@@ -33,6 +33,7 @@ export type Instructor_documentsMinAggregateOutputType = {
   instructor_resume: string | null
   created_at: Date | null
   updated_at: Date | null
+  instructor_highest_qualification_documents: string | null
 }
 
 export type Instructor_documentsMaxAggregateOutputType = {
@@ -44,6 +45,7 @@ export type Instructor_documentsMaxAggregateOutputType = {
   instructor_resume: string | null
   created_at: Date | null
   updated_at: Date | null
+  instructor_highest_qualification_documents: string | null
 }
 
 export type Instructor_documentsCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type Instructor_documentsCountAggregateOutputType = {
   instructor_resume: number
   created_at: number
   updated_at: number
+  instructor_highest_qualification_documents: number
   _all: number
 }
 
@@ -68,6 +71,7 @@ export type Instructor_documentsMinAggregateInputType = {
   instructor_resume?: true
   created_at?: true
   updated_at?: true
+  instructor_highest_qualification_documents?: true
 }
 
 export type Instructor_documentsMaxAggregateInputType = {
@@ -79,6 +83,7 @@ export type Instructor_documentsMaxAggregateInputType = {
   instructor_resume?: true
   created_at?: true
   updated_at?: true
+  instructor_highest_qualification_documents?: true
 }
 
 export type Instructor_documentsCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type Instructor_documentsCountAggregateInputType = {
   instructor_resume?: true
   created_at?: true
   updated_at?: true
+  instructor_highest_qualification_documents?: true
   _all?: true
 }
 
@@ -174,6 +180,7 @@ export type Instructor_documentsGroupByOutputType = {
   instructor_resume: string | null
   created_at: Date | null
   updated_at: Date | null
+  instructor_highest_qualification_documents: string | null
   _count: Instructor_documentsCountAggregateOutputType | null
   _min: Instructor_documentsMinAggregateOutputType | null
   _max: Instructor_documentsMaxAggregateOutputType | null
@@ -206,6 +213,7 @@ export type instructor_documentsWhereInput = {
   instructor_resume?: Prisma.StringNullableFilter<"instructor_documents"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"instructor_documents"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"instructor_documents"> | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.StringNullableFilter<"instructor_documents"> | string | null
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
 }
 
@@ -218,6 +226,7 @@ export type instructor_documentsOrderByWithRelationInput = {
   instructor_resume?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  instructor_highest_qualification_documents?: Prisma.SortOrderInput | Prisma.SortOrder
   instructor_details?: Prisma.instructor_detailsOrderByWithRelationInput
 }
 
@@ -233,6 +242,7 @@ export type instructor_documentsWhereUniqueInput = Prisma.AtLeast<{
   instructor_resume?: Prisma.StringNullableFilter<"instructor_documents"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"instructor_documents"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"instructor_documents"> | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.StringNullableFilter<"instructor_documents"> | string | null
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
 }, "instructor_doc_id" | "instructor_id">
 
@@ -245,6 +255,7 @@ export type instructor_documentsOrderByWithAggregationInput = {
   instructor_resume?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  instructor_highest_qualification_documents?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.instructor_documentsCountOrderByAggregateInput
   _max?: Prisma.instructor_documentsMaxOrderByAggregateInput
   _min?: Prisma.instructor_documentsMinOrderByAggregateInput
@@ -262,6 +273,7 @@ export type instructor_documentsScalarWhereWithAggregatesInput = {
   instructor_resume?: Prisma.StringNullableWithAggregatesFilter<"instructor_documents"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"instructor_documents"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"instructor_documents"> | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.StringNullableWithAggregatesFilter<"instructor_documents"> | string | null
 }
 
 export type instructor_documentsCreateInput = {
@@ -272,6 +284,7 @@ export type instructor_documentsCreateInput = {
   instructor_resume?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  instructor_highest_qualification_documents?: string | null
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutInstructor_documentsInput
 }
 
@@ -284,6 +297,7 @@ export type instructor_documentsUncheckedCreateInput = {
   instructor_resume?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  instructor_highest_qualification_documents?: string | null
 }
 
 export type instructor_documentsUpdateInput = {
@@ -294,6 +308,7 @@ export type instructor_documentsUpdateInput = {
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutInstructor_documentsNestedInput
 }
 
@@ -306,6 +321,7 @@ export type instructor_documentsUncheckedUpdateInput = {
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type instructor_documentsCreateManyInput = {
@@ -317,6 +333,7 @@ export type instructor_documentsCreateManyInput = {
   instructor_resume?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  instructor_highest_qualification_documents?: string | null
 }
 
 export type instructor_documentsUpdateManyMutationInput = {
@@ -327,6 +344,7 @@ export type instructor_documentsUpdateManyMutationInput = {
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type instructor_documentsUncheckedUpdateManyInput = {
@@ -338,6 +356,7 @@ export type instructor_documentsUncheckedUpdateManyInput = {
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Instructor_documentsNullableScalarRelationFilter = {
@@ -354,6 +373,7 @@ export type instructor_documentsCountOrderByAggregateInput = {
   instructor_resume?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  instructor_highest_qualification_documents?: Prisma.SortOrder
 }
 
 export type instructor_documentsMaxOrderByAggregateInput = {
@@ -365,6 +385,7 @@ export type instructor_documentsMaxOrderByAggregateInput = {
   instructor_resume?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  instructor_highest_qualification_documents?: Prisma.SortOrder
 }
 
 export type instructor_documentsMinOrderByAggregateInput = {
@@ -376,6 +397,7 @@ export type instructor_documentsMinOrderByAggregateInput = {
   instructor_resume?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  instructor_highest_qualification_documents?: Prisma.SortOrder
 }
 
 export type instructor_documentsCreateNestedOneWithoutInstructor_detailsInput = {
@@ -418,6 +440,7 @@ export type instructor_documentsCreateWithoutInstructor_detailsInput = {
   instructor_resume?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  instructor_highest_qualification_documents?: string | null
 }
 
 export type instructor_documentsUncheckedCreateWithoutInstructor_detailsInput = {
@@ -428,6 +451,7 @@ export type instructor_documentsUncheckedCreateWithoutInstructor_detailsInput = 
   instructor_resume?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  instructor_highest_qualification_documents?: string | null
 }
 
 export type instructor_documentsCreateOrConnectWithoutInstructor_detailsInput = {
@@ -454,6 +478,7 @@ export type instructor_documentsUpdateWithoutInstructor_detailsInput = {
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type instructor_documentsUncheckedUpdateWithoutInstructor_detailsInput = {
@@ -464,6 +489,7 @@ export type instructor_documentsUncheckedUpdateWithoutInstructor_detailsInput = 
   instructor_resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  instructor_highest_qualification_documents?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -477,6 +503,7 @@ export type instructor_documentsSelect<ExtArgs extends runtime.Types.Extensions.
   instructor_resume?: boolean
   created_at?: boolean
   updated_at?: boolean
+  instructor_highest_qualification_documents?: boolean
   instructor_details?: boolean | Prisma.instructor_documents$instructor_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_documents"]>
 
@@ -489,6 +516,7 @@ export type instructor_documentsSelectCreateManyAndReturn<ExtArgs extends runtim
   instructor_resume?: boolean
   created_at?: boolean
   updated_at?: boolean
+  instructor_highest_qualification_documents?: boolean
   instructor_details?: boolean | Prisma.instructor_documents$instructor_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_documents"]>
 
@@ -501,6 +529,7 @@ export type instructor_documentsSelectUpdateManyAndReturn<ExtArgs extends runtim
   instructor_resume?: boolean
   created_at?: boolean
   updated_at?: boolean
+  instructor_highest_qualification_documents?: boolean
   instructor_details?: boolean | Prisma.instructor_documents$instructor_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["instructor_documents"]>
 
@@ -513,9 +542,10 @@ export type instructor_documentsSelectScalar = {
   instructor_resume?: boolean
   created_at?: boolean
   updated_at?: boolean
+  instructor_highest_qualification_documents?: boolean
 }
 
-export type instructor_documentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"instructor_doc_id" | "instructor_id" | "past_exp_letter" | "pan_card" | "aadhar_card" | "instructor_resume" | "created_at" | "updated_at", ExtArgs["result"]["instructor_documents"]>
+export type instructor_documentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"instructor_doc_id" | "instructor_id" | "past_exp_letter" | "pan_card" | "aadhar_card" | "instructor_resume" | "created_at" | "updated_at" | "instructor_highest_qualification_documents", ExtArgs["result"]["instructor_documents"]>
 export type instructor_documentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   instructor_details?: boolean | Prisma.instructor_documents$instructor_detailsArgs<ExtArgs>
 }
@@ -540,6 +570,7 @@ export type $instructor_documentsPayload<ExtArgs extends runtime.Types.Extension
     instructor_resume: string | null
     created_at: Date | null
     updated_at: Date | null
+    instructor_highest_qualification_documents: string | null
   }, ExtArgs["result"]["instructor_documents"]>
   composites: {}
 }
@@ -972,6 +1003,7 @@ export interface instructor_documentsFieldRefs {
   readonly instructor_resume: Prisma.FieldRef<"instructor_documents", 'String'>
   readonly created_at: Prisma.FieldRef<"instructor_documents", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"instructor_documents", 'DateTime'>
+  readonly instructor_highest_qualification_documents: Prisma.FieldRef<"instructor_documents", 'String'>
 }
     
 

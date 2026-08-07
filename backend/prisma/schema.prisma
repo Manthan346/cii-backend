@@ -33,6 +33,8 @@ model attendance_records {
   created_at            DateTime            @default(now()) @db.Timestamp(6)
   updated_at            DateTime            @default(now()) @db.Timestamp(6)
   attendance_session_id String              @db.Uuid
+  time_in               DateTime?           @db.Timestamp(6)
+  time_out              DateTime?           @db.Timestamp(6)
   candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
   attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
 }
@@ -271,7 +273,7 @@ model event_details {
   is_show                                         Boolean?           @default(true)
   created_by                                      String             @db.Uuid
   created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime           @db.Timestamp(6)
+  updated_at                                      DateTime           @updatedAt @db.Timestamp(6)
   updated_by                                      String             @db.Uuid
   event_link                                      String?
   event_mode                                      event_mode?
@@ -313,7 +315,7 @@ model instructor_details {
   instructor_university            String?
   instructor_passing_year          String?               @db.VarChar(10)
   instructor_certificates          String[]
-  instructor_prev_org              String[]
+  instructor_prev_org              String?
   instructor_prev_org_designation  String?               @db.VarChar(255)
   highest_qualification            String?               @db.VarChar(255)
   father_name                      String?
@@ -329,6 +331,18 @@ model instructor_details {
   guardian_dob                     DateTime?             @db.Date
   father_dob                       DateTime?             @db.Date
   mother_dob                       DateTime?             @db.Date
+  current_city                     String?
+  current_state                    String?
+  current_district                 String?
+  current_taluka                   String?
+  current_pincode                  String?               @db.VarChar(6)
+  permanant_city                   String?
+  permanant_state                  String?
+  permanant_district               String?
+  permanant_taluka                 String?
+  permanant_pincode                String?               @db.VarChar(6)
+  permanant_address                String?
+  current_address                  String?
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
@@ -337,15 +351,16 @@ model instructor_details {
 }
 
 model instructor_documents {
-  instructor_doc_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  instructor_id      String?             @unique @db.Uuid
-  past_exp_letter    String?
-  pan_card           String?
-  aadhar_card        String?
-  instructor_resume  String?
-  created_at         DateTime?           @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?           @default(now()) @db.Timestamp(6)
-  instructor_details instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
+  instructor_doc_id                          String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  instructor_id                              String?             @unique @db.Uuid
+  past_exp_letter                            String?
+  pan_card                                   String?
+  aadhar_card                                String?
+  instructor_resume                          String?
+  created_at                                 DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at                                 DateTime?           @default(now()) @db.Timestamp(6)
+  instructor_highest_qualification_documents String?
+  instructor_details                         instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model job_application {
@@ -396,7 +411,7 @@ model notifications {
   reference_type       notification_reference_type?
   reference_id         String?                      @db.Uuid
   created_at           DateTime?                    @default(now()) @db.Timestamp(6)
-  updated_at           DateTime                     @default(now()) @db.Timestamp(6)
+  updated_at           DateTime                     @default(now()) @updatedAt @db.Timestamp(6)
   user_notifications   user_notifications[]
 }
 
@@ -505,7 +520,8 @@ enum event_mode {
 enum event_target_type {
   BATCH
   ALL_BATCHES @map("ALL BATCHES")
-  DEPARTMENT
+  A_C_BATCHES
+  COMPLETED
 }
 
 enum event_type {

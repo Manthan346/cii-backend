@@ -378,7 +378,7 @@ export type event_detailsCreateInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -400,7 +400,7 @@ export type event_detailsUncheckedCreateInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -460,7 +460,7 @@ export type event_detailsCreateManyInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -736,7 +736,7 @@ export type event_detailsCreateWithoutCenter_detailsInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -756,7 +756,7 @@ export type event_detailsUncheckedCreateWithoutCenter_detailsInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -822,7 +822,7 @@ export type event_detailsCreateWithoutEvent_batchesInput = {
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -843,7 +843,7 @@ export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -914,7 +914,7 @@ export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -934,7 +934,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_created_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -962,7 +962,7 @@ export type event_detailsCreateWithoutUser_login_event_details_updated_byTouser_
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -983,7 +983,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_updated_
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null
@@ -1043,7 +1043,7 @@ export type event_detailsCreateManyCenter_detailsInput = {
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1117,7 +1117,7 @@ export type event_detailsCreateManyUser_login_event_details_created_byTouser_log
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   updated_by: string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
@@ -1136,7 +1136,7 @@ export type event_detailsCreateManyUser_login_event_details_updated_byTouser_log
   is_show?: boolean | null
   created_by: string
   created_at?: Date | string | null
-  updated_at: Date | string
+  updated_at?: Date | string
   event_link?: string | null
   event_mode?: $Enums.event_mode | null
   event_type?: $Enums.event_type | null

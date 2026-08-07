@@ -27,10 +27,27 @@ import { validateBody } from "../../middlewares/zod-middleware/zod-body-validato
 import { updateBatchSchema } from "../../services/zod/instructor/edit-batch-schema";
 import { createBatch } from "../../controllers/instructor-controller/instructor-create-batch";
 import { createBatchSchema } from "../../services/zod/instructor/create-batch-schema";
-import { createAttendanceSessionsFromExcel } from "../../controllers/instructor-controller/instructor-create-session";
-import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
+import { createStudyMaterial } from "../../controllers/instructor-controller/create-study-material";
+import { createStudyMaterialSchema } from "../../services/zod/instructor/create-study-material-schema";
+import { getStudyMaterial } from "../../controllers/instructor-controller/get-study-material";
+import { updateStudyMaterialSchema } from "../../services/zod/instructor/update-study-material-schema";
+import { updateStudyMaterial } from "../../controllers/instructor-controller/update-study-material";
+import { createAssessment } from "../../controllers/instructor-controller/create-assessment";
+import { createAssessmentSchema } from "../../services/zod/instructor/create-assessment-schema";
+import { getAssessments } from "../../controllers/instructor-controller/get-assessment";
+import { updateAssessmentSchema } from "../../services/zod/instructor/update-assessment-schema";
+import { updateAssessment } from "../../controllers/instructor-controller/update-assessment";
+import { createCandidateByInstructor } from "../../controllers/instructor-controller/create-candidate-by-instructor";
+import { createEventSchema } from "../../services/zod/event-schema/eventValidation";
+import { updateEventSchema } from "../../services/zod/event-schema/eventValidation";
+import { createInstructorEvent } from "../../controllers/instructor-controller/instructor-create-event";
+import { updateInstructorEvent } from "../../controllers/instructor-controller/instructor-update-event";
+import { getAllInstructorEvents } from "../../controllers/instructor-controller/get-instructor-events"; 
+import { deleteInstructorEvent } from "../../controllers/instructor-controller/delete-instructor-event";
+import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 
 const instructorRouter = Router();
+
 
 
 
@@ -44,6 +61,12 @@ instructorRouter.get(
     "/batches/:batchId/attendance",
     verifyInstructorUsingAccessToken,
     getBatchAttendance
+)
+instructorRouter.post(
+    "/candidate-management/candidates",
+    verifyInstructorUsingAccessToken,
+    validateBody(createInstructorCandidateSchema),
+    createCandidateByInstructor
 )
 instructorRouter.get("/basic-information", verifyInstructorUsingAccessToken,  instructorProfileDetails)
 instructorRouter.get("/academics-details", verifyInstructorUsingAccessToken,  instructorAcademicDetails)
@@ -61,7 +84,6 @@ instructorRouter.get('/batch-details/:batchId',verifyInstructorUsingAccessToken,
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createBatch)
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
-instructorRouter.post('/upload-session-sheet',uploadExcel.single("file"), multerErrorHandler, verifyInstructorUsingAccessToken, createAttendanceSessionsFromExcel)
 
 
 instructorRouter.get(
@@ -101,6 +123,22 @@ instructorRouter.get(
     viewCandidateProfile
 )
 
+instructorRouter.post("/study-material/create-material",verifyInstructorUsingAccessToken,validateBody(createStudyMaterialSchema),
+createStudyMaterial)
+
+instructorRouter.get("/study-material/get-all-material",verifyInstructorUsingAccessToken,getStudyMaterial)
+instructorRouter.patch("/study-material/update-material",verifyInstructorUsingAccessToken,validateBody(updateStudyMaterialSchema),updateStudyMaterial)
+
+instructorRouter.post("/assessment/create-assessment",verifyInstructorUsingAccessToken,validateBody(createAssessmentSchema),createAssessment)
+instructorRouter.get("/assessment/get-assessment",verifyInstructorUsingAccessToken,getAssessments)
+instructorRouter.patch("/assessment/update-assessment",verifyInstructorUsingAccessToken,validateBody(updateAssessmentSchema),updateAssessment)
+instructorRouter.post("/instructor-events/create-event",verifyInstructorUsingAccessToken,validateBody(createEventSchema),createInstructorEvent)
+instructorRouter.patch("/instructor-events/update-event/:event_id",verifyInstructorUsingAccessToken,validateBody(updateEventSchema),updateInstructorEvent)
+instructorRouter.get("/instructor-events/get-event",verifyInstructorUsingAccessToken,paginationMiddleware,getAllInstructorEvents)
+instructorRouter.delete("/instructor-events/delete-event/:event_id",verifyInstructorUsingAccessToken,deleteInstructorEvent)
+instructorRouter.get("/attendance-management/get-sessions",verifyInstructorUsingAccessToken,paginationMiddleware,getAllAttendanceSessions);
 
 export { instructorRouter };
+
+
 

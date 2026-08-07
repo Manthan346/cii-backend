@@ -2273,7 +2273,9 @@ export const Attendance_recordsScalarFieldEnum = {
   remarks: 'remarks',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  attendance_session_id: 'attendance_session_id'
+  attendance_session_id: 'attendance_session_id',
+  time_in: 'time_in',
+  time_out: 'time_out'
 } as const
 
 export type Attendance_recordsScalarFieldEnum = (typeof Attendance_recordsScalarFieldEnum)[keyof typeof Attendance_recordsScalarFieldEnum]
@@ -2556,7 +2558,19 @@ export const Instructor_detailsScalarFieldEnum = {
   mother_current_address: 'mother_current_address',
   guardian_dob: 'guardian_dob',
   father_dob: 'father_dob',
-  mother_dob: 'mother_dob'
+  mother_dob: 'mother_dob',
+  current_city: 'current_city',
+  current_state: 'current_state',
+  current_district: 'current_district',
+  current_taluka: 'current_taluka',
+  current_pincode: 'current_pincode',
+  permanant_city: 'permanant_city',
+  permanant_state: 'permanant_state',
+  permanant_district: 'permanant_district',
+  permanant_taluka: 'permanant_taluka',
+  permanant_pincode: 'permanant_pincode',
+  permanant_address: 'permanant_address',
+  current_address: 'current_address'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -2570,7 +2584,8 @@ export const Instructor_documentsScalarFieldEnum = {
   aadhar_card: 'aadhar_card',
   instructor_resume: 'instructor_resume',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  instructor_highest_qualification_documents: 'instructor_highest_qualification_documents'
 } as const
 
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]

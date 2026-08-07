@@ -7,7 +7,6 @@ export interface TokenPayload {
     candidate_last_name?: string,
     center_id?: string
     role: string
-    
     centre_name?: string,
     
    
@@ -24,5 +23,6 @@ export interface InstructorTokenPayload{
     instructor_last_name?:string,
     center_id:string,
     center_name?:string,
+    company_id?: string,
     email?:string
 }

@@ -11,7 +11,7 @@ export const updateInstructorEvent = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) =>{   
         const event_id = req.params.event_id as string;
         const user_id = req.user.user_id;
-        const { instructor_id, company_id } = req.instructor!;
+        const { company_id } = req.instructor!;
         const event = await prisma.event_details.findUnique({
             where: {
                 event_id,
@@ -42,121 +42,170 @@ export const updateInstructorEvent = asyncHandler(
             );
         }
 
-        if (event.target_type === event_target_type.DEPARTMENT) {
-            if (
-                instructor.company_id !==company_id
-            ) {
-                throw new ApiError(
-                    403,
-                    "You are not authorized to update this event."
-                );
-            }
-        } else {
-            if (event.created_by !== req.user.user_id) {
-                throw new ApiError(
-                    403,
-                    "You are not authorized to update this event."
-                );
-            }
+        if (
+            instructor.company_id !== company_id
+        ) {
+            throw new ApiError(
+                403,
+                "You are not authorized to update this event."
+            );
         }
 
         const data = updateEventSchema.parse(req.body);
         let targetBatchIds: string[] = [];
         let instructorUserIds: string[] = [];
 
+        const instructors = await prisma.instructor_details.findMany({
+            where: {
+                company_id
+            },
+            select: {
+                user_id: true
+            }
+        });
+
+        instructorUserIds = instructors.map(
+            instructor => instructor.user_id
+        );
+
         switch (data.target_type) {
-            case event_target_type.BATCH:
-                if (!data.batch_ids) {
-                    throw new ApiError(400, "Please select at least one batch.");
-                }
-
-                const batches = await prisma.batch_details.findMany({
-                    where: {
-                        batch_id: {
-                            in: data.batch_ids,
-                        },
-                        instructor_id,
-                        course_details:{
-                            company_id
-                        },
-                        b_status: batch_status.ACTIVE,
-                    },
-                    select: {
-                        batch_id: true,
-                    },
-                });
-
-                if (batches.length !== data.batch_ids.length) {
-                    throw new ApiError(
-                        400,
-                        "One or more selected batches are invalid, inactive, or do not belong to your company."
-                    );
-                }
-
-                targetBatchIds = batches.map(batch => batch.batch_id);
-            break;
-            case event_target_type.ALL_BATCHES:{
-               const batches = await prisma.batch_details.findMany({
-                    where: {
-                        course_details: {
-                            company_id,
-                        },
-                        instructor_id,
-                    },
-                    select:{
-                        batch_id:true
-                    }
-                }) 
-
-                if (batches.length === 0) {
-                    throw new ApiError(
-                        404,
-                        "No batches found for the instructor."
-                    );
-                }
-
-                targetBatchIds = batches.map(batch => batch.batch_id);
-            }
-            break;
-
-            case event_target_type.DEPARTMENT:{
-                const batches = await prisma.batch_details.findMany({
-                    where: {
-                        course_details: {
-                            company_id,
-                        },
-                        b_status: batch_status.ACTIVE,
-                    },
-                    select: {
-                        batch_id: true,
-                    },
-                });
-
-                if (batches.length === 0) {
-                    throw new ApiError(404, "No batches found for your company.");
-                }
-
-                targetBatchIds = batches.map(batch => batch.batch_id);
-
-                const instructors = await prisma.instructor_details.findMany({
-                    where:{
-                        company_id
-                    },
-                    select:{
-                        user_id:true
-                    }
-                })
-
-                instructorUserIds = instructors.map(instructor => instructor.user_id);
-            }
-                break;
-
-            default:
+        case event_target_type.BATCH: {
+            if (!data.batch_ids) {
                 throw new ApiError(
                     400,
-                    "Invalid target type."
+                    "Please select at least one batch."
                 );
+            }
+
+            const batches = await prisma.batch_details.findMany({
+                where: {
+                    batch_id: {
+                        in: data.batch_ids
+                    },
+                    course_details: {
+                        company_id
+                    },
+                    b_status: {
+                        in: [
+                            batch_status.ACTIVE,
+                            batch_status.COMPLETED
+                        ]
+                    }
+                },
+                select: {
+                    batch_id: true
+                }
+            });
+
+            if (batches.length !== data.batch_ids.length) {
+                throw new ApiError(
+                    400,
+                    "One or more selected batches are invalid, inactive, or do not belong to your company."
+                );
+            }
+
+            targetBatchIds = batches.map(
+                batch => batch.batch_id
+            );
+
+            break;
         }
+
+        case event_target_type.ALL_BATCHES: {
+
+            const batches = await prisma.batch_details.findMany({
+                where: {
+                    course_details: {
+                        company_id
+                    },
+                    b_status: batch_status.ACTIVE
+                },
+                select: {
+                    batch_id: true
+                }
+            });
+
+            if (batches.length === 0) {
+                throw new ApiError(
+                    404,
+                    "No active batches found."
+                );
+            }
+
+            targetBatchIds = batches.map(
+                batch => batch.batch_id
+            );
+
+            break;
+        }
+
+        case event_target_type.COMPLETED: {
+
+            const batches = await prisma.batch_details.findMany({
+                where: {
+                    course_details: {
+                        company_id
+                    },
+                    b_status: batch_status.COMPLETED
+                },
+                select: {
+                    batch_id: true
+                }
+            });
+
+            if (batches.length === 0) {
+                throw new ApiError(
+                    404,
+                    "No completed batches found."
+                );
+            }
+
+            targetBatchIds = batches.map(
+                batch => batch.batch_id
+            );
+
+            break;
+        }
+
+        case event_target_type.A_C_BATCHES: {
+
+            const batches = await prisma.batch_details.findMany({
+                where: {
+                    course_details: {
+                        company_id
+                    },
+                    b_status: {
+                        in: [
+                            batch_status.ACTIVE,
+                            batch_status.COMPLETED
+                        ]
+                    }
+                },
+                select: {
+                    batch_id: true
+                }
+            });
+
+            if (batches.length === 0) {
+                throw new ApiError(
+                    404,
+                    "No active or completed batches found."
+                );
+            }
+
+            targetBatchIds = batches.map(
+                batch => batch.batch_id
+            );
+
+            break;
+        }
+
+        default:
+            throw new ApiError(
+                400,
+                "Invalid target type."
+            );
+    }
 
         const updatedEvent = await prisma.$transaction(async (tx) => {
             const updatedEvent = await tx.event_details.update({
@@ -173,7 +222,7 @@ export const updateInstructorEvent = asyncHandler(
                 event_mode: data.event_mode,
                 event_type: data.event_type,
                 target_type: data.target_type,
-                updated_by: req.user.user_id,
+                updated_by: user_id,
             },
         });
 
@@ -212,7 +261,7 @@ export const updateInstructorEvent = asyncHandler(
 
         const recipientUserIds = [
             ...new Set([
-                req.user.user_id,
+                   user_id,
                 ...studentUserIds,
                 ...instructorUserIds,
             ]),
@@ -253,23 +302,16 @@ export const updateInstructorEvent = asyncHandler(
         });
 
         if (recipientUserIds.length > 0) {
-            await tx.user_notifications.createMany({
+                        await tx.user_notifications.createMany({
                 data: recipientUserIds.map(userId => ({
                     user_id: userId,
                     notification_id: notification.notification_id,
+                    is_read: false,
+                    read_at: null,
                 })),
             });
         }
         
-        await tx.user_notifications.updateMany({
-            where: {
-                notification_id: notification.notification_id,
-            },
-            data: {
-                is_read: false,
-                read_at:null
-            },
-        });
         return updatedEvent
         });
 
