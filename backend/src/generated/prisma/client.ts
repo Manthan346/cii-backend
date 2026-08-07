@@ -164,3 +164,8 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
+/**
+ * Model mobilizer_details
+ * 
+ */
+export type mobilizer_details = Prisma.mobilizer_detailsModel

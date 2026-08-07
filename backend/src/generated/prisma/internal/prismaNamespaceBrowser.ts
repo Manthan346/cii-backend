@@ -72,7 +72,8 @@ export const ModelName = {
   notifications: 'notifications',
   study_material: 'study_material',
   user_login: 'user_login',
-  user_notifications: 'user_notifications'
+  user_notifications: 'user_notifications',
+  mobilizer_details: 'mobilizer_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -527,6 +528,18 @@ export const User_notificationsScalarFieldEnum = {
 } as const
 
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
+
+
+export const Mobilizer_detailsScalarFieldEnum = {
+  mobilizer_id: 'mobilizer_id',
+  mobilizer_full_name: 'mobilizer_full_name',
+  mobilizer_phone_no: 'mobilizer_phone_no',
+  center_id: 'center_id',
+  mobilizer_unique_id: 'mobilizer_unique_id',
+  user_id: 'user_id'
+} as const
+
+export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
 
 
 export const SortOrder = {

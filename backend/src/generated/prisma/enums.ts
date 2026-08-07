@@ -172,7 +172,8 @@ export const role_types = {
   candidate: 'candidate',
   instructor: 'instructor',
   admin: 'admin',
-  super_admin: 'super_admin'
+  super_admin: 'super_admin',
+  mobilizer: 'mobilizer'
 } as const
 
 export type role_types = (typeof role_types)[keyof typeof role_types]
