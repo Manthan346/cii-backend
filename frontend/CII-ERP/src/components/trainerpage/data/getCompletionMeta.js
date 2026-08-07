@@ -23,7 +23,9 @@ export function getCompletionChecklist({ personalInformation, contactDetails }) 
       personalInformation?.gender &&
       personalInformation?.dateOfBirth &&
       personalInformation?.bloodGroup &&
-      personalInformation?.highestQualification,
+      personalInformation?.highestQualification &&
+      personalInformation?.designation &&
+      personalInformation?.companyName,
   );
 
   const contactFilled = Boolean(

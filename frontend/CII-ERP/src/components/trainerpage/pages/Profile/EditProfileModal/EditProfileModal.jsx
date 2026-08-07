@@ -218,6 +218,32 @@ export default function EditProfileModal({
                   />
                 </div>
               </div>
+              <div className={'profile-edit-profile-modal-row'}>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Designation
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    placeholder="e.g. Software Engineer, Trainer, etc."
+                    value={personalForm.designation}
+                    onChange={updateField(setPersonalForm)('designation')}
+                  />
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    className={'profile-edit-profile-modal-input'}
+                    value={personalForm.companyName}
+                    placeholder="e.g. ABC Pvt Ltd, XYZ Institute, etc."
+                    onChange={updateField(setPersonalForm)('companyName')}
+                  />
+                </div>
+              </div>
               <div className={'profile-edit-profile-modal-field'}>
                 <label className={'profile-edit-profile-modal-label'}>
                   Highest Qualification
