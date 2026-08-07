@@ -1,31 +1,15 @@
 // CompletedCourses.jsx
 // "Completed courses" panel — left column of the My Courses progress row.
 // Shows finished courses with grade + downloadable certificate.
+// Shows an empty state when there are none, instead of hiding the section.
 //
 // Props:
 //   courses  {Array}  – [{ id, icon, iconBg, iconColor, title,
 //                          completedDate, professor, grade,
 //                          certificateUrl }]
-//                       TODO: from /api/candidate/completed-courses
+//                       Comes from MyCourses.jsx's computeCompletedCourses(),
+//                       derived from /candidate/candidate-academics.
 //   onViewAll {func}  – optional handler for the "view all" link
-//
-// Backend hookup:
-//   const [courses, setCourses] = useState([]);
-//   useEffect(() => {
-//     fetch('/api/candidate/completed-courses')
-//       .then(r => r.json())
-//       .then(data => setCourses(data.map(c => ({
-//         id: c.id,
-//         icon: c.iconName,
-//         iconBg: c.iconBgColor,
-//         iconColor: c.iconColor,
-//         title: c.courseName,
-//         completedDate: c.completedOn,
-//         professor: c.instructorName,
-//         grade: c.grade,
-//         certificateUrl: c.certificateDownloadUrl,
-//       }))));
-//   }, []);
 
 import Icon from '../../shared/Icon/Icon';
 import './CompletedCourses.css';
@@ -63,8 +47,6 @@ function CompletedRow({ course }) {
 }
 
 export default function CompletedCourses({ courses = [], onViewAll }) {
-  if (!courses.length) return null;
-
   return (
     <section className="completed-courses" aria-label="Completed courses">
       <div className="completed-courses__header">
@@ -79,11 +61,17 @@ export default function CompletedCourses({ courses = [], onViewAll }) {
         </button>
       </div>
 
-      <ul className="completed-courses__list">
-        {courses.map(course => (
-          <CompletedRow key={course.id} course={course} />
-        ))}
-      </ul>
+      {courses.length === 0 ? (
+        <p className="completed-courses__empty">
+          No completed courses yet — finished courses will show up here.
+        </p>
+      ) : (
+        <ul className="completed-courses__list">
+          {courses.map(course => (
+            <CompletedRow key={course.id} course={course} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

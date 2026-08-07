@@ -77,29 +77,8 @@
   gap: 10px;
 }
 
-.pending-item__cta {
-  background: #4361EE;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.pending-item__cta:hover {
-  background: #364FD1;
-}
-
 @media (max-width: 640px) {
   .pending-item {
     flex-wrap: wrap;
-  }
-  .pending-item__actions {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
   }
 }

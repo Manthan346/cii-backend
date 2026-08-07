@@ -38,15 +38,15 @@ function mapPersonalInfo(personalInfo) {
     ]
       .filter(Boolean)
       .join(" "),
-    guardianName: personalInfo.guardian_name ?? "-",
     phoneno: personalInfo.contact_number ?? "-",
-    email: personalInfo.user_login?.user_email ?? "-",
+    email: personalInfo.email ?? personalInfo.user_login?.user_email ?? "-",
     gender: personalInfo.gender ?? "-",
     dob: personalInfo.date_of_birth ?? "-",
     category: personalInfo.category ?? "-",
     bloodGroup: personalInfo.blood_group ?? "-",
     Qualification: personalInfo.highest_qualification ?? "-",
-    mainaddress: personalInfo.candidate_address ?? "-",
+    currentAddress: personalInfo.candidate_current_address ?? "-",
+    permanentAddress: personalInfo.candidate_permanent_address ?? "-",
     city: personalInfo.district ?? "-",
     state: personalInfo.state_name ?? "-",
     country: personalInfo.country ?? "India",
@@ -66,7 +66,11 @@ function mapCandidateHeader(personalInfo, completionPct) {
 
   return {
     name: fullName || "Candidate",
-    candidateId: personalInfo.candidate_id ?? personalInfo.id ?? "-",
+    candidateId:
+      personalInfo.candidate_code ??
+      personalInfo.candidate_id ??
+      personalInfo.id ??
+      "-",
     batch: personalInfo.batch ?? "-",
     status: personalInfo.status ?? "Active",
     avatarSrc: personalInfo.avatar_url ?? null,
@@ -74,12 +78,29 @@ function mapCandidateHeader(personalInfo, completionPct) {
   };
 }
 
-function buildChecklist(info) {
+// NOTE: takes the RAW personalInfo from the API, not the mapped display
+// object. Mapped fields fall back to "-" for display purposes, and "-" is
+// a truthy string — checking it here would make every item look "done"
+// even when the underlying data is missing.
+function buildChecklist(personalInfo) {
+  const hasBasicInfo = !!(
+    personalInfo?.candidate_first_name || personalInfo?.candidate_last_name
+  );
+  const hasContact = !!(
+    personalInfo?.contact_number &&
+    (personalInfo?.email || personalInfo?.user_login?.user_email)
+  );
+  const hasAddress = !!(
+    personalInfo?.candidate_current_address ||
+    personalInfo?.candidate_permanent_address
+  );
+  const hasDob = !!personalInfo?.date_of_birth;
+
   const items = [
-    { label: "Basic Information", done: !!info?.fullName },
-    { label: "Contact Details", done: !!(info?.phoneno && info?.email) },
-    { label: "Address", done: !!info?.mainaddress },
-    { label: "Date of Birth", done: !!info?.dob },
+    { label: "Basic Information", done: hasBasicInfo },
+    { label: "Contact Details", done: hasContact },
+    { label: "Address", done: hasAddress },
+    { label: "Date of Birth", done: hasDob },
   ];
   const doneCount = items.filter((i) => i.done).length;
   const completionPct = Math.round((doneCount / items.length) * 100);
@@ -249,7 +270,9 @@ export default function Profile() {
   }, []);
 
   const mappedInfo = mapPersonalInfo(personalInfo);
-  const { checklist, completionPct } = buildChecklist(mappedInfo);
+  // Checklist is built from the RAW personalInfo, not mappedInfo — see note
+  // on buildChecklist above.
+  const { checklist, completionPct } = buildChecklist(personalInfo);
   const candidateHeader = mapCandidateHeader(personalInfo, completionPct);
   const appliedCourses = mapAppliedCourses(academicDetails);
   const mappedGuardian = mapGuardianInfo(guardianDetails);

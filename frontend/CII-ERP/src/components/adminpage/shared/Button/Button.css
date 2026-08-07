@@ -1,0 +1,45 @@
+.admin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.15s ease, background-color 0.15s ease;
+}
+
+.admin-button:hover {
+  filter: brightness(0.96);
+}
+
+/* Sizes
+   ========================================================================== */
+
+.admin-button--md {
+  padding: 11px 20px;
+  font-size: 14px;
+}
+
+.admin-button--sm {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* Variants
+   ========================================================================== */
+
+.admin-button--primary {
+  background: #3e5feb;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(62, 95, 235, 0.24);
+}
+
+.admin-button--secondary {
+  background: #ffffff;
+  color: #4b5164;
+  border: 1px solid #e7eaf1;
+  box-shadow: none;
+}

@@ -1,0 +1,57 @@
+.admin-journey {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.admin-journey__step-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 110px;
+}
+
+.admin-journey__step {
+  flex: 1;
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 10px;
+  background: #eef1f7;
+  color: #6b7280;
+}
+
+.admin-journey__step--active {
+  background: #3e5feb;
+  color: #ffffff;
+}
+
+.admin-journey__step-label {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-journey__arrow {
+  color: #c3c9d6;
+  flex-shrink: 0;
+}
+
+.admin-journey__counts {
+  display: flex;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.admin-journey__count {
+  flex: 1;
+  min-width: 110px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 800;
+  color: #14162b;
+}

@@ -1,26 +1,23 @@
 // ============================================================================
 // PendingAssessments.jsx
 // ----------------------------------------------------------------------------
-// "Pending" card containing the list of not-yet-completed assessments.
-//
-// BACKEND NOTE: pass the live list down as `items` from Assessments.jsx after
-// fetching GET /api/candidates/:id/assessments/pending. `onStart` bubbles up
-// so the parent can decide how to navigate to the assessment player.
+// "Pending" card — assessments already submitted, awaiting grading.
+// No `onStart` anymore: these have already been attempted, so
+// PendingAssessmentItem is informational only.
 // ============================================================================
 
 import React from "react";
 import PendingAssessmentItem from "../PendingAssessmentItem/PendingAssessmentItem";
-import { pendingAssessments } from "../../../../../data/assessmentsData";
 import "./PendingAssessments.css";
 
-const PendingAssessments = ({ items = pendingAssessments, onStart }) => {
+const PendingAssessments = ({ items = [] }) => {
   return (
     <section className="pending-assessments card">
-      <h2 className="pending-assessments__title">Pending</h2>
+      <h2 className="pending-assessments__title">Being checked</h2>
 
       {items.length === 0 ? (
         <p className="pending-assessments__empty">
-          You're all caught up — no pending assessments right now.
+          Nothing awaiting review right now.
         </p>
       ) : (
         <div className="pending-assessments__list">
@@ -28,7 +25,6 @@ const PendingAssessments = ({ items = pendingAssessments, onStart }) => {
             <PendingAssessmentItem
               key={assessment.id}
               assessment={assessment}
-              onStart={onStart}
             />
           ))}
         </div>

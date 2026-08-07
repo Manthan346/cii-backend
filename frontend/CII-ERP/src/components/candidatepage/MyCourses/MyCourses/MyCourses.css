@@ -36,7 +36,7 @@
    Wider left panel, narrower right panel, matching the reference design. */
 .my-courses__progress-row {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-bottom: 24px;
   align-items: stretch;

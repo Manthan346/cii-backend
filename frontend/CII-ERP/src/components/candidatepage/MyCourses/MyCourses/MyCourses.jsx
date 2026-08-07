@@ -11,12 +11,11 @@ import SuggestedCourses from "../SuggestedCourses/SuggestedCourses";
 
 import API from "../../../../../api/api";
 
-// Available Courses (courseCards) and Upskill Activities stay static —
-// left untouched per request. Completed-courses panel and Suggested-courses
-// panel also stay static (no backend for those yet).
+// Available Courses (courseCards), Upskill Activities, and Suggested
+// courses stay static — left untouched per request. Completed courses is
+// now wired to real data below.
 import {
   courseCards,
-  completedCourses,
   upSkillActivities,
   suggestedCourses,
 } from "../../../../data/myCoursesData";
@@ -79,6 +78,38 @@ function computeStats(academicDetails) {
   ];
 }
 
+// ─── Map academicDetails.courses -> CompletedCourses' expected shape ───
+// A course counts as "completed" when its end_date has passed.
+//
+// NOTE: field names below (title/professor/grade/certificateUrl) are
+// GUESSES — candidate-academics's actual shape hasn't been confirmed for
+// anything beyond starting_date/end_date. Once you share a real response,
+// swap the right-hand side of each field to match. Until then this will
+// likely render "-" / blank for title, professor, grade, and no working
+// certificate download link.
+function computeCompletedCourses(academicDetails) {
+  const courses = academicDetails?.courses ?? [];
+  const now = new Date();
+
+  return courses
+    .filter((c) => c.end_date && new Date(c.end_date) < now)
+    .map((c, idx) => ({
+      id: c.course_id ?? c.id ?? `completed-course-${idx}`,
+      icon: "book", // TODO: swap once we know if backend sends an icon/category field
+      iconBg: "#E2F4EE",
+      iconColor: "#0D6E50",
+      title: c.course_name ?? c.title ?? "-",
+      completedDate: new Date(c.end_date).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }),
+      professor: c.professor_name ?? c.instructor_name ?? "-",
+      grade: c.grade ?? c.course_grade ?? "-",
+      certificateUrl: c.certificate_url ?? c.certificate_link ?? null,
+    }));
+}
+
 export default function MyCourses() {
   const [search, setSearch] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -111,10 +142,10 @@ export default function MyCourses() {
   }, []);
 
   const stats = computeStats(academicDetails);
+  const completed = computeCompletedCourses(academicDetails);
 
   // Untouched — static as before
   const courses = courseCards;
-  const completed = completedCourses;
   const upSkill = upSkillActivities;
   const suggested = suggestedCourses;
   const orgLogoSrc = orgLogo;
@@ -159,7 +190,11 @@ export default function MyCourses() {
           {loading ? <p>Loading stats…</p> : <StatGrid stats={stats} />}
 
           <div className="my-courses__progress-row">
-            <CompletedCourses courses={completed} />
+            {loading ? (
+              <p>Loading courses…</p>
+            ) : (
+              <CompletedCourses courses={completed} />
+            )}
             <UpSkillActivities activities={upSkill} />
           </div>
           {/* 

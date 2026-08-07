@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Admin Sidebar
+   ========================================================================== */
+
+.admin-sidebar {
+  --sidebar-width: 248px;
+
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100%;
+  background: #ffffff;
+  border-right: 1px solid #e7eaf1;
+  padding: 20px 12px 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin-top: 15px;
+  border-top-right-radius: 20px;
+}
+
+.admin-sidebar--collapsed {
+  --sidebar-width: 76px;
+}
+
+.admin-sidebar--collapsed .admin-sidebar__label,
+.admin-sidebar--collapsed .admin-sidebar__section-title {
+  display: none;
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admin-sidebar__section-title {
+  margin: 0 0 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #9aa1b1;
+  text-transform: uppercase;
+}
+
+.admin-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #4b5164;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.admin-sidebar__item:hover {
+  background: #f2f4f9;
+  color: #1c1f2e;
+}
+
+.admin-sidebar__item--active {
+  background: #3e5feb;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(62, 95, 235, 0.28);
+}
+
+.admin-sidebar__item--active:hover {
+  background: #3e5feb;
+  color: #ffffff;
+}
+
+.admin-sidebar__icon {
+  flex-shrink: 0;
+}
+
+.admin-sidebar__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile off-canvas drawer
+   ========================================================================== */
+
+.admin-sidebar__overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  .admin-sidebar--open {
+    transform: translateX(0);
+    box-shadow: 12px 0 28px rgba(15, 18, 40, 0.18);
+  }
+
+  .admin-sidebar__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 18, 40, 0.35);
+    z-index: 39;
+  }
+}

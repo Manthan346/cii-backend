@@ -45,8 +45,9 @@ const CompletedAssessmentItem = ({ assessment, onReview }) => {
       </div>
 
       <div className="completed-item__actions">
+       
         <span className={`completed-item__score ${getScoreClass(score)}`}>
-          {score !== null && score !== undefined ? `${score}%` : grade ?? "-"}
+          <span className="assessment-grade">Grade:</span> &nbsp;{score !== null && score !== undefined ? `${score}%` : grade ?? "-"}
         </span>
         <button type="button" className="completed-item__cta" onClick={() => onReview && onReview(assessment)}>
           Review

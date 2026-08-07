@@ -2,7 +2,7 @@
 // "personal info" tab: basic information grid + profile completion checklist.
 //
 // Props:
-//   info        {object}  – { fullName, dob, gender, bloodGroup, guardianName, category }
+//   info        {object}  – { fullName, dob, gender, bloodGroup, category, currentAddress, permanentAddress }
 //   checklist   {array}   – [{ label, done }]
 //   completionPct {number}
 
@@ -70,7 +70,6 @@ export default function PersonalInfo({ info, checklist, completionPct }) {
         <div className="personal-info__card-title">Basic Information</div>
         <div className="personal-info__grid">
           <Field label="FULL NAME" value={info.fullName} />
-          <Field label="FATHER'S /GAURDIAN'S NAME" value={info.guardianName} />
           <Field label="PHONE NUMBER" value={info.phoneno} />
           <Field label="EMAIL-ID" value={info.email} />
           <Field label="GENDER" value={info.gender} />
@@ -116,7 +115,8 @@ export default function PersonalInfo({ info, checklist, completionPct }) {
       <div className="personal-info__card">
         <div className="personal-info__card-title">Address</div>
         <div className="personal-info__grid_mainaddress">
-          <Field value={info.mainaddress} />
+          <Field label="CURRENT ADDRESS" value={info.currentAddress} />
+          <Field label="PERMANENT ADDRESS" value={info.permanentAddress} />
         </div>
         <div className="personal-info__grid_address">
           <Field label="CITY" value={info.city} />

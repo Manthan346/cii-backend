@@ -64,9 +64,16 @@
   gap: 10px;
 }
 
+.assessment-grade {
+  color: black;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
 .completed-item__score {
   font-size: 14px;
   font-weight: 700;
+  margin-right: 10px;
 }
 
 .completed-item__score--high {

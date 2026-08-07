@@ -24,6 +24,8 @@ import CandidatePage from "./pages/CandidateDashboard";
 import CandidateDashboard from "./pages/CandidateDashboard";
 import TrainerDashboard from "./pages/TrainerDashboard";
 import MobilizerDashboard from "./pages/MobilizerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+
 
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
       <Route path="/events" element={<EventsPage />} />
       <Route path="/trainer/*" element={<TrainerDashboard />} />
       <Route path="/mobilizer/*" element={<MobilizerDashboard />} />
+     <Route path="/admin/*" element={<AdminDashboard />} />
       <Route path="/*" element={<CandidatePage />} />
     </Routes>
   );          

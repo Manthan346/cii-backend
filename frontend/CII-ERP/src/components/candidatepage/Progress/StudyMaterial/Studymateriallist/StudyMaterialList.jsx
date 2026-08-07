@@ -8,9 +8,9 @@
 //   courseOptions  {array}    – [{ value, label }]
 //   course         {string}
 //   onCourseChange {function}
-//   date           {string}
-//   onDateChange   {function}
 //   groups         {array}    – [{ label, items: [{ id, type, title, course, uploader, date, driveUrl }] }]
+//   loading        {boolean}
+//   error          {any}
 
 import Icon from '../../../shared/Icon/Icon';
 import './StudyMaterialList.css';
@@ -55,9 +55,9 @@ export default function StudyMaterialList({
   courseOptions = [],
   course = '',
   onCourseChange = () => {},
-  date = '',
-  onDateChange = () => {},
   groups = [],
+  loading = false,
+  error = null,
 }) {
   return (
     <div className="study-material">
@@ -71,7 +71,7 @@ export default function StudyMaterialList({
             type="text"
             value={search}
             onChange={(e) => onSearch(e.target.value)}
-            placeholder="Search notes by course name..."
+            placeholder="Search notes by name..."
           />
         </div>
 
@@ -85,18 +85,14 @@ export default function StudyMaterialList({
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-
-        <input
-          className="study-material__date"
-          type="text"
-          value={date}
-          onChange={(e) => onDateChange(e.target.value)}
-          placeholder="DD/MM/YYYY"
-        />
       </div>
 
       <div className="study-material__list">
-        {groups.length === 0 ? (
+        {loading ? (
+          <div className="study-material__loading">Loading study materials…</div>
+        ) : error ? (
+          <div className="study-material__error">Couldn't load study materials. Please try again.</div>
+        ) : groups.length === 0 ? (
           <div className="study-material__empty">No study materials yet.</div>
         ) : (
           groups.map(group => (

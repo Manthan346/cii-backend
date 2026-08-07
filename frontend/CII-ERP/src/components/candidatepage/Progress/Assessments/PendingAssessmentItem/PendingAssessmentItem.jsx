@@ -1,14 +1,9 @@
 // ============================================================================
 // PendingAssessmentItem.jsx
 // ----------------------------------------------------------------------------
-// A single row inside the "Pending" card (e.g. "SQL Basics Quiz").
-// Uses the shared <Icon /> component for the leading badge icon and the
-// <StatusBadge /> component for the "Due in X days" pill.
-//
-// BACKEND NOTE: onStart should route/navigate to the actual assessment
-// player, e.g.:
-//   const navigate = useNavigate();
-//   const handleStart = () => navigate(`/assessments/${assessment.id}/take`);
+// A single row inside the "Pending" card — assessments the candidate has
+// already submitted and are awaiting grading by the trainer. No action
+// button here; it's informational only.
 // ============================================================================
 
 import React from "react";
@@ -16,8 +11,8 @@ import Icon from "../../../shared/Icon/Icon";
 import StatusBadge from "../../../shared/StatusBadge/StatusBadge";
 import "./PendingAssessmentItem.css";
 
-const PendingAssessmentItem = ({ assessment, onStart }) => {
-  const { title, course, type, dueLabel, questions, duration, ctaLabel } = assessment;
+const PendingAssessmentItem = ({ assessment }) => {
+  const { title, course, type, statusLabel, startedOn } = assessment;
   const isQuiz = type === "quiz";
 
   return (
@@ -32,29 +27,18 @@ const PendingAssessmentItem = ({ assessment, onStart }) => {
           <Icon name="bookOpen" size={14} />
           <span>{course}</span>
         </p>
-        {(questions || duration) && (
+        {startedOn && (
           <div className="pending-item__meta">
-            {questions && (
-              <span className="pending-item__meta-entry">
-                <Icon name="helpCircle" size={13} />
-                {questions} questions
-              </span>
-            )}
-            {duration && (
-              <span className="pending-item__meta-entry">
-                <Icon name="clock" size={13} />
-                {duration}
-              </span>
-            )}
+            <span className="pending-item__meta-entry">
+              <Icon name="clock" size={13} />
+              {startedOn}
+            </span>
           </div>
         )}
       </div>
 
       <div className="pending-item__actions">
-        <StatusBadge label={dueLabel} variant="warning" />
-        <button type="button" className="pending-item__cta" onClick={() => onStart && onStart(assessment)}>
-          {ctaLabel}
-        </button>
+        <StatusBadge label={statusLabel} variant="neutral" />
       </div>
     </div>
   );
