@@ -26,3 +26,14 @@ export interface InstructorTokenPayload{
     company_id?: string,
     email?:string
 }
+
+export interface MobilizerTokenPayload {
+    mobilizer_id: string;
+    mobilizer_first_name?: string;
+    mobilizer_last_name?: string;
+    user_id: string;
+    role: string;
+    center_id: string;
+    center_name?: string;
+    email?: string;
+}

@@ -3,6 +3,7 @@ import { prisma } from "../../lib/prisma";
 import { generateAccessToken, generateRefreshToken } from "../candidate-jwt-auth/candidate-auth";
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../instructor-jwt-auth/instructor-auth";
 // import { generateAdminAccessToken, generateAdminRefreshToken } from "../../";
+import {generateMobilizerAccessToken,generateMobilizerRefreshToken,} from "../mobilizer-jwt-auth/mobilizer-auth";
 import { ApiError } from "../../helpers/ApiError";
 
 type TokenContext = {
@@ -68,6 +69,45 @@ const buildInstructorTokens: RoleHandler = async (ctx) => {
   };
 };
 
+const buildMobilizerTokens: RoleHandler = async (ctx) => {
+    const mobilizer = await prisma.mobilizer_details.findUnique({
+        where: {
+            user_id: ctx.userId,
+        },
+    });
+
+    if (!mobilizer) {
+        throw new ApiError(404, "mobilizer profile not found");
+    }
+
+    const shared = {
+        mobilizer_id: mobilizer.mobilizer_id,
+        mobilizer_first_name: mobilizer.mobilizer_first_name,
+        mobilizer_last_name: mobilizer.mobilizer_last_name ?? "",
+
+        user_id: ctx.userId,
+        role: ctx.role,
+
+        center_id: ctx.centerId,
+    };
+
+    return {
+        accessToken: generateMobilizerAccessToken({
+            ...shared,
+            centre_name: ctx.centreName,
+            email: ctx.email,
+        }),
+
+        refreshToken: generateMobilizerRefreshToken(shared),
+
+        roleDetails: {
+            mobilizerId: mobilizer.mobilizer_id,
+            mobilizerFirstName: mobilizer.mobilizer_first_name,
+            mobilizerLastName: mobilizer.mobilizer_last_name,
+        },
+    };
+};
+
 // ---------- Admin: NO first/last name, HAS capabilities ----------
 // const buildAdminTokens: RoleHandler = async (ctx) => {
 //   const admin = await prisma.admin_details.findUnique({ where: { user_id: ctx.userId } });
@@ -94,9 +134,10 @@ const buildInstructorTokens: RoleHandler = async (ctx) => {
 const roleRegistry: Record<string, RoleHandler> = {
   candidate: buildCandidateTokens,
   instructor: buildInstructorTokens,
+  mobilizer: buildMobilizerTokens
 //   admin: buildAdminTokens,
   // super_admin: buildSuperAdminTokens,   <- add when built
-  // mobilizer: buildMobilizerTokens,       <- add when built
+       
 };
 
 export async function buildTokensForRole(ctx: TokenContext): Promise<NewTokenPair> {
