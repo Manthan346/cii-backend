@@ -2763,11 +2763,11 @@ export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalar
 
 export const Mobilizer_detailsScalarFieldEnum = {
   mobilizer_id: 'mobilizer_id',
-  mobilizer_full_name: 'mobilizer_full_name',
   mobilizer_phone_no: 'mobilizer_phone_no',
-  center_id: 'center_id',
   mobilizer_unique_id: 'mobilizer_unique_id',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  mobilizer_first_name: 'mobilizer_first_name',
+  mobilizer_last_name: 'mobilizer_last_name'
 } as const
 
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]

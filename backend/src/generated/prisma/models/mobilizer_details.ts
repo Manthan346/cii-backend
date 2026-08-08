@@ -26,58 +26,58 @@ export type AggregateMobilizer_details = {
 
 export type Mobilizer_detailsMinAggregateOutputType = {
   mobilizer_id: string | null
-  mobilizer_full_name: string | null
   mobilizer_phone_no: string | null
-  center_id: string | null
   mobilizer_unique_id: string | null
   user_id: string | null
+  mobilizer_first_name: string | null
+  mobilizer_last_name: string | null
 }
 
 export type Mobilizer_detailsMaxAggregateOutputType = {
   mobilizer_id: string | null
-  mobilizer_full_name: string | null
   mobilizer_phone_no: string | null
-  center_id: string | null
   mobilizer_unique_id: string | null
   user_id: string | null
+  mobilizer_first_name: string | null
+  mobilizer_last_name: string | null
 }
 
 export type Mobilizer_detailsCountAggregateOutputType = {
   mobilizer_id: number
-  mobilizer_full_name: number
   mobilizer_phone_no: number
-  center_id: number
   mobilizer_unique_id: number
   user_id: number
+  mobilizer_first_name: number
+  mobilizer_last_name: number
   _all: number
 }
 
 
 export type Mobilizer_detailsMinAggregateInputType = {
   mobilizer_id?: true
-  mobilizer_full_name?: true
   mobilizer_phone_no?: true
-  center_id?: true
   mobilizer_unique_id?: true
   user_id?: true
+  mobilizer_first_name?: true
+  mobilizer_last_name?: true
 }
 
 export type Mobilizer_detailsMaxAggregateInputType = {
   mobilizer_id?: true
-  mobilizer_full_name?: true
   mobilizer_phone_no?: true
-  center_id?: true
   mobilizer_unique_id?: true
   user_id?: true
+  mobilizer_first_name?: true
+  mobilizer_last_name?: true
 }
 
 export type Mobilizer_detailsCountAggregateInputType = {
   mobilizer_id?: true
-  mobilizer_full_name?: true
   mobilizer_phone_no?: true
-  center_id?: true
   mobilizer_unique_id?: true
   user_id?: true
+  mobilizer_first_name?: true
+  mobilizer_last_name?: true
   _all?: true
 }
 
@@ -155,11 +155,11 @@ export type mobilizer_detailsGroupByArgs<ExtArgs extends runtime.Types.Extension
 
 export type Mobilizer_detailsGroupByOutputType = {
   mobilizer_id: string
-  mobilizer_full_name: string | null
   mobilizer_phone_no: string | null
-  center_id: string | null
   mobilizer_unique_id: string | null
   user_id: string | null
+  mobilizer_first_name: string
+  mobilizer_last_name: string
   _count: Mobilizer_detailsCountAggregateOutputType | null
   _min: Mobilizer_detailsMinAggregateOutputType | null
   _max: Mobilizer_detailsMaxAggregateOutputType | null
@@ -185,23 +185,21 @@ export type mobilizer_detailsWhereInput = {
   OR?: Prisma.mobilizer_detailsWhereInput[]
   NOT?: Prisma.mobilizer_detailsWhereInput | Prisma.mobilizer_detailsWhereInput[]
   mobilizer_id?: Prisma.UuidFilter<"mobilizer_details"> | string
-  mobilizer_full_name?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
   mobilizer_phone_no?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"mobilizer_details"> | string | null
   mobilizer_unique_id?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
   user_id?: Prisma.UuidNullableFilter<"mobilizer_details"> | string | null
-  center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
+  mobilizer_first_name?: Prisma.StringFilter<"mobilizer_details"> | string
+  mobilizer_last_name?: Prisma.StringFilter<"mobilizer_details"> | string
   user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
 }
 
 export type mobilizer_detailsOrderByWithRelationInput = {
   mobilizer_id?: Prisma.SortOrder
-  mobilizer_full_name?: Prisma.SortOrderInput | Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
   mobilizer_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_details?: Prisma.center_detailsOrderByWithRelationInput
+  mobilizer_first_name?: Prisma.SortOrder
+  mobilizer_last_name?: Prisma.SortOrder
   user_login?: Prisma.user_loginOrderByWithRelationInput
 }
 
@@ -213,19 +211,18 @@ export type mobilizer_detailsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.mobilizer_detailsWhereInput | Prisma.mobilizer_detailsWhereInput[]
   OR?: Prisma.mobilizer_detailsWhereInput[]
   NOT?: Prisma.mobilizer_detailsWhereInput | Prisma.mobilizer_detailsWhereInput[]
-  mobilizer_full_name?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"mobilizer_details"> | string | null
-  center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
+  mobilizer_first_name?: Prisma.StringFilter<"mobilizer_details"> | string
+  mobilizer_last_name?: Prisma.StringFilter<"mobilizer_details"> | string
   user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
 }, "mobilizer_id" | "mobilizer_phone_no" | "mobilizer_unique_id" | "user_id">
 
 export type mobilizer_detailsOrderByWithAggregationInput = {
   mobilizer_id?: Prisma.SortOrder
-  mobilizer_full_name?: Prisma.SortOrderInput | Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
   mobilizer_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  mobilizer_first_name?: Prisma.SortOrder
+  mobilizer_last_name?: Prisma.SortOrder
   _count?: Prisma.mobilizer_detailsCountOrderByAggregateInput
   _max?: Prisma.mobilizer_detailsMaxOrderByAggregateInput
   _min?: Prisma.mobilizer_detailsMinOrderByAggregateInput
@@ -236,82 +233,73 @@ export type mobilizer_detailsScalarWhereWithAggregatesInput = {
   OR?: Prisma.mobilizer_detailsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.mobilizer_detailsScalarWhereWithAggregatesInput | Prisma.mobilizer_detailsScalarWhereWithAggregatesInput[]
   mobilizer_id?: Prisma.UuidWithAggregatesFilter<"mobilizer_details"> | string
-  mobilizer_full_name?: Prisma.StringNullableWithAggregatesFilter<"mobilizer_details"> | string | null
   mobilizer_phone_no?: Prisma.StringNullableWithAggregatesFilter<"mobilizer_details"> | string | null
-  center_id?: Prisma.UuidNullableWithAggregatesFilter<"mobilizer_details"> | string | null
   mobilizer_unique_id?: Prisma.StringNullableWithAggregatesFilter<"mobilizer_details"> | string | null
   user_id?: Prisma.UuidNullableWithAggregatesFilter<"mobilizer_details"> | string | null
+  mobilizer_first_name?: Prisma.StringWithAggregatesFilter<"mobilizer_details"> | string
+  mobilizer_last_name?: Prisma.StringWithAggregatesFilter<"mobilizer_details"> | string
 }
 
 export type mobilizer_detailsCreateInput = {
   mobilizer_id?: string
-  mobilizer_full_name?: string | null
   mobilizer_phone_no?: string | null
   mobilizer_unique_id?: string | null
-  center_details?: Prisma.center_detailsCreateNestedOneWithoutMobilizer_detailsInput
+  mobilizer_first_name: string
+  mobilizer_last_name: string
   user_login?: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
 }
 
 export type mobilizer_detailsUncheckedCreateInput = {
   mobilizer_id?: string
-  mobilizer_full_name?: string | null
   mobilizer_phone_no?: string | null
-  center_id?: string | null
   mobilizer_unique_id?: string | null
   user_id?: string | null
+  mobilizer_first_name: string
+  mobilizer_last_name: string
 }
 
 export type mobilizer_detailsUpdateInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_details?: Prisma.center_detailsUpdateOneWithoutMobilizer_detailsNestedInput
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
   user_login?: Prisma.user_loginUpdateOneWithoutMobilizer_detailsNestedInput
 }
 
 export type mobilizer_detailsUncheckedUpdateInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type mobilizer_detailsCreateManyInput = {
   mobilizer_id?: string
-  mobilizer_full_name?: string | null
   mobilizer_phone_no?: string | null
-  center_id?: string | null
   mobilizer_unique_id?: string | null
   user_id?: string | null
+  mobilizer_first_name: string
+  mobilizer_last_name: string
 }
 
 export type mobilizer_detailsUpdateManyMutationInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type mobilizer_detailsUncheckedUpdateManyInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type Mobilizer_detailsListRelationFilter = {
-  every?: Prisma.mobilizer_detailsWhereInput
-  some?: Prisma.mobilizer_detailsWhereInput
-  none?: Prisma.mobilizer_detailsWhereInput
-}
-
-export type mobilizer_detailsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type Mobilizer_detailsNullableScalarRelationFilter = {
@@ -321,71 +309,29 @@ export type Mobilizer_detailsNullableScalarRelationFilter = {
 
 export type mobilizer_detailsCountOrderByAggregateInput = {
   mobilizer_id?: Prisma.SortOrder
-  mobilizer_full_name?: Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   mobilizer_unique_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  mobilizer_first_name?: Prisma.SortOrder
+  mobilizer_last_name?: Prisma.SortOrder
 }
 
 export type mobilizer_detailsMaxOrderByAggregateInput = {
   mobilizer_id?: Prisma.SortOrder
-  mobilizer_full_name?: Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   mobilizer_unique_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  mobilizer_first_name?: Prisma.SortOrder
+  mobilizer_last_name?: Prisma.SortOrder
 }
 
 export type mobilizer_detailsMinOrderByAggregateInput = {
   mobilizer_id?: Prisma.SortOrder
-  mobilizer_full_name?: Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   mobilizer_unique_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
-}
-
-export type mobilizer_detailsCreateNestedManyWithoutCenter_detailsInput = {
-  create?: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput> | Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput[] | Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput | Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput[]
-  createMany?: Prisma.mobilizer_detailsCreateManyCenter_detailsInputEnvelope
-  connect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-}
-
-export type mobilizer_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput = {
-  create?: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput> | Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput[] | Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput | Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput[]
-  createMany?: Prisma.mobilizer_detailsCreateManyCenter_detailsInputEnvelope
-  connect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-}
-
-export type mobilizer_detailsUpdateManyWithoutCenter_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput> | Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput[] | Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput | Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput[]
-  upsert?: Prisma.mobilizer_detailsUpsertWithWhereUniqueWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpsertWithWhereUniqueWithoutCenter_detailsInput[]
-  createMany?: Prisma.mobilizer_detailsCreateManyCenter_detailsInputEnvelope
-  set?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  disconnect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  delete?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  connect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  update?: Prisma.mobilizer_detailsUpdateWithWhereUniqueWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpdateWithWhereUniqueWithoutCenter_detailsInput[]
-  updateMany?: Prisma.mobilizer_detailsUpdateManyWithWhereWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpdateManyWithWhereWithoutCenter_detailsInput[]
-  deleteMany?: Prisma.mobilizer_detailsScalarWhereInput | Prisma.mobilizer_detailsScalarWhereInput[]
-}
-
-export type mobilizer_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput> | Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput[] | Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput | Prisma.mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput[]
-  upsert?: Prisma.mobilizer_detailsUpsertWithWhereUniqueWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpsertWithWhereUniqueWithoutCenter_detailsInput[]
-  createMany?: Prisma.mobilizer_detailsCreateManyCenter_detailsInputEnvelope
-  set?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  disconnect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  delete?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  connect?: Prisma.mobilizer_detailsWhereUniqueInput | Prisma.mobilizer_detailsWhereUniqueInput[]
-  update?: Prisma.mobilizer_detailsUpdateWithWhereUniqueWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpdateWithWhereUniqueWithoutCenter_detailsInput[]
-  updateMany?: Prisma.mobilizer_detailsUpdateManyWithWhereWithoutCenter_detailsInput | Prisma.mobilizer_detailsUpdateManyWithWhereWithoutCenter_detailsInput[]
-  deleteMany?: Prisma.mobilizer_detailsScalarWhereInput | Prisma.mobilizer_detailsScalarWhereInput[]
+  mobilizer_first_name?: Prisma.SortOrder
+  mobilizer_last_name?: Prisma.SortOrder
 }
 
 export type mobilizer_detailsCreateNestedOneWithoutUser_loginInput = {
@@ -420,74 +366,20 @@ export type mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.mobilizer_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.mobilizer_detailsUpdateWithoutUser_loginInput>, Prisma.mobilizer_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type mobilizer_detailsCreateWithoutCenter_detailsInput = {
-  mobilizer_id?: string
-  mobilizer_full_name?: string | null
-  mobilizer_phone_no?: string | null
-  mobilizer_unique_id?: string | null
-  user_login?: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
-}
-
-export type mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput = {
-  mobilizer_id?: string
-  mobilizer_full_name?: string | null
-  mobilizer_phone_no?: string | null
-  mobilizer_unique_id?: string | null
-  user_id?: string | null
-}
-
-export type mobilizer_detailsCreateOrConnectWithoutCenter_detailsInput = {
-  where: Prisma.mobilizer_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput>
-}
-
-export type mobilizer_detailsCreateManyCenter_detailsInputEnvelope = {
-  data: Prisma.mobilizer_detailsCreateManyCenter_detailsInput | Prisma.mobilizer_detailsCreateManyCenter_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type mobilizer_detailsUpsertWithWhereUniqueWithoutCenter_detailsInput = {
-  where: Prisma.mobilizer_detailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.mobilizer_detailsUpdateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedUpdateWithoutCenter_detailsInput>
-  create: Prisma.XOR<Prisma.mobilizer_detailsCreateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedCreateWithoutCenter_detailsInput>
-}
-
-export type mobilizer_detailsUpdateWithWhereUniqueWithoutCenter_detailsInput = {
-  where: Prisma.mobilizer_detailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.mobilizer_detailsUpdateWithoutCenter_detailsInput, Prisma.mobilizer_detailsUncheckedUpdateWithoutCenter_detailsInput>
-}
-
-export type mobilizer_detailsUpdateManyWithWhereWithoutCenter_detailsInput = {
-  where: Prisma.mobilizer_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.mobilizer_detailsUpdateManyMutationInput, Prisma.mobilizer_detailsUncheckedUpdateManyWithoutCenter_detailsInput>
-}
-
-export type mobilizer_detailsScalarWhereInput = {
-  AND?: Prisma.mobilizer_detailsScalarWhereInput | Prisma.mobilizer_detailsScalarWhereInput[]
-  OR?: Prisma.mobilizer_detailsScalarWhereInput[]
-  NOT?: Prisma.mobilizer_detailsScalarWhereInput | Prisma.mobilizer_detailsScalarWhereInput[]
-  mobilizer_id?: Prisma.UuidFilter<"mobilizer_details"> | string
-  mobilizer_full_name?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
-  mobilizer_phone_no?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"mobilizer_details"> | string | null
-  mobilizer_unique_id?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"mobilizer_details"> | string | null
-}
-
 export type mobilizer_detailsCreateWithoutUser_loginInput = {
   mobilizer_id?: string
-  mobilizer_full_name?: string | null
   mobilizer_phone_no?: string | null
   mobilizer_unique_id?: string | null
-  center_details?: Prisma.center_detailsCreateNestedOneWithoutMobilizer_detailsInput
+  mobilizer_first_name: string
+  mobilizer_last_name: string
 }
 
 export type mobilizer_detailsUncheckedCreateWithoutUser_loginInput = {
   mobilizer_id?: string
-  mobilizer_full_name?: string | null
   mobilizer_phone_no?: string | null
-  center_id?: string | null
   mobilizer_unique_id?: string | null
+  mobilizer_first_name: string
+  mobilizer_last_name: string
 }
 
 export type mobilizer_detailsCreateOrConnectWithoutUser_loginInput = {
@@ -508,123 +400,84 @@ export type mobilizer_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
 
 export type mobilizer_detailsUpdateWithoutUser_loginInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_details?: Prisma.center_detailsUpdateOneWithoutMobilizer_detailsNestedInput
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type mobilizer_detailsUncheckedUpdateWithoutUser_loginInput = {
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type mobilizer_detailsCreateManyCenter_detailsInput = {
-  mobilizer_id?: string
-  mobilizer_full_name?: string | null
-  mobilizer_phone_no?: string | null
-  mobilizer_unique_id?: string | null
-  user_id?: string | null
-}
-
-export type mobilizer_detailsUpdateWithoutCenter_detailsInput = {
-  mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_login?: Prisma.user_loginUpdateOneWithoutMobilizer_detailsNestedInput
-}
-
-export type mobilizer_detailsUncheckedUpdateWithoutCenter_detailsInput = {
-  mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type mobilizer_detailsUncheckedUpdateManyWithoutCenter_detailsInput = {
-  mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_full_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type mobilizer_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   mobilizer_id?: boolean
-  mobilizer_full_name?: boolean
   mobilizer_phone_no?: boolean
-  center_id?: boolean
   mobilizer_unique_id?: boolean
   user_id?: boolean
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
+  mobilizer_first_name?: boolean
+  mobilizer_last_name?: boolean
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["mobilizer_details"]>
 
 export type mobilizer_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   mobilizer_id?: boolean
-  mobilizer_full_name?: boolean
   mobilizer_phone_no?: boolean
-  center_id?: boolean
   mobilizer_unique_id?: boolean
   user_id?: boolean
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
+  mobilizer_first_name?: boolean
+  mobilizer_last_name?: boolean
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["mobilizer_details"]>
 
 export type mobilizer_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   mobilizer_id?: boolean
-  mobilizer_full_name?: boolean
   mobilizer_phone_no?: boolean
-  center_id?: boolean
   mobilizer_unique_id?: boolean
   user_id?: boolean
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
+  mobilizer_first_name?: boolean
+  mobilizer_last_name?: boolean
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["mobilizer_details"]>
 
 export type mobilizer_detailsSelectScalar = {
   mobilizer_id?: boolean
-  mobilizer_full_name?: boolean
   mobilizer_phone_no?: boolean
-  center_id?: boolean
   mobilizer_unique_id?: boolean
   user_id?: boolean
+  mobilizer_first_name?: boolean
+  mobilizer_last_name?: boolean
 }
 
-export type mobilizer_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mobilizer_id" | "mobilizer_full_name" | "mobilizer_phone_no" | "center_id" | "mobilizer_unique_id" | "user_id", ExtArgs["result"]["mobilizer_details"]>
+export type mobilizer_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mobilizer_id" | "mobilizer_phone_no" | "mobilizer_unique_id" | "user_id" | "mobilizer_first_name" | "mobilizer_last_name", ExtArgs["result"]["mobilizer_details"]>
 export type mobilizer_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }
 export type mobilizer_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }
 export type mobilizer_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  center_details?: boolean | Prisma.mobilizer_details$center_detailsArgs<ExtArgs>
   user_login?: boolean | Prisma.mobilizer_details$user_loginArgs<ExtArgs>
 }
 
 export type $mobilizer_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "mobilizer_details"
   objects: {
-    center_details: Prisma.$center_detailsPayload<ExtArgs> | null
     user_login: Prisma.$user_loginPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     mobilizer_id: string
-    mobilizer_full_name: string | null
     mobilizer_phone_no: string | null
-    center_id: string | null
     mobilizer_unique_id: string | null
     user_id: string | null
+    mobilizer_first_name: string
+    mobilizer_last_name: string
   }, ExtArgs["result"]["mobilizer_details"]>
   composites: {}
 }
@@ -1019,7 +872,6 @@ readonly fields: mobilizer_detailsFieldRefs;
  */
 export interface Prisma__mobilizer_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  center_details<T extends Prisma.mobilizer_details$center_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.mobilizer_details$center_detailsArgs<ExtArgs>>): Prisma.Prisma__center_detailsClient<runtime.Types.Result.GetResult<Prisma.$center_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user_login<T extends Prisma.mobilizer_details$user_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.mobilizer_details$user_loginArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1051,11 +903,11 @@ export interface Prisma__mobilizer_detailsClient<T, Null = never, ExtArgs extend
  */
 export interface mobilizer_detailsFieldRefs {
   readonly mobilizer_id: Prisma.FieldRef<"mobilizer_details", 'String'>
-  readonly mobilizer_full_name: Prisma.FieldRef<"mobilizer_details", 'String'>
   readonly mobilizer_phone_no: Prisma.FieldRef<"mobilizer_details", 'String'>
-  readonly center_id: Prisma.FieldRef<"mobilizer_details", 'String'>
   readonly mobilizer_unique_id: Prisma.FieldRef<"mobilizer_details", 'String'>
   readonly user_id: Prisma.FieldRef<"mobilizer_details", 'String'>
+  readonly mobilizer_first_name: Prisma.FieldRef<"mobilizer_details", 'String'>
+  readonly mobilizer_last_name: Prisma.FieldRef<"mobilizer_details", 'String'>
 }
     
 
@@ -1274,7 +1126,7 @@ export type mobilizer_detailsCreateArgs<ExtArgs extends runtime.Types.Extensions
   /**
    * The data needed to create a mobilizer_details.
    */
-  data?: Prisma.XOR<Prisma.mobilizer_detailsCreateInput, Prisma.mobilizer_detailsUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.mobilizer_detailsCreateInput, Prisma.mobilizer_detailsUncheckedCreateInput>
 }
 
 /**
@@ -1449,25 +1301,6 @@ export type mobilizer_detailsDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many mobilizer_details to delete.
    */
   limit?: number
-}
-
-/**
- * mobilizer_details.center_details
- */
-export type mobilizer_details$center_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the center_details
-   */
-  select?: Prisma.center_detailsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the center_details
-   */
-  omit?: Prisma.center_detailsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.center_detailsInclude<ExtArgs> | null
-  where?: Prisma.center_detailsWhereInput
 }
 
 /**
