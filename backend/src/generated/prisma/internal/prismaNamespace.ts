@@ -414,7 +414,8 @@ export const ModelName = {
   study_material: 'study_material',
   user_login: 'user_login',
   user_notifications: 'user_notifications',
-  mobilizer_details: 'mobilizer_details'
+  mobilizer_details: 'mobilizer_details',
+  batch_syllabus: 'batch_syllabus'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -430,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details" | "batch_syllabus"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2284,6 +2285,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    batch_syllabus: {
+      payload: Prisma.$batch_syllabusPayload<ExtArgs>
+      fields: Prisma.batch_syllabusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.batch_syllabusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.batch_syllabusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        findFirst: {
+          args: Prisma.batch_syllabusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.batch_syllabusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        findMany: {
+          args: Prisma.batch_syllabusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        create: {
+          args: Prisma.batch_syllabusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        createMany: {
+          args: Prisma.batch_syllabusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.batch_syllabusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        delete: {
+          args: Prisma.batch_syllabusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        update: {
+          args: Prisma.batch_syllabusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        deleteMany: {
+          args: Prisma.batch_syllabusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.batch_syllabusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.batch_syllabusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        upsert: {
+          args: Prisma.batch_syllabusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        aggregate: {
+          args: Prisma.Batch_syllabusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBatch_syllabus>
+        }
+        groupBy: {
+          args: Prisma.batch_syllabusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Batch_syllabusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.batch_syllabusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Batch_syllabusCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2773,6 +2848,21 @@ export const Mobilizer_detailsScalarFieldEnum = {
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
 
 
+export const Batch_syllabusScalarFieldEnum = {
+  batch_syllabus_id: 'batch_syllabus_id',
+  batch_id: 'batch_id',
+  topic_name: 'topic_name',
+  completion_date: 'completion_date',
+  is_completed: 'is_completed',
+  completed_at: 'completed_at',
+  completed_by: 'completed_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnum)[keyof typeof Batch_syllabusScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3201,6 +3291,7 @@ export type GlobalOmitConfig = {
   user_login?: Prisma.user_loginOmit
   user_notifications?: Prisma.user_notificationsOmit
   mobilizer_details?: Prisma.mobilizer_detailsOmit
+  batch_syllabus?: Prisma.batch_syllabusOmit
 }
 
 /* Types for Logging */

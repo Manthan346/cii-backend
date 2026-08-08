@@ -142,3 +142,8 @@ export type user_notifications = Prisma.user_notificationsModel
  * 
  */
 export type mobilizer_details = Prisma.mobilizer_detailsModel
+/**
+ * Model batch_syllabus
+ * 
+ */
+export type batch_syllabus = Prisma.batch_syllabusModel

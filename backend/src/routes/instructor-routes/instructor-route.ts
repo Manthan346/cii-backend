@@ -46,6 +46,8 @@ import { getAllInstructorEvents } from "../../controllers/instructor-controller/
 import { deleteInstructorEvent } from "../../controllers/instructor-controller/delete-instructor-event";
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
+import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
+import { uploadSyllabus } from "../../controllers/instructor-controller/instructor-upload-batchSyllabus";
 
 const instructorRouter = Router();
 
@@ -139,6 +141,8 @@ instructorRouter.get("/instructor-events/get-event",verifyInstructorUsingAccessT
 instructorRouter.delete("/instructor-events/delete-event/:event_id",verifyInstructorUsingAccessToken,deleteInstructorEvent)
 instructorRouter.get("/attendance-management/get-sessions",verifyInstructorUsingAccessToken,paginationMiddleware,getAllAttendanceSessions);
 instructorRouter.get("/attendance-management/get-sessions/:attendance_session_id",verifyInstructorUsingAccessToken,getSessionDetails)
+instructorRouter.post("/batch-management/batch-syllabus/:batch_id/upload",verifyInstructorUsingAccessToken,uploadExcel.single("file"),uploadSyllabus
+);
 
 export { instructorRouter };
 

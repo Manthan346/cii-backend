@@ -73,7 +73,8 @@ export const ModelName = {
   study_material: 'study_material',
   user_login: 'user_login',
   user_notifications: 'user_notifications',
-  mobilizer_details: 'mobilizer_details'
+  mobilizer_details: 'mobilizer_details',
+  batch_syllabus: 'batch_syllabus'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -540,6 +541,21 @@ export const Mobilizer_detailsScalarFieldEnum = {
 } as const
 
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
+
+
+export const Batch_syllabusScalarFieldEnum = {
+  batch_syllabus_id: 'batch_syllabus_id',
+  batch_id: 'batch_id',
+  topic_name: 'topic_name',
+  completion_date: 'completion_date',
+  is_completed: 'is_completed',
+  completed_at: 'completed_at',
+  completed_by: 'completed_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnum)[keyof typeof Batch_syllabusScalarFieldEnum]
 
 
 export const SortOrder = {

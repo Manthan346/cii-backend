@@ -78,6 +78,7 @@ model batch_details {
   instructor_details  instructor_details    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
   course_details      course_details        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
   batch_enrollment    batch_enrollment[]
+  batch_syllabus      batch_syllabus[]
   event_batches       event_batches[]
   study_material      study_material[]
 }
@@ -348,6 +349,7 @@ model instructor_details {
   instructor_guardian_blood_group  String?               @db.VarChar(6)
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
+  batch_syllabus                   batch_syllabus[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
   user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
@@ -472,6 +474,20 @@ model mobilizer_details {
   mobilizer_first_name String
   mobilizer_last_name  String
   user_login           user_login? @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model batch_syllabus {
+  batch_syllabus_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id           String              @db.Uuid
+  topic_name         String
+  completion_date    DateTime            @db.Date
+  is_completed       Boolean             @default(false)
+  completed_at       DateTime?           @db.Timestamp(6)
+  completed_by       String?             @db.Uuid
+  created_at         DateTime            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime            @default(now()) @db.Timestamp(6)
+  batch_details      batch_details       @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction)
+  instructor_details instructor_details? @relation(fields: [completed_by], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum assessment_type {
