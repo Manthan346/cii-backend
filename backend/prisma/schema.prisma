@@ -37,6 +37,7 @@ model attendance_records {
   time_out              DateTime?           @db.Timestamp(6)
   candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
   attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
+
   @@unique([attendance_session_id, candidate_id], map: "uq_session_candidate")
 }
 
@@ -489,11 +490,11 @@ model mobilizer_details {
   mobilizer_id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   mobilizer_phone_no   String?           @unique @db.VarChar(10)
   mobilizer_unique_id  String?           @unique
-  user_id              String?           @unique @db.Uuid
+  user_id              String            @unique @db.Uuid
   mobilizer_first_name String
   mobilizer_last_name  String
   enquiry_records      enquiry_records[]
-  user_login           user_login?       @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  user_login           user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum assessment_type {
