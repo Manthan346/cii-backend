@@ -47,12 +47,14 @@ import { deleteInstructorEvent } from "../../controllers/instructor-controller/d
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
 import { instructorGuardianDetails } from "../../controllers/instructor-controller/instructor-guardian-details";
+import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
+import { uploadSyllabus } from "../../controllers/instructor-controller/instructor-upload-batchSyllabus";
+import { getBatchSyllabus } from "../../controllers/instructor-controller/instructor-get-batchSyllabus";
+import { markBatchSyllabus } from "../../controllers/instructor-controller/mark-complete-batchSyllabus";
+import { addBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-add-batchSyllabusTopic";
+import { deleteBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-delete-batchSyllabusTopic";
 
 const instructorRouter = Router();
-
-
-
-
 
 instructorRouter.get(
     "/instructor-dashboard",
@@ -142,6 +144,14 @@ instructorRouter.get("/instructor-events/get-event",verifyInstructorUsingAccessT
 instructorRouter.delete("/instructor-events/delete-event/:event_id",verifyInstructorUsingAccessToken,deleteInstructorEvent)
 instructorRouter.get("/attendance-management/get-sessions",verifyInstructorUsingAccessToken,paginationMiddleware,getAllAttendanceSessions);
 instructorRouter.get("/attendance-management/get-sessions/:attendance_session_id",verifyInstructorUsingAccessToken,getSessionDetails)
+instructorRouter.post("/batch-management/batch-syllabus/:batch_id/upload",verifyInstructorUsingAccessToken,uploadExcel.single("file"),uploadSyllabus
+);
+instructorRouter.get("/batch-management/batch-syllabus/:batch_id/get",verifyInstructorUsingAccessToken,getBatchSyllabus)
+instructorRouter.patch("/batch-management/batch-syllabus/:batch_syllabus_id/",verifyInstructorUsingAccessToken,markBatchSyllabus)
+instructorRouter.post("/batch-management/:batch_id/add_batch_syllabus",verifyInstructorUsingAccessToken,addBatchSyllabusTopic)
+instructorRouter.delete("/batch-management/batch-syllabus/:batch_syllabus_id",
+verifyInstructorUsingAccessToken,deleteBatchSyllabusTopic
+)
 
 export { instructorRouter };
 
