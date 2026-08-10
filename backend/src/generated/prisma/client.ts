@@ -174,3 +174,13 @@ export type batch_syllabus = Prisma.batch_syllabusModel
  * 
  */
 export type mobilizer_details = Prisma.mobilizer_detailsModel
+/**
+ * Model enquiry_status_history
+ * 
+ */
+export type enquiry_status_history = Prisma.enquiry_status_historyModel
+/**
+ * Model hr_details
+ * 
+ */
+export type hr_details = Prisma.hr_detailsModel
