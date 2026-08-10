@@ -32,13 +32,11 @@ export type Enquiry_recordsMinAggregateOutputType = {
   enquiry_phone_no: string | null
   enquiry_education: string | null
   enquiry_location: string | null
-  center_id: string | null
   course_id: string | null
   enquiry_source: string | null
   remarks: string | null
   created_at: Date | null
   updated_at: Date | null
-  enq_status: $Enums.enquiry_status | null
 }
 
 export type Enquiry_recordsMaxAggregateOutputType = {
@@ -49,13 +47,11 @@ export type Enquiry_recordsMaxAggregateOutputType = {
   enquiry_phone_no: string | null
   enquiry_education: string | null
   enquiry_location: string | null
-  center_id: string | null
   course_id: string | null
   enquiry_source: string | null
   remarks: string | null
   created_at: Date | null
   updated_at: Date | null
-  enq_status: $Enums.enquiry_status | null
 }
 
 export type Enquiry_recordsCountAggregateOutputType = {
@@ -66,13 +62,11 @@ export type Enquiry_recordsCountAggregateOutputType = {
   enquiry_phone_no: number
   enquiry_education: number
   enquiry_location: number
-  center_id: number
   course_id: number
   enquiry_source: number
   remarks: number
   created_at: number
   updated_at: number
-  enq_status: number
   _all: number
 }
 
@@ -85,13 +79,11 @@ export type Enquiry_recordsMinAggregateInputType = {
   enquiry_phone_no?: true
   enquiry_education?: true
   enquiry_location?: true
-  center_id?: true
   course_id?: true
   enquiry_source?: true
   remarks?: true
   created_at?: true
   updated_at?: true
-  enq_status?: true
 }
 
 export type Enquiry_recordsMaxAggregateInputType = {
@@ -102,13 +94,11 @@ export type Enquiry_recordsMaxAggregateInputType = {
   enquiry_phone_no?: true
   enquiry_education?: true
   enquiry_location?: true
-  center_id?: true
   course_id?: true
   enquiry_source?: true
   remarks?: true
   created_at?: true
   updated_at?: true
-  enq_status?: true
 }
 
 export type Enquiry_recordsCountAggregateInputType = {
@@ -119,13 +109,11 @@ export type Enquiry_recordsCountAggregateInputType = {
   enquiry_phone_no?: true
   enquiry_education?: true
   enquiry_location?: true
-  center_id?: true
   course_id?: true
   enquiry_source?: true
   remarks?: true
   created_at?: true
   updated_at?: true
-  enq_status?: true
   _all?: true
 }
 
@@ -209,13 +197,11 @@ export type Enquiry_recordsGroupByOutputType = {
   enquiry_phone_no: string
   enquiry_education: string | null
   enquiry_location: string | null
-  center_id: string | null
   course_id: string | null
   enquiry_source: string | null
   remarks: string | null
   created_at: Date
   updated_at: Date
-  enq_status: $Enums.enquiry_status | null
   _count: Enquiry_recordsCountAggregateOutputType | null
   _min: Enquiry_recordsMinAggregateOutputType | null
   _max: Enquiry_recordsMaxAggregateOutputType | null
@@ -247,14 +233,14 @@ export type enquiry_recordsWhereInput = {
   enquiry_phone_no?: Prisma.StringFilter<"enquiry_records"> | string
   enquiry_education?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   enquiry_location?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   course_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   enquiry_source?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   remarks?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   created_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
-  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_records"> | $Enums.enquiry_status | null
   course_details?: Prisma.XOR<Prisma.Course_detailsNullableScalarRelationFilter, Prisma.course_detailsWhereInput> | null
+  center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
+  mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsNullableScalarRelationFilter, Prisma.mobilizer_detailsWhereInput> | null
 }
 
 export type enquiry_recordsOrderByWithRelationInput = {
@@ -265,14 +251,14 @@ export type enquiry_recordsOrderByWithRelationInput = {
   enquiry_phone_no?: Prisma.SortOrder
   enquiry_education?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_location?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
   course_id?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_source?: Prisma.SortOrderInput | Prisma.SortOrder
   remarks?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  enq_status?: Prisma.SortOrderInput | Prisma.SortOrder
   course_details?: Prisma.course_detailsOrderByWithRelationInput
+  center_details?: Prisma.center_detailsOrderByWithRelationInput
+  mobilizer_details?: Prisma.mobilizer_detailsOrderByWithRelationInput
 }
 
 export type enquiry_recordsWhereUniqueInput = Prisma.AtLeast<{
@@ -286,14 +272,14 @@ export type enquiry_recordsWhereUniqueInput = Prisma.AtLeast<{
   enquiry_phone_no?: Prisma.StringFilter<"enquiry_records"> | string
   enquiry_education?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   enquiry_location?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   course_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   enquiry_source?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   remarks?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   created_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
-  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_records"> | $Enums.enquiry_status | null
   course_details?: Prisma.XOR<Prisma.Course_detailsNullableScalarRelationFilter, Prisma.course_detailsWhereInput> | null
+  center_details?: Prisma.XOR<Prisma.Center_detailsScalarRelationFilter, Prisma.center_detailsWhereInput>
+  mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsNullableScalarRelationFilter, Prisma.mobilizer_detailsWhereInput> | null
 }, "enquiry_id">
 
 export type enquiry_recordsOrderByWithAggregationInput = {
@@ -304,13 +290,11 @@ export type enquiry_recordsOrderByWithAggregationInput = {
   enquiry_phone_no?: Prisma.SortOrder
   enquiry_education?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_location?: Prisma.SortOrderInput | Prisma.SortOrder
-  center_id?: Prisma.SortOrderInput | Prisma.SortOrder
   course_id?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_source?: Prisma.SortOrderInput | Prisma.SortOrder
   remarks?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  enq_status?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.enquiry_recordsCountOrderByAggregateInput
   _max?: Prisma.enquiry_recordsMaxOrderByAggregateInput
   _min?: Prisma.enquiry_recordsMinOrderByAggregateInput
@@ -327,13 +311,11 @@ export type enquiry_recordsScalarWhereWithAggregatesInput = {
   enquiry_phone_no?: Prisma.StringWithAggregatesFilter<"enquiry_records"> | string
   enquiry_education?: Prisma.StringNullableWithAggregatesFilter<"enquiry_records"> | string | null
   enquiry_location?: Prisma.StringNullableWithAggregatesFilter<"enquiry_records"> | string | null
-  center_id?: Prisma.UuidNullableWithAggregatesFilter<"enquiry_records"> | string | null
   course_id?: Prisma.UuidNullableWithAggregatesFilter<"enquiry_records"> | string | null
   enquiry_source?: Prisma.StringNullableWithAggregatesFilter<"enquiry_records"> | string | null
   remarks?: Prisma.StringNullableWithAggregatesFilter<"enquiry_records"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"enquiry_records"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"enquiry_records"> | Date | string
-  enq_status?: Prisma.Enumenquiry_statusNullableWithAggregatesFilter<"enquiry_records"> | $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsCreateInput = {
@@ -344,13 +326,14 @@ export type enquiry_recordsCreateInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
   enq_status?: $Enums.enquiry_status | null
   course_details?: Prisma.course_detailsCreateNestedOneWithoutEnquiry_recordsInput
+  center_details: Prisma.center_detailsCreateNestedOneWithoutEnquiry_recordsInput
+  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutEnquiry_recordsInput
 }
 
 export type enquiry_recordsUncheckedCreateInput = {
@@ -361,13 +344,11 @@ export type enquiry_recordsUncheckedCreateInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
   course_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsUpdateInput = {
@@ -378,13 +359,14 @@ export type enquiry_recordsUpdateInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   course_details?: Prisma.course_detailsUpdateOneWithoutEnquiry_recordsNestedInput
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutEnquiry_recordsNestedInput
+  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutEnquiry_recordsNestedInput
 }
 
 export type enquiry_recordsUncheckedUpdateInput = {
@@ -395,13 +377,11 @@ export type enquiry_recordsUncheckedUpdateInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsCreateManyInput = {
@@ -412,13 +392,11 @@ export type enquiry_recordsCreateManyInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
   course_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsUpdateManyMutationInput = {
@@ -429,7 +407,6 @@ export type enquiry_recordsUpdateManyMutationInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -445,13 +422,11 @@ export type enquiry_recordsUncheckedUpdateManyInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type Enquiry_recordsListRelationFilter = {
@@ -472,13 +447,11 @@ export type enquiry_recordsCountOrderByAggregateInput = {
   enquiry_phone_no?: Prisma.SortOrder
   enquiry_education?: Prisma.SortOrder
   enquiry_location?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   course_id?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_recordsMaxOrderByAggregateInput = {
@@ -489,13 +462,11 @@ export type enquiry_recordsMaxOrderByAggregateInput = {
   enquiry_phone_no?: Prisma.SortOrder
   enquiry_education?: Prisma.SortOrder
   enquiry_location?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   course_id?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_recordsMinOrderByAggregateInput = {
@@ -506,13 +477,11 @@ export type enquiry_recordsMinOrderByAggregateInput = {
   enquiry_phone_no?: Prisma.SortOrder
   enquiry_education?: Prisma.SortOrder
   enquiry_location?: Prisma.SortOrder
-  center_id?: Prisma.SortOrder
   course_id?: Prisma.SortOrder
   enquiry_source?: Prisma.SortOrder
   remarks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_recordsCreateNestedManyWithoutCourse_detailsInput = {
@@ -561,7 +530,53 @@ export type NullableEnumenquiry_statusFieldUpdateOperationsInput = {
   set?: $Enums.enquiry_status | null
 }
 
-export type enquiry_recordsCreateWithoutCourse_detailsInput = {
+export type NullableEnumenquiry_statusFieldUpdateOperationsInput = {
+  set?: $Enums.enquiry_status | null
+}
+
+export type enquiry_recordsCreateNestedManyWithoutMobilizer_detailsInput = {
+  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput> | Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput[]
+  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput[]
+  createMany?: Prisma.enquiry_recordsCreateManyMobilizer_detailsInputEnvelope
+  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+}
+
+export type enquiry_recordsUncheckedCreateNestedManyWithoutMobilizer_detailsInput = {
+  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput> | Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput[]
+  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput[]
+  createMany?: Prisma.enquiry_recordsCreateManyMobilizer_detailsInputEnvelope
+  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+}
+
+export type enquiry_recordsUpdateManyWithoutMobilizer_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput> | Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput[]
+  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput[]
+  upsert?: Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput[]
+  createMany?: Prisma.enquiry_recordsCreateManyMobilizer_detailsInputEnvelope
+  set?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  disconnect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  delete?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  update?: Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput[]
+  updateMany?: Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput[]
+  deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
+}
+
+export type enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput> | Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput[]
+  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput[]
+  upsert?: Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput[]
+  createMany?: Prisma.enquiry_recordsCreateManyMobilizer_detailsInputEnvelope
+  set?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  disconnect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  delete?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
+  update?: Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput[]
+  updateMany?: Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput[]
+  deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
+}
+
+export type enquiry_recordsCreateWithoutCenter_detailsInput = {
   enquiry_id?: string
   enquiry_first_name: string
   enquiry_last_name?: string | null
@@ -569,15 +584,13 @@ export type enquiry_recordsCreateWithoutCourse_detailsInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
 }
 
-export type enquiry_recordsUncheckedCreateWithoutCourse_detailsInput = {
+export type enquiry_recordsUncheckedCreateWithoutCenter_detailsInput = {
   enquiry_id?: string
   enquiry_first_name: string
   enquiry_last_name?: string | null
@@ -585,38 +598,37 @@ export type enquiry_recordsUncheckedCreateWithoutCourse_detailsInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
+  course_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
 }
 
-export type enquiry_recordsCreateOrConnectWithoutCourse_detailsInput = {
+export type enquiry_recordsCreateOrConnectWithoutCenter_detailsInput = {
   where: Prisma.enquiry_recordsWhereUniqueInput
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCourse_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCourse_detailsInput>
+  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput>
 }
 
-export type enquiry_recordsCreateManyCourse_detailsInputEnvelope = {
-  data: Prisma.enquiry_recordsCreateManyCourse_detailsInput | Prisma.enquiry_recordsCreateManyCourse_detailsInput[]
+export type enquiry_recordsCreateManyCenter_detailsInputEnvelope = {
+  data: Prisma.enquiry_recordsCreateManyCenter_detailsInput | Prisma.enquiry_recordsCreateManyCenter_detailsInput[]
   skipDuplicates?: boolean
 }
 
-export type enquiry_recordsUpsertWithWhereUniqueWithoutCourse_detailsInput = {
+export type enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput = {
   where: Prisma.enquiry_recordsWhereUniqueInput
-  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCourse_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCourse_detailsInput>
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCourse_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCourse_detailsInput>
+  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCenter_detailsInput>
+  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput>
 }
 
-export type enquiry_recordsUpdateWithWhereUniqueWithoutCourse_detailsInput = {
+export type enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput = {
   where: Prisma.enquiry_recordsWhereUniqueInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCourse_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCourse_detailsInput>
+  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCenter_detailsInput>
 }
 
-export type enquiry_recordsUpdateManyWithWhereWithoutCourse_detailsInput = {
+export type enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput = {
   where: Prisma.enquiry_recordsScalarWhereInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsInput>
+  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsInput>
 }
 
 export type enquiry_recordsScalarWhereInput = {
@@ -630,13 +642,11 @@ export type enquiry_recordsScalarWhereInput = {
   enquiry_phone_no?: Prisma.StringFilter<"enquiry_records"> | string
   enquiry_education?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   enquiry_location?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  center_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   course_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
   enquiry_source?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   remarks?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
   created_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
-  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_records"> | $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsCreateManyCourse_detailsInput = {
@@ -647,12 +657,10 @@ export type enquiry_recordsCreateManyCourse_detailsInput = {
   enquiry_phone_no: string
   enquiry_education?: string | null
   enquiry_location?: string | null
-  center_id?: string | null
   enquiry_source?: string | null
   remarks?: string | null
   created_at?: Date | string
   updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsUpdateWithoutCourse_detailsInput = {
@@ -663,12 +671,10 @@ export type enquiry_recordsUpdateWithoutCourse_detailsInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsUncheckedUpdateWithoutCourse_detailsInput = {
@@ -679,12 +685,10 @@ export type enquiry_recordsUncheckedUpdateWithoutCourse_detailsInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsInput = {
@@ -695,12 +699,10 @@ export type enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsInput = {
   enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 
@@ -713,14 +715,14 @@ export type enquiry_recordsSelect<ExtArgs extends runtime.Types.Extensions.Inter
   enquiry_phone_no?: boolean
   enquiry_education?: boolean
   enquiry_location?: boolean
-  center_id?: boolean
   course_id?: boolean
   enquiry_source?: boolean
   remarks?: boolean
   created_at?: boolean
   updated_at?: boolean
-  enq_status?: boolean
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_records"]>
 
 export type enquiry_recordsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -731,14 +733,14 @@ export type enquiry_recordsSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   enquiry_phone_no?: boolean
   enquiry_education?: boolean
   enquiry_location?: boolean
-  center_id?: boolean
   course_id?: boolean
   enquiry_source?: boolean
   remarks?: boolean
   created_at?: boolean
   updated_at?: boolean
-  enq_status?: boolean
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_records"]>
 
 export type enquiry_recordsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -749,14 +751,14 @@ export type enquiry_recordsSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   enquiry_phone_no?: boolean
   enquiry_education?: boolean
   enquiry_location?: boolean
-  center_id?: boolean
   course_id?: boolean
   enquiry_source?: boolean
   remarks?: boolean
   created_at?: boolean
   updated_at?: boolean
-  enq_status?: boolean
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_records"]>
 
 export type enquiry_recordsSelectScalar = {
@@ -767,30 +769,36 @@ export type enquiry_recordsSelectScalar = {
   enquiry_phone_no?: boolean
   enquiry_education?: boolean
   enquiry_location?: boolean
-  center_id?: boolean
   course_id?: boolean
   enquiry_source?: boolean
   remarks?: boolean
   created_at?: boolean
   updated_at?: boolean
-  enq_status?: boolean
 }
 
-export type enquiry_recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"enquiry_id" | "enquiry_first_name" | "enquiry_last_name" | "enquiry_email" | "enquiry_phone_no" | "enquiry_education" | "enquiry_location" | "center_id" | "course_id" | "enquiry_source" | "remarks" | "created_at" | "updated_at" | "enq_status", ExtArgs["result"]["enquiry_records"]>
+export type enquiry_recordsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"enquiry_id" | "enquiry_first_name" | "enquiry_last_name" | "enquiry_email" | "enquiry_phone_no" | "enquiry_education" | "enquiry_location" | "center_id" | "course_id" | "enquiry_source" | "enquiry_status" | "remarks" | "created_at" | "updated_at", ExtArgs["result"]["enquiry_records"]>
 export type enquiry_recordsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }
 export type enquiry_recordsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }
 export type enquiry_recordsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course_details?: boolean | Prisma.enquiry_records$course_detailsArgs<ExtArgs>
+  center_details?: boolean | Prisma.center_detailsDefaultArgs<ExtArgs>
+  mobilizer_details?: boolean | Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>
 }
 
 export type $enquiry_recordsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "enquiry_records"
   objects: {
     course_details: Prisma.$course_detailsPayload<ExtArgs> | null
+    center_details: Prisma.$center_detailsPayload<ExtArgs>
+    mobilizer_details: Prisma.$mobilizer_detailsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     enquiry_id: string
@@ -800,13 +808,11 @@ export type $enquiry_recordsPayload<ExtArgs extends runtime.Types.Extensions.Int
     enquiry_phone_no: string
     enquiry_education: string | null
     enquiry_location: string | null
-    center_id: string | null
     course_id: string | null
     enquiry_source: string | null
     remarks: string | null
     created_at: Date
     updated_at: Date
-    enq_status: $Enums.enquiry_status | null
   }, ExtArgs["result"]["enquiry_records"]>
   composites: {}
 }
@@ -1202,6 +1208,8 @@ readonly fields: enquiry_recordsFieldRefs;
 export interface Prisma__enquiry_recordsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   course_details<T extends Prisma.enquiry_records$course_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.enquiry_records$course_detailsArgs<ExtArgs>>): Prisma.Prisma__course_detailsClient<runtime.Types.Result.GetResult<Prisma.$course_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  center_details<T extends Prisma.center_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.center_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__center_detailsClient<runtime.Types.Result.GetResult<Prisma.$center_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  mobilizer_details<T extends Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.enquiry_records$mobilizer_detailsArgs<ExtArgs>>): Prisma.Prisma__mobilizer_detailsClient<runtime.Types.Result.GetResult<Prisma.$mobilizer_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1238,13 +1246,11 @@ export interface enquiry_recordsFieldRefs {
   readonly enquiry_phone_no: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly enquiry_education: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly enquiry_location: Prisma.FieldRef<"enquiry_records", 'String'>
-  readonly center_id: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly course_id: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly enquiry_source: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly remarks: Prisma.FieldRef<"enquiry_records", 'String'>
   readonly created_at: Prisma.FieldRef<"enquiry_records", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"enquiry_records", 'DateTime'>
-  readonly enq_status: Prisma.FieldRef<"enquiry_records", 'enquiry_status'>
 }
     
 
@@ -1657,6 +1663,25 @@ export type enquiry_records$course_detailsArgs<ExtArgs extends runtime.Types.Ext
    */
   include?: Prisma.course_detailsInclude<ExtArgs> | null
   where?: Prisma.course_detailsWhereInput
+}
+
+/**
+ * enquiry_records.mobilizer_details
+ */
+export type enquiry_records$mobilizer_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the mobilizer_details
+   */
+  select?: Prisma.mobilizer_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the mobilizer_details
+   */
+  omit?: Prisma.mobilizer_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.mobilizer_detailsInclude<ExtArgs> | null
+  where?: Prisma.mobilizer_detailsWhereInput
 }
 
 /**

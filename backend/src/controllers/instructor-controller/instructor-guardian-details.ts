@@ -43,10 +43,12 @@ const instructorGuardianDetails = asyncHandler(async (req: InstructorAuthRequest
       instructor_guardian_occupation: true,
       instructor_guardian_contact_no: true,
       instructor_guardian_address: true,
+      
       father_blood_group: true,
       father_current_address: true,
       father_dob: true,
       father_name: true,
+      
       father_occupation: true,
       father_phone_no: true,
       mother_blood_group: true,

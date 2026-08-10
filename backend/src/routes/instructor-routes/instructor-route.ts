@@ -47,12 +47,14 @@ import { deleteInstructorEvent } from "../../controllers/instructor-controller/d
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
 import { instructorGuardianDetails } from "../../controllers/instructor-controller/instructor-guardian-details";
+import { addCandidateAttendance } from "../../controllers/instructor-controller/mark-candidate-attendance";
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
 import { uploadSyllabus } from "../../controllers/instructor-controller/instructor-upload-batchSyllabus";
 import { getBatchSyllabus } from "../../controllers/instructor-controller/instructor-get-batchSyllabus";
 import { markBatchSyllabus } from "../../controllers/instructor-controller/mark-complete-batchSyllabus";
 import { addBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-add-batchSyllabusTopic";
 import { deleteBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-delete-batchSyllabusTopic";
+import { addAttendanceBodySchema } from "../../services/zod/instructor/mark-attendance-schema";
 
 const instructorRouter = Router();
 
@@ -90,6 +92,7 @@ instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createB
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
 instructorRouter.get('/guardian-details', verifyInstructorUsingAccessToken, instructorGuardianDetails)
+instructorRouter.post('/mark-candidate-attendnace/:attendanceSessionId', verifyInstructorUsingAccessToken,validateBody(addAttendanceBodySchema), addCandidateAttendance)
 
 
 instructorRouter.get(

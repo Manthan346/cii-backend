@@ -234,6 +234,7 @@ export type attendance_recordsOrderByWithRelationInput = {
 
 export type attendance_recordsWhereUniqueInput = Prisma.AtLeast<{
   attendance_id?: string
+  attendance_session_id_candidate_id?: Prisma.attendance_recordsAttendance_session_idCandidate_idCompoundUniqueInput
   AND?: Prisma.attendance_recordsWhereInput | Prisma.attendance_recordsWhereInput[]
   OR?: Prisma.attendance_recordsWhereInput[]
   NOT?: Prisma.attendance_recordsWhereInput | Prisma.attendance_recordsWhereInput[]
@@ -247,7 +248,7 @@ export type attendance_recordsWhereUniqueInput = Prisma.AtLeast<{
   time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
   attendance_sessions?: Prisma.XOR<Prisma.Attendance_sessionsScalarRelationFilter, Prisma.attendance_sessionsWhereInput>
-}, "attendance_id">
+}, "attendance_id" | "attendance_session_id_candidate_id">
 
 export type attendance_recordsOrderByWithAggregationInput = {
   attendance_id?: Prisma.SortOrder
@@ -359,6 +360,11 @@ export type attendance_recordsUncheckedUpdateManyInput = {
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type attendance_recordsAttendance_session_idCandidate_idCompoundUniqueInput = {
+  attendance_session_id: string
+  candidate_id: string
 }
 
 export type attendance_recordsCountOrderByAggregateInput = {
