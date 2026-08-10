@@ -17,13 +17,13 @@ const instructorDocuments = asyncHandler(async(req: InstructorAuthRequest, res: 
       const files = req.files as {
       [fieldname: string]: Express.Multer.File[];
     };
-    console.log("files",files)
+    console.log("files", files)
 
-    const pastExpLetter =  files?.past_exp_letter[0]?.path
-    const panCard = files?.pan_card[0]?.path
-    const aadhar_card = files?.aadhar_card[0]?.path
-    const instructor_resume = files?.instructor_resume[0].path
-    const highest_qualification_document = files?.highest_qualification_document[0].path
+    const pastExpLetter = files?.past_exp_letter?.[0]?.path
+    const panCard = files?.pan_card?.[0]?.path
+    const aadhar_card = files?.aadhar_card?.[0]?.path
+    const instructor_resume = files?.instructor_resume?.[0]?.path
+    const highest_qualification_document = files?.highest_qualification_document?.[0]?.path
 
     console.log("pancard from files",panCard)
 

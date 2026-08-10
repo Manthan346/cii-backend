@@ -415,7 +415,9 @@ export const ModelName = {
   user_login: 'user_login',
   user_notifications: 'user_notifications',
   batch_syllabus: 'batch_syllabus',
-  mobilizer_details: 'mobilizer_details'
+  mobilizer_details: 'mobilizer_details',
+  enquiry_status_history: 'enquiry_status_history',
+  hr_details: 'hr_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -431,7 +433,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "batch_syllabus" | "mobilizer_details"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "batch_syllabus" | "mobilizer_details" | "enquiry_status_history" | "hr_details"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2359,6 +2361,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    enquiry_status_history: {
+      payload: Prisma.$enquiry_status_historyPayload<ExtArgs>
+      fields: Prisma.enquiry_status_historyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.enquiry_status_historyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.enquiry_status_historyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        findFirst: {
+          args: Prisma.enquiry_status_historyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.enquiry_status_historyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        findMany: {
+          args: Prisma.enquiry_status_historyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        create: {
+          args: Prisma.enquiry_status_historyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        createMany: {
+          args: Prisma.enquiry_status_historyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.enquiry_status_historyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        delete: {
+          args: Prisma.enquiry_status_historyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        update: {
+          args: Prisma.enquiry_status_historyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        deleteMany: {
+          args: Prisma.enquiry_status_historyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.enquiry_status_historyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.enquiry_status_historyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        upsert: {
+          args: Prisma.enquiry_status_historyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        aggregate: {
+          args: Prisma.Enquiry_status_historyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnquiry_status_history>
+        }
+        groupBy: {
+          args: Prisma.enquiry_status_historyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Enquiry_status_historyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.enquiry_status_historyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Enquiry_status_historyCountAggregateOutputType> | number
+        }
+      }
+    }
+    hr_details: {
+      payload: Prisma.$hr_detailsPayload<ExtArgs>
+      fields: Prisma.hr_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.hr_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.hr_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.hr_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.hr_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.hr_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.hr_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.hr_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.hr_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.hr_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        update: {
+          args: Prisma.hr_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.hr_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.hr_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.hr_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.hr_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Hr_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHr_details>
+        }
+        groupBy: {
+          args: Prisma.hr_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hr_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.hr_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hr_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2864,6 +3014,29 @@ export const Mobilizer_detailsScalarFieldEnum = {
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
 
 
+export const Enquiry_status_historyScalarFieldEnum = {
+  history_id: 'history_id',
+  enquiry_id: 'enquiry_id',
+  status: 'status',
+  mobilizer_id: 'mobilizer_id',
+  created_at: 'created_at'
+} as const
+
+export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
+
+
+export const Hr_detailsScalarFieldEnum = {
+  hr_id: 'hr_id',
+  hr_first_name: 'hr_first_name',
+  hr_last_name: 'hr_last_name',
+  hr_designation: 'hr_designation',
+  hr_phone_no: 'hr_phone_no',
+  company_id: 'company_id'
+} as const
+
+export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3307,6 +3480,8 @@ export type GlobalOmitConfig = {
   user_notifications?: Prisma.user_notificationsOmit
   batch_syllabus?: Prisma.batch_syllabusOmit
   mobilizer_details?: Prisma.mobilizer_detailsOmit
+  enquiry_status_history?: Prisma.enquiry_status_historyOmit
+  hr_details?: Prisma.hr_detailsOmit
 }
 
 /* Types for Logging */
