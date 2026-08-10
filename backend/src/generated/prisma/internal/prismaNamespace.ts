@@ -415,7 +415,8 @@ export const ModelName = {
   user_login: 'user_login',
   user_notifications: 'user_notifications',
   mobilizer_details: 'mobilizer_details',
-  batch_syllabus: 'batch_syllabus'
+  batch_syllabus: 'batch_syllabus',
+  enquiry_status_history: 'enquiry_status_history'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -431,7 +432,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details" | "batch_syllabus"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details" | "batch_syllabus" | "enquiry_status_history"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2359,6 +2360,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    enquiry_status_history: {
+      payload: Prisma.$enquiry_status_historyPayload<ExtArgs>
+      fields: Prisma.enquiry_status_historyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.enquiry_status_historyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.enquiry_status_historyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        findFirst: {
+          args: Prisma.enquiry_status_historyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.enquiry_status_historyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        findMany: {
+          args: Prisma.enquiry_status_historyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        create: {
+          args: Prisma.enquiry_status_historyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        createMany: {
+          args: Prisma.enquiry_status_historyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.enquiry_status_historyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        delete: {
+          args: Prisma.enquiry_status_historyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        update: {
+          args: Prisma.enquiry_status_historyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        deleteMany: {
+          args: Prisma.enquiry_status_historyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.enquiry_status_historyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.enquiry_status_historyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>[]
+        }
+        upsert: {
+          args: Prisma.enquiry_status_historyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$enquiry_status_historyPayload>
+        }
+        aggregate: {
+          args: Prisma.Enquiry_status_historyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnquiry_status_history>
+        }
+        groupBy: {
+          args: Prisma.enquiry_status_historyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Enquiry_status_historyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.enquiry_status_historyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Enquiry_status_historyCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2864,6 +2939,17 @@ export const Batch_syllabusScalarFieldEnum = {
 export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnum)[keyof typeof Batch_syllabusScalarFieldEnum]
 
 
+export const Enquiry_status_historyScalarFieldEnum = {
+  history_id: 'history_id',
+  enquiry_id: 'enquiry_id',
+  status: 'status',
+  mobilizer_id: 'mobilizer_id',
+  created_at: 'created_at'
+} as const
+
+export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3307,6 +3393,7 @@ export type GlobalOmitConfig = {
   user_notifications?: Prisma.user_notificationsOmit
   mobilizer_details?: Prisma.mobilizer_detailsOmit
   batch_syllabus?: Prisma.batch_syllabusOmit
+  enquiry_status_history?: Prisma.enquiry_status_historyOmit
 }
 
 /* Types for Logging */

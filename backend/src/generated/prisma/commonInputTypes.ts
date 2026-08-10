@@ -568,6 +568,23 @@ export type Enumrole_typesWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumrole_typesFilter<$PrismaModel>
 }
 
+export type Enumenquiry_statusFilter<$PrismaModel = never> = {
+  equals?: $Enums.enquiry_status | Prisma.Enumenquiry_statusFieldRefInput<$PrismaModel>
+  in?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel> | $Enums.enquiry_status
+}
+
+export type Enumenquiry_statusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.enquiry_status | Prisma.Enumenquiry_statusFieldRefInput<$PrismaModel>
+  in?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumenquiry_statusWithAggregatesFilter<$PrismaModel> | $Enums.enquiry_status
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1129,6 +1146,23 @@ export type NestedEnumrole_typesWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumrole_typesFilter<$PrismaModel>
   _max?: Prisma.NestedEnumrole_typesFilter<$PrismaModel>
+}
+
+export type NestedEnumenquiry_statusFilter<$PrismaModel = never> = {
+  equals?: $Enums.enquiry_status | Prisma.Enumenquiry_statusFieldRefInput<$PrismaModel>
+  in?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel> | $Enums.enquiry_status
+}
+
+export type NestedEnumenquiry_statusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.enquiry_status | Prisma.Enumenquiry_statusFieldRefInput<$PrismaModel>
+  in?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.enquiry_status[] | Prisma.ListEnumenquiry_statusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumenquiry_statusWithAggregatesFilter<$PrismaModel> | $Enums.enquiry_status
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumenquiry_statusFilter<$PrismaModel>
 }
 
 
