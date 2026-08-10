@@ -37,6 +37,8 @@ model attendance_records {
   time_out              DateTime?           @db.Timestamp(6)
   candidates_details    candidates_details  @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_candidate")
   attendance_sessions   attendance_sessions @relation(fields: [attendance_session_id], references: [attendance_session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_record_session")
+
+  @@unique([attendance_session_id, candidate_id], map: "uq_session_candidate")
 }
 
 model attendance_sessions {
@@ -196,17 +198,19 @@ model center_company {
 }
 
 model center_details {
-  center_id      String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_name    String           @unique @db.VarChar(255)
-  center_address String
-  center_email   String           @unique @db.VarChar(255)
-  center_contact String           @db.VarChar(15)
-  created_at     DateTime         @default(now()) @db.Timestamp(6)
-  updated_at     DateTime         @default(now()) @db.Timestamp(6)
-  batch_details  batch_details[]
-  center_company center_company[]
-  event_details  event_details[]
-  user_login     user_login[]
+  center_id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  center_name       String              @unique @db.VarChar(255)
+  center_address    String
+  center_email      String              @unique @db.VarChar(255)
+  center_contact    String              @db.VarChar(15)
+  created_at        DateTime            @default(now()) @db.Timestamp(6)
+  updated_at        DateTime            @default(now()) @db.Timestamp(6)
+  batch_details     batch_details[]
+  center_company    center_company[]
+  enquiry_records   enquiry_records[]
+  event_details     event_details[]
+  mobilizer_details mobilizer_details[]
+  user_login        user_login[]
 }
 
 model company_details {
@@ -237,21 +241,24 @@ model course_details {
 }
 
 model enquiry_records {
-  enquiry_id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  enquiry_first_name String          @db.VarChar(100)
-  enquiry_last_name  String?         @db.VarChar(100)
-  enquiry_email      String?         @db.VarChar(255)
-  enquiry_phone_no   String          @db.VarChar(15)
-  enquiry_education  String?         @db.VarChar(100)
+  enquiry_id         String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiry_first_name String             @db.VarChar(100)
+  enquiry_last_name  String?            @db.VarChar(100)
+  enquiry_email      String             @db.VarChar(255)
+  enquiry_phone_no   String             @db.VarChar(15)
+  enquiry_education  String?            @db.VarChar(100)
   enquiry_location   String?
-  center_id          String?         @db.Uuid
-  course_id          String?         @db.Uuid
-  enquiry_source     String?         @db.VarChar(100)
-  enquiry_status     String?         @default("Pending") @db.VarChar(30)
+  course_id          String?            @db.Uuid
+  enquiry_source     String?            @db.VarChar(100)
   remarks            String?
-  created_at         DateTime        @default(now()) @db.Timestamp(6)
-  updated_at         DateTime        @default(now()) @db.Timestamp(6)
-  course_details     course_details? @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_course")
+  created_at         DateTime           @default(now()) @db.Timestamp(6)
+  updated_at         DateTime           @default(now()) @db.Timestamp(6)
+  enq_status         enquiry_status?
+  center_id          String             @db.Uuid
+  mobilizer_id       String?            @db.Uuid
+  course_details     course_details?    @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_course")
+  center_details     center_details     @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_records_center")
+  mobilizer_details  mobilizer_details? @relation(fields: [mobilizer_id], references: [mobilizer_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_records_mobilizer")
 }
 
 model event_batches {
@@ -467,13 +474,16 @@ model user_notifications {
 }
 
 model mobilizer_details {
-  mobilizer_id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  mobilizer_phone_no   String?     @unique @db.VarChar(10)
-  mobilizer_unique_id  String?     @unique
-  user_id              String?     @unique @db.Uuid
+  mobilizer_id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mobilizer_phone_no   String?           @unique @db.VarChar(10)
+  mobilizer_unique_id  String?           @unique
+  user_id              String            @unique @db.Uuid
   mobilizer_first_name String
   mobilizer_last_name  String
-  user_login           user_login? @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  center_id            String            @db.Uuid
+  enquiry_records      enquiry_records[]
+  center_details       center_details    @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_mobilizer_details_center")
+  user_login           user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model batch_syllabus {
@@ -617,4 +627,14 @@ enum training_type {
   WORKSHOP
   UPSKILLING
   SEMINAR
+}
+
+enum enquiry_status {
+  CALL_RECIEVED
+  CENTER_VISITED
+  CENTER_NOT_VISITED
+  ENROLLED
+  WRONG_NUMBER
+  CALL_BUSY
+  CALL_DROPPED_OUT
 }

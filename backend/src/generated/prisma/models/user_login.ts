@@ -437,11 +437,6 @@ export type user_loginMinOrderByAggregateInput = {
   refresh_token_hash?: Prisma.SortOrder
 }
 
-export type User_loginNullableScalarRelationFilter = {
-  is?: Prisma.user_loginWhereInput | null
-  isNot?: Prisma.user_loginWhereInput | null
-}
-
 export type user_loginCreateNestedOneWithoutCandidates_detailsInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutCandidates_detailsInput, Prisma.user_loginUncheckedCreateWithoutCandidates_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutCandidates_detailsInput
@@ -578,12 +573,10 @@ export type user_loginCreateNestedOneWithoutMobilizer_detailsInput = {
   connect?: Prisma.user_loginWhereUniqueInput
 }
 
-export type user_loginUpdateOneWithoutMobilizer_detailsNestedInput = {
+export type user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutMobilizer_detailsInput
   upsert?: Prisma.user_loginUpsertWithoutMobilizer_detailsInput
-  disconnect?: Prisma.user_loginWhereInput | boolean
-  delete?: Prisma.user_loginWhereInput | boolean
   connect?: Prisma.user_loginWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput, Prisma.user_loginUpdateWithoutMobilizer_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
 }

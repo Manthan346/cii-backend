@@ -187,3 +187,16 @@ export const training_type = {
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
+
+
+export const enquiry_status = {
+  CALL_RECIEVED: 'CALL_RECIEVED',
+  CENTER_VISITED: 'CENTER_VISITED',
+  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
+  ENROLLED: 'ENROLLED',
+  WRONG_NUMBER: 'WRONG_NUMBER',
+  CALL_BUSY: 'CALL_BUSY',
+  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT'
+} as const
+
+export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]

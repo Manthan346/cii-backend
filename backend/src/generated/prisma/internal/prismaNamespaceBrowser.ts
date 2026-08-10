@@ -316,13 +316,14 @@ export const Enquiry_recordsScalarFieldEnum = {
   enquiry_phone_no: 'enquiry_phone_no',
   enquiry_education: 'enquiry_education',
   enquiry_location: 'enquiry_location',
-  center_id: 'center_id',
   course_id: 'course_id',
   enquiry_source: 'enquiry_source',
-  enquiry_status: 'enquiry_status',
   remarks: 'remarks',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  enq_status: 'enq_status',
+  center_id: 'center_id',
+  mobilizer_id: 'mobilizer_id'
 } as const
 
 export type Enquiry_recordsScalarFieldEnum = (typeof Enquiry_recordsScalarFieldEnum)[keyof typeof Enquiry_recordsScalarFieldEnum]
@@ -537,7 +538,8 @@ export const Mobilizer_detailsScalarFieldEnum = {
   mobilizer_unique_id: 'mobilizer_unique_id',
   user_id: 'user_id',
   mobilizer_first_name: 'mobilizer_first_name',
-  mobilizer_last_name: 'mobilizer_last_name'
+  mobilizer_last_name: 'mobilizer_last_name',
+  center_id: 'center_id'
 } as const
 
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
