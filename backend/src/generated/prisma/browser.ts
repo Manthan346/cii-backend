@@ -137,3 +137,13 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
+/**
+ * Model batch_syllabus
+ * 
+ */
+export type batch_syllabus = Prisma.batch_syllabusModel
+/**
+ * Model mobilizer_details
+ * 
+ */
+export type mobilizer_details = Prisma.mobilizer_detailsModel

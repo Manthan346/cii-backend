@@ -78,6 +78,7 @@ model batch_details {
   instructor_details  instructor_details    @relation(fields: [instructor_id], references: [instructor_id], onDelete: SetNull)
   course_details      course_details        @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_batch_course")
   batch_enrollment    batch_enrollment[]
+  batch_syllabus      batch_syllabus[]
   event_batches       event_batches[]
   study_material      study_material[]
 }
@@ -239,17 +240,17 @@ model enquiry_records {
   enquiry_id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   enquiry_first_name String          @db.VarChar(100)
   enquiry_last_name  String?         @db.VarChar(100)
-  enquiry_email      String?         @db.VarChar(255)
+  enquiry_email      String          @db.VarChar(255)
   enquiry_phone_no   String          @db.VarChar(15)
   enquiry_education  String?         @db.VarChar(100)
   enquiry_location   String?
   center_id          String?         @db.Uuid
   course_id          String?         @db.Uuid
   enquiry_source     String?         @db.VarChar(100)
-  enquiry_status     String?         @default("Pending") @db.VarChar(30)
   remarks            String?
   created_at         DateTime        @default(now()) @db.Timestamp(6)
   updated_at         DateTime        @default(now()) @db.Timestamp(6)
+  enq_status         enquiry_status?
   course_details     course_details? @relation(fields: [course_id], references: [course_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_course")
 }
 
@@ -348,6 +349,7 @@ model instructor_details {
   instructor_guardian_blood_group  String?               @db.VarChar(6)
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
+  batch_syllabus                   batch_syllabus[]
   company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
   user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
@@ -445,6 +447,7 @@ model user_login {
   event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
   event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
   instructor_details                                 instructor_details?
+  mobilizer_details                                  mobilizer_details?
   study_material                                     study_material[]
   center_details                                     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
   user_notifications                                 user_notifications[]
@@ -463,6 +466,30 @@ model user_notifications {
   @@unique([notification_id, user_id], map: "unique_notification_per_user")
 }
 
+model batch_syllabus {
+  batch_syllabus_id  String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  batch_id           String              @db.Uuid
+  topic_name         String
+  completion_date    DateTime            @db.Date
+  is_completed       Boolean             @default(false)
+  completed_at       DateTime?           @db.Timestamp(6)
+  completed_by       String?             @db.Uuid
+  created_at         DateTime            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime            @default(now()) @db.Timestamp(6)
+  batch_details      batch_details       @relation(fields: [batch_id], references: [batch_id], onDelete: NoAction, onUpdate: NoAction)
+  instructor_details instructor_details? @relation(fields: [completed_by], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model mobilizer_details {
+  mobilizer_id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mobilizer_phone_no   String?     @unique @db.VarChar(10)
+  mobilizer_unique_id  String?     @unique
+  user_id              String?     @unique @db.Uuid
+  mobilizer_first_name String
+  mobilizer_last_name  String
+  user_login           user_login? @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 enum assessment_type {
   APTITUDE
   TECHNICAL
@@ -475,6 +502,7 @@ enum attend_types {
   present
   absent
   late
+  half_day @map("half-day")
 }
 
 enum attendance_mode_type {
@@ -581,6 +609,7 @@ enum role_types {
   instructor
   admin
   super_admin @map("super-admin")
+  mobilizer
 }
 
 enum training_type {
@@ -588,4 +617,14 @@ enum training_type {
   WORKSHOP
   UPSKILLING
   SEMINAR
+}
+
+enum enquiry_status {
+  CALL_RECIEVED
+  CENTER_VISITED
+  CENTER_NOT_VISITED
+  ENROLLED
+  WRONG_NUMBER
+  CALL_BUSY
+  CALL_DROPPED_OUT
 }
