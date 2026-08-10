@@ -2843,8 +2843,7 @@ export const Mobilizer_detailsScalarFieldEnum = {
   mobilizer_unique_id: 'mobilizer_unique_id',
   user_id: 'user_id',
   mobilizer_first_name: 'mobilizer_first_name',
-  mobilizer_last_name: 'mobilizer_last_name',
-  center_id: 'center_id'
+  mobilizer_last_name: 'mobilizer_last_name'
 } as const
 
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]

@@ -198,19 +198,18 @@ model center_company {
 }
 
 model center_details {
-  center_id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_name       String              @unique @db.VarChar(255)
-  center_address    String
-  center_email      String              @unique @db.VarChar(255)
-  center_contact    String              @db.VarChar(15)
-  created_at        DateTime            @default(now()) @db.Timestamp(6)
-  updated_at        DateTime            @default(now()) @db.Timestamp(6)
-  batch_details     batch_details[]
-  center_company    center_company[]
-  enquiry_records   enquiry_records[]
-  event_details     event_details[]
-  mobilizer_details mobilizer_details[]
-  user_login        user_login[]
+  center_id       String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  center_name     String            @unique @db.VarChar(255)
+  center_address  String
+  center_email    String            @unique @db.VarChar(255)
+  center_contact  String            @db.VarChar(15)
+  created_at      DateTime          @default(now()) @db.Timestamp(6)
+  updated_at      DateTime          @default(now()) @db.Timestamp(6)
+  batch_details   batch_details[]
+  center_company  center_company[]
+  enquiry_records enquiry_records[]
+  event_details   event_details[]
+  user_login      user_login[]
 }
 
 model company_details {
@@ -480,9 +479,7 @@ model mobilizer_details {
   user_id              String            @unique @db.Uuid
   mobilizer_first_name String
   mobilizer_last_name  String
-  center_id            String            @db.Uuid
   enquiry_records      enquiry_records[]
-  center_details       center_details    @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_mobilizer_details_center")
   user_login           user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
