@@ -48,17 +48,45 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
     where: {
       batch_id: session.batch_id,
       candidate_id: { in: candidateIds },
-      enrollment_status: "ACTIVE",
     },
-    select: { candidate_id: true },
+    select: {
+      candidate_id: true,
+      enrollment_status: true,
+      candidates_details: {
+        select: {
+          candidate_unique_id: true,
+          candidate_first_name: true,
+          candidate_last_name: true,
+        },
+      },
+    },
   });
-  const enrolledCandidateIds = new Set(enrollments.map((e) => e.candidate_id));
 
-  const invalidCandidateIds = candidateIds.filter((id) => !enrolledCandidateIds.has(id));
-  if (invalidCandidateIds.length > 0) {
+  // Map for quick lookup: candidate_id -> enrollment record
+  const enrollmentMap = new Map(enrollments.map((e) => [e.candidate_id, e]));
+
+  // Find invalid: not enrolled OR not ACTIVE
+  const invalidCandidates = candidateIds
+    .filter((id) => {
+      const e = enrollmentMap.get(id);
+      return !e || e.enrollment_status !== "ACTIVE";
+    })
+    .map((id) => {
+      const e = enrollmentMap.get(id);
+      const d = e?.candidates_details;
+      return {
+        candidateId: id,
+        uniqueCode: d?.candidate_unique_id ?? "N/A",
+        name: d ? `${d.candidate_first_name} ${d.candidate_last_name ?? ""}`.trim() : "Unknown",
+      };
+    });
+
+  if (invalidCandidates.length > 0) {
     throw new ApiError(
       400,
-      `The following candidates are not actively enrolled in this batch: ${invalidCandidateIds.join(", ")}`
+      `The following candidates are not actively enrolled in this batch: ${invalidCandidates
+        .map((c) => `${c.name} (${c.uniqueCode})`)
+        .join(", ")}`
     );
   }
 
