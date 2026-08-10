@@ -333,11 +333,6 @@ export type hr_detailsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type Hr_detailsNullableScalarRelationFilter = {
-  is?: Prisma.hr_detailsWhereInput | null
-  isNot?: Prisma.hr_detailsWhereInput | null
-}
-
 export type hr_detailsCountOrderByAggregateInput = {
   hr_id?: Prisma.SortOrder
   hr_first_name?: Prisma.SortOrder
@@ -366,6 +361,11 @@ export type hr_detailsMinOrderByAggregateInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+}
+
+export type Hr_detailsNullableScalarRelationFilter = {
+  is?: Prisma.hr_detailsWhereInput | null
+  isNot?: Prisma.hr_detailsWhereInput | null
 }
 
 export type hr_detailsCreateNestedManyWithoutCompany_detailsInput = {

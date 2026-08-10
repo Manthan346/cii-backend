@@ -449,10 +449,6 @@ export type study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput = {
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type study_materialCreateNestedManyWithoutUser_loginInput = {
   create?: Prisma.XOR<Prisma.study_materialCreateWithoutUser_loginInput, Prisma.study_materialUncheckedCreateWithoutUser_loginInput> | Prisma.study_materialCreateWithoutUser_loginInput[] | Prisma.study_materialUncheckedCreateWithoutUser_loginInput[]
   connectOrCreate?: Prisma.study_materialCreateOrConnectWithoutUser_loginInput | Prisma.study_materialCreateOrConnectWithoutUser_loginInput[]
