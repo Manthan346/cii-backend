@@ -65,6 +65,17 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
   // Map for quick lookup: candidate_id -> enrollment record
   const enrollmentMap = new Map(enrollments.map((e) => [e.candidate_id, e]));
 
+  // Candidates not in batch_enrollment at all → fetch from candidates_details
+  const missingFromEnrollment = candidateIds.filter((id) => !enrollmentMap.has(id));
+  const extraDetails = new Map(
+    (
+      await prisma.candidates_details.findMany({
+        where: { candidate_id: { in: missingFromEnrollment } },
+        select: { candidate_id: true, candidate_unique_id: true, candidate_first_name: true, candidate_last_name: true },
+      })
+    ).map((c) => [c.candidate_id, c])
+  );
+
   // Find invalid: not enrolled OR not ACTIVE
   const invalidCandidates = candidateIds
     .filter((id) => {
@@ -73,7 +84,7 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
     })
     .map((id) => {
       const e = enrollmentMap.get(id);
-      const d = e?.candidates_details;
+      const d = e?.candidates_details ?? extraDetails.get(id);
       return {
         candidateId: id,
         uniqueCode: d?.candidate_unique_id ?? "N/A",
@@ -90,15 +101,15 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
     );
   }
 
-  await prisma.$transaction(
+const record =  await prisma.$transaction(
     attendance.map((entry) =>
       prisma.attendance_records.upsert({
         where: {
-          uq_session_candidate: {
+          attendance_session_id_candidate_id: {
             attendance_session_id: attendanceSessionId,
             candidate_id: entry.candidateId,
           },
-        } as any,
+        },
         update: {
           attendance_status: entry.attendanceStatus,
           remarks: entry.remarks,
@@ -124,7 +135,7 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
   }
 
   return res.status(200).json(
-    new ApiResponse(200, { markedCount: attendance.length }, "Attendance marked successfully")
+    new ApiResponse(200, { markedCount: attendance.length, record }, "Attendance marked successfully")
   );
 });
 
