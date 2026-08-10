@@ -294,6 +294,7 @@ export type batch_detailsWhereInput = {
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsScalarRelationFilter, Prisma.instructor_detailsWhereInput>
   course_details?: Prisma.XOR<Prisma.Course_detailsScalarRelationFilter, Prisma.course_detailsWhereInput>
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+  batch_syllabus?: Prisma.Batch_syllabusListRelationFilter
   event_batches?: Prisma.Event_batchesListRelationFilter
   study_material?: Prisma.Study_materialListRelationFilter
 }
@@ -319,6 +320,7 @@ export type batch_detailsOrderByWithRelationInput = {
   instructor_details?: Prisma.instructor_detailsOrderByWithRelationInput
   course_details?: Prisma.course_detailsOrderByWithRelationInput
   batch_enrollment?: Prisma.batch_enrollmentOrderByRelationAggregateInput
+  batch_syllabus?: Prisma.batch_syllabusOrderByRelationAggregateInput
   event_batches?: Prisma.event_batchesOrderByRelationAggregateInput
   study_material?: Prisma.study_materialOrderByRelationAggregateInput
 }
@@ -347,6 +349,7 @@ export type batch_detailsWhereUniqueInput = Prisma.AtLeast<{
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsScalarRelationFilter, Prisma.instructor_detailsWhereInput>
   course_details?: Prisma.XOR<Prisma.Course_detailsScalarRelationFilter, Prisma.course_detailsWhereInput>
   batch_enrollment?: Prisma.Batch_enrollmentListRelationFilter
+  batch_syllabus?: Prisma.Batch_syllabusListRelationFilter
   event_batches?: Prisma.Event_batchesListRelationFilter
   study_material?: Prisma.Study_materialListRelationFilter
 }, "batch_id" | "batch_code">
@@ -411,6 +414,7 @@ export type batch_detailsCreateInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -433,6 +437,7 @@ export type batch_detailsUncheckedCreateInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -455,6 +460,7 @@ export type batch_detailsUpdateInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -477,6 +483,7 @@ export type batch_detailsUncheckedUpdateInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -815,6 +822,20 @@ export type batch_detailsUpdateOneRequiredWithoutStudy_materialNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.batch_detailsUpdateToOneWithWhereWithoutStudy_materialInput, Prisma.batch_detailsUpdateWithoutStudy_materialInput>, Prisma.batch_detailsUncheckedUpdateWithoutStudy_materialInput>
 }
 
+export type batch_detailsCreateNestedOneWithoutBatch_syllabusInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedCreateWithoutBatch_syllabusInput>
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutBatch_syllabusInput
+  connect?: Prisma.batch_detailsWhereUniqueInput
+}
+
+export type batch_detailsUpdateOneRequiredWithoutBatch_syllabusNestedInput = {
+  create?: Prisma.XOR<Prisma.batch_detailsCreateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedCreateWithoutBatch_syllabusInput>
+  connectOrCreate?: Prisma.batch_detailsCreateOrConnectWithoutBatch_syllabusInput
+  upsert?: Prisma.batch_detailsUpsertWithoutBatch_syllabusInput
+  connect?: Prisma.batch_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.batch_detailsUpdateToOneWithWhereWithoutBatch_syllabusInput, Prisma.batch_detailsUpdateWithoutBatch_syllabusInput>, Prisma.batch_detailsUncheckedUpdateWithoutBatch_syllabusInput>
+}
+
 export type batch_detailsCreateWithoutAssessmentsInput = {
   batch_id?: string
   batch_name: string
@@ -832,6 +853,7 @@ export type batch_detailsCreateWithoutAssessmentsInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -853,6 +875,7 @@ export type batch_detailsUncheckedCreateWithoutAssessmentsInput = {
   center_id?: string | null
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -890,6 +913,7 @@ export type batch_detailsUpdateWithoutAssessmentsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -911,6 +935,7 @@ export type batch_detailsUncheckedUpdateWithoutAssessmentsInput = {
   center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -932,6 +957,7 @@ export type batch_detailsCreateWithoutAttendance_sessionsInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -953,6 +979,7 @@ export type batch_detailsUncheckedCreateWithoutAttendance_sessionsInput = {
   center_id?: string | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -990,6 +1017,7 @@ export type batch_detailsUpdateWithoutAttendance_sessionsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1011,6 +1039,7 @@ export type batch_detailsUncheckedUpdateWithoutAttendance_sessionsInput = {
   center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1032,6 +1061,7 @@ export type batch_detailsCreateWithoutBatch_enrollmentInput = {
   center_details?: Prisma.center_detailsCreateNestedOneWithoutBatch_detailsInput
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1053,6 +1083,7 @@ export type batch_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   center_id?: string | null
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1090,6 +1121,7 @@ export type batch_detailsUpdateWithoutBatch_enrollmentInput = {
   center_details?: Prisma.center_detailsUpdateOneWithoutBatch_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1111,6 +1143,7 @@ export type batch_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1132,6 +1165,7 @@ export type batch_detailsCreateWithoutCenter_detailsInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1153,6 +1187,7 @@ export type batch_detailsUncheckedCreateWithoutCenter_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1220,6 +1255,7 @@ export type batch_detailsCreateWithoutCourse_detailsInput = {
   center_details?: Prisma.center_detailsCreateNestedOneWithoutBatch_detailsInput
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1241,6 +1277,7 @@ export type batch_detailsUncheckedCreateWithoutCourse_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1289,6 +1326,7 @@ export type batch_detailsCreateWithoutEvent_batchesInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
 
@@ -1310,6 +1348,7 @@ export type batch_detailsUncheckedCreateWithoutEvent_batchesInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
 
@@ -1347,6 +1386,7 @@ export type batch_detailsUpdateWithoutEvent_batchesInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
 
@@ -1368,6 +1408,7 @@ export type batch_detailsUncheckedUpdateWithoutEvent_batchesInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
 
@@ -1388,6 +1429,7 @@ export type batch_detailsCreateWithoutInstructor_detailsInput = {
   center_details?: Prisma.center_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1409,6 +1451,7 @@ export type batch_detailsUncheckedCreateWithoutInstructor_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
@@ -1457,6 +1500,7 @@ export type batch_detailsCreateWithoutStudy_materialInput = {
   instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
   course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
 }
 
@@ -1478,6 +1522,7 @@ export type batch_detailsUncheckedCreateWithoutStudy_materialInput = {
   assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedCreateNestedManyWithoutBatch_detailsInput
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
 }
 
@@ -1515,6 +1560,7 @@ export type batch_detailsUpdateWithoutStudy_materialInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
 }
 
@@ -1536,7 +1582,112 @@ export type batch_detailsUncheckedUpdateWithoutStudy_materialInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
+}
+
+export type batch_detailsCreateWithoutBatch_syllabusInput = {
+  batch_id?: string
+  batch_name: string
+  batch_code: string
+  batch_desc: string
+  batch_start_date: Date | string
+  batch_end_date: Date | string
+  max_candidates: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  batch_type: $Enums.training_type
+  b_status: $Enums.batch_status
+  assessments?: Prisma.assessmentsCreateNestedManyWithoutBatch_detailsInput
+  attendance_sessions?: Prisma.attendance_sessionsCreateNestedManyWithoutBatch_detailsInput
+  center_details?: Prisma.center_detailsCreateNestedOneWithoutBatch_detailsInput
+  instructor_details: Prisma.instructor_detailsCreateNestedOneWithoutBatch_detailsInput
+  course_details: Prisma.course_detailsCreateNestedOneWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentCreateNestedManyWithoutBatch_detailsInput
+  event_batches?: Prisma.event_batchesCreateNestedManyWithoutBatch_detailsInput
+  study_material?: Prisma.study_materialCreateNestedManyWithoutBatch_detailsInput
+}
+
+export type batch_detailsUncheckedCreateWithoutBatch_syllabusInput = {
+  batch_id?: string
+  batch_name: string
+  batch_code: string
+  batch_desc: string
+  course_id: string
+  batch_start_date: Date | string
+  batch_end_date: Date | string
+  max_candidates: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  instructor_id: string
+  batch_type: $Enums.training_type
+  b_status: $Enums.batch_status
+  center_id?: string | null
+  assessments?: Prisma.assessmentsUncheckedCreateNestedManyWithoutBatch_detailsInput
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedCreateNestedManyWithoutBatch_detailsInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedCreateNestedManyWithoutBatch_detailsInput
+  event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutBatch_detailsInput
+  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutBatch_detailsInput
+}
+
+export type batch_detailsCreateOrConnectWithoutBatch_syllabusInput = {
+  where: Prisma.batch_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.batch_detailsCreateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedCreateWithoutBatch_syllabusInput>
+}
+
+export type batch_detailsUpsertWithoutBatch_syllabusInput = {
+  update: Prisma.XOR<Prisma.batch_detailsUpdateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedUpdateWithoutBatch_syllabusInput>
+  create: Prisma.XOR<Prisma.batch_detailsCreateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedCreateWithoutBatch_syllabusInput>
+  where?: Prisma.batch_detailsWhereInput
+}
+
+export type batch_detailsUpdateToOneWithWhereWithoutBatch_syllabusInput = {
+  where?: Prisma.batch_detailsWhereInput
+  data: Prisma.XOR<Prisma.batch_detailsUpdateWithoutBatch_syllabusInput, Prisma.batch_detailsUncheckedUpdateWithoutBatch_syllabusInput>
+}
+
+export type batch_detailsUpdateWithoutBatch_syllabusInput = {
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_name?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_code?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_desc?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  max_candidates?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_type?: Prisma.Enumtraining_typeFieldUpdateOperationsInput | $Enums.training_type
+  b_status?: Prisma.Enumbatch_statusFieldUpdateOperationsInput | $Enums.batch_status
+  assessments?: Prisma.assessmentsUpdateManyWithoutBatch_detailsNestedInput
+  attendance_sessions?: Prisma.attendance_sessionsUpdateManyWithoutBatch_detailsNestedInput
+  center_details?: Prisma.center_detailsUpdateOneWithoutBatch_detailsNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
+  course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
+  study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
+}
+
+export type batch_detailsUncheckedUpdateWithoutBatch_syllabusInput = {
+  batch_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_name?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_code?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_desc?: Prisma.StringFieldUpdateOperationsInput | string
+  course_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_start_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch_end_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  max_candidates?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  instructor_id?: Prisma.StringFieldUpdateOperationsInput | string
+  batch_type?: Prisma.Enumtraining_typeFieldUpdateOperationsInput | $Enums.training_type
+  b_status?: Prisma.Enumbatch_statusFieldUpdateOperationsInput | $Enums.batch_status
+  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
 
 export type batch_detailsCreateManyCenter_detailsInput = {
@@ -1572,6 +1723,7 @@ export type batch_detailsUpdateWithoutCenter_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1593,6 +1745,7 @@ export type batch_detailsUncheckedUpdateWithoutCenter_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1646,6 +1799,7 @@ export type batch_detailsUpdateWithoutCourse_detailsInput = {
   center_details?: Prisma.center_detailsUpdateOneWithoutBatch_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1667,6 +1821,7 @@ export type batch_detailsUncheckedUpdateWithoutCourse_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1720,6 +1875,7 @@ export type batch_detailsUpdateWithoutInstructor_detailsInput = {
   center_details?: Prisma.center_detailsUpdateOneWithoutBatch_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1741,6 +1897,7 @@ export type batch_detailsUncheckedUpdateWithoutInstructor_detailsInput = {
   assessments?: Prisma.assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   attendance_sessions?: Prisma.attendance_sessionsUncheckedUpdateManyWithoutBatch_detailsNestedInput
   batch_enrollment?: Prisma.batch_enrollmentUncheckedUpdateManyWithoutBatch_detailsNestedInput
+  batch_syllabus?: Prisma.batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutBatch_detailsNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutBatch_detailsNestedInput
 }
@@ -1770,6 +1927,7 @@ export type Batch_detailsCountOutputType = {
   assessments: number
   attendance_sessions: number
   batch_enrollment: number
+  batch_syllabus: number
   event_batches: number
   study_material: number
 }
@@ -1778,6 +1936,7 @@ export type Batch_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   assessments?: boolean | Batch_detailsCountOutputTypeCountAssessmentsArgs
   attendance_sessions?: boolean | Batch_detailsCountOutputTypeCountAttendance_sessionsArgs
   batch_enrollment?: boolean | Batch_detailsCountOutputTypeCountBatch_enrollmentArgs
+  batch_syllabus?: boolean | Batch_detailsCountOutputTypeCountBatch_syllabusArgs
   event_batches?: boolean | Batch_detailsCountOutputTypeCountEvent_batchesArgs
   study_material?: boolean | Batch_detailsCountOutputTypeCountStudy_materialArgs
 }
@@ -1816,6 +1975,13 @@ export type Batch_detailsCountOutputTypeCountBatch_enrollmentArgs<ExtArgs extend
 /**
  * Batch_detailsCountOutputType without action
  */
+export type Batch_detailsCountOutputTypeCountBatch_syllabusArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.batch_syllabusWhereInput
+}
+
+/**
+ * Batch_detailsCountOutputType without action
+ */
 export type Batch_detailsCountOutputTypeCountEvent_batchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.event_batchesWhereInput
 }
@@ -1849,6 +2015,7 @@ export type batch_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   instructor_details?: boolean | Prisma.instructor_detailsDefaultArgs<ExtArgs>
   course_details?: boolean | Prisma.course_detailsDefaultArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
+  batch_syllabus?: boolean | Prisma.batch_details$batch_syllabusArgs<ExtArgs>
   event_batches?: boolean | Prisma.batch_details$event_batchesArgs<ExtArgs>
   study_material?: boolean | Prisma.batch_details$study_materialArgs<ExtArgs>
   _count?: boolean | Prisma.Batch_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1919,6 +2086,7 @@ export type batch_detailsInclude<ExtArgs extends runtime.Types.Extensions.Intern
   instructor_details?: boolean | Prisma.instructor_detailsDefaultArgs<ExtArgs>
   course_details?: boolean | Prisma.course_detailsDefaultArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.batch_details$batch_enrollmentArgs<ExtArgs>
+  batch_syllabus?: boolean | Prisma.batch_details$batch_syllabusArgs<ExtArgs>
   event_batches?: boolean | Prisma.batch_details$event_batchesArgs<ExtArgs>
   study_material?: boolean | Prisma.batch_details$study_materialArgs<ExtArgs>
   _count?: boolean | Prisma.Batch_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1943,6 +2111,7 @@ export type $batch_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     instructor_details: Prisma.$instructor_detailsPayload<ExtArgs>
     course_details: Prisma.$course_detailsPayload<ExtArgs>
     batch_enrollment: Prisma.$batch_enrollmentPayload<ExtArgs>[]
+    batch_syllabus: Prisma.$batch_syllabusPayload<ExtArgs>[]
     event_batches: Prisma.$event_batchesPayload<ExtArgs>[]
     study_material: Prisma.$study_materialPayload<ExtArgs>[]
   }
@@ -2361,6 +2530,7 @@ export interface Prisma__batch_detailsClient<T, Null = never, ExtArgs extends ru
   instructor_details<T extends Prisma.instructor_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.instructor_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__instructor_detailsClient<runtime.Types.Result.GetResult<Prisma.$instructor_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   course_details<T extends Prisma.course_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.course_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__course_detailsClient<runtime.Types.Result.GetResult<Prisma.$course_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   batch_enrollment<T extends Prisma.batch_details$batch_enrollmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$batch_enrollmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_enrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  batch_syllabus<T extends Prisma.batch_details$batch_syllabusArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$batch_syllabusArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$batch_syllabusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   event_batches<T extends Prisma.batch_details$event_batchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$event_batchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$event_batchesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   study_material<T extends Prisma.batch_details$study_materialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.batch_details$study_materialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$study_materialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2890,6 +3060,30 @@ export type batch_details$batch_enrollmentArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.Batch_enrollmentScalarFieldEnum | Prisma.Batch_enrollmentScalarFieldEnum[]
+}
+
+/**
+ * batch_details.batch_syllabus
+ */
+export type batch_details$batch_syllabusArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the batch_syllabus
+   */
+  select?: Prisma.batch_syllabusSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the batch_syllabus
+   */
+  omit?: Prisma.batch_syllabusOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.batch_syllabusInclude<ExtArgs> | null
+  where?: Prisma.batch_syllabusWhereInput
+  orderBy?: Prisma.batch_syllabusOrderByWithRelationInput | Prisma.batch_syllabusOrderByWithRelationInput[]
+  cursor?: Prisma.batch_syllabusWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Batch_syllabusScalarFieldEnum | Prisma.Batch_syllabusScalarFieldEnum[]
 }
 
 /**

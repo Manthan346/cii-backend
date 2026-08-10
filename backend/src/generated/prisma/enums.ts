@@ -23,7 +23,8 @@ export type assessment_type = (typeof assessment_type)[keyof typeof assessment_t
 export const attend_types = {
   present: 'present',
   absent: 'absent',
-  late: 'late'
+  late: 'late',
+  half_day: 'half_day'
 } as const
 
 export type attend_types = (typeof attend_types)[keyof typeof attend_types]
@@ -171,7 +172,8 @@ export const role_types = {
   candidate: 'candidate',
   instructor: 'instructor',
   admin: 'admin',
-  super_admin: 'super_admin'
+  super_admin: 'super_admin',
+  mobilizer: 'mobilizer'
 } as const
 
 export type role_types = (typeof role_types)[keyof typeof role_types]
@@ -185,3 +187,16 @@ export const training_type = {
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
+
+
+export const enquiry_status = {
+  CALL_RECIEVED: 'CALL_RECIEVED',
+  CENTER_VISITED: 'CENTER_VISITED',
+  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
+  ENROLLED: 'ENROLLED',
+  WRONG_NUMBER: 'WRONG_NUMBER',
+  CALL_BUSY: 'CALL_BUSY',
+  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT'
+} as const
+
+export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]

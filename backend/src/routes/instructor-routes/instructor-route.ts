@@ -46,6 +46,7 @@ import { getAllInstructorEvents } from "../../controllers/instructor-controller/
 import { deleteInstructorEvent } from "../../controllers/instructor-controller/delete-instructor-event";
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { instructorGuardianDetails } from "../../controllers/instructor-controller/instructor-guardian-details";
+import { addCandidateAttendance } from "../../controllers/instructor-controller/mark-candidate-attendance";
 
 const instructorRouter = Router();
 
@@ -87,6 +88,7 @@ instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createB
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
 instructorRouter.get('/guardian-details', verifyInstructorUsingAccessToken, instructorGuardianDetails)
+instructorRouter.post('/mark-candidate-attendnace/:attendanceSessionId', verifyInstructorUsingAccessToken, addCandidateAttendance)
 
 
 instructorRouter.get(

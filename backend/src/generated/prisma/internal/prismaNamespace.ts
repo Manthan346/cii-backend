@@ -413,7 +413,9 @@ export const ModelName = {
   notifications: 'notifications',
   study_material: 'study_material',
   user_login: 'user_login',
-  user_notifications: 'user_notifications'
+  user_notifications: 'user_notifications',
+  batch_syllabus: 'batch_syllabus',
+  mobilizer_details: 'mobilizer_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -429,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "batch_syllabus" | "mobilizer_details"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2209,6 +2211,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    batch_syllabus: {
+      payload: Prisma.$batch_syllabusPayload<ExtArgs>
+      fields: Prisma.batch_syllabusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.batch_syllabusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.batch_syllabusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        findFirst: {
+          args: Prisma.batch_syllabusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.batch_syllabusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        findMany: {
+          args: Prisma.batch_syllabusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        create: {
+          args: Prisma.batch_syllabusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        createMany: {
+          args: Prisma.batch_syllabusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.batch_syllabusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        delete: {
+          args: Prisma.batch_syllabusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        update: {
+          args: Prisma.batch_syllabusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        deleteMany: {
+          args: Prisma.batch_syllabusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.batch_syllabusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.batch_syllabusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>[]
+        }
+        upsert: {
+          args: Prisma.batch_syllabusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$batch_syllabusPayload>
+        }
+        aggregate: {
+          args: Prisma.Batch_syllabusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBatch_syllabus>
+        }
+        groupBy: {
+          args: Prisma.batch_syllabusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Batch_syllabusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.batch_syllabusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Batch_syllabusCountAggregateOutputType> | number
+        }
+      }
+    }
+    mobilizer_details: {
+      payload: Prisma.$mobilizer_detailsPayload<ExtArgs>
+      fields: Prisma.mobilizer_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.mobilizer_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.mobilizer_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.mobilizer_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.mobilizer_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.mobilizer_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.mobilizer_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.mobilizer_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.mobilizer_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.mobilizer_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        update: {
+          args: Prisma.mobilizer_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.mobilizer_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.mobilizer_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.mobilizer_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.mobilizer_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$mobilizer_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Mobilizer_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMobilizer_details>
+        }
+        groupBy: {
+          args: Prisma.mobilizer_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Mobilizer_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.mobilizer_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Mobilizer_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2471,13 +2621,14 @@ export const Enquiry_recordsScalarFieldEnum = {
   enquiry_phone_no: 'enquiry_phone_no',
   enquiry_education: 'enquiry_education',
   enquiry_location: 'enquiry_location',
-  center_id: 'center_id',
   course_id: 'course_id',
   enquiry_source: 'enquiry_source',
-  enquiry_status: 'enquiry_status',
   remarks: 'remarks',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  enq_status: 'enq_status',
+  center_id: 'center_id',
+  mobilizer_id: 'mobilizer_id'
 } as const
 
 export type Enquiry_recordsScalarFieldEnum = (typeof Enquiry_recordsScalarFieldEnum)[keyof typeof Enquiry_recordsScalarFieldEnum]
@@ -2686,6 +2837,33 @@ export const User_notificationsScalarFieldEnum = {
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
 
 
+export const Batch_syllabusScalarFieldEnum = {
+  batch_syllabus_id: 'batch_syllabus_id',
+  batch_id: 'batch_id',
+  topic_name: 'topic_name',
+  completion_date: 'completion_date',
+  is_completed: 'is_completed',
+  completed_at: 'completed_at',
+  completed_by: 'completed_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnum)[keyof typeof Batch_syllabusScalarFieldEnum]
+
+
+export const Mobilizer_detailsScalarFieldEnum = {
+  mobilizer_id: 'mobilizer_id',
+  mobilizer_phone_no: 'mobilizer_phone_no',
+  mobilizer_unique_id: 'mobilizer_unique_id',
+  user_id: 'user_id',
+  mobilizer_first_name: 'mobilizer_first_name',
+  mobilizer_last_name: 'mobilizer_last_name'
+} as const
+
+export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2888,6 +3066,20 @@ export type Enumcourse_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
  * Reference to a field of type 'course_type[]'
  */
 export type ListEnumcourse_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'course_type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'enquiry_status'
+ */
+export type Enumenquiry_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'enquiry_status'>
+    
+
+
+/**
+ * Reference to a field of type 'enquiry_status[]'
+ */
+export type ListEnumenquiry_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'enquiry_status[]'>
     
 
 
@@ -3113,6 +3305,8 @@ export type GlobalOmitConfig = {
   study_material?: Prisma.study_materialOmit
   user_login?: Prisma.user_loginOmit
   user_notifications?: Prisma.user_notificationsOmit
+  batch_syllabus?: Prisma.batch_syllabusOmit
+  mobilizer_details?: Prisma.mobilizer_detailsOmit
 }
 
 /* Types for Logging */
