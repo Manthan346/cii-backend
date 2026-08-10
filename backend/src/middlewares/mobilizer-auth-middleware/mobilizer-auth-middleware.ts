@@ -31,6 +31,7 @@ export const verifyMobilizerUsingAccessToken = asyncHandler(
         req.mobilizer = {
             mobilizer_id: decoded.mobilizer_id,
             email: decoded.email,
+            center_id: decoded.center_id
         };
 
         req.user = {
