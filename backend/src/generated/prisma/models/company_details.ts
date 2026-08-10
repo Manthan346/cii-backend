@@ -184,6 +184,7 @@ export type company_detailsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
   center_company?: Prisma.Center_companyListRelationFilter
   course_details?: Prisma.Course_detailsListRelationFilter
+  hr_details?: Prisma.Hr_detailsListRelationFilter
   instructor_details?: Prisma.Instructor_detailsListRelationFilter
   job_opportunity?: Prisma.Job_opportunityListRelationFilter
 }
@@ -196,6 +197,7 @@ export type company_detailsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   center_company?: Prisma.center_companyOrderByRelationAggregateInput
   course_details?: Prisma.course_detailsOrderByRelationAggregateInput
+  hr_details?: Prisma.hr_detailsOrderByRelationAggregateInput
   instructor_details?: Prisma.instructor_detailsOrderByRelationAggregateInput
   job_opportunity?: Prisma.job_opportunityOrderByRelationAggregateInput
 }
@@ -211,6 +213,7 @@ export type company_detailsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"company_details"> | Date | string
   center_company?: Prisma.Center_companyListRelationFilter
   course_details?: Prisma.Course_detailsListRelationFilter
+  hr_details?: Prisma.Hr_detailsListRelationFilter
   instructor_details?: Prisma.Instructor_detailsListRelationFilter
   job_opportunity?: Prisma.Job_opportunityListRelationFilter
 }, "company_id" | "company_name">
@@ -245,6 +248,7 @@ export type company_detailsCreateInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityCreateNestedManyWithoutCompany_detailsInput
 }
@@ -257,6 +261,7 @@ export type company_detailsUncheckedCreateInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
@@ -269,6 +274,7 @@ export type company_detailsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -281,6 +287,7 @@ export type company_detailsUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -401,6 +408,20 @@ export type company_detailsUpdateOneRequiredWithoutJob_opportunityNestedInput = 
   update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutJob_opportunityInput, Prisma.company_detailsUpdateWithoutJob_opportunityInput>, Prisma.company_detailsUncheckedUpdateWithoutJob_opportunityInput>
 }
 
+export type company_detailsCreateNestedOneWithoutHr_detailsInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
+  connect?: Prisma.company_detailsWhereUniqueInput
+}
+
+export type company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
+  upsert?: Prisma.company_detailsUpsertWithoutHr_detailsInput
+  connect?: Prisma.company_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutHr_detailsInput, Prisma.company_detailsUpdateWithoutHr_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
+}
+
 export type company_detailsCreateWithoutCenter_companyInput = {
   company_id?: string
   company_name: string
@@ -408,6 +429,7 @@ export type company_detailsCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityCreateNestedManyWithoutCompany_detailsInput
 }
@@ -419,6 +441,7 @@ export type company_detailsUncheckedCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
@@ -446,6 +469,7 @@ export type company_detailsUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -457,6 +481,7 @@ export type company_detailsUncheckedUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -468,6 +493,7 @@ export type company_detailsCreateWithoutCourse_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityCreateNestedManyWithoutCompany_detailsInput
 }
@@ -479,6 +505,7 @@ export type company_detailsUncheckedCreateWithoutCourse_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
@@ -506,6 +533,7 @@ export type company_detailsUpdateWithoutCourse_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -517,6 +545,7 @@ export type company_detailsUncheckedUpdateWithoutCourse_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
@@ -529,6 +558,7 @@ export type company_detailsCreateWithoutInstructor_detailsInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityCreateNestedManyWithoutCompany_detailsInput
 }
 
@@ -540,6 +570,7 @@ export type company_detailsUncheckedCreateWithoutInstructor_detailsInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   job_opportunity?: Prisma.job_opportunityUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
@@ -567,6 +598,7 @@ export type company_detailsUpdateWithoutInstructor_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUpdateManyWithoutCompany_detailsNestedInput
 }
 
@@ -578,6 +610,7 @@ export type company_detailsUncheckedUpdateWithoutInstructor_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   job_opportunity?: Prisma.job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
@@ -589,6 +622,7 @@ export type company_detailsCreateWithoutJob_opportunityInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
 }
 
@@ -600,6 +634,7 @@ export type company_detailsUncheckedCreateWithoutJob_opportunityInput = {
   updated_at?: Date | string
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
@@ -627,6 +662,7 @@ export type company_detailsUpdateWithoutJob_opportunityInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
 }
 
@@ -638,7 +674,72 @@ export type company_detailsUncheckedUpdateWithoutJob_opportunityInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+}
+
+export type company_detailsCreateWithoutHr_detailsInput = {
+  company_id?: string
+  company_name: string
+  company_description?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
+  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
+  instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
+  job_opportunity?: Prisma.job_opportunityCreateNestedManyWithoutCompany_detailsInput
+}
+
+export type company_detailsUncheckedCreateWithoutHr_detailsInput = {
+  company_id?: string
+  company_name: string
+  company_description?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
+  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
+  job_opportunity?: Prisma.job_opportunityUncheckedCreateNestedManyWithoutCompany_detailsInput
+}
+
+export type company_detailsCreateOrConnectWithoutHr_detailsInput = {
+  where: Prisma.company_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+}
+
+export type company_detailsUpsertWithoutHr_detailsInput = {
+  update: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
+  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+  where?: Prisma.company_detailsWhereInput
+}
+
+export type company_detailsUpdateToOneWithWhereWithoutHr_detailsInput = {
+  where?: Prisma.company_detailsWhereInput
+  data: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
+}
+
+export type company_detailsUpdateWithoutHr_detailsInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
+  company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
+  course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
+  job_opportunity?: Prisma.job_opportunityUpdateManyWithoutCompany_detailsNestedInput
+}
+
+export type company_detailsUncheckedUpdateWithoutHr_detailsInput = {
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  company_name?: Prisma.StringFieldUpdateOperationsInput | string
+  company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
+  job_opportunity?: Prisma.job_opportunityUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
 
@@ -649,6 +750,7 @@ export type company_detailsUncheckedUpdateWithoutJob_opportunityInput = {
 export type Company_detailsCountOutputType = {
   center_company: number
   course_details: number
+  hr_details: number
   instructor_details: number
   job_opportunity: number
 }
@@ -656,6 +758,7 @@ export type Company_detailsCountOutputType = {
 export type Company_detailsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   center_company?: boolean | Company_detailsCountOutputTypeCountCenter_companyArgs
   course_details?: boolean | Company_detailsCountOutputTypeCountCourse_detailsArgs
+  hr_details?: boolean | Company_detailsCountOutputTypeCountHr_detailsArgs
   instructor_details?: boolean | Company_detailsCountOutputTypeCountInstructor_detailsArgs
   job_opportunity?: boolean | Company_detailsCountOutputTypeCountJob_opportunityArgs
 }
@@ -687,6 +790,13 @@ export type Company_detailsCountOutputTypeCountCourse_detailsArgs<ExtArgs extend
 /**
  * Company_detailsCountOutputType without action
  */
+export type Company_detailsCountOutputTypeCountHr_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.hr_detailsWhereInput
+}
+
+/**
+ * Company_detailsCountOutputType without action
+ */
 export type Company_detailsCountOutputTypeCountInstructor_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.instructor_detailsWhereInput
 }
@@ -707,6 +817,7 @@ export type company_detailsSelect<ExtArgs extends runtime.Types.Extensions.Inter
   updated_at?: boolean
   center_company?: boolean | Prisma.company_details$center_companyArgs<ExtArgs>
   course_details?: boolean | Prisma.company_details$course_detailsArgs<ExtArgs>
+  hr_details?: boolean | Prisma.company_details$hr_detailsArgs<ExtArgs>
   instructor_details?: boolean | Prisma.company_details$instructor_detailsArgs<ExtArgs>
   job_opportunity?: boolean | Prisma.company_details$job_opportunityArgs<ExtArgs>
   _count?: boolean | Prisma.Company_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -740,6 +851,7 @@ export type company_detailsOmit<ExtArgs extends runtime.Types.Extensions.Interna
 export type company_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   center_company?: boolean | Prisma.company_details$center_companyArgs<ExtArgs>
   course_details?: boolean | Prisma.company_details$course_detailsArgs<ExtArgs>
+  hr_details?: boolean | Prisma.company_details$hr_detailsArgs<ExtArgs>
   instructor_details?: boolean | Prisma.company_details$instructor_detailsArgs<ExtArgs>
   job_opportunity?: boolean | Prisma.company_details$job_opportunityArgs<ExtArgs>
   _count?: boolean | Prisma.Company_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -752,6 +864,7 @@ export type $company_detailsPayload<ExtArgs extends runtime.Types.Extensions.Int
   objects: {
     center_company: Prisma.$center_companyPayload<ExtArgs>[]
     course_details: Prisma.$course_detailsPayload<ExtArgs>[]
+    hr_details: Prisma.$hr_detailsPayload<ExtArgs>[]
     instructor_details: Prisma.$instructor_detailsPayload<ExtArgs>[]
     job_opportunity: Prisma.$job_opportunityPayload<ExtArgs>[]
   }
@@ -1157,6 +1270,7 @@ export interface Prisma__company_detailsClient<T, Null = never, ExtArgs extends 
   readonly [Symbol.toStringTag]: "PrismaPromise"
   center_company<T extends Prisma.company_details$center_companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_details$center_companyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$center_companyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   course_details<T extends Prisma.company_details$course_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_details$course_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$course_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hr_details<T extends Prisma.company_details$hr_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_details$hr_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$hr_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   instructor_details<T extends Prisma.company_details$instructor_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_details$instructor_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$instructor_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   job_opportunity<T extends Prisma.company_details$job_opportunityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_details$job_opportunityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$job_opportunityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1626,6 +1740,30 @@ export type company_details$course_detailsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.Course_detailsScalarFieldEnum | Prisma.Course_detailsScalarFieldEnum[]
+}
+
+/**
+ * company_details.hr_details
+ */
+export type company_details$hr_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the hr_details
+   */
+  select?: Prisma.hr_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the hr_details
+   */
+  omit?: Prisma.hr_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.hr_detailsInclude<ExtArgs> | null
+  where?: Prisma.hr_detailsWhereInput
+  orderBy?: Prisma.hr_detailsOrderByWithRelationInput | Prisma.hr_detailsOrderByWithRelationInput[]
+  cursor?: Prisma.hr_detailsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Hr_detailsScalarFieldEnum | Prisma.Hr_detailsScalarFieldEnum[]
 }
 
 /**

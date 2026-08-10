@@ -75,7 +75,8 @@ export const ModelName = {
   user_notifications: 'user_notifications',
   mobilizer_details: 'mobilizer_details',
   batch_syllabus: 'batch_syllabus',
-  enquiry_status_history: 'enquiry_status_history'
+  enquiry_status_history: 'enquiry_status_history',
+  hr_details: 'hr_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -563,12 +564,26 @@ export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnu
 export const Enquiry_status_historyScalarFieldEnum = {
   history_id: 'history_id',
   enquiry_id: 'enquiry_id',
-  status: 'status',
   mobilizer_id: 'mobilizer_id',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  enq_status: 'enq_status'
 } as const
 
 export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
+
+
+export const Hr_detailsScalarFieldEnum = {
+  hr_id: 'hr_id',
+  hr_first_name: 'hr_first_name',
+  hr_last_name: 'hr_last_name',
+  hr_designation: 'hr_designation',
+  hr_phone_no: 'hr_phone_no',
+  company_id: 'company_id',
+  user_id: 'user_id'
+} as const
+
+export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -173,7 +173,8 @@ export const role_types = {
   instructor: 'instructor',
   admin: 'admin',
   super_admin: 'super_admin',
-  mobilizer: 'mobilizer'
+  mobilizer: 'mobilizer',
+  hr: 'hr'
 } as const
 
 export type role_types = (typeof role_types)[keyof typeof role_types]
@@ -196,7 +197,10 @@ export const enquiry_status = {
   ENROLLED: 'ENROLLED',
   WRONG_NUMBER: 'WRONG_NUMBER',
   CALL_BUSY: 'CALL_BUSY',
-  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT'
+  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
+  DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
+  INTERESTED: 'INTERESTED',
+  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE'
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]

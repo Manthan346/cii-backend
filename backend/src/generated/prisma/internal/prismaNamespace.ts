@@ -416,7 +416,8 @@ export const ModelName = {
   user_notifications: 'user_notifications',
   mobilizer_details: 'mobilizer_details',
   batch_syllabus: 'batch_syllabus',
-  enquiry_status_history: 'enquiry_status_history'
+  enquiry_status_history: 'enquiry_status_history',
+  hr_details: 'hr_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -432,7 +433,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details" | "batch_syllabus" | "enquiry_status_history"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "mobilizer_details" | "batch_syllabus" | "enquiry_status_history" | "hr_details"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2434,6 +2435,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    hr_details: {
+      payload: Prisma.$hr_detailsPayload<ExtArgs>
+      fields: Prisma.hr_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.hr_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.hr_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.hr_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.hr_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.hr_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.hr_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.hr_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.hr_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.hr_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        update: {
+          args: Prisma.hr_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.hr_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.hr_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.hr_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.hr_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hr_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Hr_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHr_details>
+        }
+        groupBy: {
+          args: Prisma.hr_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hr_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.hr_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hr_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2942,12 +3017,26 @@ export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnu
 export const Enquiry_status_historyScalarFieldEnum = {
   history_id: 'history_id',
   enquiry_id: 'enquiry_id',
-  status: 'status',
   mobilizer_id: 'mobilizer_id',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  enq_status: 'enq_status'
 } as const
 
 export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
+
+
+export const Hr_detailsScalarFieldEnum = {
+  hr_id: 'hr_id',
+  hr_first_name: 'hr_first_name',
+  hr_last_name: 'hr_last_name',
+  hr_designation: 'hr_designation',
+  hr_phone_no: 'hr_phone_no',
+  company_id: 'company_id',
+  user_id: 'user_id'
+} as const
+
+export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3394,6 +3483,7 @@ export type GlobalOmitConfig = {
   mobilizer_details?: Prisma.mobilizer_detailsOmit
   batch_syllabus?: Prisma.batch_syllabusOmit
   enquiry_status_history?: Prisma.enquiry_status_historyOmit
+  hr_details?: Prisma.hr_detailsOmit
 }
 
 /* Types for Logging */
