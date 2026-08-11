@@ -184,3 +184,13 @@ export type enquiry_status_history = Prisma.enquiry_status_historyModel
  * 
  */
 export type hr_details = Prisma.hr_detailsModel
+/**
+ * Model admin_details
+ * 
+ */
+export type admin_details = Prisma.admin_detailsModel
+/**
+ * Model admin_documents
+ * 
+ */
+export type admin_documents = Prisma.admin_documentsModel

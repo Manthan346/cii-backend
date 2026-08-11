@@ -31,6 +31,7 @@ export type Hr_detailsMinAggregateOutputType = {
   hr_designation: string | null
   hr_phone_no: string | null
   company_id: string | null
+  user_id: string | null
 }
 
 export type Hr_detailsMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type Hr_detailsMaxAggregateOutputType = {
   hr_designation: string | null
   hr_phone_no: string | null
   company_id: string | null
+  user_id: string | null
 }
 
 export type Hr_detailsCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type Hr_detailsCountAggregateOutputType = {
   hr_designation: number
   hr_phone_no: number
   company_id: number
+  user_id: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type Hr_detailsMinAggregateInputType = {
   hr_designation?: true
   hr_phone_no?: true
   company_id?: true
+  user_id?: true
 }
 
 export type Hr_detailsMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type Hr_detailsMaxAggregateInputType = {
   hr_designation?: true
   hr_phone_no?: true
   company_id?: true
+  user_id?: true
 }
 
 export type Hr_detailsCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type Hr_detailsCountAggregateInputType = {
   hr_designation?: true
   hr_phone_no?: true
   company_id?: true
+  user_id?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type Hr_detailsGroupByOutputType = {
   hr_designation: string
   hr_phone_no: string
   company_id: string
+  user_id: string
   _count: Hr_detailsCountAggregateOutputType | null
   _min: Hr_detailsMinAggregateOutputType | null
   _max: Hr_detailsMaxAggregateOutputType | null
@@ -190,7 +197,9 @@ export type hr_detailsWhereInput = {
   hr_designation?: Prisma.StringFilter<"hr_details"> | string
   hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
+  user_id?: Prisma.UuidFilter<"hr_details"> | string
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
 }
 
 export type hr_detailsOrderByWithRelationInput = {
@@ -200,11 +209,14 @@ export type hr_detailsOrderByWithRelationInput = {
   hr_designation?: Prisma.SortOrder
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   company_details?: Prisma.company_detailsOrderByWithRelationInput
+  user_login?: Prisma.user_loginOrderByWithRelationInput
 }
 
 export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_id?: string
+  user_id?: string
   AND?: Prisma.hr_detailsWhereInput | Prisma.hr_detailsWhereInput[]
   OR?: Prisma.hr_detailsWhereInput[]
   NOT?: Prisma.hr_detailsWhereInput | Prisma.hr_detailsWhereInput[]
@@ -214,7 +226,8 @@ export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
-}, "hr_id">
+  user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
+}, "hr_id" | "user_id">
 
 export type hr_detailsOrderByWithAggregationInput = {
   hr_id?: Prisma.SortOrder
@@ -223,6 +236,7 @@ export type hr_detailsOrderByWithAggregationInput = {
   hr_designation?: Prisma.SortOrder
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   _count?: Prisma.hr_detailsCountOrderByAggregateInput
   _max?: Prisma.hr_detailsMaxOrderByAggregateInput
   _min?: Prisma.hr_detailsMinOrderByAggregateInput
@@ -238,6 +252,7 @@ export type hr_detailsScalarWhereWithAggregatesInput = {
   hr_designation?: Prisma.StringWithAggregatesFilter<"hr_details"> | string
   hr_phone_no?: Prisma.StringWithAggregatesFilter<"hr_details"> | string
   company_id?: Prisma.UuidWithAggregatesFilter<"hr_details"> | string
+  user_id?: Prisma.UuidWithAggregatesFilter<"hr_details"> | string
 }
 
 export type hr_detailsCreateInput = {
@@ -247,6 +262,7 @@ export type hr_detailsCreateInput = {
   hr_designation: string
   hr_phone_no: string
   company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
+  user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
 }
 
 export type hr_detailsUncheckedCreateInput = {
@@ -256,6 +272,7 @@ export type hr_detailsUncheckedCreateInput = {
   hr_designation: string
   hr_phone_no: string
   company_id: string
+  user_id: string
 }
 
 export type hr_detailsUpdateInput = {
@@ -265,6 +282,7 @@ export type hr_detailsUpdateInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
 }
 
 export type hr_detailsUncheckedUpdateInput = {
@@ -274,6 +292,7 @@ export type hr_detailsUncheckedUpdateInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type hr_detailsCreateManyInput = {
@@ -283,6 +302,7 @@ export type hr_detailsCreateManyInput = {
   hr_designation: string
   hr_phone_no: string
   company_id: string
+  user_id: string
 }
 
 export type hr_detailsUpdateManyMutationInput = {
@@ -300,6 +320,7 @@ export type hr_detailsUncheckedUpdateManyInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type Hr_detailsListRelationFilter = {
@@ -312,6 +333,11 @@ export type hr_detailsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type Hr_detailsNullableScalarRelationFilter = {
+  is?: Prisma.hr_detailsWhereInput | null
+  isNot?: Prisma.hr_detailsWhereInput | null
+}
+
 export type hr_detailsCountOrderByAggregateInput = {
   hr_id?: Prisma.SortOrder
   hr_first_name?: Prisma.SortOrder
@@ -319,6 +345,7 @@ export type hr_detailsCountOrderByAggregateInput = {
   hr_designation?: Prisma.SortOrder
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
 }
 
 export type hr_detailsMaxOrderByAggregateInput = {
@@ -328,6 +355,7 @@ export type hr_detailsMaxOrderByAggregateInput = {
   hr_designation?: Prisma.SortOrder
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
 }
 
 export type hr_detailsMinOrderByAggregateInput = {
@@ -337,6 +365,7 @@ export type hr_detailsMinOrderByAggregateInput = {
   hr_designation?: Prisma.SortOrder
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
 }
 
 export type hr_detailsCreateNestedManyWithoutCompany_detailsInput = {
@@ -381,12 +410,45 @@ export type hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput = {
   deleteMany?: Prisma.hr_detailsScalarWhereInput | Prisma.hr_detailsScalarWhereInput[]
 }
 
+export type hr_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.hr_detailsWhereUniqueInput
+}
+
+export type hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.hr_detailsWhereUniqueInput
+}
+
+export type hr_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.hr_detailsWhereInput | boolean
+  delete?: Prisma.hr_detailsWhereInput | boolean
+  connect?: Prisma.hr_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.hr_detailsWhereInput | boolean
+  delete?: Prisma.hr_detailsWhereInput | boolean
+  connect?: Prisma.hr_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
 export type hr_detailsCreateWithoutCompany_detailsInput = {
   hr_id?: string
   hr_first_name: string
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
 }
 
 export type hr_detailsUncheckedCreateWithoutCompany_detailsInput = {
@@ -395,6 +457,7 @@ export type hr_detailsUncheckedCreateWithoutCompany_detailsInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  user_id: string
 }
 
 export type hr_detailsCreateOrConnectWithoutCompany_detailsInput = {
@@ -433,6 +496,59 @@ export type hr_detailsScalarWhereInput = {
   hr_designation?: Prisma.StringFilter<"hr_details"> | string
   hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
+  user_id?: Prisma.UuidFilter<"hr_details"> | string
+}
+
+export type hr_detailsCreateWithoutUser_loginInput = {
+  hr_id?: string
+  hr_first_name: string
+  hr_last_name?: string | null
+  hr_designation: string
+  hr_phone_no: string
+  company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
+}
+
+export type hr_detailsUncheckedCreateWithoutUser_loginInput = {
+  hr_id?: string
+  hr_first_name: string
+  hr_last_name?: string | null
+  hr_designation: string
+  hr_phone_no: string
+  company_id: string
+}
+
+export type hr_detailsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.hr_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type hr_detailsUpsertWithoutUser_loginInput = {
+  update: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.hr_detailsWhereInput
+}
+
+export type hr_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.hr_detailsWhereInput
+  data: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type hr_detailsUpdateWithoutUser_loginInput = {
+  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
+}
+
+export type hr_detailsUncheckedUpdateWithoutUser_loginInput = {
+  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type hr_detailsCreateManyCompany_detailsInput = {
@@ -441,6 +557,7 @@ export type hr_detailsCreateManyCompany_detailsInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  user_id: string
 }
 
 export type hr_detailsUpdateWithoutCompany_detailsInput = {
@@ -449,6 +566,7 @@ export type hr_detailsUpdateWithoutCompany_detailsInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
 }
 
 export type hr_detailsUncheckedUpdateWithoutCompany_detailsInput = {
@@ -457,6 +575,7 @@ export type hr_detailsUncheckedUpdateWithoutCompany_detailsInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type hr_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
@@ -465,6 +584,7 @@ export type hr_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -476,7 +596,9 @@ export type hr_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   hr_designation?: boolean
   hr_phone_no?: boolean
   company_id?: boolean
+  user_id?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hr_details"]>
 
 export type hr_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -486,7 +608,9 @@ export type hr_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   hr_designation?: boolean
   hr_phone_no?: boolean
   company_id?: boolean
+  user_id?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hr_details"]>
 
 export type hr_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -496,7 +620,9 @@ export type hr_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   hr_designation?: boolean
   hr_phone_no?: boolean
   company_id?: boolean
+  user_id?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hr_details"]>
 
 export type hr_detailsSelectScalar = {
@@ -506,23 +632,28 @@ export type hr_detailsSelectScalar = {
   hr_designation?: boolean
   hr_phone_no?: boolean
   company_id?: boolean
+  user_id?: boolean
 }
 
-export type hr_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"hr_id" | "hr_first_name" | "hr_last_name" | "hr_designation" | "hr_phone_no" | "company_id", ExtArgs["result"]["hr_details"]>
+export type hr_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"hr_id" | "hr_first_name" | "hr_last_name" | "hr_designation" | "hr_phone_no" | "company_id" | "user_id", ExtArgs["result"]["hr_details"]>
 export type hr_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 export type hr_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 export type hr_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
+  user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }
 
 export type $hr_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "hr_details"
   objects: {
     company_details: Prisma.$company_detailsPayload<ExtArgs>
+    user_login: Prisma.$user_loginPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     hr_id: string
@@ -531,6 +662,7 @@ export type $hr_detailsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     hr_designation: string
     hr_phone_no: string
     company_id: string
+    user_id: string
   }, ExtArgs["result"]["hr_details"]>
   composites: {}
 }
@@ -926,6 +1058,7 @@ readonly fields: hr_detailsFieldRefs;
 export interface Prisma__hr_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company_details<T extends Prisma.company_detailsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.company_detailsDefaultArgs<ExtArgs>>): Prisma.Prisma__company_detailsClient<runtime.Types.Result.GetResult<Prisma.$company_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user_login<T extends Prisma.user_loginDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_loginDefaultArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -961,6 +1094,7 @@ export interface hr_detailsFieldRefs {
   readonly hr_designation: Prisma.FieldRef<"hr_details", 'String'>
   readonly hr_phone_no: Prisma.FieldRef<"hr_details", 'String'>
   readonly company_id: Prisma.FieldRef<"hr_details", 'String'>
+  readonly user_id: Prisma.FieldRef<"hr_details", 'String'>
 }
     
 

@@ -27,25 +27,28 @@ export type AggregateEnquiry_status_history = {
 export type Enquiry_status_historyMinAggregateOutputType = {
   history_id: string | null
   enquiry_id: string | null
-  status: $Enums.enquiry_status | null
   mobilizer_id: string | null
   created_at: Date | null
+  updated_at: Date | null
+  enq_status: $Enums.enquiry_status | null
 }
 
 export type Enquiry_status_historyMaxAggregateOutputType = {
   history_id: string | null
   enquiry_id: string | null
-  status: $Enums.enquiry_status | null
   mobilizer_id: string | null
   created_at: Date | null
+  updated_at: Date | null
+  enq_status: $Enums.enquiry_status | null
 }
 
 export type Enquiry_status_historyCountAggregateOutputType = {
   history_id: number
   enquiry_id: number
-  status: number
   mobilizer_id: number
   created_at: number
+  updated_at: number
+  enq_status: number
   _all: number
 }
 
@@ -53,25 +56,28 @@ export type Enquiry_status_historyCountAggregateOutputType = {
 export type Enquiry_status_historyMinAggregateInputType = {
   history_id?: true
   enquiry_id?: true
-  status?: true
   mobilizer_id?: true
   created_at?: true
+  updated_at?: true
+  enq_status?: true
 }
 
 export type Enquiry_status_historyMaxAggregateInputType = {
   history_id?: true
   enquiry_id?: true
-  status?: true
   mobilizer_id?: true
   created_at?: true
+  updated_at?: true
+  enq_status?: true
 }
 
 export type Enquiry_status_historyCountAggregateInputType = {
   history_id?: true
   enquiry_id?: true
-  status?: true
   mobilizer_id?: true
   created_at?: true
+  updated_at?: true
+  enq_status?: true
   _all?: true
 }
 
@@ -150,9 +156,10 @@ export type enquiry_status_historyGroupByArgs<ExtArgs extends runtime.Types.Exte
 export type Enquiry_status_historyGroupByOutputType = {
   history_id: string
   enquiry_id: string
-  status: $Enums.enquiry_status
   mobilizer_id: string
   created_at: Date
+  updated_at: Date
+  enq_status: $Enums.enquiry_status | null
   _count: Enquiry_status_historyCountAggregateOutputType | null
   _min: Enquiry_status_historyMinAggregateOutputType | null
   _max: Enquiry_status_historyMaxAggregateOutputType | null
@@ -179,9 +186,10 @@ export type enquiry_status_historyWhereInput = {
   NOT?: Prisma.enquiry_status_historyWhereInput | Prisma.enquiry_status_historyWhereInput[]
   history_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
   enquiry_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
-  status?: Prisma.Enumenquiry_statusFilter<"enquiry_status_history"> | $Enums.enquiry_status
   mobilizer_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
   created_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_status_history"> | $Enums.enquiry_status | null
   enquiry_records?: Prisma.XOR<Prisma.Enquiry_recordsScalarRelationFilter, Prisma.enquiry_recordsWhereInput>
   mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsScalarRelationFilter, Prisma.mobilizer_detailsWhereInput>
 }
@@ -189,9 +197,10 @@ export type enquiry_status_historyWhereInput = {
 export type enquiry_status_historyOrderByWithRelationInput = {
   history_id?: Prisma.SortOrder
   enquiry_id?: Prisma.SortOrder
-  status?: Prisma.SortOrder
   mobilizer_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  enq_status?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_records?: Prisma.enquiry_recordsOrderByWithRelationInput
   mobilizer_details?: Prisma.mobilizer_detailsOrderByWithRelationInput
 }
@@ -202,9 +211,10 @@ export type enquiry_status_historyWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.enquiry_status_historyWhereInput[]
   NOT?: Prisma.enquiry_status_historyWhereInput | Prisma.enquiry_status_historyWhereInput[]
   enquiry_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
-  status?: Prisma.Enumenquiry_statusFilter<"enquiry_status_history"> | $Enums.enquiry_status
   mobilizer_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
   created_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_status_history"> | $Enums.enquiry_status | null
   enquiry_records?: Prisma.XOR<Prisma.Enquiry_recordsScalarRelationFilter, Prisma.enquiry_recordsWhereInput>
   mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsScalarRelationFilter, Prisma.mobilizer_detailsWhereInput>
 }, "history_id">
@@ -212,9 +222,10 @@ export type enquiry_status_historyWhereUniqueInput = Prisma.AtLeast<{
 export type enquiry_status_historyOrderByWithAggregationInput = {
   history_id?: Prisma.SortOrder
   enquiry_id?: Prisma.SortOrder
-  status?: Prisma.SortOrder
   mobilizer_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  enq_status?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.enquiry_status_historyCountOrderByAggregateInput
   _max?: Prisma.enquiry_status_historyMaxOrderByAggregateInput
   _min?: Prisma.enquiry_status_historyMinOrderByAggregateInput
@@ -226,15 +237,17 @@ export type enquiry_status_historyScalarWhereWithAggregatesInput = {
   NOT?: Prisma.enquiry_status_historyScalarWhereWithAggregatesInput | Prisma.enquiry_status_historyScalarWhereWithAggregatesInput[]
   history_id?: Prisma.UuidWithAggregatesFilter<"enquiry_status_history"> | string
   enquiry_id?: Prisma.UuidWithAggregatesFilter<"enquiry_status_history"> | string
-  status?: Prisma.Enumenquiry_statusWithAggregatesFilter<"enquiry_status_history"> | $Enums.enquiry_status
   mobilizer_id?: Prisma.UuidWithAggregatesFilter<"enquiry_status_history"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"enquiry_status_history"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"enquiry_status_history"> | Date | string
+  enq_status?: Prisma.Enumenquiry_statusNullableWithAggregatesFilter<"enquiry_status_history"> | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateInput = {
   history_id?: string
-  status: $Enums.enquiry_status
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
   enquiry_records: Prisma.enquiry_recordsCreateNestedOneWithoutEnquiry_status_historyInput
   mobilizer_details: Prisma.mobilizer_detailsCreateNestedOneWithoutEnquiry_status_historyInput
 }
@@ -242,15 +255,17 @@ export type enquiry_status_historyCreateInput = {
 export type enquiry_status_historyUncheckedCreateInput = {
   history_id?: string
   enquiry_id: string
-  status: $Enums.enquiry_status
   mobilizer_id: string
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUpdateInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   enquiry_records?: Prisma.enquiry_recordsUpdateOneRequiredWithoutEnquiry_status_historyNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneRequiredWithoutEnquiry_status_historyNestedInput
 }
@@ -258,31 +273,35 @@ export type enquiry_status_historyUpdateInput = {
 export type enquiry_status_historyUncheckedUpdateInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateManyInput = {
   history_id?: string
   enquiry_id: string
-  status: $Enums.enquiry_status
   mobilizer_id: string
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUpdateManyMutationInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUncheckedUpdateManyInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type Enquiry_status_historyListRelationFilter = {
@@ -298,25 +317,28 @@ export type enquiry_status_historyOrderByRelationAggregateInput = {
 export type enquiry_status_historyCountOrderByAggregateInput = {
   history_id?: Prisma.SortOrder
   enquiry_id?: Prisma.SortOrder
-  status?: Prisma.SortOrder
   mobilizer_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_status_historyMaxOrderByAggregateInput = {
   history_id?: Prisma.SortOrder
   enquiry_id?: Prisma.SortOrder
-  status?: Prisma.SortOrder
   mobilizer_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_status_historyMinOrderByAggregateInput = {
   history_id?: Prisma.SortOrder
   enquiry_id?: Prisma.SortOrder
-  status?: Prisma.SortOrder
   mobilizer_id?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  enq_status?: Prisma.SortOrder
 }
 
 export type enquiry_status_historyCreateNestedManyWithoutEnquiry_recordsInput = {
@@ -403,22 +425,20 @@ export type enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsNes
   deleteMany?: Prisma.enquiry_status_historyScalarWhereInput | Prisma.enquiry_status_historyScalarWhereInput[]
 }
 
-export type Enumenquiry_statusFieldUpdateOperationsInput = {
-  set?: $Enums.enquiry_status
-}
-
 export type enquiry_status_historyCreateWithoutEnquiry_recordsInput = {
   history_id?: string
-  status: $Enums.enquiry_status
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
   mobilizer_details: Prisma.mobilizer_detailsCreateNestedOneWithoutEnquiry_status_historyInput
 }
 
 export type enquiry_status_historyUncheckedCreateWithoutEnquiry_recordsInput = {
   history_id?: string
-  status: $Enums.enquiry_status
   mobilizer_id: string
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateOrConnectWithoutEnquiry_recordsInput = {
@@ -453,23 +473,26 @@ export type enquiry_status_historyScalarWhereInput = {
   NOT?: Prisma.enquiry_status_historyScalarWhereInput | Prisma.enquiry_status_historyScalarWhereInput[]
   history_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
   enquiry_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
-  status?: Prisma.Enumenquiry_statusFilter<"enquiry_status_history"> | $Enums.enquiry_status
   mobilizer_id?: Prisma.UuidFilter<"enquiry_status_history"> | string
   created_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"enquiry_status_history"> | Date | string
+  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_status_history"> | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateWithoutMobilizer_detailsInput = {
   history_id?: string
-  status: $Enums.enquiry_status
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
   enquiry_records: Prisma.enquiry_recordsCreateNestedOneWithoutEnquiry_status_historyInput
 }
 
 export type enquiry_status_historyUncheckedCreateWithoutMobilizer_detailsInput = {
   history_id?: string
   enquiry_id: string
-  status: $Enums.enquiry_status
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateOrConnectWithoutMobilizer_detailsInput = {
@@ -500,58 +523,66 @@ export type enquiry_status_historyUpdateManyWithWhereWithoutMobilizer_detailsInp
 
 export type enquiry_status_historyCreateManyEnquiry_recordsInput = {
   history_id?: string
-  status: $Enums.enquiry_status
   mobilizer_id: string
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUpdateWithoutEnquiry_recordsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneRequiredWithoutEnquiry_status_historyNestedInput
 }
 
 export type enquiry_status_historyUncheckedUpdateWithoutEnquiry_recordsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUncheckedUpdateManyWithoutEnquiry_recordsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   mobilizer_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyCreateManyMobilizer_detailsInput = {
   history_id?: string
   enquiry_id: string
-  status: $Enums.enquiry_status
   created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUpdateWithoutMobilizer_detailsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   enquiry_records?: Prisma.enquiry_recordsUpdateOneRequiredWithoutEnquiry_status_historyNestedInput
 }
 
 export type enquiry_status_historyUncheckedUpdateWithoutMobilizer_detailsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 export type enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsInput = {
   history_id?: Prisma.StringFieldUpdateOperationsInput | string
   enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.Enumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
 }
 
 
@@ -559,9 +590,10 @@ export type enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsInp
 export type enquiry_status_historySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   history_id?: boolean
   enquiry_id?: boolean
-  status?: boolean
   mobilizer_id?: boolean
   created_at?: boolean
+  updated_at?: boolean
+  enq_status?: boolean
   enquiry_records?: boolean | Prisma.enquiry_recordsDefaultArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.mobilizer_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_status_history"]>
@@ -569,9 +601,10 @@ export type enquiry_status_historySelect<ExtArgs extends runtime.Types.Extension
 export type enquiry_status_historySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   history_id?: boolean
   enquiry_id?: boolean
-  status?: boolean
   mobilizer_id?: boolean
   created_at?: boolean
+  updated_at?: boolean
+  enq_status?: boolean
   enquiry_records?: boolean | Prisma.enquiry_recordsDefaultArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.mobilizer_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_status_history"]>
@@ -579,9 +612,10 @@ export type enquiry_status_historySelectCreateManyAndReturn<ExtArgs extends runt
 export type enquiry_status_historySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   history_id?: boolean
   enquiry_id?: boolean
-  status?: boolean
   mobilizer_id?: boolean
   created_at?: boolean
+  updated_at?: boolean
+  enq_status?: boolean
   enquiry_records?: boolean | Prisma.enquiry_recordsDefaultArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.mobilizer_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enquiry_status_history"]>
@@ -589,12 +623,13 @@ export type enquiry_status_historySelectUpdateManyAndReturn<ExtArgs extends runt
 export type enquiry_status_historySelectScalar = {
   history_id?: boolean
   enquiry_id?: boolean
-  status?: boolean
   mobilizer_id?: boolean
   created_at?: boolean
+  updated_at?: boolean
+  enq_status?: boolean
 }
 
-export type enquiry_status_historyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"history_id" | "enquiry_id" | "status" | "mobilizer_id" | "created_at", ExtArgs["result"]["enquiry_status_history"]>
+export type enquiry_status_historyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"history_id" | "enquiry_id" | "mobilizer_id" | "created_at" | "updated_at" | "enq_status", ExtArgs["result"]["enquiry_status_history"]>
 export type enquiry_status_historyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enquiry_records?: boolean | Prisma.enquiry_recordsDefaultArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.mobilizer_detailsDefaultArgs<ExtArgs>
@@ -617,9 +652,10 @@ export type $enquiry_status_historyPayload<ExtArgs extends runtime.Types.Extensi
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     history_id: string
     enquiry_id: string
-    status: $Enums.enquiry_status
     mobilizer_id: string
     created_at: Date
+    updated_at: Date
+    enq_status: $Enums.enquiry_status | null
   }, ExtArgs["result"]["enquiry_status_history"]>
   composites: {}
 }
@@ -1047,9 +1083,10 @@ export interface Prisma__enquiry_status_historyClient<T, Null = never, ExtArgs e
 export interface enquiry_status_historyFieldRefs {
   readonly history_id: Prisma.FieldRef<"enquiry_status_history", 'String'>
   readonly enquiry_id: Prisma.FieldRef<"enquiry_status_history", 'String'>
-  readonly status: Prisma.FieldRef<"enquiry_status_history", 'enquiry_status'>
   readonly mobilizer_id: Prisma.FieldRef<"enquiry_status_history", 'String'>
   readonly created_at: Prisma.FieldRef<"enquiry_status_history", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"enquiry_status_history", 'DateTime'>
+  readonly enq_status: Prisma.FieldRef<"enquiry_status_history", 'enquiry_status'>
 }
     
 

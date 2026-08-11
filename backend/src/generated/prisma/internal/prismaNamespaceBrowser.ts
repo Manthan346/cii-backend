@@ -76,7 +76,9 @@ export const ModelName = {
   batch_syllabus: 'batch_syllabus',
   mobilizer_details: 'mobilizer_details',
   enquiry_status_history: 'enquiry_status_history',
-  hr_details: 'hr_details'
+  hr_details: 'hr_details',
+  admin_details: 'admin_details',
+  admin_documents: 'admin_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -564,9 +566,10 @@ export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFi
 export const Enquiry_status_historyScalarFieldEnum = {
   history_id: 'history_id',
   enquiry_id: 'enquiry_id',
-  status: 'status',
   mobilizer_id: 'mobilizer_id',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  enq_status: 'enq_status'
 } as const
 
 export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
@@ -578,10 +581,61 @@ export const Hr_detailsScalarFieldEnum = {
   hr_last_name: 'hr_last_name',
   hr_designation: 'hr_designation',
   hr_phone_no: 'hr_phone_no',
-  company_id: 'company_id'
+  company_id: 'company_id',
+  user_id: 'user_id'
 } as const
 
 export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
+
+
+export const Admin_detailsScalarFieldEnum = {
+  admin_id: 'admin_id',
+  admin_first_name: 'admin_first_name',
+  admin_last_name: 'admin_last_name',
+  blood_group: 'blood_group',
+  date_of_birth: 'date_of_birth',
+  highest_qualification: 'highest_qualification',
+  specialization: 'specialization',
+  university: 'university',
+  passing_year: 'passing_year',
+  total_experience: 'total_experience',
+  prev_organization: 'prev_organization',
+  prev_org_role: 'prev_org_role',
+  father_name: 'father_name',
+  father_mobile_no: 'father_mobile_no',
+  father_address: 'father_address',
+  father_occupation: 'father_occupation',
+  father_blood_group: 'father_blood_group',
+  father_dob: 'father_dob',
+  mother_name: 'mother_name',
+  mother_mobile_no: 'mother_mobile_no',
+  mother_address: 'mother_address',
+  mother_occupation: 'mother_occupation',
+  mother_blood_group: 'mother_blood_group',
+  mother_dob: 'mother_dob',
+  guardian_name: 'guardian_name',
+  guardian_dob: 'guardian_dob',
+  guardian_address: 'guardian_address',
+  guardian_gender: 'guardian_gender',
+  guardian_blood_group: 'guardian_blood_group',
+  guardian_phone_number: 'guardian_phone_number',
+  user_id: 'user_id'
+} as const
+
+export type Admin_detailsScalarFieldEnum = (typeof Admin_detailsScalarFieldEnum)[keyof typeof Admin_detailsScalarFieldEnum]
+
+
+export const Admin_documentsScalarFieldEnum = {
+  admin_document_id: 'admin_document_id',
+  admin_id: 'admin_id',
+  pan_card_link: 'pan_card_link',
+  aadhar_card_link: 'aadhar_card_link',
+  resume_link: 'resume_link',
+  past_experience_letter_link: 'past_experience_letter_link',
+  highest_qualification_certificate_link: 'highest_qualification_certificate_link'
+} as const
+
+export type Admin_documentsScalarFieldEnum = (typeof Admin_documentsScalarFieldEnum)[keyof typeof Admin_documentsScalarFieldEnum]
 
 
 export const SortOrder = {

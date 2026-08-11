@@ -417,7 +417,9 @@ export const ModelName = {
   batch_syllabus: 'batch_syllabus',
   mobilizer_details: 'mobilizer_details',
   enquiry_status_history: 'enquiry_status_history',
-  hr_details: 'hr_details'
+  hr_details: 'hr_details',
+  admin_details: 'admin_details',
+  admin_documents: 'admin_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -433,7 +435,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "batch_syllabus" | "mobilizer_details" | "enquiry_status_history" | "hr_details"
+    modelProps: "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "event_batches" | "event_details" | "instructor_details" | "instructor_documents" | "job_application" | "job_eligible_course" | "job_opportunity" | "notifications" | "study_material" | "user_login" | "user_notifications" | "batch_syllabus" | "mobilizer_details" | "enquiry_status_history" | "hr_details" | "admin_details" | "admin_documents"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2509,6 +2511,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    admin_details: {
+      payload: Prisma.$admin_detailsPayload<ExtArgs>
+      fields: Prisma.admin_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.admin_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.admin_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.admin_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.admin_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.admin_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.admin_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.admin_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.admin_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.admin_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        update: {
+          args: Prisma.admin_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.admin_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.admin_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.admin_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.admin_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Admin_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdmin_details>
+        }
+        groupBy: {
+          args: Prisma.admin_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Admin_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.admin_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Admin_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
+    admin_documents: {
+      payload: Prisma.$admin_documentsPayload<ExtArgs>
+      fields: Prisma.admin_documentsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.admin_documentsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.admin_documentsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        findFirst: {
+          args: Prisma.admin_documentsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.admin_documentsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        findMany: {
+          args: Prisma.admin_documentsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>[]
+        }
+        create: {
+          args: Prisma.admin_documentsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        createMany: {
+          args: Prisma.admin_documentsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.admin_documentsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>[]
+        }
+        delete: {
+          args: Prisma.admin_documentsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        update: {
+          args: Prisma.admin_documentsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        deleteMany: {
+          args: Prisma.admin_documentsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.admin_documentsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.admin_documentsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>[]
+        }
+        upsert: {
+          args: Prisma.admin_documentsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$admin_documentsPayload>
+        }
+        aggregate: {
+          args: Prisma.Admin_documentsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdmin_documents>
+        }
+        groupBy: {
+          args: Prisma.admin_documentsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Admin_documentsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.admin_documentsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Admin_documentsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3017,9 +3167,10 @@ export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFi
 export const Enquiry_status_historyScalarFieldEnum = {
   history_id: 'history_id',
   enquiry_id: 'enquiry_id',
-  status: 'status',
   mobilizer_id: 'mobilizer_id',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  enq_status: 'enq_status'
 } as const
 
 export type Enquiry_status_historyScalarFieldEnum = (typeof Enquiry_status_historyScalarFieldEnum)[keyof typeof Enquiry_status_historyScalarFieldEnum]
@@ -3031,10 +3182,61 @@ export const Hr_detailsScalarFieldEnum = {
   hr_last_name: 'hr_last_name',
   hr_designation: 'hr_designation',
   hr_phone_no: 'hr_phone_no',
-  company_id: 'company_id'
+  company_id: 'company_id',
+  user_id: 'user_id'
 } as const
 
 export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
+
+
+export const Admin_detailsScalarFieldEnum = {
+  admin_id: 'admin_id',
+  admin_first_name: 'admin_first_name',
+  admin_last_name: 'admin_last_name',
+  blood_group: 'blood_group',
+  date_of_birth: 'date_of_birth',
+  highest_qualification: 'highest_qualification',
+  specialization: 'specialization',
+  university: 'university',
+  passing_year: 'passing_year',
+  total_experience: 'total_experience',
+  prev_organization: 'prev_organization',
+  prev_org_role: 'prev_org_role',
+  father_name: 'father_name',
+  father_mobile_no: 'father_mobile_no',
+  father_address: 'father_address',
+  father_occupation: 'father_occupation',
+  father_blood_group: 'father_blood_group',
+  father_dob: 'father_dob',
+  mother_name: 'mother_name',
+  mother_mobile_no: 'mother_mobile_no',
+  mother_address: 'mother_address',
+  mother_occupation: 'mother_occupation',
+  mother_blood_group: 'mother_blood_group',
+  mother_dob: 'mother_dob',
+  guardian_name: 'guardian_name',
+  guardian_dob: 'guardian_dob',
+  guardian_address: 'guardian_address',
+  guardian_gender: 'guardian_gender',
+  guardian_blood_group: 'guardian_blood_group',
+  guardian_phone_number: 'guardian_phone_number',
+  user_id: 'user_id'
+} as const
+
+export type Admin_detailsScalarFieldEnum = (typeof Admin_detailsScalarFieldEnum)[keyof typeof Admin_detailsScalarFieldEnum]
+
+
+export const Admin_documentsScalarFieldEnum = {
+  admin_document_id: 'admin_document_id',
+  admin_id: 'admin_id',
+  pan_card_link: 'pan_card_link',
+  aadhar_card_link: 'aadhar_card_link',
+  resume_link: 'resume_link',
+  past_experience_letter_link: 'past_experience_letter_link',
+  highest_qualification_certificate_link: 'highest_qualification_certificate_link'
+} as const
+
+export type Admin_documentsScalarFieldEnum = (typeof Admin_documentsScalarFieldEnum)[keyof typeof Admin_documentsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3482,6 +3684,8 @@ export type GlobalOmitConfig = {
   mobilizer_details?: Prisma.mobilizer_detailsOmit
   enquiry_status_history?: Prisma.enquiry_status_historyOmit
   hr_details?: Prisma.hr_detailsOmit
+  admin_details?: Prisma.admin_detailsOmit
+  admin_documents?: Prisma.admin_documentsOmit
 }
 
 /* Types for Logging */

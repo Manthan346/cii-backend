@@ -50,6 +50,7 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
       candidate_id: { in: candidateIds },
     },
     select: {
+      enrollment_id: true,
       candidate_id: true,
       enrollment_status: true,
       candidates_details: {
@@ -126,9 +127,10 @@ const record =  await prisma.$transaction(
 
   try {
     await Promise.all(
-      candidateIds.map((id) =>
-        redis.del(INSTRUCTOR_REDIS_KEYS.mark_attendance_key(id))
-      )
+      enrollments.flatMap((e) => [
+        redis.del(INSTRUCTOR_REDIS_KEYS.mark_attendance_key(e.candidate_id)),
+        redis.del(INSTRUCTOR_REDIS_KEYS.view_candidate_profile_key(e.enrollment_id)),
+      ])
     );
   } catch (err) {
     console.error("Redis DEL failed after marking attendance:", err);

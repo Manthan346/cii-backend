@@ -451,9 +451,11 @@ model user_login {
   updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
   center_id                                          String               @db.Uuid
   refresh_token_hash                                 String?
+  admin_details                                      admin_details?
   candidates_details                                 candidates_details?
   event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
   event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
+  hr_details                                         hr_details?
   instructor_details                                 instructor_details?
   mobilizer_details                                  mobilizer_details?
   study_material                                     study_material[]
@@ -503,9 +505,10 @@ model mobilizer_details {
 model enquiry_status_history {
   history_id        String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   enquiry_id        String            @db.Uuid
-  status            enquiry_status
   mobilizer_id      String            @db.Uuid
   created_at        DateTime          @default(now()) @db.Timestamp(6)
+  updated_at        DateTime          @default(now()) @db.Timestamp(6)
+  enq_status        enquiry_status?
   enquiry_records   enquiry_records   @relation(fields: [enquiry_id], references: [enquiry_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_status_history_enquiry")
   mobilizer_details mobilizer_details @relation(fields: [mobilizer_id], references: [mobilizer_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_status_history_mobilizer")
 }
@@ -517,7 +520,56 @@ model hr_details {
   hr_designation  String
   hr_phone_no     String          @db.VarChar(10)
   company_id      String          @db.Uuid
+  user_id         String          @unique @db.Uuid
   company_details company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_company")
+  user_login      user_login      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_user")
+}
+
+model admin_details {
+  admin_id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  admin_first_name      String
+  admin_last_name       String?
+  blood_group           String?           @db.VarChar(5)
+  date_of_birth         DateTime?         @db.Date
+  highest_qualification String?
+  specialization        String?
+  university            String?
+  passing_year          Int?
+  total_experience      Decimal?          @db.Decimal(5, 2)
+  prev_organization     String?
+  prev_org_role         String?
+  father_name           String?
+  father_mobile_no      String?           @db.VarChar(10)
+  father_address        String?
+  father_occupation     String?
+  father_blood_group    String?           @db.VarChar(5)
+  father_dob            DateTime?         @db.Date
+  mother_name           String?
+  mother_mobile_no      String?           @db.VarChar(10)
+  mother_address        String?
+  mother_occupation     String?
+  mother_blood_group    String?           @db.VarChar(5)
+  mother_dob            DateTime?         @db.Date
+  guardian_name         String?
+  guardian_dob          DateTime?         @db.Date
+  guardian_address      String?
+  guardian_gender       String?           @db.VarChar(20)
+  guardian_blood_group  String?           @db.VarChar(5)
+  guardian_phone_number String?           @db.VarChar(10)
+  user_id               String            @unique @db.Uuid
+  user_login            user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_admin_details_user")
+  admin_documents       admin_documents[]
+}
+
+model admin_documents {
+  admin_document_id                      String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  admin_id                               String        @db.Uuid
+  pan_card_link                          String?
+  aadhar_card_link                       String?
+  resume_link                            String?
+  past_experience_letter_link            String?
+  highest_qualification_certificate_link String?
+  admin_details                          admin_details @relation(fields: [admin_id], references: [admin_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_admin_documents_admin")
 }
 
 enum assessment_type {
