@@ -75,6 +75,22 @@ export const course_type = {
 export type course_type = (typeof course_type)[keyof typeof course_type]
 
 
+export const enquiry_status = {
+  CALL_RECIEVED: 'CALL_RECIEVED',
+  CENTER_VISITED: 'CENTER_VISITED',
+  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
+  ENROLLED: 'ENROLLED',
+  WRONG_NUMBER: 'WRONG_NUMBER',
+  CALL_BUSY: 'CALL_BUSY',
+  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
+  DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
+  INTERESTED: 'INTERESTED',
+  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE'
+} as const
+
+export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
+
+
 export const enquiry_status_type = {
   Pending: 'Pending',
   Verified: 'Verified',
@@ -188,19 +204,3 @@ export const training_type = {
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
-
-
-export const enquiry_status = {
-  CALL_RECIEVED: 'CALL_RECIEVED',
-  CENTER_VISITED: 'CENTER_VISITED',
-  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
-  ENROLLED: 'ENROLLED',
-  WRONG_NUMBER: 'WRONG_NUMBER',
-  CALL_BUSY: 'CALL_BUSY',
-  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
-  DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
-  INTERESTED: 'INTERESTED',
-  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE'
-} as const
-
-export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]

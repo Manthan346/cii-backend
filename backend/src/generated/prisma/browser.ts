@@ -43,6 +43,11 @@ export type batch_details = Prisma.batch_detailsModel
  */
 export type batch_enrollment = Prisma.batch_enrollmentModel
 /**
+ * Model batch_syllabus
+ * 
+ */
+export type batch_syllabus = Prisma.batch_syllabusModel
+/**
  * Model candidate_assessment
  * 
  */
@@ -83,6 +88,11 @@ export type course_details = Prisma.course_detailsModel
  */
 export type enquiry_records = Prisma.enquiry_recordsModel
 /**
+ * Model enquiry_status_history
+ * 
+ */
+export type enquiry_status_history = Prisma.enquiry_status_historyModel
+/**
  * Model event_batches
  * 
  */
@@ -92,6 +102,11 @@ export type event_batches = Prisma.event_batchesModel
  * 
  */
 export type event_details = Prisma.event_detailsModel
+/**
+ * Model hr_details
+ * 
+ */
+export type hr_details = Prisma.hr_detailsModel
 /**
  * Model instructor_details
  * 
@@ -118,6 +133,11 @@ export type job_eligible_course = Prisma.job_eligible_courseModel
  */
 export type job_opportunity = Prisma.job_opportunityModel
 /**
+ * Model mobilizer_details
+ * 
+ */
+export type mobilizer_details = Prisma.mobilizer_detailsModel
+/**
  * Model notifications
  * 
  */
@@ -137,33 +157,3 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
-/**
- * Model batch_syllabus
- * 
- */
-export type batch_syllabus = Prisma.batch_syllabusModel
-/**
- * Model mobilizer_details
- * 
- */
-export type mobilizer_details = Prisma.mobilizer_detailsModel
-/**
- * Model enquiry_status_history
- * 
- */
-export type enquiry_status_history = Prisma.enquiry_status_historyModel
-/**
- * Model hr_details
- * 
- */
-export type hr_details = Prisma.hr_detailsModel
-/**
- * Model admin_details
- * 
- */
-export type admin_details = Prisma.admin_detailsModel
-/**
- * Model admin_documents
- * 
- */
-export type admin_documents = Prisma.admin_documentsModel

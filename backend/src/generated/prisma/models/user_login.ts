@@ -535,6 +535,20 @@ export type user_loginUpdateOneRequiredWithoutEvent_details_event_details_update
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutEvent_details_event_details_updated_byTouser_loginInput, Prisma.user_loginUpdateWithoutEvent_details_event_details_updated_byTouser_loginInput>, Prisma.user_loginUncheckedUpdateWithoutEvent_details_event_details_updated_byTouser_loginInput>
 }
 
+export type user_loginCreateNestedOneWithoutHr_detailsInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutHr_detailsInput
+  connect?: Prisma.user_loginWhereUniqueInput
+}
+
+export type user_loginUpdateOneRequiredWithoutHr_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutHr_detailsInput
+  upsert?: Prisma.user_loginUpsertWithoutHr_detailsInput
+  connect?: Prisma.user_loginWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutHr_detailsInput, Prisma.user_loginUpdateWithoutHr_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
+}
+
 export type user_loginCreateNestedOneWithoutInstructor_detailsInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutInstructor_detailsInput, Prisma.user_loginUncheckedCreateWithoutInstructor_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutInstructor_detailsInput
@@ -547,6 +561,20 @@ export type user_loginUpdateOneRequiredWithoutInstructor_detailsNestedInput = {
   upsert?: Prisma.user_loginUpsertWithoutInstructor_detailsInput
   connect?: Prisma.user_loginWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutInstructor_detailsInput, Prisma.user_loginUpdateWithoutInstructor_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutInstructor_detailsInput>
+}
+
+export type user_loginCreateNestedOneWithoutMobilizer_detailsInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutMobilizer_detailsInput
+  connect?: Prisma.user_loginWhereUniqueInput
+}
+
+export type user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutMobilizer_detailsInput
+  upsert?: Prisma.user_loginUpsertWithoutMobilizer_detailsInput
+  connect?: Prisma.user_loginWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput, Prisma.user_loginUpdateWithoutMobilizer_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
 }
 
 export type user_loginCreateNestedOneWithoutStudy_materialInput = {
@@ -579,48 +607,6 @@ export type user_loginUpdateOneRequiredWithoutUser_notificationsNestedInput = {
   upsert?: Prisma.user_loginUpsertWithoutUser_notificationsInput
   connect?: Prisma.user_loginWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutUser_notificationsInput, Prisma.user_loginUpdateWithoutUser_notificationsInput>, Prisma.user_loginUncheckedUpdateWithoutUser_notificationsInput>
-}
-
-export type user_loginCreateNestedOneWithoutMobilizer_detailsInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutMobilizer_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-}
-
-export type user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutMobilizer_detailsInput
-  upsert?: Prisma.user_loginUpsertWithoutMobilizer_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput, Prisma.user_loginUpdateWithoutMobilizer_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
-}
-
-export type user_loginCreateNestedOneWithoutHr_detailsInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutHr_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-}
-
-export type user_loginUpdateOneRequiredWithoutHr_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutHr_detailsInput
-  upsert?: Prisma.user_loginUpsertWithoutHr_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutHr_detailsInput, Prisma.user_loginUpdateWithoutHr_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
-}
-
-export type user_loginCreateNestedOneWithoutAdmin_detailsInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutAdmin_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutAdmin_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-}
-
-export type user_loginUpdateOneRequiredWithoutAdmin_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.user_loginCreateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutAdmin_detailsInput>
-  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutAdmin_detailsInput
-  upsert?: Prisma.user_loginUpsertWithoutAdmin_detailsInput
-  connect?: Prisma.user_loginWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutAdmin_detailsInput, Prisma.user_loginUpdateWithoutAdmin_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutAdmin_detailsInput>
 }
 
 export type user_loginCreateWithoutCandidates_detailsInput = {
@@ -977,6 +963,94 @@ export type user_loginUncheckedUpdateWithoutEvent_details_event_details_updated_
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
+export type user_loginCreateWithoutHr_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  refresh_token_hash?: string | null
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
+  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginUncheckedCreateWithoutHr_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
+  refresh_token_hash?: string | null
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginCreateOrConnectWithoutHr_detailsInput = {
+  where: Prisma.user_loginWhereUniqueInput
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
+}
+
+export type user_loginUpsertWithoutHr_detailsInput = {
+  update: Prisma.XOR<Prisma.user_loginUpdateWithoutHr_detailsInput, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
+  where?: Prisma.user_loginWhereInput
+}
+
+export type user_loginUpdateToOneWithWhereWithoutHr_detailsInput = {
+  where?: Prisma.user_loginWhereInput
+  data: Prisma.XOR<Prisma.user_loginUpdateWithoutHr_detailsInput, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
+}
+
+export type user_loginUpdateWithoutHr_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
+  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginUncheckedUpdateWithoutHr_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
+}
+
 export type user_loginCreateWithoutInstructor_detailsInput = {
   user_id?: string
   user_email: string
@@ -1065,6 +1139,190 @@ export type user_loginUncheckedUpdateWithoutInstructor_detailsInput = {
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
   hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginCreateWithoutMobilizer_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  refresh_token_hash?: string | null
+  admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginUncheckedCreateWithoutMobilizer_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
+  refresh_token_hash?: string | null
+  admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginCreateOrConnectWithoutMobilizer_detailsInput = {
+  where: Prisma.user_loginWhereUniqueInput
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+}
+
+export type user_loginUpsertWithoutMobilizer_detailsInput = {
+  update: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+  where?: Prisma.user_loginWhereInput
+}
+
+export type user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput = {
+  where?: Prisma.user_loginWhereInput
+  data: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
+}
+
+export type user_loginUpdateWithoutMobilizer_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginUncheckedUpdateWithoutMobilizer_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginCreateWithoutMobilizer_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  refresh_token_hash?: string | null
+  admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginUncheckedCreateWithoutMobilizer_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id: string
+  refresh_token_hash?: string | null
+  admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginCreateOrConnectWithoutMobilizer_detailsInput = {
+  where: Prisma.user_loginWhereUniqueInput
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+}
+
+export type user_loginUpsertWithoutMobilizer_detailsInput = {
+  update: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
+  where?: Prisma.user_loginWhereInput
+}
+
+export type user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput = {
+  where?: Prisma.user_loginWhereInput
+  data: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
+}
+
+export type user_loginUpdateWithoutMobilizer_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginUncheckedUpdateWithoutMobilizer_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.StringFieldUpdateOperationsInput | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
@@ -1251,282 +1509,6 @@ export type user_loginUncheckedUpdateWithoutUser_notificationsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginCreateWithoutMobilizer_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  refresh_token_hash?: string | null
-  admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
-  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
-  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginUncheckedCreateWithoutMobilizer_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_id: string
-  refresh_token_hash?: string | null
-  admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginCreateOrConnectWithoutMobilizer_detailsInput = {
-  where: Prisma.user_loginWhereUniqueInput
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
-}
-
-export type user_loginUpsertWithoutMobilizer_detailsInput = {
-  update: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedCreateWithoutMobilizer_detailsInput>
-  where?: Prisma.user_loginWhereInput
-}
-
-export type user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput = {
-  where?: Prisma.user_loginWhereInput
-  data: Prisma.XOR<Prisma.user_loginUpdateWithoutMobilizer_detailsInput, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
-}
-
-export type user_loginUpdateWithoutMobilizer_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
-  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
-  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginUncheckedUpdateWithoutMobilizer_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginCreateWithoutHr_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  refresh_token_hash?: string | null
-  admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
-  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
-  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginUncheckedCreateWithoutHr_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_id: string
-  refresh_token_hash?: string | null
-  admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginCreateOrConnectWithoutHr_detailsInput = {
-  where: Prisma.user_loginWhereUniqueInput
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
-}
-
-export type user_loginUpsertWithoutHr_detailsInput = {
-  update: Prisma.XOR<Prisma.user_loginUpdateWithoutHr_detailsInput, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutHr_detailsInput, Prisma.user_loginUncheckedCreateWithoutHr_detailsInput>
-  where?: Prisma.user_loginWhereInput
-}
-
-export type user_loginUpdateToOneWithWhereWithoutHr_detailsInput = {
-  where?: Prisma.user_loginWhereInput
-  data: Prisma.XOR<Prisma.user_loginUpdateWithoutHr_detailsInput, Prisma.user_loginUncheckedUpdateWithoutHr_detailsInput>
-}
-
-export type user_loginUpdateWithoutHr_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
-  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
-  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
-  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginUncheckedUpdateWithoutHr_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginCreateWithoutAdmin_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  refresh_token_hash?: string | null
-  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
-  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
-  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginUncheckedCreateWithoutAdmin_detailsInput = {
-  user_id?: string
-  user_email: string
-  user_password: string
-  user_role: $Enums.role_types
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_id: string
-  refresh_token_hash?: string | null
-  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
-  hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
-  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
-  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
-}
-
-export type user_loginCreateOrConnectWithoutAdmin_detailsInput = {
-  where: Prisma.user_loginWhereUniqueInput
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutAdmin_detailsInput>
-}
-
-export type user_loginUpsertWithoutAdmin_detailsInput = {
-  update: Prisma.XOR<Prisma.user_loginUpdateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedUpdateWithoutAdmin_detailsInput>
-  create: Prisma.XOR<Prisma.user_loginCreateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutAdmin_detailsInput>
-  where?: Prisma.user_loginWhereInput
-}
-
-export type user_loginUpdateToOneWithWhereWithoutAdmin_detailsInput = {
-  where?: Prisma.user_loginWhereInput
-  data: Prisma.XOR<Prisma.user_loginUpdateWithoutAdmin_detailsInput, Prisma.user_loginUncheckedUpdateWithoutAdmin_detailsInput>
-}
-
-export type user_loginUpdateWithoutAdmin_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
-  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
-  center_details?: Prisma.center_detailsUpdateOneRequiredWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
-}
-
-export type user_loginUncheckedUpdateWithoutAdmin_detailsInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_email?: Prisma.StringFieldUpdateOperationsInput | string
-  user_password?: Prisma.StringFieldUpdateOperationsInput | string
-  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
-  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
-  hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
-  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
-  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
 export type user_loginCreateManyCenter_detailsInput = {

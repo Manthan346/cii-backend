@@ -368,6 +368,11 @@ export type hr_detailsMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
 }
 
+export type Hr_detailsNullableScalarRelationFilter = {
+  is?: Prisma.hr_detailsWhereInput | null
+  isNot?: Prisma.hr_detailsWhereInput | null
+}
+
 export type hr_detailsCreateNestedManyWithoutCompany_detailsInput = {
   create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutCompany_detailsInput, Prisma.hr_detailsUncheckedCreateWithoutCompany_detailsInput> | Prisma.hr_detailsCreateWithoutCompany_detailsInput[] | Prisma.hr_detailsUncheckedCreateWithoutCompany_detailsInput[]
   connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutCompany_detailsInput | Prisma.hr_detailsCreateOrConnectWithoutCompany_detailsInput[]
