@@ -48,6 +48,7 @@ import { getAllAttendanceSessions } from "../../controllers/instructor-controlle
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
 import { instructorGuardianDetails } from "../../controllers/instructor-controller/instructor-guardian-details";
 import { addCandidateAttendance } from "../../controllers/instructor-controller/mark-candidate-attendance";
+import { getAllCoursesAndBatches } from "../../controllers/instructor-controller/get-allCoursesAndBatches";
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
 import { uploadSyllabus } from "../../controllers/instructor-controller/instructor-upload-batchSyllabus";
 import { getBatchSyllabus } from "../../controllers/instructor-controller/instructor-get-batchSyllabus";
@@ -93,6 +94,7 @@ instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessTok
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
 instructorRouter.get('/guardian-details', verifyInstructorUsingAccessToken, instructorGuardianDetails)
 instructorRouter.post('/mark-candidate-attendnace/:attendanceSessionId', verifyInstructorUsingAccessToken,validateBody(addAttendanceBodySchema), addCandidateAttendance)
+instructorRouter.get('/get-all-courses-and-batches', verifyInstructorUsingAccessToken, getAllCoursesAndBatches)
 
 
 instructorRouter.get(

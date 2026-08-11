@@ -539,6 +539,7 @@ enum event_target_type {
   BATCH
   ALL_BATCHES @map("ALL BATCHES")
   DEPARTMENT
+  WEBSITE
 }
 
 enum event_type {
