@@ -37,3 +37,16 @@ export interface MobilizerTokenPayload {
     center_name?: string;
     email?: string;
 }
+
+export interface HrTokenPayload {
+    hr_id: string;
+    hr_first_name?: string;
+    hr_last_name?: string;
+
+    user_id: string;
+    role: string;
+
+    company_id: string;
+
+    email?: string;
+}

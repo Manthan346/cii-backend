@@ -1,0 +1,43 @@
+import { NextFunction, Response } from "express";
+import jwt from "jsonwebtoken";
+
+import { asyncHandler } from "../../helpers/asyncHandler";
+import { ApiError } from "../../helpers/ApiError";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
+import { HrTokenPayload } from "../../interfaces/jwt-interface";
+
+export const verifyHrUsingAccessToken = asyncHandler(
+    async (
+        req: HrAuthRequest,
+        res: Response,
+        next: NextFunction
+    ) => {
+        const accessToken = req.cookies.accessToken;
+
+        if (!accessToken) {
+            throw new ApiError(401, "Unauthorized");
+        }
+
+        const decoded = jwt.verify(
+            accessToken,
+            process.env.JWT_SECRET!
+        ) as HrTokenPayload;
+
+        if (decoded.role !== "hr") {
+            throw new ApiError(401, "You are not an HR");
+        }
+
+        req.hr = {
+            hr_id: decoded.hr_id,
+            email: decoded.email,
+            company_id: decoded.company_id,
+        };
+
+        req.user = {
+            user_id: decoded.user_id,
+            role: decoded.role,
+        };
+
+        next();
+    }
+);

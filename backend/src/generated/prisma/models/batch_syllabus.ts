@@ -449,6 +449,10 @@ export type batch_syllabusUncheckedUpdateManyWithoutBatch_detailsNestedInput = {
   deleteMany?: Prisma.batch_syllabusScalarWhereInput | Prisma.batch_syllabusScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type batch_syllabusCreateNestedManyWithoutInstructor_detailsInput = {
   create?: Prisma.XOR<Prisma.batch_syllabusCreateWithoutInstructor_detailsInput, Prisma.batch_syllabusUncheckedCreateWithoutInstructor_detailsInput> | Prisma.batch_syllabusCreateWithoutInstructor_detailsInput[] | Prisma.batch_syllabusUncheckedCreateWithoutInstructor_detailsInput[]
   connectOrCreate?: Prisma.batch_syllabusCreateOrConnectWithoutInstructor_detailsInput | Prisma.batch_syllabusCreateOrConnectWithoutInstructor_detailsInput[]
