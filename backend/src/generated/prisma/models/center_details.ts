@@ -444,10 +444,12 @@ export type center_detailsCreateNestedOneWithoutEvent_detailsInput = {
   connect?: Prisma.center_detailsWhereUniqueInput
 }
 
-export type center_detailsUpdateOneRequiredWithoutEvent_detailsNestedInput = {
+export type center_detailsUpdateOneWithoutEvent_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
   connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutEvent_detailsInput
   upsert?: Prisma.center_detailsUpsertWithoutEvent_detailsInput
+  disconnect?: Prisma.center_detailsWhereInput | boolean
+  delete?: Prisma.center_detailsWhereInput | boolean
   connect?: Prisma.center_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutEvent_detailsInput, Prisma.center_detailsUpdateWithoutEvent_detailsInput>, Prisma.center_detailsUncheckedUpdateWithoutEvent_detailsInput>
 }

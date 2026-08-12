@@ -183,7 +183,6 @@ model candidates_details {
   candidate_assessment        candidate_assessment[]
   candidate_documents         candidate_documents?
   user_login                  user_login             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_user")
-  job_application             job_application[]
 }
 
 model center_company {
@@ -222,22 +221,20 @@ model company_details {
   course_details      course_details[]
   hr_details          hr_details[]
   instructor_details  instructor_details[]
-  job_opportunity     job_opportunity[]
 }
 
 model course_details {
-  course_id           String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  course_name         String                @db.VarChar(100)
-  course_desc         String
-  course_duration     String                @db.VarChar(100)
-  created_at          DateTime              @default(now()) @db.Timestamp(6)
-  updated_at          DateTime              @default(now()) @db.Timestamp(6)
-  company_id          String                @db.Uuid
-  course_mode         course_type
-  batch_details       batch_details[]
-  company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
-  enquiry_records     enquiry_records[]
-  job_eligible_course job_eligible_course[]
+  course_id       String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  course_name     String            @db.VarChar(100)
+  course_desc     String
+  course_duration String            @db.VarChar(100)
+  created_at      DateTime          @default(now()) @db.Timestamp(6)
+  updated_at      DateTime          @default(now()) @db.Timestamp(6)
+  company_id      String            @db.Uuid
+  course_mode     course_type
+  batch_details   batch_details[]
+  company_details company_details   @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_course_company")
+  enquiry_records enquiry_records[]
 }
 
 model enquiry_records {
@@ -274,7 +271,7 @@ model event_batches {
 
 model event_details {
   event_id                                        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  center_id                                       String             @db.Uuid
+  center_id                                       String?            @db.Uuid
   event_title                                     String             @db.VarChar(255)
   event_description                               String?
   event_date                                      DateTime           @db.Date
@@ -283,14 +280,16 @@ model event_details {
   is_show                                         Boolean?           @default(true)
   created_by                                      String             @db.Uuid
   created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime           @updatedAt @db.Timestamp(6)
+  updated_at                                      DateTime           @default(now()) @updatedAt @db.Timestamp(6)
   updated_by                                      String             @db.Uuid
   event_link                                      String?
   event_mode                                      event_mode?
   event_type                                      event_type?
   target_type                                     event_target_type?
+  event_status                                    event_status_type?
+  event_documents                                 String[]
   event_batches                                   event_batches[]
-  center_details                                  center_details     @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
+  center_details                                  center_details?    @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
   user_login_event_details_created_byTouser_login user_login         @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
   user_login_event_details_updated_byTouser_login user_login         @relation("event_details_updated_byTouser_login", fields: [updated_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
@@ -376,46 +375,6 @@ model instructor_documents {
   instructor_details                         instructor_details? @relation(fields: [instructor_id], references: [instructor_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model job_application {
-  application_id     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  job_id             String                  @db.Uuid
-  candidate_id       String                  @db.Uuid
-  application_status job_application_status?
-  applied_at         DateTime?               @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?               @default(now()) @db.Timestamp(6)
-  candidates_details candidates_details      @relation(fields: [candidate_id], references: [candidate_id], onDelete: NoAction, onUpdate: NoAction)
-  job_opportunity    job_opportunity         @relation(fields: [job_id], references: [job_id], onDelete: NoAction, onUpdate: NoAction)
-
-  @@unique([job_id, candidate_id], map: "uq_job_candidate")
-}
-
-model job_eligible_course {
-  job_id          String          @db.Uuid
-  course_id       String          @db.Uuid
-  course_details  course_details  @relation(fields: [course_id], references: [course_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_jec_course")
-  job_opportunity job_opportunity @relation(fields: [job_id], references: [job_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_jec_job")
-
-  @@id([job_id, course_id])
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model job_opportunity {
-  job_id              String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  company_id          String                @db.Uuid
-  job_title           String                @db.VarChar(150)
-  description         String?
-  location            String?               @db.VarChar(100)
-  salary              Decimal?              @db.Decimal(10, 2)
-  vacancies           Int?
-  last_apply_date     DateTime?             @db.Date
-  status              String                @default("Open") @db.VarChar(10)
-  created_at          DateTime              @default(now()) @db.Timestamp(6)
-  updated_at          DateTime              @default(now()) @db.Timestamp(6)
-  job_application     job_application[]
-  job_eligible_course job_eligible_course[]
-  company_details     company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction)
-}
-
 model notifications {
   notification_id      String                       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title                String
@@ -451,6 +410,7 @@ model user_login {
   updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
   center_id                                          String               @db.Uuid
   refresh_token_hash                                 String?
+  admin_details                                      admin_details?
   candidates_details                                 candidates_details?
   event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
   event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
@@ -522,6 +482,69 @@ model hr_details {
   user_id         String          @unique @db.Uuid
   company_details company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_company")
   user_login      user_login      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_user")
+  placement       placement[]
+}
+
+model admin_details {
+  admin_id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  admin_first_name      String
+  admin_last_name       String?
+  blood_group           String?           @db.VarChar(5)
+  date_of_birth         DateTime?         @db.Date
+  highest_qualification String?
+  specialization        String?
+  university            String?
+  passing_year          Int?
+  total_experience      Decimal?          @db.Decimal(5, 2)
+  prev_organization     String?
+  prev_org_role         String?
+  father_name           String?
+  father_mobile_no      String?           @db.VarChar(10)
+  father_address        String?
+  father_occupation     String?
+  father_blood_group    String?           @db.VarChar(5)
+  father_dob            DateTime?         @db.Date
+  mother_name           String?
+  mother_mobile_no      String?           @db.VarChar(10)
+  mother_address        String?
+  mother_occupation     String?
+  mother_blood_group    String?           @db.VarChar(5)
+  mother_dob            DateTime?         @db.Date
+  guardian_name         String?
+  guardian_dob          DateTime?         @db.Date
+  guardian_address      String?
+  guardian_gender       String?           @db.VarChar(20)
+  guardian_blood_group  String?           @db.VarChar(5)
+  guardian_phone_number String?           @db.VarChar(10)
+  user_id               String            @unique @db.Uuid
+  user_login            user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_admin_details_user")
+  admin_documents       admin_documents[]
+}
+
+model admin_documents {
+  admin_document_id                      String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  admin_id                               String        @db.Uuid
+  pan_card_link                          String?
+  aadhar_card_link                       String?
+  resume_link                            String?
+  past_experience_letter_link            String?
+  highest_qualification_certificate_link String?
+  admin_details                          admin_details @relation(fields: [admin_id], references: [admin_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_admin_documents_admin")
+}
+
+model placement {
+  placement_id       String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name       String     @db.VarChar(255)
+  vacancy            Int
+  location           String     @db.VarChar(255)
+  job_role           String     @db.VarChar(255)
+  job_description    String?
+  last_date_to_apply DateTime   @db.Date
+  is_active          Boolean?   @default(true)
+  created_at         DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?  @default(now()) @db.Timestamp(6)
+  created_by         String     @db.Uuid
+  hr_details         hr_details @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
 }
 
 enum assessment_type {
@@ -587,6 +610,7 @@ enum event_target_type {
   ALL_BATCHES @map("ALL BATCHES")
   A_C_BATCHES
   COMPLETED
+  PUBLIC
 }
 
 enum event_type {
@@ -665,4 +689,10 @@ enum enquiry_status {
   DOCUMENT_VERIFICATION_PENDING
   INTERESTED
   DOCUMENT_VERIFICATION_DONE
+}
+
+enum event_status_type {
+  UPCOMING
+  ONGOING
+  COMPLETED
 }

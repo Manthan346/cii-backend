@@ -130,21 +130,6 @@ export type instructor_details = Prisma.instructor_detailsModel
  */
 export type instructor_documents = Prisma.instructor_documentsModel
 /**
- * Model job_application
- * 
- */
-export type job_application = Prisma.job_applicationModel
-/**
- * Model job_eligible_course
- * 
- */
-export type job_eligible_course = Prisma.job_eligible_courseModel
-/**
- * Model job_opportunity
- * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
- */
-export type job_opportunity = Prisma.job_opportunityModel
-/**
  * Model notifications
  * 
  */
@@ -184,3 +169,18 @@ export type enquiry_status_history = Prisma.enquiry_status_historyModel
  * 
  */
 export type hr_details = Prisma.hr_detailsModel
+/**
+ * Model admin_details
+ * 
+ */
+export type admin_details = Prisma.admin_detailsModel
+/**
+ * Model admin_documents
+ * 
+ */
+export type admin_documents = Prisma.admin_documentsModel
+/**
+ * Model placement
+ * 
+ */
+export type placement = Prisma.placementModel

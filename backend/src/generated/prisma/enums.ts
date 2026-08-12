@@ -98,7 +98,8 @@ export const event_target_type = {
   BATCH: 'BATCH',
   ALL_BATCHES: 'ALL_BATCHES',
   A_C_BATCHES: 'A_C_BATCHES',
-  COMPLETED: 'COMPLETED'
+  COMPLETED: 'COMPLETED',
+  PUBLIC: 'PUBLIC'
 } as const
 
 export type event_target_type = (typeof event_target_type)[keyof typeof event_target_type]
@@ -204,3 +205,12 @@ export const enquiry_status = {
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
+
+
+export const event_status_type = {
+  UPCOMING: 'UPCOMING',
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
