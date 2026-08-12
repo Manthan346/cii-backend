@@ -85,3 +85,4 @@ Added "Add Candidate" form in Candidate Management section of Trainer Login
 
 23 July 2026
 asdfghjkldfgh
+mdnc jkndc
