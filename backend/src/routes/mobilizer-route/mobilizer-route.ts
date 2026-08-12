@@ -5,6 +5,8 @@ import { assignMobilizerToEnquiry } from '../../controllers/mobilizer-controller
 import { getEnquiryDetails } from '../../controllers/mobilizer-controller/get-enquiry-details';
 import { changeEnquiryStatus } from '../../controllers/mobilizer-controller/change-enquiry-status';
 import { paginationMiddleware } from '../../middlewares/pagination-middleware/pagination';
+import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
+import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
 
 const mobilizerRouter = Router();
 
@@ -14,6 +16,9 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
+
+// Fetch all job fair and job drive for the mobilizer
+mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 // Assign mobilizer to enquiry
 mobilizerRouter.post(
