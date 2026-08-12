@@ -24,4 +24,11 @@ export const classroomOptions = [
   'Hybrid',
 ];
 
+export const classroomOptions = [
+  'Room 204-in-person',
+  'Room 101-in-person',
+  'Online - Zoom',
+  'Hybrid',
+];
+
 export const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
