@@ -16,6 +16,8 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
+
+// Fetch all job fair and job drive for the mobilizer
 mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 // Assign mobilizer to enquiry
