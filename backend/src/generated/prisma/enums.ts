@@ -142,7 +142,8 @@ export const notification_reference_type = {
   CERTIFICATE: 'CERTIFICATE',
   RESULT: 'RESULT',
   GENERAL: 'GENERAL',
-  EVENT: 'EVENT'
+  EVENT: 'EVENT',
+  JOB_EVENT: 'JOB_EVENT'
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -163,7 +164,10 @@ export const notification_type = {
   EXAMINATION: 'EXAMINATION',
   EVENT_CREATED: 'EVENT_CREATED',
   EVENT_UPDATED: 'EVENT_UPDATED',
-  EVENT_DELETED: 'EVENT_DELETED'
+  EVENT_DELETED: 'EVENT_DELETED',
+  JOB_EVENT_CREATED: 'JOB_EVENT_CREATED',
+  JOB_EVENT_UPDATED: 'JOB_EVENT_UPDATED',
+  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
@@ -214,3 +218,11 @@ export const event_status_type = {
 } as const
 
 export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
+
+
+export const job_event_type = {
+  JOB_FAIR: 'JOB_FAIR',
+  JOB_DRIVE: 'JOB_DRIVE'
+} as const
+
+export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]

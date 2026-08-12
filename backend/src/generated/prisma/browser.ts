@@ -157,3 +157,8 @@ export type admin_documents = Prisma.admin_documentsModel
  * 
  */
 export type placement = Prisma.placementModel
+/**
+ * Model job_events
+ * 
+ */
+export type job_events = Prisma.job_eventsModel
