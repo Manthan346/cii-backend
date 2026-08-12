@@ -198,6 +198,79 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* ---- Profile picture (Personal section, session-only upload) ---- */
+
+.profile-edit-profile-modal-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.profile-edit-profile-modal-avatar-preview {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.profile-edit-profile-modal-avatar-placeholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-page-bg, #eef0f2);
+  border: 1px solid var(--color-border, #e2e5e9);
+  flex-shrink: 0;
+}
+
+.profile-edit-profile-modal-avatar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.profile-edit-profile-modal-avatar-upload-btn,
+.profile-edit-profile-modal-avatar-delete-btn {
+  background: none;
+  border: 1px solid var(--color-border, #e2e5e9);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.profile-edit-profile-modal-avatar-upload-btn {
+  color: var(--color-teal, #0f6d5c);
+  border-color: var(--color-teal, #0f6d5c);
+}
+
+.profile-edit-profile-modal-avatar-upload-btn:hover {
+  background-color: rgba(15, 109, 92, 0.06);
+}
+
+.profile-edit-profile-modal-avatar-delete-btn {
+  color: #d64545;
+  border-color: #f0c9c9;
+}
+
+.profile-edit-profile-modal-avatar-delete-btn:hover:not(:disabled) {
+  background-color: rgba(214, 69, 69, 0.06);
+}
+
+.profile-edit-profile-modal-avatar-delete-btn:disabled {
+  color: #b8b8b8;
+  border-color: var(--color-border, #e2e5e9);
+  cursor: not-allowed;
+}
+
+.profile-edit-profile-modal-avatar-input {
+  display: none;
+}
+
 @media (max-width: 480px) {
   .profile-edit-profile-modal-row {
     grid-template-columns: 1fr;
@@ -209,5 +282,9 @@
 
   .profile-edit-profile-modal-modal {
     max-height: 90vh;
+  }
+
+  .profile-edit-profile-modal-avatar-row {
+    flex-wrap: wrap;
   }
 }

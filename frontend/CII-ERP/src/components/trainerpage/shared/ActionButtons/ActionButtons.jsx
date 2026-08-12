@@ -38,16 +38,6 @@ export default function ActionButtons({
           <Lock size={15} />
         </button>
       )}
-      <button
-        type="button"
-        className={
-          'shared-action-buttons-icon-btn shared-action-buttons-danger'
-        }
-        onClick={onDelete}
-        aria-label="Delete candidate"
-      >
-        <Trash2 size={15} />
-      </button>
     </div>
   );
 }

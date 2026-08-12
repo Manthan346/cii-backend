@@ -11,10 +11,16 @@ import EditProfileModal from '../EditProfileModal/EditProfileModal';
 import { fetchAcademicDetails } from '../../../../../../api/trainer/academicService';
 import { fetchInstructorProfile } from '../../../../../../api/trainer/profileService';
 import { getCompletionLabel, getCompletionChecklist } from '../../../data/getCompletionMeta';
+import { fetchGuardianDetails } from '../../../../../../api/trainer/guardianService';
+import {
+  uploadInstructorDocuments,
+  fetchInstructorDocuments,
+  DOCUMENT_FIELD_MAP,
+} from '../../../../../../api/trainer/documentService';
 import {
   staffProfile,
   profileTabs,
-  profileDocuments,
+  // profileDocuments,
   profileDocumentNote,
   profileGuardianDetail,
 } from '../../../data';
@@ -61,13 +67,100 @@ const Profile = () => {
   const [basicInfoLoading, setBasicInfoLoading] = useState(true);
   const [basicInfoError, setBasicInfoError] = useState(null);
 
-  const [guardians, setGuardians] = useState(profileGuardianDetail.guardians);
+  // Session-only - no backend field/endpoint for this yet, see
+  // EditProfileModal.jsx's file header. Gone on refresh.
+  const [avatarUrl, setAvatarUrl] = useState(staffProfile.avatar);
+
+  // const [guardians, setGuardians] = useState(profileGuardianDetail.guardians);
+  // const [guardians, setGuardians] = useState(null);
+  const [fatherDetails, setFatherDetails] = useState(null);
+  const [motherDetails, setMotherDetails] = useState(null);
+  const [guardianDetails, setGuardianDetails] = useState(null);
+  const [guardiansLoading, setGuardiansLoading] = useState(true);
+  const [guardiansError, setGuardiansError] = useState(null);
   const [activeGuardianIndex, setActiveGuardianIndex] = useState(0);
 
   const [education, setEducation] = useState(null);
   const [experience, setExperience] = useState(null);
   const [academicLoading, setAcademicLoading] = useState(true);
   const [academicError, setAcademicError] = useState(null);
+
+  const INITIAL_DOCUMENTS = [
+    { id: 'doc-1', name: 'Highest Qualification Document', required: false, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+    { id: 'doc-2', name: 'Past Experience letter', required: false, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+    { id: 'doc-3', name: 'PAN Card', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+    { id: 'doc-4', name: 'Aadhar Card', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+    { id: 'doc-5', name: 'Resume', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+  ];
+
+  const [documents, setDocuments] = useState(INITIAL_DOCUMENTS);
+
+  const mapDocumentsFromApi = (payload = {}) => {
+    const raw = payload?.documents ?? payload?.data ?? payload ?? {};
+
+    return INITIAL_DOCUMENTS.map((doc) => {
+      const fieldName = DOCUMENT_FIELD_MAP[doc.id];
+
+      const candidateValue =
+        raw?.[fieldName] ??
+        raw?.[fieldName?.toLowerCase?.()] ??
+        raw?.[fieldName?.replace('instructor_', '')] ??
+        raw?.documents?.[fieldName] ??
+        raw?.documents?.[fieldName?.toLowerCase?.()] ??
+        raw?.documents?.[fieldName?.replace('instructor_', '')] ??
+        raw?.[doc.name] ??
+        null;
+
+      const value =
+        typeof candidateValue === 'string'
+          ? { url: candidateValue }
+          : candidateValue ?? null;
+
+      const url =
+        typeof value === 'string'
+          ? value
+          : value?.url ?? value?.fileUrl ?? value?.downloadUrl ?? value?.path ?? null;
+
+      const uploaded = Boolean(
+        url ||
+        value?.uploaded ||
+        value?.isUploaded ||
+        value?.status === 'uploaded' ||
+        value?.status === 'Verified' ||
+        value?.verified
+      );
+
+      return {
+        ...doc,
+        uploaded,
+        uploadedOn: uploaded
+          ? (value?.uploadedOn || value?.updatedAt || new Date().toLocaleDateString())
+          : 'Not uploaded',
+        status: uploaded ? (value?.status || 'Verified') : null,
+        url,
+      };
+    });
+  };
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadDocuments() {
+      try {
+        const payload = await fetchInstructorDocuments();
+        if (!cancelled) {
+          setDocuments(mapDocumentsFromApi(payload));
+        }
+      } catch (err) {
+        console.warn('Failed to fetch instructor documents on page load', err);
+      }
+    }
+
+    loadDocuments();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -78,25 +171,11 @@ const Profile = () => {
       try {
         const { profileCompletion, basicInformation } = await fetchInstructorProfile();
         if (!cancelled) {
-          const personalInfo = basicInformation?.response?.basicInformation?.personalInformation
-            ?? basicInformation?.basicInformation?.personalInformation
-            ?? basicInformation?.personalInformation
-            ?? null;
-          const contactDetails = basicInformation?.response?.contactDetails
-            ?? basicInformation?.contactDetails
-            ?? null;
-          const currentAddressData = basicInformation?.response?.currentAddress
-            ?? basicInformation?.currentAddress
-            ?? null;
-          const permanentAddressData = basicInformation?.response?.permanentAddress
-            ?? basicInformation?.permanentAddress
-            ?? null;
-
-          setPersonal(personalInfo);
-          setContact(contactDetails);
-          setCurrentAddress(currentAddressData);
-          setPermanentAddress(permanentAddressData);
-          setCompletionPercent(profileCompletion ?? 0);
+          setPersonal(basicInformation.personalInformation);
+          setContact(basicInformation.contactDetails);
+          setCurrentAddress(basicInformation.currentAddress);
+          setPermanentAddress(basicInformation.permanentAddress);
+          setCompletionPercent(profileCompletion);
           setCompletionChecklist(getCompletionChecklist(basicInformation));
         }
       } catch (err) {
@@ -137,14 +216,58 @@ const Profile = () => {
     };
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadGuardiansDetails() {
+      setGuardiansLoading(true);
+      setGuardiansError(null);
+      try {
+        const details = await fetchGuardianDetails();
+        if (!cancelled) {
+          setFatherDetails(details.fatherDetails);
+          setMotherDetails(details.motherDetails);
+          setGuardianDetails(details.guardianDetails);
+        }
+      } catch (err) {
+        if (!cancelled) setGuardiansError(err.message || 'Failed to load guardian details');
+      } finally {
+        if (!cancelled) setGuardiansLoading(false);
+      }
+    }
+
+    loadGuardiansDetails();
+    return () => {
+      cancelled = true;
+    }
+  }, []);
+
+  const handleUploadDocument = async (doc, file) => {
+    const fieldName = DOCUMENT_FIELD_MAP[doc.id];
+    if (!fieldName) {
+      throw new Error(`No backend field mapped for document "${doc.id}"`);
+    }
+
+    await uploadInstructorDocuments({ [fieldName]: file });
+
+    // The POST is the upsert/create endpoint. We do not need a GET after
+    // every file select; we just read once on page load and keep the page
+    // hydrated from the backend response. The one initial load covers it.
+    const payload = await fetchInstructorDocuments();
+    setDocuments(mapDocumentsFromApi(payload));
+  };
+
   const handleSaveProfile = (updated) => {
     setPersonal(updated.personal);
     setContact(updated.contact);
     setCurrentAddress(updated.currentAddress);
     setPermanentAddress(updated.permanentAddress);
-    setGuardians(updated.guardians);
+    setFatherDetails(updated.fatherDetails);
+    setMotherDetails(updated.motherDetails);
+    setGuardianDetails(updated.guardianDetails);
     setEducation(updated.education);
     setExperience(updated.experience);
+    setAvatarUrl(updated.avatarUrl ?? staffProfile.avatar);
     setShowEditModal(false);
   };
 
@@ -170,21 +293,27 @@ const Profile = () => {
         if (academicLoading) return <p>Loading academic details…</p>;
         if (academicError) return <p>Error: {academicError}</p>;
         return (
-          <AcademicDetailTab education={education} experience={experience} />
+          <AcademicDetailTab 
+            education={education} 
+            experience={experience} 
+          />
         );
       case 'document':
         return (
           <DocumentTab
-            documents={profileDocuments}
+            documents={documents}
             note={profileDocumentNote}
+            onUploadDocument={handleUploadDocument}
           />
         );
       case 'guardian-details':
+        if (guardiansLoading) return <p>Loading guardian details…</p>;
+        if (guardiansError) return <p>Error: {guardiansError}</p>;
         return (
           <ContactDetailsTab
-            guardians={guardians}
-            activeIndex={activeGuardianIndex}
-            onIndexChange={setActiveGuardianIndex}
+            father={fatherDetails}
+            mother={motherDetails}
+            guardian={guardianDetails}
           />
         );
       default:
@@ -209,8 +338,8 @@ const Profile = () => {
             <div className="profile-page">
               <div className="profile-page__hero">
                 <img
-                  src={staffProfile.avatar}
-                  alt={staffProfile.name}
+                  src={avatarUrl}
+                  alt={personal?.name ?? staffProfile.name}
                   className="profile-page__photo"
                 />
 
@@ -262,10 +391,13 @@ const Profile = () => {
           contact={contact}
           currentAddress={currentAddress}
           permanentAddress={permanentAddress}
-          guardians={guardians}
+          father={fatherDetails}
+          mother={motherDetails}
+          guardian={guardianDetails}
           activeGuardianIndex={activeGuardianIndex}
           education={education}
           experience={experience}
+          avatarUrl={avatarUrl}
           onCancel={() => setShowEditModal(false)}
           onSave={handleSaveProfile}
         />

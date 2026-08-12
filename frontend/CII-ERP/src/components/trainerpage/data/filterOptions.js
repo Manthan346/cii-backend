@@ -25,6 +25,7 @@ export const statusOptions = [
   'Active',
   'Dropped',
   'Ending soon',
+  'Blacklisted',   // 👈 add this
 ];
 
 /* ---- Batch Management additions ----

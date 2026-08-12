@@ -6,13 +6,13 @@ import './EditStatusModal.css';
  * EditStatusModal
  *
  * Small popup opened by the Edit (pencil) icon in the candidate table's
- * Action column. Its only job is letting the trainer set a candidate's
- * status to Active or Dropped - fires onSave(newStatus).
+ * Action column. Lets the trainer set a candidate's status to Active,
+ * Dropped, or Blacklisted - fires onSave(newStatus).
  */
-const STATUS_OPTIONS = ['Active', 'Dropped'];
+const STATUS_OPTIONS = ['Active', 'Dropped', 'Blacklisted'];
 export default function EditStatusModal({ candidate, onCancel, onSave }) {
   const [status, setStatus] = useState(
-    candidate?.status === 'Dropped' ? 'Dropped' : 'Active',
+    STATUS_OPTIONS.includes(candidate?.status) ? candidate.status : 'Active',
   );
   if (!candidate) return null;
   return (

@@ -23,15 +23,10 @@ export default function BatchTable({
       <table className={'batch-management-batch-list-batch-table-table'}>
         <thead>
           <tr>
-            <th
-              className={'batch-management-batch-list-batch-table-checkbox-col'}
-            >
-              <input type="checkbox" aria-label="Select all batches" />
-            </th>
             <th>Batch</th>
-            <th>Trainer</th>
+            {/* <th>Trainer</th> */}
             <th>Course</th>
-            <th>candidates</th>
+            <th>Candidates</th>
             <th>Start date</th>
             <th>Status</th>
             <th>Action</th>
@@ -41,24 +36,17 @@ export default function BatchTable({
           {batches.map((batch) => (
             <tr key={batch.id}>
               <td>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  aria-label={`Select ${batch.code}`}
-                />
-              </td>
-              <td>
                 <div
                   className={
                     'batch-management-batch-list-batch-table-batch-cell'
                   }
                 >
-                  <span
+                  {/* <span
                     className={
                       'batch-management-batch-list-batch-table-batch-icon'
                     }
                     aria-hidden="true"
-                  />
+                  /> */}
                   <span
                     className={
                       'batch-management-batch-list-batch-table-batch-code'
@@ -68,7 +56,7 @@ export default function BatchTable({
                   </span>
                 </div>
               </td>
-              <td>
+              {/* <td>
                 <div
                   className={
                     'batch-management-batch-list-batch-table-trainer-cell'
@@ -82,7 +70,7 @@ export default function BatchTable({
                   />
                   <span>{batch.trainer}</span>
                 </div>
-              </td>
+              </td> */}
               <td>{batch.course}</td>
               <td>{batch.candidates}</td>
               <td className={'batch-management-batch-list-batch-table-nowrap'}>
@@ -94,8 +82,8 @@ export default function BatchTable({
               <td>
                 <ActionButtons
                   onView={() => onView?.(batch)}
-                  onDelete={() => onDelete?.(batch)}
-                  onAssignTrainer={() => onAssignTrainer?.(batch)}
+                  // onDelete={() => onDelete?.(batch)}
+                  // onAssignTrainer={() => onAssignTrainer?.(batch)}
                 />
               </td>
             </tr>

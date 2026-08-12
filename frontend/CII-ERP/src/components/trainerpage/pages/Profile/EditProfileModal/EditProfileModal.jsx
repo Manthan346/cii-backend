@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '../../../shared';
 import './EditProfileModal.css';
 
@@ -11,6 +10,18 @@ import './EditProfileModal.css';
  * Address, Guardian Information, and Academic Detail (Education +
  * Experience). Document uploads keep their own dedicated flow on the
  * Document tab, so they're not duplicated here.
+ *
+ * Profile picture (Upload New Picture / Delete Picture, top of the
+ * Personal section) is SESSION-ONLY for now - there's no backend field
+ * or upload endpoint for it yet (instructor-profile.ts's select has no
+ * photo/avatar column, and there's no equivalent of
+ * instructor-documents.ts's Cloudinary upload for a single profile
+ * picture). Selecting a file just creates a local blob: URL preview via
+ * URL.createObjectURL and passes it through onSave like any other
+ * field; it lives only in Profile.jsx's React state and is gone on
+ * refresh. Swap handlePictureChange/handleDeletePicture for a real
+ * upload/delete API call once that backend work exists, the same way
+ * fetchInstructorProfile replaced the profileBasicInfo mock earlier.
  *
  * Mirrors the styling/markup pattern used by AddCandidateModal /
  * MarkAttendanceModal so every popup in the app looks the same, but
@@ -58,10 +69,13 @@ export default function EditProfileModal({
   contact,
   currentAddress,
   permanentAddress,
-  guardians,
+  father,
+  mother,
+  guardian,
   activeGuardianIndex,
   education,
   experience,
+  avatarUrl,
   onCancel,
   onSave,
 }) {
@@ -78,23 +92,64 @@ export default function EditProfileModal({
   const [permanentAddressForm, setPermanentAddressForm] = useState({
     ...permanentAddress,
   });
+
+  // Profile picture - session-only, see file header comment.
+  const fileInputRef = useRef(null);
+  const [avatarPreview, setAvatarPreview] = useState(avatarUrl ?? null);
+
+  useEffect(() => {
+    // Only revoke blob: URLs we created ourselves - the initial
+    // avatarUrl passed in could be a real imported asset path, which
+    // isn't ours to revoke.
+    return () => {
+      if (avatarPreview && avatarPreview.startsWith('blob:')) {
+        URL.revokeObjectURL(avatarPreview);
+      }
+    };
+  }, [avatarPreview]);
+
+  const handlePictureChange = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const nextPreview = URL.createObjectURL(file);
+    setAvatarPreview((prev) => {
+      if (prev && prev.startsWith('blob:')) URL.revokeObjectURL(prev);
+      return nextPreview;
+    });
+    // Allow re-selecting the same file later.
+    event.target.value = '';
+  };
+
+  const handleDeletePicture = () => {
+    setAvatarPreview((prev) => {
+      if (prev && prev.startsWith('blob:')) URL.revokeObjectURL(prev);
+      return null;
+    });
+  };
+
   // Up to 3 guardians can be added (Father / Mother / one extra); at
   // least one is mandatory, so this always starts with at least one
   // (blank) entry rather than an empty array.
   const EMPTY_GUARDIAN = {
     name: '',
     relationship: '',
-    mobileNumber: '',
+    phone_no: '',
     occupation: '',
-    bloodGroup: '',
+    blood_group: '',
     address: '',
   };
-  const [guardianForms, setGuardianForms] = useState(() =>
-    guardians && guardians.length > 0
-      ? guardians.slice(0, 3).map((g) => ({ ...EMPTY_GUARDIAN, ...g }))
-      : [{ ...EMPTY_GUARDIAN, relationship: 'Father' }],
-  );
-  const [guardianError, setGuardianError] = useState('');
+  const [fatherForm, setFatherForm] = useState({
+    ...EMPTY_GUARDIAN,
+    ...father,
+  });
+  const [motherForm, setMotherForm] = useState({
+    ...EMPTY_GUARDIAN,
+    ...mother,
+  });
+  const [guardianForm, setGuardianForm] = useState({
+    ...EMPTY_GUARDIAN,
+    ...guardian,
+  });
   const [educationForm, setEducationForm] = useState({
     ...education,
   });
@@ -108,39 +163,36 @@ export default function EditProfileModal({
       [field]: value,
     }));
   };
-  const updateGuardianField = (index, field) => (event) => {
-    const { value } = event.target;
-    setGuardianForms((prev) =>
-      prev.map((g, i) => (i === index ? { ...g, [field]: value } : g)),
-    );
-    if (guardianError) setGuardianError('');
-  };
-  const handleAddGuardian = () => {
-    if (guardianForms.length >= 3) return;
-    setGuardianForms((prev) => [...prev, { ...EMPTY_GUARDIAN }]);
-  };
-  const handleRemoveGuardian = (index) => {
-    // At least one guardian is mandatory, so the last remaining entry
-    // can't be removed.
-    setGuardianForms((prev) =>
-      prev.length <= 1 ? prev : prev.filter((_, i) => i !== index),
-    );
-  };
+  // const updateGuardianField = (index, field) => (event) => {
+  //   const { value } = event.target;
+  //   setGuardianForms((prev) =>
+  //     prev.map((g, i) => (i === index ? { ...g, [field]: value } : g)),
+  //   );
+  //   if (guardianError) setGuardianError('');
+  // };
+  // const handleAddGuardian = () => {
+  //   if (guardianForms.length >= 3) return;
+  //   setGuardianForms((prev) => [...prev, { ...EMPTY_GUARDIAN }]);
+  // };
+  // const handleRemoveGuardian = (index) => {
+  //   // At least one guardian is mandatory, so the last remaining entry
+  //   // can't be removed.
+  //   setGuardianForms((prev) =>
+  //     prev.length <= 1 ? prev : prev.filter((_, i) => i !== index),
+  //   );
+  // };
   const handleSave = () => {
-    const filledGuardians = guardianForms.filter((g) => g.name?.trim());
-    if (filledGuardians.length === 0) {
-      setGuardianError('Please add at least one guardian’s name.');
-      setActiveSection('guardian');
-      return;
-    }
     onSave?.({
       personal: personalForm,
       contact: contactForm,
       currentAddress: addressForm,
       permanentAddress: permanentAddressForm,
-      guardians: filledGuardians,
+      fatherDetails: fatherForm,
+      motherDetails: motherForm,
+      guardianDetails: guardianForm,
       education: educationForm,
       experience: experienceForm,
+      avatarUrl: avatarPreview,
     });
   };
   return (
@@ -169,6 +221,43 @@ export default function EditProfileModal({
         <div className={'profile-edit-profile-modal-body'}>
           {activeSection === 'personal' && (
             <>
+              <div className={'profile-edit-profile-modal-avatar-row'}>
+                {avatarPreview ? (
+                  <img
+                    src={avatarPreview}
+                    alt="Profile preview"
+                    className={'profile-edit-profile-modal-avatar-preview'}
+                  />
+                ) : (
+                  <div className={'profile-edit-profile-modal-avatar-placeholder'} />
+                )}
+
+                <div className={'profile-edit-profile-modal-avatar-actions'}>
+                  <button
+                    type="button"
+                    className={'profile-edit-profile-modal-avatar-upload-btn'}
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    Upload New Picture
+                  </button>
+                  <button
+                    type="button"
+                    className={'profile-edit-profile-modal-avatar-delete-btn'}
+                    onClick={handleDeletePicture}
+                    disabled={!avatarPreview}
+                  >
+                    Delete Picture
+                  </button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    className={'profile-edit-profile-modal-avatar-input'}
+                    onChange={handlePictureChange}
+                  />
+                </div>
+              </div>
+
               <div className={'profile-edit-profile-modal-row'}>
                 <div className={'profile-edit-profile-modal-field'}>
                   <label className={'profile-edit-profile-modal-label'}>
@@ -438,126 +527,176 @@ export default function EditProfileModal({
 
           {activeSection === 'guardian' && (
             <>
-              <p className={'profile-edit-profile-modal-guardian-hint'}>
-                Add up to 3 guardians (e.g. Father, Mother, and one more) -
-                at least one is required.
-              </p>
-
-              {guardianError && (
-                <p className={'profile-edit-profile-modal-error'}>
-                  {guardianError}
-                </p>
-              )}
-
-              {guardianForms.map((guardianForm, index) => (
-                <div
-                  className={'profile-edit-profile-modal-guardian-card'}
-                  key={index}
-                >
-                  <div className={'profile-edit-profile-modal-guardian-card-header'}>
-                    <h3 className={'profile-edit-profile-modal-subheading'}>
-                      Guardian {index + 1}
-                    </h3>
-                    {guardianForms.length > 1 && (
-                      <button
-                        type="button"
-                        className={
-                          'profile-edit-profile-modal-guardian-remove-btn'
-                        }
-                        onClick={() => handleRemoveGuardian(index)}
-                        aria-label={`Remove guardian ${index + 1}`}
-                      >
-                        <Trash2 size={14} />
-                      </button>
-                    )}
-                  </div>
-
-                  <div className={'profile-edit-profile-modal-row'}>
-                    <div className={'profile-edit-profile-modal-field'}>
-                      <label className={'profile-edit-profile-modal-label'}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        className={'profile-edit-profile-modal-input'}
-                        value={guardianForm.name}
-                        onChange={updateGuardianField(index, 'name')}
-                      />
-                    </div>
-                    <div className={'profile-edit-profile-modal-field'}>
-                      <label className={'profile-edit-profile-modal-label'}>
-                        Relationship
-                      </label>
-                      <input
-                        type="text"
-                        className={'profile-edit-profile-modal-input'}
-                        placeholder="Father / Mother / Guardian"
-                        value={guardianForm.relationship}
-                        onChange={updateGuardianField(index, 'relationship')}
-                      />
-                    </div>
-                  </div>
-                  <div className={'profile-edit-profile-modal-row'}>
-                    <div className={'profile-edit-profile-modal-field'}>
-                      <label className={'profile-edit-profile-modal-label'}>
-                        Mobile Number
-                      </label>
-                      <input
-                        type="text"
-                        className={'profile-edit-profile-modal-input'}
-                        value={guardianForm.mobileNumber}
-                        onChange={updateGuardianField(index, 'mobileNumber')}
-                      />
-                    </div>
-                    <div className={'profile-edit-profile-modal-field'}>
-                      <label className={'profile-edit-profile-modal-label'}>
-                        Occupation
-                      </label>
-                      <input
-                        type="text"
-                        className={'profile-edit-profile-modal-input'}
-                        value={guardianForm.occupation}
-                        onChange={updateGuardianField(index, 'occupation')}
-                      />
-                    </div>
-                  </div>
-                  <div className={'profile-edit-profile-modal-row'}>
-                    <div className={'profile-edit-profile-modal-field'}>
-                      <label className={'profile-edit-profile-modal-label'}>
-                        Blood Group
-                      </label>
-                      <input
-                        type="text"
-                        className={'profile-edit-profile-modal-input'}
-                        value={guardianForm.bloodGroup}
-                        onChange={updateGuardianField(index, 'bloodGroup')}
-                      />
-                    </div>
+              <div className={'profile-edit-profile-modal-guardian-card'}>
+                <h3 className={'profile-edit-profile-modal-subheading'}>Father</h3>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Name</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={fatherForm.name}
+                      onChange={updateField(setFatherForm)('name')}
+                    />
                   </div>
                   <div className={'profile-edit-profile-modal-field'}>
-                    <label className={'profile-edit-profile-modal-label'}>
-                      Address
-                    </label>
-                    <textarea
-                      className={'profile-edit-profile-modal-textarea'}
-                      rows={2}
-                      value={guardianForm.address}
-                      onChange={updateGuardianField(index, 'address')}
+                    <label className={'profile-edit-profile-modal-label'}>Mobile Number</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={fatherForm.phone_no}
+                      onChange={updateField(setFatherForm)('phone_no')}
                     />
                   </div>
                 </div>
-              ))}
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Occupation</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={fatherForm.occupation}
+                      onChange={updateField(setFatherForm)('occupation')}
+                    />
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Blood Group</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={fatherForm.blood_group}
+                      onChange={updateField(setFatherForm)('blood_group')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>Address</label>
+                  <textarea
+                    className={'profile-edit-profile-modal-textarea'}
+                    rows={2}
+                    value={fatherForm.address}
+                    onChange={updateField(setFatherForm)('address')}
+                  />
+                </div>
+              </div>
 
-              {guardianForms.length < 3 && (
-                <button
-                  type="button"
-                  className={'profile-edit-profile-modal-guardian-add-btn'}
-                  onClick={handleAddGuardian}
-                >
-                  <Plus size={14} />
-                  Add another guardian
-                </button>
-              )}
+              <div className={'profile-edit-profile-modal-guardian-card'}>
+                <h3 className={'profile-edit-profile-modal-subheading'}>Mother</h3>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Name</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={motherForm.name}
+                      onChange={updateField(setMotherForm)('name')}
+                    />
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Mobile Number</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={motherForm.phone_no}
+                      onChange={updateField(setMotherForm)('phone_no')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Occupation</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={motherForm.occupation}
+                      onChange={updateField(setMotherForm)('occupation')}
+                    />
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Blood Group</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={motherForm.blood_group}
+                      onChange={updateField(setMotherForm)('blood_group')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>Address</label>
+                  <textarea
+                    className={'profile-edit-profile-modal-textarea'}
+                    rows={2}
+                    value={motherForm.address}
+                    onChange={updateField(setMotherForm)('address')}
+                  />
+                </div>
+              </div>
+
+              <div className={'profile-edit-profile-modal-guardian-card'}>
+                <h3 className={'profile-edit-profile-modal-subheading'}>Guardian</h3>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Name</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={guardianForm.name}
+                      onChange={updateField(setGuardianForm)('name')}
+                    />
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Relationship</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      placeholder="e.g. Uncle, Sibling"
+                      value={guardianForm.relationship}
+                      onChange={updateField(setGuardianForm)('relationship')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Mobile Number</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={guardianForm.phone_no}
+                      onChange={updateField(setGuardianForm)('phone_no')}
+                    />
+                  </div>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Occupation</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={guardianForm.occupation}
+                      onChange={updateField(setGuardianForm)('occupation')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-row'}>
+                  <div className={'profile-edit-profile-modal-field'}>
+                    <label className={'profile-edit-profile-modal-label'}>Blood Group</label>
+                    <input
+                      type="text"
+                      className={'profile-edit-profile-modal-input'}
+                      value={guardianForm.blood_group}
+                      onChange={updateField(setGuardianForm)('blood_group')}
+                    />
+                  </div>
+                </div>
+                <div className={'profile-edit-profile-modal-field'}>
+                  <label className={'profile-edit-profile-modal-label'}>Address</label>
+                  <textarea
+                    className={'profile-edit-profile-modal-textarea'}
+                    rows={2}
+                    value={guardianForm.address}
+                    onChange={updateField(setGuardianForm)('address')}
+                  />
+                </div>
+              </div>
             </>
           )}
 

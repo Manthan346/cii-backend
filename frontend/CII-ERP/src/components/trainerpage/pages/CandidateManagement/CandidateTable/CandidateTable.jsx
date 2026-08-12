@@ -33,9 +33,6 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
       <table className={'candidate-management-candidate-table-table'}>
         <thead>
           <tr>
-            <th className={'candidate-management-candidate-table-checkbox-col'}>
-              <input type="checkbox" aria-label="Select all candidates" />
-            </th>
             <th>Candidates ID</th>
             <th>Name</th>
             <th>Batch</th>
@@ -48,13 +45,6 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
         <tbody>
           {candidates.map((candidate) => (
             <tr key={candidate.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  aria-label={`Select ${candidate.name}`}
-                />
-              </td>
               <td className={'candidate-management-candidate-table-id-cell'}>
                 {candidate.candidateId}
               </td>

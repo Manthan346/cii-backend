@@ -36,6 +36,8 @@ const STATUS_TONE = {
   upcoming: 'blue',
   ongoing: 'orange',
   cancelled: 'red',
+  /* ---- Candidate Management additions ---- */
+  blacklisted: 'red',   // 👈 add this
 };
 
 const StatusBadge = ({ status }) => {
