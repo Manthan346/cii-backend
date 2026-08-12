@@ -25,3 +25,4 @@ export const createJobEventSchema = z.object({
     .string()
     .optional()
 });
+
