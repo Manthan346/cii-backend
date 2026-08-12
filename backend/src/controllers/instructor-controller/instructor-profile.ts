@@ -75,6 +75,6 @@ export const instructorProfileDetails = asyncHandler(
         response,
         profileCompletion
       }, "Instructor profile fetched successfully.")
-    );
+    ); 
   }
 );

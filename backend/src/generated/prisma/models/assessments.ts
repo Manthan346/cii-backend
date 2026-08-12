@@ -463,6 +463,16 @@ export type assessmentsUncheckedUpdateManyInput = {
   assessment_duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
+export type AssessmentsListRelationFilter = {
+  every?: Prisma.assessmentsWhereInput
+  some?: Prisma.assessmentsWhereInput
+  none?: Prisma.assessmentsWhereInput
+}
+
+export type assessmentsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type assessmentsCountOrderByAggregateInput = {
   assessment_id?: Prisma.SortOrder
   batch_id?: Prisma.SortOrder
@@ -518,47 +528,9 @@ export type assessmentsSumOrderByAggregateInput = {
   assessment_duration?: Prisma.SortOrder
 }
 
-export type AssessmentsListRelationFilter = {
-  every?: Prisma.assessmentsWhereInput
-  some?: Prisma.assessmentsWhereInput
-  none?: Prisma.assessmentsWhereInput
-}
-
-export type assessmentsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type AssessmentsScalarRelationFilter = {
   is?: Prisma.assessmentsWhereInput
   isNot?: Prisma.assessmentsWhereInput
-}
-
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type Enumassessment_typeFieldUpdateOperationsInput = {
-  set?: $Enums.assessment_type
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
 }
 
 export type assessmentsCreateNestedManyWithoutBatch_detailsInput = {
@@ -601,6 +573,10 @@ export type assessmentsUncheckedUpdateManyWithoutBatch_detailsNestedInput = {
   update?: Prisma.assessmentsUpdateWithWhereUniqueWithoutBatch_detailsInput | Prisma.assessmentsUpdateWithWhereUniqueWithoutBatch_detailsInput[]
   updateMany?: Prisma.assessmentsUpdateManyWithWhereWithoutBatch_detailsInput | Prisma.assessmentsUpdateManyWithWhereWithoutBatch_detailsInput[]
   deleteMany?: Prisma.assessmentsScalarWhereInput | Prisma.assessmentsScalarWhereInput[]
+}
+
+export type Enumassessment_typeFieldUpdateOperationsInput = {
+  set?: $Enums.assessment_type
 }
 
 export type assessmentsCreateNestedOneWithoutCandidate_assessmentInput = {

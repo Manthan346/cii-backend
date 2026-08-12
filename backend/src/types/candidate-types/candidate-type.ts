@@ -17,7 +17,7 @@ export type CandidateProfile = {
 };
 
 
-// types/candidate-guardian.type.ts
+
 
 type ParentDetails = {
   name: string | null;

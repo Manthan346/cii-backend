@@ -234,6 +234,7 @@ export type attendance_recordsOrderByWithRelationInput = {
 
 export type attendance_recordsWhereUniqueInput = Prisma.AtLeast<{
   attendance_id?: string
+  attendance_session_id_candidate_id?: Prisma.attendance_recordsAttendance_session_idCandidate_idCompoundUniqueInput
   AND?: Prisma.attendance_recordsWhereInput | Prisma.attendance_recordsWhereInput[]
   OR?: Prisma.attendance_recordsWhereInput[]
   NOT?: Prisma.attendance_recordsWhereInput | Prisma.attendance_recordsWhereInput[]
@@ -247,7 +248,7 @@ export type attendance_recordsWhereUniqueInput = Prisma.AtLeast<{
   time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
   attendance_sessions?: Prisma.XOR<Prisma.Attendance_sessionsScalarRelationFilter, Prisma.attendance_sessionsWhereInput>
-}, "attendance_id">
+}, "attendance_id" | "attendance_session_id_candidate_id">
 
 export type attendance_recordsOrderByWithAggregationInput = {
   attendance_id?: Prisma.SortOrder
@@ -361,6 +362,21 @@ export type attendance_recordsUncheckedUpdateManyInput = {
   time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
+export type Attendance_recordsListRelationFilter = {
+  every?: Prisma.attendance_recordsWhereInput
+  some?: Prisma.attendance_recordsWhereInput
+  none?: Prisma.attendance_recordsWhereInput
+}
+
+export type attendance_recordsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type attendance_recordsAttendance_session_idCandidate_idCompoundUniqueInput = {
+  attendance_session_id: string
+  candidate_id: string
+}
+
 export type attendance_recordsCountOrderByAggregateInput = {
   attendance_id?: Prisma.SortOrder
   candidate_id?: Prisma.SortOrder
@@ -395,66 +411,6 @@ export type attendance_recordsMinOrderByAggregateInput = {
   attendance_session_id?: Prisma.SortOrder
   time_in?: Prisma.SortOrder
   time_out?: Prisma.SortOrder
-}
-
-export type Attendance_recordsListRelationFilter = {
-  every?: Prisma.attendance_recordsWhereInput
-  some?: Prisma.attendance_recordsWhereInput
-  none?: Prisma.attendance_recordsWhereInput
-}
-
-export type attendance_recordsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type Enumattend_typesFieldUpdateOperationsInput = {
-  set?: $Enums.attend_types
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput = {
-  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
-  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
-  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
-  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-}
-
-export type attendance_recordsUncheckedCreateNestedManyWithoutAttendance_sessionsInput = {
-  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
-  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
-  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
-  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-}
-
-export type attendance_recordsUpdateManyWithoutAttendance_sessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
-  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
-  upsert?: Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput[]
-  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
-  set?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  disconnect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  delete?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  update?: Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput[]
-  updateMany?: Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput[]
-  deleteMany?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
-}
-
-export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
-  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
-  upsert?: Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput[]
-  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
-  set?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  disconnect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  delete?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
-  update?: Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput[]
-  updateMany?: Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput[]
-  deleteMany?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
 }
 
 export type attendance_recordsCreateNestedManyWithoutCandidates_detailsInput = {
@@ -499,67 +455,50 @@ export type attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsNested
   deleteMany?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
 }
 
-export type attendance_recordsCreateWithoutAttendance_sessionsInput = {
-  attendance_id?: string
-  attendance_status: $Enums.attend_types
-  remarks?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  time_in?: Date | string | null
-  time_out?: Date | string | null
-  candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutAttendance_recordsInput
+export type Enumattend_typesFieldUpdateOperationsInput = {
+  set?: $Enums.attend_types
 }
 
-export type attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput = {
-  attendance_id?: string
-  candidate_id: string
-  attendance_status: $Enums.attend_types
-  remarks?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  time_in?: Date | string | null
-  time_out?: Date | string | null
+export type attendance_recordsCreateNestedManyWithoutAttendance_sessionsInput = {
+  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
+  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
+  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
+  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
 }
 
-export type attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput = {
-  where: Prisma.attendance_recordsWhereUniqueInput
-  create: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput>
+export type attendance_recordsUncheckedCreateNestedManyWithoutAttendance_sessionsInput = {
+  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
+  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
+  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
+  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
 }
 
-export type attendance_recordsCreateManyAttendance_sessionsInputEnvelope = {
-  data: Prisma.attendance_recordsCreateManyAttendance_sessionsInput | Prisma.attendance_recordsCreateManyAttendance_sessionsInput[]
-  skipDuplicates?: boolean
+export type attendance_recordsUpdateManyWithoutAttendance_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
+  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
+  upsert?: Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput[]
+  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
+  set?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  disconnect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  delete?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  update?: Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput[]
+  updateMany?: Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput[]
+  deleteMany?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
 }
 
-export type attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput = {
-  where: Prisma.attendance_recordsWhereUniqueInput
-  update: Prisma.XOR<Prisma.attendance_recordsUpdateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput>
-  create: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput>
-}
-
-export type attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput = {
-  where: Prisma.attendance_recordsWhereUniqueInput
-  data: Prisma.XOR<Prisma.attendance_recordsUpdateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput>
-}
-
-export type attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput = {
-  where: Prisma.attendance_recordsScalarWhereInput
-  data: Prisma.XOR<Prisma.attendance_recordsUpdateManyMutationInput, Prisma.attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput>
-}
-
-export type attendance_recordsScalarWhereInput = {
-  AND?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
-  OR?: Prisma.attendance_recordsScalarWhereInput[]
-  NOT?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
-  attendance_id?: Prisma.UuidFilter<"attendance_records"> | string
-  candidate_id?: Prisma.UuidFilter<"attendance_records"> | string
-  attendance_status?: Prisma.Enumattend_typesFilter<"attendance_records"> | $Enums.attend_types
-  remarks?: Prisma.StringNullableFilter<"attendance_records"> | string | null
-  created_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
-  attendance_session_id?: Prisma.UuidFilter<"attendance_records"> | string
-  time_in?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
-  time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput> | Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput[] | Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput[]
+  connectOrCreate?: Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput | Prisma.attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput[]
+  upsert?: Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput[]
+  createMany?: Prisma.attendance_recordsCreateManyAttendance_sessionsInputEnvelope
+  set?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  disconnect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  delete?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  connect?: Prisma.attendance_recordsWhereUniqueInput | Prisma.attendance_recordsWhereUniqueInput[]
+  update?: Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput[]
+  updateMany?: Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput | Prisma.attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput[]
+  deleteMany?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
 }
 
 export type attendance_recordsCreateWithoutCandidates_detailsInput = {
@@ -610,7 +549,33 @@ export type attendance_recordsUpdateManyWithWhereWithoutCandidates_detailsInput 
   data: Prisma.XOR<Prisma.attendance_recordsUpdateManyMutationInput, Prisma.attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsInput>
 }
 
-export type attendance_recordsCreateManyAttendance_sessionsInput = {
+export type attendance_recordsScalarWhereInput = {
+  AND?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
+  OR?: Prisma.attendance_recordsScalarWhereInput[]
+  NOT?: Prisma.attendance_recordsScalarWhereInput | Prisma.attendance_recordsScalarWhereInput[]
+  attendance_id?: Prisma.UuidFilter<"attendance_records"> | string
+  candidate_id?: Prisma.UuidFilter<"attendance_records"> | string
+  attendance_status?: Prisma.Enumattend_typesFilter<"attendance_records"> | $Enums.attend_types
+  remarks?: Prisma.StringNullableFilter<"attendance_records"> | string | null
+  created_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"attendance_records"> | Date | string
+  attendance_session_id?: Prisma.UuidFilter<"attendance_records"> | string
+  time_in?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+  time_out?: Prisma.DateTimeNullableFilter<"attendance_records"> | Date | string | null
+}
+
+export type attendance_recordsCreateWithoutAttendance_sessionsInput = {
+  attendance_id?: string
+  attendance_status: $Enums.attend_types
+  remarks?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
+  candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutAttendance_recordsInput
+}
+
+export type attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput = {
   attendance_id?: string
   candidate_id: string
   attendance_status: $Enums.attend_types
@@ -621,37 +586,30 @@ export type attendance_recordsCreateManyAttendance_sessionsInput = {
   time_out?: Date | string | null
 }
 
-export type attendance_recordsUpdateWithoutAttendance_sessionsInput = {
-  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput
+export type attendance_recordsCreateOrConnectWithoutAttendance_sessionsInput = {
+  where: Prisma.attendance_recordsWhereUniqueInput
+  create: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput>
 }
 
-export type attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput = {
-  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
-  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+export type attendance_recordsCreateManyAttendance_sessionsInputEnvelope = {
+  data: Prisma.attendance_recordsCreateManyAttendance_sessionsInput | Prisma.attendance_recordsCreateManyAttendance_sessionsInput[]
+  skipDuplicates?: boolean
 }
 
-export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput = {
-  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
-  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
-  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+export type attendance_recordsUpsertWithWhereUniqueWithoutAttendance_sessionsInput = {
+  where: Prisma.attendance_recordsWhereUniqueInput
+  update: Prisma.XOR<Prisma.attendance_recordsUpdateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput>
+  create: Prisma.XOR<Prisma.attendance_recordsCreateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedCreateWithoutAttendance_sessionsInput>
+}
+
+export type attendance_recordsUpdateWithWhereUniqueWithoutAttendance_sessionsInput = {
+  where: Prisma.attendance_recordsWhereUniqueInput
+  data: Prisma.XOR<Prisma.attendance_recordsUpdateWithoutAttendance_sessionsInput, Prisma.attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput>
+}
+
+export type attendance_recordsUpdateManyWithWhereWithoutAttendance_sessionsInput = {
+  where: Prisma.attendance_recordsScalarWhereInput
+  data: Prisma.XOR<Prisma.attendance_recordsUpdateManyMutationInput, Prisma.attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput>
 }
 
 export type attendance_recordsCreateManyCandidates_detailsInput = {
@@ -694,6 +652,50 @@ export type attendance_recordsUncheckedUpdateManyWithoutCandidates_detailsInput 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type attendance_recordsCreateManyAttendance_sessionsInput = {
+  attendance_id?: string
+  candidate_id: string
+  attendance_status: $Enums.attend_types
+  remarks?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  time_in?: Date | string | null
+  time_out?: Date | string | null
+}
+
+export type attendance_recordsUpdateWithoutAttendance_sessionsInput = {
+  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutAttendance_recordsNestedInput
+}
+
+export type attendance_recordsUncheckedUpdateWithoutAttendance_sessionsInput = {
+  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type attendance_recordsUncheckedUpdateManyWithoutAttendance_sessionsInput = {
+  attendance_id?: Prisma.StringFieldUpdateOperationsInput | string
+  candidate_id?: Prisma.StringFieldUpdateOperationsInput | string
+  attendance_status?: Prisma.Enumattend_typesFieldUpdateOperationsInput | $Enums.attend_types
+  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   time_in?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   time_out?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
