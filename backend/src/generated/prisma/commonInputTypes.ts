@@ -575,6 +575,13 @@ export type Enumjob_event_typeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel> | $Enums.job_event_type
 }
 
+export type Enumjob_event_statusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.job_event_status | Prisma.Enumjob_event_statusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel> | $Enums.job_event_status | null
+}
+
 export type Enumjob_event_typeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.job_event_type | Prisma.Enumjob_event_typeFieldRefInput<$PrismaModel>
   in?: $Enums.job_event_type[] | Prisma.ListEnumjob_event_typeFieldRefInput<$PrismaModel>
@@ -583,6 +590,16 @@ export type Enumjob_event_typeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel>
+}
+
+export type Enumjob_event_statusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.job_event_status | Prisma.Enumjob_event_statusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumjob_event_statusNullableWithAggregatesFilter<$PrismaModel> | $Enums.job_event_status | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel>
 }
 
 export type NestedUuidFilter<$PrismaModel = never> = {
@@ -1155,6 +1172,13 @@ export type NestedEnumjob_event_typeFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel> | $Enums.job_event_type
 }
 
+export type NestedEnumjob_event_statusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.job_event_status | Prisma.Enumjob_event_statusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel> | $Enums.job_event_status | null
+}
+
 export type NestedEnumjob_event_typeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.job_event_type | Prisma.Enumjob_event_typeFieldRefInput<$PrismaModel>
   in?: $Enums.job_event_type[] | Prisma.ListEnumjob_event_typeFieldRefInput<$PrismaModel>
@@ -1163,6 +1187,16 @@ export type NestedEnumjob_event_typeWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumjob_event_typeFilter<$PrismaModel>
+}
+
+export type NestedEnumjob_event_statusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.job_event_status | Prisma.Enumjob_event_statusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.job_event_status[] | Prisma.ListEnumjob_event_statusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumjob_event_statusNullableWithAggregatesFilter<$PrismaModel> | $Enums.job_event_status | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumjob_event_statusNullableFilter<$PrismaModel>
 }
 
 
