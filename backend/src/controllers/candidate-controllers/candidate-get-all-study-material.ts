@@ -176,6 +176,6 @@ export const getAllCandidateStudyMaterial = asyncHandler(
       console.error("Redis SET failed, continuing without caching:", err);
     }*/
 
-    return res.status(200).json(responseBody);*/
+    // return res.status(200).json(responseBody);
   
 );
