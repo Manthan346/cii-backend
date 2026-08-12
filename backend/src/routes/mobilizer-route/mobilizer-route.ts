@@ -13,6 +13,6 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
-mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
+mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 export default mobilizerRouter
