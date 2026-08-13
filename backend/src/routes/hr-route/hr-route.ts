@@ -7,6 +7,8 @@ import { getAllHrJobEvents } from "../../controllers/hr-controllers/get-all-hrJo
 import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
 import { updateJobEventStatus } from "../../controllers/hr-controllers/update-jobFair-Status";
 import { getHrProfile } from "../../controllers/hr-controllers/get-hr-profile";
+import { updateJobEventSchema } from "../../services/zod/event-schema/job-event-schema";
+import { updateJobEvent } from "../../controllers/hr-controllers/update-job-event";
 
 const hrRouter = Router();
 
@@ -14,9 +16,10 @@ hrRouter.post("/job-event/add",verifyHrUsingAccessToken,validateBody(createJobEv
 hrRouter.get("/job-event",verifyHrUsingAccessToken,paginationMiddleware,getAllHrJobEvents)
 //change the status of job fair/drive to completed/upcoming/cancelled
 hrRouter.patch("/job-event/:job_event_id/status",verifyHrUsingAccessToken,
-updateJobEventStatus
-);
+updateJobEventStatus);
 //fetch hr profile
 hrRouter.get("/profile",verifyHrUsingAccessToken,getHrProfile);
+//update Job fair details
+hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,validateBody(updateJobEventSchema),updateJobEvent)
 
 export default hrRouter;
