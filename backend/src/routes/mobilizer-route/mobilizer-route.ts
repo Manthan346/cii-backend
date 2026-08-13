@@ -19,12 +19,6 @@ mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddl
 // Fetch all job fair and job drive for the mobilizer
 mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
-
-
-// Get enquiry details with status history
-
-
-
 //Fetch profile of mobilizer
 mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
 
