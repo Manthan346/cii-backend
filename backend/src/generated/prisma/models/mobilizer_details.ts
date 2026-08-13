@@ -31,6 +31,7 @@ export type Mobilizer_detailsMinAggregateOutputType = {
   user_id: string | null
   mobilizer_first_name: string | null
   mobilizer_last_name: string | null
+  mobilizer_designation: string | null
 }
 
 export type Mobilizer_detailsMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type Mobilizer_detailsMaxAggregateOutputType = {
   user_id: string | null
   mobilizer_first_name: string | null
   mobilizer_last_name: string | null
+  mobilizer_designation: string | null
 }
 
 export type Mobilizer_detailsCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type Mobilizer_detailsCountAggregateOutputType = {
   user_id: number
   mobilizer_first_name: number
   mobilizer_last_name: number
+  mobilizer_designation: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type Mobilizer_detailsMinAggregateInputType = {
   user_id?: true
   mobilizer_first_name?: true
   mobilizer_last_name?: true
+  mobilizer_designation?: true
 }
 
 export type Mobilizer_detailsMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type Mobilizer_detailsMaxAggregateInputType = {
   user_id?: true
   mobilizer_first_name?: true
   mobilizer_last_name?: true
+  mobilizer_designation?: true
 }
 
 export type Mobilizer_detailsCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type Mobilizer_detailsCountAggregateInputType = {
   user_id?: true
   mobilizer_first_name?: true
   mobilizer_last_name?: true
+  mobilizer_designation?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type Mobilizer_detailsGroupByOutputType = {
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation: string | null
   _count: Mobilizer_detailsCountAggregateOutputType | null
   _min: Mobilizer_detailsMinAggregateOutputType | null
   _max: Mobilizer_detailsMaxAggregateOutputType | null
@@ -190,6 +197,7 @@ export type mobilizer_detailsWhereInput = {
   user_id?: Prisma.UuidFilter<"mobilizer_details"> | string
   mobilizer_first_name?: Prisma.StringFilter<"mobilizer_details"> | string
   mobilizer_last_name?: Prisma.StringFilter<"mobilizer_details"> | string
+  mobilizer_designation?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
   enquiry_status_history?: Prisma.Enquiry_status_historyListRelationFilter
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
@@ -202,6 +210,7 @@ export type mobilizer_detailsOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   mobilizer_first_name?: Prisma.SortOrder
   mobilizer_last_name?: Prisma.SortOrder
+  mobilizer_designation?: Prisma.SortOrderInput | Prisma.SortOrder
   enquiry_records?: Prisma.enquiry_recordsOrderByRelationAggregateInput
   enquiry_status_history?: Prisma.enquiry_status_historyOrderByRelationAggregateInput
   user_login?: Prisma.user_loginOrderByWithRelationInput
@@ -217,6 +226,7 @@ export type mobilizer_detailsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.mobilizer_detailsWhereInput | Prisma.mobilizer_detailsWhereInput[]
   mobilizer_first_name?: Prisma.StringFilter<"mobilizer_details"> | string
   mobilizer_last_name?: Prisma.StringFilter<"mobilizer_details"> | string
+  mobilizer_designation?: Prisma.StringNullableFilter<"mobilizer_details"> | string | null
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
   enquiry_status_history?: Prisma.Enquiry_status_historyListRelationFilter
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
@@ -229,6 +239,7 @@ export type mobilizer_detailsOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   mobilizer_first_name?: Prisma.SortOrder
   mobilizer_last_name?: Prisma.SortOrder
+  mobilizer_designation?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.mobilizer_detailsCountOrderByAggregateInput
   _max?: Prisma.mobilizer_detailsMaxOrderByAggregateInput
   _min?: Prisma.mobilizer_detailsMinOrderByAggregateInput
@@ -244,6 +255,7 @@ export type mobilizer_detailsScalarWhereWithAggregatesInput = {
   user_id?: Prisma.UuidWithAggregatesFilter<"mobilizer_details"> | string
   mobilizer_first_name?: Prisma.StringWithAggregatesFilter<"mobilizer_details"> | string
   mobilizer_last_name?: Prisma.StringWithAggregatesFilter<"mobilizer_details"> | string
+  mobilizer_designation?: Prisma.StringNullableWithAggregatesFilter<"mobilizer_details"> | string | null
 }
 
 export type mobilizer_detailsCreateInput = {
@@ -252,6 +264,7 @@ export type mobilizer_detailsCreateInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutMobilizer_detailsInput
   enquiry_status_history?: Prisma.enquiry_status_historyCreateNestedManyWithoutMobilizer_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
@@ -264,6 +277,7 @@ export type mobilizer_detailsUncheckedCreateInput = {
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutMobilizer_detailsInput
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutMobilizer_detailsInput
 }
@@ -274,6 +288,7 @@ export type mobilizer_detailsUpdateInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutMobilizer_detailsNestedInput
   enquiry_status_history?: Prisma.enquiry_status_historyUpdateManyWithoutMobilizer_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput
@@ -286,6 +301,7 @@ export type mobilizer_detailsUncheckedUpdateInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
 }
@@ -297,6 +313,7 @@ export type mobilizer_detailsCreateManyInput = {
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
 }
 
 export type mobilizer_detailsUpdateManyMutationInput = {
@@ -305,6 +322,7 @@ export type mobilizer_detailsUpdateManyMutationInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type mobilizer_detailsUncheckedUpdateManyInput = {
@@ -314,6 +332,7 @@ export type mobilizer_detailsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Mobilizer_detailsNullableScalarRelationFilter = {
@@ -328,6 +347,7 @@ export type mobilizer_detailsCountOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   mobilizer_first_name?: Prisma.SortOrder
   mobilizer_last_name?: Prisma.SortOrder
+  mobilizer_designation?: Prisma.SortOrder
 }
 
 export type mobilizer_detailsMaxOrderByAggregateInput = {
@@ -337,6 +357,7 @@ export type mobilizer_detailsMaxOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   mobilizer_first_name?: Prisma.SortOrder
   mobilizer_last_name?: Prisma.SortOrder
+  mobilizer_designation?: Prisma.SortOrder
 }
 
 export type mobilizer_detailsMinOrderByAggregateInput = {
@@ -346,6 +367,7 @@ export type mobilizer_detailsMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
   mobilizer_first_name?: Prisma.SortOrder
   mobilizer_last_name?: Prisma.SortOrder
+  mobilizer_designation?: Prisma.SortOrder
 }
 
 export type Mobilizer_detailsScalarRelationFilter = {
@@ -421,6 +443,7 @@ export type mobilizer_detailsCreateWithoutEnquiry_recordsInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_status_history?: Prisma.enquiry_status_historyCreateNestedManyWithoutMobilizer_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
 }
@@ -432,6 +455,7 @@ export type mobilizer_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutMobilizer_detailsInput
 }
 
@@ -457,6 +481,7 @@ export type mobilizer_detailsUpdateWithoutEnquiry_recordsInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_status_history?: Prisma.enquiry_status_historyUpdateManyWithoutMobilizer_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput
 }
@@ -468,6 +493,7 @@ export type mobilizer_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
 }
 
@@ -477,6 +503,7 @@ export type mobilizer_detailsCreateWithoutUser_loginInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutMobilizer_detailsInput
   enquiry_status_history?: Prisma.enquiry_status_historyCreateNestedManyWithoutMobilizer_detailsInput
 }
@@ -487,6 +514,7 @@ export type mobilizer_detailsUncheckedCreateWithoutUser_loginInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutMobilizer_detailsInput
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutMobilizer_detailsInput
 }
@@ -513,6 +541,7 @@ export type mobilizer_detailsUpdateWithoutUser_loginInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutMobilizer_detailsNestedInput
   enquiry_status_history?: Prisma.enquiry_status_historyUpdateManyWithoutMobilizer_detailsNestedInput
 }
@@ -523,6 +552,7 @@ export type mobilizer_detailsUncheckedUpdateWithoutUser_loginInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
   enquiry_status_history?: Prisma.enquiry_status_historyUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
 }
@@ -533,6 +563,7 @@ export type mobilizer_detailsCreateWithoutEnquiry_status_historyInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutMobilizer_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
 }
@@ -544,6 +575,7 @@ export type mobilizer_detailsUncheckedCreateWithoutEnquiry_status_historyInput =
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutMobilizer_detailsInput
 }
 
@@ -569,6 +601,7 @@ export type mobilizer_detailsUpdateWithoutEnquiry_status_historyInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutMobilizer_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput
 }
@@ -580,6 +613,7 @@ export type mobilizer_detailsUncheckedUpdateWithoutEnquiry_status_historyInput =
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
 }
 
@@ -630,6 +664,7 @@ export type mobilizer_detailsSelect<ExtArgs extends runtime.Types.Extensions.Int
   user_id?: boolean
   mobilizer_first_name?: boolean
   mobilizer_last_name?: boolean
+  mobilizer_designation?: boolean
   enquiry_records?: boolean | Prisma.mobilizer_details$enquiry_recordsArgs<ExtArgs>
   enquiry_status_history?: boolean | Prisma.mobilizer_details$enquiry_status_historyArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
@@ -643,6 +678,7 @@ export type mobilizer_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.T
   user_id?: boolean
   mobilizer_first_name?: boolean
   mobilizer_last_name?: boolean
+  mobilizer_designation?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mobilizer_details"]>
 
@@ -653,6 +689,7 @@ export type mobilizer_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   user_id?: boolean
   mobilizer_first_name?: boolean
   mobilizer_last_name?: boolean
+  mobilizer_designation?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mobilizer_details"]>
 
@@ -663,9 +700,10 @@ export type mobilizer_detailsSelectScalar = {
   user_id?: boolean
   mobilizer_first_name?: boolean
   mobilizer_last_name?: boolean
+  mobilizer_designation?: boolean
 }
 
-export type mobilizer_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mobilizer_id" | "mobilizer_phone_no" | "mobilizer_unique_id" | "user_id" | "mobilizer_first_name" | "mobilizer_last_name", ExtArgs["result"]["mobilizer_details"]>
+export type mobilizer_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mobilizer_id" | "mobilizer_phone_no" | "mobilizer_unique_id" | "user_id" | "mobilizer_first_name" | "mobilizer_last_name" | "mobilizer_designation", ExtArgs["result"]["mobilizer_details"]>
 export type mobilizer_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   enquiry_records?: boolean | Prisma.mobilizer_details$enquiry_recordsArgs<ExtArgs>
   enquiry_status_history?: boolean | Prisma.mobilizer_details$enquiry_status_historyArgs<ExtArgs>
@@ -693,6 +731,7 @@ export type $mobilizer_detailsPayload<ExtArgs extends runtime.Types.Extensions.I
     user_id: string
     mobilizer_first_name: string
     mobilizer_last_name: string
+    mobilizer_designation: string | null
   }, ExtArgs["result"]["mobilizer_details"]>
   composites: {}
 }
@@ -1125,6 +1164,7 @@ export interface mobilizer_detailsFieldRefs {
   readonly user_id: Prisma.FieldRef<"mobilizer_details", 'String'>
   readonly mobilizer_first_name: Prisma.FieldRef<"mobilizer_details", 'String'>
   readonly mobilizer_last_name: Prisma.FieldRef<"mobilizer_details", 'String'>
+  readonly mobilizer_designation: Prisma.FieldRef<"mobilizer_details", 'String'>
 }
     
 
