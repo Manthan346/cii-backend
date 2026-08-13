@@ -7,6 +7,7 @@ import { changeEnquiryStatus } from '../../controllers/mobilizer-controller/chan
 import { paginationMiddleware } from '../../middlewares/pagination-middleware/pagination';
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
 import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
+import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 
 const mobilizerRouter = Router();
 
@@ -36,10 +37,8 @@ mobilizerRouter.get(
 );
 
 // Change enquiry status
-mobilizerRouter.patch(
-    "/enquiry/:enquiryId/status",
-    verifyMobilizerUsingAccessToken,
-    changeEnquiryStatus
-);
+mobilizerRouter.patch("/enquiry/:enquiryId/status",verifyMobilizerUsingAccessToken,changeEnquiryStatus);
+//Fetch profile of mobilizer
+mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
 
 export default mobilizerRouter
