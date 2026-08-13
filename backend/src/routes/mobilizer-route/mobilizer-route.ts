@@ -4,6 +4,7 @@ import { getAllEnquiry } from '../../controllers/mobilizer-controller/get-all-en
 import { paginationMiddleware } from '../../middlewares/pagination-middleware/pagination';
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
 import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
+import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 
 const mobilizerRouter = Router();
 
@@ -14,5 +15,17 @@ mobilizerRouter.get(
     getAllEnquiry
 );
 mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
+
+// Fetch all job fair and job drive for the mobilizer
+mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
+
+
+
+// Get enquiry details with status history
+
+
+
+//Fetch profile of mobilizer
+mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
 
 export default mobilizerRouter
