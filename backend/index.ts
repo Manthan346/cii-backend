@@ -14,6 +14,7 @@ import { login } from "./src/controllers/user-controllers/login";
 import authRouter from "./src/routes/auth-route/auth-route";
 import mobilizerRouter from "./src/routes/mobilizer-route/mobilizer-route";
 import eventsRouter from "./src/routes/events-route/events-route";
+import hrRouter from "./src/routes/hr-route/hr-route";
 import dotenv from 'dotenv'
 
 
@@ -55,6 +56,7 @@ app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/mobilizer",mobilizerRouter)
 app.use("/api/v1/events", eventsRouter)
 app.use("/api/v1/enquiry", enquiryRouter)
+app.use("/api/v1/hr",hrRouter)
 
 
 app.listen(port, () => {

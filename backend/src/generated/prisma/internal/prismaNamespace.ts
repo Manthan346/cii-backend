@@ -418,6 +418,8 @@ export const ModelName = {
   hr_details: 'hr_details',
   mobilizer_details: 'mobilizer_details',
   job_events: 'job_events',
+  job_events: 'job_events',
+  mobilizer_details: 'mobilizer_details',
   placement: 'placement'
 } as const
 
@@ -3638,6 +3640,8 @@ export type GlobalOmitConfig = {
   hr_details?: Prisma.hr_detailsOmit
   mobilizer_details?: Prisma.mobilizer_detailsOmit
   job_events?: Prisma.job_eventsOmit
+  job_events?: Prisma.job_eventsOmit
+  mobilizer_details?: Prisma.mobilizer_detailsOmit
   placement?: Prisma.placementOmit
 }
 

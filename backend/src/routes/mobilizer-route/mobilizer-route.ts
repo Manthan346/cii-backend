@@ -12,6 +12,9 @@ import { paginationMiddleware } from '../../middlewares/pagination-middleware/pa
 import { createEventSchema, updatePublicEventSchema } from '../../services/zod/event-schema/eventValidation';
 import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
 import { uploadEventImages } from '../../middlewares/multer-middleware/image-upload';
+import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
+
+import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 
 const mobilizerRouter = Router();
 
@@ -21,6 +24,10 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
+mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
+
+// Fetch all job fair and job drive for the mobilizer
+mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 // Assign mobilizer to enquiry
 mobilizerRouter.post(
@@ -37,11 +44,9 @@ mobilizerRouter.get(
 );
 
 // Change enquiry status
-mobilizerRouter.patch(
-    "/enquiry/:enquiryId/status",
-    verifyMobilizerUsingAccessToken,
-    changeEnquiryStatus
-);
+mobilizerRouter.patch("/enquiry/:enquiryId/status",verifyMobilizerUsingAccessToken,changeEnquiryStatus);
+//Fetch profile of mobilizer
+mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
 
 // Mobilizer can create PUBLIC events to surface on the landing page
 mobilizerRouter.post(
