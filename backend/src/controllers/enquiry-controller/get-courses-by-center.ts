@@ -6,15 +6,15 @@ import { ApiError } from "../../helpers/ApiError";
 
 export const getCoursesByCenter = asyncHandler(
   async (req: Request, res: Response) => {
-    const { centerId } = req.body;
+    const { center_id } = req.body;
 
-    if (!centerId) {
+    if (!center_id) {
       throw new ApiError(400, "Center ID is required");
     }
 
     // Validate center exists
     const center = await prisma.center_details.findUnique({
-      where: { center_id: centerId },
+      where: { center_id: center_id },
       select: { center_id: true, center_name: true }
     });
 
@@ -24,7 +24,7 @@ export const getCoursesByCenter = asyncHandler(
 
     // Fetch companies associated with this center
     const centerCompanies = await prisma.center_company.findMany({
-      where: { center_id: centerId },
+      where: { center_id: center_id },
       select: { company_id: true }
     });
 
@@ -48,12 +48,8 @@ export const getCoursesByCenter = asyncHandler(
       select: {
         course_id: true,
         course_name: true,
-        course_desc: true,
-        course_duration: true,
-        course_mode: true,
-        company_id: true,
-        created_at: true,
-        updated_at: true
+     
+        
       },
       orderBy: { created_at: "desc" }
     });
