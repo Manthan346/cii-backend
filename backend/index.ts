@@ -7,13 +7,15 @@ import { courseRouter } from "./src/routes/course-route/course-route";
 import userRouter from "./src/routes/user-route/user-route";
 import cookieParser from "cookie-parser";
 import { upload } from "./src/middlewares/multer-middleware/multer";
+import enquiryRouter from "./src/routes/enquiry-route/enquiry-route";
 
 import { instructorRouter } from "./src/routes/instructor-routes/instructor-route";
 import { login } from "./src/controllers/user-controllers/login";
 import authRouter from "./src/routes/auth-route/auth-route";
 import mobilizerRouter from "./src/routes/mobilizer-route/mobilizer-route";
+import eventsRouter from "./src/routes/events-route/events-route";
 import dotenv from 'dotenv'
-import { redis } from "./src/lib/redis";
+
 
 const app = Express();
 const port = 3000;
@@ -51,6 +53,8 @@ app.use("/api/v1/instructor", instructorRouter);
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/mobilizer",mobilizerRouter)
+app.use("/api/v1/events", eventsRouter)
+app.use("/api/v1/enquiry", enquiryRouter)
 
 
 app.listen(port, () => {
