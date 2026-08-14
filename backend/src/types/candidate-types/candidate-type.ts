@@ -13,10 +13,11 @@ export type CandidateProfile = {
   state_name: string | null;
   district: string | null;
   pin_code: number | null;
+  candidate_code: string | null
 };
 
 
-// types/candidate-guardian.type.ts
+
 
 type ParentDetails = {
   name: string | null;

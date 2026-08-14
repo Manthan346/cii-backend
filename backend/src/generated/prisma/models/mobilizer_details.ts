@@ -340,6 +340,11 @@ export type Mobilizer_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.mobilizer_detailsWhereInput | null
 }
 
+export type Mobilizer_detailsScalarRelationFilter = {
+  is?: Prisma.mobilizer_detailsWhereInput
+  isNot?: Prisma.mobilizer_detailsWhereInput
+}
+
 export type mobilizer_detailsCountOrderByAggregateInput = {
   mobilizer_id?: Prisma.SortOrder
   mobilizer_phone_no?: Prisma.SortOrder

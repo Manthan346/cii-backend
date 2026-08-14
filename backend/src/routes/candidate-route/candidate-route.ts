@@ -23,6 +23,7 @@ import { getAllCandidateStudyMaterial } from "../../controllers/candidate-contro
 import { getAllAssessments } from "../../controllers/candidate-controllers/candidate-get-available-assessments";
 import { startAssessment } from "../../controllers/candidate-controllers/candidate-assessment-mark-attempt";
 import { getAllCandidateEvents } from "../../controllers/candidate-controllers/candidate-events";
+import { candidateGuardianDetails } from "../../controllers/candidate-controllers/candidate-guardian-details";
 
 const candidateRouter = Router()
 
@@ -50,6 +51,11 @@ candidateRouter.get('/candidate-attendance-recentLog', verifyCandidateUsingAcces
 candidateRouter.get("/test", (req, res) => {
     res.send("Candidate router works");
 });
+candidateRouter.get('/guardian-details', verifyCandidateUsingAccessToken, candidateGuardianDetails)
+candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateStudyMaterial)
+candidateRouter.get('/candidate-assessment/get-all-assessments',verifyCandidateUsingAccessToken,paginationMiddleware,getAllAssessments)
+candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyCandidateUsingAccessToken,startAssessment)
+candidateRouter.get('/events/get-event', verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateEvents)
 candidateRouter.get('/candidate-studymaterial',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateStudyMaterial)
 candidateRouter.get('/candidate-assessment/get-all-assessments',verifyCandidateUsingAccessToken,paginationMiddleware,getAllAssessments)
 candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyCandidateUsingAccessToken,startAssessment)

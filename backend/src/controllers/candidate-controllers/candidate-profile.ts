@@ -51,6 +51,17 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
       state_name: true,
       district: true,
       pin_code: true,
+      candidate_unique_id: true,
+      batch_enrollment: {
+        
+        select: {
+          batch_details: {
+            select: {
+              batch_code: true
+            }
+          }
+        }
+      }
     },
   });
 
@@ -67,6 +78,7 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
     candidate_permanent_address: candidateProfile.candidate_permanant_address,
     state_name: candidateProfile.state_name,
     district: candidateProfile.district,
+    candidate_code: candidateProfile.candidate_unique_id,
     pin_code: candidateProfile.pin_code,
   };
 

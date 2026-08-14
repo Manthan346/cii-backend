@@ -30,7 +30,7 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
         }
 
         const status = req.query.status?.toString().trim();
-        const batch_id = req.query.batch_id?.toString().trim();
+        const batch_id = req.query.batch_code?.toString().trim();
         const search = req.query.search?.toString().trim();
 
         const skip = (page-1)*limit;
@@ -125,6 +125,7 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
             batch_details:{
                 select:{
                     batch_name:true,
+                    batch_code: true,
                     course_details:{
                         select:{
                             course_name:true
@@ -144,6 +145,7 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
                 }`.trim(),
             batch_name:
                 candidate.batch_details.batch_name,
+            batch_code: candidate.batch_details.batch_code,
             course_name:
                 candidate.batch_details.course_details?.course_name,
             contact_number:

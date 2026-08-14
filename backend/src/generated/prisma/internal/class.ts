@@ -85,8 +85,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Assessments
-   * const assessments = await prisma.assessments.findMany()
+   * // Fetch zero or more Candidates_details
+   * const candidates_details = await prisma.candidates_details.findMany()
    * ```
    * 
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -107,8 +107,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Assessments
- * const assessments = await prisma.assessments.findMany()
+ * // Fetch zero or more Candidates_details
+ * const candidates_details = await prisma.candidates_details.findMany()
  * ```
  * 
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
@@ -203,14 +203,14 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.assessments`: Exposes CRUD operations for the **assessments** model.
+   * `prisma.candidates_details`: Exposes CRUD operations for the **candidates_details** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Assessments
-    * const assessments = await prisma.assessments.findMany()
+    * // Fetch zero or more Candidates_details
+    * const candidates_details = await prisma.candidates_details.findMany()
     * ```
     */
-  get assessments(): Prisma.assessmentsDelegate<ExtArgs, { omit: OmitOpts }>;
+  get candidates_details(): Prisma.candidates_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.attendance_records`: Exposes CRUD operations for the **attendance_records** model.
@@ -223,16 +223,6 @@ export interface PrismaClient<
   get attendance_records(): Prisma.attendance_recordsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.attendance_sessions`: Exposes CRUD operations for the **attendance_sessions** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Attendance_sessions
-    * const attendance_sessions = await prisma.attendance_sessions.findMany()
-    * ```
-    */
-  get attendance_sessions(): Prisma.attendance_sessionsDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
    * `prisma.batch_details`: Exposes CRUD operations for the **batch_details** model.
     * Example usage:
     * ```ts
@@ -243,44 +233,14 @@ export interface PrismaClient<
   get batch_details(): Prisma.batch_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.batch_enrollment`: Exposes CRUD operations for the **batch_enrollment** model.
+   * `prisma.course_details`: Exposes CRUD operations for the **course_details** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Batch_enrollments
-    * const batch_enrollments = await prisma.batch_enrollment.findMany()
+    * // Fetch zero or more Course_details
+    * const course_details = await prisma.course_details.findMany()
     * ```
     */
-  get batch_enrollment(): Prisma.batch_enrollmentDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.candidate_assessment`: Exposes CRUD operations for the **candidate_assessment** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Candidate_assessments
-    * const candidate_assessments = await prisma.candidate_assessment.findMany()
-    * ```
-    */
-  get candidate_assessment(): Prisma.candidate_assessmentDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.candidate_documents`: Exposes CRUD operations for the **candidate_documents** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Candidate_documents
-    * const candidate_documents = await prisma.candidate_documents.findMany()
-    * ```
-    */
-  get candidate_documents(): Prisma.candidate_documentsDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.candidates_details`: Exposes CRUD operations for the **candidates_details** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Candidates_details
-    * const candidates_details = await prisma.candidates_details.findMany()
-    * ```
-    */
-  get candidates_details(): Prisma.candidates_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
+  get course_details(): Prisma.course_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.center_company`: Exposes CRUD operations for the **center_company** model.
@@ -303,26 +263,6 @@ export interface PrismaClient<
   get center_details(): Prisma.center_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.company_details`: Exposes CRUD operations for the **company_details** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Company_details
-    * const company_details = await prisma.company_details.findMany()
-    * ```
-    */
-  get company_details(): Prisma.company_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.course_details`: Exposes CRUD operations for the **course_details** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Course_details
-    * const course_details = await prisma.course_details.findMany()
-    * ```
-    */
-  get course_details(): Prisma.course_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
    * `prisma.enquiry_records`: Exposes CRUD operations for the **enquiry_records** model.
     * Example usage:
     * ```ts
@@ -333,24 +273,34 @@ export interface PrismaClient<
   get enquiry_records(): Prisma.enquiry_recordsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.event_batches`: Exposes CRUD operations for the **event_batches** model.
+   * `prisma.user_login`: Exposes CRUD operations for the **user_login** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Event_batches
-    * const event_batches = await prisma.event_batches.findMany()
+    * // Fetch zero or more User_logins
+    * const user_logins = await prisma.user_login.findMany()
     * ```
     */
-  get event_batches(): Prisma.event_batchesDelegate<ExtArgs, { omit: OmitOpts }>;
+  get user_login(): Prisma.user_loginDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
-   * `prisma.event_details`: Exposes CRUD operations for the **event_details** model.
+   * `prisma.assessments`: Exposes CRUD operations for the **assessments** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Event_details
-    * const event_details = await prisma.event_details.findMany()
+    * // Fetch zero or more Assessments
+    * const assessments = await prisma.assessments.findMany()
     * ```
     */
-  get event_details(): Prisma.event_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
+  get assessments(): Prisma.assessmentsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.company_details`: Exposes CRUD operations for the **company_details** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Company_details
+    * const company_details = await prisma.company_details.findMany()
+    * ```
+    */
+  get company_details(): Prisma.company_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.instructor_details`: Exposes CRUD operations for the **instructor_details** model.
@@ -361,6 +311,46 @@ export interface PrismaClient<
     * ```
     */
   get instructor_details(): Prisma.instructor_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.batch_enrollment`: Exposes CRUD operations for the **batch_enrollment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Batch_enrollments
+    * const batch_enrollments = await prisma.batch_enrollment.findMany()
+    * ```
+    */
+  get batch_enrollment(): Prisma.batch_enrollmentDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.attendance_sessions`: Exposes CRUD operations for the **attendance_sessions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Attendance_sessions
+    * const attendance_sessions = await prisma.attendance_sessions.findMany()
+    * ```
+    */
+  get attendance_sessions(): Prisma.attendance_sessionsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.candidate_documents`: Exposes CRUD operations for the **candidate_documents** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Candidate_documents
+    * const candidate_documents = await prisma.candidate_documents.findMany()
+    * ```
+    */
+  get candidate_documents(): Prisma.candidate_documentsDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.candidate_assessment`: Exposes CRUD operations for the **candidate_assessment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Candidate_assessments
+    * const candidate_assessments = await prisma.candidate_assessment.findMany()
+    * ```
+    */
+  get candidate_assessment(): Prisma.candidate_assessmentDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.instructor_documents`: Exposes CRUD operations for the **instructor_documents** model.
@@ -391,16 +381,6 @@ export interface PrismaClient<
     * ```
     */
   get study_material(): Prisma.study_materialDelegate<ExtArgs, { omit: OmitOpts }>;
-
-  /**
-   * `prisma.user_login`: Exposes CRUD operations for the **user_login** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more User_logins
-    * const user_logins = await prisma.user_login.findMany()
-    * ```
-    */
-  get user_login(): Prisma.user_loginDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.user_notifications`: Exposes CRUD operations for the **user_notifications** model.

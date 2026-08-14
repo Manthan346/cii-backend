@@ -27,7 +27,6 @@ export const candidateAttendanceCalendar = asyncHandler(
       year
     );
 
-    // ---- Try Redis first (fail-open) ----
     let cached: string | null = null;
     try {
       cached = await redis.get(cacheKey);
@@ -39,7 +38,6 @@ export const candidateAttendanceCalendar = asyncHandler(
       return res.status(200).json(JSON.parse(cached));
     }
 
-    // ---- Cache miss — compute as before ----
     const enrollments = await prisma.batch_enrollment.findMany({
       where: { candidate_id: candidateId },
       select: {
@@ -121,10 +119,38 @@ export const candidateAttendanceCalendar = asyncHandler(
     }
 
     const batchIds = batches.map((b) => b.batch_id);
+
+    // ---------- Course-wide summary (ALL sessions for this course's
+    // batches, regardless of month) — independent of the calendar's
+    // month window below. ----------
+    const allCourseSessions = await prisma.attendance_sessions.findMany({
+      where: { batch_id: { in: batchIds } },
+      select: {
+        session_date: true,
+        attendance_records: {
+          where: { candidate_id: candidateId },
+          select: { attendance_status: true },
+        },
+      },
+    });
+
+    let totalSessions = 0;
+    let attendedSessions = 0;
+    for (const session of allCourseSessions) {
+      const record = session.attendance_records[0];
+      const status = record ? record.attendance_status : "absent";
+      totalSessions++;
+      if (status === "present" || status === "late") attendedSessions++;
+    }
+    const missedSessions = totalSessions - attendedSessions;
+    const attendancePercentage =
+      totalSessions === 0 ? 0 : Number(((attendedSessions / totalSessions) * 100).toFixed(2));
+
+    // ---------- Calendar grid — still scoped to the requested month ----------
     const monthStart = new Date(Date.UTC(year, month - 1, 1));
     const monthEnd = new Date(Date.UTC(year, month, 0));
 
-    const sessions = await prisma.attendance_sessions.findMany({
+    const monthSessions = await prisma.attendance_sessions.findMany({
       where: {
         batch_id: { in: batchIds },
         session_date: { gte: monthStart, lte: monthEnd },
@@ -140,22 +166,12 @@ export const candidateAttendanceCalendar = asyncHandler(
 
     const statusByDate = new Map<string, "present" | "absent" | "late">();
     const sessionDates = new Set<string>();
-    for (const session of sessions) {
+    for (const session of monthSessions) {
       const key = session.session_date.toISOString().slice(0, 10);
       const record = session.attendance_records[0];
       sessionDates.add(key);
       statusByDate.set(key, record ? (record.attendance_status as any) : "absent");
     }
-
-    let totalSessions = 0;
-    let attendedSessions = 0;
-    for (const status of statusByDate.values()) {
-      totalSessions++;
-      if (status === "present" || status === "late") attendedSessions++;
-    }
-    const missedSessions = totalSessions - attendedSessions;
-    const attendancePercentage =
-      totalSessions === 0 ? 0 : Number(((attendedSessions / totalSessions) * 100).toFixed(2));
 
     const calendar: { date: string; status: "present" | "absent" | "late" | "holiday" | "today" | "unmarked" | null }[] = [];
     const cursor = new Date(monthStart);
@@ -200,7 +216,6 @@ export const candidateAttendanceCalendar = asyncHandler(
       "course attendance calendar fetched successfully"
     );
 
-    // ---- Populate the cache for next time (fail-open) ----
     try {
       await redis.set(cacheKey, JSON.stringify(responseBody), "EX", CALENDAR_CACHE_TTL_SECONDS);
     } catch (err) {

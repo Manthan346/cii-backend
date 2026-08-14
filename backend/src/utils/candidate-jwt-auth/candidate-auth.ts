@@ -14,11 +14,12 @@ type accessTokenPayload = {
    
     email?: string
 }
-
+    
 
 type refreshTokenPayload = {
     candidate_id: string,
     center_id?: string,
+    
     user_id: string,
     role: string,
 

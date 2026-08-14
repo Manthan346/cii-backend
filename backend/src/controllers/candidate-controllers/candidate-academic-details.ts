@@ -59,7 +59,7 @@ const candidateAcademicDetails = asyncHandler(async (req: CandidateAuthRequest, 
               batch_start_date: true,
               batch_type: true,
               batch_end_date: true,
-              instructor_details: {
+              instructor: {
                 select: {
                   instructor_first_name: true,
                   instructor_last_name: true,
@@ -95,8 +95,8 @@ const candidateAcademicDetails = asyncHandler(async (req: CandidateAuthRequest, 
     candidate_name: `${academics.candidate_first_name} ${academics.candidate_last_name ?? ""}`.trim(),
     center_name: centerName,
     courses: academics.batch_enrollment.map((enrollment) => {
-      const instructorName = enrollment.batch_details.instructor_details
-        ? `${enrollment.batch_details.instructor_details.instructor_first_name} ${enrollment.batch_details.instructor_details.instructor_last_name ?? ""}`.trim()
+      const instructorName = enrollment.batch_details.instructor
+        ? `${enrollment.batch_details.instructor.instructor_first_name} ${enrollment.batch_details.instructor.instructor_last_name ?? ""}`.trim()
         : null;
 
       return {

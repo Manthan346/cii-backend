@@ -2,12 +2,15 @@ import { Response } from "express";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface";
 import { prisma } from "../../lib/prisma";
+import { redis } from "../../lib/redis";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
 import { batch_enrollment_status_type } from "../../generated/prisma/enums";
 import { z } from "zod";
 import { Prisma } from "../../generated/prisma/client";
+import { CANDIDATE_REDIS_CACHE } from "../../lib/redis";
 
+// uploads are infrequent, long TTL is fine
 export const getAllCandidateStudyMaterial = asyncHandler(
     async(req:CandidateAuthRequest,res:Response) => {
         const candidate_id = req.candidate?.candidate_id;
@@ -53,6 +56,8 @@ export const getAllCandidateStudyMaterial = asyncHandler(
             throw new ApiError(403, "You are not enrolled in this batch");
         }
 
+        
+
         if (!req.pagination) {
             throw new ApiError(500, "Pagination middleware not found");
         }
@@ -67,6 +72,25 @@ export const getAllCandidateStudyMaterial = asyncHandler(
         if (limit < 1 || limit > 50) {
             throw new ApiError(400, "Limit must be between 1 and 50");
         }
+
+        if (enrolledBatchIds.length === 0) {
+            return res.status(200).json(
+                new ApiResponse(
+                    200,
+                    {
+                        studyMaterials: [],
+                        pagination: {
+                            page,
+                            limit,
+                            totalItems: 0,
+                            totalPages: 0,
+                        },
+                    },
+                    "No study materials found."
+                )
+            );
+        }
+        
 
         const where: Prisma.study_materialWhereInput = {
             is_show: true,
@@ -101,6 +125,7 @@ export const getAllCandidateStudyMaterial = asyncHandler(
                     batch_details: {
                         select: {
                             batch_name: true,
+                            batch_id:true
                         },
                     },
                     user_login: {
@@ -140,4 +165,17 @@ export const getAllCandidateStudyMaterial = asyncHandler(
             })
         );
     }
-)
+
+    
+
+    // ---- Populate the cache for next time (fail-open) ----
+    /*
+    try {
+      await redis.set(cacheKey, JSON.stringify(responseBody), "EX", CANDIDATE_REDIS_CACHE);
+    } catch (err) {
+      console.error("Redis SET failed, continuing without caching:", err);
+    }*/
+
+    // return res.status(200).json(responseBody);
+  
+);

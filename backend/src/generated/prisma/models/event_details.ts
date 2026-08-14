@@ -778,6 +778,45 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_upda
   deleteMany?: Prisma.event_detailsScalarWhereInput | Prisma.event_detailsScalarWhereInput[]
 }
 
+export type event_detailsCreateNestedOneWithoutEvent_batchesInput = {
+  create?: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
+  connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutEvent_batchesInput
+  connect?: Prisma.event_detailsWhereUniqueInput
+}
+
+export type event_detailsUpdateOneRequiredWithoutEvent_batchesNestedInput = {
+  create?: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
+  connectOrCreate?: Prisma.event_detailsCreateOrConnectWithoutEvent_batchesInput
+  upsert?: Prisma.event_detailsUpsertWithoutEvent_batchesInput
+  connect?: Prisma.event_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.event_detailsUpdateToOneWithWhereWithoutEvent_batchesInput, Prisma.event_detailsUpdateWithoutEvent_batchesInput>, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
+}
+
+export type event_detailsCreateevent_documentsInput = {
+  set: string[]
+}
+
+export type NullableEnumevent_modeFieldUpdateOperationsInput = {
+  set?: $Enums.event_mode | null
+}
+
+export type NullableEnumevent_typeFieldUpdateOperationsInput = {
+  set?: $Enums.event_type | null
+}
+
+export type NullableEnumevent_target_typeFieldUpdateOperationsInput = {
+  set?: $Enums.event_target_type | null
+}
+
+export type NullableEnumevent_status_typeFieldUpdateOperationsInput = {
+  set?: $Enums.event_status_type | null
+}
+
+export type event_detailsUpdateevent_documentsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type event_detailsCreateWithoutCenter_detailsInput = {
   event_id?: string
   event_title: string
@@ -1104,6 +1143,106 @@ export type event_detailsUpdateWithWhereUniqueWithoutUser_login_event_details_up
 export type event_detailsUpdateManyWithWhereWithoutUser_login_event_details_updated_byTouser_loginInput = {
   where: Prisma.event_detailsScalarWhereInput
   data: Prisma.XOR<Prisma.event_detailsUpdateManyMutationInput, Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginInput>
+}
+
+export type event_detailsCreateWithoutEvent_batchesInput = {
+  event_id?: string
+  event_title: string
+  event_description?: string | null
+  event_date: Date | string
+  event_time: Date | string
+  venue?: string | null
+  is_show?: boolean | null
+  created_at?: Date | string | null
+  updated_at?: Date | string
+  event_link?: string | null
+  event_mode?: $Enums.event_mode | null
+  event_type?: $Enums.event_type | null
+  target_type?: $Enums.event_target_type | null
+  event_status?: $Enums.event_status_type | null
+  event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  center_details?: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
+  user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
+  user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
+}
+
+export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
+  event_id?: string
+  center_id?: string | null
+  event_title: string
+  event_description?: string | null
+  event_date: Date | string
+  event_time: Date | string
+  venue?: string | null
+  is_show?: boolean | null
+  created_by: string
+  created_at?: Date | string | null
+  updated_at?: Date | string
+  updated_by: string
+  event_link?: string | null
+  event_mode?: $Enums.event_mode | null
+  event_type?: $Enums.event_type | null
+  target_type?: $Enums.event_target_type | null
+  event_status?: $Enums.event_status_type | null
+  event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+}
+
+export type event_detailsCreateOrConnectWithoutEvent_batchesInput = {
+  where: Prisma.event_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
+}
+
+export type event_detailsUpsertWithoutEvent_batchesInput = {
+  update: Prisma.XOR<Prisma.event_detailsUpdateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
+  create: Prisma.XOR<Prisma.event_detailsCreateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedCreateWithoutEvent_batchesInput>
+  where?: Prisma.event_detailsWhereInput
+}
+
+export type event_detailsUpdateToOneWithWhereWithoutEvent_batchesInput = {
+  where?: Prisma.event_detailsWhereInput
+  data: Prisma.XOR<Prisma.event_detailsUpdateWithoutEvent_batchesInput, Prisma.event_detailsUncheckedUpdateWithoutEvent_batchesInput>
+}
+
+export type event_detailsUpdateWithoutEvent_batchesInput = {
+  event_id?: Prisma.StringFieldUpdateOperationsInput | string
+  event_title?: Prisma.StringFieldUpdateOperationsInput | string
+  event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  event_mode?: Prisma.NullableEnumevent_modeFieldUpdateOperationsInput | $Enums.event_mode | null
+  event_type?: Prisma.NullableEnumevent_typeFieldUpdateOperationsInput | $Enums.event_type | null
+  target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
+  event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
+  event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  center_details?: Prisma.center_detailsUpdateOneWithoutEvent_detailsNestedInput
+  user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
+  user_login_event_details_updated_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_updated_byTouser_loginNestedInput
+}
+
+export type event_detailsUncheckedUpdateWithoutEvent_batchesInput = {
+  event_id?: Prisma.StringFieldUpdateOperationsInput | string
+  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  event_title?: Prisma.StringFieldUpdateOperationsInput | string
+  event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_by?: Prisma.StringFieldUpdateOperationsInput | string
+  event_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  event_mode?: Prisma.NullableEnumevent_modeFieldUpdateOperationsInput | $Enums.event_mode | null
+  event_type?: Prisma.NullableEnumevent_typeFieldUpdateOperationsInput | $Enums.event_type | null
+  target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
+  event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
+  event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
 }
 
 export type event_detailsCreateManyCenter_detailsInput = {

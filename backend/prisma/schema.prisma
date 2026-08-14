@@ -362,6 +362,12 @@ model instructor_details {
   instructor_documents             instructor_documents?
 }
 
+
+
+
+
+
+
 model instructor_documents {
   instructor_doc_id                          String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   instructor_id                              String?             @unique @db.Uuid
@@ -581,34 +587,13 @@ enum attend_types {
   half_day @map("half-day")
 }
 
-enum attendance_mode_type {
-  offline
-  online
-}
-
-enum batch_enrollment_status_type {
-  ACTIVE
-  DROPPED
-  BLACKLIST
-  INACTIVE
-}
-
-enum batch_status {
-  UPCOMING
-  ACTIVE
-  INACTIVE
-  COMPLETED
-}
-
-enum ca_status_types {
-  SUBMITTED
-  NOT_SUBMITTED @map("NOT SUBMITTED")
-}
-
-enum course_type {
-  online
-  offline
-  hybrid
+enum role_types {
+  candidate
+  instructor
+  admin
+  super_admin @map("super-admin")
+  mobilizer
+  hr
 }
 
 enum enquiry_status_type {
@@ -647,9 +632,43 @@ enum grade_types {
   F
 }
 
+enum course_type {
+  online
+  offline
+  hybrid
+}
+
 enum job_application_status {
   Applied
   Shortlisted
+}
+
+
+
+enum ca_status_types {
+  SUBMITTED
+  NOT_SUBMITTED @map("NOT SUBMITTED")
+}
+
+enum training_type {
+  ACADEMIC
+  WORKSHOP
+  UPSKILLING
+  SEMINAR
+}
+
+enum batch_status {
+  UPCOMING
+  ACTIVE
+  INACTIVE
+  COMPLETED
+}
+
+enum batch_enrollment_status_type {
+  ACTIVE
+  DROPPED
+  BLACKLIST
+  INACTIVE
 }
 
 enum notification_reference_type {
@@ -685,21 +704,6 @@ enum notification_type {
   JOB_EVENT_DELETED
 }
 
-enum role_types {
-  candidate
-  instructor
-  admin
-  super_admin @map("super-admin")
-  mobilizer
-  hr
-}
-
-enum training_type {
-  ACADEMIC
-  WORKSHOP
-  UPSKILLING
-  SEMINAR
-}
 
 enum enquiry_status {
   CALL_RECIEVED
@@ -712,9 +716,6 @@ enum enquiry_status {
   DOCUMENT_VERIFICATION_PENDING
   INTERESTED
   DOCUMENT_VERIFICATION_DONE
-  NOT_CONNECTED
-  CONNECTED
-  COUNSELING_DONE
 }
 
 enum event_status_type {
@@ -733,3 +734,5 @@ enum job_event_status {
   COMPLETED
   CANCELLED
 }
+
+

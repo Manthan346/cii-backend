@@ -43,7 +43,7 @@ const allCoursesAttendance = asyncHandler(async (req: CandidateAuthRequest, res:
               course_name: true,
             },
           },
-          attendance_sessions: {
+          attendance_sessions: {  
             select: {
               attendance_records: {
                 where: { candidate_id: candidateId },
