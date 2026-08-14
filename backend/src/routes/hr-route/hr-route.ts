@@ -14,6 +14,7 @@ import { checkJobEventDate } from "../../controllers/hr-controllers/check-event-
 const hrRouter = Router();
 
 hrRouter.post("/job-event/add",verifyHrUsingAccessToken,validateBody(createJobEventSchema),createJobEvent);
+//to check whether there are more than 2 job fairs/drive happening on same day 
 hrRouter.get("/job-event/check-date",verifyHrUsingAccessToken,checkJobEventDate)
 hrRouter.get("/job-event",verifyHrUsingAccessToken,paginationMiddleware,getAllHrJobEvents)
 //change the status of job fair/drive to completed/upcoming/cancelled
