@@ -2,7 +2,6 @@
 import { prisma } from "../../lib/prisma";
 import { generateAccessToken, generateRefreshToken } from "../candidate-jwt-auth/candidate-auth";
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../instructor-jwt-auth/instructor-auth";
-// import { generateAdminAccessToken, generateAdminRefreshToken } from "../../";
 import {generateMobilizerAccessToken,generateMobilizerRefreshToken,} from "../mobilizer-jwt-auth/mobilizer-auth";
 import { ApiError } from "../../helpers/ApiError";
 

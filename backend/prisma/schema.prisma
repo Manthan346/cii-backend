@@ -352,7 +352,7 @@ model event_details {
   is_show                                         Boolean?           @default(true)
   created_by                                      String             @db.Uuid
   created_at                                      DateTime?          @default(now()) @db.Timestamp(6)
-  updated_at                                      DateTime           @default(now()) @db.Timestamp(6)
+  updated_at DateTime @default(now()) @updatedAt
   updated_by                                      String             @db.Uuid
   event_link                                      String?
   event_mode                                      event_mode?
@@ -499,7 +499,7 @@ model notifications {
   reference_type       notification_reference_type?
   reference_id         String?                      @db.Uuid
   created_at           DateTime?                    @default(now()) @db.Timestamp(6)
-  updated_at           DateTime                     @default(now()) @db.Timestamp(6)
+  updated_at DateTime @default(now()) @updatedAt
   user_notifications   user_notifications[]
 }
 
