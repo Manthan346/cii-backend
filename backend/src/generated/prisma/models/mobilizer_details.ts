@@ -563,6 +563,7 @@ export type mobilizer_detailsCreateWithoutEnquiry_status_historyInput = {
   mobilizer_unique_id?: string | null
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutMobilizer_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutMobilizer_detailsInput
 }
@@ -574,6 +575,7 @@ export type mobilizer_detailsUncheckedCreateWithoutEnquiry_status_historyInput =
   user_id: string
   mobilizer_first_name: string
   mobilizer_last_name: string
+  mobilizer_designation?: string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutMobilizer_detailsInput
 }
 
@@ -599,6 +601,7 @@ export type mobilizer_detailsUpdateWithoutEnquiry_status_historyInput = {
   mobilizer_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutMobilizer_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput
 }
@@ -610,6 +613,7 @@ export type mobilizer_detailsUncheckedUpdateWithoutEnquiry_status_historyInput =
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_first_name?: Prisma.StringFieldUpdateOperationsInput | string
   mobilizer_last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  mobilizer_designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInput
 }
 

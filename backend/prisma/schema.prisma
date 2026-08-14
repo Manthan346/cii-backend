@@ -528,6 +528,7 @@ model mobilizer_details {
   user_id                String                   @unique @db.Uuid
   mobilizer_first_name   String
   mobilizer_last_name    String
+  mobilizer_designation  String?
   enquiry_records        enquiry_records[]
   enquiry_status_history enquiry_status_history[]
   user_login             user_login               @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
@@ -717,6 +718,9 @@ enum enquiry_status {
   DOCUMENT_VERIFICATION_PENDING
   INTERESTED
   DOCUMENT_VERIFICATION_DONE
+  NOT_CONNECTED
+  CONNECTED
+  COUNSELING_DONE
 }
 
 enum job_event_status {
