@@ -637,48 +637,6 @@ export type enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput =
   deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
 }
 
-export type enquiry_recordsCreateNestedManyWithoutCenter_detailsInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput> | Prisma.enquiry_recordsCreateWithoutCenter_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput[]
-  createMany?: Prisma.enquiry_recordsCreateManyCenter_detailsInputEnvelope
-  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-}
-
-export type enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput> | Prisma.enquiry_recordsCreateWithoutCenter_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput[]
-  createMany?: Prisma.enquiry_recordsCreateManyCenter_detailsInputEnvelope
-  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-}
-
-export type enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput> | Prisma.enquiry_recordsCreateWithoutCenter_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput[]
-  upsert?: Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput | Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput[]
-  createMany?: Prisma.enquiry_recordsCreateManyCenter_detailsInputEnvelope
-  set?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  disconnect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  delete?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  update?: Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput | Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput[]
-  updateMany?: Prisma.enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput | Prisma.enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput[]
-  deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
-}
-
-export type enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput> | Prisma.enquiry_recordsCreateWithoutCenter_detailsInput[] | Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput[]
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput | Prisma.enquiry_recordsCreateOrConnectWithoutCenter_detailsInput[]
-  upsert?: Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput | Prisma.enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput[]
-  createMany?: Prisma.enquiry_recordsCreateManyCenter_detailsInputEnvelope
-  set?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  disconnect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  delete?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  connect?: Prisma.enquiry_recordsWhereUniqueInput | Prisma.enquiry_recordsWhereUniqueInput[]
-  update?: Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput | Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput[]
-  updateMany?: Prisma.enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput | Prisma.enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput[]
-  deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
-}
-
 export type NullableEnumenquiry_statusFieldUpdateOperationsInput = {
   set?: $Enums.enquiry_status | null
 }
@@ -737,20 +695,6 @@ export type enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsNestedInpu
   update?: Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput[]
   updateMany?: Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput | Prisma.enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput[]
   deleteMany?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
-}
-
-export type enquiry_recordsCreateNestedOneWithoutEnquiry_status_historyInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutEnquiry_status_historyInput, Prisma.enquiry_recordsUncheckedCreateWithoutEnquiry_status_historyInput>
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutEnquiry_status_historyInput
-  connect?: Prisma.enquiry_recordsWhereUniqueInput
-}
-
-export type enquiry_recordsUpdateOneRequiredWithoutEnquiry_status_historyNestedInput = {
-  create?: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutEnquiry_status_historyInput, Prisma.enquiry_recordsUncheckedCreateWithoutEnquiry_status_historyInput>
-  connectOrCreate?: Prisma.enquiry_recordsCreateOrConnectWithoutEnquiry_status_historyInput
-  upsert?: Prisma.enquiry_recordsUpsertWithoutEnquiry_status_historyInput
-  connect?: Prisma.enquiry_recordsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.enquiry_recordsUpdateToOneWithWhereWithoutEnquiry_status_historyInput, Prisma.enquiry_recordsUpdateWithoutEnquiry_status_historyInput>, Prisma.enquiry_recordsUncheckedUpdateWithoutEnquiry_status_historyInput>
 }
 
 export type enquiry_recordsCreateWithoutCenter_detailsInput = {
@@ -898,123 +842,6 @@ export type enquiry_recordsUpdateManyWithWhereWithoutCourse_detailsInput = {
   data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsInput>
 }
 
-export type enquiry_recordsCreateWithoutMobilizer_detailsInput = {
-export type enquiry_recordsScalarWhereInput = {
-  AND?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
-  OR?: Prisma.enquiry_recordsScalarWhereInput[]
-  NOT?: Prisma.enquiry_recordsScalarWhereInput | Prisma.enquiry_recordsScalarWhereInput[]
-  enquiry_id?: Prisma.UuidFilter<"enquiry_records"> | string
-  enquiry_first_name?: Prisma.StringFilter<"enquiry_records"> | string
-  enquiry_last_name?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  enquiry_email?: Prisma.StringFilter<"enquiry_records"> | string
-  enquiry_phone_no?: Prisma.StringFilter<"enquiry_records"> | string
-  enquiry_education?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  enquiry_location?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  course_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
-  enquiry_source?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  remarks?: Prisma.StringNullableFilter<"enquiry_records"> | string | null
-  created_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"enquiry_records"> | Date | string
-  enq_status?: Prisma.Enumenquiry_statusNullableFilter<"enquiry_records"> | $Enums.enquiry_status | null
-  center_id?: Prisma.UuidFilter<"enquiry_records"> | string
-  mobilizer_id?: Prisma.UuidNullableFilter<"enquiry_records"> | string | null
-}
-
-export type enquiry_recordsCreateWithoutCenter_detailsInput = {
-  enquiry_id?: string
-  enquiry_first_name: string
-  enquiry_last_name?: string | null
-  enquiry_email: string
-  enquiry_phone_no: string
-  enquiry_education?: string | null
-  enquiry_location?: string | null
-  enquiry_source?: string | null
-  remarks?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
-  course_details?: Prisma.course_detailsCreateNestedOneWithoutEnquiry_recordsInput
-  center_details: Prisma.center_detailsCreateNestedOneWithoutEnquiry_recordsInput
-  enquiry_status_history?: Prisma.enquiry_status_historyCreateNestedManyWithoutEnquiry_recordsInput
-}
-
-export type enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput = {
-  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutEnquiry_recordsInput
-  enquiry_status_history?: Prisma.enquiry_status_historyCreateNestedManyWithoutEnquiry_recordsInput
-}
-
-export type enquiry_recordsUncheckedCreateWithoutCenter_detailsInput = {
-  enquiry_id?: string
-  enquiry_first_name: string
-  enquiry_last_name?: string | null
-  enquiry_email: string
-  enquiry_phone_no: string
-  enquiry_education?: string | null
-  enquiry_location?: string | null
-  course_id?: string | null
-  enquiry_source?: string | null
-  remarks?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
-  center_id: string
-  enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutEnquiry_recordsInput
-}
-
-export type enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsCreateManyMobilizer_detailsInputEnvelope = {
-  data: Prisma.enquiry_recordsCreateManyMobilizer_detailsInput | Prisma.enquiry_recordsCreateManyMobilizer_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsScalarWhereInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsInput>
-  mobilizer_id?: string | null
-  enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutEnquiry_recordsInput
-}
-
-export type enquiry_recordsCreateOrConnectWithoutCenter_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput>
-}
-
-export type enquiry_recordsCreateManyCenter_detailsInputEnvelope = {
-  data: Prisma.enquiry_recordsCreateManyCenter_detailsInput | Prisma.enquiry_recordsCreateManyCenter_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type enquiry_recordsUpsertWithWhereUniqueWithoutCenter_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCenter_detailsInput>
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutCenter_detailsInput>
-}
-
-export type enquiry_recordsUpdateWithWhereUniqueWithoutCenter_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutCenter_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutCenter_detailsInput>
-}
-
-export type enquiry_recordsUpdateManyWithWhereWithoutCenter_detailsInput = {
-  where: Prisma.enquiry_recordsScalarWhereInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsInput>
-}
-
 export type enquiry_recordsCreateWithoutEnquiry_status_historyInput = {
   enquiry_id?: string
   enquiry_first_name: string
@@ -1103,7 +930,6 @@ export type enquiry_recordsUncheckedUpdateWithoutEnquiry_status_historyInput = {
   mobilizer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type enquiry_recordsCreateManyCenter_detailsInput = {
 export type enquiry_recordsCreateWithoutMobilizer_detailsInput = {
   enquiry_id?: string
   enquiry_first_name: string
@@ -1123,6 +949,50 @@ export type enquiry_recordsCreateWithoutMobilizer_detailsInput = {
 }
 
 export type enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput = {
+  enquiry_id?: string
+  enquiry_first_name: string
+  enquiry_last_name?: string | null
+  enquiry_email: string
+  enquiry_phone_no: string
+  enquiry_education?: string | null
+  enquiry_location?: string | null
+  course_id?: string | null
+  enquiry_source?: string | null
+  remarks?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  enq_status?: $Enums.enquiry_status | null
+  center_id: string
+  enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutEnquiry_recordsInput
+}
+
+export type enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput = {
+  where: Prisma.enquiry_recordsWhereUniqueInput
+  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
+}
+
+export type enquiry_recordsCreateManyMobilizer_detailsInputEnvelope = {
+  data: Prisma.enquiry_recordsCreateManyMobilizer_detailsInput | Prisma.enquiry_recordsCreateManyMobilizer_detailsInput[]
+  skipDuplicates?: boolean
+}
+
+export type enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput = {
+  where: Prisma.enquiry_recordsWhereUniqueInput
+  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
+  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
+}
+
+export type enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput = {
+  where: Prisma.enquiry_recordsWhereUniqueInput
+  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
+}
+
+export type enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput = {
+  where: Prisma.enquiry_recordsScalarWhereInput
+  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsInput>
+}
+
+export type enquiry_recordsCreateManyCenter_detailsInput = {
   enquiry_id?: string
   enquiry_first_name: string
   enquiry_last_name?: string | null
@@ -1190,34 +1060,6 @@ export type enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   mobilizer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  center_id: string
-  enquiry_status_history?: Prisma.enquiry_status_historyUncheckedCreateNestedManyWithoutEnquiry_recordsInput
-}
-
-export type enquiry_recordsCreateOrConnectWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsCreateManyMobilizer_detailsInputEnvelope = {
-  data: Prisma.enquiry_recordsCreateManyMobilizer_detailsInput | Prisma.enquiry_recordsCreateManyMobilizer_detailsInput[]
-  skipDuplicates?: boolean
-}
-
-export type enquiry_recordsUpsertWithWhereUniqueWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  update: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
-  create: Prisma.XOR<Prisma.enquiry_recordsCreateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedCreateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsUpdateWithWhereUniqueWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsWhereUniqueInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateWithoutMobilizer_detailsInput, Prisma.enquiry_recordsUncheckedUpdateWithoutMobilizer_detailsInput>
-}
-
-export type enquiry_recordsUpdateManyWithWhereWithoutMobilizer_detailsInput = {
-  where: Prisma.enquiry_recordsScalarWhereInput
-  data: Prisma.XOR<Prisma.enquiry_recordsUpdateManyMutationInput, Prisma.enquiry_recordsUncheckedUpdateManyWithoutMobilizer_detailsInput>
 }
 
 export type enquiry_recordsCreateManyCourse_detailsInput = {
@@ -1287,76 +1129,6 @@ export type enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  mobilizer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type enquiry_recordsCreateManyCenter_detailsInput = {
-  enquiry_id?: string
-  enquiry_first_name: string
-  enquiry_last_name?: string | null
-  enquiry_email: string
-  enquiry_phone_no: string
-  enquiry_education?: string | null
-  enquiry_location?: string | null
-  course_id?: string | null
-  enquiry_source?: string | null
-  remarks?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  enq_status?: $Enums.enquiry_status | null
-  mobilizer_id?: string | null
-}
-
-export type enquiry_recordsUpdateWithoutCenter_detailsInput = {
-  enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_email?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
-  course_details?: Prisma.course_detailsUpdateOneWithoutEnquiry_recordsNestedInput
-  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutEnquiry_recordsNestedInput
-  enquiry_status_history?: Prisma.enquiry_status_historyUpdateManyWithoutEnquiry_recordsNestedInput
-}
-
-export type enquiry_recordsUncheckedUpdateWithoutCenter_detailsInput = {
-  enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_email?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
-  mobilizer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_status_history?: Prisma.enquiry_status_historyUncheckedUpdateManyWithoutEnquiry_recordsNestedInput
-}
-
-export type enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsInput = {
-  enquiry_id?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_email?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
-  enquiry_education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enquiry_source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  remarks?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  enq_status?: Prisma.NullableEnumenquiry_statusFieldUpdateOperationsInput | $Enums.enquiry_status | null
   mobilizer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 

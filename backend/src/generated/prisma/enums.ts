@@ -9,6 +9,17 @@
 * 🟢 You can import this file directly.
 */
 
+export const assessment_type = {
+  APTITUDE: 'APTITUDE',
+  TECHNICAL: 'TECHNICAL',
+  COMMUNICATION: 'COMMUNICATION',
+  MOCK_INTERVIEW: 'MOCK_INTERVIEW',
+  FINAL_ASSESSMENT: 'FINAL_ASSESSMENT'
+} as const
+
+export type assessment_type = (typeof assessment_type)[keyof typeof assessment_type]
+
+
 export const attend_types = {
   present: 'present',
   absent: 'absent',
@@ -19,16 +30,68 @@ export const attend_types = {
 export type attend_types = (typeof attend_types)[keyof typeof attend_types]
 
 
-export const role_types = {
-  candidate: 'candidate',
-  instructor: 'instructor',
-  admin: 'admin',
-  super_admin: 'super_admin',
-  mobilizer: 'mobilizer',
-  hr: 'hr'
+export const attendance_mode_type = {
+  offline: 'offline',
+  online: 'online'
 } as const
 
-export type role_types = (typeof role_types)[keyof typeof role_types]
+export type attendance_mode_type = (typeof attendance_mode_type)[keyof typeof attendance_mode_type]
+
+
+export const batch_enrollment_status_type = {
+  ACTIVE: 'ACTIVE',
+  DROPPED: 'DROPPED',
+  BLACKLIST: 'BLACKLIST',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type batch_enrollment_status_type = (typeof batch_enrollment_status_type)[keyof typeof batch_enrollment_status_type]
+
+
+export const batch_status = {
+  UPCOMING: 'UPCOMING',
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type batch_status = (typeof batch_status)[keyof typeof batch_status]
+
+
+export const ca_status_types = {
+  SUBMITTED: 'SUBMITTED',
+  NOT_SUBMITTED: 'NOT_SUBMITTED'
+} as const
+
+export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
+
+
+export const course_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
+} as const
+
+export type course_type = (typeof course_type)[keyof typeof course_type]
+
+
+export const enquiry_status = {
+  CALL_RECIEVED: 'CALL_RECIEVED',
+  CENTER_VISITED: 'CENTER_VISITED',
+  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
+  ENROLLED: 'ENROLLED',
+  WRONG_NUMBER: 'WRONG_NUMBER',
+  CALL_BUSY: 'CALL_BUSY',
+  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
+  DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
+  INTERESTED: 'INTERESTED',
+  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
+  NOT_CONNECTED: 'NOT_CONNECTED',
+  CONNECTED: 'CONNECTED',
+  COUNSELING_DONE: 'COUNSELING_DONE'
+} as const
+
+export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
 
 
 export const enquiry_status_type = {
@@ -41,12 +104,22 @@ export const enquiry_status_type = {
 export type enquiry_status_type = (typeof enquiry_status_type)[keyof typeof enquiry_status_type]
 
 
-export const attendance_mode_type = {
-  offline: 'offline',
-  online: 'online'
+export const event_mode = {
+  ONLINE: 'ONLINE',
+  OFFLINE: 'OFFLINE',
+  HYBRID: 'HYBRID'
 } as const
 
 export type event_mode = (typeof event_mode)[keyof typeof event_mode]
+
+
+export const event_status_type = {
+  UPCOMING: 'UPCOMING',
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
 
 
 export const event_target_type = {
@@ -81,15 +154,6 @@ export const grade_types = {
 export type grade_types = (typeof grade_types)[keyof typeof grade_types]
 
 
-export const course_type = {
-  online: 'online',
-  offline: 'offline',
-  hybrid: 'hybrid'
-} as const
-
-export type course_type = (typeof course_type)[keyof typeof course_type]
-
-
 export const job_application_status = {
   Applied: 'Applied',
   Shortlisted: 'Shortlisted'
@@ -98,53 +162,21 @@ export const job_application_status = {
 export type job_application_status = (typeof job_application_status)[keyof typeof job_application_status]
 
 
-export const assessment_type = {
-  APTITUDE: 'APTITUDE',
-  TECHNICAL: 'TECHNICAL',
-  COMMUNICATION: 'COMMUNICATION',
-  MOCK_INTERVIEW: 'MOCK_INTERVIEW',
-  FINAL_ASSESSMENT: 'FINAL_ASSESSMENT'
-} as const
-
-export type assessment_type = (typeof assessment_type)[keyof typeof assessment_type]
-
-
-export const ca_status_types = {
-  SUBMITTED: 'SUBMITTED',
-  NOT_SUBMITTED: 'NOT_SUBMITTED'
-} as const
-
-export type ca_status_types = (typeof ca_status_types)[keyof typeof ca_status_types]
-
-
-export const training_type = {
-  ACADEMIC: 'ACADEMIC',
-  WORKSHOP: 'WORKSHOP',
-  UPSKILLING: 'UPSKILLING',
-  SEMINAR: 'SEMINAR'
-} as const
-
-export type training_type = (typeof training_type)[keyof typeof training_type]
-
-
-export const batch_status = {
+export const job_event_status = {
   UPCOMING: 'UPCOMING',
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-  COMPLETED: 'COMPLETED'
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
 } as const
 
-export type batch_status = (typeof batch_status)[keyof typeof batch_status]
+export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]
 
 
-export const batch_enrollment_status_type = {
-  ACTIVE: 'ACTIVE',
-  DROPPED: 'DROPPED',
-  BLACKLIST: 'BLACKLIST',
-  INACTIVE: 'INACTIVE'
+export const job_event_type = {
+  JOB_FAIR: 'JOB_FAIR',
+  JOB_DRIVE: 'JOB_DRIVE'
 } as const
 
-export type batch_enrollment_status_type = (typeof batch_enrollment_status_type)[keyof typeof batch_enrollment_status_type]
+export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]
 
 
 export const notification_reference_type = {
@@ -195,70 +227,14 @@ export const role_types = {
   hr: 'hr'
 } as const
 
-export type event_mode = (typeof event_mode)[keyof typeof event_mode]
+export type role_types = (typeof role_types)[keyof typeof role_types]
 
 
-export const event_target_type = {
-  BATCH: 'BATCH',
-  ALL_BATCHES: 'ALL_BATCHES',
-  A_C_BATCHES: 'A_C_BATCHES',
-  COMPLETED: 'COMPLETED',
-  PUBLIC: 'PUBLIC'
-} as const
-
-export type event_target_type = (typeof event_target_type)[keyof typeof event_target_type]
-
-
-export const event_type = {
-  WEBINAR: 'WEBINAR',
-  SEMINAR: 'SEMINAR',
+export const training_type = {
+  ACADEMIC: 'ACADEMIC',
+  WORKSHOP: 'WORKSHOP',
   UPSKILLING: 'UPSKILLING',
-  WORKSHOP: 'WORKSHOP'
+  SEMINAR: 'SEMINAR'
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
-
-
-export const enquiry_status = {
-  CALL_RECIEVED: 'CALL_RECIEVED',
-  CENTER_VISITED: 'CENTER_VISITED',
-  CENTER_NOT_VISITED: 'CENTER_NOT_VISITED',
-  ENROLLED: 'ENROLLED',
-  WRONG_NUMBER: 'WRONG_NUMBER',
-  CALL_BUSY: 'CALL_BUSY',
-  CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
-  DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
-  INTERESTED: 'INTERESTED',
-  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
-  NOT_CONNECTED: 'NOT_CONNECTED',
-  CONNECTED: 'CONNECTED',
-  COUNSELING_DONE: 'COUNSELING_DONE'
-} as const
-
-export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
-
-
-export const event_status_type = {
-  UPCOMING: 'UPCOMING',
-  ONGOING: 'ONGOING',
-  COMPLETED: 'COMPLETED'
-} as const
-
-export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
-
-
-export const job_event_type = {
-  JOB_FAIR: 'JOB_FAIR',
-  JOB_DRIVE: 'JOB_DRIVE'
-} as const
-
-export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]
-
-
-export const job_event_status = {
-  UPCOMING: 'UPCOMING',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
-} as const
-
-export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]

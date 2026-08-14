@@ -359,6 +359,16 @@ export type Course_detailsScalarRelationFilter = {
   isNot?: Prisma.course_detailsWhereInput
 }
 
+export type Course_detailsListRelationFilter = {
+  every?: Prisma.course_detailsWhereInput
+  some?: Prisma.course_detailsWhereInput
+  none?: Prisma.course_detailsWhereInput
+}
+
+export type course_detailsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type course_detailsCountOrderByAggregateInput = {
   course_id?: Prisma.SortOrder
   course_name?: Prisma.SortOrder
@@ -397,16 +407,6 @@ export type Course_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.course_detailsWhereInput | null
 }
 
-export type Course_detailsListRelationFilter = {
-  every?: Prisma.course_detailsWhereInput
-  some?: Prisma.course_detailsWhereInput
-  none?: Prisma.course_detailsWhereInput
-}
-
-export type course_detailsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type course_detailsCreateNestedOneWithoutBatch_detailsInput = {
   create?: Prisma.XOR<Prisma.course_detailsCreateWithoutBatch_detailsInput, Prisma.course_detailsUncheckedCreateWithoutBatch_detailsInput>
   connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutBatch_detailsInput
@@ -419,26 +419,6 @@ export type course_detailsUpdateOneRequiredWithoutBatch_detailsNestedInput = {
   upsert?: Prisma.course_detailsUpsertWithoutBatch_detailsInput
   connect?: Prisma.course_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutBatch_detailsInput, Prisma.course_detailsUpdateWithoutBatch_detailsInput>, Prisma.course_detailsUncheckedUpdateWithoutBatch_detailsInput>
-}
-
-export type Enumcourse_typeFieldUpdateOperationsInput = {
-  set?: $Enums.course_type
-}
-
-export type course_detailsCreateNestedOneWithoutEnquiry_recordsInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
-  connect?: Prisma.course_detailsWhereUniqueInput
-}
-
-export type course_detailsUpdateOneWithoutEnquiry_recordsNestedInput = {
-  create?: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-  connectOrCreate?: Prisma.course_detailsCreateOrConnectWithoutEnquiry_recordsInput
-  upsert?: Prisma.course_detailsUpsertWithoutEnquiry_recordsInput
-  disconnect?: Prisma.course_detailsWhereInput | boolean
-  delete?: Prisma.course_detailsWhereInput | boolean
-  connect?: Prisma.course_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput, Prisma.course_detailsUpdateWithoutEnquiry_recordsInput>, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
 }
 
 export type course_detailsCreateNestedManyWithoutCompany_detailsInput = {
@@ -565,70 +545,6 @@ export type course_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCourse_detailsNestedInput
-}
-
-export type course_detailsCreateWithoutEnquiry_recordsInput = {
-  course_id?: string
-  course_name: string
-  course_desc: string
-  course_duration: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  course_mode: $Enums.course_type
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCourse_detailsInput
-  company_details: Prisma.company_detailsCreateNestedOneWithoutCourse_detailsInput
-}
-
-export type course_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
-  course_id?: string
-  course_name: string
-  course_desc: string
-  course_duration: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  company_id: string
-  course_mode: $Enums.course_type
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCourse_detailsInput
-}
-
-export type course_detailsCreateOrConnectWithoutEnquiry_recordsInput = {
-  where: Prisma.course_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-}
-
-export type course_detailsUpsertWithoutEnquiry_recordsInput = {
-  update: Prisma.XOR<Prisma.course_detailsUpdateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
-  create: Prisma.XOR<Prisma.course_detailsCreateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedCreateWithoutEnquiry_recordsInput>
-  where?: Prisma.course_detailsWhereInput
-}
-
-export type course_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput = {
-  where?: Prisma.course_detailsWhereInput
-  data: Prisma.XOR<Prisma.course_detailsUpdateWithoutEnquiry_recordsInput, Prisma.course_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
-}
-
-export type course_detailsUpdateWithoutEnquiry_recordsInput = {
-  course_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_name?: Prisma.StringFieldUpdateOperationsInput | string
-  course_desc?: Prisma.StringFieldUpdateOperationsInput | string
-  course_duration?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
-  batch_details?: Prisma.batch_detailsUpdateManyWithoutCourse_detailsNestedInput
-  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput
-}
-
-export type course_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
-  course_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_name?: Prisma.StringFieldUpdateOperationsInput | string
-  course_desc?: Prisma.StringFieldUpdateOperationsInput | string
-  course_duration?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  course_mode?: Prisma.Enumcourse_typeFieldUpdateOperationsInput | $Enums.course_type
-  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCourse_detailsNestedInput
 }
 
 export type course_detailsCreateWithoutCompany_detailsInput = {

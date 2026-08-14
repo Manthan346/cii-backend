@@ -343,6 +343,20 @@ export type Company_detailsNullableScalarRelationFilter = {
   isNot?: Prisma.company_detailsWhereInput | null
 }
 
+export type company_detailsCreateNestedOneWithoutCenter_companyInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCenter_companyInput
+  connect?: Prisma.company_detailsWhereUniqueInput
+}
+
+export type company_detailsUpdateOneRequiredWithoutCenter_companyNestedInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCenter_companyInput
+  upsert?: Prisma.company_detailsUpsertWithoutCenter_companyInput
+  connect?: Prisma.company_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutCenter_companyInput, Prisma.company_detailsUpdateWithoutCenter_companyInput>, Prisma.company_detailsUncheckedUpdateWithoutCenter_companyInput>
+}
+
 export type company_detailsCreateNestedOneWithoutCourse_detailsInput = {
   create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCourse_detailsInput, Prisma.company_detailsUncheckedCreateWithoutCourse_detailsInput>
   connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCourse_detailsInput
@@ -357,18 +371,18 @@ export type company_detailsUpdateOneRequiredWithoutCourse_detailsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutCourse_detailsInput, Prisma.company_detailsUpdateWithoutCourse_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutCourse_detailsInput>
 }
 
-export type company_detailsCreateNestedOneWithoutCenter_companyInput = {
-  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
-  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCenter_companyInput
+export type company_detailsCreateNestedOneWithoutHr_detailsInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
   connect?: Prisma.company_detailsWhereUniqueInput
 }
 
-export type company_detailsUpdateOneRequiredWithoutCenter_companyNestedInput = {
-  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
-  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCenter_companyInput
-  upsert?: Prisma.company_detailsUpsertWithoutCenter_companyInput
+export type company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
+  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
+  upsert?: Prisma.company_detailsUpsertWithoutHr_detailsInput
   connect?: Prisma.company_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutCenter_companyInput, Prisma.company_detailsUpdateWithoutCenter_companyInput>, Prisma.company_detailsUncheckedUpdateWithoutCenter_companyInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutHr_detailsInput, Prisma.company_detailsUpdateWithoutHr_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
 }
 
 export type company_detailsCreateNestedOneWithoutInstructor_detailsInput = {
@@ -385,20 +399,6 @@ export type company_detailsUpdateOneWithoutInstructor_detailsNestedInput = {
   delete?: Prisma.company_detailsWhereInput | boolean
   connect?: Prisma.company_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutInstructor_detailsInput, Prisma.company_detailsUpdateWithoutInstructor_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutInstructor_detailsInput>
-}
-
-export type company_detailsCreateNestedOneWithoutHr_detailsInput = {
-  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
-  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
-  connect?: Prisma.company_detailsWhereUniqueInput
-}
-
-export type company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput = {
-  create?: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
-  connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutHr_detailsInput
-  upsert?: Prisma.company_detailsUpsertWithoutHr_detailsInput
-  connect?: Prisma.company_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutHr_detailsInput, Prisma.company_detailsUpdateWithoutHr_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
 }
 
 export type company_detailsCreateWithoutCenter_companyInput = {
@@ -521,63 +521,63 @@ export type company_detailsUncheckedUpdateWithoutCourse_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
-export type company_detailsCreateWithoutCenter_companyInput = {
+export type company_detailsCreateWithoutHr_detailsInput = {
   company_id?: string
   company_name: string
   company_description?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
-  hr_details?: Prisma.hr_detailsCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
 }
 
-export type company_detailsUncheckedCreateWithoutCenter_companyInput = {
+export type company_detailsUncheckedCreateWithoutHr_detailsInput = {
   company_id?: string
   company_name: string
   company_description?: string | null
   created_at?: Date | string
   updated_at?: Date | string
+  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
   course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
-  hr_details?: Prisma.hr_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
 }
 
-export type company_detailsCreateOrConnectWithoutCenter_companyInput = {
+export type company_detailsCreateOrConnectWithoutHr_detailsInput = {
   where: Prisma.company_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
+  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
 }
 
-export type company_detailsUpsertWithoutCenter_companyInput = {
-  update: Prisma.XOR<Prisma.company_detailsUpdateWithoutCenter_companyInput, Prisma.company_detailsUncheckedUpdateWithoutCenter_companyInput>
-  create: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
+export type company_detailsUpsertWithoutHr_detailsInput = {
+  update: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
+  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
   where?: Prisma.company_detailsWhereInput
 }
 
-export type company_detailsUpdateToOneWithWhereWithoutCenter_companyInput = {
+export type company_detailsUpdateToOneWithWhereWithoutHr_detailsInput = {
   where?: Prisma.company_detailsWhereInput
-  data: Prisma.XOR<Prisma.company_detailsUpdateWithoutCenter_companyInput, Prisma.company_detailsUncheckedUpdateWithoutCenter_companyInput>
+  data: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
 }
 
-export type company_detailsUpdateWithoutCenter_companyInput = {
+export type company_detailsUpdateWithoutHr_detailsInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
-  hr_details?: Prisma.hr_detailsUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
 }
 
-export type company_detailsUncheckedUpdateWithoutCenter_companyInput = {
+export type company_detailsUncheckedUpdateWithoutHr_detailsInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   company_name?: Prisma.StringFieldUpdateOperationsInput | string
   company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
-  hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
@@ -639,66 +639,6 @@ export type company_detailsUncheckedUpdateWithoutInstructor_detailsInput = {
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
   course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
   hr_details?: Prisma.hr_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
-}
-
-export type company_detailsCreateWithoutHr_detailsInput = {
-  company_id?: string
-  company_name: string
-  company_description?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_company?: Prisma.center_companyCreateNestedManyWithoutCompany_detailsInput
-  course_details?: Prisma.course_detailsCreateNestedManyWithoutCompany_detailsInput
-  instructor_details?: Prisma.instructor_detailsCreateNestedManyWithoutCompany_detailsInput
-}
-
-export type company_detailsUncheckedCreateWithoutHr_detailsInput = {
-  company_id?: string
-  company_name: string
-  company_description?: string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCompany_detailsInput
-  course_details?: Prisma.course_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
-  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedManyWithoutCompany_detailsInput
-}
-
-export type company_detailsCreateOrConnectWithoutHr_detailsInput = {
-  where: Prisma.company_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
-}
-
-export type company_detailsUpsertWithoutHr_detailsInput = {
-  update: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
-  create: Prisma.XOR<Prisma.company_detailsCreateWithoutHr_detailsInput, Prisma.company_detailsUncheckedCreateWithoutHr_detailsInput>
-  where?: Prisma.company_detailsWhereInput
-}
-
-export type company_detailsUpdateToOneWithWhereWithoutHr_detailsInput = {
-  where?: Prisma.company_detailsWhereInput
-  data: Prisma.XOR<Prisma.company_detailsUpdateWithoutHr_detailsInput, Prisma.company_detailsUncheckedUpdateWithoutHr_detailsInput>
-}
-
-export type company_detailsUpdateWithoutHr_detailsInput = {
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  company_name?: Prisma.StringFieldUpdateOperationsInput | string
-  company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_company?: Prisma.center_companyUpdateManyWithoutCompany_detailsNestedInput
-  course_details?: Prisma.course_detailsUpdateManyWithoutCompany_detailsNestedInput
-  instructor_details?: Prisma.instructor_detailsUpdateManyWithoutCompany_detailsNestedInput
-}
-
-export type company_detailsUncheckedUpdateWithoutHr_detailsInput = {
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  company_name?: Prisma.StringFieldUpdateOperationsInput | string
-  company_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCompany_detailsNestedInput
-  course_details?: Prisma.course_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
-  instructor_details?: Prisma.instructor_detailsUncheckedUpdateManyWithoutCompany_detailsNestedInput
 }
 
 

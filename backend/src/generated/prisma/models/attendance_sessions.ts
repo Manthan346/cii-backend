@@ -393,16 +393,6 @@ export type Attendance_sessionsScalarRelationFilter = {
   isNot?: Prisma.attendance_sessionsWhereInput
 }
 
-export type Attendance_sessionsListRelationFilter = {
-  every?: Prisma.attendance_sessionsWhereInput
-  some?: Prisma.attendance_sessionsWhereInput
-  none?: Prisma.attendance_sessionsWhereInput
-}
-
-export type attendance_sessionsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type attendance_sessionsBatch_idSession_dateCompoundUniqueInput = {
   batch_id: string
   session_date: Date | string
@@ -445,6 +435,16 @@ export type attendance_sessionsMinOrderByAggregateInput = {
   session_time?: Prisma.SortOrder
   room_no?: Prisma.SortOrder
   topic_name?: Prisma.SortOrder
+}
+
+export type Attendance_sessionsListRelationFilter = {
+  every?: Prisma.attendance_sessionsWhereInput
+  some?: Prisma.attendance_sessionsWhereInput
+  none?: Prisma.attendance_sessionsWhereInput
+}
+
+export type attendance_sessionsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type attendance_sessionsCreateNestedOneWithoutAttendance_recordsInput = {
@@ -547,10 +547,6 @@ export type attendance_sessionsUncheckedUpdateManyWithoutInstructor_detailsNeste
   update?: Prisma.attendance_sessionsUpdateWithWhereUniqueWithoutInstructor_detailsInput | Prisma.attendance_sessionsUpdateWithWhereUniqueWithoutInstructor_detailsInput[]
   updateMany?: Prisma.attendance_sessionsUpdateManyWithWhereWithoutInstructor_detailsInput | Prisma.attendance_sessionsUpdateManyWithWhereWithoutInstructor_detailsInput[]
   deleteMany?: Prisma.attendance_sessionsScalarWhereInput | Prisma.attendance_sessionsScalarWhereInput[]
-}
-
-export type Enumattendance_mode_typeFieldUpdateOperationsInput = {
-  set?: $Enums.attendance_mode_type
 }
 
 export type attendance_sessionsCreateWithoutAttendance_recordsInput = {

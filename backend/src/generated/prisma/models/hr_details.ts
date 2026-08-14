@@ -337,11 +337,6 @@ export type hr_detailsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Hr_detailsNullableScalarRelationFilter = {
-  is?: Prisma.hr_detailsWhereInput | null
-  isNot?: Prisma.hr_detailsWhereInput | null
-}
-
 export type Hr_detailsListRelationFilter = {
   every?: Prisma.hr_detailsWhereInput
   some?: Prisma.hr_detailsWhereInput
@@ -387,36 +382,9 @@ export type Hr_detailsScalarRelationFilter = {
   isNot?: Prisma.hr_detailsWhereInput
 }
 
-export type hr_detailsCreateNestedOneWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
-  connect?: Prisma.hr_detailsWhereUniqueInput
-}
-
-export type hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
-  connect?: Prisma.hr_detailsWhereUniqueInput
-}
-
-export type hr_detailsUpdateOneWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
-  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
-  disconnect?: Prisma.hr_detailsWhereInput | boolean
-  delete?: Prisma.hr_detailsWhereInput | boolean
-  connect?: Prisma.hr_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
-  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
-  disconnect?: Prisma.hr_detailsWhereInput | boolean
-  delete?: Prisma.hr_detailsWhereInput | boolean
-  connect?: Prisma.hr_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+export type Hr_detailsNullableScalarRelationFilter = {
+  is?: Prisma.hr_detailsWhereInput | null
+  isNot?: Prisma.hr_detailsWhereInput | null
 }
 
 export type hr_detailsCreateNestedManyWithoutCompany_detailsInput = {
@@ -489,64 +457,36 @@ export type hr_detailsUpdateOneRequiredWithoutPlacementNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutPlacementInput, Prisma.hr_detailsUpdateWithoutPlacementInput>, Prisma.hr_detailsUncheckedUpdateWithoutPlacementInput>
 }
 
-export type hr_detailsCreateWithoutUser_loginInput = {
-  hr_id?: string
-  hr_first_name: string
-  hr_last_name?: string | null
-  hr_designation: string
-  hr_phone_no: string
-  company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
-  job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
-  placement?: Prisma.placementCreateNestedManyWithoutHr_detailsInput
+export type hr_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.hr_detailsWhereUniqueInput
 }
 
-export type hr_detailsUncheckedCreateWithoutUser_loginInput = {
-  hr_id?: string
-  hr_first_name: string
-  hr_last_name?: string | null
-  hr_designation: string
-  hr_phone_no: string
-  company_id: string
-  job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
-  placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
+export type hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.hr_detailsWhereUniqueInput
 }
 
-export type hr_detailsCreateOrConnectWithoutUser_loginInput = {
-  where: Prisma.hr_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+export type hr_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.hr_detailsWhereInput | boolean
+  delete?: Prisma.hr_detailsWhereInput | boolean
+  connect?: Prisma.hr_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type hr_detailsUpsertWithoutUser_loginInput = {
-  update: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
-  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
-  where?: Prisma.hr_detailsWhereInput
-}
-
-export type hr_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
-  where?: Prisma.hr_detailsWhereInput
-  data: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type hr_detailsUpdateWithoutUser_loginInput = {
-  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
-  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
-  job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
-  placement?: Prisma.placementUpdateManyWithoutHr_detailsNestedInput
-}
-
-export type hr_detailsUncheckedUpdateWithoutUser_loginInput = {
-  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
-  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
-  company_id?: Prisma.StringFieldUpdateOperationsInput | string
-  job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
-  placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
+export type hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.hr_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.hr_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.hr_detailsWhereInput | boolean
+  delete?: Prisma.hr_detailsWhereInput | boolean
+  connect?: Prisma.hr_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.hr_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.hr_detailsUpdateWithoutUser_loginInput>, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
 export type hr_detailsCreateWithoutCompany_detailsInput = {
@@ -728,6 +668,66 @@ export type hr_detailsUncheckedUpdateWithoutPlacementInput = {
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
+}
+
+export type hr_detailsCreateWithoutUser_loginInput = {
+  hr_id?: string
+  hr_first_name: string
+  hr_last_name?: string | null
+  hr_designation: string
+  hr_phone_no: string
+  company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
+  job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
+  placement?: Prisma.placementCreateNestedManyWithoutHr_detailsInput
+}
+
+export type hr_detailsUncheckedCreateWithoutUser_loginInput = {
+  hr_id?: string
+  hr_first_name: string
+  hr_last_name?: string | null
+  hr_designation: string
+  hr_phone_no: string
+  company_id: string
+  job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
+  placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
+}
+
+export type hr_detailsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.hr_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type hr_detailsUpsertWithoutUser_loginInput = {
+  update: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.hr_detailsCreateWithoutUser_loginInput, Prisma.hr_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.hr_detailsWhereInput
+}
+
+export type hr_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.hr_detailsWhereInput
+  data: Prisma.XOR<Prisma.hr_detailsUpdateWithoutUser_loginInput, Prisma.hr_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type hr_detailsUpdateWithoutUser_loginInput = {
+  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
+  job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
+  placement?: Prisma.placementUpdateManyWithoutHr_detailsNestedInput
+}
+
+export type hr_detailsUncheckedUpdateWithoutUser_loginInput = {
+  hr_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
+  placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
 
 export type hr_detailsCreateManyCompany_detailsInput = {

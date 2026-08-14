@@ -824,11 +824,6 @@ export type admin_detailsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Admin_detailsNullableScalarRelationFilter = {
-  is?: Prisma.admin_detailsWhereInput | null
-  isNot?: Prisma.admin_detailsWhereInput | null
-}
-
 export type admin_detailsCountOrderByAggregateInput = {
   admin_id?: Prisma.SortOrder
   admin_first_name?: Prisma.SortOrder
@@ -946,6 +941,53 @@ export type Admin_detailsScalarRelationFilter = {
   isNot?: Prisma.admin_detailsWhereInput
 }
 
+export type Admin_detailsNullableScalarRelationFilter = {
+  is?: Prisma.admin_detailsWhereInput | null
+  isNot?: Prisma.admin_detailsWhereInput | null
+}
+
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type admin_detailsCreateNestedOneWithoutAdmin_documentsInput = {
+  create?: Prisma.XOR<Prisma.admin_detailsCreateWithoutAdmin_documentsInput, Prisma.admin_detailsUncheckedCreateWithoutAdmin_documentsInput>
+  connectOrCreate?: Prisma.admin_detailsCreateOrConnectWithoutAdmin_documentsInput
+  connect?: Prisma.admin_detailsWhereUniqueInput
+}
+
+export type admin_detailsUpdateOneRequiredWithoutAdmin_documentsNestedInput = {
+  create?: Prisma.XOR<Prisma.admin_detailsCreateWithoutAdmin_documentsInput, Prisma.admin_detailsUncheckedCreateWithoutAdmin_documentsInput>
+  connectOrCreate?: Prisma.admin_detailsCreateOrConnectWithoutAdmin_documentsInput
+  upsert?: Prisma.admin_detailsUpsertWithoutAdmin_documentsInput
+  connect?: Prisma.admin_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.admin_detailsUpdateToOneWithWhereWithoutAdmin_documentsInput, Prisma.admin_detailsUpdateWithoutAdmin_documentsInput>, Prisma.admin_detailsUncheckedUpdateWithoutAdmin_documentsInput>
+}
+
 export type admin_detailsCreateNestedOneWithoutUser_loginInput = {
   create?: Prisma.XOR<Prisma.admin_detailsCreateWithoutUser_loginInput, Prisma.admin_detailsUncheckedCreateWithoutUser_loginInput>
   connectOrCreate?: Prisma.admin_detailsCreateOrConnectWithoutUser_loginInput
@@ -976,172 +1018,6 @@ export type admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
   delete?: Prisma.admin_detailsWhereInput | boolean
   connect?: Prisma.admin_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.admin_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.admin_detailsUpdateWithoutUser_loginInput>, Prisma.admin_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type admin_detailsCreateNestedOneWithoutAdmin_documentsInput = {
-  create?: Prisma.XOR<Prisma.admin_detailsCreateWithoutAdmin_documentsInput, Prisma.admin_detailsUncheckedCreateWithoutAdmin_documentsInput>
-  connectOrCreate?: Prisma.admin_detailsCreateOrConnectWithoutAdmin_documentsInput
-  connect?: Prisma.admin_detailsWhereUniqueInput
-}
-
-export type admin_detailsUpdateOneRequiredWithoutAdmin_documentsNestedInput = {
-  create?: Prisma.XOR<Prisma.admin_detailsCreateWithoutAdmin_documentsInput, Prisma.admin_detailsUncheckedCreateWithoutAdmin_documentsInput>
-  connectOrCreate?: Prisma.admin_detailsCreateOrConnectWithoutAdmin_documentsInput
-  upsert?: Prisma.admin_detailsUpsertWithoutAdmin_documentsInput
-  connect?: Prisma.admin_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.admin_detailsUpdateToOneWithWhereWithoutAdmin_documentsInput, Prisma.admin_detailsUpdateWithoutAdmin_documentsInput>, Prisma.admin_detailsUncheckedUpdateWithoutAdmin_documentsInput>
-}
-
-export type admin_detailsCreateWithoutUser_loginInput = {
-  admin_id?: string
-  admin_first_name: string
-  admin_last_name?: string | null
-  blood_group?: string | null
-  date_of_birth?: Date | string | null
-  highest_qualification?: string | null
-  specialization?: string | null
-  university?: string | null
-  passing_year?: number | null
-  total_experience?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  prev_organization?: string | null
-  prev_org_role?: string | null
-  father_name?: string | null
-  father_mobile_no?: string | null
-  father_address?: string | null
-  father_occupation?: string | null
-  father_blood_group?: string | null
-  father_dob?: Date | string | null
-  mother_name?: string | null
-  mother_mobile_no?: string | null
-  mother_address?: string | null
-  mother_occupation?: string | null
-  mother_blood_group?: string | null
-  mother_dob?: Date | string | null
-  guardian_name?: string | null
-  guardian_dob?: Date | string | null
-  guardian_address?: string | null
-  guardian_gender?: string | null
-  guardian_blood_group?: string | null
-  guardian_phone_number?: string | null
-  admin_documents?: Prisma.admin_documentsCreateNestedManyWithoutAdmin_detailsInput
-}
-
-export type admin_detailsUncheckedCreateWithoutUser_loginInput = {
-  admin_id?: string
-  admin_first_name: string
-  admin_last_name?: string | null
-  blood_group?: string | null
-  date_of_birth?: Date | string | null
-  highest_qualification?: string | null
-  specialization?: string | null
-  university?: string | null
-  passing_year?: number | null
-  total_experience?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  prev_organization?: string | null
-  prev_org_role?: string | null
-  father_name?: string | null
-  father_mobile_no?: string | null
-  father_address?: string | null
-  father_occupation?: string | null
-  father_blood_group?: string | null
-  father_dob?: Date | string | null
-  mother_name?: string | null
-  mother_mobile_no?: string | null
-  mother_address?: string | null
-  mother_occupation?: string | null
-  mother_blood_group?: string | null
-  mother_dob?: Date | string | null
-  guardian_name?: string | null
-  guardian_dob?: Date | string | null
-  guardian_address?: string | null
-  guardian_gender?: string | null
-  guardian_blood_group?: string | null
-  guardian_phone_number?: string | null
-  admin_documents?: Prisma.admin_documentsUncheckedCreateNestedManyWithoutAdmin_detailsInput
-}
-
-export type admin_detailsCreateOrConnectWithoutUser_loginInput = {
-  where: Prisma.admin_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.admin_detailsCreateWithoutUser_loginInput, Prisma.admin_detailsUncheckedCreateWithoutUser_loginInput>
-}
-
-export type admin_detailsUpsertWithoutUser_loginInput = {
-  update: Prisma.XOR<Prisma.admin_detailsUpdateWithoutUser_loginInput, Prisma.admin_detailsUncheckedUpdateWithoutUser_loginInput>
-  create: Prisma.XOR<Prisma.admin_detailsCreateWithoutUser_loginInput, Prisma.admin_detailsUncheckedCreateWithoutUser_loginInput>
-  where?: Prisma.admin_detailsWhereInput
-}
-
-export type admin_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
-  where?: Prisma.admin_detailsWhereInput
-  data: Prisma.XOR<Prisma.admin_detailsUpdateWithoutUser_loginInput, Prisma.admin_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type admin_detailsUpdateWithoutUser_loginInput = {
-  admin_id?: Prisma.StringFieldUpdateOperationsInput | string
-  admin_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  admin_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passing_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_experience?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  prev_organization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prev_org_role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_documents?: Prisma.admin_documentsUpdateManyWithoutAdmin_detailsNestedInput
-}
-
-export type admin_detailsUncheckedUpdateWithoutUser_loginInput = {
-  admin_id?: Prisma.StringFieldUpdateOperationsInput | string
-  admin_first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  admin_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  passing_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_experience?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  prev_organization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  prev_org_role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  father_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mother_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_documents?: Prisma.admin_documentsUncheckedUpdateManyWithoutAdmin_detailsNestedInput
 }
 
 export type admin_detailsCreateWithoutAdmin_documentsInput = {
@@ -1294,6 +1170,158 @@ export type admin_detailsUncheckedUpdateWithoutAdmin_documentsInput = {
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type admin_detailsCreateWithoutUser_loginInput = {
+  admin_id?: string
+  admin_first_name: string
+  admin_last_name?: string | null
+  blood_group?: string | null
+  date_of_birth?: Date | string | null
+  highest_qualification?: string | null
+  specialization?: string | null
+  university?: string | null
+  passing_year?: number | null
+  total_experience?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  prev_organization?: string | null
+  prev_org_role?: string | null
+  father_name?: string | null
+  father_mobile_no?: string | null
+  father_address?: string | null
+  father_occupation?: string | null
+  father_blood_group?: string | null
+  father_dob?: Date | string | null
+  mother_name?: string | null
+  mother_mobile_no?: string | null
+  mother_address?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_dob?: Date | string | null
+  guardian_name?: string | null
+  guardian_dob?: Date | string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_blood_group?: string | null
+  guardian_phone_number?: string | null
+  admin_documents?: Prisma.admin_documentsCreateNestedManyWithoutAdmin_detailsInput
+}
+
+export type admin_detailsUncheckedCreateWithoutUser_loginInput = {
+  admin_id?: string
+  admin_first_name: string
+  admin_last_name?: string | null
+  blood_group?: string | null
+  date_of_birth?: Date | string | null
+  highest_qualification?: string | null
+  specialization?: string | null
+  university?: string | null
+  passing_year?: number | null
+  total_experience?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  prev_organization?: string | null
+  prev_org_role?: string | null
+  father_name?: string | null
+  father_mobile_no?: string | null
+  father_address?: string | null
+  father_occupation?: string | null
+  father_blood_group?: string | null
+  father_dob?: Date | string | null
+  mother_name?: string | null
+  mother_mobile_no?: string | null
+  mother_address?: string | null
+  mother_occupation?: string | null
+  mother_blood_group?: string | null
+  mother_dob?: Date | string | null
+  guardian_name?: string | null
+  guardian_dob?: Date | string | null
+  guardian_address?: string | null
+  guardian_gender?: string | null
+  guardian_blood_group?: string | null
+  guardian_phone_number?: string | null
+  admin_documents?: Prisma.admin_documentsUncheckedCreateNestedManyWithoutAdmin_detailsInput
+}
+
+export type admin_detailsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.admin_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.admin_detailsCreateWithoutUser_loginInput, Prisma.admin_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type admin_detailsUpsertWithoutUser_loginInput = {
+  update: Prisma.XOR<Prisma.admin_detailsUpdateWithoutUser_loginInput, Prisma.admin_detailsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.admin_detailsCreateWithoutUser_loginInput, Prisma.admin_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.admin_detailsWhereInput
+}
+
+export type admin_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.admin_detailsWhereInput
+  data: Prisma.XOR<Prisma.admin_detailsUpdateWithoutUser_loginInput, Prisma.admin_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type admin_detailsUpdateWithoutUser_loginInput = {
+  admin_id?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passing_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  total_experience?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  prev_organization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prev_org_role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_documents?: Prisma.admin_documentsUpdateManyWithoutAdmin_detailsNestedInput
+}
+
+export type admin_detailsUncheckedUpdateWithoutUser_loginInput = {
+  admin_id?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date_of_birth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  specialization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passing_year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  total_experience?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  prev_organization?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  prev_org_role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  father_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  mother_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mother_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  guardian_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  guardian_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_documents?: Prisma.admin_documentsUncheckedUpdateManyWithoutAdmin_detailsNestedInput
 }
 
 

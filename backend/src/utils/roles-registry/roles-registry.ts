@@ -180,9 +180,7 @@ const roleRegistry: Record<string, RoleHandler> = {
   candidate: buildCandidateTokens,
   instructor: buildInstructorTokens,
   mobilizer: buildMobilizerTokens,
-  hr: buildHrTokens
   admin: buildAdminTokens,
-  mobilizer: buildMobilizerTokens,
   hr: buildHrTokens
 //   admin: buildAdminTokens,
   // super_admin: buildSuperAdminTokens,   <- add when built
