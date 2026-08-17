@@ -242,10 +242,3 @@ export const job_event_type = {
 export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]
 
 
-export const job_event_status = {
-  UPCOMING: 'UPCOMING',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
-} as const
-
-export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]
