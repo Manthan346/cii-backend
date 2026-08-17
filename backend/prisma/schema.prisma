@@ -747,5 +747,5 @@ enum training_type {
 enum work_mode_type {
   online
   offline
-  remote
+  hybrid
 }
