@@ -520,6 +520,7 @@ model placement {
   eligible_qualification   String?
   eligible_percentage_cgpa String?
   salary                   String?
+  employement_type         String?
   hr_details               hr_details      @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
 }
 
