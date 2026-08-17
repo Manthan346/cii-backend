@@ -195,6 +195,15 @@ export const event_type = {
 export type event_type = (typeof event_type)[keyof typeof event_type]
 
 
+export const event_status_type = {
+  UPCOMING: 'UPCOMING',
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
+
+
 export const enquiry_status = {
   CALL_RECIEVED: 'CALL_RECIEVED',
   CENTER_VISITED: 'CENTER_VISITED',
@@ -205,19 +214,22 @@ export const enquiry_status = {
   CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
   DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
   INTERESTED: 'INTERESTED',
-  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE'
+  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
+  NOT_CONNECTED: 'NOT_CONNECTED',
+  CONNECTED: 'CONNECTED',
+  COUNSELING_DONE: 'COUNSELING_DONE'
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
 
 
-export const event_status_type = {
+export const job_event_status = {
   UPCOMING: 'UPCOMING',
-  ONGOING: 'ONGOING',
-  COMPLETED: 'COMPLETED'
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
 } as const
 
-export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
+export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]
 
 
 export const job_event_type = {

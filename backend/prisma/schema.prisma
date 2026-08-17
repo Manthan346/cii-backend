@@ -521,6 +521,19 @@ model hr_details {
   placement       placement[]
 }
 
+model mobilizer_details {
+  mobilizer_id           String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  mobilizer_phone_no     String?                  @unique @db.VarChar(10)
+  mobilizer_unique_id    String?                  @unique
+  user_id                String                   @unique @db.Uuid
+  mobilizer_first_name   String
+  mobilizer_last_name    String
+  mobilizer_designation  String?
+  enquiry_records        enquiry_records[]
+  enquiry_status_history enquiry_status_history[]
+  user_login             user_login               @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model job_events {
   job_event_id    String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   event_type      job_event_type
@@ -536,18 +549,6 @@ model job_events {
   jobevent_photos String[]         @default([])
   event_status    job_event_status @default(UPCOMING)
   hr_details      hr_details       @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_job_events_created_by")
-}
-
-model mobilizer_details {
-  mobilizer_id           String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  mobilizer_phone_no     String?                  @unique @db.VarChar(10)
-  mobilizer_unique_id    String?                  @unique
-  user_id                String                   @unique @db.Uuid
-  mobilizer_first_name   String
-  mobilizer_last_name    String
-  enquiry_records        enquiry_records[]
-  enquiry_status_history enquiry_status_history[]
-  user_login             user_login               @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model placement {
@@ -700,6 +701,12 @@ enum event_type {
   WORKSHOP
 }
 
+enum event_status_type {
+  UPCOMING
+  ONGOING
+  COMPLETED
+}
+
 enum enquiry_status {
   CALL_RECIEVED
   CENTER_VISITED
@@ -711,12 +718,15 @@ enum enquiry_status {
   DOCUMENT_VERIFICATION_PENDING
   INTERESTED
   DOCUMENT_VERIFICATION_DONE
+  NOT_CONNECTED
+  CONNECTED
+  COUNSELING_DONE
 }
 
-enum event_status_type {
+enum job_event_status {
   UPCOMING
-  ONGOING
   COMPLETED
+  CANCELLED
 }
 
 enum job_event_type {

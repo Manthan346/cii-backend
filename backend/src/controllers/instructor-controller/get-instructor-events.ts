@@ -5,6 +5,7 @@ import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interfac
 import { ApiError } from "../../helpers/ApiError";
 import { notification_reference_type } from "../../generated/prisma/enums";
 import { ApiResponse } from "../../helpers/ApiResponse";
+import { computeEventStatus } from "../../utils/event-utils/compute-event-status";
 
 export const getAllInstructorEvents = asyncHandler(
     async(req:InstructorAuthRequest,res:Response) => {
@@ -79,8 +80,14 @@ export const getAllInstructorEvents = asyncHandler(
             },
         });
 
+        // Add derived status to each event detail
+        const eventDetailsWithStatus = eventDetails.map((event) => ({
+            ...event,
+            event_status: computeEventStatus(event.event_date, event.event_time),
+        }));
+
         const eventMap = new Map(
-            eventDetails.map((event) => [event.event_id, event])
+            eventDetailsWithStatus.map((event) => [event.event_id, event])
         );
 
         const response = events.map((event) => ({

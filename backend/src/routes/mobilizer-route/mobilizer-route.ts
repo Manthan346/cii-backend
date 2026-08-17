@@ -4,9 +4,17 @@ import { getAllEnquiry } from '../../controllers/mobilizer-controller/get-all-en
 import { assignMobilizerToEnquiry } from '../../controllers/mobilizer-controller/assign-mobilizer';
 import { getEnquiryDetails } from '../../controllers/mobilizer-controller/get-enquiry-details';
 import { changeEnquiryStatus } from '../../controllers/mobilizer-controller/change-enquiry-status';
+import { createPublicEvent } from '../../controllers/mobilizer-controller/create-public-event';
+import { updatePublicEvent } from '../../controllers/mobilizer-controller/update-public-event';
+import { getCenterEvents } from '../../controllers/mobilizer-controller/get-center-events';
+import { getEventDetails } from '../../controllers/mobilizer-controller/get-event-details';
 import { paginationMiddleware } from '../../middlewares/pagination-middleware/pagination';
-import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
+import { createEventSchema, updatePublicEventSchema } from '../../services/zod/event-schema/eventValidation';
 import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
+import { uploadEventImages } from '../../middlewares/multer-middleware/image-upload';
+import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
+
+import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 
 const mobilizerRouter = Router();
 
@@ -36,10 +44,40 @@ mobilizerRouter.get(
 );
 
 // Change enquiry status
-mobilizerRouter.patch(
-    "/enquiry/:enquiryId/status",
+mobilizerRouter.patch("/enquiry/:enquiryId/status",verifyMobilizerUsingAccessToken,changeEnquiryStatus);
+//Fetch profile of mobilizer
+mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
+
+// Mobilizer can create PUBLIC events to surface on the landing page
+mobilizerRouter.post(
+    "/create-public-event",
     verifyMobilizerUsingAccessToken,
-    changeEnquiryStatus
+    validateBody(createEventSchema),
+    createPublicEvent
+);
+
+// Mobilizer can update PUBLIC events
+mobilizerRouter.patch(
+    "/update-public-event/:event_id",
+    verifyMobilizerUsingAccessToken,
+    uploadEventImages,
+    validateBody(updatePublicEventSchema),
+    updatePublicEvent
+);
+
+// Mobilizer can get all events associated with their center
+mobilizerRouter.get(
+    "/center-events",
+    verifyMobilizerUsingAccessToken,
+    paginationMiddleware,
+    getCenterEvents
+);
+
+// Mobilizer can get specific event details
+mobilizerRouter.get(
+    "/event-details/:eventId",
+    verifyMobilizerUsingAccessToken,
+    getEventDetails
 );
 
 export default mobilizerRouter

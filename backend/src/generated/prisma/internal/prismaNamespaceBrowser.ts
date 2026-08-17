@@ -75,8 +75,8 @@ export const ModelName = {
   batch_syllabus: 'batch_syllabus',
   enquiry_status_history: 'enquiry_status_history',
   hr_details: 'hr_details',
-  job_events: 'job_events',
   mobilizer_details: 'mobilizer_details',
+  job_events: 'job_events',
   placement: 'placement'
 } as const
 
@@ -590,6 +590,19 @@ export const Hr_detailsScalarFieldEnum = {
 export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
 
 
+export const Mobilizer_detailsScalarFieldEnum = {
+  mobilizer_id: 'mobilizer_id',
+  mobilizer_phone_no: 'mobilizer_phone_no',
+  mobilizer_unique_id: 'mobilizer_unique_id',
+  user_id: 'user_id',
+  mobilizer_first_name: 'mobilizer_first_name',
+  mobilizer_last_name: 'mobilizer_last_name',
+  mobilizer_designation: 'mobilizer_designation'
+} as const
+
+export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
+
+
 export const Job_eventsScalarFieldEnum = {
   job_event_id: 'job_event_id',
   event_type: 'event_type',
@@ -607,18 +620,6 @@ export const Job_eventsScalarFieldEnum = {
 } as const
 
 export type Job_eventsScalarFieldEnum = (typeof Job_eventsScalarFieldEnum)[keyof typeof Job_eventsScalarFieldEnum]
-
-
-export const Mobilizer_detailsScalarFieldEnum = {
-  mobilizer_id: 'mobilizer_id',
-  mobilizer_phone_no: 'mobilizer_phone_no',
-  mobilizer_unique_id: 'mobilizer_unique_id',
-  user_id: 'user_id',
-  mobilizer_first_name: 'mobilizer_first_name',
-  mobilizer_last_name: 'mobilizer_last_name'
-} as const
-
-export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
 
 
 export const PlacementScalarFieldEnum = {
