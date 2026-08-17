@@ -17,6 +17,8 @@ import eventsRouter from "./src/routes/events-route/events-route";
 import hrRouter from "./src/routes/hr-route/hr-route";
 import dotenv from 'dotenv'
 
+import { redis } from "./src/lib/redis";
+import adminRouter from "./src/routes/admin-route/admin-route";
 
 const app = Express();
 const port = 3000;
@@ -57,6 +59,7 @@ app.use("/api/v1/mobilizer",mobilizerRouter)
 app.use("/api/v1/events", eventsRouter)
 app.use("/api/v1/enquiry", enquiryRouter)
 app.use("/api/v1/hr",hrRouter)
+app.use("/api/v1/admin",adminRouter)
 
 
 app.listen(port, () => {
