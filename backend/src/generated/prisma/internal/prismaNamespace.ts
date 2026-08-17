@@ -3129,7 +3129,8 @@ export const Job_eventsScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   created_by: 'created_by',
-  jobevent_photos: 'jobevent_photos'
+  jobevent_photos: 'jobevent_photos',
+  event_status: 'event_status'
 } as const
 
 export type Job_eventsScalarFieldEnum = (typeof Job_eventsScalarFieldEnum)[keyof typeof Job_eventsScalarFieldEnum]
@@ -3492,6 +3493,20 @@ export type Enumjob_event_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'job_event_type[]'
  */
 export type ListEnumjob_event_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'job_event_type[]'>
+    
+
+
+/**
+ * Reference to a field of type 'job_event_status'
+ */
+export type Enumjob_event_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'job_event_status'>
+    
+
+
+/**
+ * Reference to a field of type 'job_event_status[]'
+ */
+export type ListEnumjob_event_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'job_event_status[]'>
     
 
 
