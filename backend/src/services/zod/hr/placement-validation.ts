@@ -1,6 +1,12 @@
 import { z } from "zod";
 
 export const createPlacementSchema = z.object({
+    company_name: z
+    .string()
+    .trim()
+    .min(1, "Company name is required")
+    .max(255, "Company name cannot exceed 255 characters"),
+    
     vacancy: z
         .number()
         .int("Vacancy must be an integer")
@@ -36,8 +42,8 @@ export const createPlacementSchema = z.object({
         .optional(),
 
     work_mode: z
-    .enum(["online", "offline", "hybrid"])
-    .optional(),
+        .enum(["online", "offline", "hybrid"])
+        .optional(),
 
     eligible_qualification: z
         .string()
@@ -47,6 +53,12 @@ export const createPlacementSchema = z.object({
     eligible_percentage_cgpa: z
         .string()
         .trim()
+        .optional(),
+
+    application_link: z
+        .string()
+        .trim()
+        .url("Invalid application link")
         .optional(),
 
     last_date_to_apply: z
