@@ -596,7 +596,8 @@ export const PlacementScalarFieldEnum = {
   created_by: 'created_by',
   work_mode: 'work_mode',
   eligible_qualification: 'eligible_qualification',
-  eligible_percentage_cgpa: 'eligible_percentage_cgpa'
+  eligible_percentage_cgpa: 'eligible_percentage_cgpa',
+  salary: 'salary'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
