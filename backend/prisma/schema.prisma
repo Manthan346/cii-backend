@@ -371,7 +371,7 @@ model notifications {
   reference_id         String?                      @db.Uuid
   created_at           DateTime?                    @default(now()) @db.Timestamp(6)
   updated_at           DateTime                     @default(now()) @updatedAt @db.Timestamp(6)
-  user_notifications   user_notifications[]
+  user_                user_notifications[]
 }
 
 model study_material {
@@ -736,4 +736,10 @@ enum job_event_status {
 enum job_event_type {
   JOB_FAIR
   JOB_DRIVE
+}
+
+enum job_event_status {
+  UPCOMING
+  COMPLETED
+  CANCELLED
 }
