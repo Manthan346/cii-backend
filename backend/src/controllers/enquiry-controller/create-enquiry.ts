@@ -13,7 +13,7 @@ export const createEnquiry = asyncHandler(
     // Set default enquiry status to CALL_RECIEVED, center_id comes from body
     const enquiryData = {
       ...data,
-      enq_status: "CALL_RECIEVED" as const, // Default status for new enquiries
+      enq_status: "FOLLOW_UP_PENDING"as const, // Default status for new enquiries
     };
 
     // Create the enquiry record

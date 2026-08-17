@@ -217,7 +217,9 @@ export const enquiry_status = {
   DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
   NOT_CONNECTED: 'NOT_CONNECTED',
   CONNECTED: 'CONNECTED',
-  COUNSELING_DONE: 'COUNSELING_DONE'
+  COUNSELING_DONE: 'COUNSELING_DONE',
+  FOLLOW_UP_PENDING: 'FOLLOW_UP_PENDING',
+  NOT_INTERESTED: 'NOT_INTERESTED'
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]

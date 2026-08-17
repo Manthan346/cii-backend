@@ -8,19 +8,26 @@ import { MobilizerAuthRequest } from "../../interfaces/mobilizer-auth-interface"
 export const assignMobilizerToEnquiry = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
         const mobilizerId = req.mobilizer?.mobilizer_id;
+        const centerId = req.mobilizer?.center_id;
         const enquiryId  = req.params.enquiryId as string
 
         if (!mobilizerId) {
             throw new ApiError(401, "Mobilizer ID not found in token");
         }
 
+        if (!centerId) {
+            throw new ApiError(401, "Mobilizer center not found");
+        }
+
         if (!enquiryId) {
             throw new ApiError(400, "Enquiry ID is required");
         }
 
-        // Check if enquiry exists
-        const enquiry = await prisma.enquiry_records.findUnique({
-            where: { enquiry_id: enquiryId },
+        // Check if enquiry exists AND belongs to the mobilizer's center.
+        // findFirst with center_id scopes the lookup; an enquiry that exists but is
+        // from another center returns null -> 404 (no cross-center info leak).
+        const enquiry = await prisma.enquiry_records.findFirst({
+            where: { enquiry_id: enquiryId, center_id: centerId },
             select: {
                 enquiry_id: true,
                 mobilizer_id: true,

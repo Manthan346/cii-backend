@@ -15,6 +15,9 @@ import { uploadEventImages } from '../../middlewares/multer-middleware/image-upl
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
 
 import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
+import { addJobEventImages } from '../../controllers/mobilizer-controller/add-jobevent-images';
+import { getDashboardStats } from '../../controllers/mobilizer-controller/dashboard-stats';
+import { getDashboardCharts } from '../../controllers/mobilizer-controller/dashboard-charts';
 
 const mobilizerRouter = Router();
 
@@ -28,6 +31,14 @@ mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddl
 
 // Fetch all job fair and job drive for the mobilizer
 mobilizerRouter.get("/job-fair",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
+
+// Add images (up to 10) to a specific job event
+mobilizerRouter.post(
+    "/job-event/:job_event_id/images",
+    verifyMobilizerUsingAccessToken,
+    uploadEventImages,
+    addJobEventImages
+);
 
 // Assign mobilizer to enquiry
 mobilizerRouter.post(
@@ -47,6 +58,21 @@ mobilizerRouter.get(
 mobilizerRouter.patch("/enquiry/:enquiryId/status",verifyMobilizerUsingAccessToken,changeEnquiryStatus);
 //Fetch profile of mobilizer
 mobilizerRouter.get("/profile",verifyMobilizerUsingAccessToken,getMobilizerProfile)
+
+// Dashboard stats for the mobilizer (center-scoped)
+mobilizerRouter.get(
+    "/dashboard-stats",
+    verifyMobilizerUsingAccessToken,
+    getDashboardStats
+);
+
+// Dashboard charts for the mobilizer (center-scoped):
+// weekly_enrollment, candidate_distribution, weekly_calls
+mobilizerRouter.get(
+    "/dashboard-charts",
+    verifyMobilizerUsingAccessToken,
+    getDashboardCharts
+);
 
 // Mobilizer can create PUBLIC events to surface on the landing page
 mobilizerRouter.post(

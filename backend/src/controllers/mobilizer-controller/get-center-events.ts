@@ -16,7 +16,7 @@ import {
 export const getCenterEvents = asyncHandler(
     async (req: Request, res: Response) => {
         const { page, limit, skip } = req.pagination as pagination;
-        const { event_type: eventTypeRaw, status: statusRaw } = req.query;
+        const { event_type: eventTypeRaw, status: statusRaw, title: titleRaw } = req.query;
         const mobilizer = (req as any).mobilizer; // MobilizerAuthRequest
         const centerId = mobilizer?.center_id;
 
@@ -27,6 +27,7 @@ export const getCenterEvents = asyncHandler(
         // Validate query params - convert to string first, then validate
         const eventTypeStr = eventTypeRaw != null ? String(eventTypeRaw) : undefined;
         const statusStr = statusRaw != null ? String(statusRaw) : undefined;
+        const titleStr = titleRaw != null ? String(titleRaw).trim() : undefined;
 
         // Validate and narrow types using type guards
         const eventType = isValidEventType(eventTypeStr!) ? eventTypeStr : undefined;
@@ -45,6 +46,11 @@ export const getCenterEvents = asyncHandler(
 
         if (eventType) {
             where.event_type = eventType;
+        }
+
+        // If title search requested → add case-insensitive partial match filter
+        if (titleStr) {
+            where.title = { contains: titleStr, mode: "insensitive" };
         }
 
         // If status filter requested → add date filter via helper

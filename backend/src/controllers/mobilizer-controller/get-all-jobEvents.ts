@@ -7,6 +7,11 @@ import { prisma } from "../../lib/prisma";
 export const getAllJobEvents = asyncHandler(
   async (req: MobilizerAuthRequest, res: Response) => {
     const { page, limit, skip } = req.pagination!;
+    const centerId = req.mobilizer?.center_id;
+
+    if (!centerId) {
+      throw new ApiError(401, "Mobilizer center not found");
+    }
 
     // Pagination validation
     if (!Number.isInteger(page) || page < 1) {
@@ -75,7 +80,15 @@ export const getAllJobEvents = asyncHandler(
       );
     }
 
-    const where: any = {};
+    const where: any = {
+      // Center isolation: only job events created by an HR whose login center
+      // matches the mobilizer's center. (job_events has no center_id column.)
+      hr_details: {
+        user_login: {
+          center_id: centerId,
+        },
+      },
+    };
 
     // Search
     if (search) {
