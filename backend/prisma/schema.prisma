@@ -738,8 +738,4 @@ enum job_event_type {
   JOB_DRIVE
 }
 
-enum job_event_status {
-  UPCOMING
-  COMPLETED
-  CANCELLED
-}
+
