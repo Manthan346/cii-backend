@@ -88,7 +88,9 @@ export const enquiry_status = {
   DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
   NOT_CONNECTED: 'NOT_CONNECTED',
   CONNECTED: 'CONNECTED',
-  COUNSELING_DONE: 'COUNSELING_DONE'
+  COUNSELING_DONE: 'COUNSELING_DONE',
+  FOLLOW_UP_PENDING: 'FOLLOW_UP_PENDING',
+  NOT_INTERESTED: 'NOT_INTERESTED'
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
@@ -188,7 +190,8 @@ export const notification_reference_type = {
   RESULT: 'RESULT',
   GENERAL: 'GENERAL',
   EVENT: 'EVENT',
-  JOB_EVENT: 'JOB_EVENT'
+  JOB_EVENT: 'JOB_EVENT',
+  JOB_POSTING: 'JOB_POSTING'
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -212,7 +215,8 @@ export const notification_type = {
   EVENT_DELETED: 'EVENT_DELETED',
   JOB_EVENT_CREATED: 'JOB_EVENT_CREATED',
   JOB_EVENT_UPDATED: 'JOB_EVENT_UPDATED',
-  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED'
+  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED',
+  JOB_OPPURTUNITY: 'JOB_OPPURTUNITY'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]

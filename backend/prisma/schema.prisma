@@ -265,7 +265,7 @@ model center_details {
   center_contact  String            @db.VarChar(15)
   created_at      DateTime          @default(now()) @db.Timestamp(6)
   updated_at      DateTime          @default(now()) @db.Timestamp(6)
-  center_code     String?           @db.VarChar(6)
+  center_code     String?           @unique(map: "center_details_center_code_unique") @db.VarChar(6)
   batch_details   batch_details[]
   center_company  center_company[]
   enquiry_records enquiry_records[]
@@ -626,6 +626,8 @@ enum enquiry_status {
   NOT_CONNECTED
   CONNECTED
   COUNSELING_DONE
+  FOLLOW_UP_PENDING
+  NOT_INTERESTED
 }
 
 enum enquiry_status_type {
@@ -696,6 +698,7 @@ enum notification_reference_type {
   GENERAL
   EVENT
   JOB_EVENT
+  JOB_POSTING
 }
 
 enum notification_type {
@@ -717,6 +720,7 @@ enum notification_type {
   JOB_EVENT_CREATED
   JOB_EVENT_UPDATED
   JOB_EVENT_DELETED
+  JOB_OPPURTUNITY
 }
 
 enum role_types {
