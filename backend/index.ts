@@ -16,7 +16,12 @@ import mobilizerRouter from "./src/routes/mobilizer-route/mobilizer-route";
 import eventsRouter from "./src/routes/events-route/events-route";
 import hrRouter from "./src/routes/hr-route/hr-route";
 import dotenv from 'dotenv'
+<<<<<<< HEAD
 
+=======
+import { redis } from "./src/lib/redis";
+import adminRouter from "./src/routes/admin-route/admin-route";
+>>>>>>> 3054aef (created endpoint for admin)
 
 const app = Express();
 const port = 3000;
@@ -57,6 +62,7 @@ app.use("/api/v1/mobilizer",mobilizerRouter)
 app.use("/api/v1/events", eventsRouter)
 app.use("/api/v1/enquiry", enquiryRouter)
 app.use("/api/v1/hr",hrRouter)
+app.use("/api/v1/admin",adminRouter)
 
 
 app.listen(port, () => {
