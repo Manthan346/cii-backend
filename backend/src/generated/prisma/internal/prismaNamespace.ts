@@ -3161,7 +3161,12 @@ export const PlacementScalarFieldEnum = {
   is_active: 'is_active',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  created_by: 'created_by'
+  created_by: 'created_by',
+  work_mode: 'work_mode',
+  eligible_qualification: 'eligible_qualification',
+  eligible_percentage_cgpa: 'eligible_percentage_cgpa',
+  salary: 'salary',
+  employment_type: 'employment_type'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
@@ -3509,6 +3514,20 @@ export type Enumjob_event_statusFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'job_event_status[]'
  */
 export type ListEnumjob_event_statusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'job_event_status[]'>
+    
+
+
+/**
+ * Reference to a field of type 'work_mode_type'
+ */
+export type Enumwork_mode_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'work_mode_type'>
+    
+
+
+/**
+ * Reference to a field of type 'work_mode_type[]'
+ */
+export type ListEnumwork_mode_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'work_mode_type[]'>
     
 
 

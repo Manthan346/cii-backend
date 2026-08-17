@@ -46,6 +46,11 @@ export type PlacementMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   created_by: string | null
+  work_mode: $Enums.work_mode_type | null
+  eligible_qualification: string | null
+  eligible_percentage_cgpa: string | null
+  salary: string | null
+  employment_type: string | null
 }
 
 export type PlacementMaxAggregateOutputType = {
@@ -60,6 +65,11 @@ export type PlacementMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   created_by: string | null
+  work_mode: $Enums.work_mode_type | null
+  eligible_qualification: string | null
+  eligible_percentage_cgpa: string | null
+  salary: string | null
+  employment_type: string | null
 }
 
 export type PlacementCountAggregateOutputType = {
@@ -74,6 +84,11 @@ export type PlacementCountAggregateOutputType = {
   created_at: number
   updated_at: number
   created_by: number
+  work_mode: number
+  eligible_qualification: number
+  eligible_percentage_cgpa: number
+  salary: number
+  employment_type: number
   _all: number
 }
 
@@ -98,6 +113,11 @@ export type PlacementMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   created_by?: true
+  work_mode?: true
+  eligible_qualification?: true
+  eligible_percentage_cgpa?: true
+  salary?: true
+  employment_type?: true
 }
 
 export type PlacementMaxAggregateInputType = {
@@ -112,6 +132,11 @@ export type PlacementMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   created_by?: true
+  work_mode?: true
+  eligible_qualification?: true
+  eligible_percentage_cgpa?: true
+  salary?: true
+  employment_type?: true
 }
 
 export type PlacementCountAggregateInputType = {
@@ -126,6 +151,11 @@ export type PlacementCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   created_by?: true
+  work_mode?: true
+  eligible_qualification?: true
+  eligible_percentage_cgpa?: true
+  salary?: true
+  employment_type?: true
   _all?: true
 }
 
@@ -227,6 +257,11 @@ export type PlacementGroupByOutputType = {
   created_at: Date | null
   updated_at: Date | null
   created_by: string
+  work_mode: $Enums.work_mode_type | null
+  eligible_qualification: string | null
+  eligible_percentage_cgpa: string | null
+  salary: string | null
+  employment_type: string | null
   _count: PlacementCountAggregateOutputType | null
   _avg: PlacementAvgAggregateOutputType | null
   _sum: PlacementSumAggregateOutputType | null
@@ -264,6 +299,11 @@ export type placementWhereInput = {
   created_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   created_by?: Prisma.UuidFilter<"placement"> | string
+  work_mode?: Prisma.Enumwork_mode_typeNullableFilter<"placement"> | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
+  eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
+  salary?: Prisma.StringNullableFilter<"placement"> | string | null
+  employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
 }
 
@@ -279,6 +319,11 @@ export type placementOrderByWithRelationInput = {
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  work_mode?: Prisma.SortOrderInput | Prisma.SortOrder
+  eligible_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  eligible_percentage_cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
+  salary?: Prisma.SortOrderInput | Prisma.SortOrder
+  employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
   hr_details?: Prisma.hr_detailsOrderByWithRelationInput
 }
 
@@ -297,6 +342,11 @@ export type placementWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   created_by?: Prisma.UuidFilter<"placement"> | string
+  work_mode?: Prisma.Enumwork_mode_typeNullableFilter<"placement"> | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
+  eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
+  salary?: Prisma.StringNullableFilter<"placement"> | string | null
+  employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
 }, "placement_id">
 
@@ -312,6 +362,11 @@ export type placementOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  work_mode?: Prisma.SortOrderInput | Prisma.SortOrder
+  eligible_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  eligible_percentage_cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
+  salary?: Prisma.SortOrderInput | Prisma.SortOrder
+  employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.placementCountOrderByAggregateInput
   _avg?: Prisma.placementAvgOrderByAggregateInput
   _max?: Prisma.placementMaxOrderByAggregateInput
@@ -334,6 +389,11 @@ export type placementScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"placement"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"placement"> | Date | string | null
   created_by?: Prisma.UuidWithAggregatesFilter<"placement"> | string
+  work_mode?: Prisma.Enumwork_mode_typeNullableWithAggregatesFilter<"placement"> | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
+  eligible_percentage_cgpa?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
+  salary?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
+  employment_type?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
 }
 
 export type placementCreateInput = {
@@ -347,6 +407,11 @@ export type placementCreateInput = {
   is_active?: boolean | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
   hr_details: Prisma.hr_detailsCreateNestedOneWithoutPlacementInput
 }
 
@@ -362,6 +427,11 @@ export type placementUncheckedCreateInput = {
   created_at?: Date | string | null
   updated_at?: Date | string | null
   created_by: string
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
 }
 
 export type placementUpdateInput = {
@@ -375,6 +445,11 @@ export type placementUpdateInput = {
   is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_details?: Prisma.hr_detailsUpdateOneRequiredWithoutPlacementNestedInput
 }
 
@@ -390,6 +465,11 @@ export type placementUncheckedUpdateInput = {
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementCreateManyInput = {
@@ -404,6 +484,11 @@ export type placementCreateManyInput = {
   created_at?: Date | string | null
   updated_at?: Date | string | null
   created_by: string
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
 }
 
 export type placementUpdateManyMutationInput = {
@@ -417,6 +502,11 @@ export type placementUpdateManyMutationInput = {
   is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementUncheckedUpdateManyInput = {
@@ -431,6 +521,11 @@ export type placementUncheckedUpdateManyInput = {
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlacementListRelationFilter = {
@@ -455,6 +550,11 @@ export type placementCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  work_mode?: Prisma.SortOrder
+  eligible_qualification?: Prisma.SortOrder
+  eligible_percentage_cgpa?: Prisma.SortOrder
+  salary?: Prisma.SortOrder
+  employment_type?: Prisma.SortOrder
 }
 
 export type placementAvgOrderByAggregateInput = {
@@ -473,6 +573,11 @@ export type placementMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  work_mode?: Prisma.SortOrder
+  eligible_qualification?: Prisma.SortOrder
+  eligible_percentage_cgpa?: Prisma.SortOrder
+  salary?: Prisma.SortOrder
+  employment_type?: Prisma.SortOrder
 }
 
 export type placementMinOrderByAggregateInput = {
@@ -487,6 +592,11 @@ export type placementMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  work_mode?: Prisma.SortOrder
+  eligible_qualification?: Prisma.SortOrder
+  eligible_percentage_cgpa?: Prisma.SortOrder
+  salary?: Prisma.SortOrder
+  employment_type?: Prisma.SortOrder
 }
 
 export type placementSumOrderByAggregateInput = {
@@ -535,6 +645,10 @@ export type placementUncheckedUpdateManyWithoutHr_detailsNestedInput = {
   deleteMany?: Prisma.placementScalarWhereInput | Prisma.placementScalarWhereInput[]
 }
 
+export type NullableEnumwork_mode_typeFieldUpdateOperationsInput = {
+  set?: $Enums.work_mode_type | null
+}
+
 export type placementCreateWithoutHr_detailsInput = {
   placement_id?: string
   company_name: string
@@ -546,6 +660,11 @@ export type placementCreateWithoutHr_detailsInput = {
   is_active?: boolean | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
 }
 
 export type placementUncheckedCreateWithoutHr_detailsInput = {
@@ -559,6 +678,11 @@ export type placementUncheckedCreateWithoutHr_detailsInput = {
   is_active?: boolean | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
 }
 
 export type placementCreateOrConnectWithoutHr_detailsInput = {
@@ -602,6 +726,11 @@ export type placementScalarWhereInput = {
   created_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"placement"> | Date | string | null
   created_by?: Prisma.UuidFilter<"placement"> | string
+  work_mode?: Prisma.Enumwork_mode_typeNullableFilter<"placement"> | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
+  eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
+  salary?: Prisma.StringNullableFilter<"placement"> | string | null
+  employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
 }
 
 export type placementCreateManyHr_detailsInput = {
@@ -615,6 +744,11 @@ export type placementCreateManyHr_detailsInput = {
   is_active?: boolean | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  work_mode?: $Enums.work_mode_type | null
+  eligible_qualification?: string | null
+  eligible_percentage_cgpa?: string | null
+  salary?: string | null
+  employment_type?: string | null
 }
 
 export type placementUpdateWithoutHr_detailsInput = {
@@ -628,6 +762,11 @@ export type placementUpdateWithoutHr_detailsInput = {
   is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementUncheckedUpdateWithoutHr_detailsInput = {
@@ -641,6 +780,11 @@ export type placementUncheckedUpdateWithoutHr_detailsInput = {
   is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementUncheckedUpdateManyWithoutHr_detailsInput = {
@@ -654,6 +798,11 @@ export type placementUncheckedUpdateManyWithoutHr_detailsInput = {
   is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  work_mode?: Prisma.NullableEnumwork_mode_typeFieldUpdateOperationsInput | $Enums.work_mode_type | null
+  eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  salary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -670,6 +819,11 @@ export type placementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   created_at?: boolean
   updated_at?: boolean
   created_by?: boolean
+  work_mode?: boolean
+  eligible_qualification?: boolean
+  eligible_percentage_cgpa?: boolean
+  salary?: boolean
+  employment_type?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -685,6 +839,11 @@ export type placementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   created_at?: boolean
   updated_at?: boolean
   created_by?: boolean
+  work_mode?: boolean
+  eligible_qualification?: boolean
+  eligible_percentage_cgpa?: boolean
+  salary?: boolean
+  employment_type?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -700,6 +859,11 @@ export type placementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   created_at?: boolean
   updated_at?: boolean
   created_by?: boolean
+  work_mode?: boolean
+  eligible_qualification?: boolean
+  eligible_percentage_cgpa?: boolean
+  salary?: boolean
+  employment_type?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -715,9 +879,14 @@ export type placementSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   created_by?: boolean
+  work_mode?: boolean
+  eligible_qualification?: boolean
+  eligible_percentage_cgpa?: boolean
+  salary?: boolean
+  employment_type?: boolean
 }
 
-export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by", ExtArgs["result"]["placement"]>
+export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "salary" | "employment_type", ExtArgs["result"]["placement"]>
 export type placementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }
@@ -745,6 +914,11 @@ export type $placementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     created_at: Date | null
     updated_at: Date | null
     created_by: string
+    work_mode: $Enums.work_mode_type | null
+    eligible_qualification: string | null
+    eligible_percentage_cgpa: string | null
+    salary: string | null
+    employment_type: string | null
   }, ExtArgs["result"]["placement"]>
   composites: {}
 }
@@ -1180,6 +1354,11 @@ export interface placementFieldRefs {
   readonly created_at: Prisma.FieldRef<"placement", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"placement", 'DateTime'>
   readonly created_by: Prisma.FieldRef<"placement", 'String'>
+  readonly work_mode: Prisma.FieldRef<"placement", 'work_mode_type'>
+  readonly eligible_qualification: Prisma.FieldRef<"placement", 'String'>
+  readonly eligible_percentage_cgpa: Prisma.FieldRef<"placement", 'String'>
+  readonly salary: Prisma.FieldRef<"placement", 'String'>
+  readonly employment_type: Prisma.FieldRef<"placement", 'String'>
 }
     
 

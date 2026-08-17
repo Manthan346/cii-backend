@@ -135,7 +135,8 @@ export const notification_reference_type = {
   RESULT: 'RESULT',
   GENERAL: 'GENERAL',
   EVENT: 'EVENT',
-  JOB_EVENT: 'JOB_EVENT'
+  JOB_EVENT: 'JOB_EVENT',
+  JOB_POSTING: 'JOB_POSTING'
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -159,7 +160,8 @@ export const notification_type = {
   EVENT_DELETED: 'EVENT_DELETED',
   JOB_EVENT_CREATED: 'JOB_EVENT_CREATED',
   JOB_EVENT_UPDATED: 'JOB_EVENT_UPDATED',
-  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED'
+  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED',
+  JOB_OPPURTUNITY: 'JOB_OPPURTUNITY'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
@@ -242,3 +244,10 @@ export const job_event_type = {
 export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]
 
 
+export const work_mode_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
+} as const
+
+export type work_mode_type = (typeof work_mode_type)[keyof typeof work_mode_type]
