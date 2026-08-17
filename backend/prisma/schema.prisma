@@ -505,18 +505,21 @@ model notifications {
 }
 
 model placement {
-  placement_id       String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  company_name       String     @db.VarChar(255)
-  vacancy            Int
-  location           String     @db.VarChar(255)
-  job_role           String     @db.VarChar(255)
-  job_description    String?
-  last_date_to_apply DateTime   @db.Date
-  is_active          Boolean?   @default(true)
-  created_at         DateTime?  @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?  @default(now()) @db.Timestamp(6)
-  created_by         String     @db.Uuid
-  hr_details         hr_details @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
+  placement_id             String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name             String          @db.VarChar(255)
+  vacancy                  Int
+  location                 String          @db.VarChar(255)
+  job_role                 String          @db.VarChar(255)
+  job_description          String?
+  last_date_to_apply       DateTime        @db.Date
+  is_active                Boolean?        @default(true)
+  created_at               DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at               DateTime?       @default(now()) @db.Timestamp(6)
+  created_by               String          @db.Uuid
+  work_mode                work_mode_type?
+  eligible_qualification   String?
+  eligible_percentage_cgpa String?
+  hr_details               hr_details      @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
 }
 
 model study_material {
@@ -737,4 +740,10 @@ enum training_type {
   WORKSHOP
   UPSKILLING
   SEMINAR
+}
+
+enum work_mode_type {
+  online
+  offline
+  remote
 }

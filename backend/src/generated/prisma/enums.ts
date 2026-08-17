@@ -242,3 +242,12 @@ export const training_type = {
 } as const
 
 export type training_type = (typeof training_type)[keyof typeof training_type]
+
+
+export const work_mode_type = {
+  online: 'online',
+  offline: 'offline',
+  remote: 'remote'
+} as const
+
+export type work_mode_type = (typeof work_mode_type)[keyof typeof work_mode_type]

@@ -585,6 +585,23 @@ export type Enumnotification_reference_typeNullableWithAggregatesFilter<$PrismaM
   _max?: Prisma.NestedEnumnotification_reference_typeNullableFilter<$PrismaModel>
 }
 
+export type Enumwork_mode_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.work_mode_type | Prisma.Enumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel> | $Enums.work_mode_type | null
+}
+
+export type Enumwork_mode_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.work_mode_type | Prisma.Enumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumwork_mode_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.work_mode_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel>
+}
+
 export type Enumrole_typesFilter<$PrismaModel = never> = {
   equals?: $Enums.role_types | Prisma.Enumrole_typesFieldRefInput<$PrismaModel>
   in?: $Enums.role_types[] | Prisma.ListEnumrole_typesFieldRefInput<$PrismaModel>
@@ -1180,6 +1197,23 @@ export type NestedEnumnotification_reference_typeNullableWithAggregatesFilter<$P
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumnotification_reference_typeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumnotification_reference_typeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumwork_mode_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.work_mode_type | Prisma.Enumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel> | $Enums.work_mode_type | null
+}
+
+export type NestedEnumwork_mode_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.work_mode_type | Prisma.Enumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.work_mode_type[] | Prisma.ListEnumwork_mode_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumwork_mode_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.work_mode_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumwork_mode_typeNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumrole_typesFilter<$PrismaModel = never> = {
