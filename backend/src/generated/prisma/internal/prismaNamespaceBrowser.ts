@@ -150,9 +150,9 @@ export const Candidates_detailsScalarFieldEnum = {
   current_pin_code: 'current_pin_code',
   current_state_name: 'current_state_name',
   permanent_city: 'permanent_city',
-  permanent_district: 'permanent_district',
   permanent_pin_code: 'permanent_pin_code',
-  permanent_state_name: 'permanent_state_name'
+  permanent_state_name: 'permanent_state_name',
+  permanent_district: 'permanent_district'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -645,6 +645,7 @@ export const PlacementScalarFieldEnum = {
   eligible_percentage_cgpa: 'eligible_percentage_cgpa',
   salary: 'salary',
   employment_type: 'employment_type',
+  sector: 'sector',
   application_link: 'application_link'
 } as const
 

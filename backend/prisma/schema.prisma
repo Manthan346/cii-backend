@@ -62,9 +62,9 @@ model candidates_details {
   current_pin_code            String?
   current_state_name          String?                @db.VarChar(50)
   permanent_city              String?
-  permanent_district  String?
   permanent_pin_code          String?
   permanent_state_name        String?
+  permanent_district          String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -574,6 +574,7 @@ model placement {
   eligible_percentage_cgpa String?
   salary                   String?
   employment_type          String?
+  sector                   String?
   application_link         String?
   hr_details               hr_details      @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
 }
