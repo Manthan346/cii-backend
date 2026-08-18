@@ -22,9 +22,6 @@ model candidates_details {
   pan_card_no                 String?                @db.VarChar(10)
   guardian_name               String?                @db.VarChar(50)
   nearest_station             String?                @db.VarChar(50)
-  pin_code                    Int?
-  district                    String?                @db.VarChar(50)
-  state_name                  String?                @db.VarChar(50)
   salary                      Int?
   training_start_date         DateTime?              @db.Date
   training_end_date           DateTime?              @db.Date
@@ -60,6 +57,14 @@ model candidates_details {
   father_address              String?
   mother_address              String?
   profile_photo               String?
+  current_city                String?
+  current_district            String?                @db.VarChar(50)
+  current_pin_code            Int?
+  current_state_name          String?                @db.VarChar(50)
+  permanent_city              String?
+  permanent_district  String?
+  permanent_pin_code          String?
+  permanent_state_name        String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
