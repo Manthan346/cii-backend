@@ -1,4 +1,5 @@
 import { Response } from "express";
+
 import { prisma } from "../../lib/prisma";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
@@ -7,7 +8,6 @@ import { createPlacementSchema } from "../../services/zod/hr/placement-validatio
 
 export const createPlacement = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
-
 
         const validation = createPlacementSchema.safeParse(req.body);
 
@@ -20,6 +20,7 @@ export const createPlacement = asyncHandler(
         }
 
         const {
+            company_name,
             vacancy,
             location,
             job_role,
@@ -29,6 +30,7 @@ export const createPlacement = asyncHandler(
             work_mode,
             eligible_qualification,
             eligible_percentage_cgpa,
+            application_link,
             last_date_to_apply,
         } = validation.data;
 
@@ -53,8 +55,8 @@ export const createPlacement = asyncHandler(
         }
 
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
 
+        today.setHours(0, 0, 0, 0);
         applicationDeadline.setHours(0, 0, 0, 0);
 
         if (applicationDeadline < today) {
@@ -66,25 +68,9 @@ export const createPlacement = asyncHandler(
 
         const result = await prisma.$transaction(async (tx) => {
 
-            const company = await tx.company_details.findUnique({
-                where: {
-                    company_id: companyId,
-                },
-                select: {
-                    company_name: true,
-                },
-            });
-
-            if (!company) {
-                throw new ApiError(
-                    404,
-                    "Company not found"
-                );
-            }
-
             const placement = await tx.placement.create({
                 data: {
-                    company_name: company.company_name,
+                    company_name: company_name.trim(),
 
                     vacancy,
 
@@ -108,6 +94,9 @@ export const createPlacement = asyncHandler(
 
                     eligible_percentage_cgpa:
                         eligible_percentage_cgpa?.trim() || null,
+
+                    application_link:
+                        application_link?.trim() || null,
 
                     last_date_to_apply:
                         applicationDeadline,
@@ -170,6 +159,7 @@ export const createPlacement = asyncHandler(
 
             return {
                 placement,
+
                 notification_id:
                     notification.notification_id,
 
@@ -180,10 +170,13 @@ export const createPlacement = asyncHandler(
 
         res.status(201).json({
             success: true,
-            message: "Job posting created successfully",
+
+            message:
+                "Job posting created successfully",
 
             data: {
-                placement: result.placement,
+                placement:
+                    result.placement,
 
                 notification_id:
                     result.notification_id,
