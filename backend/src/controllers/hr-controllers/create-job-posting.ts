@@ -1,5 +1,5 @@
 import { Response } from "express";
-
+import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
@@ -21,6 +21,7 @@ export const createPlacement = asyncHandler(
 
         const {
             company_name,
+            sector,
             vacancy,
             location,
             job_role,
@@ -44,8 +45,12 @@ export const createPlacement = asyncHandler(
             );
         }
 
-        const applicationDeadline =
-            new Date(last_date_to_apply);
+        const [year, month, day] =
+            last_date_to_apply.split("-").map(Number);
+
+                const applicationDeadline = new Date(
+            `${last_date_to_apply}T12:00:00.000Z`
+        );
 
         if (isNaN(applicationDeadline.getTime())) {
             throw new ApiError(
@@ -55,11 +60,12 @@ export const createPlacement = asyncHandler(
         }
 
         const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
 
-        today.setHours(0, 0, 0, 0);
-        applicationDeadline.setHours(0, 0, 0, 0);
+        const deadlineDate = new Date(applicationDeadline);
+        deadlineDate.setUTCHours(0, 0, 0, 0);
 
-        if (applicationDeadline < today) {
+        if (deadlineDate < today) {
             throw new ApiError(
                 400,
                 "Last date to apply cannot be in the past"
@@ -71,6 +77,7 @@ export const createPlacement = asyncHandler(
             const placement = await tx.placement.create({
                 data: {
                     company_name: company_name.trim(),
+                    sector:sector.trim(),
 
                     vacancy,
 
@@ -168,22 +175,13 @@ export const createPlacement = asyncHandler(
             };
         });
 
-        res.status(201).json({
-            success: true,
-
-            message:
-                "Job posting created successfully",
-
-            data: {
-                placement:
-                    result.placement,
-
-                notification_id:
-                    result.notification_id,
-
-                notified_users:
-                    result.notified_users,
-            },
-        });
+        res.status(201).json(
+            new ApiResponse(
+                201,
+                result,
+                "Job posting created successfully"
+            )
+        );
+  
     }
 );

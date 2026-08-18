@@ -6,7 +6,13 @@ export const createPlacementSchema = z.object({
     .trim()
     .min(1, "Company name is required")
     .max(255, "Company name cannot exceed 255 characters"),
-    
+
+    sector: z
+    .string()
+    .trim()
+    .min(1,"Sector field is required")
+    .max(255,"Sector name cannot exceed 255 characters"),
+
     vacancy: z
         .number()
         .int("Vacancy must be an integer")
@@ -62,9 +68,18 @@ export const createPlacementSchema = z.object({
         .optional(),
 
     last_date_to_apply: z
-        .string()
-        .refine(
-            (date) => !isNaN(Date.parse(date)),
-            "Invalid application deadline"
-        ),
+    .string()
+    .regex(
+        /^\d{4}-\d{2}-\d{2}$/,
+        "Last date to apply must be in YYYY-MM-DD format"
+    ),
 });
+
+export const updatePlacementSchema = createPlacementSchema
+    .partial()
+    .refine(
+        (data) => Object.keys(data).length > 0,
+        {
+            message: "At least one field is required to update",
+        }
+    );

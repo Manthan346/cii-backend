@@ -12,6 +12,9 @@ import { updateJobEvent } from "../../controllers/hr-controllers/update-job-even
 import { checkJobEventDate } from "../../controllers/hr-controllers/check-event-dateConflict";
 import { createPlacement } from "../../controllers/hr-controllers/create-job-posting";
 import { createPlacementSchema } from "../../services/zod/hr/placement-validation";
+import { getAllJobPostings } from "../../controllers/hr-controllers/get-all-job-posting";
+import { updatePlacementSchema } from "../../services/zod/hr/placement-validation";
+import { updateJobPosting } from "../../controllers/hr-controllers/update-job-posting";
 
 const hrRouter = Router();
 
@@ -28,5 +31,9 @@ hrRouter.get("/profile",verifyHrUsingAccessToken,getHrProfile);
 hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,validateBody(updateJobEventSchema),updateJobEvent)
 //create job postings
 hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,validateBody(createPlacementSchema),createPlacement);
+//fetch all job postings 
+hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,getAllJobPostings);
+//update specific job postings 
+hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,validateBody(updatePlacementSchema),updateJobPosting);
 
 export default hrRouter;
