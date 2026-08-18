@@ -11,7 +11,7 @@ export type CandidateProfile = {
   candidate_permanent_address: string | null;
   current_city: string | null;
   current_district: string | null;
-  current_pin_code: number | null;
+  current_pin_code: string | null;
   current_state_name: string | null;
   permanent_city: string | null;
   permanent_district: string | null;

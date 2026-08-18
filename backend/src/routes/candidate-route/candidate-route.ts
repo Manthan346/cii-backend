@@ -24,6 +24,12 @@ import { getAllAssessments } from "../../controllers/candidate-controllers/candi
 import { startAssessment } from "../../controllers/candidate-controllers/candidate-assessment-mark-attempt";
 import { getAllCandidateEvents } from "../../controllers/candidate-controllers/candidate-events";
 import { candidateGuardianDetails } from "../../controllers/candidate-controllers/candidate-guardian-details";
+import { editCandidateProfile } from "../../controllers/candidate-controllers/edit-profile";
+import { editCandidateProfileSchema } from "../../services/zod/candidate/candidate-edit-schema";
+import { editCandidateAddress } from "../../controllers/candidate-controllers/edit-address";
+import { editGuardianProfile } from "../../controllers/candidate-controllers/edit-guardian-profile";
+import { editGuardianProfileSchema } from "../../services/zod/candidate/guardian-edit-schema";
+import { uploadEventImages } from "../../middlewares/multer-middleware/image-upload";
 
 const candidateRouter = Router()
 
@@ -33,6 +39,31 @@ candidateRouter.get('/dashboard-data',verifyCandidateUsingAccessToken,candidateD
 
 candidateRouter.get('/candidate-academics', verifyCandidateUsingAccessToken, candidateAcademicDetails)
 candidateRouter.get('/candidate-profile', verifyCandidateUsingAccessToken,candidateProfileDetails)
+
+// Edit candidate profile (name, gender, dob, blood group, highest_qualification, profile_photo)
+candidateRouter.patch(
+    '/candidate-profile',
+    verifyCandidateUsingAccessToken,
+    upload.single('profile_photo'), // single image upload from base multer (disk storage)
+    validateBody(editCandidateProfileSchema),
+    editCandidateProfile
+);
+
+// Edit candidate address (current + permanent)
+candidateRouter.patch(
+    '/candidate-address',
+    verifyCandidateUsingAccessToken,
+    editCandidateAddress
+);
+
+// Edit guardian profile (guardian + father + mother details)
+candidateRouter.patch(
+    '/guardian-profile',
+    verifyCandidateUsingAccessToken,
+    validateBody(editGuardianProfileSchema),
+    editGuardianProfile
+);
+
 candidateRouter.post('/candidate-documents', upload.fields([
     {name: 'aadhar_card', maxCount: 1},
      {name: 'pan_card', maxCount: 1},

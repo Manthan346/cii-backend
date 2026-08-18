@@ -39,7 +39,7 @@ model candidates_details {
   candidate_skills            String[]
   guardian_phone_no           String?                @unique @db.VarChar(10)
   guardian_blood_group        String?                @db.VarChar(10)
-  candidate_permanant_address String?
+  candidate_permanent_address String?
   guardian_relationship       String?
   guardian_occupation         String?
   candidate_unique_id         String?                @unique
@@ -59,7 +59,7 @@ model candidates_details {
   profile_photo               String?
   current_city                String?
   current_district            String?                @db.VarChar(50)
-  current_pin_code            Int?
+  current_pin_code            String?
   current_state_name          String?                @db.VarChar(50)
   permanent_city              String?
   permanent_district  String?
@@ -278,12 +278,12 @@ model instructor_details {
   current_district                 String?
   current_taluka                   String?
   current_pincode                  String?               @db.VarChar(6)
-  permanant_city                   String?
-  permanant_state                  String?
-  permanant_district               String?
-  permanant_taluka                 String?
-  permanant_pincode                String?               @db.VarChar(6)
-  permanant_address                String?
+  permanent_city                   String?
+  permanent_state                  String?
+  permanent_district               String?
+  permanent_taluka                 String?
+  permanent_pincode                String?               @db.VarChar(6)
+  permanent_address                String?
   current_address                  String?
   profile_photo                    String?
   instructor_guardian_blood_group  String?               @db.VarChar(6)
