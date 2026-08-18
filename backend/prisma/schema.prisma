@@ -201,9 +201,6 @@ model candidates_details {
   pan_card_no                 String?                @db.VarChar(10)
   guardian_name               String?                @db.VarChar(50)
   nearest_station             String?                @db.VarChar(50)
-  pin_code                    Int?
-  district                    String?                @db.VarChar(50)
-  state_name                  String?                @db.VarChar(50)
   salary                      Int?
   training_start_date         DateTime?              @db.Date
   training_end_date           DateTime?              @db.Date
@@ -239,6 +236,14 @@ model candidates_details {
   father_address              String?
   mother_address              String?
   profile_photo               String?
+  current_city                String?
+  current_district            String?                @db.VarChar(50)
+  current_pin_code            Int?
+  current_state_name          String?                @db.VarChar(50)
+  permanent_city              String?
+  permanent_pin_code          String?
+  permanent_state_name        String?
+  permanent_district          String?
   attendance_records          attendance_records[]
   batch_enrollment            batch_enrollment[]
   candidate_assessment        candidate_assessment[]
@@ -521,6 +526,7 @@ model placement {
   eligible_percentage_cgpa String?
   salary                   String?
   employment_type          String?
+  sector                   String?
   application_link         String?
   hr_details               hr_details      @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
 }

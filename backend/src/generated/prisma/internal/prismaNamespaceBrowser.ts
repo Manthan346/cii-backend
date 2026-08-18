@@ -285,9 +285,6 @@ export const Candidates_detailsScalarFieldEnum = {
   pan_card_no: 'pan_card_no',
   guardian_name: 'guardian_name',
   nearest_station: 'nearest_station',
-  pin_code: 'pin_code',
-  district: 'district',
-  state_name: 'state_name',
   salary: 'salary',
   training_start_date: 'training_start_date',
   training_end_date: 'training_end_date',
@@ -322,7 +319,15 @@ export const Candidates_detailsScalarFieldEnum = {
   mother_phone_no: 'mother_phone_no',
   father_address: 'father_address',
   mother_address: 'mother_address',
-  profile_photo: 'profile_photo'
+  profile_photo: 'profile_photo',
+  current_city: 'current_city',
+  current_district: 'current_district',
+  current_pin_code: 'current_pin_code',
+  current_state_name: 'current_state_name',
+  permanent_city: 'permanent_city',
+  permanent_pin_code: 'permanent_pin_code',
+  permanent_state_name: 'permanent_state_name',
+  permanent_district: 'permanent_district'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -599,6 +604,7 @@ export const PlacementScalarFieldEnum = {
   eligible_percentage_cgpa: 'eligible_percentage_cgpa',
   salary: 'salary',
   employment_type: 'employment_type',
+  sector: 'sector',
   application_link: 'application_link'
 } as const
 
