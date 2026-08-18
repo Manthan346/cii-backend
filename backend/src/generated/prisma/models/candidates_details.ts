@@ -29,13 +29,11 @@ export type AggregateCandidates_details = {
 export type Candidates_detailsAvgAggregateOutputType = {
   salary: number | null
   qualification_percentage: runtime.Decimal | null
-  current_pin_code: number | null
 }
 
 export type Candidates_detailsSumAggregateOutputType = {
   salary: number | null
   qualification_percentage: runtime.Decimal | null
-  current_pin_code: number | null
 }
 
 export type Candidates_detailsMinAggregateOutputType = {
@@ -68,7 +66,7 @@ export type Candidates_detailsMinAggregateOutputType = {
   admin_approval: boolean | null
   guardian_phone_no: string | null
   guardian_blood_group: string | null
-  candidate_permanant_address: string | null
+  candidate_permanent_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
   candidate_unique_id: string | null
@@ -88,7 +86,7 @@ export type Candidates_detailsMinAggregateOutputType = {
   profile_photo: string | null
   current_city: string | null
   current_district: string | null
-  current_pin_code: number | null
+  current_pin_code: string | null
   current_state_name: string | null
   permanent_city: string | null
   permanent_pin_code: string | null
@@ -126,7 +124,7 @@ export type Candidates_detailsMaxAggregateOutputType = {
   admin_approval: boolean | null
   guardian_phone_no: string | null
   guardian_blood_group: string | null
-  candidate_permanant_address: string | null
+  candidate_permanent_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
   candidate_unique_id: string | null
@@ -146,7 +144,7 @@ export type Candidates_detailsMaxAggregateOutputType = {
   profile_photo: string | null
   current_city: string | null
   current_district: string | null
-  current_pin_code: number | null
+  current_pin_code: string | null
   current_state_name: string | null
   permanent_city: string | null
   permanent_pin_code: string | null
@@ -185,7 +183,7 @@ export type Candidates_detailsCountAggregateOutputType = {
   candidate_skills: number
   guardian_phone_no: number
   guardian_blood_group: number
-  candidate_permanant_address: number
+  candidate_permanent_address: number
   guardian_relationship: number
   guardian_occupation: number
   candidate_unique_id: number
@@ -218,13 +216,11 @@ export type Candidates_detailsCountAggregateOutputType = {
 export type Candidates_detailsAvgAggregateInputType = {
   salary?: true
   qualification_percentage?: true
-  current_pin_code?: true
 }
 
 export type Candidates_detailsSumAggregateInputType = {
   salary?: true
   qualification_percentage?: true
-  current_pin_code?: true
 }
 
 export type Candidates_detailsMinAggregateInputType = {
@@ -257,7 +253,7 @@ export type Candidates_detailsMinAggregateInputType = {
   admin_approval?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
-  candidate_permanant_address?: true
+  candidate_permanent_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
   candidate_unique_id?: true
@@ -315,7 +311,7 @@ export type Candidates_detailsMaxAggregateInputType = {
   admin_approval?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
-  candidate_permanant_address?: true
+  candidate_permanent_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
   candidate_unique_id?: true
@@ -374,7 +370,7 @@ export type Candidates_detailsCountAggregateInputType = {
   candidate_skills?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
-  candidate_permanant_address?: true
+  candidate_permanent_address?: true
   guardian_relationship?: true
   guardian_occupation?: true
   candidate_unique_id?: true
@@ -520,7 +516,7 @@ export type Candidates_detailsGroupByOutputType = {
   candidate_skills: string[]
   guardian_phone_no: string | null
   guardian_blood_group: string | null
-  candidate_permanant_address: string | null
+  candidate_permanent_address: string | null
   guardian_relationship: string | null
   guardian_occupation: string | null
   candidate_unique_id: string | null
@@ -540,7 +536,7 @@ export type Candidates_detailsGroupByOutputType = {
   profile_photo: string | null
   current_city: string | null
   current_district: string | null
-  current_pin_code: number | null
+  current_pin_code: string | null
   current_state_name: string | null
   permanent_city: string | null
   permanent_pin_code: string | null
@@ -602,7 +598,7 @@ export type candidates_detailsWhereInput = {
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_permanant_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_permanent_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   candidate_unique_id?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -622,7 +618,7 @@ export type candidates_detailsWhereInput = {
   profile_photo?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_city?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_district?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  current_pin_code?: Prisma.IntNullableFilter<"candidates_details"> | number | null
+  current_pin_code?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_state_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   permanent_city?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   permanent_pin_code?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -666,7 +662,7 @@ export type candidates_detailsOrderByWithRelationInput = {
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_permanant_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_permanent_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -734,7 +730,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   admin_approval?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  candidate_permanant_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
+  candidate_permanent_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_address?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -753,7 +749,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   profile_photo?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_city?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_district?: Prisma.StringNullableFilter<"candidates_details"> | string | null
-  current_pin_code?: Prisma.IntNullableFilter<"candidates_details"> | number | null
+  current_pin_code?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   current_state_name?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   permanent_city?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   permanent_pin_code?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -797,7 +793,7 @@ export type candidates_detailsOrderByWithAggregationInput = {
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
-  candidate_permanant_address?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_permanent_address?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -864,7 +860,7 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_phone_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  candidate_permanant_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
+  candidate_permanent_address?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_occupation?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   candidate_unique_id?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
@@ -884,7 +880,7 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   profile_photo?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   current_city?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   current_district?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
-  current_pin_code?: Prisma.IntNullableWithAggregatesFilter<"candidates_details"> | number | null
+  current_pin_code?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   current_state_name?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   permanent_city?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   permanent_pin_code?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
@@ -922,7 +918,7 @@ export type candidates_detailsCreateInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -942,7 +938,7 @@ export type candidates_detailsCreateInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -986,7 +982,7 @@ export type candidates_detailsUncheckedCreateInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -1006,7 +1002,7 @@ export type candidates_detailsUncheckedCreateInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -1048,7 +1044,7 @@ export type candidates_detailsUpdateInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1068,7 +1064,7 @@ export type candidates_detailsUpdateInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1112,7 +1108,7 @@ export type candidates_detailsUncheckedUpdateInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1132,7 +1128,7 @@ export type candidates_detailsUncheckedUpdateInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1175,7 +1171,7 @@ export type candidates_detailsCreateManyInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -1195,7 +1191,7 @@ export type candidates_detailsCreateManyInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -1233,7 +1229,7 @@ export type candidates_detailsUpdateManyMutationInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1253,7 +1249,7 @@ export type candidates_detailsUpdateManyMutationInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1292,7 +1288,7 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1312,7 +1308,7 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1359,7 +1355,7 @@ export type candidates_detailsCountOrderByAggregateInput = {
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
-  candidate_permanant_address?: Prisma.SortOrder
+  candidate_permanent_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
   candidate_unique_id?: Prisma.SortOrder
@@ -1390,7 +1386,6 @@ export type candidates_detailsCountOrderByAggregateInput = {
 export type candidates_detailsAvgOrderByAggregateInput = {
   salary?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  current_pin_code?: Prisma.SortOrder
 }
 
 export type candidates_detailsMaxOrderByAggregateInput = {
@@ -1423,7 +1418,7 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   admin_approval?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
-  candidate_permanant_address?: Prisma.SortOrder
+  candidate_permanent_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
   candidate_unique_id?: Prisma.SortOrder
@@ -1481,7 +1476,7 @@ export type candidates_detailsMinOrderByAggregateInput = {
   admin_approval?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
-  candidate_permanant_address?: Prisma.SortOrder
+  candidate_permanent_address?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
   guardian_occupation?: Prisma.SortOrder
   candidate_unique_id?: Prisma.SortOrder
@@ -1512,7 +1507,6 @@ export type candidates_detailsMinOrderByAggregateInput = {
 export type candidates_detailsSumOrderByAggregateInput = {
   salary?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  current_pin_code?: Prisma.SortOrder
 }
 
 export type Candidates_detailsScalarRelationFilter = {
@@ -1688,7 +1682,7 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -1708,7 +1702,7 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -1751,7 +1745,7 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -1771,7 +1765,7 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -1828,7 +1822,7 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1848,7 +1842,7 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1891,7 +1885,7 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1911,7 +1905,7 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1952,7 +1946,7 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -1972,7 +1966,7 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2014,7 +2008,7 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2034,7 +2028,7 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2092,7 +2086,7 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2112,7 +2106,7 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2154,7 +2148,7 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2174,7 +2168,7 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2216,7 +2210,7 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2236,7 +2230,7 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2279,7 +2273,7 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2299,7 +2293,7 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2356,7 +2350,7 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2376,7 +2370,7 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2419,7 +2413,7 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2439,7 +2433,7 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2480,7 +2474,7 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2500,7 +2494,7 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2543,7 +2537,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2563,7 +2557,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2620,7 +2614,7 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2640,7 +2634,7 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2683,7 +2677,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2703,7 +2697,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2744,7 +2738,7 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2764,7 +2758,7 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2807,7 +2801,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
-  candidate_permanant_address?: string | null
+  candidate_permanent_address?: string | null
   guardian_relationship?: string | null
   guardian_occupation?: string | null
   candidate_unique_id?: string | null
@@ -2827,7 +2821,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   profile_photo?: string | null
   current_city?: string | null
   current_district?: string | null
-  current_pin_code?: number | null
+  current_pin_code?: string | null
   current_state_name?: string | null
   permanent_city?: string | null
   permanent_pin_code?: string | null
@@ -2884,7 +2878,7 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2904,7 +2898,7 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2947,7 +2941,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  candidate_permanant_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidate_permanent_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_occupation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidate_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2967,7 +2961,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  current_pin_code?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  current_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   current_state_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   permanent_pin_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3058,7 +3052,7 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
-  candidate_permanant_address?: boolean
+  candidate_permanent_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
   candidate_unique_id?: boolean
@@ -3123,7 +3117,7 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
-  candidate_permanant_address?: boolean
+  candidate_permanent_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
   candidate_unique_id?: boolean
@@ -3183,7 +3177,7 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
-  candidate_permanant_address?: boolean
+  candidate_permanent_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
   candidate_unique_id?: boolean
@@ -3243,7 +3237,7 @@ export type candidates_detailsSelectScalar = {
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
-  candidate_permanant_address?: boolean
+  candidate_permanent_address?: boolean
   guardian_relationship?: boolean
   guardian_occupation?: boolean
   candidate_unique_id?: boolean
@@ -3271,7 +3265,7 @@ export type candidates_detailsSelectScalar = {
   permanent_district?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanant_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address" | "profile_photo" | "current_city" | "current_district" | "current_pin_code" | "current_state_name" | "permanent_city" | "permanent_pin_code" | "permanent_state_name" | "permanent_district", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "candidate_permanent_address" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address" | "profile_photo" | "current_city" | "current_district" | "current_pin_code" | "current_state_name" | "permanent_city" | "permanent_district" | "permanent_pin_code" | "permanent_state_name", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -3327,7 +3321,7 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     candidate_skills: string[]
     guardian_phone_no: string | null
     guardian_blood_group: string | null
-    candidate_permanant_address: string | null
+    candidate_permanent_address: string | null
     guardian_relationship: string | null
     guardian_occupation: string | null
     candidate_unique_id: string | null
@@ -3347,7 +3341,7 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     profile_photo: string | null
     current_city: string | null
     current_district: string | null
-    current_pin_code: number | null
+    current_pin_code: string | null
     current_state_name: string | null
     permanent_city: string | null
     permanent_pin_code: string | null
@@ -3811,7 +3805,7 @@ export interface candidates_detailsFieldRefs {
   readonly candidate_skills: Prisma.FieldRef<"candidates_details", 'String[]'>
   readonly guardian_phone_no: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_blood_group: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly candidate_permanant_address: Prisma.FieldRef<"candidates_details", 'String'>
+  readonly candidate_permanent_address: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_relationship: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_occupation: Prisma.FieldRef<"candidates_details", 'String'>
   readonly candidate_unique_id: Prisma.FieldRef<"candidates_details", 'String'>
@@ -3831,7 +3825,7 @@ export interface candidates_detailsFieldRefs {
   readonly profile_photo: Prisma.FieldRef<"candidates_details", 'String'>
   readonly current_city: Prisma.FieldRef<"candidates_details", 'String'>
   readonly current_district: Prisma.FieldRef<"candidates_details", 'String'>
-  readonly current_pin_code: Prisma.FieldRef<"candidates_details", 'Int'>
+  readonly current_pin_code: Prisma.FieldRef<"candidates_details", 'String'>
   readonly current_state_name: Prisma.FieldRef<"candidates_details", 'String'>
   readonly permanent_city: Prisma.FieldRef<"candidates_details", 'String'>
   readonly permanent_pin_code: Prisma.FieldRef<"candidates_details", 'String'>
