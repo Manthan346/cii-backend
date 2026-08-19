@@ -33,6 +33,7 @@ export const createPlacement = asyncHandler(
             eligible_percentage_cgpa,
             application_link,
             last_date_to_apply,
+            experience
         } = validation.data;
 
         const hrId = req.hr?.hr_id;
@@ -111,6 +112,7 @@ export const createPlacement = asyncHandler(
                     is_active: true,
 
                     created_by: hrId,
+                    experience:experience
                 },
             });
 

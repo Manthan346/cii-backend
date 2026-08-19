@@ -19,6 +19,7 @@ import { getAllNotifications } from "../../controllers/hr-controllers/get-all-hr
 import { getPlacementApplications } from "../../controllers/hr-controllers/fetch-specific-jobApplication";
 import { updateApplicationStatusSchema } from "../../services/zod/hr/placement-application-validation";
 import { updatePlacementApplicationStatus } from "../../controllers/hr-controllers/update-placement-application";
+import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-details";
 
 const hrRouter = Router();
 
@@ -45,5 +46,8 @@ hrRouter.get('/notifications',verifyHrUsingAccessToken,paginationMiddleware,getA
 hrRouter.get('/applications',verifyHrUsingAccessToken,paginationMiddleware,getPlacementApplications)
 //update status of specific application
 hrRouter.patch('/applications/:applicationId/status',verifyHrUsingAccessToken,validateBody(updateApplicationStatusSchema),updatePlacementApplicationStatus);
+//view details of specific 
+hrRouter.get("/job-management/:placement_id/view",verifyHrUsingAccessToken,
+getPlacementJobDetails);
 
 export default hrRouter;
