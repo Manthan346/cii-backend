@@ -6,6 +6,8 @@ import { redis } from "../../lib/redis";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { CANDIDATE_REDIS_KEYS } from "../../constants/candidate-keys/candidate-keys";
+import { upload } from "../../middlewares/multer-middleware/multer";
+import { uploadCloudnary } from "../../services/cloudinary";
 
 /**
  * Edit candidate profile — candidate can update their basic details + profile photo.
@@ -27,7 +29,8 @@ export const editCandidateProfile = asyncHandler(
 
         // Body already validated by validateBody middleware
         // upload.single('profile_photo') middleware sets req.file with diskStorage path
-        const profile_photo = req.file?.path || undefined;
+        // Upload to Cloudinary and get secure URL
+        const profile_photo = (await uploadCloudnary(req.file?.path || ''))?.secure_url || undefined;
 
         const {
             first_name,
@@ -85,7 +88,7 @@ export const editCandidateProfile = asyncHandler(
                 date_of_birth: true,
                 blood_group: true,
                 candidate_emergency_contact_no: true,
-                candidate_contact_no: true,
+                
                 highest_qualification: true,
                 candidate_current_address: true,
                 candidate_permanent_address: true,

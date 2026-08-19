@@ -44,6 +44,8 @@ export const instructorProfileDetails = asyncHandler(
           dateOfBirth: profile.date_of_birth,
           bloodGroup: profile.instructor_blood_group,
           highestQualification: profile.highest_qualification,
+          profilePhoto: profile.profile_photo
+          
         },
         contactDetails: {
           mobileNumber: profile.contact_number,
@@ -60,12 +62,12 @@ export const instructorProfileDetails = asyncHandler(
           
         },
         permanentAddress: {
-          permanenetCity: profile.permanant_city,
-          permanenetState: profile.permanant_state,
-          permanentTaluka: profile.permanant_taluka,
-          permanentDistrict: profile.permanant_district,
-          permanentPincode: profile.permanant_pincode,
-          permanentAddress: profile.permanant_address
+          permanenetCity: profile.permanent_city,
+          permanenetState: profile.permanent_state,
+          permanentTaluka: profile.permanent_taluka,
+          permanentDistrict: profile.permanent_district,
+          permanentPincode: profile.permanent_pincode,
+          permanentAddress: profile.permanent_address
         },
       },
     };

@@ -162,3 +162,8 @@ export type job_events = Prisma.job_eventsModel
  * 
  */
 export type placement = Prisma.placementModel
+/**
+ * Model placement_applications
+ * 
+ */
+export type placement_applications = Prisma.placement_applicationsModel
