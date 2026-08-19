@@ -418,7 +418,8 @@ export const ModelName = {
   placement: 'placement',
   study_material: 'study_material',
   user_login: 'user_login',
-  user_notifications: 'user_notifications'
+  user_notifications: 'user_notifications',
+  placement_applications: 'placement_applications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -434,7 +435,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications"
+    modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications" | "placement_applications"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2584,6 +2585,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    placement_applications: {
+      payload: Prisma.$placement_applicationsPayload<ExtArgs>
+      fields: Prisma.placement_applicationsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.placement_applicationsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.placement_applicationsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        findFirst: {
+          args: Prisma.placement_applicationsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.placement_applicationsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        findMany: {
+          args: Prisma.placement_applicationsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>[]
+        }
+        create: {
+          args: Prisma.placement_applicationsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        createMany: {
+          args: Prisma.placement_applicationsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.placement_applicationsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>[]
+        }
+        delete: {
+          args: Prisma.placement_applicationsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        update: {
+          args: Prisma.placement_applicationsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        deleteMany: {
+          args: Prisma.placement_applicationsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.placement_applicationsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.placement_applicationsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>[]
+        }
+        upsert: {
+          args: Prisma.placement_applicationsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$placement_applicationsPayload>
+        }
+        aggregate: {
+          args: Prisma.Placement_applicationsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlacement_applications>
+        }
+        groupBy: {
+          args: Prisma.placement_applicationsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Placement_applicationsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.placement_applicationsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Placement_applicationsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2829,7 +2904,6 @@ export const Candidates_detailsScalarFieldEnum = {
   candidate_skills: 'candidate_skills',
   guardian_phone_no: 'guardian_phone_no',
   guardian_blood_group: 'guardian_blood_group',
-  candidate_permanant_address: 'candidate_permanant_address',
   guardian_relationship: 'guardian_relationship',
   guardian_occupation: 'guardian_occupation',
   candidate_unique_id: 'candidate_unique_id',
@@ -2854,7 +2928,9 @@ export const Candidates_detailsScalarFieldEnum = {
   permanent_city: 'permanent_city',
   permanent_pin_code: 'permanent_pin_code',
   permanent_state_name: 'permanent_state_name',
-  permanent_district: 'permanent_district'
+  permanent_district: 'permanent_district',
+  candidate_permanent_address: 'candidate_permanent_address',
+  candidate_emergency_contact_no: 'candidate_emergency_contact_no'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -3039,15 +3115,15 @@ export const Instructor_detailsScalarFieldEnum = {
   current_district: 'current_district',
   current_taluka: 'current_taluka',
   current_pincode: 'current_pincode',
-  permanant_city: 'permanant_city',
-  permanant_state: 'permanant_state',
-  permanant_district: 'permanant_district',
-  permanant_taluka: 'permanant_taluka',
-  permanant_pincode: 'permanant_pincode',
-  permanant_address: 'permanant_address',
   current_address: 'current_address',
   profile_photo: 'profile_photo',
-  instructor_guardian_blood_group: 'instructor_guardian_blood_group'
+  instructor_guardian_blood_group: 'instructor_guardian_blood_group',
+  permanent_address: 'permanent_address',
+  permanent_city: 'permanent_city',
+  permanent_district: 'permanent_district',
+  permanent_pincode: 'permanent_pincode',
+  permanent_state: 'permanent_state',
+  permanent_taluka: 'permanent_taluka'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -3131,8 +3207,8 @@ export const PlacementScalarFieldEnum = {
   eligible_percentage_cgpa: 'eligible_percentage_cgpa',
   salary: 'salary',
   employment_type: 'employment_type',
-  sector: 'sector',
-  application_link: 'application_link'
+  application_link: 'application_link',
+  sector: 'sector'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
@@ -3177,6 +3253,23 @@ export const User_notificationsScalarFieldEnum = {
 } as const
 
 export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
+
+
+export const Placement_applicationsScalarFieldEnum = {
+  application_id: 'application_id',
+  placement_id: 'placement_id',
+  applicant_name: 'applicant_name',
+  email: 'email',
+  contact_no: 'contact_no',
+  applied_date: 'applied_date',
+  resume: 'resume',
+  source: 'source',
+  application_status: 'application_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3539,6 +3632,20 @@ export type ListEnumrole_typesFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'application_status_type'
+ */
+export type Enumapplication_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'application_status_type'>
+    
+
+
+/**
+ * Reference to a field of type 'application_status_type[]'
+ */
+export type ListEnumapplication_status_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'application_status_type[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -3667,6 +3774,7 @@ export type GlobalOmitConfig = {
   study_material?: Prisma.study_materialOmit
   user_login?: Prisma.user_loginOmit
   user_notifications?: Prisma.user_notificationsOmit
+  placement_applications?: Prisma.placement_applicationsOmit
 }
 
 /* Types for Logging */

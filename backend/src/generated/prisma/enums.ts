@@ -251,3 +251,15 @@ export const work_mode_type = {
 } as const
 
 export type work_mode_type = (typeof work_mode_type)[keyof typeof work_mode_type]
+
+
+export const application_status_type = {
+  SCREENING: 'SCREENING',
+  SHORTLISTED: 'SHORTLISTED',
+  INTERVIEW: 'INTERVIEW',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type application_status_type = (typeof application_status_type)[keyof typeof application_status_type]

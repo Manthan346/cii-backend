@@ -188,67 +188,68 @@ model candidate_documents {
 }
 
 model candidates_details {
-  candidate_id                String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  candidate_first_name        String                 @db.VarChar(100)
-  candidate_last_name         String?                @db.VarChar(50)
-  contact_number              String                 @unique @db.VarChar(10)
-  gender                      String?                @db.VarChar(10)
-  date_of_birth               DateTime?              @db.Date
-  education                   String?                @db.VarChar(100)
-  candidate_current_address   String?
-  enquiry_source              String?                @db.VarChar(50)
-  aadhar_card_no              String?                @db.VarChar(12)
-  pan_card_no                 String?                @db.VarChar(10)
-  guardian_name               String?                @db.VarChar(50)
-  nearest_station             String?                @db.VarChar(50)
-  salary                      Int?
-  training_start_date         DateTime?              @db.Date
-  training_end_date           DateTime?              @db.Date
-  job_location                String?                @db.VarChar(100)
-  candidate_status            String?                @db.VarChar(50)
-  verification_status         String?                @db.VarChar(50)
-  blood_group                 String?                @db.VarChar(5)
-  category                    String?                @db.VarChar(15)
-  user_id                     String                 @unique(map: "uq_candidate_user") @db.Uuid
-  created_at                  DateTime               @default(now()) @db.Timestamp(6)
-  updated_at                  DateTime               @default(now()) @db.Timestamp(6)
-  highest_qualification       String?                @db.VarChar(100)
-  qualification_percentage    Decimal?               @db.Decimal(5, 2)
-  admin_approval              Boolean?
-  candidate_skills            String[]
-  guardian_phone_no           String?                @unique @db.VarChar(10)
-  guardian_blood_group        String?                @db.VarChar(10)
-  candidate_permanant_address String?
-  guardian_relationship       String?
-  guardian_occupation         String?
-  candidate_unique_id         String?                @unique
-  guardian_address            String?
-  guardian_gender             String?                @db.VarChar(10)
-  guardian_dob                DateTime?              @db.Date
-  father_name                 String?
-  father_occupation           String?
-  father_phone_no             String?                @db.VarChar(10)
-  father_blood_group          String?                @db.VarChar(10)
-  mother_name                 String?
-  mother_occupation           String?
-  mother_blood_group          String?                @db.VarChar(10)
-  mother_phone_no             String?                @db.VarChar(10)
-  father_address              String?
-  mother_address              String?
-  profile_photo               String?
-  current_city                String?
-  current_district            String?                @db.VarChar(50)
-  current_pin_code            Int?
-  current_state_name          String?                @db.VarChar(50)
-  permanent_city              String?
-  permanent_pin_code          String?
-  permanent_state_name        String?
-  permanent_district          String?
-  attendance_records          attendance_records[]
-  batch_enrollment            batch_enrollment[]
-  candidate_assessment        candidate_assessment[]
-  candidate_documents         candidate_documents?
-  user_login                  user_login             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_user")
+  candidate_id                   String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  candidate_first_name           String                 @db.VarChar(100)
+  candidate_last_name            String?                @db.VarChar(50)
+  contact_number                 String                 @unique @db.VarChar(10)
+  gender                         String?                @db.VarChar(10)
+  date_of_birth                  DateTime?              @db.Date
+  education                      String?                @db.VarChar(100)
+  candidate_current_address      String?
+  enquiry_source                 String?                @db.VarChar(50)
+  aadhar_card_no                 String?                @db.VarChar(12)
+  pan_card_no                    String?                @db.VarChar(10)
+  guardian_name                  String?                @db.VarChar(50)
+  nearest_station                String?                @db.VarChar(50)
+  salary                         Int?
+  training_start_date            DateTime?              @db.Date
+  training_end_date              DateTime?              @db.Date
+  job_location                   String?                @db.VarChar(100)
+  candidate_status               String?                @db.VarChar(50)
+  verification_status            String?                @db.VarChar(50)
+  blood_group                    String?                @db.VarChar(5)
+  category                       String?                @db.VarChar(15)
+  user_id                        String                 @unique(map: "uq_candidate_user") @db.Uuid
+  created_at                     DateTime               @default(now()) @db.Timestamp(6)
+  updated_at                     DateTime               @default(now()) @db.Timestamp(6)
+  highest_qualification          String?                @db.VarChar(100)
+  qualification_percentage       Decimal?               @db.Decimal(5, 2)
+  admin_approval                 Boolean?
+  candidate_skills               String[]
+  guardian_phone_no              String?                @unique @db.VarChar(10)
+  guardian_blood_group           String?                @db.VarChar(10)
+  guardian_relationship          String?
+  guardian_occupation            String?
+  candidate_unique_id            String?                @unique
+  guardian_address               String?
+  guardian_gender                String?                @db.VarChar(10)
+  guardian_dob                   DateTime?              @db.Date
+  father_name                    String?
+  father_occupation              String?
+  father_phone_no                String?                @db.VarChar(10)
+  father_blood_group             String?                @db.VarChar(10)
+  mother_name                    String?
+  mother_occupation              String?
+  mother_blood_group             String?                @db.VarChar(10)
+  mother_phone_no                String?                @db.VarChar(10)
+  father_address                 String?
+  mother_address                 String?
+  profile_photo                  String?
+  current_city                   String?
+  current_district               String?                @db.VarChar(50)
+  current_pin_code               String?
+  current_state_name             String?                @db.VarChar(50)
+  permanent_city                 String?
+  permanent_pin_code             String?
+  permanent_state_name           String?
+  permanent_district             String?
+  candidate_permanent_address    String?
+  candidate_emergency_contact_no String?
+  attendance_records             attendance_records[]
+  batch_enrollment               batch_enrollment[]
+  candidate_assessment           candidate_assessment[]
+  candidate_documents            candidate_documents?
+  user_login                     user_login             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_candidate_user")
 }
 
 model center_company {
@@ -437,15 +438,15 @@ model instructor_details {
   current_district                 String?
   current_taluka                   String?
   current_pincode                  String?               @db.VarChar(6)
-  permanant_city                   String?
-  permanant_state                  String?
-  permanant_district               String?
-  permanant_taluka                 String?
-  permanant_pincode                String?               @db.VarChar(6)
-  permanant_address                String?
   current_address                  String?
   profile_photo                    String?
   instructor_guardian_blood_group  String?               @db.VarChar(6)
+  permanent_address                String?
+  permanent_city                   String?
+  permanent_district               String?
+  permanent_pincode                String?               @db.VarChar(6)
+  permanent_state                  String?
+  permanent_taluka                 String?
   attendance_sessions              attendance_sessions[]
   batch_details                    batch_details[]
   batch_syllabus                   batch_syllabus[]
@@ -510,25 +511,26 @@ model notifications {
 }
 
 model placement {
-  placement_id             String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  company_name             String          @db.VarChar(255)
+  placement_id             String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  company_name             String                   @db.VarChar(255)
   vacancy                  Int
-  location                 String          @db.VarChar(255)
-  job_role                 String          @db.VarChar(255)
+  location                 String                   @db.VarChar(255)
+  job_role                 String                   @db.VarChar(255)
   job_description          String?
-  last_date_to_apply       DateTime        @db.Date
-  is_active                Boolean?        @default(true)
-  created_at               DateTime?       @default(now()) @db.Timestamp(6)
-  updated_at               DateTime?       @default(now()) @db.Timestamp(6)
-  created_by               String          @db.Uuid
+  last_date_to_apply       DateTime                 @db.Date
+  is_active                Boolean?                 @default(true)
+  created_at               DateTime?                @default(now()) @db.Timestamp(6)
+  updated_at               DateTime?                @default(now()) @db.Timestamp(6)
+  created_by               String                   @db.Uuid
   work_mode                work_mode_type?
   eligible_qualification   String?
   eligible_percentage_cgpa String?
   salary                   String?
   employment_type          String?
-  sector                   String?
   application_link         String?
-  hr_details               hr_details      @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
+  sector                   String?
+  hr_details               hr_details               @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
+  placement_applications   placement_applications[]
 }
 
 model study_material {
@@ -577,6 +579,23 @@ model user_notifications {
   user_login           user_login    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([notification_id, user_id], map: "unique_notification_per_user")
+}
+
+model placement_applications {
+  application_id     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  placement_id       String                  @db.Uuid
+  applicant_name     String                  @db.VarChar(255)
+  email              String                  @db.VarChar(255)
+  contact_no         String                  @db.VarChar(20)
+  applied_date       DateTime                @default(dbgenerated("CURRENT_DATE")) @db.Date
+  resume             String
+  source             String?                 @db.VarChar(100)
+  application_status application_status_type @default(SCREENING)
+  created_at         DateTime?               @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?               @default(now()) @db.Timestamp(6)
+  placement          placement               @relation(fields: [placement_id], references: [placement_id], onDelete: Cascade, map: "fk_placement_application_placement")
+
+  @@unique([placement_id, email], map: "unique_placement_applicant_email")
 }
 
 enum assessment_type {
@@ -755,4 +774,13 @@ enum work_mode_type {
   online
   offline
   hybrid
+}
+
+enum application_status_type {
+  SCREENING
+  SHORTLISTED
+  INTERVIEW
+  SELECTED
+  REJECTED
+  WITHDRAWN
 }

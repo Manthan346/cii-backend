@@ -162,3 +162,8 @@ export type user_login = Prisma.user_loginModel
  * 
  */
 export type user_notifications = Prisma.user_notificationsModel
+/**
+ * Model placement_applications
+ * 
+ */
+export type placement_applications = Prisma.placement_applicationsModel
