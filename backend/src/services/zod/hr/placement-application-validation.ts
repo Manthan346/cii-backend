@@ -30,3 +30,14 @@ export const createPlacementApplicationSchema = z.object({
         .max(100, "Source cannot exceed 100 characters")
         .optional(),
 });
+
+export const updateApplicationStatusSchema = z.object({
+    application_status: z.enum([
+        "SCREENING",
+        "SHORTLISTED",
+        "INTERVIEW",
+        "SELECTED",
+        "REJECTED",
+        "WITHDRAWN",
+    ]),
+});
