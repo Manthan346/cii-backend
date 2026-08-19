@@ -194,3 +194,8 @@ export type placement = Prisma.placementModel
  * 
  */
 export type placement_applications = Prisma.placement_applicationsModel
+/**
+ * Model job_fair_candidates
+ * 
+ */
+export type job_fair_candidates = Prisma.job_fair_candidatesModel
