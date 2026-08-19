@@ -636,6 +636,23 @@ export type Enumapplication_status_typeWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumapplication_status_typeFilter<$PrismaModel>
 }
 
+export type Enumapplication_status_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.application_status_type | Prisma.Enumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel> | $Enums.application_status_type | null
+}
+
+export type Enumapplication_status_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.application_status_type | Prisma.Enumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumapplication_status_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.application_status_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1265,6 +1282,23 @@ export type NestedEnumapplication_status_typeWithAggregatesFilter<$PrismaModel =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumapplication_status_typeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumapplication_status_typeFilter<$PrismaModel>
+}
+
+export type NestedEnumapplication_status_typeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.application_status_type | Prisma.Enumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel> | $Enums.application_status_type | null
+}
+
+export type NestedEnumapplication_status_typeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.application_status_type | Prisma.Enumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.application_status_type[] | Prisma.ListEnumapplication_status_typeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumapplication_status_typeNullableWithAggregatesFilter<$PrismaModel> | $Enums.application_status_type | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumapplication_status_typeNullableFilter<$PrismaModel>
 }
 
 
