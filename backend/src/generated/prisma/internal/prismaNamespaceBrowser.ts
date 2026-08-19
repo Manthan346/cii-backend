@@ -77,7 +77,8 @@ export const ModelName = {
   hr_details: 'hr_details',
   mobilizer_details: 'mobilizer_details',
   job_events: 'job_events',
-  placement: 'placement'
+  placement: 'placement',
+  placement_applications: 'placement_applications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -127,7 +128,6 @@ export const Candidates_detailsScalarFieldEnum = {
   candidate_skills: 'candidate_skills',
   guardian_phone_no: 'guardian_phone_no',
   guardian_blood_group: 'guardian_blood_group',
-  candidate_permanent_address: 'candidate_permanent_address',
   guardian_relationship: 'guardian_relationship',
   guardian_occupation: 'guardian_occupation',
   candidate_unique_id: 'candidate_unique_id',
@@ -152,7 +152,9 @@ export const Candidates_detailsScalarFieldEnum = {
   permanent_city: 'permanent_city',
   permanent_pin_code: 'permanent_pin_code',
   permanent_state_name: 'permanent_state_name',
-  permanent_district: 'permanent_district'
+  permanent_district: 'permanent_district',
+  candidate_permanent_address: 'candidate_permanent_address',
+  candidate_emergency_contact_no: 'candidate_emergency_contact_no'
 } as const
 
 export type Candidates_detailsScalarFieldEnum = (typeof Candidates_detailsScalarFieldEnum)[keyof typeof Candidates_detailsScalarFieldEnum]
@@ -346,15 +348,15 @@ export const Instructor_detailsScalarFieldEnum = {
   current_district: 'current_district',
   current_taluka: 'current_taluka',
   current_pincode: 'current_pincode',
-  permanent_city: 'permanent_city',
-  permanent_state: 'permanent_state',
-  permanent_district: 'permanent_district',
-  permanent_taluka: 'permanent_taluka',
-  permanent_pincode: 'permanent_pincode',
-  permanent_address: 'permanent_address',
   current_address: 'current_address',
   profile_photo: 'profile_photo',
-  instructor_guardian_blood_group: 'instructor_guardian_blood_group'
+  instructor_guardian_blood_group: 'instructor_guardian_blood_group',
+  permanent_address: 'permanent_address',
+  permanent_city: 'permanent_city',
+  permanent_district: 'permanent_district',
+  permanent_pincode: 'permanent_pincode',
+  permanent_state: 'permanent_state',
+  permanent_taluka: 'permanent_taluka'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -645,11 +647,28 @@ export const PlacementScalarFieldEnum = {
   eligible_percentage_cgpa: 'eligible_percentage_cgpa',
   salary: 'salary',
   employment_type: 'employment_type',
-  sector: 'sector',
-  application_link: 'application_link'
+  application_link: 'application_link',
+  sector: 'sector'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
+
+
+export const Placement_applicationsScalarFieldEnum = {
+  application_id: 'application_id',
+  placement_id: 'placement_id',
+  applicant_name: 'applicant_name',
+  email: 'email',
+  contact_no: 'contact_no',
+  applied_date: 'applied_date',
+  resume: 'resume',
+  source: 'source',
+  application_status: 'application_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
 
 
 export const SortOrder = {
