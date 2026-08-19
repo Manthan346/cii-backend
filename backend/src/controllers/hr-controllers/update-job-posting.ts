@@ -124,6 +124,11 @@ export const updateJobPosting = asyncHandler(
                 data.application_link.trim();
         }
 
+        if (data.experience !== undefined) {
+            updateData.experience =
+                data.experience.trim();
+        }
+
         if (data.last_date_to_apply !== undefined) {
             const applicationDeadline = new Date(
                 `${data.last_date_to_apply}T12:00:00.000Z`
