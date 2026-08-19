@@ -15,6 +15,7 @@ import { createPlacementSchema } from "../../services/zod/hr/placement-validatio
 import { getAllJobPostings } from "../../controllers/hr-controllers/get-all-job-posting";
 import { updatePlacementSchema } from "../../services/zod/hr/placement-validation";
 import { updateJobPosting } from "../../controllers/hr-controllers/update-job-posting";
+import { getAllNotifications } from "../../controllers/hr-controllers/get-all-hrNotifications";
 
 const hrRouter = Router();
 
@@ -35,5 +36,7 @@ hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,validateBody
 hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,getAllJobPostings);
 //update specific job postings 
 hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,validateBody(updatePlacementSchema),updateJobPosting);
+//fetch all notifications
+hrRouter.get('/notifications',verifyHrUsingAccessToken,paginationMiddleware,getAllNotifications);
 
 export default hrRouter;
