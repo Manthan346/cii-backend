@@ -20,6 +20,7 @@ import { getPlacementApplications } from "../../controllers/hr-controllers/fetch
 import { updateApplicationStatusSchema } from "../../services/zod/hr/placement-application-validation";
 import { updatePlacementApplicationStatus } from "../../controllers/hr-controllers/update-placement-application";
 import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-details";
+import { getHrDashboard } from "../../controllers/hr-controllers/get-dashboard-data";
 
 const hrRouter = Router();
 
@@ -49,5 +50,7 @@ hrRouter.patch('/applications/:applicationId/status',verifyHrUsingAccessToken,va
 //view details of specific 
 hrRouter.get("/job-management/:placement_id/view",verifyHrUsingAccessToken,
 getPlacementJobDetails);
+//fetch dashboard details of hr 
+hrRouter.get("/dashboard",verifyHrUsingAccessToken,getHrDashboard);
 
 export default hrRouter;
