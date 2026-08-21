@@ -23,6 +23,8 @@ import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-d
 import { getHrDashboard } from "../../controllers/hr-controllers/get-dashboard-data";
 import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-application-graph-data";
 import { getApplicationPieChartStatus } from "../../controllers/hr-controllers/get-application-statusPieChart";
+import { uploadJobFairCandidates } from "../../controllers/hr-controllers/upload-job-fair-candidates";
+import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
 
 const hrRouter = Router();
 
@@ -52,11 +54,19 @@ hrRouter.patch('/applications/:applicationId/status',verifyHrUsingAccessToken,va
 //view details of specific 
 hrRouter.get("/job-management/:placement_id/view",verifyHrUsingAccessToken,
 getPlacementJobDetails);
-//fetch dashboard details of hr 
+//fetch dashboard details of hr
 hrRouter.get("/dashboard",verifyHrUsingAccessToken,getHrDashboard);
-//fetch application count for 5 recent jobs 
+//fetch application count for 5 recent jobs
 hrRouter.get("/dashboard/application-graph",verifyHrUsingAccessToken,getApplicationsPerJob)
 //overall application piechart
 hrRouter.get("/dashboard/application-piechart",verifyHrUsingAccessToken,getApplicationPieChartStatus)
+
+// Upload job fair candidates via Excel (all fields optional)
+hrRouter.post(
+  "/job-event/:job_event_id/candidates/upload",
+  verifyHrUsingAccessToken,
+  uploadExcel.single("file"),
+  uploadJobFairCandidates
+);
 
 export default hrRouter;
