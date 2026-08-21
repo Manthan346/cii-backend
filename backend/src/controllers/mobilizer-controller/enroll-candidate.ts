@@ -65,8 +65,19 @@ export const mobilizerEnrollCandidate = asyncHandler(
             throw new ApiError(404, "Center not found");
         }
 
-        // Use transaction for atomicity
-        const result = await prisma.$transaction(async (tx) => {
+        // Use transaction for atomicity.
+        // Retry a few times on unique-constraint violation (P2002): with the
+        // per-center-per-day count-based sequence, two concurrent enrollments
+        // can compute the same candidate_unique_id. The winner commits; the
+        // loser re-runs the whole transaction, recomputes the sequence (now +1),
+        // and succeeds.
+        const MAX_RETRIES = 5;
+        let lastError: unknown;
+        let result: any;
+
+        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+            try {
+                result = await prisma.$transaction(async (tx) => {
             // Check if candidate already exists with this contact number
             // Check if candidate already exists with this contact number in candidates_details
             const existingCandidate = await tx.candidates_details.findFirst({
@@ -105,8 +116,10 @@ export const mobilizerEnrollCandidate = asyncHandler(
                 isNewCandidate = true;
 
                 // Generate sequence and candidate_unique_id
-                const sequence = await getNextSequence(tx);
-                candidateUniqueId = buildStudentId(sequence, center.center_name);
+                // Use first 3 letters of center name (uppercased) as prefix
+                const centerPrefix = center.center_name.toUpperCase().slice(0, 3);
+                const sequence = await getNextSequence(tx, centerPrefix);
+                candidateUniqueId = buildStudentId(sequence, centerPrefix);
 
                 // Generate default password: firstname + lastname + last 4 digits of phone
                 const cleanLastName = last_name?.trim() || "";
@@ -214,6 +227,17 @@ export const mobilizerEnrollCandidate = asyncHandler(
                 isNewCandidate
             };
         });
+                break; // success → exit retry loop
+            } catch (error: any) {
+                // P2002 = unique-constraint violation (duplicate candidate_unique_id race)
+                if (error?.code === "P2002" && attempt < MAX_RETRIES - 1) {
+                    lastError = error;
+                    continue; // retry whole transaction → recomputes sequence
+                }
+                // Non-retryable, or last attempt failed → bubble up
+                throw error;
+            }
+        }
 
         return res.status(201).json(
             new ApiResponse(

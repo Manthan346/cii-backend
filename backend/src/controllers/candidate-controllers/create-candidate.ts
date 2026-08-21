@@ -49,6 +49,7 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
   }
 
   for(let attempt= 0; attempt< MAX_RETRIES; attempt++){
+    try {
      const { user, candidate } = await prisma.$transaction(async (tx) => {
   const user = await tx.user_login.create({
     data: {
@@ -59,7 +60,7 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
     },
   });
 
-       const sequence = await getNextSequence(tx); // Atomic sequence, no retry bump needed
+       const sequence = await getNextSequence(tx, centreName!.center_name.toUpperCase().slice(0,3));
         const studentUniqueId = buildStudentId(sequence, centreName!.center_name.toUpperCase().slice(0,3));
 
   const candidate = await tx.candidates_details.create({
@@ -67,8 +68,8 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
       candidate_first_name: first_name,
       candidate_last_name: last_name,
       candidate_unique_id: studentUniqueId,
-      
-     
+
+
       contact_number,
       user_id: user.user_id, // or user.id depending on your schema
     },
@@ -134,13 +135,21 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
       userCenterId: user.center_id,
       candidate,
       accessToken: accessToken
-      
+
     }, "user added successfully")
-    
-   )
+
+   ) // success → return
 
 
-    
+   } catch (error: any) {
+      // P2002 = unique-constraint violation (duplicate candidate_unique_id race)
+      // Retry the whole transaction; recomputes the per-center-per-day sequence.
+      if (error?.code === "P2002" && attempt < MAX_RETRIES - 1) {
+        lastError = error;
+        continue;
+      }
+      throw error;
+   }
   }
   
 

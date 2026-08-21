@@ -1,12 +1,13 @@
 import { Prisma } from "../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
 
 /**
- * Builds the candidate unique ID from sequence and center name.
- * Format: CENTERNAME-DDMMYY-XXXX (e.g., "DELHI-200826-0042")
+ * Builds the candidate unique ID from sequence, center name and date.
+ * Format: CENTERNAME-DDMMYY-XXXXXX (e.g., "DELHI-200820-000001")
  *
- * @param sequence - Atomic sequence number from PostgreSQL sequence
- * @param centerName - Center name (used as prefix)
+ * NOTE: sequence is per-center-per-day. Resets to 1 every day for each center.
+ *
+ * @param sequence - Per-center-per-day sequence number
+ * @param centerName - Center name (used as prefix, uppercased)
  * @returns Formatted candidate unique ID
  */
 function buildStudentId(sequence: number, centerName: string): string {
@@ -14,59 +15,62 @@ function buildStudentId(sequence: number, centerName: string): string {
   const dd = String(now.getUTCDate()).padStart(2, "0");
   const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
   const yy = String(now.getUTCFullYear()).slice(-2);
-  return `${centerName}-${dd}${mm}${yy}-${String(sequence).padStart(4, "0")}`;
+  // 6 digits = up to 999,999 per center per day (practically unbounded)
+  return `${centerName}-${dd}${mm}${yy}-${String(sequence).padStart(6, "0")}`;
 }
 
 /**
- * Gets the next sequence number using PostgreSQL SEQUENCE.
+ * Gets the next per-center-per-day sequence number.
  *
- * WHY POSTGRESQL SEQUENCE?
- * ========================
- * - Atomic: Single CPU instruction (nextval), no race condition possible
- * - No locks: Unlike pessimistic locking, doesn't block other transactions
- * - No retries: Unlike optimistic locking, never conflicts
- * - Crash-safe: Persists across transactions, survives restarts
- * - High performance: No application-level coordination needed
+ * APPROACH: Count-based with Prisma transaction serialization + retry on conflict.
+ *
+ * WHY NOT global PostgreSQL SEQUENCE?
+ *  - Global sequence never resets. We need per-center-per-day reset to 1.
+ *
+ * WHY NOT a new counter table?
+ *  - User doesn't want a new table.
  *
  * HOW IT WORKS:
- * =============
- * 1. Database maintains a persistent counter (SEQUENCE object)
- * 2. nextval() atomically increments and returns new value
- * 3. Even if transaction rolls back, sequence number is consumed (gaps allowed)
- * 4. Multiple concurrent calls get unique values automatically
+ *  1. Build the date-based prefix for today (UTC): e.g., "DELHI-200820"
+ *  2. Count existing candidates whose unique_id starts with that prefix.
+ *  3. Return count + 1 → next sequence number for that center for that day.
  *
- * MIGRATION REQUIRED (run once):
- * ==============================
- * CREATE SEQUENCE candidate_unique_id_seq START 1;
+ * CONCURRENCY SAFETY:
+ *  - This must run INSIDE a Prisma $transaction.
+ *  - On a race condition (two requests get same count → same ID), the first
+ *    INSERT wins; the second hits a unique-constraint violation (P2002).
+ *  - Callers should catch P2002 and retry the whole transaction a few times.
  *
- * @param tx - Prisma transaction client
- * @returns Next sequence number (1, 2, 3, ...)
+ * PER-CENTER & PER-DAY ISOLATION:
+ *  - The prefix is built from centerName + today's date.
+ *  - Different center → different prefix → independent counter (both start at 1).
+ *  - Different day → different prefix → counter resets to 1 automatically.
+ *
+ * @param tx - Prisma transaction client (MUST be inside $transaction)
+ * @param centerName - Center name (used as prefix)
+ * @returns Next per-center-per-day sequence number (1, 2, 3, ...)
  */
-async function getNextSequence(tx: Prisma.TransactionClient): Promise<number> {
-  // Raw SQL to call PostgreSQL nextval() - atomic operation
-  const result = await tx.$queryRaw<{ nextval: bigint }[]>`
-    SELECT nextval('candidate_unique_id_seq') as nextval
-  `;
+async function getNextSequence(
+  tx: Prisma.TransactionClient,
+  centerName: string
+): Promise<number> {
+  const now = new Date();
+  const dd = String(now.getUTCDate()).padStart(2, "0");
+  const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
+  const yy = String(now.getUTCFullYear()).slice(-2);
+  const datePart = `${dd}${mm}${yy}`;
 
-  // PostgreSQL returns bigint, convert to number
-  return Number(result[0].nextval);
-}
+  // Prefix unique to this center + this day. Counting on this prefix gives us
+  // "how many candidates were already created in THIS center TODAY".
+  const prefix = `${centerName}-${datePart}-`;
 
-/**
- * Initialize the PostgreSQL sequence if not exists.
- * Call this once at application startup (e.g., in index.ts) or run as migration.
- * Safe to call multiple times - CREATE SEQUENCE IF NOT EXISTS logic.
- */
-export async function initializeCandidateSequence(): Promise<void> {
-  await prisma.$executeRawUnsafe(`
-    DO $$
-    BEGIN
-      IF NOT EXISTS (SELECT 1 FROM pg_class WHERE relname = 'candidate_unique_id_seq') THEN
-        CREATE SEQUENCE candidate_unique_id_seq START 1;
-      END IF;
-    END
-    $$;
-  `);
+  const todayCount = await tx.candidates_details.count({
+    where: {
+      candidate_unique_id: { startsWith: prefix },
+    },
+  });
+
+  return todayCount + 1;
 }
 
 export { buildStudentId, getNextSequence };
