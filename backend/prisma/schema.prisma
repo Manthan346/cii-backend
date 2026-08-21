@@ -807,7 +807,3 @@ enum application_status_type {
   REJECTED
   WITHDRAWN
 }
-
-
-
-
