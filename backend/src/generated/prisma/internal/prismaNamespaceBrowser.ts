@@ -649,7 +649,8 @@ export const PlacementScalarFieldEnum = {
   salary: 'salary',
   employment_type: 'employment_type',
   application_link: 'application_link',
-  sector: 'sector'
+  sector: 'sector',
+  experience: 'experience'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
@@ -688,7 +689,8 @@ export const Job_fair_candidatesScalarFieldEnum = {
   vidhansabha: 'vidhansabha',
   company_name: 'company_name',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  candidate_application_status: 'candidate_application_status'
 } as const
 
 export type Job_fair_candidatesScalarFieldEnum = (typeof Job_fair_candidatesScalarFieldEnum)[keyof typeof Job_fair_candidatesScalarFieldEnum]

@@ -6,7 +6,7 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 import { ApiError } from "../../helpers/ApiError";
 
 import { generateAccessToken, generateRefreshToken } from "../../utils/candidate-jwt-auth/candidate-auth";
-import { getNextSequenceGuess, buildStudentId } from "../../utils/candidate-utils/generate-student-id";
+import { getNextSequence, buildStudentId } from "../../utils/candidate-utils/generate-student-id";
 
 const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
   const {first_name, last_name,email_id,contact_number,center_id,password } = req.body
@@ -59,7 +59,7 @@ const createCandidate = asyncHandler(async(req: Request,res: Response)=> {
     },
   });
 
-       const sequence = (await getNextSequenceGuess(tx)) + attempt; // bump per retry attempt
+       const sequence = await getNextSequence(tx); // Atomic sequence, no retry bump needed
         const studentUniqueId = buildStudentId(sequence, centreName!.center_name.toUpperCase().slice(0,3));
 
   const candidate = await tx.candidates_details.create({

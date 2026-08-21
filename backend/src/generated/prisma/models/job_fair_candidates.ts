@@ -51,6 +51,7 @@ export type Job_fair_candidatesMinAggregateOutputType = {
   company_name: string | null
   created_at: Date | null
   updated_at: Date | null
+  candidate_application_status: $Enums.application_status_type | null
 }
 
 export type Job_fair_candidatesMaxAggregateOutputType = {
@@ -70,6 +71,7 @@ export type Job_fair_candidatesMaxAggregateOutputType = {
   company_name: string | null
   created_at: Date | null
   updated_at: Date | null
+  candidate_application_status: $Enums.application_status_type | null
 }
 
 export type Job_fair_candidatesCountAggregateOutputType = {
@@ -89,6 +91,7 @@ export type Job_fair_candidatesCountAggregateOutputType = {
   company_name: number
   created_at: number
   updated_at: number
+  candidate_application_status: number
   _all: number
 }
 
@@ -118,6 +121,7 @@ export type Job_fair_candidatesMinAggregateInputType = {
   company_name?: true
   created_at?: true
   updated_at?: true
+  candidate_application_status?: true
 }
 
 export type Job_fair_candidatesMaxAggregateInputType = {
@@ -137,6 +141,7 @@ export type Job_fair_candidatesMaxAggregateInputType = {
   company_name?: true
   created_at?: true
   updated_at?: true
+  candidate_application_status?: true
 }
 
 export type Job_fair_candidatesCountAggregateInputType = {
@@ -156,6 +161,7 @@ export type Job_fair_candidatesCountAggregateInputType = {
   company_name?: true
   created_at?: true
   updated_at?: true
+  candidate_application_status?: true
   _all?: true
 }
 
@@ -262,6 +268,7 @@ export type Job_fair_candidatesGroupByOutputType = {
   company_name: string | null
   created_at: Date | null
   updated_at: Date | null
+  candidate_application_status: $Enums.application_status_type | null
   _count: Job_fair_candidatesCountAggregateOutputType | null
   _avg: Job_fair_candidatesAvgAggregateOutputType | null
   _sum: Job_fair_candidatesSumAggregateOutputType | null
@@ -304,6 +311,7 @@ export type job_fair_candidatesWhereInput = {
   company_name?: Prisma.StringNullableFilter<"job_fair_candidates"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
+  candidate_application_status?: Prisma.Enumapplication_status_typeNullableFilter<"job_fair_candidates"> | $Enums.application_status_type | null
   job_events?: Prisma.XOR<Prisma.Job_eventsScalarRelationFilter, Prisma.job_eventsWhereInput>
 }
 
@@ -324,6 +332,7 @@ export type job_fair_candidatesOrderByWithRelationInput = {
   company_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_application_status?: Prisma.SortOrderInput | Prisma.SortOrder
   job_events?: Prisma.job_eventsOrderByWithRelationInput
 }
 
@@ -347,6 +356,7 @@ export type job_fair_candidatesWhereUniqueInput = Prisma.AtLeast<{
   company_name?: Prisma.StringNullableFilter<"job_fair_candidates"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
+  candidate_application_status?: Prisma.Enumapplication_status_typeNullableFilter<"job_fair_candidates"> | $Enums.application_status_type | null
   job_events?: Prisma.XOR<Prisma.Job_eventsScalarRelationFilter, Prisma.job_eventsWhereInput>
 }, "job_fair_candidate_id">
 
@@ -367,6 +377,7 @@ export type job_fair_candidatesOrderByWithAggregationInput = {
   company_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidate_application_status?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.job_fair_candidatesCountOrderByAggregateInput
   _avg?: Prisma.job_fair_candidatesAvgOrderByAggregateInput
   _max?: Prisma.job_fair_candidatesMaxOrderByAggregateInput
@@ -394,6 +405,7 @@ export type job_fair_candidatesScalarWhereWithAggregatesInput = {
   company_name?: Prisma.StringNullableWithAggregatesFilter<"job_fair_candidates"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"job_fair_candidates"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"job_fair_candidates"> | Date | string | null
+  candidate_application_status?: Prisma.Enumapplication_status_typeNullableWithAggregatesFilter<"job_fair_candidates"> | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesCreateInput = {
@@ -412,6 +424,7 @@ export type job_fair_candidatesCreateInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
   job_events: Prisma.job_eventsCreateNestedOneWithoutJob_fair_candidatesInput
 }
 
@@ -432,6 +445,7 @@ export type job_fair_candidatesUncheckedCreateInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUpdateInput = {
@@ -450,6 +464,7 @@ export type job_fair_candidatesUpdateInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
   job_events?: Prisma.job_eventsUpdateOneRequiredWithoutJob_fair_candidatesNestedInput
 }
 
@@ -470,6 +485,7 @@ export type job_fair_candidatesUncheckedUpdateInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesCreateManyInput = {
@@ -489,6 +505,7 @@ export type job_fair_candidatesCreateManyInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUpdateManyMutationInput = {
@@ -507,6 +524,7 @@ export type job_fair_candidatesUpdateManyMutationInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUncheckedUpdateManyInput = {
@@ -526,6 +544,7 @@ export type job_fair_candidatesUncheckedUpdateManyInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 export type Job_fair_candidatesListRelationFilter = {
@@ -555,6 +574,7 @@ export type job_fair_candidatesCountOrderByAggregateInput = {
   company_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_application_status?: Prisma.SortOrder
 }
 
 export type job_fair_candidatesAvgOrderByAggregateInput = {
@@ -578,6 +598,7 @@ export type job_fair_candidatesMaxOrderByAggregateInput = {
   company_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_application_status?: Prisma.SortOrder
 }
 
 export type job_fair_candidatesMinOrderByAggregateInput = {
@@ -597,6 +618,7 @@ export type job_fair_candidatesMinOrderByAggregateInput = {
   company_name?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_application_status?: Prisma.SortOrder
 }
 
 export type job_fair_candidatesSumOrderByAggregateInput = {
@@ -645,6 +667,10 @@ export type job_fair_candidatesUncheckedUpdateManyWithoutJob_eventsNestedInput =
   deleteMany?: Prisma.job_fair_candidatesScalarWhereInput | Prisma.job_fair_candidatesScalarWhereInput[]
 }
 
+export type NullableEnumapplication_status_typeFieldUpdateOperationsInput = {
+  set?: $Enums.application_status_type | null
+}
+
 export type job_fair_candidatesCreateWithoutJob_eventsInput = {
   job_fair_candidate_id?: string
   candidate_name: string
@@ -661,6 +687,7 @@ export type job_fair_candidatesCreateWithoutJob_eventsInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUncheckedCreateWithoutJob_eventsInput = {
@@ -679,6 +706,7 @@ export type job_fair_candidatesUncheckedCreateWithoutJob_eventsInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesCreateOrConnectWithoutJob_eventsInput = {
@@ -727,6 +755,7 @@ export type job_fair_candidatesScalarWhereInput = {
   company_name?: Prisma.StringNullableFilter<"job_fair_candidates"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"job_fair_candidates"> | Date | string | null
+  candidate_application_status?: Prisma.Enumapplication_status_typeNullableFilter<"job_fair_candidates"> | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesCreateManyJob_eventsInput = {
@@ -745,6 +774,7 @@ export type job_fair_candidatesCreateManyJob_eventsInput = {
   company_name?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
+  candidate_application_status?: $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUpdateWithoutJob_eventsInput = {
@@ -763,6 +793,7 @@ export type job_fair_candidatesUpdateWithoutJob_eventsInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUncheckedUpdateWithoutJob_eventsInput = {
@@ -781,6 +812,7 @@ export type job_fair_candidatesUncheckedUpdateWithoutJob_eventsInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 export type job_fair_candidatesUncheckedUpdateManyWithoutJob_eventsInput = {
@@ -799,6 +831,7 @@ export type job_fair_candidatesUncheckedUpdateManyWithoutJob_eventsInput = {
   company_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  candidate_application_status?: Prisma.NullableEnumapplication_status_typeFieldUpdateOperationsInput | $Enums.application_status_type | null
 }
 
 
@@ -820,6 +853,7 @@ export type job_fair_candidatesSelect<ExtArgs extends runtime.Types.Extensions.I
   company_name?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_application_status?: boolean
   job_events?: boolean | Prisma.job_eventsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["job_fair_candidates"]>
 
@@ -840,6 +874,7 @@ export type job_fair_candidatesSelectCreateManyAndReturn<ExtArgs extends runtime
   company_name?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_application_status?: boolean
   job_events?: boolean | Prisma.job_eventsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["job_fair_candidates"]>
 
@@ -860,6 +895,7 @@ export type job_fair_candidatesSelectUpdateManyAndReturn<ExtArgs extends runtime
   company_name?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_application_status?: boolean
   job_events?: boolean | Prisma.job_eventsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["job_fair_candidates"]>
 
@@ -880,9 +916,10 @@ export type job_fair_candidatesSelectScalar = {
   company_name?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_application_status?: boolean
 }
 
-export type job_fair_candidatesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"job_fair_candidate_id" | "job_event_id" | "candidate_name" | "contact_no" | "location" | "qualification" | "college_institute" | "age" | "gender" | "candidate_experience" | "area" | "ward_no" | "vidhansabha" | "company_name" | "created_at" | "updated_at", ExtArgs["result"]["job_fair_candidates"]>
+export type job_fair_candidatesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"job_fair_candidate_id" | "job_event_id" | "candidate_name" | "contact_no" | "location" | "qualification" | "college_institute" | "age" | "gender" | "candidate_experience" | "area" | "ward_no" | "vidhansabha" | "company_name" | "created_at" | "updated_at" | "candidate_application_status", ExtArgs["result"]["job_fair_candidates"]>
 export type job_fair_candidatesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   job_events?: boolean | Prisma.job_eventsDefaultArgs<ExtArgs>
 }
@@ -915,6 +952,7 @@ export type $job_fair_candidatesPayload<ExtArgs extends runtime.Types.Extensions
     company_name: string | null
     created_at: Date | null
     updated_at: Date | null
+    candidate_application_status: $Enums.application_status_type | null
   }, ExtArgs["result"]["job_fair_candidates"]>
   composites: {}
 }
@@ -1355,6 +1393,7 @@ export interface job_fair_candidatesFieldRefs {
   readonly company_name: Prisma.FieldRef<"job_fair_candidates", 'String'>
   readonly created_at: Prisma.FieldRef<"job_fair_candidates", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"job_fair_candidates", 'DateTime'>
+  readonly candidate_application_status: Prisma.FieldRef<"job_fair_candidates", 'application_status_type'>
 }
     
 

@@ -22,6 +22,8 @@ import { getDashboardStats } from '../../controllers/mobilizer-controller/dashbo
 import { getDashboardCharts } from '../../controllers/mobilizer-controller/dashboard-charts';
 import { getEnquiryStats } from '../../controllers/mobilizer-controller/enquiry-stats';
 import { getMobilizerNotifications } from '../../controllers/mobilizer-controller/get-notifications';
+import { mobilizerEnrollCandidate } from '../../controllers/mobilizer-controller/enroll-candidate';
+import { mobilizerEnrollCandidateSchema } from '../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema';
 
 const mobilizerRouter = Router();
 
@@ -131,6 +133,14 @@ mobilizerRouter.get(
     "/event-details/:eventId",
     verifyMobilizerUsingAccessToken,
     getEventDetails
+);
+
+// Mobilizer enroll candidate (center-scoped)
+mobilizerRouter.post(
+    "/enroll-candidate",
+    verifyMobilizerUsingAccessToken,
+    validateBody(mobilizerEnrollCandidateSchema),
+    mobilizerEnrollCandidate
 );
 
 export default mobilizerRouter
