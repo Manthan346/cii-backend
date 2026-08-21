@@ -1,10 +1,11 @@
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { prisma } from "../../lib/prisma";
-import { Request,Response} from "express";
+import { Response} from "express";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 
 export const updatePlacementApplicationStatus = asyncHandler(
-    async (req: Request, res: Response) => {
+    async (req: HrAuthRequest, res: Response) => {
         const { applicationId } = req.params;
 
         if (!applicationId || Array.isArray(applicationId)) {

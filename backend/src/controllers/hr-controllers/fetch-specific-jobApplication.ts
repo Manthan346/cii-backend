@@ -3,9 +3,10 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 
 export const getPlacementApplications = asyncHandler(
-    async (req: Request, res: Response) => {
+    async (req: HrAuthRequest, res: Response) => {
         const {
             search,
             company_name,

@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiResponse } from "../../helpers/ApiResponse";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 
 export const getApplicationsPerJob = asyncHandler(
-    async (req: Request, res: Response) => {
+    async (req: HrAuthRequest, res: Response) => {
 
         const recentJobs = await prisma.placement.findMany({
             orderBy: {
