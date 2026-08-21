@@ -22,6 +22,7 @@ import { updatePlacementApplicationStatus } from "../../controllers/hr-controlle
 import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-details";
 import { getHrDashboard } from "../../controllers/hr-controllers/get-dashboard-data";
 import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-application-graph-data";
+import { getApplicationPieChartStatus } from "../../controllers/hr-controllers/get-application-statusPieChart";
 
 const hrRouter = Router();
 
@@ -55,5 +56,7 @@ getPlacementJobDetails);
 hrRouter.get("/dashboard",verifyHrUsingAccessToken,getHrDashboard);
 //fetch application count for 5 recent jobs 
 hrRouter.get("/dashboard/application-graph",verifyHrUsingAccessToken,getApplicationsPerJob)
+//overall application piechart
+hrRouter.get("/dashboard/application-piechart",verifyHrUsingAccessToken,getApplicationPieChartStatus)
 
 export default hrRouter;

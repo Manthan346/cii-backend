@@ -1,12 +1,11 @@
-
-
-import { Request, Response } from "express";
+import { Response } from "express";
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { asyncHandler } from "../../helpers/asyncHandler";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 
 export const getHrDashboard = asyncHandler(
-    async (req: Request, res: Response) => {
+    async (req: HrAuthRequest, res: Response) => {
 
         const totalJobApplications =
             await prisma.placement_applications.count();

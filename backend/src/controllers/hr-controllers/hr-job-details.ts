@@ -1,10 +1,11 @@
-import { Request,Response } from "express";
+import { Response } from "express";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { prisma } from "../../lib/prisma";
 import { ApiError } from "../../helpers/ApiError";
+import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 
 export const getPlacementJobDetails = asyncHandler(
-    async (req: Request, res: Response) => {
+    async (req: HrAuthRequest, res: Response) => {
         const { placement_id } = req.params;
 
         if (!placement_id || Array.isArray(placement_id)) {
