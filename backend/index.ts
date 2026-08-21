@@ -19,9 +19,13 @@ import dotenv from 'dotenv'
 
 import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
+import { initializeCandidateSequence } from "./src/utils/candidate-utils/generate-student-id";
 
 const app = Express();
 const port = 3000;
+
+// Initialize PostgreSQL sequence for candidate unique IDs (safe to call multiple times)
+initializeCandidateSequence().catch(console.error);
 
 app.use(json());
 // dotenv.config()

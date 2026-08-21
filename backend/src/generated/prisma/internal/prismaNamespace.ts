@@ -419,7 +419,8 @@ export const ModelName = {
   mobilizer_details: 'mobilizer_details',
   job_events: 'job_events',
   placement: 'placement',
-  placement_applications: 'placement_applications'
+  placement_applications: 'placement_applications',
+  job_fair_candidates: 'job_fair_candidates'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -435,7 +436,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details" | "admin_details" | "admin_documents" | "batch_syllabus" | "enquiry_status_history" | "hr_details" | "mobilizer_details" | "job_events" | "placement" | "placement_applications"
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details" | "admin_details" | "admin_documents" | "batch_syllabus" | "enquiry_status_history" | "hr_details" | "mobilizer_details" | "job_events" | "placement" | "placement_applications" | "job_fair_candidates"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2659,6 +2660,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    job_fair_candidates: {
+      payload: Prisma.$job_fair_candidatesPayload<ExtArgs>
+      fields: Prisma.job_fair_candidatesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.job_fair_candidatesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.job_fair_candidatesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        findFirst: {
+          args: Prisma.job_fair_candidatesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.job_fair_candidatesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        findMany: {
+          args: Prisma.job_fair_candidatesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>[]
+        }
+        create: {
+          args: Prisma.job_fair_candidatesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        createMany: {
+          args: Prisma.job_fair_candidatesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.job_fair_candidatesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>[]
+        }
+        delete: {
+          args: Prisma.job_fair_candidatesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        update: {
+          args: Prisma.job_fair_candidatesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        deleteMany: {
+          args: Prisma.job_fair_candidatesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.job_fair_candidatesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.job_fair_candidatesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>[]
+        }
+        upsert: {
+          args: Prisma.job_fair_candidatesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$job_fair_candidatesPayload>
+        }
+        aggregate: {
+          args: Prisma.Job_fair_candidatesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateJob_fair_candidates>
+        }
+        groupBy: {
+          args: Prisma.job_fair_candidatesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Job_fair_candidatesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.job_fair_candidatesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Job_fair_candidatesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3272,6 +3347,29 @@ export const Placement_applicationsScalarFieldEnum = {
 export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
 
 
+export const Job_fair_candidatesScalarFieldEnum = {
+  job_fair_candidate_id: 'job_fair_candidate_id',
+  job_event_id: 'job_event_id',
+  candidate_name: 'candidate_name',
+  contact_no: 'contact_no',
+  location: 'location',
+  qualification: 'qualification',
+  college_institute: 'college_institute',
+  age: 'age',
+  gender: 'gender',
+  candidate_experience: 'candidate_experience',
+  area: 'area',
+  ward_no: 'ward_no',
+  vidhansabha: 'vidhansabha',
+  company_name: 'company_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  candidate_application_status: 'candidate_application_status'
+} as const
+
+export type Job_fair_candidatesScalarFieldEnum = (typeof Job_fair_candidatesScalarFieldEnum)[keyof typeof Job_fair_candidatesScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3775,6 +3873,7 @@ export type GlobalOmitConfig = {
   job_events?: Prisma.job_eventsOmit
   placement?: Prisma.placementOmit
   placement_applications?: Prisma.placement_applicationsOmit
+  job_fair_candidates?: Prisma.job_fair_candidatesOmit
 }
 
 /* Types for Logging */

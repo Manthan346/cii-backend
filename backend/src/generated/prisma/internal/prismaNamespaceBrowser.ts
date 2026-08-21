@@ -78,7 +78,8 @@ export const ModelName = {
   mobilizer_details: 'mobilizer_details',
   job_events: 'job_events',
   placement: 'placement',
-  placement_applications: 'placement_applications'
+  placement_applications: 'placement_applications',
+  job_fair_candidates: 'job_fair_candidates'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -669,6 +670,29 @@ export const Placement_applicationsScalarFieldEnum = {
 } as const
 
 export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
+
+
+export const Job_fair_candidatesScalarFieldEnum = {
+  job_fair_candidate_id: 'job_fair_candidate_id',
+  job_event_id: 'job_event_id',
+  candidate_name: 'candidate_name',
+  contact_no: 'contact_no',
+  location: 'location',
+  qualification: 'qualification',
+  college_institute: 'college_institute',
+  age: 'age',
+  gender: 'gender',
+  candidate_experience: 'candidate_experience',
+  area: 'area',
+  ward_no: 'ward_no',
+  vidhansabha: 'vidhansabha',
+  company_name: 'company_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  candidate_application_status: 'candidate_application_status'
+} as const
+
+export type Job_fair_candidatesScalarFieldEnum = (typeof Job_fair_candidatesScalarFieldEnum)[keyof typeof Job_fair_candidatesScalarFieldEnum]
 
 
 export const SortOrder = {
