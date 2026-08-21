@@ -53,6 +53,7 @@ export type PlacementMinAggregateOutputType = {
   employment_type: string | null
   application_link: string | null
   sector: string | null
+  experience: string | null
 }
 
 export type PlacementMaxAggregateOutputType = {
@@ -74,6 +75,7 @@ export type PlacementMaxAggregateOutputType = {
   employment_type: string | null
   application_link: string | null
   sector: string | null
+  experience: string | null
 }
 
 export type PlacementCountAggregateOutputType = {
@@ -95,6 +97,7 @@ export type PlacementCountAggregateOutputType = {
   employment_type: number
   application_link: number
   sector: number
+  experience: number
   _all: number
 }
 
@@ -126,6 +129,7 @@ export type PlacementMinAggregateInputType = {
   employment_type?: true
   application_link?: true
   sector?: true
+  experience?: true
 }
 
 export type PlacementMaxAggregateInputType = {
@@ -147,6 +151,7 @@ export type PlacementMaxAggregateInputType = {
   employment_type?: true
   application_link?: true
   sector?: true
+  experience?: true
 }
 
 export type PlacementCountAggregateInputType = {
@@ -168,6 +173,7 @@ export type PlacementCountAggregateInputType = {
   employment_type?: true
   application_link?: true
   sector?: true
+  experience?: true
   _all?: true
 }
 
@@ -276,6 +282,7 @@ export type PlacementGroupByOutputType = {
   employment_type: string | null
   application_link: string | null
   sector: string | null
+  experience: string | null
   _count: PlacementCountAggregateOutputType | null
   _avg: PlacementAvgAggregateOutputType | null
   _sum: PlacementSumAggregateOutputType | null
@@ -320,6 +327,7 @@ export type placementWhereInput = {
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
   application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
+  experience?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
   placement_applications?: Prisma.Placement_applicationsListRelationFilter
 }
@@ -343,6 +351,7 @@ export type placementOrderByWithRelationInput = {
   employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
   application_link?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
   hr_details?: Prisma.hr_detailsOrderByWithRelationInput
   placement_applications?: Prisma.placement_applicationsOrderByRelationAggregateInput
 }
@@ -369,6 +378,7 @@ export type placementWhereUniqueInput = Prisma.AtLeast<{
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
   application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
+  experience?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
   placement_applications?: Prisma.Placement_applicationsListRelationFilter
 }, "placement_id">
@@ -392,6 +402,7 @@ export type placementOrderByWithAggregationInput = {
   employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
   application_link?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
+  experience?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.placementCountOrderByAggregateInput
   _avg?: Prisma.placementAvgOrderByAggregateInput
   _max?: Prisma.placementMaxOrderByAggregateInput
@@ -421,6 +432,7 @@ export type placementScalarWhereWithAggregatesInput = {
   employment_type?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   application_link?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   sector?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
+  experience?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
 }
 
 export type placementCreateInput = {
@@ -441,6 +453,7 @@ export type placementCreateInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
   hr_details: Prisma.hr_detailsCreateNestedOneWithoutPlacementInput
   placement_applications?: Prisma.placement_applicationsCreateNestedManyWithoutPlacementInput
 }
@@ -464,6 +477,7 @@ export type placementUncheckedCreateInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
   placement_applications?: Prisma.placement_applicationsUncheckedCreateNestedManyWithoutPlacementInput
 }
 
@@ -485,6 +499,7 @@ export type placementUpdateInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_details?: Prisma.hr_detailsUpdateOneRequiredWithoutPlacementNestedInput
   placement_applications?: Prisma.placement_applicationsUpdateManyWithoutPlacementNestedInput
 }
@@ -508,6 +523,7 @@ export type placementUncheckedUpdateInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUncheckedUpdateManyWithoutPlacementNestedInput
 }
 
@@ -530,6 +546,7 @@ export type placementCreateManyInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
 }
 
 export type placementUpdateManyMutationInput = {
@@ -550,6 +567,7 @@ export type placementUpdateManyMutationInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementUncheckedUpdateManyInput = {
@@ -571,6 +589,7 @@ export type placementUncheckedUpdateManyInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlacementListRelationFilter = {
@@ -602,6 +621,7 @@ export type placementCountOrderByAggregateInput = {
   employment_type?: Prisma.SortOrder
   application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
 }
 
 export type placementAvgOrderByAggregateInput = {
@@ -627,6 +647,7 @@ export type placementMaxOrderByAggregateInput = {
   employment_type?: Prisma.SortOrder
   application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
 }
 
 export type placementMinOrderByAggregateInput = {
@@ -648,6 +669,7 @@ export type placementMinOrderByAggregateInput = {
   employment_type?: Prisma.SortOrder
   application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
+  experience?: Prisma.SortOrder
 }
 
 export type placementSumOrderByAggregateInput = {
@@ -737,6 +759,7 @@ export type placementCreateWithoutHr_detailsInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
   placement_applications?: Prisma.placement_applicationsCreateNestedManyWithoutPlacementInput
 }
 
@@ -758,6 +781,7 @@ export type placementUncheckedCreateWithoutHr_detailsInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
   placement_applications?: Prisma.placement_applicationsUncheckedCreateNestedManyWithoutPlacementInput
 }
 
@@ -809,6 +833,7 @@ export type placementScalarWhereInput = {
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
   application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
+  experience?: Prisma.StringNullableFilter<"placement"> | string | null
 }
 
 export type placementCreateWithoutPlacement_applicationsInput = {
@@ -829,6 +854,7 @@ export type placementCreateWithoutPlacement_applicationsInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
   hr_details: Prisma.hr_detailsCreateNestedOneWithoutPlacementInput
 }
 
@@ -851,6 +877,7 @@ export type placementUncheckedCreateWithoutPlacement_applicationsInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
 }
 
 export type placementCreateOrConnectWithoutPlacement_applicationsInput = {
@@ -887,6 +914,7 @@ export type placementUpdateWithoutPlacement_applicationsInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_details?: Prisma.hr_detailsUpdateOneRequiredWithoutPlacementNestedInput
 }
 
@@ -909,6 +937,7 @@ export type placementUncheckedUpdateWithoutPlacement_applicationsInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementCreateManyHr_detailsInput = {
@@ -929,6 +958,7 @@ export type placementCreateManyHr_detailsInput = {
   employment_type?: string | null
   application_link?: string | null
   sector?: string | null
+  experience?: string | null
 }
 
 export type placementUpdateWithoutHr_detailsInput = {
@@ -949,6 +979,7 @@ export type placementUpdateWithoutHr_detailsInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUpdateManyWithoutPlacementNestedInput
 }
 
@@ -970,6 +1001,7 @@ export type placementUncheckedUpdateWithoutHr_detailsInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUncheckedUpdateManyWithoutPlacementNestedInput
 }
 
@@ -991,6 +1023,7 @@ export type placementUncheckedUpdateManyWithoutHr_detailsInput = {
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1043,6 +1076,7 @@ export type placementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   employment_type?: boolean
   application_link?: boolean
   sector?: boolean
+  experience?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   placement_applications?: boolean | Prisma.placement$placement_applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.PlacementCountOutputTypeDefaultArgs<ExtArgs>
@@ -1067,6 +1101,7 @@ export type placementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   employment_type?: boolean
   application_link?: boolean
   sector?: boolean
+  experience?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -1089,6 +1124,7 @@ export type placementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   employment_type?: boolean
   application_link?: boolean
   sector?: boolean
+  experience?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -1111,9 +1147,10 @@ export type placementSelectScalar = {
   employment_type?: boolean
   application_link?: boolean
   sector?: boolean
+  experience?: boolean
 }
 
-export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "salary" | "employment_type" | "application_link" | "sector", ExtArgs["result"]["placement"]>
+export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "salary" | "employment_type" | "application_link" | "sector" | "experience", ExtArgs["result"]["placement"]>
 export type placementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   placement_applications?: boolean | Prisma.placement$placement_applicationsArgs<ExtArgs>
@@ -1151,6 +1188,7 @@ export type $placementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     employment_type: string | null
     application_link: string | null
     sector: string | null
+    experience: string | null
   }, ExtArgs["result"]["placement"]>
   composites: {}
 }
@@ -1594,6 +1632,7 @@ export interface placementFieldRefs {
   readonly employment_type: Prisma.FieldRef<"placement", 'String'>
   readonly application_link: Prisma.FieldRef<"placement", 'String'>
   readonly sector: Prisma.FieldRef<"placement", 'String'>
+  readonly experience: Prisma.FieldRef<"placement", 'String'>
 }
     
 

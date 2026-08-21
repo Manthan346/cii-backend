@@ -3324,7 +3324,8 @@ export const PlacementScalarFieldEnum = {
   salary: 'salary',
   employment_type: 'employment_type',
   application_link: 'application_link',
-  sector: 'sector'
+  sector: 'sector',
+  experience: 'experience'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]

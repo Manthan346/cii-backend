@@ -578,6 +578,7 @@ model placement {
   employment_type          String?
   application_link         String?
   sector                   String?
+  experience               String?
   hr_details               hr_details               @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
   placement_applications   placement_applications[]
 }
