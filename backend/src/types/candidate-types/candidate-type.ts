@@ -1,5 +1,4 @@
 export type CandidateProfile = {
-
   candidate_first_name: string;
   candidate_last_name: string | null;
   contact_number: string;
@@ -10,13 +9,19 @@ export type CandidateProfile = {
   blood_group: string | null;
   candidate_current_address: string | null;
   candidate_permanent_address: string | null;
-  state_name: string | null;
-  district: string | null;
-  pin_code: number | null;
-  candidate_code: string | null
+  current_city: string | null;
+  current_district: string | null;
+  current_pin_code: string | null;
+  current_state_name: string | null;
+  permanent_city: string | null;
+  permanent_district: string | null;
+  permanent_pin_code: string | null;
+  permanent_state_name: string | null;
+  candidate_code: string | null;
+
+  
+ 
 };
-
-
 
 
 type ParentDetails = {
@@ -38,6 +43,7 @@ export type CandidateGuardianDetails = {
   motherDetails: ParentDetails;  // mother
   guardianDetails: GuardianDetails; // guardian (has extra fields: relationship, gender, dob)
 };
+
 
 // types/candidate-academic.type.ts
 

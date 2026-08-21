@@ -135,7 +135,8 @@ export const notification_reference_type = {
   RESULT: 'RESULT',
   GENERAL: 'GENERAL',
   EVENT: 'EVENT',
-  JOB_EVENT: 'JOB_EVENT'
+  JOB_EVENT: 'JOB_EVENT',
+  JOB_POSTING: 'JOB_POSTING'
 } as const
 
 export type notification_reference_type = (typeof notification_reference_type)[keyof typeof notification_reference_type]
@@ -159,7 +160,8 @@ export const notification_type = {
   EVENT_DELETED: 'EVENT_DELETED',
   JOB_EVENT_CREATED: 'JOB_EVENT_CREATED',
   JOB_EVENT_UPDATED: 'JOB_EVENT_UPDATED',
-  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED'
+  JOB_EVENT_DELETED: 'JOB_EVENT_DELETED',
+  JOB_OPPURTUNITY: 'JOB_OPPURTUNITY'
 } as const
 
 export type notification_type = (typeof notification_type)[keyof typeof notification_type]
@@ -195,6 +197,15 @@ export const event_type = {
 export type event_type = (typeof event_type)[keyof typeof event_type]
 
 
+export const event_status_type = {
+  UPCOMING: 'UPCOMING',
+  ONGOING: 'ONGOING',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
+
+
 export const enquiry_status = {
   CALL_RECIEVED: 'CALL_RECIEVED',
   CENTER_VISITED: 'CENTER_VISITED',
@@ -205,19 +216,24 @@ export const enquiry_status = {
   CALL_DROPPED_OUT: 'CALL_DROPPED_OUT',
   DOCUMENT_VERIFICATION_PENDING: 'DOCUMENT_VERIFICATION_PENDING',
   INTERESTED: 'INTERESTED',
-  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE'
+  DOCUMENT_VERIFICATION_DONE: 'DOCUMENT_VERIFICATION_DONE',
+  NOT_CONNECTED: 'NOT_CONNECTED',
+  CONNECTED: 'CONNECTED',
+  COUNSELING_DONE: 'COUNSELING_DONE',
+  FOLLOW_UP_PENDING: 'FOLLOW_UP_PENDING',
+  NOT_INTERESTED: 'NOT_INTERESTED'
 } as const
 
 export type enquiry_status = (typeof enquiry_status)[keyof typeof enquiry_status]
 
 
-export const event_status_type = {
+export const job_event_status = {
   UPCOMING: 'UPCOMING',
-  ONGOING: 'ONGOING',
-  COMPLETED: 'COMPLETED'
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
 } as const
 
-export type event_status_type = (typeof event_status_type)[keyof typeof event_status_type]
+export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]
 
 
 export const job_event_type = {
@@ -228,10 +244,22 @@ export const job_event_type = {
 export type job_event_type = (typeof job_event_type)[keyof typeof job_event_type]
 
 
-export const job_event_status = {
-  UPCOMING: 'UPCOMING',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
+export const work_mode_type = {
+  online: 'online',
+  offline: 'offline',
+  hybrid: 'hybrid'
 } as const
 
-export type job_event_status = (typeof job_event_status)[keyof typeof job_event_status]
+export type work_mode_type = (typeof work_mode_type)[keyof typeof work_mode_type]
+
+
+export const application_status_type = {
+  SCREENING: 'SCREENING',
+  SHORTLISTED: 'SHORTLISTED',
+  INTERVIEW: 'INTERVIEW',
+  SELECTED: 'SELECTED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type application_status_type = (typeof application_status_type)[keyof typeof application_status_type]

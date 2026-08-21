@@ -9,13 +9,20 @@ import { formatEnquiryDate, formatHistoryDate, formatHistoryTime } from "../../u
 export const getEnquiryDetails = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
         const enquiryId  = req.params.enquiryId as string;
+        const centerId = req.mobilizer?.center_id;
 
         if (!enquiryId) {
             throw new ApiError(400, "Enquiry ID is required");
         }
 
-        const enquiry = await prisma.enquiry_records.findUnique({
-            where: { enquiry_id: enquiryId },
+        if (!centerId) {
+            throw new ApiError(401, "Mobilizer center not found");
+        }
+
+        // Scope by center: use findFirst with both enquiry_id AND center_id so an
+        // enquiry that exists but belongs to another center returns null -> 404.
+        const enquiry = await prisma.enquiry_records.findFirst({
+            where: { enquiry_id: enquiryId, center_id: centerId },
             select: {
                 enquiry_id: true,
                 enquiry_first_name: true,

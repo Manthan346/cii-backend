@@ -148,17 +148,27 @@ export type enquiry_status_history = Prisma.enquiry_status_historyModel
  */
 export type hr_details = Prisma.hr_detailsModel
 /**
- * Model job_events
- * 
- */
-export type job_events = Prisma.job_eventsModel
-/**
  * Model mobilizer_details
  * 
  */
 export type mobilizer_details = Prisma.mobilizer_detailsModel
 /**
+ * Model job_events
+ * 
+ */
+export type job_events = Prisma.job_eventsModel
+/**
  * Model placement
  * 
  */
 export type placement = Prisma.placementModel
+/**
+ * Model placement_applications
+ * 
+ */
+export type placement_applications = Prisma.placement_applicationsModel
+/**
+ * Model job_fair_candidates
+ * 
+ */
+export type job_fair_candidates = Prisma.job_fair_candidatesModel

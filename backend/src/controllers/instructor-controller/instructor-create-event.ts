@@ -46,6 +46,13 @@ export const createInstructorEvent = asyncHandler(
 
         switch (data.target_type) {
 
+            case event_target_type.PUBLIC: {
+                throw new ApiError(
+                    403,
+                    "Instructors cannot create PUBLIC events. contact mobilizer instead."
+                );
+            }
+
             case event_target_type.BATCH: {
 
                 if (!data.batch_ids) {
@@ -196,6 +203,7 @@ export const createInstructorEvent = asyncHandler(
                         event_time: new Date(
                             `1970-01-01T${data.event_time}:00`
                         ),
+                        
                         venue: data.venue,
                         event_link: data.event_link,
                         event_mode: data.event_mode,

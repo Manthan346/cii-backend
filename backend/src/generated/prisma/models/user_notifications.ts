@@ -249,7 +249,7 @@ export type user_notificationsCreateInput = {
   is_read?: boolean
   read_at?: Date | string | null
   created_at?: Date | string
-  notifications: Prisma.notificationsCreateNestedOneWithoutUser_notificationsInput
+  notifications: Prisma.notificationsCreateNestedOneWithoutUser_Input
   user_login: Prisma.user_loginCreateNestedOneWithoutUser_notificationsInput
 }
 
@@ -267,7 +267,7 @@ export type user_notificationsUpdateInput = {
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_notificationsNestedInput
+  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_NestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutUser_notificationsNestedInput
 }
 
@@ -436,7 +436,7 @@ export type user_notificationsCreateWithoutUser_loginInput = {
   is_read?: boolean
   read_at?: Date | string | null
   created_at?: Date | string
-  notifications: Prisma.notificationsCreateNestedOneWithoutUser_notificationsInput
+  notifications: Prisma.notificationsCreateNestedOneWithoutUser_Input
 }
 
 export type user_notificationsUncheckedCreateWithoutUser_loginInput = {
@@ -540,7 +540,7 @@ export type user_notificationsUpdateWithoutUser_loginInput = {
   is_read?: Prisma.BoolFieldUpdateOperationsInput | boolean
   read_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_notificationsNestedInput
+  notifications?: Prisma.notificationsUpdateOneRequiredWithoutUser_NestedInput
 }
 
 export type user_notificationsUncheckedUpdateWithoutUser_loginInput = {

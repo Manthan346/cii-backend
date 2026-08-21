@@ -46,14 +46,18 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
       user_login: { select: { user_email: true } },
       date_of_birth: true,
       blood_group: true,
+      candidate_permanent_address: true,
       candidate_current_address: true,
-      candidate_permanant_address: true,
-      state_name: true,
-      district: true,
-      pin_code: true,
+      permanent_city: true,
+      permanent_district: true,
+      permanent_pin_code: true,
+      permanent_state_name: true,
+      current_city: true,
+      current_district: true,
+      current_pin_code: true,
+      current_state_name: true,
       candidate_unique_id: true,
       batch_enrollment: {
-        
         select: {
           batch_details: {
             select: {
@@ -75,11 +79,16 @@ const candidateProfileDetails = asyncHandler(async (req: CandidateAuthRequest, r
     date_of_birth: candidateProfile.date_of_birth,
     blood_group: candidateProfile.blood_group,
     candidate_current_address: candidateProfile.candidate_current_address,
-    candidate_permanent_address: candidateProfile.candidate_permanant_address,
-    state_name: candidateProfile.state_name,
-    district: candidateProfile.district,
+    candidate_permanent_address: candidateProfile.candidate_permanent_address,
+    current_city: candidateProfile.current_city,
+    current_district: candidateProfile.current_district,
+    current_pin_code: candidateProfile.current_pin_code,
+    current_state_name: candidateProfile.current_state_name,
+    permanent_city: candidateProfile.permanent_city,
+    permanent_district: candidateProfile.permanent_district,
+    permanent_pin_code: candidateProfile.permanent_pin_code,
+    permanent_state_name: candidateProfile.permanent_state_name,
     candidate_code: candidateProfile.candidate_unique_id,
-    pin_code: candidateProfile.pin_code,
   };
 
   // ---- 3. Populate the cache for next time (fail-open here too) ----

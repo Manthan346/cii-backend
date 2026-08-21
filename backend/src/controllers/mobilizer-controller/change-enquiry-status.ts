@@ -9,10 +9,15 @@ import { enquiry_status } from "../../generated/prisma/enums";
 export const changeEnquiryStatus = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
         const  enquiryId  = req.params.enquiryId as string;
+        const centerId = req.mobilizer?.center_id;
         const { status } = req.body;
 
         if (!enquiryId) {
             throw new ApiError(400, "Enquiry ID is required");
+        }
+
+        if (!centerId) {
+            throw new ApiError(401, "Mobilizer center not found");
         }
 
         if (!status) {
@@ -27,9 +32,11 @@ export const changeEnquiryStatus = asyncHandler(
             throw new ApiError(400, `Invalid status. Valid statuses are: ${validStatuses}`);
         }
 
-        // Check if enquiry exists
-        const enquiry = await prisma.enquiry_records.findUnique({
-            where: { enquiry_id: enquiryId },
+        // Check if enquiry exists AND belongs to the mobilizer's center.
+        // findFirst with center_id scopes the lookup; an enquiry from another center
+        // returns null -> 404 (no cross-center status change allowed).
+        const enquiry = await prisma.enquiry_records.findFirst({
+            where: { enquiry_id: enquiryId, center_id: centerId },
             select: {
                 enquiry_id: true,
                 enq_status: true,
