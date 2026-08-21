@@ -21,6 +21,7 @@ import { updateApplicationStatusSchema } from "../../services/zod/hr/placement-a
 import { updatePlacementApplicationStatus } from "../../controllers/hr-controllers/update-placement-application";
 import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-details";
 import { getHrDashboard } from "../../controllers/hr-controllers/get-dashboard-data";
+import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-application-graph-data";
 
 const hrRouter = Router();
 
@@ -52,5 +53,7 @@ hrRouter.get("/job-management/:placement_id/view",verifyHrUsingAccessToken,
 getPlacementJobDetails);
 //fetch dashboard details of hr 
 hrRouter.get("/dashboard",verifyHrUsingAccessToken,getHrDashboard);
+//fetch application count for 5 recent jobs 
+hrRouter.get("/dashboard/application-graph",verifyHrUsingAccessToken,getApplicationsPerJob)
 
 export default hrRouter;
