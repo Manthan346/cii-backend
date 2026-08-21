@@ -3,32 +3,25 @@
 // (e.g. GET /api/courses, GET /api/rooms).
 
 export const courseSelectOptions = [
-  'eg Data Science-Batch 26',
-  'Data Science',
-  'Python programming',
-  'Business comm.',
+  "eg Data Science-Batch 26",
+  "Data Science",
+  "Python programming",
+  "Business comm.",
 ];
 
 export const sessionTimeOptions = [
-  'select time slot',
-  '9:00 AM - 11:00 AM',
-  '11:00 AM - 1:00 PM',
-  '2:00 PM - 4:00 PM',
-  '4:00 PM - 6:00 PM',
+  "select time slot",
+  "9:00 AM - 11:00 AM",
+  "11:00 AM - 1:00 PM",
+  "2:00 PM - 4:00 PM",
+  "4:00 PM - 6:00 PM",
 ];
 
 export const classroomOptions = [
-  'Room 204-in-person',
-  'Room 101-in-person',
-  'Online - Zoom',
-  'Hybrid',
+  "Room 204-in-person",
+  "Room 101-in-person",
+  "Online - Zoom",
+  "Hybrid",
 ];
 
-export const classroomOptions = [
-  'Room 204-in-person',
-  'Room 101-in-person',
-  'Online - Zoom',
-  'Hybrid',
-];
-
-export const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+export const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
