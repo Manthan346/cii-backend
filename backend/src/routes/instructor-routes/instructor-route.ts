@@ -2,6 +2,12 @@ import { Router } from "express";
 // import { loginInstructor } from "../../src/controllers/instructor-controller/login-instructor";
 import { verifyInstructorUsingAccessToken } from "../../middlewares/instructor-auth-middleware/instructor-auth-middleware";
 import { getInstructorDashboard } from "../../controllers/instructor-controller/instructor-dashboard";
+import { editInstructorProfileSchema } from "../../services/zod/instructor/instructor-edit-schema";
+import { instructorEditProfile } from "../../controllers/instructor-controller/instructor-edit-profile";
+import { instructorEditAddress } from "../../controllers/instructor-controller/instructor-edit-address";
+import { editInstructorAddressSchema } from "../../services/zod/instructor/instructor-edit-address-schema";
+import { instructorEditAcademic } from "../../controllers/instructor-controller/instructor-edit-academic";
+import { editInstructorAcademicSchema } from "../../services/zod/instructor/instructor-edit-academic-schema";
 import { getBatchAttendance } from "../../controllers/instructor-controller/instructor-batch-attendance";
 import { createInstructorCandidateSchema } from "../../services/zod/instructor/create-Instructor-candidate-schema";
 import { createInstructorCandidateEnrollmentSchema } from "../../services/zod/instructor/create-instructor-candidate-enrollment-schema";
@@ -47,6 +53,8 @@ import { deleteInstructorEvent } from "../../controllers/instructor-controller/d
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
 import { instructorGuardianDetails } from "../../controllers/instructor-controller/instructor-guardian-details";
+import { instructorEditGuardian } from "../../controllers/instructor-controller/instructor-edit-guardian";
+import { editInstructorGuardianSchema } from "../../services/zod/instructor/instructor-edit-guardian-schema";
 import { addCandidateAttendance } from "../../controllers/instructor-controller/mark-candidate-attendance";
 import { getAllCoursesAndBatches } from "../../controllers/instructor-controller/get-allCoursesAndBatches";
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
@@ -75,6 +83,25 @@ instructorRouter.post(
     validateBody(createInstructorCandidateSchema),
     createCandidateByInstructor
 )
+instructorRouter.patch(
+    "/edit-profile",
+    verifyInstructorUsingAccessToken,
+    upload.single("profile_photo"),
+    validateBody(editInstructorProfileSchema),
+    instructorEditProfile
+)
+instructorRouter.patch(
+    "/edit-address",
+    verifyInstructorUsingAccessToken,
+    validateBody(editInstructorAddressSchema),
+    instructorEditAddress
+)
+instructorRouter.patch(
+    "/edit-academic",
+    verifyInstructorUsingAccessToken,
+    validateBody(editInstructorAcademicSchema),
+    instructorEditAcademic
+)
 instructorRouter.get("/basic-information", verifyInstructorUsingAccessToken,  instructorProfileDetails)
 instructorRouter.get("/academics-details", verifyInstructorUsingAccessToken,  instructorAcademicDetails)
 instructorRouter.post('/documents', upload.fields([
@@ -92,6 +119,12 @@ instructorRouter.get('/batch-details/:batchId',verifyInstructorUsingAccessToken,
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, createBatch)
 instructorRouter.patch('/batch-details/:batchId', verifyInstructorUsingAccessToken,validateBody(updateBatchSchema), editBatchDetails)
 instructorRouter.post('/create-batch', verifyInstructorUsingAccessToken, validateBody(createBatchSchema), createBatch)
+instructorRouter.patch(
+    "/edit-guardian",
+    verifyInstructorUsingAccessToken,
+    validateBody(editInstructorGuardianSchema),
+    instructorEditGuardian
+)
 instructorRouter.get('/guardian-details', verifyInstructorUsingAccessToken, instructorGuardianDetails)
 instructorRouter.post('/mark-candidate-attendnace/:attendanceSessionId', verifyInstructorUsingAccessToken,validateBody(addAttendanceBodySchema), addCandidateAttendance)
 instructorRouter.get('/get-all-courses-and-batches', verifyInstructorUsingAccessToken, getAllCoursesAndBatches)

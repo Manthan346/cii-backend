@@ -1,4 +1,9 @@
 // utils/role-registry.ts
+//whenever creating a new role add the role details here first
+
+
+
+
 import { prisma } from "../../lib/prisma";
 import { generateAccessToken, generateRefreshToken } from "../candidate-jwt-auth/candidate-auth";
 import { generateInstructorAccessToken, generateInstructorRefreshToken } from "../instructor-jwt-auth/instructor-auth";
