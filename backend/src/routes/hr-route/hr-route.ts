@@ -16,6 +16,12 @@ import { getAllJobPostings } from "../../controllers/hr-controllers/get-all-job-
 import { updatePlacementSchema } from "../../services/zod/hr/placement-validation";
 import { updateJobPosting } from "../../controllers/hr-controllers/update-job-posting";
 import { getAllNotifications } from "../../controllers/hr-controllers/get-all-hrNotifications";
+import { getPlacementApplications } from "../../controllers/hr-controllers/fetch-specific-jobApplication";
+import { updateApplicationStatusSchema } from "../../services/zod/hr/placement-application-validation";
+import { updatePlacementApplicationStatus } from "../../controllers/hr-controllers/update-placement-application";
+import { getPlacementJobDetails} from "../../controllers/hr-controllers/hr-job-details";
+import { getHrDashboard } from "../../controllers/hr-controllers/get-dashboard-data";
+import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-application-graph-data";
 
 const hrRouter = Router();
 
@@ -38,5 +44,16 @@ hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,get
 hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,validateBody(updatePlacementSchema),updateJobPosting);
 //fetch all notifications
 hrRouter.get('/notifications',verifyHrUsingAccessToken,paginationMiddleware,getAllNotifications);
+//fetch all job applications
+hrRouter.get('/applications',verifyHrUsingAccessToken,paginationMiddleware,getPlacementApplications)
+//update status of specific application
+hrRouter.patch('/applications/:applicationId/status',verifyHrUsingAccessToken,validateBody(updateApplicationStatusSchema),updatePlacementApplicationStatus);
+//view details of specific 
+hrRouter.get("/job-management/:placement_id/view",verifyHrUsingAccessToken,
+getPlacementJobDetails);
+//fetch dashboard details of hr 
+hrRouter.get("/dashboard",verifyHrUsingAccessToken,getHrDashboard);
+//fetch application count for 5 recent jobs 
+hrRouter.get("/dashboard/application-graph",verifyHrUsingAccessToken,getApplicationsPerJob)
 
 export default hrRouter;

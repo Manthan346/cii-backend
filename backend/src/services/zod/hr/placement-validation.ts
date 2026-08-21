@@ -73,6 +73,12 @@ export const createPlacementSchema = z.object({
         /^\d{4}-\d{2}-\d{2}$/,
         "Last date to apply must be in YYYY-MM-DD format"
     ),
+
+    experience:z
+    .string()
+    .trim()
+    .min(1,"Experience required.")
+    .max(255,"Experience cannot exceed 255 characters.")
 });
 
 export const updatePlacementSchema = createPlacementSchema

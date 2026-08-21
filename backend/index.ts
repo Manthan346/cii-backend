@@ -20,6 +20,7 @@ import dotenv from 'dotenv'
 import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
 import { initializeCandidateSequence } from "./src/utils/candidate-utils/generate-student-id";
+import jobRouter from "./src/routes/job-portal/job-portal-route";
 
 const app = Express();
 const port = 3000;
@@ -64,6 +65,7 @@ app.use("/api/v1/events", eventsRouter)
 app.use("/api/v1/enquiry", enquiryRouter)
 app.use("/api/v1/hr",hrRouter)
 app.use("/api/v1/admin",adminRouter)
+app.use("/api/v1/job-portal",jobRouter);
 
 
 app.listen(port, () => {
