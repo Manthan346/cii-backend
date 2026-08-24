@@ -4,6 +4,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { adminAuthRequest } from "../../interfaces/admin-auth-interface";
 import { role_types } from "../../generated/prisma/enums";
+import { prisma } from "../../lib/prisma";
 
 type AdminAccessTokenPayload = {
     user_id: string;
@@ -31,7 +32,26 @@ export const verifyAdminUsingAccessToken = asyncHandler(
             throw new ApiError(401, "you are not an admin");
         }
 
-        
+        const admin = await prisma.user_login.findUnique({
+            where: {
+                user_id: decoded.user_id,
+            },
+            select: {
+                user_id: true,
+                admin_approval: true,
+            },
+        });
+
+        if (!admin) {
+            throw new ApiError(401, "user not found");
+        }
+
+        if (!admin.admin_approval) {
+            throw new ApiError(
+                403,
+                "Your account has been frozen by the administrator."
+            );
+        }
 
         const adminReq = req as adminAuthRequest;
 

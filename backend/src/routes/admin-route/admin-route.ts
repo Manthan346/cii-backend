@@ -8,6 +8,8 @@ import { verify } from "node:crypto";
 import { createHrByAdmin } from "../../controllers/admin-controllers/create-hr";
 import { createInstructorByAdmin } from "../../controllers/admin-controllers/create-instructor";
 import { createInstructorSchema } from "../../services/zod/admin/instructor-creation-schema";
+import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
+import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
 
 const adminRouter = Router();
 
@@ -22,5 +24,8 @@ adminRouter.post(
 adminRouter.post('/total-users/create-hr',verifyAdminUsingAccessToken,validateBody(createHrSchema),createHrByAdmin);
 //create instructor
 adminRouter.post('/total-users/create-instructor',verifyAdminUsingAccessToken,validateBody(createInstructorSchema),createInstructorByAdmin);
+//freeze account functionality 
+adminRouter.patch("/total-users/:userId/approval",verifyAdminUsingAccessToken,
+validateBody(updateUserApprovalSchema),updateUserApproval);
 
 export default adminRouter
