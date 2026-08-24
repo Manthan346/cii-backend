@@ -6,6 +6,8 @@ import { createMobilizerByAdmin } from "../../controllers/admin-controllers/crea
 import { createHrSchema } from "../../services/zod/admin/hr-creation-schema";
 import { verify } from "node:crypto";
 import { createHrByAdmin } from "../../controllers/admin-controllers/create-hr";
+import { createInstructorByAdmin } from "../../controllers/admin-controllers/create-instructor";
+import { createInstructorSchema } from "../../services/zod/admin/instructor-creation-schema";
 
 const adminRouter = Router();
 
@@ -18,5 +20,7 @@ adminRouter.post(
 );
 //create hr
 adminRouter.post('/total-users/create-hr',verifyAdminUsingAccessToken,validateBody(createHrSchema),createHrByAdmin);
+//create instructor
+adminRouter.post('/total-users/create-instructor',verifyAdminUsingAccessToken,validateBody(createInstructorSchema),createInstructorByAdmin);
 
 export default adminRouter
