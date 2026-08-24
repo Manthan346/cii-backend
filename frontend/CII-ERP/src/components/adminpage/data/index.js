@@ -9,3 +9,9 @@
  */
 export * from './sidebarMenu';
 export * from './dashboardData';
+export * from './totalUsersData';
+export * from './candidatesData';
+export * from './suspendedAccountsData';
+export * from './courseManagementData';
+export * from './approvalRequestsPageData';
+export * from './profileData';

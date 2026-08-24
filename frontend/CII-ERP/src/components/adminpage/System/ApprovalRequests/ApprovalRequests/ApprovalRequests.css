@@ -1,0 +1,19 @@
+.admin-approval-requests {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1280px;
+}
+
+.admin-approval-requests__title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #14162b;
+}
+
+.admin-approval-requests__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}

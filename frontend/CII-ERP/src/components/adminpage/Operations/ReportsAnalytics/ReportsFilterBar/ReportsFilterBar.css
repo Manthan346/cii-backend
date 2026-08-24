@@ -1,0 +1,104 @@
+.ra-filterbar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 28px;
+  background: #ffffff;
+  border-radius: var(--ra-card-radius, 16px);
+  padding: 20px 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.ra-filterbar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ra-filterbar__group-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9aa2b1;
+}
+
+.ra-filterbar__row {
+  display: flex;
+  gap: 20px;
+}
+
+.ra-filterbar__date {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ra-filterbar__label {
+  font-size: 13px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.ra-filterbar__input-wrap,
+.ra-filterbar__select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ra-filterbar__input-wrap input,
+.ra-filterbar__select-wrap select {
+  height: 42px;
+  border: 1px solid var(--ra-border, #e4e8f0);
+  border-radius: 9px;
+  padding: 0 14px 0 38px;
+  font-size: 14px;
+  color: #1f2430;
+  background: #ffffff;
+  min-width: 170px;
+  outline: none;
+  font-family: inherit;
+  appearance: none;
+}
+
+.ra-filterbar__select-wrap select {
+  padding-left: 14px;
+  padding-right: 34px;
+  min-width: 190px;
+  cursor: pointer;
+}
+
+.ra-filterbar__input-wrap input:focus,
+.ra-filterbar__select-wrap select:focus {
+  border-color: var(--ra-blue, #3e6ff3);
+}
+
+.ra-filterbar__icon {
+  position: absolute;
+  left: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+.ra-filterbar__chevron {
+  position: absolute;
+  right: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+.ra-filterbar__apply {
+  margin-left: auto;
+}
+
+@media (max-width: 760px) {
+  .ra-filterbar {
+    align-items: stretch;
+  }
+  .ra-filterbar__apply {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,35 @@
+.profile-page {
+  --md-blue: #3e6ff3;
+  --md-navy: #14224d;
+  background: #eef2fa;
+  padding: 28px 32px 40px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.profile-page * {
+  box-sizing: border-box;
+}
+
+.pf-header__title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.pf-header__subtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+@media (max-width: 640px) {
+  .profile-page {
+    padding: 20px 16px 32px;
+  }
+}

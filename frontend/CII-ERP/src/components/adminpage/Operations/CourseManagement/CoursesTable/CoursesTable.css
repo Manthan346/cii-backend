@@ -1,0 +1,88 @@
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1020px;
+}
+
+.admin-courses-table thead th {
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa1b1;
+  padding: 0 12px 12px;
+  border-bottom: 1px solid #e7eaf1;
+  white-space: nowrap;
+}
+
+.admin-courses-table tbody td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f2f7;
+  font-size: 14px;
+  font-weight: 600;
+  color: #14162b;
+  vertical-align: middle;
+}
+
+.admin-courses-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-courses-table__name {
+  font-weight: 700;
+  min-width: 160px;
+}
+
+.admin-courses-table__row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-courses-table__icon-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.admin-courses-table__icon-btn:hover {
+  background: #f5f6fa;
+}
+
+.admin-courses-table__icon-btn--danger:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+/* Footer: showing count + pagination
+   ========================================================================== */
+
+.admin-courses-table__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f2f7;
+}
+
+.admin-courses-table__showing {
+  font-size: 13.5px;
+  color: #6b7280;
+  font-weight: 500;
+}

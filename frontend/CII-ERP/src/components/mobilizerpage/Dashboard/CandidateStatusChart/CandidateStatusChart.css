@@ -1,0 +1,4 @@
+.md-candidate-status__center {
+  display: flex;
+  justify-content: center;
+}

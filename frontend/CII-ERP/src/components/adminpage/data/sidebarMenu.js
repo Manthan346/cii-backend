@@ -7,6 +7,7 @@ import {
   Settings,
   User,
   RotateCcw,
+  LogOut,
 } from 'lucide-react';
 
 /**
@@ -34,16 +35,21 @@ export const sidebarMenu = [
   {
     title: 'OPERATIONS',
     items: [
-      { id: 'course-management', title: 'Course Management', route: '/admin/courses', icon: BookOpen },
-      { id: 'reports-analytics', title: 'Reports & Analytics', route: '/admin/reports', icon: BarChart3 },
+      { id: 'course-management', title: 'Course Management', route: '/admin/course-management', icon: BookOpen },
+      { id: 'reports-analytics', title: 'Reports & Analytics', route: '/admin/reports-analytics', icon: BarChart3 },
     ],
   },
   {
     title: 'SYSTEM',
     items: [
-      { id: 'system-settings', title: 'System Settings', route: '/admin/settings', icon: Settings },
+      // { id: 'system-settings', title: 'System Settings', route: '/admin/settings', icon: Settings },
       { id: 'profile', title: 'Profile', route: '/admin/profile', icon: User },
-      { id: 'approval-requests', title: 'Approval Requests', route: '/admin/approvals', icon: RotateCcw },
+      { id: 'approval-requests', title: 'Approval Requests', route: '/admin/approval-requests', icon: RotateCcw },
+    ],
+  },
+   {
+    items: [
+      { id: 'logout', title: 'Logout', route: '/admin/logout', icon: LogOut },
     ],
   },
 ];

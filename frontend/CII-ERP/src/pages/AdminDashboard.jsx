@@ -27,16 +27,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from '../components/adminpage/layout/AdminLayout';
 import Dashboard from '../components/adminpage/Dashboard/Dashboard/Dashboard';
 import TotalUsers from '../components/adminpage/TotalUsers/TotalUsers/TotalUsers';
+import Candidates from '../components/adminpage/Candidates/Candidates/Candidates';
+import SuspendedAccounts from '../components/adminpage/SuspendedAccounts/SuspendedAccounts/SuspendedAccounts';
+import CourseManagement from '../components/adminpage/Operations/CourseManagement/CourseManagement/CourseManagement';
+import ReportsAnalytics from '../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics';
+import ApprovalRequests from '../components/adminpage/System/ApprovalRequests/ApprovalRequests/ApprovalRequests';
+import Profile from '../components/adminpage/Profile/Profile/Profile';
 
-// Not built yet — uncomment as each page lands, same as the candidate
-// portal's file. Sidebar already links to all of these paths.
-
-// import Candidates from '../components/adminpage/Candidates/Candidates/Candidates';
-// import CourseManagement from '../components/adminpage/CourseManagement/CourseManagement/CourseManagement';
-// import ReportsAnalytics from '../components/adminpage/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics';
-// import SystemSettings from '../components/adminpage/SystemSettings/SystemSettings/SystemSettings';
-// import Profile from '../components/adminpage/Profile/Profile/Profile';
-// import ApprovalRequests from '../components/adminpage/ApprovalRequests/ApprovalRequests/ApprovalRequests';
 
 export default function AdminDashboard() {
   return (
@@ -45,12 +42,12 @@ export default function AdminDashboard() {
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="total-users" element={<TotalUsers />} />
-        {/* <Route path="candidates" element={<Candidates />} /> */}
-        {/* <Route path="course-management" element={<CourseManagement />} /> */}
-        {/* <Route path="reports-analytics" element={<ReportsAnalytics />} /> */}
-        {/* <Route path="system-settings" element={<SystemSettings />} /> */}
-        {/* <Route path="profile" element={<Profile />} /> */}
-        {/* <Route path="approval-requests" element={<ApprovalRequests />} /> */}
+        <Route path="candidates" element={<Candidates />} />
+        <Route path="candidates/suspended-accounts" element={<SuspendedAccounts />} />
+        <Route path="course-management" element={<CourseManagement />} />
+        <Route path="reports-analytics" element={<ReportsAnalytics />} />
+        <Route path="approval-requests" element={<ApprovalRequests />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   );

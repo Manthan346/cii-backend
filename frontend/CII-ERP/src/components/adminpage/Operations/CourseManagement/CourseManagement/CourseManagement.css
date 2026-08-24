@@ -1,0 +1,39 @@
+.admin-course-management {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1280px;
+}
+
+.admin-course-management__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-course-management__title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #14162b;
+}
+
+.admin-course-management__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.admin-course-management__tabs-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-course-management__tabs-row > :first-child {
+  flex: 1;
+  min-width: 260px;
+}

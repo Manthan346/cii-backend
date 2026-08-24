@@ -1,0 +1,31 @@
+.ra-barchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.ra-barchart__grid {
+  stroke: #e9edf3;
+  stroke-width: 1;
+}
+
+.ra-barchart__bar {
+  transition: opacity 0.15s ease;
+}
+
+.ra-barchart__bar:hover {
+  opacity: 0.85;
+}
+
+.ra-barchart__ytick {
+  font-size: 11px;
+  fill: #8a93a3;
+  font-family: inherit;
+}
+
+.ra-barchart__xtick {
+  font-size: 12px;
+  fill: #6b7280;
+  font-family: inherit;
+}

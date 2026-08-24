@@ -1,0 +1,68 @@
+.rp-admission {
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+}
+
+.rp-admission__chart {
+  flex: 1.4;
+  min-width: 0;
+}
+
+.rp-admission__divider {
+  width: 1px;
+  background: #eef0f3;
+  flex-shrink: 0;
+}
+
+.rp-admission__stats {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.rp-summary-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rp-summary-tile__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #dce7fe;
+  color: #14224d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rp-summary-tile__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #14224d;
+}
+
+.rp-summary-tile__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2430;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .rp-admission {
+    flex-direction: column;
+  }
+  .rp-admission__divider {
+    width: auto;
+    height: 1px;
+  }
+  .rp-admission__stats {
+    padding-top: 0;
+  }
+}

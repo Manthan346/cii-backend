@@ -1,0 +1,15 @@
+.md-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.md-avatar--purple { background: #eae0fb; color: #7c3aed; }
+.md-avatar--pink { background: #fbdce6; color: #d6396a; }
+.md-avatar--orange { background: #ffe3c2; color: #d97706; }
+.md-avatar--blue { background: #dce7fe; color: #3e6ff3; }
+.md-avatar--green { background: #d9f9e2; color: #16a34a; }
+.md-avatar--navy { background: #14224d; color: #ffffff; }

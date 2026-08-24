@@ -25,8 +25,7 @@ import CandidateDashboard from "./pages/CandidateDashboard";
 import TrainerDashboard from "./pages/TrainerDashboard";
 import MobilizerDashboard from "./pages/MobilizerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-
-
+import RecruiterDashboard from "./pages/RecruiterDashboard";
 
 function App() {
   return (
@@ -37,10 +36,11 @@ function App() {
       <Route path="/events" element={<EventsPage />} />
       <Route path="/trainer/*" element={<TrainerDashboard />} />
       <Route path="/mobilizer/*" element={<MobilizerDashboard />} />
-     <Route path="/admin/*" element={<AdminDashboard />} />
+      <Route path="/admin/*" element={<AdminDashboard />} />
       <Route path="/*" element={<CandidatePage />} />
+      <Route path="/recruiter/*" element={<RecruiterDashboard />} />
     </Routes>
-  );          
+  );
 }
 
 export default App;

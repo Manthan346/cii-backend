@@ -1,0 +1,37 @@
+.md-barchart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.md-barchart__grid {
+  stroke: #e9edf3;
+  stroke-width: 1;
+}
+
+.md-barchart__bar {
+  transition: opacity 0.15s ease;
+}
+
+.md-barchart__bar:hover {
+  opacity: 0.85;
+}
+
+.md-barchart__ytick {
+  font-size: 11px;
+  fill: #8a93a3;
+  font-family: inherit;
+}
+
+.md-barchart__xtick {
+  font-size: 12px;
+  fill: #6b7280;
+  font-family: inherit;
+}
+
+.md-barchart__ylabel {
+  font-size: 11px;
+  fill: #9aa2b1;
+  font-family: inherit;
+}

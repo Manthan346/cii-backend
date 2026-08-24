@@ -1,0 +1,12 @@
+.md-greeting__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.md-greeting__subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}

@@ -1,49 +1,31 @@
-.m-section-card {
-  background: var(--color-white, #ffffff);
-  border-radius: var(--radius-lg, 16px);
-  padding: 22px 24px 24px;
-  box-shadow: var(--shadow-card, 0 2px 10px rgba(0, 0, 0, 0.05));
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  width: 100%;
-  box-sizing: border-box;
+.md-section-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  /* Intentionally no height/min-height here — the card sizes to its
+     content so it can never mismatch its neighbor's height or clip. */
 }
 
-.m-section-card__header {
+.md-section-card__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 18px;
 }
 
-.m-section-card__header--bare {
-  margin-bottom: 12px;
-}
-
-.m-section-card__title {
+.md-section-card__title {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 17px;
   font-weight: 700;
-  color: var(--color-text-primary, #14141a);
+  color: #101323;
 }
 
-.m-section-card__action {
-  border: none;
-  background: transparent;
-  color: var(--color-navy, #16214b);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-}
-
-.m-section-card__action:hover {
-  text-decoration: underline;
-}
-
-.m-section-card__body {
-  flex: 1;
-  min-width: 0;
+.md-section-card__subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #9aa2b1;
+  line-height: 1.5;
+  max-width: 480px;
 }

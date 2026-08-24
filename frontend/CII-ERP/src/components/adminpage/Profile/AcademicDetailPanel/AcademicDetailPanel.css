@@ -1,0 +1,17 @@
+.admin-academic-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-academic-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 560px) {
+  .admin-academic-detail__grid {
+    grid-template-columns: 1fr;
+  }
+}

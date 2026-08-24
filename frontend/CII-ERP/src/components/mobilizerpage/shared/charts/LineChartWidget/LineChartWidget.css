@@ -1,0 +1,36 @@
+.md-linechart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.md-linechart__grid {
+  stroke: #e3e8f0;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.md-linechart__line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.md-linechart__dot {
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.md-linechart__ytick {
+  font-size: 11px;
+  fill: #8a93a3;
+  font-family: inherit;
+}
+
+.md-linechart__xtick {
+  font-size: 12px;
+  fill: #6b7280;
+  font-family: inherit;
+}

@@ -1,0 +1,130 @@
+.jd-modal {
+  position: relative;
+  padding: 26px 28px 30px;
+}
+
+.jd-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f1f2f4;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.jd-modal__close:hover {
+  background: #e5e7eb;
+}
+
+.jd-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-right: 36px;
+}
+
+.jd-modal__date {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.jd-modal__location {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ---- completed: stat tiles ---- */
+.jd-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.jd-stat-tile {
+  background: #f6f7f9;
+  border-radius: 12px;
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jd-stat-tile__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.jd-stat-tile__label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.jd-stat-tile__bar {
+  height: 3px;
+  width: 40px;
+  border-radius: 999px;
+}
+
+.jd-stat-tile__bar--blue { background: #3e6ff3; }
+.jd-stat-tile__bar--purple { background: #7c3aed; }
+.jd-stat-tile__bar--green { background: #22c55e; }
+.jd-stat-tile__bar--amber { background: #d97706; }
+
+/* ---- upcoming/today/cancelled: empty state ---- */
+.jd-empty {
+  border: 1px solid #eef0f3;
+  border-radius: 14px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.jd-empty__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eef0f3;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.jd-empty__title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.jd-empty__subtext {
+  margin: 0;
+  font-size: 13px;
+  color: #9aa2b1;
+  max-width: 340px;
+  line-height: 1.5;
+}
+
+.jd-empty__notice {
+  margin: 0;
+  font-size: 13px;
+  color: #d6435a;
+  max-width: 340px;
+}

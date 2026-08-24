@@ -1,0 +1,46 @@
+.mobilizer-dashboard {
+  --md-blue: #3e6ff3;
+  --md-navy: #14224d;
+  --md-text: #101323;
+  --md-subtext: #6b7280;
+  --md-border: #e4e8f0;
+
+  /* min-height (not height) lets this fill a taller parent without ever
+     capping its own content — the page is always exactly as tall as what's
+     inside it, so it can't produce the "background runs out early" bug. */
+  min-height: 100%;
+  background: #eef2fa;
+  /* padding: 28px 32px 40px; */
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.mobilizer-dashboard * {
+  box-sizing: border-box;
+}
+
+.md-panel-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.md-panel-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 980px) {
+  .md-panel-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .mobilizer-dashboard {
+    padding: 20px 16px 32px;
+  }
+}

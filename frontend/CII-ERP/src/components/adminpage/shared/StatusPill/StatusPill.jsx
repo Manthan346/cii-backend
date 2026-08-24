@@ -10,7 +10,7 @@ import './StatusPill.css';
  * show up in every list/table across the admin section.
  *
  * Props:
- *  - tone: 'pending' | 'success' | 'danger' | 'neutral'
+ *  - tone: 'pending' | 'success' | 'danger' | 'info' | 'neutral'
  *  - children: ReactNode -> pill label
  *  - onClick: function    -> optional, makes the pill an actionable button
  *                            (used for the Approve/Reject actions in
