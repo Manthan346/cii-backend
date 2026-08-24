@@ -32,6 +32,9 @@ export type Hr_detailsMinAggregateOutputType = {
   hr_phone_no: string | null
   company_id: string | null
   user_id: string | null
+  hr_unique_id: string | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Hr_detailsMaxAggregateOutputType = {
@@ -42,6 +45,9 @@ export type Hr_detailsMaxAggregateOutputType = {
   hr_phone_no: string | null
   company_id: string | null
   user_id: string | null
+  hr_unique_id: string | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Hr_detailsCountAggregateOutputType = {
@@ -52,6 +58,9 @@ export type Hr_detailsCountAggregateOutputType = {
   hr_phone_no: number
   company_id: number
   user_id: number
+  hr_unique_id: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
@@ -64,6 +73,9 @@ export type Hr_detailsMinAggregateInputType = {
   hr_phone_no?: true
   company_id?: true
   user_id?: true
+  hr_unique_id?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Hr_detailsMaxAggregateInputType = {
@@ -74,6 +86,9 @@ export type Hr_detailsMaxAggregateInputType = {
   hr_phone_no?: true
   company_id?: true
   user_id?: true
+  hr_unique_id?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Hr_detailsCountAggregateInputType = {
@@ -84,6 +99,9 @@ export type Hr_detailsCountAggregateInputType = {
   hr_phone_no?: true
   company_id?: true
   user_id?: true
+  hr_unique_id?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -167,6 +185,9 @@ export type Hr_detailsGroupByOutputType = {
   hr_phone_no: string
   company_id: string
   user_id: string
+  hr_unique_id: string | null
+  created_at: Date
+  updated_at: Date
   _count: Hr_detailsCountAggregateOutputType | null
   _min: Hr_detailsMinAggregateOutputType | null
   _max: Hr_detailsMaxAggregateOutputType | null
@@ -198,6 +219,9 @@ export type hr_detailsWhereInput = {
   hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
   user_id?: Prisma.UuidFilter<"hr_details"> | string
+  hr_unique_id?: Prisma.StringNullableFilter<"hr_details"> | string | null
+  created_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   job_events?: Prisma.Job_eventsListRelationFilter
@@ -212,6 +236,9 @@ export type hr_detailsOrderByWithRelationInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  hr_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   company_details?: Prisma.company_detailsOrderByWithRelationInput
   user_login?: Prisma.user_loginOrderByWithRelationInput
   job_events?: Prisma.job_eventsOrderByRelationAggregateInput
@@ -222,6 +249,7 @@ export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_id?: string
   hr_phone_no?: string
   user_id?: string
+  hr_unique_id?: string
   AND?: Prisma.hr_detailsWhereInput | Prisma.hr_detailsWhereInput[]
   OR?: Prisma.hr_detailsWhereInput[]
   NOT?: Prisma.hr_detailsWhereInput | Prisma.hr_detailsWhereInput[]
@@ -229,11 +257,13 @@ export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_last_name?: Prisma.StringNullableFilter<"hr_details"> | string | null
   hr_designation?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
+  created_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   job_events?: Prisma.Job_eventsListRelationFilter
   placement?: Prisma.PlacementListRelationFilter
-}, "hr_id" | "hr_phone_no" | "user_id">
+}, "hr_id" | "hr_phone_no" | "user_id" | "hr_unique_id">
 
 export type hr_detailsOrderByWithAggregationInput = {
   hr_id?: Prisma.SortOrder
@@ -243,6 +273,9 @@ export type hr_detailsOrderByWithAggregationInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  hr_unique_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.hr_detailsCountOrderByAggregateInput
   _max?: Prisma.hr_detailsMaxOrderByAggregateInput
   _min?: Prisma.hr_detailsMinOrderByAggregateInput
@@ -259,6 +292,9 @@ export type hr_detailsScalarWhereWithAggregatesInput = {
   hr_phone_no?: Prisma.StringWithAggregatesFilter<"hr_details"> | string
   company_id?: Prisma.UuidWithAggregatesFilter<"hr_details"> | string
   user_id?: Prisma.UuidWithAggregatesFilter<"hr_details"> | string
+  hr_unique_id?: Prisma.StringNullableWithAggregatesFilter<"hr_details"> | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"hr_details"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"hr_details"> | Date | string
 }
 
 export type hr_detailsCreateInput = {
@@ -267,6 +303,9 @@ export type hr_detailsCreateInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
   job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
@@ -281,6 +320,9 @@ export type hr_detailsUncheckedCreateInput = {
   hr_phone_no: string
   company_id: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
   placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
 }
@@ -291,6 +333,9 @@ export type hr_detailsUpdateInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
   job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
@@ -305,6 +350,9 @@ export type hr_detailsUncheckedUpdateInput = {
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
   placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
@@ -317,6 +365,9 @@ export type hr_detailsCreateManyInput = {
   hr_phone_no: string
   company_id: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type hr_detailsUpdateManyMutationInput = {
@@ -325,6 +376,9 @@ export type hr_detailsUpdateManyMutationInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type hr_detailsUncheckedUpdateManyInput = {
@@ -335,6 +389,9 @@ export type hr_detailsUncheckedUpdateManyInput = {
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type Hr_detailsListRelationFilter = {
@@ -355,6 +412,9 @@ export type hr_detailsCountOrderByAggregateInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  hr_unique_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type hr_detailsMaxOrderByAggregateInput = {
@@ -365,6 +425,9 @@ export type hr_detailsMaxOrderByAggregateInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  hr_unique_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type hr_detailsMinOrderByAggregateInput = {
@@ -375,6 +438,9 @@ export type hr_detailsMinOrderByAggregateInput = {
   hr_phone_no?: Prisma.SortOrder
   company_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  hr_unique_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type Hr_detailsScalarRelationFilter = {
@@ -495,6 +561,9 @@ export type hr_detailsCreateWithoutCompany_detailsInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
   job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
   placement?: Prisma.placementCreateNestedManyWithoutHr_detailsInput
@@ -507,6 +576,9 @@ export type hr_detailsUncheckedCreateWithoutCompany_detailsInput = {
   hr_designation: string
   hr_phone_no: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
   placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
 }
@@ -548,6 +620,9 @@ export type hr_detailsScalarWhereInput = {
   hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
   user_id?: Prisma.UuidFilter<"hr_details"> | string
+  hr_unique_id?: Prisma.StringNullableFilter<"hr_details"> | string | null
+  created_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"hr_details"> | Date | string
 }
 
 export type hr_detailsCreateWithoutJob_eventsInput = {
@@ -556,6 +631,9 @@ export type hr_detailsCreateWithoutJob_eventsInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
   placement?: Prisma.placementCreateNestedManyWithoutHr_detailsInput
@@ -569,6 +647,9 @@ export type hr_detailsUncheckedCreateWithoutJob_eventsInput = {
   hr_phone_no: string
   company_id: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
 }
 
@@ -594,6 +675,9 @@ export type hr_detailsUpdateWithoutJob_eventsInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
   placement?: Prisma.placementUpdateManyWithoutHr_detailsNestedInput
@@ -607,6 +691,9 @@ export type hr_detailsUncheckedUpdateWithoutJob_eventsInput = {
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
 
@@ -616,6 +703,9 @@ export type hr_detailsCreateWithoutPlacementInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
   user_login: Prisma.user_loginCreateNestedOneWithoutHr_detailsInput
   job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
@@ -629,6 +719,9 @@ export type hr_detailsUncheckedCreateWithoutPlacementInput = {
   hr_phone_no: string
   company_id: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
 }
 
@@ -654,6 +747,9 @@ export type hr_detailsUpdateWithoutPlacementInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
   job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
@@ -667,6 +763,9 @@ export type hr_detailsUncheckedUpdateWithoutPlacementInput = {
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
 
@@ -676,6 +775,9 @@ export type hr_detailsCreateWithoutUser_loginInput = {
   hr_last_name?: string | null
   hr_designation: string
   hr_phone_no: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   company_details: Prisma.company_detailsCreateNestedOneWithoutHr_detailsInput
   job_events?: Prisma.job_eventsCreateNestedManyWithoutHr_detailsInput
   placement?: Prisma.placementCreateNestedManyWithoutHr_detailsInput
@@ -688,6 +790,9 @@ export type hr_detailsUncheckedCreateWithoutUser_loginInput = {
   hr_designation: string
   hr_phone_no: string
   company_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   job_events?: Prisma.job_eventsUncheckedCreateNestedManyWithoutHr_detailsInput
   placement?: Prisma.placementUncheckedCreateNestedManyWithoutHr_detailsInput
 }
@@ -714,6 +819,9 @@ export type hr_detailsUpdateWithoutUser_loginInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company_details?: Prisma.company_detailsUpdateOneRequiredWithoutHr_detailsNestedInput
   job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
   placement?: Prisma.placementUpdateManyWithoutHr_detailsNestedInput
@@ -726,6 +834,9 @@ export type hr_detailsUncheckedUpdateWithoutUser_loginInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   company_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
   placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
@@ -737,6 +848,9 @@ export type hr_detailsCreateManyCompany_detailsInput = {
   hr_designation: string
   hr_phone_no: string
   user_id: string
+  hr_unique_id?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type hr_detailsUpdateWithoutCompany_detailsInput = {
@@ -745,6 +859,9 @@ export type hr_detailsUpdateWithoutCompany_detailsInput = {
   hr_last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutHr_detailsNestedInput
   job_events?: Prisma.job_eventsUpdateManyWithoutHr_detailsNestedInput
   placement?: Prisma.placementUpdateManyWithoutHr_detailsNestedInput
@@ -757,6 +874,9 @@ export type hr_detailsUncheckedUpdateWithoutCompany_detailsInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   job_events?: Prisma.job_eventsUncheckedUpdateManyWithoutHr_detailsNestedInput
   placement?: Prisma.placementUncheckedUpdateManyWithoutHr_detailsNestedInput
 }
@@ -768,6 +888,9 @@ export type hr_detailsUncheckedUpdateManyWithoutCompany_detailsInput = {
   hr_designation?: Prisma.StringFieldUpdateOperationsInput | string
   hr_phone_no?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  hr_unique_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -818,6 +941,9 @@ export type hr_detailsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   hr_phone_no?: boolean
   company_id?: boolean
   user_id?: boolean
+  hr_unique_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   job_events?: boolean | Prisma.hr_details$job_eventsArgs<ExtArgs>
@@ -833,6 +959,9 @@ export type hr_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   hr_phone_no?: boolean
   company_id?: boolean
   user_id?: boolean
+  hr_unique_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hr_details"]>
@@ -845,6 +974,9 @@ export type hr_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   hr_phone_no?: boolean
   company_id?: boolean
   user_id?: boolean
+  hr_unique_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hr_details"]>
@@ -857,9 +989,12 @@ export type hr_detailsSelectScalar = {
   hr_phone_no?: boolean
   company_id?: boolean
   user_id?: boolean
+  hr_unique_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type hr_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"hr_id" | "hr_first_name" | "hr_last_name" | "hr_designation" | "hr_phone_no" | "company_id" | "user_id", ExtArgs["result"]["hr_details"]>
+export type hr_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"hr_id" | "hr_first_name" | "hr_last_name" | "hr_designation" | "hr_phone_no" | "company_id" | "user_id" | "hr_unique_id" | "created_at" | "updated_at", ExtArgs["result"]["hr_details"]>
 export type hr_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company_details?: boolean | Prisma.company_detailsDefaultArgs<ExtArgs>
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
@@ -892,6 +1027,9 @@ export type $hr_detailsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     hr_phone_no: string
     company_id: string
     user_id: string
+    hr_unique_id: string | null
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["hr_details"]>
   composites: {}
 }
@@ -1326,6 +1464,9 @@ export interface hr_detailsFieldRefs {
   readonly hr_phone_no: Prisma.FieldRef<"hr_details", 'String'>
   readonly company_id: Prisma.FieldRef<"hr_details", 'String'>
   readonly user_id: Prisma.FieldRef<"hr_details", 'String'>
+  readonly hr_unique_id: Prisma.FieldRef<"hr_details", 'String'>
+  readonly created_at: Prisma.FieldRef<"hr_details", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"hr_details", 'DateTime'>
 }
     
 
