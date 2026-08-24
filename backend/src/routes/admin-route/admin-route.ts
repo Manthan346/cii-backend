@@ -4,14 +4,16 @@ import { validateBody } from "../../middlewares/zod-middleware/zod-body-validato
 import { createMobilizerSchema } from "../../services/zod/admin/mobilizer-creation-schema";
 import { createMobilizerByAdmin } from "../../controllers/admin-controllers/create-mobilizer";
 import { createHrSchema } from "../../services/zod/admin/hr-creation-schema";
-import { verify } from "node:crypto";
 import { createHrByAdmin } from "../../controllers/admin-controllers/create-hr";
 import { createInstructorByAdmin } from "../../controllers/admin-controllers/create-instructor";
 import { createInstructorSchema } from "../../services/zod/admin/instructor-creation-schema";
+import { mobilizerEnrollCandidateSchema } from "../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema";
+import { adminCreateCandidate } from "../../controllers/admin-controllers/create-candidate";
+import { getCenterStats } from "../../controllers/admin-controllers/get-center-stats";
 
 const adminRouter = Router();
 
-//create mobilizer 
+//create mobilizer
 adminRouter.post(
     "/total-users/create-mobilizer",
     verifyAdminUsingAccessToken,
@@ -22,5 +24,20 @@ adminRouter.post(
 adminRouter.post('/total-users/create-hr',verifyAdminUsingAccessToken,validateBody(createHrSchema),createHrByAdmin);
 //create instructor
 adminRouter.post('/total-users/create-instructor',verifyAdminUsingAccessToken,validateBody(createInstructorSchema),createInstructorByAdmin);
+
+//create candidate (same flow as mobilizer enroll-candidate, with center isolation from admin token)
+adminRouter.post(
+    "/candidates/create",
+    verifyAdminUsingAccessToken,
+    validateBody(mobilizerEnrollCandidateSchema),
+    adminCreateCandidate
+);
+
+// GET center-scoped stats: total users, total instructors, total candidates, new users this month
+adminRouter.get(
+    "/center/stats",
+    verifyAdminUsingAccessToken,
+    getCenterStats
+);
 
 export default adminRouter

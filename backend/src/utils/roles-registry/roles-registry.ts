@@ -165,12 +165,13 @@ const buildAdminTokens: RoleHandler = async (ctx) => {
     user_id: ctx.userId,
     role: ctx.role,
     centerName: ctx.centreName,
-    email: ctx.email
+    email: ctx.email,
+    
     
   };
 
   return {
-    accessToken: generateAdminAccessToken({ ...shared, email: ctx.email }),
+    accessToken: generateAdminAccessToken({ ...shared, email: ctx.email, center_id: ctx.centerId }),
     refreshToken: generateAdminRefreshToken(shared),
     roleDetails: {
       // adminId: admin.user_id,
