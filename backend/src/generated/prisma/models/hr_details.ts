@@ -220,6 +220,7 @@ export type hr_detailsOrderByWithRelationInput = {
 
 export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_id?: string
+  hr_phone_no?: string
   user_id?: string
   AND?: Prisma.hr_detailsWhereInput | Prisma.hr_detailsWhereInput[]
   OR?: Prisma.hr_detailsWhereInput[]
@@ -227,13 +228,12 @@ export type hr_detailsWhereUniqueInput = Prisma.AtLeast<{
   hr_first_name?: Prisma.StringFilter<"hr_details"> | string
   hr_last_name?: Prisma.StringNullableFilter<"hr_details"> | string | null
   hr_designation?: Prisma.StringFilter<"hr_details"> | string
-  hr_phone_no?: Prisma.StringFilter<"hr_details"> | string
   company_id?: Prisma.UuidFilter<"hr_details"> | string
   company_details?: Prisma.XOR<Prisma.Company_detailsScalarRelationFilter, Prisma.company_detailsWhereInput>
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   job_events?: Prisma.Job_eventsListRelationFilter
   placement?: Prisma.PlacementListRelationFilter
-}, "hr_id" | "user_id">
+}, "hr_id" | "hr_phone_no" | "user_id">
 
 export type hr_detailsOrderByWithAggregationInput = {
   hr_id?: Prisma.SortOrder

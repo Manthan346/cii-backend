@@ -378,7 +378,7 @@ model hr_details {
   hr_first_name   String
   hr_last_name    String?
   hr_designation  String
-  hr_phone_no     String          @db.VarChar(10)
+  hr_phone_no     String          @unique(map: "uq_hr_phone_no") @db.VarChar(10)
   company_id      String          @db.Uuid
   user_id         String          @unique @db.Uuid
   company_details company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_company")
