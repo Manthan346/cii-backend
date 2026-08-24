@@ -241,7 +241,7 @@ model instructor_details {
   instructor_status                String?               @db.VarChar(50)
   created_at                       DateTime              @default(now()) @db.Timestamp(6)
   updated_at                       DateTime              @default(now()) @db.Timestamp(6)
-  company_id                       String?               @db.Uuid
+  company_id                       String                @db.Uuid
   instructor_state                 String?               @db.VarChar(250)
   instructor_district              String?               @db.VarChar(250)
   instructor_taluka                String?               @db.VarChar(250)
@@ -288,10 +288,11 @@ model instructor_details {
   permanent_pincode                String?               @db.VarChar(6)
   permanent_state                  String?
   permanent_taluka                 String?
+  instructor_unique_id             String                @unique(map: "uq_instructor_unique_id")
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
   batch_syllabus                   batch_syllabus[]
-  company_details                  company_details?      @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
+  company_details                  company_details       @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_company")
   user_login                       user_login            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_instructor_user")
   instructor_documents             instructor_documents?
 }
@@ -519,9 +520,12 @@ model hr_details {
   hr_first_name   String
   hr_last_name    String?
   hr_designation  String
-  hr_phone_no     String          @db.VarChar(10)
+  hr_phone_no     String          @unique(map: "uq_hr_phone_no") @db.VarChar(10)
   company_id      String          @db.Uuid
   user_id         String          @unique @db.Uuid
+  hr_unique_id    String?         @unique(map: "uq_hr_unique_id")
+  created_at      DateTime        @default(now()) @db.Timestamp(6)
+  updated_at      DateTime        @default(now()) @db.Timestamp(6)
   company_details company_details @relation(fields: [company_id], references: [company_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_company")
   user_login      user_login      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hr_details_user")
   job_events      job_events[]

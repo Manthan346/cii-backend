@@ -3032,7 +3032,8 @@ export const Instructor_detailsScalarFieldEnum = {
   permanent_district: 'permanent_district',
   permanent_pincode: 'permanent_pincode',
   permanent_state: 'permanent_state',
-  permanent_taluka: 'permanent_taluka'
+  permanent_taluka: 'permanent_taluka',
+  instructor_unique_id: 'instructor_unique_id'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
@@ -3268,7 +3269,10 @@ export const Hr_detailsScalarFieldEnum = {
   hr_designation: 'hr_designation',
   hr_phone_no: 'hr_phone_no',
   company_id: 'company_id',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  hr_unique_id: 'hr_unique_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Hr_detailsScalarFieldEnum = (typeof Hr_detailsScalarFieldEnum)[keyof typeof Hr_detailsScalarFieldEnum]
