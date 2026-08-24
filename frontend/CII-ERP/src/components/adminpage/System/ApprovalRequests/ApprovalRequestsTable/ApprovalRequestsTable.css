@@ -1,0 +1,101 @@
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-approval-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.admin-approval-table thead th {
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa1b1;
+  padding: 0 12px 12px;
+  border-bottom: 1px solid #e7eaf1;
+  white-space: nowrap;
+}
+
+.admin-approval-table tbody td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f2f7;
+  font-size: 14px;
+  font-weight: 600;
+  color: #14162b;
+  vertical-align: middle;
+}
+
+.admin-approval-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-approval-table__request-id {
+  font-weight: 700;
+}
+
+.admin-approval-table__row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-approval-table__icon-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.admin-approval-table__icon-btn--view:hover {
+  background: #f5f6fa;
+}
+
+.admin-approval-table__icon-btn--approve {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #ffffff;
+}
+
+.admin-approval-table__icon-btn--approve:hover {
+  background: #16a34a;
+}
+
+.admin-approval-table__icon-btn--reject {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.admin-approval-table__icon-btn--reject:hover {
+  background: #dc2626;
+}
+
+/* Footer: showing count + pagination
+   ========================================================================== */
+
+.admin-approval-table__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f2f7;
+}
+
+.admin-approval-table__showing {
+  font-size: 13.5px;
+  color: #6b7280;
+  font-weight: 500;
+}

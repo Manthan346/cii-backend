@@ -1,117 +1,53 @@
-/**
- * sidebarMenu.js
- *
- * Single source of truth for the Mobilizer Sidebar navigation.
- * The Sidebar renders this array with `.map()` — add, remove, reorder,
- * or relabel a menu item here only, never inside Sidebar.jsx.
- *
- * Shape (flat item):
- * {
- *   id: string        -> stable key, also matched against the current route
- *   title: string     -> visible label
- *   icon: LucideIcon  -> icon component reference (sized/colored centrally in Sidebar)
- *   route: string     -> path used by react-router's NavLink
- * }
- *
- * Shape (expandable group, e.g. "Job Fair"):
- * {
- *   id: string
- *   title: string
- *   icon: LucideIcon
- *   children: [ { id, title, route } ]  -> rendered as a nested accordion list
- * }
- *
- * Backend integration note:
- *   If menu items ever need to come from an API (e.g. role-based menus),
- *   fetch that response into this same shape and the Sidebar needs no changes.
- */
-
 import {
   LayoutGrid,
-  FileText,
-  UserPlus,
+  Ticket,
+  BarChart3,
   Briefcase,
   Star,
-  ClipboardList,
-  UserCheck,
-  UserCog,
-  BarChart3,
-  Download,
-} from "lucide-react";
+  ClipboardCheck,
+  User,
+  LogOut,
+} from 'lucide-react';
 
+/**
+ * sidebarMenu
+ *
+ * Drives the mobilizer Sidebar via .map(). Unlike adminpage's grouped
+ * shape ({ title, items: [...] }), this sidebar is a flat list with
+ * a few item kinds mixed in - matching the reference design, which
+ * has no section headers:
+ *
+ *  - Regular item:  { id, title, route, icon }
+ *  - Divider:       { id, isDivider: true }
+ *  - Expandable:    { id, title, icon, children: [{ id, title, route }] }
+ *                    (currently just "Placement" -> Dashboard / Placement Event)
+ *  - Action item:   { id, title, icon, isAction: true } (currently just Logout -
+ *                    no route to navigate to, see Sidebar.jsx for how it's
+ *                    rendered differently, and MobilizerLayout.jsx for where
+ *                    the actual logout handler lives)
+ *
+ * Backend integration note:
+ *  If certain items should be hidden per role/permission, filter this
+ *  array before passing it down, rather than editing Sidebar itself.
+ */
 export const sidebarMenu = [
+  { id: 'dashboard', title: 'Dashboard', route: '/mobilizer/dashboard', icon: LayoutGrid },
+  { id: 'enquiries', title: 'Enquiries', route: '/mobilizer/enquiries', icon: Ticket },
+  { id: 'report', title: 'Report', route: '/mobilizer/report', icon: BarChart3 },
+  { id: 'divider-1', isDivider: true },
   {
-    id: "dashboard",
-    title: "Dashboard",
-    icon: LayoutGrid,
-    route: "/mobilizer/dashboard",
-  },
-  {
-    id: "enquiries",
-    title: "Enquiries",
-    icon: FileText,
-    route: "/mobilizer/enquiries",
-  },
-  {
-    id: "enrollments",
-    title: "Enrollments",
-    icon: UserPlus,
-    route: "/mobilizer/enrollments",
-  },
-  {
-    id: "job-fair",
-    title: "Job Fair",
+    id: 'placement',
+    title: 'Placement',
     icon: Briefcase,
     children: [
-      {
-        id: "job-fair-dashboard",
-        title: "Dashboard",
-        route: "/mobilizer/job-fair/dashboard",
-      },
-      {
-        id: "registration-forms",
-        title: "Registration Forms",
-        route: "/mobilizer/job-fair/registration-forms",
-      },
-      {
-        id: "walk-in-registrations",
-        title: "Walk-in Registrations",
-        route: "/mobilizer/job-fair/walk-in-registrations",
-      },
-      {
-        id: "recruiter-registrations",
-        title: "Recruiter Registrations",
-        route: "/mobilizer/job-fair/recruiter-registrations",
-      },
-      {
-        id: "job-fair-reports",
-        title: "Reports",
-        route: "/mobilizer/job-fair/reports",
-      },
-      {
-        id: "job-fair-export",
-        title: "Export",
-        route: "/mobilizer/job-fair/export",
-      },
+      { id: 'placement-dashboard', title: 'Dashboard', route: '/mobilizer/placement/dashboard' },
+      { id: 'placement-event', title: 'Placement Event', route: '/mobilizer/placement/event' },
     ],
   },
-  {
-    id: "event",
-    title: "Event",
-    icon: Star,
-    route: "/mobilizer/event",
-  },
+  { id: 'divider-2', isDivider: true },
+  { id: 'event', title: 'Event', route: '/mobilizer/events', icon: Star },
+  { id: 'task', title: 'Task', route: '/mobilizer/tasks', icon: ClipboardCheck },
+  { id: 'profile', title: 'Profile', route: '/mobilizer/profile', icon: User },
+  { id: 'divider-3', isDivider: true },
+  { id: 'logout', title: 'Logout', icon: LogOut, isAction: true },
 ];
-
-/* Icons re-exported so pages inside job-fair sub-routes can reuse them
-   for their own headers/breadcrumbs without redefining the mapping. */
-export const jobFairIcons = {
-  dashboard: LayoutGrid,
-  registrationForms: ClipboardList,
-  walkIn: UserCheck,
-  recruiter: UserCog,
-  reports: BarChart3,
-  export: Download,
-};
-
-export default sidebarMenu;

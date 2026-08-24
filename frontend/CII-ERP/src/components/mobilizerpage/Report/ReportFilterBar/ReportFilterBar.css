@@ -1,0 +1,104 @@
+.rp-filterbar {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rp-filterbar__group-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa2b1;
+  margin-bottom: 12px;
+}
+
+.rp-filterbar__fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.rp-date {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rp-date__label {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.rp-date__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rp-date__input-wrap input {
+  height: 42px;
+  width: 160px;
+  border: 1px solid #e4e8f0;
+  border-radius: 9px;
+  padding: 0 34px 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.rp-date__input-wrap input:focus {
+  border-color: var(--md-blue, #3e6ff3);
+}
+
+.rp-date__icon {
+  position: absolute;
+  right: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+.rp-btn {
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 9px;
+  border: 1px solid #e4e8f0;
+  background: #f6f7f9;
+  color: #1f2430;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rp-btn:hover {
+  background: #eef0f3;
+}
+
+.rp-btn--export {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 760px) {
+  .rp-filterbar {
+    align-items: stretch;
+  }
+  .rp-filterbar__fields {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rp-date__input-wrap input {
+    width: 100%;
+  }
+}

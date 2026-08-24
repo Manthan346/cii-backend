@@ -1,69 +1,82 @@
-import React, { useState } from "react";
-import { Search, Bell, Menu } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../assets/cii-logo2.png";
-import "./Topbar.css";
+import React, { useState } from 'react';
+import { Search, Menu } from 'lucide-react';
+import NotificationBell from '../../shared/NotificationBell/NotificationBell';
+import { useNavigate } from 'react-router-dom';
+import bannerImage from '../../assets/topbar-banner.png';
+import './Topbar.css';
 
 /**
- * Topbar
+ * Topbar (Mobilizer)
  *
- * Standalone top navigation bar for the Mobilizer panel. Uses the same
- * banner image + CII logo card treatment as the other role panels, and
- * adds a name + role caption next to the avatar (e.g. "Sonal Ahire" /
- * "Mobilizer · Kandivali Centre") to match the Mobilizer Dashboard
- * design.
+ * Standalone top navigation bar for the mobilizer section. Hosts the
+ * brand mark, search input, notification bell, and user avatar. Kept
+ * fully self-contained (no /shared imports) so it can be dropped into
+ * any layout independently of the Sidebar - same pattern as
+ * trainer/admin Topbars.
  *
- * Kept fully self-contained (no /shared imports) so it can be dropped
- * into any layout independently of the Sidebar.
+ * NOTE: the brand mark here is a lightweight CSS-only placeholder,
+ * same situation as admin's Topbar - no logo image asset was
+ * provided. Swap `MobilizerBrandMark` below for an <img src={ciiLogo} />
+ * once you drop the asset into mobilizerpage/assets/.
+ *
+ * NOTE: the bell is now the real <NotificationBell /> (shared component,
+ * reads unread state from NotificationsContext) instead of a static icon
+ * + dot. This requires <NotificationsProvider> to wrap the app root — see
+ * the integration note below this component.
  *
  * Props:
- *  - user: { name, role, avatarUrl }  -> logged-in mobilizer. `avatarUrl` is
- *                                        optional; when absent, initials are
- *                                        derived from `name`.
- *  - hasUnreadNotifications           -> boolean, toggles the red dot on the bell.
- *  - onMenuToggle: function           -> opens a mobile Sidebar drawer, wired from a parent layout.
- *  - onSearch: function(str)          -> fires on Enter in the search input.
- *  - onNotificationClick              -> optional override for the bell click; when omitted,
- *                                        the bell navigates to /mobilizer/notifications.
- *  - onAvatarClick                    -> optional override for the avatar click; when omitted,
- *                                        the avatar navigates to /mobilizer/profile.
+ *  - user: { name, avatarUrl }       -> logged-in mobilizer user. `avatarUrl` is optional;
+ *                                       when absent, initials are derived from `name`.
+ *  - onMenuToggle: function          -> opens a mobile Sidebar drawer, wired from a parent layout.
+ *  - onSearch: function(str)         -> fires on Enter in the search input.
+ *  - onNotificationClick: function   -> fires when "View all" is clicked inside the notification
+ *                                       dropdown; when omitted, defaults to navigating to
+ *                                       /mobilizer/notifications.
+ *  - onAvatarClick: function         -> optional override for the avatar click; when omitted,
+ *                                       the avatar navigates to /mobilizer/profile.
  *
- * Backend integration note:
- *  Replace the default `user` below with the authenticated user object
- *  from your auth/session context once it's available. Debounce
- *  `onSearch` in the parent before calling a `/api/search?q=` endpoint.
+ * REMOVED: `hasUnreadNotifications` prop — the bell now derives its own
+ * unread badge from NotificationsContext, so this is no longer needed.
+ * If anything else in the app was passing this prop in, it can be
+ * dropped; it's simply ignored now rather than causing an error.
  */
+const MobilizerBrandMark = () => (
+  <div className="mobilizer-topbar__logo-card">
+    <span className="mobilizer-topbar__logo-mark">CII</span>
+    <span className="mobilizer-topbar__logo-caption">
+      Confederation of Indian Industry
+    </span>
+  </div>
+);
 
-const getInitials = (name = "") => {
-  const parts = name.trim().split(" ").filter(Boolean);
-  if (parts.length === 0) return "";
+const getInitials = (name = '') => {
+  const parts = name.trim().split(' ').filter(Boolean);
+  if (parts.length === 0) return '';
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
 const Topbar = ({
-  user = { name: "Sonal Ahire", role: "Mobilizer · Kandivali Centre" },
-  hasUnreadNotifications = true,
+  user = { name: 'Sonal Mobilizer' },
   onMenuToggle,
   onSearch,
   onNotificationClick,
   onAvatarClick,
 }) => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
 
   const handleSearchKeyDown = (e) => {
-    if (e.key === "Enter" && onSearch) {
+    if (e.key === 'Enter' && onSearch) {
       onSearch(searchValue);
     }
   };
 
-  const handleBellClick = () => {
+  const handleViewAllNotifications = () => {
     if (onNotificationClick) {
       onNotificationClick();
     } else {
-      navigate("/mobilizer/notifications");
+      navigate('/mobilizer/notifications');
     }
   };
 
@@ -71,16 +84,12 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate("/mobilizer/profile");
+      navigate('/mobilizer/profile');
     }
   };
 
   return (
-    <header
-      className="mobilizer-topbar"
-      style={{ backgroundImage: `url(${bannerImage})` }}
-    >
-      {/* Hamburger: mobile only, opens a Sidebar drawer supplied by the parent layout */}
+    <header className="mobilizer-topbar" style={{ backgroundImage: `url(${bannerImage})` }}> 
       <button
         type="button"
         className="mobilizer-topbar__hamburger"
@@ -90,24 +99,13 @@ const Topbar = ({
         <Menu size={22} />
       </button>
 
-      {/* Left: CII logo card */}
       <div className="mobilizer-topbar__left">
-        <div className="mobilizer-topbar__logo-card">
-          <img src={ciiLogo} alt="CII" className="mobilizer-topbar__logo-image" />
-          <span className="mobilizer-topbar__logo-caption">
-            Confederation of Indian Industry
-          </span>
-        </div>
+        <MobilizerBrandMark />
       </div>
 
-      {/* Center: search */}
       <div className="mobilizer-topbar__center">
         <div className="mobilizer-topbar__search">
-          <Search
-            size={18}
-            strokeWidth={2}
-            className="mobilizer-topbar__search-icon"
-          />
+          <Search size={18} strokeWidth={2} className="mobilizer-topbar__search-icon" />
           <input
             type="text"
             className="mobilizer-topbar__search-input"
@@ -120,43 +118,27 @@ const Topbar = ({
         </div>
       </div>
 
-      {/* Right: notifications + name/role + avatar */}
       <div className="mobilizer-topbar__right">
-        <button
-          type="button"
-          className="mobilizer-topbar__bell"
-          onClick={handleBellClick}
-          aria-label="Notifications"
-        >
-          <Bell size={20} strokeWidth={1.75} />
-          {hasUnreadNotifications && (
-            <span className="mobilizer-topbar__bell-dot" />
-          )}
-        </button>
+        <NotificationBell onViewAll={handleViewAllNotifications} />
 
         <button
           type="button"
-          className="mobilizer-topbar__profile"
+          className="mobilizer-topbar__avatar"
           onClick={handleAvatarClick}
           aria-label={`${user.name} account menu`}
+          title={user.name}
         >
-          <span className="mobilizer-topbar__avatar">
-            {user.avatarUrl ? (
-              <img
-                src={user.avatarUrl}
-                alt={user.name}
-                className="mobilizer-topbar__avatar-image"
-              />
-            ) : (
-              <span className="mobilizer-topbar__avatar-initials">
-                {getInitials(user.name)}
-              </span>
-            )}
-          </span>
-          <span className="mobilizer-topbar__identity">
-            <span className="mobilizer-topbar__name">{user.name}</span>
-            <span className="mobilizer-topbar__role">{user.role}</span>
-          </span>
+          {user.avatarUrl ? (
+            <img
+              src={user.avatarUrl}
+              alt={user.name}
+              className="mobilizer-topbar__avatar-image"
+            />
+          ) : (
+            <span className="mobilizer-topbar__avatar-initials">
+              {getInitials(user.name)}
+            </span>
+          )}
         </button>
       </div>
     </header>

@@ -1,0 +1,20 @@
+.mobilizer-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #eef1f7;
+}
+
+.mobilizer-layout__body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.mobilizer-layout__content {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 24px 28px 40px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,80 @@
+.admin-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #3e5feb;
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: 0 12px 28px rgba(62, 95, 235, 0.22);
+}
+
+.admin-profile-header .admin-avatar {
+  border: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+.admin-profile-header__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-profile-header__name {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.admin-profile-header__role {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.admin-profile-header__id {
+  margin: 2px 0 4px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.admin-profile-header__status {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #14203e;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.admin-profile-header__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.admin-profile-header__completion {
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .admin-profile-header {
+    flex-wrap: wrap;
+  }
+
+  .admin-profile-header__meta {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

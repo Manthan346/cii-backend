@@ -1,0 +1,146 @@
+.ae-modal {
+  position: relative;
+  padding: 26px 28px 28px;
+}
+
+.ae-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f1f2f4;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ae-modal__close:hover {
+  background: #e5e7eb;
+}
+
+.ae-field {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.ae-field__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2430;
+  margin-bottom: 8px;
+}
+
+.ae-field input[type='text'],
+.ae-field input[type='date'] {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #d5d9e0;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ae-field input:focus {
+  border-color: var(--md-blue, #3e6ff3);
+}
+
+.ae-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ae-select-wrap select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #d5d9e0;
+  border-radius: 8px;
+  padding: 0 32px 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  background: #ffffff;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.ae-select-wrap select:invalid {
+  color: #9aa2b1;
+}
+
+.ae-select__chevron {
+  position: absolute;
+  right: 12px;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.ae-radio-row {
+  display: flex;
+  gap: 24px;
+}
+
+.ae-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #1f2430;
+  cursor: pointer;
+}
+
+.ae-radio input {
+  width: 16px;
+  height: 16px;
+  accent-color: #14224d;
+  cursor: pointer;
+}
+
+.ae-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ae-modal__grid .ae-field {
+  margin-bottom: 18px;
+}
+
+.ae-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.ae-create-btn {
+  height: 44px;
+  padding: 0 28px;
+  border-radius: 9px;
+  border: none;
+  background: #14224d;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ae-create-btn:hover {
+  background: #1c2e63;
+}
+
+@media (max-width: 480px) {
+  .ae-modal__grid {
+    grid-template-columns: 1fr;
+  }
+}

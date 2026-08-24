@@ -1,0 +1,57 @@
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-field__label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14162b;
+}
+
+.admin-form-field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-form-field__input,
+.admin-form-field__textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #14162b;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.admin-form-field__input {
+  height: 46px;
+}
+
+.admin-form-field__textarea {
+  resize: vertical;
+}
+
+.admin-form-field__input::placeholder,
+.admin-form-field__textarea::placeholder {
+  color: #9aa1b1;
+}
+
+.admin-form-field__input:focus,
+.admin-form-field__textarea:focus {
+  border-color: #3e5feb;
+  box-shadow: 0 0 0 3px rgba(62, 95, 235, 0.14);
+}
+
+.admin-form-field__suffix {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+}

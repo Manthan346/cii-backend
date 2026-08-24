@@ -39,7 +39,7 @@ const videoReviews = [
   {
     id: "v2",
     videoId: "9QlLxQZkLl8",
-    name: "Rahul Patil",
+    name: "Khushi Yadav",
     role: "AC Technician – Blue Star",
     course: "RAC Servicing",
     avatarBg: "#1a4da8",

@@ -1,41 +1,13 @@
 /**
- * index.js
+ * data/index.js
  *
- * Barrel export for mobilizerpage/data so consumers can write:
- *   import { sidebarMenu, dashboardStats } from "../data";
- * instead of reaching into individual files. Add future config/data
- * modules (e.g. topbarConfig, userRoles) here as they're created.
+ * Barrel export for every data source in mobilizerpage/data - same
+ * convention as adminpage/data. Components import from the folder
+ * itself (e.g. `from '../../data'`); new data files (dashboardData.js,
+ * enquiriesData.js, ...) just need an `export * from './fileName'`
+ * line here to become available, no import paths change elsewhere.
  */
-
-export { sidebarMenu, jobFairIcons } from "./sidebarMenu";
-
-export {
-  overviewInfo,
-  dashboardStats,
-  dailyEnrollments,
-  candidateStatusDistribution,
-  weeklyCalls,
-  upcomingJobFairs,
-  todaysFollowups,
-} from "./dashboardData";
-
-export {
-  enrollmentsInfo,
-  enrollmentInfoBanner,
-  documentStatusMeta,
-  pendingEnrollments,
-  completedEnrollments,
-  enrollmentsTableColumns,
-} from "./enrollmentsData";
-
-export {
-  enquiryInfo,
-  enquiryInfoBanner,
-  enquiryStats,
-  courseFilterOptions,
-  enquiryFilterTabs,
-  enquiryStatusMeta,
-  enquiryTableColumns,
-  enquiries,
-  enquiryPaginationInfo,
-} from "./enquiryData";
+export * from './sidebarMenu';
+export * from './dashboardData';
+export * from './enquiriesData';
+export * from './reportData';

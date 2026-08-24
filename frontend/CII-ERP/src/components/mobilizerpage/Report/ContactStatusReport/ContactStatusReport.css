@@ -1,0 +1,5 @@
+.rp-contact-status__center {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}

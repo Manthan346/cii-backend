@@ -1,0 +1,66 @@
+.job-fair-job-drive {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.job-fair-job-drive__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.job-fair-job-drive__title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.job-fair-job-drive__subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #7b8194;
+}
+
+.job-fair-job-drive__add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 26px;
+  border: none;
+  background: #4338ca;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.job-fair-job-drive__add-btn:hover {
+  background: #372fb0;
+}
+
+.job-fair-job-drive__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .job-fair-job-drive__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .job-fair-job-drive__stats {
+    grid-template-columns: 1fr;
+  }
+}

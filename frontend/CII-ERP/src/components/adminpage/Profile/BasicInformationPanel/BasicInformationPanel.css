@@ -1,0 +1,138 @@
+.admin-basic-info__top {
+  display: grid;
+  grid-template-columns: 1.3fr 1.3fr 1fr;
+  gap: 18px;
+}
+
+.admin-basic-info__addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@media (max-width: 1100px) {
+  .admin-basic-info__top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-basic-info__top,
+  .admin-basic-info__addresses {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-basic-info__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Profile completion card
+   ========================================================================== */
+
+.admin-completion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.admin-completion-card__pill {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #e7eaf1;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #4b5164;
+}
+
+.admin-completion-card__heading {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #14162b;
+}
+
+.admin-completion-card__checklist {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-completion-card__checklist li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5164;
+}
+
+.admin-completion-card__icon--done {
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+.admin-completion-card__icon--warning {
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+/* Address blocks
+   ========================================================================== */
+
+.admin-address-block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-address-block__line {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #14162b;
+}
+
+.admin-address-block__chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 520px) {
+  .admin-address-block__chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.admin-address-block__chip-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-address-block__chip-label {
+  font-size: 12.5px;
+  color: #9aa1b1;
+}
+
+.admin-address-block__chip {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #eef1f7;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14162b;
+}

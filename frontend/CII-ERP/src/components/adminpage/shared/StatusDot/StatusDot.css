@@ -1,0 +1,49 @@
+.admin-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.admin-status-dot__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-status-dot--success {
+  color: #15803d;
+}
+.admin-status-dot--success .admin-status-dot__dot {
+  background: #22c55e;
+}
+
+.admin-status-dot--pending {
+  color: #b45309;
+}
+.admin-status-dot--pending .admin-status-dot__dot {
+  background: #f59e0b;
+}
+
+.admin-status-dot--info {
+  color: #3e5feb;
+}
+.admin-status-dot--info .admin-status-dot__dot {
+  background: #3e5feb;
+}
+
+.admin-status-dot--danger {
+  color: #dc2626;
+}
+.admin-status-dot--danger .admin-status-dot__dot {
+  background: #ef4444;
+}
+
+.admin-status-dot--neutral {
+  color: #6b7280;
+}
+.admin-status-dot--neutral .admin-status-dot__dot {
+  background: #9aa1b1;
+}

@@ -1,0 +1,64 @@
+.candidate-details-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.candidate-details-modal__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.candidate-details-modal__name {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.candidate-details-modal__divider {
+  border: none;
+  border-top: 1px solid #eef1f7;
+  margin: 18px 0;
+}
+
+.candidate-details-modal__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1c1f2e;
+  margin-bottom: 16px;
+}
+
+.candidate-details-modal__meta-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.candidate-details-modal__icon {
+  color: #4b5164;
+  flex-shrink: 0;
+}
+
+.candidate-details-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.candidate-details-modal__applied {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7b8194;
+}

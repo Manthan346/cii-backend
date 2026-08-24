@@ -1,41 +1,60 @@
-import React from "react";
-import useCountUp from "../hooks/useCountUp";
-import "./StatCard.css";
+import React from 'react';
+import {
+  Calendar,
+  FileText,
+  PhoneMissed,
+  Link2,
+  Share2,
+  MonitorCheck,
+  LogIn,
+  IdCard,
+  FileCheck2,
+  Layers,
+  Circle,
+} from 'lucide-react';
+import './StatCard.css';
+
+// Only the icons this page actually uses — keeps the bundle small.
+// Add more here if a future stat card needs a different icon.
+const ICON_MAP = {
+  Calendar,
+  FileText,
+  PhoneMissed,
+  Link2,
+  Share2,
+  MonitorCheck,
+  LogIn,
+  IdCard,
+  FileCheck2,
+  Layers,
+};
 
 /**
  * StatCard
- *
- * KPI tile used across the Mobilizer dashboard: big headline value +
- * label, with a colored circular icon badge floated to the top-right
- * corner of the card (matches the "Total Assigned / New Enquiries /
- * Calls Pending..." row in the Dashboard design).
- *
- * Generic enough to reuse anywhere a KPI needs to be shown, so it
- * lives in /shared rather than inside a single page's folder.
+ * Icon in a colored rounded square (top), then a large value, a bold
+ * label, and an optional subtext line underneath.
  *
  * Props:
- *  - icon: LucideIcon      -> icon component to render inside the badge
- *  - value: string|number  -> the big headline number/percentage
- *  - label: string         -> caption under the value
- *  - tone: string          -> one of "blue" | "pink" | "lightblue" |
- *                              "purple" | "teal" | "orange" | "green"
- *                              (drives the badge background/icon color)
- *
- * The headline number counts up from 0 to `value` on mount via
- * useCountUp (handles both plain numbers and "94%"-style strings).
+ *  - icon: string — key into ICON_MAP above, e.g. 'Calendar'
+ *  - value: number | string
+ *  - label: string
+ *  - subtext: string (optional)
+ *  - subtextTone: 'green' | 'gray' (optional, default 'gray')
+ *  - tone: 'blue' | 'green' | 'cyan' | 'magenta' | 'purple' | 'teal' | 'orange'
  */
-const StatCard = ({ icon: Icon, value, label, tone = "blue" }) => {
-  const animatedValue = useCountUp(value, 1200);
+export default function StatCard({ icon, value, label, subtext, subtextTone = 'gray', tone = 'blue' }) {
+  const Icon = ICON_MAP[icon] || Circle;
 
   return (
-    <div className="m-stat-card">
-      <div className={`m-stat-card__badge m-stat-card__badge--${tone}`}>
-        {Icon && <Icon size={18} strokeWidth={2} />}
-      </div>
-      <div className="m-stat-card__value">{animatedValue}</div>
-      <div className="m-stat-card__label">{label}</div>
+    <div className="md-statcard">
+      <span className={`md-statcard__icon md-statcard__icon--${tone}`}>
+        <Icon size={20} />
+      </span>
+      <span className="md-statcard__value">{value}</span>
+      <span className="md-statcard__label">{label}</span>
+      {subtext && (
+        <span className={`md-statcard__subtext md-statcard__subtext--${subtextTone}`}>{subtext}</span>
+      )}
     </div>
   );
-};
-
-export default StatCard;
+}

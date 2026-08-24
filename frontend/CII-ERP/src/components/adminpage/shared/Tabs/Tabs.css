@@ -1,0 +1,65 @@
+.admin-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-tabs--underline {
+  gap: 28px;
+  background: #ffffff;
+  border: 1px solid #e7eaf1;
+  border-radius: 14px;
+  padding: 16px 22px 0;
+}
+
+.admin-tabs--underline .admin-tabs__tab {
+  background: none;
+  border: none;
+  padding: 0 2px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #9aa1b1;
+  cursor: pointer;
+  position: relative;
+}
+
+.admin-tabs--underline .admin-tabs__tab--active {
+  color: #14162b;
+  font-weight: 800;
+}
+
+.admin-tabs--underline .admin-tabs__tab--active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: #3e5feb;
+}
+
+/* Pills variant - standalone fully-rounded pills, filled when active
+   ========================================================================== */
+
+.admin-tabs--pills {
+  flex-wrap: wrap;
+}
+
+.admin-tabs--pills .admin-tabs__tab {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #4b5164;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 18, 40, 0.06);
+  cursor: pointer;
+}
+
+.admin-tabs--pills .admin-tabs__tab--active {
+  background: #3e5feb;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(62, 95, 235, 0.28);
+}

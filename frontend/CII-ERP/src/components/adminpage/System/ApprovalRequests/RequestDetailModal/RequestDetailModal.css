@@ -1,0 +1,74 @@
+.admin-request-modal {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-request-modal__title {
+  margin: 0 0 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f2f7;
+  font-size: 18px;
+  font-weight: 800;
+  color: #14162b;
+}
+
+.admin-request-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.admin-request-modal__field-label {
+  display: block;
+  font-size: 13px;
+  color: #9aa1b1;
+  margin-bottom: 6px;
+}
+
+.admin-request-modal__field-value {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #14162b;
+}
+
+.admin-request-modal__description .admin-request-modal__field-value {
+  font-weight: 500;
+  line-height: 1.5;
+  color: #1c1f2e;
+}
+
+.admin-request-modal__remarks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-request-modal__textarea {
+  resize: vertical;
+  min-height: 80px;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #14162b;
+  outline: none;
+}
+
+.admin-request-modal__textarea::placeholder {
+  color: #9aa1b1;
+}
+
+.admin-request-modal__textarea:focus {
+  border-color: #3e5feb;
+  box-shadow: 0 0 0 3px rgba(62, 95, 235, 0.14);
+}
+
+.admin-request-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -1,0 +1,45 @@
+.evl-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.evl-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.evl-empty {
+  text-align: center;
+  color: #9aa2b1;
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.evl-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.evl-pagination__btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e4e8f0;
+  background: #ffffff;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.evl-pagination__btn:hover {
+  background: #f6f7f9;
+}
+
+.evl-pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Recruiter Topbar
+   ========================================================================== */
+
+.recruiter-topbar {
+  height: 112px;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  background: #eef1f7;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(22, 35, 78, 0.06), transparent 55%),
+    radial-gradient(circle at 85% 100%, rgba(22, 35, 78, 0.06), transparent 55%);
+  border-bottom: 1px solid #e7eaf1;
+  box-sizing: border-box;
+}
+
+.recruiter-topbar__hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #1c1f2e;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Left: brand mark
+   ========================================================================== */
+
+.recruiter-topbar__left {
+  flex-shrink: 0;
+}
+
+.recruiter-topbar__logo-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #e7eaf1;
+  border-radius: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 6px rgba(15, 18, 40, 0.05);
+}
+
+.recruiter-topbar__logo-mark {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #16234e;
+  border: 2px solid #16234e;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+.recruiter-topbar__logo-caption {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #16234e;
+  line-height: 1.2;
+  max-width: 110px;
+}
+
+/* Center: search
+   ========================================================================== */
+
+.recruiter-topbar__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.recruiter-topbar__search {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.recruiter-topbar__search-icon {
+  position: absolute;
+  left: 14px;
+  color: #9aa1b1;
+}
+
+.recruiter-topbar__search-input {
+  width: 100%;
+  height: 42px;
+  border-radius: 22px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 0 14px 0 40px;
+  font-size: 14px;
+  color: #1c1f2e;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recruiter-topbar__search-input::placeholder {
+  color: #9aa1b1;
+}
+
+.recruiter-topbar__search-input:focus {
+  border-color: #16234e;
+  box-shadow: 0 0 0 3px rgba(22, 35, 78, 0.12);
+}
+
+/* Right: notifications + profile
+   ========================================================================== */
+
+.recruiter-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.recruiter-topbar__bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #4b5164;
+  cursor: pointer;
+}
+
+.recruiter-topbar__bell-dot {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 1.5px solid #ffffff;
+}
+
+.recruiter-topbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px 4px 4px;
+  border-radius: 24px;
+}
+
+.recruiter-topbar__profile:hover {
+  background: #ffffff;
+}
+
+.recruiter-topbar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #16234e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.recruiter-topbar__avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recruiter-topbar__avatar-initials {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.recruiter-topbar__profile-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.25;
+}
+
+.recruiter-topbar__profile-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c1f2e;
+}
+
+.recruiter-topbar__profile-role {
+  font-size: 12px;
+  font-weight: 500;
+  color: #7b8194;
+}
+
+.recruiter-topbar__bell-wrapper {
+  position: relative;
+}
+
+/* Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .recruiter-topbar__hamburger {
+    display: flex;
+  }
+
+  .recruiter-topbar__logo-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .recruiter-topbar__center {
+    display: none;
+  }
+
+  .recruiter-topbar__profile-text {
+    display: none;
+  }
+}

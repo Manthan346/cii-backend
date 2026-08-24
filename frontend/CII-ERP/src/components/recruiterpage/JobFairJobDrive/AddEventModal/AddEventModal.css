@@ -1,0 +1,138 @@
+.add-event-modal__title {
+  margin: 0 0 24px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.add-event-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.add-event-modal__field--select {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.add-event-modal__label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c1f2e;
+}
+
+.add-event-modal__label--select {
+  color: #7b8194;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.add-event-modal__type-toggle {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  border: 1px solid #e7eaf1;
+  border-radius: 26px;
+  padding: 6px;
+}
+
+.add-event-modal__type-option {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  background: none;
+  color: #4b5164;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-event-modal__type-option--active {
+  background: #4338ca;
+  color: #ffffff;
+}
+
+.add-event-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.add-event-modal__input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 13px 14px;
+  font-size: 14px;
+  color: #1c1f2e;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.add-event-modal__input:focus {
+  border-color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+}
+
+.add-event-modal__input::placeholder {
+  color: #9aa1b1;
+}
+
+.add-event-modal__date-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.add-event-modal__date-icon {
+  position: absolute;
+  right: 14px;
+  color: #9aa1b1;
+  pointer-events: none;
+}
+
+.add-event-modal__footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.add-event-modal__btn {
+  height: 46px;
+  padding: 0 28px;
+  border-radius: 26px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #4b5164;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-event-modal__btn--primary {
+  border: none;
+  background: #4338ca;
+  color: #ffffff;
+}
+
+.add-event-modal__btn--primary:hover {
+  background: #372fb0;
+}
+
+@media (max-width: 640px) {
+  .add-event-modal__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-event-modal__field--select {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -17,11 +17,27 @@
   gap: 12px;
 }
 
+.admin-stat-card--inline .admin-stat-card__top {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-stat-card--stacked .admin-stat-card__top {
+  justify-content: flex-start;
+}
+
 .admin-stat-card__label {
   font-size: 14px;
   font-weight: 600;
   color: #4b5164;
   line-height: 1.35;
+}
+
+.admin-stat-card--inline .admin-stat-card__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14162b;
 }
 
 .admin-stat-card__icon {
@@ -54,6 +70,10 @@
 
 .admin-stat-card__trend--down {
   color: #ef4444;
+}
+
+.admin-stat-card__trend--neutral {
+  color: #9aa1b1;
 }
 
 .admin-stat-card__trend-value {
