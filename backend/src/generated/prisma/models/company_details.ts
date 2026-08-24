@@ -338,11 +338,6 @@ export type company_detailsMinOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
 }
 
-export type Company_detailsNullableScalarRelationFilter = {
-  is?: Prisma.company_detailsWhereInput | null
-  isNot?: Prisma.company_detailsWhereInput | null
-}
-
 export type company_detailsCreateNestedOneWithoutCenter_companyInput = {
   create?: Prisma.XOR<Prisma.company_detailsCreateWithoutCenter_companyInput, Prisma.company_detailsUncheckedCreateWithoutCenter_companyInput>
   connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutCenter_companyInput
@@ -391,12 +386,10 @@ export type company_detailsCreateNestedOneWithoutInstructor_detailsInput = {
   connect?: Prisma.company_detailsWhereUniqueInput
 }
 
-export type company_detailsUpdateOneWithoutInstructor_detailsNestedInput = {
+export type company_detailsUpdateOneRequiredWithoutInstructor_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.company_detailsCreateWithoutInstructor_detailsInput, Prisma.company_detailsUncheckedCreateWithoutInstructor_detailsInput>
   connectOrCreate?: Prisma.company_detailsCreateOrConnectWithoutInstructor_detailsInput
   upsert?: Prisma.company_detailsUpsertWithoutInstructor_detailsInput
-  disconnect?: Prisma.company_detailsWhereInput | boolean
-  delete?: Prisma.company_detailsWhereInput | boolean
   connect?: Prisma.company_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.company_detailsUpdateToOneWithWhereWithoutInstructor_detailsInput, Prisma.company_detailsUpdateWithoutInstructor_detailsInput>, Prisma.company_detailsUncheckedUpdateWithoutInstructor_detailsInput>
 }
