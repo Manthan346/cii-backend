@@ -5,6 +5,7 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 import { HrTokenPayload } from "../../interfaces/jwt-interface";
+import { prisma } from "../../lib/prisma";
 
 export const verifyHrUsingAccessToken = asyncHandler(
     async (
@@ -25,6 +26,27 @@ export const verifyHrUsingAccessToken = asyncHandler(
 
         if (decoded.role !== "hr") {
             throw new ApiError(401, "You are not an HR");
+        }
+
+        const hrUser = await prisma.user_login.findUnique({
+            where: {
+                user_id: decoded.user_id,
+            },
+            select: {
+                user_id: true,
+                admin_approval: true,
+            },
+        });
+
+        if (!hrUser) {
+            throw new ApiError(401, "User not found");
+        }
+
+        if (!hrUser.admin_approval) {
+            throw new ApiError(
+                403,
+                "Your account has been frozen by the administrator."
+            );
         }
 
         req.hr = {
