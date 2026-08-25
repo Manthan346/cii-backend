@@ -6,7 +6,7 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 export const getInstructorBatches = asyncHandler(
   async (req: InstructorAuthRequest, res: Response) => {
-    const instructorId = req.instructor?.instructor_id;
+    const companyId = req.instructor?.company_id;
 
     const search = req.query.search as string | undefined; // matches batch_name OR batch_code
     const courseId = req.query.courseId as string | undefined; // filter by a specific course
@@ -16,7 +16,13 @@ export const getInstructorBatches = asyncHandler(
     const { skip, limit, page } = req.pagination!;
 
     // Built as an AND array so search's OR and any future filters don't collide.
-    const andConditions: any[] = [{ instructor_id: instructorId }];
+    const andConditions: any[] = [
+      {
+        course_details: {
+          company_id: companyId,
+        },
+      },
+    ];
 
     if (search) {
       andConditions.push({
@@ -80,15 +86,25 @@ export const getInstructorBatches = asyncHandler(
 
     const totalPages = Math.ceil(totalRecords / limit);
 
+    const courses = [
+        ...new Map(
+            data.map((course: any) => [
+                course.course_id,
+                {
+                    course_id: course.course_id,
+                    course_name: course.course_name,
+                    course_type: course.course_type,
+                },
+            ])
+        ).values(),
+    ];
+
     return res.status(200).json(
       new ApiResponse(
         200,
         {
           batches: data,
-          courses: data.map((c: any)=> ({
-           courseName:  c.course_name
-
-          })),
+          courses,
           pagination: {
             currentPage: page,
             limit,
