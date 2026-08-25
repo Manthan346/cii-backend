@@ -64,6 +64,7 @@ import { markBatchSyllabus } from "../../controllers/instructor-controller/mark-
 import { addBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-add-batchSyllabusTopic";
 import { deleteBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-delete-batchSyllabusTopic";
 import { addAttendanceBodySchema } from "../../services/zod/instructor/mark-attendance-schema";
+import { getActiveStudentsForSession } from "../../controllers/instructor-controller/fetch-active-CandidatesForAttendance";
 
 const instructorRouter = Router();
 
@@ -190,6 +191,9 @@ instructorRouter.post("/batch-management/:batch_id/add_batch_syllabus",verifyIns
 instructorRouter.delete("/batch-management/batch-syllabus/:batch_syllabus_id",
 verifyInstructorUsingAccessToken,deleteBatchSyllabusTopic
 )
+//fetch all active students for marking attendance for particular session/lecture
+instructorRouter.get("/attendance-sessions/:attendance_session_id/active-students",verifyInstructorUsingAccessToken,getActiveStudentsForSession
+);
 
 export { instructorRouter };
 
