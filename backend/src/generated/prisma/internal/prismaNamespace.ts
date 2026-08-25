@@ -3318,7 +3318,7 @@ export const User_loginScalarFieldEnum = {
   updated_at: 'updated_at',
   center_id: 'center_id',
   refresh_token_hash: 'refresh_token_hash',
-  admin_approval: 'admin_approval'
+  is_active: 'is_active'
 } as const
 
 export type User_loginScalarFieldEnum = (typeof User_loginScalarFieldEnum)[keyof typeof User_loginScalarFieldEnum]

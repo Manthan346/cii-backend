@@ -34,7 +34,7 @@ export const verifyHrUsingAccessToken = asyncHandler(
             },
             select: {
                 user_id: true,
-                admin_approval: true,
+                is_active: true,
             },
         });
 
@@ -42,7 +42,7 @@ export const verifyHrUsingAccessToken = asyncHandler(
             throw new ApiError(401, "User not found");
         }
 
-        if (!hrUser.admin_approval) {
+        if (!hrUser.is_active) {
             throw new ApiError(
                 403,
                 "Your account has been frozen by the administrator."

@@ -18,7 +18,7 @@ export const updateUserApproval = asyncHandler(
             throw new ApiError(400, "Invalid user ID");
         }
         const targetUserId = result.data;
-        const { admin_approval } = req.body;
+        const { is_active } = req.body;
 
         // Prevent admin from freezing their own account
         if (adminUserId === targetUserId) {
@@ -55,7 +55,7 @@ export const updateUserApproval = asyncHandler(
                 user_email: true,
                 user_role: true,
                 center_id: true,
-                admin_approval: true,
+                is_active: true,
             },
         });
 
@@ -78,14 +78,14 @@ export const updateUserApproval = asyncHandler(
                 user_id: targetUserId,
             },
             data: {
-                admin_approval: admin_approval,
+                is_active: is_active,
             },
             select: {
                 user_id: true,
                 user_email: true,
                 user_role: true,
                 center_id: true,
-                admin_approval: true,
+                is_active: true,
                 updated_at: true,
             },
         });
@@ -94,7 +94,7 @@ export const updateUserApproval = asyncHandler(
             new ApiResponse(
                 200,
                 updatedUser,
-                admin_approval
+                is_active
                     ? "User account activated successfully."
                     : "User account frozen successfully."
             )
