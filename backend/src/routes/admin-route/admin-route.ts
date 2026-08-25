@@ -10,6 +10,8 @@ import { createInstructorByAdmin } from "../../controllers/admin-controllers/cre
 import { createInstructorSchema } from "../../services/zod/admin/instructor-creation-schema";
 import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
 import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
+import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-users";
+import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
 
 const adminRouter = Router();
 
@@ -27,5 +29,8 @@ adminRouter.post('/total-users/create-instructor',verifyAdminUsingAccessToken,va
 //freeze account functionality 
 adminRouter.patch("/total-users/:userId/approval",verifyAdminUsingAccessToken,
 validateBody(updateUserApprovalSchema),updateUserApproval);
+//fetch all users 
+adminRouter.get("/total-users",verifyAdminUsingAccessToken,paginationMiddleware,
+getAllUsers);
 
 export default adminRouter
