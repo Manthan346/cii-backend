@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { asyncHandler } from "../../helpers/asyncHandler";
-import { MobilizerAuthRequest } from "../../interfaces/mobilizer-auth-interface";
+import { adminAuthRequest } from "../../interfaces/admin-auth-interface";
 import { prisma } from "../../lib/prisma";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
@@ -8,16 +8,16 @@ import { buildStudentId, getNextSequence } from "../../utils/candidate-utils/gen
 import * as bcrypt from "bcrypt";
 
 /**
- * Mobilizer enroll candidate — mobilizer can create and enroll a candidate in a batch.
+ * Admin create candidate — admin can create and enroll a candidate in a batch.
  *
  * Flow:
- * 1. Validate mobilizer has center_id from token
+ * 1. Validate admin has center_id from token
  * 2. Check if candidate with contact_number already exists in user_login
  * 3. Fetch center name for student ID generation
  * 4. Generate unique candidate ID using utility
  * 5. Generate default password: firstname + lastname + last 4 digits of phone
  * 6. Hash password
- * 7. Create user_login record (candidate role, center_id from mobilizer)
+ * 7. Create user_login record (candidate role, center_id from admin)
  * 8. Create candidates_details record with generated candidate_unique_id
  * 9. Enroll candidate in batch (center-scoped validation)
  * 10. Return enrollment details with generated credentials
@@ -25,14 +25,13 @@ import * as bcrypt from "bcrypt";
  * All operations in a transaction for atomicity.
  * Center isolation enforced throughout.
  */
-export const mobilizerEnrollCandidate = asyncHandler(
-    async (req: MobilizerAuthRequest, res: Response) => {
-        const mobilizerId = req.mobilizer?.mobilizer_id;
-        const centerId = req.mobilizer?.center_id;
-        const userId = req.user?.user_id;
+export const adminCreateCandidate = asyncHandler(
+    async (req: adminAuthRequest, res: Response) => {
+        const adminId = req.user?.user_id;
+        const centerId = req.user?.center_id;
 
-        if (!mobilizerId || !centerId) {
-            throw new ApiError(401, "Mobilizer not authenticated or center not assigned");
+        if (!adminId || !centerId) {
+            throw new ApiError(401, "Admin not authenticated or center not assigned");
         }
 
         const {
@@ -49,11 +48,6 @@ export const mobilizerEnrollCandidate = asyncHandler(
             batch_id,
             enrollment_date,
         } = req.body;
-
-        // Validate required fields
-        if (!first_name || !contact_number || !email || !course_id || !batch_id) {
-            throw new ApiError(400, "First name, contact number, email, course_id, and batch_id are required");
-        }
 
         // Verify center exists and get center name for student ID
         const center = await prisma.center_details.findUnique({
@@ -72,7 +66,6 @@ export const mobilizerEnrollCandidate = asyncHandler(
         // loser re-runs the whole transaction, recomputes the sequence (now +1),
         // and succeeds.
         const MAX_RETRIES = 5;
-        let lastError: unknown;
         let result: any;
 
         for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
@@ -83,7 +76,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
             const existingCandidate = await tx.candidates_details.findFirst({
                 where: {
                     contact_number: contact_number,
-                    
+
                 },
                 include: {
                     user_login: true
@@ -213,7 +206,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                     batch_id,
                     enrollment_status: 'ACTIVE',
                     enrollment_date: enrollment_date ? new Date(enrollment_date) : new Date(),
-                    
+
                 }
             });
 
@@ -231,7 +224,6 @@ export const mobilizerEnrollCandidate = asyncHandler(
             } catch (error: any) {
                 // P2002 = unique-constraint violation (duplicate candidate_unique_id race)
                 if (error?.code === "P2002" && attempt < MAX_RETRIES - 1) {
-                    lastError = error;
                     continue; // retry whole transaction → recomputes sequence
                 }
                 // Non-retryable, or last attempt failed → bubble up
@@ -255,7 +247,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                         last_name: last_name?.trim() || "",
                         contact_number,
                     },
-                    
+
                     batch: {
                         batch_id,
                     },

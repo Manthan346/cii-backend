@@ -30,6 +30,7 @@ const generateNewAccessTokenRefreshToken = asyncHandler(async (req: Request, res
       user_role: true,
       user_email: true,
       refresh_token_hash: true,
+      is_active: true,
       center_details: { select: { center_id: true, center_name: true } },
     },
   });
@@ -51,6 +52,7 @@ const generateNewAccessTokenRefreshToken = asyncHandler(async (req: Request, res
     centerId: user.center_details.center_id,
     centreName: user.center_details.center_name,
     email: user.user_email,
+    is_active: user.is_active ?? true,
   });
 
   const newRefreshTokenHash = await bcrypt.hash(refreshToken, 10);

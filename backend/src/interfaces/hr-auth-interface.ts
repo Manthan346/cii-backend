@@ -10,5 +10,6 @@ export interface HrAuthRequest extends Request {
     user: {
         user_id: string;
         role: string;
+        is_active: boolean;
     };
 }

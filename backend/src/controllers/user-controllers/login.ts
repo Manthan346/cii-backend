@@ -16,7 +16,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
       user_id: true,
       user_role: true,
       user_email: true,
-      is_active:true,
+      is_active: true,
       center_details: {
         select: { center_name: true, center_id: true },
       },
@@ -53,6 +53,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     centerId: user.center_details.center_id,
     centreName: user.center_details.center_name,
     email: user.user_email,
+    is_active: user.is_active ?? true,
   });
 
   const refreshTokenHash = await bcrypt.hash(refreshToken, 10);

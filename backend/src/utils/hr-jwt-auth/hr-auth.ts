@@ -8,6 +8,7 @@ type HrAccessTokenPayload = {
 
     user_id: string;
     company_id: string;
+    is_active?: boolean
 
     role: string;
     email?: string;

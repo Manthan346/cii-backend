@@ -58,6 +58,7 @@ export const verifyHrUsingAccessToken = asyncHandler(
         req.user = {
             user_id: decoded.user_id,
             role: decoded.role,
+            is_active: decoded.is_active ?? true,
         };
 
         next();

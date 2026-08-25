@@ -12,6 +12,7 @@ type AdminAccessTokenPayload = {
     role: string;
     centre_name?: string;
     email: string;
+    is_active?: boolean;
 };
 
 export const verifyAdminUsingAccessToken = asyncHandler(
@@ -32,26 +33,6 @@ export const verifyAdminUsingAccessToken = asyncHandler(
             throw new ApiError(401, "you are not an admin");
         }
 
-        const admin = await prisma.user_login.findUnique({
-            where: {
-                user_id: decoded.user_id,
-            },
-            select: {
-                user_id: true,
-                is_active: true,
-            },
-        });
-
-        if (!admin) {
-            throw new ApiError(401, "user not found");
-        }
-
-        if (!admin.is_active) {
-            throw new ApiError(
-                403,
-                "Your account has been frozen by the administrator."
-            );
-        }
 
         const adminReq = req as adminAuthRequest;
 
@@ -60,6 +41,7 @@ export const verifyAdminUsingAccessToken = asyncHandler(
             role: decoded.role,
             email: decoded.email,
             center_id: decoded.center_id,
+            is_active: decoded.is_active ?? true,
         };
 
         next();
