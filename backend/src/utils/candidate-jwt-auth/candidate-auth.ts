@@ -10,22 +10,22 @@ type accessTokenPayload = {
     center_id?: string
     role: string,
     centre_name?: string,
-    
-   
-    email?: string
+
+
+    email?: string,
+    is_active?: boolean
 }
-    
 
 type refreshTokenPayload = {
     candidate_id: string,
     center_id?: string,
-    
+
     user_id: string,
     role: string,
 
     candidate_first_name: string,
     candidate_last_name: string
-   
+
 }
 
 

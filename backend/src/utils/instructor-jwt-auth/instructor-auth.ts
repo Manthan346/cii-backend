@@ -9,7 +9,8 @@ type InstructorAccessTokenPayload = {
     center_id?: string,
     centre_name?: string,
     email?: string,
-    role: string
+    role: string,
+    is_active?: boolean
 }
 
 
@@ -20,7 +21,7 @@ type InstructorRefreshTokenPayload = {
     instructor_first_name: string,
     instructor_last_name: string,
     role: string
-   
+
 }
 
 

@@ -491,10 +491,6 @@ export type study_materialUncheckedUpdateManyWithoutUser_loginNestedInput = {
   deleteMany?: Prisma.study_materialScalarWhereInput | Prisma.study_materialScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type study_materialCreateWithoutBatch_detailsInput = {
   study_material_id?: string
   title: string

@@ -147,7 +147,7 @@ export const adminCreateCandidate = asyncHandler(
                         date_of_birth: date_of_birth ? new Date(date_of_birth) : null,
                         blood_group: blood_group?.trim() || null,
                         candidate_unique_id: candidateUniqueId,
-                        admin_approval: false, // Requires admin approval
+                        is_active: false, // Requires admin approval
                     }
                 });
                 candidateId = candidate.candidate_id;

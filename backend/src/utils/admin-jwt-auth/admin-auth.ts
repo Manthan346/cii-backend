@@ -2,15 +2,15 @@ import jwt from "jsonwebtoken"
 import { ApiError } from '../../helpers/ApiError'
 
 type adminAccessTokenPayload = {
-    
 
     user_id: string,
     center_id?: string
     role: string,
     centre_name?: string,
-    
-   
-    email: string
+
+
+    email: string,
+    is_active?: boolean
 }
 
 
@@ -19,12 +19,11 @@ type adminRefreshTokenPayload = {
     center_id?: string,
     user_id: string,
     role: string,
-    centre_name?: string
+    centre_name?: string,
+    is_active?: boolean
 
- 
-   
+
 }
-
 
  const generateAdminAccessToken = (token: adminAccessTokenPayload) => {
     if(!process.env.JWT_SECRET){

@@ -125,7 +125,7 @@ export const Candidates_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
   qualification_percentage: 'qualification_percentage',
-  admin_approval: 'admin_approval',
+  is_active: 'is_active',
   candidate_skills: 'candidate_skills',
   guardian_phone_no: 'guardian_phone_no',
   guardian_blood_group: 'guardian_blood_group',
@@ -263,7 +263,8 @@ export const User_loginScalarFieldEnum = {
   created_at: 'created_at',
   updated_at: 'updated_at',
   center_id: 'center_id',
-  refresh_token_hash: 'refresh_token_hash'
+  refresh_token_hash: 'refresh_token_hash',
+  is_active: 'is_active'
 } as const
 
 export type User_loginScalarFieldEnum = (typeof User_loginScalarFieldEnum)[keyof typeof User_loginScalarFieldEnum]

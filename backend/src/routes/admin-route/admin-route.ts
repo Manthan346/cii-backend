@@ -10,6 +10,8 @@ import { createInstructorSchema } from "../../services/zod/admin/instructor-crea
 import { mobilizerEnrollCandidateSchema } from "../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema";
 import { adminCreateCandidate } from "../../controllers/admin-controllers/create-candidate";
 import { getCenterStats } from "../../controllers/admin-controllers/get-center-stats";
+import { getCandidateJourney } from "../../controllers/admin-controllers/get-candidate-journey";
+import { getCoursePerformance } from "../../controllers/admin-controllers/get-course-performance";
 
 const adminRouter = Router();
 
@@ -38,6 +40,20 @@ adminRouter.get(
     "/center/stats",
     verifyAdminUsingAccessToken,
     getCenterStats
+);
+
+// GET center-scoped candidate journey: Enquiry → Enrolled → Training → Completed → Certified
+adminRouter.get(
+    "/center/candidate-journey",
+    verifyAdminUsingAccessToken,
+    getCandidateJourney
+);
+
+// GET center-scoped course performance
+adminRouter.get(
+    "/center/course-performance",
+    verifyAdminUsingAccessToken,
+    getCoursePerformance
 );
 
 export default adminRouter
