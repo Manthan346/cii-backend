@@ -1122,7 +1122,7 @@ export type user_loginCreateWithoutEvent_details_event_details_created_byTouser_
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
@@ -1143,7 +1143,7 @@ export type user_loginUncheckedCreateWithoutEvent_details_event_details_created_
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
@@ -1167,7 +1167,7 @@ export type user_loginCreateWithoutEvent_details_event_details_updated_byTouser_
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1188,7 +1188,7 @@ export type user_loginUncheckedCreateWithoutEvent_details_event_details_updated_
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1223,7 +1223,7 @@ export type user_loginUpdateWithoutEvent_details_event_details_created_byTouser_
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
@@ -1244,7 +1244,7 @@ export type user_loginUncheckedUpdateWithoutEvent_details_event_details_created_
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
@@ -1274,7 +1274,7 @@ export type user_loginUpdateWithoutEvent_details_event_details_updated_byTouser_
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
@@ -1295,7 +1295,7 @@ export type user_loginUncheckedUpdateWithoutEvent_details_event_details_updated_
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
@@ -1314,7 +1314,7 @@ export type user_loginCreateWithoutAdmin_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
@@ -1335,7 +1335,7 @@ export type user_loginUncheckedCreateWithoutAdmin_detailsInput = {
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
@@ -1370,7 +1370,7 @@ export type user_loginUpdateWithoutAdmin_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
@@ -1391,7 +1391,7 @@ export type user_loginUncheckedUpdateWithoutAdmin_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
@@ -1410,7 +1410,7 @@ export type user_loginCreateWithoutHr_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1431,7 +1431,7 @@ export type user_loginUncheckedCreateWithoutHr_detailsInput = {
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1466,7 +1466,7 @@ export type user_loginUpdateWithoutHr_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
@@ -1487,7 +1487,7 @@ export type user_loginUncheckedUpdateWithoutHr_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
@@ -1506,7 +1506,7 @@ export type user_loginCreateWithoutMobilizer_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1527,7 +1527,7 @@ export type user_loginUncheckedCreateWithoutMobilizer_detailsInput = {
   updated_at?: Date | string
   center_id: string
   refresh_token_hash?: string | null
-  admin_approval?: boolean
+  is_active?: boolean
   admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
@@ -1562,7 +1562,7 @@ export type user_loginUpdateWithoutMobilizer_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
@@ -1583,7 +1583,7 @@ export type user_loginUncheckedUpdateWithoutMobilizer_detailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_id?: Prisma.StringFieldUpdateOperationsInput | string
   refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  admin_approval?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput

@@ -187,7 +187,7 @@ model user_login {
   updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
   center_id                                          String               @db.Uuid
   refresh_token_hash                                 String?
-  admin_approval                                     Boolean              @default(true)
+  is_active                                          Boolean              @default(true)
   admin_details                                      admin_details?
   candidates_details                                 candidates_details?
   event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
