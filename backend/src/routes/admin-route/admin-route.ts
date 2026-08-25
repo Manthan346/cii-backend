@@ -33,6 +33,7 @@ validateBody(updateUserApprovalSchema),updateUserApproval);
 //fetch all active users 
 adminRouter.get("/total-users",verifyAdminUsingAccessToken,paginationMiddleware,
 getAllUsers);
+//fetch all freezed accounts
 adminRouter.get("/total-users/deactivated",verifyAdminUsingAccessToken,
 paginationMiddleware,getDeactivatedUsers);
 
