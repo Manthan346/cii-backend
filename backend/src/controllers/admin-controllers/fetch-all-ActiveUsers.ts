@@ -226,6 +226,7 @@ export const getAllUsers = asyncHandler(
          */
         const where: Prisma.user_loginWhereInput = {
             center_id: admin.center_id,
+            is_active:true,
 
             ...(role && {
                 user_role: role,
@@ -239,7 +240,7 @@ export const getAllUsers = asyncHandler(
         /*
          * Fetch users + total count together.
          */
-        const [users, totalUsers] = await prisma.$transaction([
+        const [users, activeUsers] = await prisma.$transaction([
             prisma.user_login.findMany({
                 where,
                 skip,
@@ -306,7 +307,7 @@ export const getAllUsers = asyncHandler(
          * Calculate pagination information.
          */
         const totalPages = Math.ceil(
-            totalUsers / limit
+            activeUsers / limit
         );
 
         /*
@@ -410,7 +411,7 @@ export const getAllUsers = asyncHandler(
                     pagination: {
                         page,
                         limit,
-                        totalUsers,
+                        activeUsers,
                         totalPages,
                     },
                 },
