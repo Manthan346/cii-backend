@@ -38,7 +38,7 @@ export const verifyMobilizerUsingAccessToken = asyncHandler(
             },
             select: {
                 user_id: true,
-                admin_approval: true,
+                is_active: true,
             },
         });
 
@@ -49,7 +49,7 @@ export const verifyMobilizerUsingAccessToken = asyncHandler(
             );
         }
 
-        if (!mobilizerUser.admin_approval) {
+        if (!mobilizerUser.is_active) {
             throw new ApiError(
                 403,
                 "Your account has been frozen by the administrator."

@@ -37,7 +37,7 @@ export const verifyCandidateUsingAccessToken = asyncHandler(
             },
             select: {
                 user_id: true,
-                admin_approval: true,
+                is_active: true,
             },
         });
 
@@ -48,7 +48,7 @@ export const verifyCandidateUsingAccessToken = asyncHandler(
             );
         }
 
-        if (!candidateUser.admin_approval) {
+        if (!candidateUser.is_active) {
             throw new ApiError(
                 403,
                 "Your account has been frozen by the administrator."

@@ -16,7 +16,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
       user_id: true,
       user_role: true,
       user_email: true,
-      admin_approval:true,
+      is_active:true,
       center_details: {
         select: { center_name: true, center_id: true },
       },
@@ -27,7 +27,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(404, "user not found");
   }
 
-  if (!user.admin_approval) {
+  if (!user.is_active) {
     throw new ApiError(
       403,
       "Your account has been frozen by the administrator."
