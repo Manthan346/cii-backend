@@ -125,7 +125,7 @@ export const Candidates_detailsScalarFieldEnum = {
   updated_at: 'updated_at',
   highest_qualification: 'highest_qualification',
   qualification_percentage: 'qualification_percentage',
-  is_active: 'is_active',
+  admin_approval: 'admin_approval',
   candidate_skills: 'candidate_skills',
   guardian_phone_no: 'guardian_phone_no',
   guardian_blood_group: 'guardian_blood_group',
