@@ -4,6 +4,7 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interface";
 import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
+import { prisma } from "../../lib/prisma";
 
 export const verifyInstructorUsingAccessToken = asyncHandler(
     async (
@@ -22,11 +23,36 @@ export const verifyInstructorUsingAccessToken = asyncHandler(
             accessToken,
             process.env.JWT_SECRET!
         ) as InstructorTokenPayload;
-        // console.log("instructor",decoded)
 
         if (decoded.role !== "instructor") {
-            throw new ApiError(401, "you are not an instructor")
-            
+            throw new ApiError(
+                401,
+                "You are not an instructor"
+            );
+        }
+
+        const instructorUser = await prisma.user_login.findUnique({
+            where: {
+                user_id: decoded.user_id,
+            },
+            select: {
+                user_id: true,
+                is_active: true,
+            },
+        });
+
+        if (!instructorUser) {
+            throw new ApiError(
+                401,
+                "User not found"
+            );
+        }
+
+        if (!instructorUser.is_active) {
+            throw new ApiError(
+                403,
+                "Your account has been frozen by the administrator."
+            );
         }
 
         req.user = {
@@ -38,12 +64,9 @@ export const verifyInstructorUsingAccessToken = asyncHandler(
         req.instructor = {
             instructor_id: decoded.instructor_id,
             email: decoded.email,
-            company_id:decoded.company_id
+            company_id: decoded.company_id
         };
 
-     
-
         next();
-
     }
 );

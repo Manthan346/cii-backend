@@ -12,6 +12,8 @@ import { adminCreateCandidate } from "../../controllers/admin-controllers/create
 import { getCenterStats } from "../../controllers/admin-controllers/get-center-stats";
 import { getCandidateJourney } from "../../controllers/admin-controllers/get-candidate-journey";
 import { getCoursePerformance } from "../../controllers/admin-controllers/get-course-performance";
+import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
+import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
 
 const adminRouter = Router();
 
@@ -26,6 +28,9 @@ adminRouter.post(
 adminRouter.post('/total-users/create-hr',verifyAdminUsingAccessToken,validateBody(createHrSchema),createHrByAdmin);
 //create instructor
 adminRouter.post('/total-users/create-instructor',verifyAdminUsingAccessToken,validateBody(createInstructorSchema),createInstructorByAdmin);
+//freeze account functionality 
+adminRouter.patch("/total-users/:userId/approval",verifyAdminUsingAccessToken,
+validateBody(updateUserApprovalSchema),updateUserApproval);
 
 //create candidate (same flow as mobilizer enroll-candidate, with center isolation from admin token)
 adminRouter.post(

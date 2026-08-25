@@ -4,6 +4,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { adminAuthRequest } from "../../interfaces/admin-auth-interface";
 import { role_types } from "../../generated/prisma/enums";
+import { prisma } from "../../lib/prisma";
 
 type AdminAccessTokenPayload = {
     user_id: string;
@@ -31,7 +32,6 @@ export const verifyAdminUsingAccessToken = asyncHandler(
         if (decoded.role !== role_types.admin) {
             throw new ApiError(401, "you are not an admin");
         }
-
 
 
         const adminReq = req as adminAuthRequest;

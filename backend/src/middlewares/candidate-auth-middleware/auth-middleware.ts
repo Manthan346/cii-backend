@@ -1,13 +1,19 @@
-import { TokenPayload } from "../../interfaces/jwt-interface"
+import { TokenPayload } from "../../interfaces/jwt-interface";
 import { ApiError } from "../../helpers/ApiError";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { CandidateAuthRequest } from "../../interfaces/candidate-auth-interface";
 import { NextFunction, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken"
+import jwt from "jsonwebtoken";
+import { prisma } from "../../lib/prisma";
 
+export const verifyCandidateUsingAccessToken = asyncHandler(
+    async (
+        req: CandidateAuthRequest,
+        res: Response,
+        next: NextFunction
+    ) => {
 
-export const verifyCandidateUsingAccessToken = asyncHandler(async(req: CandidateAuthRequest, res: Response, next: NextFunction) => {
-    const accessToken = req.cookies.accessToken
+        const accessToken = req.cookies.accessToken;
 
     if (!accessToken) {
         throw new ApiError(401, "unauthorized")

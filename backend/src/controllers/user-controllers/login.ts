@@ -27,6 +27,13 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(404, "user not found");
   }
 
+  if (!user.is_active) {
+    throw new ApiError(
+      403,
+      "Your account has been frozen by the administrator."
+    );
+  }
+
   if (user.user_role !== role) {
     throw new ApiError(404, "invalid role");
   }

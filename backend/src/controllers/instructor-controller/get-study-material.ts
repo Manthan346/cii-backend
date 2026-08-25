@@ -324,10 +324,30 @@ export const getStudyMaterial = asyncHandler(
                         select: {
                             batch_id: true,
                             batch_code: true,
-
                             course_details: {
                                 select: {
                                     course_name: true
+                                }
+                            }
+                        }
+                    },
+
+                    user_login: {
+                        select: {
+                            user_id: true,
+                            user_role: true,
+
+                            instructor_details: {
+                                select: {
+                                    instructor_first_name: true,
+                                    instructor_last_name: true
+                                }
+                            },
+
+                            admin_details: {
+                                select: {
+                                    admin_first_name: true,
+                                    admin_last_name: true
                                 }
                             }
                         }
@@ -342,6 +362,35 @@ export const getStudyMaterial = asyncHandler(
                 }
             });
 
+        const formattedStudyMaterials = studyMaterials.map(
+            (material) => {
+
+                const user = material.user_login;
+
+                let uploadedBy = "Unknown";
+
+                if (user.instructor_details) {
+                    uploadedBy =
+                        `${user.instructor_details.instructor_first_name} ${
+                            user.instructor_details.instructor_last_name ?? ""
+                        }`.trim();
+                }
+
+                else if (user.admin_details) {
+                    uploadedBy =
+                        `${user.admin_details.admin_first_name} ${
+                            user.admin_details.admin_last_name ?? ""
+                        }`.trim();
+                }
+
+                return {
+                    ...material,
+                    uploaded_by: uploadedBy,
+                    user_login: undefined
+                };
+            }
+        );
+
         return res.status(200).json(
             new ApiResponse(
                 200,
@@ -350,7 +399,7 @@ export const getStudyMaterial = asyncHandler(
                     totalPages,
                     totalRecords,
                     recordsPerPage: limit,
-                    studyMaterials
+                    studyMaterials:formattedStudyMaterials
                 },
                 "Study materials fetched successfully."
             )

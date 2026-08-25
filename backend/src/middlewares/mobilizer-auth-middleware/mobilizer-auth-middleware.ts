@@ -5,6 +5,7 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { MobilizerAuthRequest } from "../../interfaces/mobilizer-auth-interface";
 import { MobilizerTokenPayload } from "../../interfaces/jwt-interface";
+import { prisma } from "../../lib/prisma";
 
 export const verifyMobilizerUsingAccessToken = asyncHandler(
     async (
@@ -25,7 +26,34 @@ export const verifyMobilizerUsingAccessToken = asyncHandler(
         ) as MobilizerTokenPayload;
 
         if (decoded.role !== "mobilizer") {
-            throw new ApiError(401, "You are not a mobilizer");
+            throw new ApiError(
+                401,
+                "You are not a mobilizer"
+            );
+        }
+
+        const mobilizerUser = await prisma.user_login.findUnique({
+            where: {
+                user_id: decoded.user_id,
+            },
+            select: {
+                user_id: true,
+                is_active: true,
+            },
+        });
+
+        if (!mobilizerUser) {
+            throw new ApiError(
+                401,
+                "User not found"
+            );
+        }
+
+        if (!mobilizerUser.is_active) {
+            throw new ApiError(
+                403,
+                "Your account has been frozen by the administrator."
+            );
         }
 
         req.mobilizer = {
