@@ -63,7 +63,7 @@ export type Candidates_detailsMinAggregateOutputType = {
   updated_at: Date | null
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  is_active: boolean | null
+  admin_approval: boolean | null
   guardian_phone_no: string | null
   guardian_blood_group: string | null
   guardian_relationship: string | null
@@ -122,7 +122,7 @@ export type Candidates_detailsMaxAggregateOutputType = {
   updated_at: Date | null
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  is_active: boolean | null
+  admin_approval: boolean | null
   guardian_phone_no: string | null
   guardian_blood_group: string | null
   guardian_relationship: string | null
@@ -181,7 +181,7 @@ export type Candidates_detailsCountAggregateOutputType = {
   updated_at: number
   highest_qualification: number
   qualification_percentage: number
-  is_active: number
+  admin_approval: number
   candidate_skills: number
   guardian_phone_no: number
   guardian_blood_group: number
@@ -253,7 +253,7 @@ export type Candidates_detailsMinAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  is_active?: true
+  admin_approval?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
   guardian_relationship?: true
@@ -312,7 +312,7 @@ export type Candidates_detailsMaxAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  is_active?: true
+  admin_approval?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
   guardian_relationship?: true
@@ -371,7 +371,7 @@ export type Candidates_detailsCountAggregateInputType = {
   updated_at?: true
   highest_qualification?: true
   qualification_percentage?: true
-  is_active?: true
+  admin_approval?: true
   candidate_skills?: true
   guardian_phone_no?: true
   guardian_blood_group?: true
@@ -518,7 +518,7 @@ export type Candidates_detailsGroupByOutputType = {
   updated_at: Date
   highest_qualification: string | null
   qualification_percentage: runtime.Decimal | null
-  is_active: boolean | null
+  admin_approval: boolean | null
   candidate_skills: string[]
   guardian_phone_no: string | null
   guardian_blood_group: string | null
@@ -601,7 +601,7 @@ export type candidates_detailsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
+  admin_approval?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_phone_no?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -666,7 +666,7 @@ export type candidates_detailsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_active?: Prisma.SortOrderInput | Prisma.SortOrder
+  admin_approval?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -736,7 +736,7 @@ export type candidates_detailsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
+  admin_approval?: Prisma.BoolNullableFilter<"candidates_details"> | boolean | null
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_blood_group?: Prisma.StringNullableFilter<"candidates_details"> | string | null
   guardian_relationship?: Prisma.StringNullableFilter<"candidates_details"> | string | null
@@ -799,7 +799,7 @@ export type candidates_detailsOrderByWithAggregationInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_active?: Prisma.SortOrderInput | Prisma.SortOrder
+  admin_approval?: Prisma.SortOrderInput | Prisma.SortOrder
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -867,7 +867,7 @@ export type candidates_detailsScalarWhereWithAggregatesInput = {
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"candidates_details"> | Date | string
   highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   qualification_percentage?: Prisma.DecimalNullableWithAggregatesFilter<"candidates_details"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.BoolNullableWithAggregatesFilter<"candidates_details"> | boolean | null
+  admin_approval?: Prisma.BoolNullableWithAggregatesFilter<"candidates_details"> | boolean | null
   candidate_skills?: Prisma.StringNullableListFilter<"candidates_details">
   guardian_phone_no?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
   guardian_blood_group?: Prisma.StringNullableWithAggregatesFilter<"candidates_details"> | string | null
@@ -926,7 +926,7 @@ export type candidates_detailsCreateInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -991,7 +991,7 @@ export type candidates_detailsUncheckedCreateInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -1054,7 +1054,7 @@ export type candidates_detailsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1119,7 +1119,7 @@ export type candidates_detailsUncheckedUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1183,7 +1183,7 @@ export type candidates_detailsCreateManyInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -1242,7 +1242,7 @@ export type candidates_detailsUpdateManyMutationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1302,7 +1302,7 @@ export type candidates_detailsUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1370,7 +1370,7 @@ export type candidates_detailsCountOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
+  admin_approval?: Prisma.SortOrder
   candidate_skills?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
@@ -1435,7 +1435,7 @@ export type candidates_detailsMaxOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
+  admin_approval?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
@@ -1494,7 +1494,7 @@ export type candidates_detailsMinOrderByAggregateInput = {
   updated_at?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   qualification_percentage?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
+  admin_approval?: Prisma.SortOrder
   guardian_phone_no?: Prisma.SortOrder
   guardian_blood_group?: Prisma.SortOrder
   guardian_relationship?: Prisma.SortOrder
@@ -1700,7 +1700,7 @@ export type candidates_detailsCreateWithoutAttendance_recordsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -1764,7 +1764,7 @@ export type candidates_detailsUncheckedCreateWithoutAttendance_recordsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -1842,7 +1842,7 @@ export type candidates_detailsUpdateWithoutAttendance_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1906,7 +1906,7 @@ export type candidates_detailsUncheckedUpdateWithoutAttendance_recordsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1968,7 +1968,7 @@ export type candidates_detailsCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2031,7 +2031,7 @@ export type candidates_detailsUncheckedCreateWithoutUser_loginInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2110,7 +2110,7 @@ export type candidates_detailsUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2173,7 +2173,7 @@ export type candidates_detailsUncheckedUpdateWithoutUser_loginInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2236,7 +2236,7 @@ export type candidates_detailsCreateWithoutBatch_enrollmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2300,7 +2300,7 @@ export type candidates_detailsUncheckedCreateWithoutBatch_enrollmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2378,7 +2378,7 @@ export type candidates_detailsUpdateWithoutBatch_enrollmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2442,7 +2442,7 @@ export type candidates_detailsUncheckedUpdateWithoutBatch_enrollmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2504,7 +2504,7 @@ export type candidates_detailsCreateWithoutCandidate_documentsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2568,7 +2568,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_documentsInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2646,7 +2646,7 @@ export type candidates_detailsUpdateWithoutCandidate_documentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2710,7 +2710,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_documentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2772,7 +2772,7 @@ export type candidates_detailsCreateWithoutCandidate_assessmentInput = {
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2836,7 +2836,7 @@ export type candidates_detailsUncheckedCreateWithoutCandidate_assessmentInput = 
   updated_at?: Date | string
   highest_qualification?: string | null
   qualification_percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: boolean | null
+  admin_approval?: boolean | null
   candidate_skills?: Prisma.candidates_detailsCreatecandidate_skillsInput | string[]
   guardian_phone_no?: string | null
   guardian_blood_group?: string | null
@@ -2914,7 +2914,7 @@ export type candidates_detailsUpdateWithoutCandidate_assessmentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2978,7 +2978,7 @@ export type candidates_detailsUncheckedUpdateWithoutCandidate_assessmentInput = 
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qualification_percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  is_active?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  admin_approval?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   candidate_skills?: Prisma.candidates_detailsUpdatecandidate_skillsInput | string[]
   guardian_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3090,7 +3090,7 @@ export type candidates_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  is_active?: boolean
+  admin_approval?: boolean
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
@@ -3156,7 +3156,7 @@ export type candidates_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  is_active?: boolean
+  admin_approval?: boolean
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
@@ -3217,7 +3217,7 @@ export type candidates_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  is_active?: boolean
+  admin_approval?: boolean
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
@@ -3278,7 +3278,7 @@ export type candidates_detailsSelectScalar = {
   updated_at?: boolean
   highest_qualification?: boolean
   qualification_percentage?: boolean
-  is_active?: boolean
+  admin_approval?: boolean
   candidate_skills?: boolean
   guardian_phone_no?: boolean
   guardian_blood_group?: boolean
@@ -3311,7 +3311,7 @@ export type candidates_detailsSelectScalar = {
   candidate_emergency_contact_no?: boolean
 }
 
-export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "is_active" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address" | "profile_photo" | "current_city" | "current_district" | "current_pin_code" | "current_state_name" | "permanent_city" | "permanent_pin_code" | "permanent_state_name" | "permanent_district" | "candidate_permanent_address" | "candidate_emergency_contact_no", ExtArgs["result"]["candidates_details"]>
+export type candidates_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"candidate_id" | "candidate_first_name" | "candidate_last_name" | "contact_number" | "gender" | "date_of_birth" | "education" | "candidate_current_address" | "enquiry_source" | "aadhar_card_no" | "pan_card_no" | "guardian_name" | "nearest_station" | "salary" | "training_start_date" | "training_end_date" | "job_location" | "candidate_status" | "verification_status" | "blood_group" | "category" | "user_id" | "created_at" | "updated_at" | "highest_qualification" | "qualification_percentage" | "admin_approval" | "candidate_skills" | "guardian_phone_no" | "guardian_blood_group" | "guardian_relationship" | "guardian_occupation" | "candidate_unique_id" | "guardian_address" | "guardian_gender" | "guardian_dob" | "father_name" | "father_occupation" | "father_phone_no" | "father_blood_group" | "mother_name" | "mother_occupation" | "mother_blood_group" | "mother_phone_no" | "father_address" | "mother_address" | "profile_photo" | "current_city" | "current_district" | "current_pin_code" | "current_state_name" | "permanent_city" | "permanent_pin_code" | "permanent_state_name" | "permanent_district" | "candidate_permanent_address" | "candidate_emergency_contact_no", ExtArgs["result"]["candidates_details"]>
 export type candidates_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance_records?: boolean | Prisma.candidates_details$attendance_recordsArgs<ExtArgs>
   batch_enrollment?: boolean | Prisma.candidates_details$batch_enrollmentArgs<ExtArgs>
@@ -3363,7 +3363,7 @@ export type $candidates_detailsPayload<ExtArgs extends runtime.Types.Extensions.
     updated_at: Date
     highest_qualification: string | null
     qualification_percentage: runtime.Decimal | null
-    is_active: boolean | null
+    admin_approval: boolean | null
     candidate_skills: string[]
     guardian_phone_no: string | null
     guardian_blood_group: string | null
@@ -3848,7 +3848,7 @@ export interface candidates_detailsFieldRefs {
   readonly updated_at: Prisma.FieldRef<"candidates_details", 'DateTime'>
   readonly highest_qualification: Prisma.FieldRef<"candidates_details", 'String'>
   readonly qualification_percentage: Prisma.FieldRef<"candidates_details", 'Decimal'>
-  readonly is_active: Prisma.FieldRef<"candidates_details", 'Boolean'>
+  readonly admin_approval: Prisma.FieldRef<"candidates_details", 'Boolean'>
   readonly candidate_skills: Prisma.FieldRef<"candidates_details", 'String[]'>
   readonly guardian_phone_no: Prisma.FieldRef<"candidates_details", 'String'>
   readonly guardian_blood_group: Prisma.FieldRef<"candidates_details", 'String'>

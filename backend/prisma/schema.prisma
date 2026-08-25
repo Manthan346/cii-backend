@@ -35,7 +35,7 @@ model candidates_details {
   updated_at                     DateTime               @default(now()) @db.Timestamp(6)
   highest_qualification          String?                @db.VarChar(100)
   qualification_percentage       Decimal?               @db.Decimal(5, 2)
-  is_active                 Boolean?
+  admin_approval                 Boolean?
   candidate_skills               String[]
   guardian_phone_no              String?                @unique @db.VarChar(10)
   guardian_blood_group           String?                @db.VarChar(10)
