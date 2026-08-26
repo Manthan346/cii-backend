@@ -4,7 +4,6 @@ import {
   Clock,
   MapPin,
   Map,
-  Download,
   UserRoundPlus,
   BadgeCheck,
   ClipboardList,
@@ -17,7 +16,6 @@ import Pagination from '../../shared/Pagination/Pagination';
 import ApplicationsFilterBar from './ApplicationsFilterBar/ApplicationsFilterBar';
 import ApplicationsTable from './ApplicationsTable/ApplicationsTable';
 import CandidateDetailsModal from './CandidateDetailsModal/CandidateDetailsModal';
-import ImportModal from './ImportModal/ImportModal';
 import {
   eventApplications as allApplications,
   eventTypeStyles,
@@ -34,8 +32,15 @@ const PAGE_SIZE = 6;
  * Job Drive alike - it's the same component either way, driven by
  * `event.type`). Shows the event's header info, 5 application-funnel
  * stat cards, a filter bar, the candidates table, and pagination.
- * "Import" opens ImportModal; previewing a candidate opens
- * CandidateDetailsModal.
+ *
+ * "Preview"/resume-preview has been removed from the candidates table
+ * entirely per request. "View Profile" (row's action menu) is the
+ * only remaining candidate-level action - opens CandidateDetailsModal,
+ * a read-only popup with contact info/status.
+ *
+ * NOTE: "Import" used to live here but per request now lives on
+ * JobFairJobDriveList (the main list page) instead - see
+ * JobFairJobDrive.jsx / JobFairJobDriveList.jsx.
  *
  * Owns its own copy of that event's applications in state so Remove
  * can drop a row immediately - same local-state pattern used
@@ -47,10 +52,9 @@ const EventApplicationsView = ({ event, onBack }) => {
   );
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
-  const [previewCandidateId, setPreviewCandidateId] = useState(null);
-  const [isImportOpen, setIsImportOpen] = useState(false);
+  const [profileCandidateId, setProfileCandidateId] = useState(null);
 
-  const previewCandidate = applications.find((item) => item.id === previewCandidateId) ?? null;
+  const profileCandidate = applications.find((item) => item.id === profileCandidateId) ?? null;
   const stats = event.applicationStats ?? {};
 
   const filteredApplications = useMemo(() => {
@@ -82,13 +86,7 @@ const EventApplicationsView = ({ event, onBack }) => {
       </button>
 
       <div className="event-applications-view__header">
-        <div className="event-applications-view__header-top">
-          <StatusBadge label={event.type} {...(eventTypeStyles[event.type] ?? {})} />
-          <button type="button" className="event-applications-view__import-btn" onClick={() => setIsImportOpen(true)}>
-            Import
-            <Download size={15} />
-          </button>
-        </div>
+        <StatusBadge label={event.type} {...(eventTypeStyles[event.type] ?? {})} />
 
         <h1 className="event-applications-view__title">{event.name}</h1>
 
@@ -131,7 +129,7 @@ const EventApplicationsView = ({ event, onBack }) => {
 
       <ApplicationsTable
         applications={paginatedApplications}
-        onPreview={setPreviewCandidateId}
+        onViewProfile={setProfileCandidateId}
         onRemove={handleRemove}
       />
 
@@ -143,12 +141,10 @@ const EventApplicationsView = ({ event, onBack }) => {
       />
 
       <CandidateDetailsModal
-        candidate={previewCandidate}
-        isOpen={Boolean(previewCandidate)}
-        onClose={() => setPreviewCandidateId(null)}
+        candidate={profileCandidate}
+        isOpen={Boolean(profileCandidate)}
+        onClose={() => setProfileCandidateId(null)}
       />
-
-      <ImportModal isOpen={isImportOpen} onClose={() => setIsImportOpen(false)} />
     </div>
   );
 };

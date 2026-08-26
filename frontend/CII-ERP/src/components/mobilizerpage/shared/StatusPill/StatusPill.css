@@ -2,18 +2,39 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  min-width: 100px;
+  max-width: 100%;
   padding: 4px 14px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
   line-height: 1.5;
-  width: 100px;
 }
 
-.md-pill--blue { background: #dce7fe; color: #3e6ff3; }
-.md-pill--purple { background: #eae0fb; color: #7c3aed; }
-.md-pill--amber { background: #fdf1c8; color: #a3760a; }
-.md-pill--green { background: #d9f9e2; color: #16803d; }
-.md-pill--red { background: #fde2e2; color: #d6435a; }
-.md-pill--gray { background: #eef0f3; color: #6b7280; }
+.md-pill--blue {
+  background: #dce7fe;
+  color: #3e6ff3;
+}
+.md-pill--purple {
+  background: #eae0fb;
+  color: #7c3aed;
+}
+.md-pill--amber {
+  background: #fdf1c8;
+  color: #a3760a;
+}
+.md-pill--green {
+  background: #d9f9e2;
+  color: #16803d;
+}
+.md-pill--red {
+  background: #fde2e2;
+  color: #d6435a;
+}
+.md-pill--gray {
+  background: #eef0f3;
+  color: #6b7280;
+}

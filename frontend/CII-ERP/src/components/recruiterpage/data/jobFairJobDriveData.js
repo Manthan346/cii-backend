@@ -22,16 +22,19 @@ export const eventTypeStyles = {
   'Job Drive': { bg: '#ede9fe', color: '#7c3aed' },
 };
 
-// Maps an event's `status` to the shared StatusBadge's bg/color props
-// NOTE: Closed/Archived colors here are intentionally swapped from
-// jobManagementData's jobStatusStyles - Closed is neutral gray and
-// Archived is red for placement events, per the reference design.
+// Maps an event's `status` to the shared StatusBadge's bg/color props.
+// Status here is the event's timing/stage (has it happened yet?),
+// not a publish state - matches the "All status" filter dropdown.
 export const eventStatusStyles = {
-  Published: { bg: '#dcfce7', color: '#16a34a' },
-  Closed: { bg: '#eef1f7', color: '#6b7280' },
-  Archived: { bg: '#fee2e2', color: '#dc2626' },
-  Draft: { bg: '#fef3c7', color: '#b45309' },
+  Upcoming: { bg: '#ede9fe', color: '#7c3aed' },
+  Ongoing: { bg: '#dcfce7', color: '#16a34a' },
+  Completed: { bg: '#eef1f7', color: '#6b7280' },
 };
+
+// The 3 selectable status values, shared by EventTable's editable
+// StatusSelect and EventFilterBar's "All status" dropdown (which
+// prepends its own "All status" option on top of these).
+export const eventStatusOptions = ['Upcoming', 'Ongoing', 'Completed'];
 
 // Maps a candidate application's `status` to the shared StatusBadge's bg/color props
 export const applicationStatusStyles = {
@@ -58,7 +61,7 @@ export const placementEvents = [
     mapsLink: 'https://maps.google.com/',
     candidates: 200,
     candidatesRegistered: '300+',
-    status: 'Published',
+    status: 'Upcoming',
     postedDate: '2026-07-28',
     description: 'Multi-company hiring fair covering hospitality, design and beauty & wellness roles for graduating batches.',
     applicationStats: SHARED_APPLICATION_STATS,
@@ -74,7 +77,7 @@ export const placementEvents = [
     mapsLink: 'https://maps.google.com/',
     candidates: 150,
     candidatesRegistered: '150+',
-    status: 'Closed',
+    status: 'Ongoing',
     postedDate: '2026-07-20',
     description: 'On-site hiring drive for ITC hospitality roles across front office, F&B, and housekeeping.',
     applicationStats: SHARED_APPLICATION_STATS,
@@ -90,7 +93,7 @@ export const placementEvents = [
     mapsLink: 'https://maps.google.com/',
     candidates: 100,
     candidatesRegistered: '100+',
-    status: 'Archived',
+    status: 'Completed',
     postedDate: '2026-06-10',
     description: 'Walk-in interviews for VFS Global customer service and visa processing roles.',
     applicationStats: SHARED_APPLICATION_STATS,
@@ -106,7 +109,7 @@ export const placementEvents = [
     mapsLink: 'https://maps.google.com/',
     candidates: 100,
     candidatesRegistered: '100+',
-    status: 'Draft',
+    status: 'Completed',
     postedDate: '2026-07-30',
     description: 'Follow-up hiring drive for VFS Global roles, details still being finalized.',
     applicationStats: SHARED_APPLICATION_STATS,
@@ -122,7 +125,7 @@ export const placementEvents = [
     mapsLink: 'https://maps.google.com/',
     candidates: 200,
     candidatesRegistered: '300+',
-    status: 'Published',
+    status: 'Upcoming',
     postedDate: '2026-07-28',
     description: 'Second batch multi-company hiring fair covering hospitality, design and beauty & wellness roles.',
     applicationStats: SHARED_APPLICATION_STATS,
@@ -140,67 +143,73 @@ export const placementEvents = [
  * company logo next to it, but no logo assets were provided, so this
  * renders as a text chip instead. Swap in <img> tags once real logos
  * are available.
+ *
+ * `resumeUrl` is a placeholder link (example.com) - the Resume
+ * column's "Preview" button opens it in a new tab as-is. Swap each
+ * candidate's `resumeUrl` for the real hosted file URL once resumes
+ * are actually stored somewhere; ApplicationsTable doesn't need to
+ * change.
  */
 export const eventApplications = [
   {
     id: 'app-1', eventId: 'event-1', name: 'Ankita Sharma', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
-    email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected',
+    email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-1.pdf',
   },
   {
     id: 'app-2', eventId: 'event-1', name: 'Kiran Sawant', avatarColor: '#0f766e',
     appliedTo: 'Quick Service Restaurant', company: 'JUBILANT FoodWorks', contactNo: '+91 9999900000',
-    email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected',
+    email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-2.pdf',
   },
   {
     id: 'app-3', eventId: 'event-1', name: 'Suresh Naik', avatarColor: '#b45309',
     appliedTo: 'Beauty & Wellness', company: "L'Oréal India", contactNo: '+91 9999900000',
-    email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected',
+    email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-3.pdf',
   },
   {
     id: 'app-4', eventId: 'event-1', name: 'Deepa Chavan', avatarColor: '#2563eb',
     appliedTo: 'Hospitality', company: 'ITC Hotels Limited', contactNo: '+91 9999900000',
-    email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview',
+    email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-4.pdf',
   },
   {
     id: 'app-5', eventId: 'event-1', name: 'Rohit Shinde', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
-    email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected',
+    email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-5.pdf',
   },
   {
     id: 'app-6', eventId: 'event-1', name: 'Pooja Jadhav', avatarColor: '#0f766e',
     appliedTo: 'Cybersecurity', company: 'DSCI', contactNo: '+91 9999900000',
-    email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview',
+    email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-6.pdf',
   },
 
   {
     id: 'app-7', eventId: 'event-2', name: 'Kiran Sawant', avatarColor: '#0f766e',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
-    email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected',
+    email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-7.pdf',
   },
   {
     id: 'app-8', eventId: 'event-2', name: 'Ankita Sharma', avatarColor: '#7c3aed',
     appliedTo: 'Quick Service Restaurant', company: 'JUBILANT FoodWorks', contactNo: '+91 9999900000',
-    email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected',
+    email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-8.pdf',
   },
   {
     id: 'app-9', eventId: 'event-2', name: 'Suresh Naik', avatarColor: '#b45309',
     appliedTo: 'Beauty & Wellness', company: "L'Oréal India", contactNo: '+91 9999900000',
-    email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected',
+    email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-9.pdf',
   },
   {
     id: 'app-10', eventId: 'event-2', name: 'Deepa Chavan', avatarColor: '#2563eb',
     appliedTo: 'Hospitality', company: 'ITC Hotels Limited', contactNo: '+91 9999900000',
-    email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview',
+    email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-10.pdf',
   },
   {
     id: 'app-11', eventId: 'event-2', name: 'Rohit Shinde', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
-    email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected',
+    email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-11.pdf',
   },
   {
     id: 'app-12', eventId: 'event-2', name: 'Pooja Jadhav', avatarColor: '#0f766e',
     appliedTo: 'Cybersecurity', company: 'DSCI', contactNo: '+91 9999900000',
-    email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview',
+    email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-12.pdf',
   },
 ];

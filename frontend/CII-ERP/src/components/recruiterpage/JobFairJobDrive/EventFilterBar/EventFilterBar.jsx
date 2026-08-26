@@ -1,9 +1,10 @@
 import React from 'react';
 import { Search, ChevronDown } from 'lucide-react';
+import { eventStatusOptions } from '../../data';
 import './EventFilterBar.css';
 
 const TYPE_TABS = ['All', 'Job Fair', 'Job Drive'];
-const STATUS_OPTIONS = ['All status', 'Published', 'Draft', 'Closed', 'Archived'];
+const STATUS_OPTIONS = ['All status', ...eventStatusOptions];
 
 /**
  * EventFilterBar

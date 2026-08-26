@@ -1,89 +1,137 @@
-import React, { useMemo, useState } from 'react';
-import PlacementEventStats from '../PlacementEventStats/PlacementEventStats';
-import PlacementEventFilterBar from '../PlacementEventFilterBar/PlacementEventFilterBar';
-import ViewToggle from '../ViewToggle/ViewToggle';
-import EventCard from '../EventCard/EventCard';
-import EventListView from '../EventListView/EventListView';
-import EventDetailModal from '../EventDetailModal/EventDetailModal';
-import UploadMediaModal from '../UploadMediaModal/UploadMediaModal';
-import { placementEvents } from '../../../data/placementEventData';
-import './PlacementEvent.css';
+import React, { useEffect, useState } from "react";
+import PlacementEventStats from "../PlacementEventStats/PlacementEventStats";
+import PlacementEventFilterBar from "../PlacementEventFilterBar/PlacementEventFilterBar";
+import ViewToggle from "../ViewToggle/ViewToggle";
+import EventCard from "../EventCard/EventCard";
+import EventListView from "../EventListView/EventListView";
+import UploadMediaModal from "../UploadMediaModal/UploadMediaModal";
+import {
+  fetchJobEvents,
+  uploadJobEventImages,
+} from "../../../../../../api/mobilizer/placementEventsService";
+import "./PlacementEvent.css";
 
 export default function PlacementEvent() {
-  const [view, setView] = useState('card');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [detailEventId, setDetailEventId] = useState(null);
+  const [view, setView] = useState("card");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [eventType, setEventType] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [page, setPage] = useState(1);
+  const [events, setEvents] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [uploadEventId, setUploadEventId] = useState(null);
 
-  const filteredEvents = useMemo(() => {
-    let list = placementEvents;
-    if (statusFilter !== 'all') {
-      list = list.filter((e) => e.status === statusFilter);
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.trim().toLowerCase();
-      list = list.filter((e) => e.title.toLowerCase().includes(q) || e.venue.toLowerCase().includes(q));
-    }
-    return list;
-  }, [statusFilter, searchQuery]);
+  useEffect(() => {
+    let isMounted = true;
+    setLoading(true);
+    setError("");
+    fetchJobEvents({
+      page,
+      limit: 20,
+      search: searchQuery.trim() || undefined,
+      event_type: eventType || undefined,
+      event_status: statusFilter || undefined,
+      date: dateFilter || undefined,
+    })
+      .then(({ events: jobEvents, pagination }) => {
+        if (!isMounted) return;
+        setEvents(jobEvents);
+        setTotalPages(Math.max(1, pagination.totalPages));
+        setTotalRecords(pagination.totalRecords);
+      })
+      .catch(() => {
+        if (isMounted) setError("Unable to load job events");
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [dateFilter, eventType, page, searchQuery, statusFilter]);
 
-  const detailEvent = placementEvents.find((e) => e.id === detailEventId) || null;
-  const uploadEvent = placementEvents.find((e) => e.id === uploadEventId) || null;
+  const uploadEvent = events.find((e) => e.id === uploadEventId) || null;
 
-  // "Add Images & video" inside the detail modal hands off to the same
-  // upload modal — close one, open the other, rather than stacking them.
-  const handleOpenUploadFromDetail = (event) => {
-    setDetailEventId(null);
-    setUploadEventId(event.id);
+  const handleUploadSubmit = async (event, files) => {
+    await uploadJobEventImages(event.id, files);
+    setUploadEventId(null);
   };
 
-  const handleUploadSubmit = (event, payload) => {
-    console.log('Upload media for', event.id, payload);
-    setUploadEventId(null);
+  const handleOpenMap = (event) => {
+    const address = event.address || event.venue;
+    if (!address || address === "-") return;
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
     <div className="placement-event-page">
       <div className="pe-header">
         <h1 className="pe-header__title">Placement Events</h1>
-        <p className="pe-header__subtitle">All job fair events — upcoming, today, and completed</p>
+        <p className="pe-header__subtitle">
+          All job fair events — upcoming, today, and completed
+        </p>
       </div>
 
       <PlacementEventStats />
 
       <PlacementEventFilterBar
-        onSearch={setSearchQuery}
-        onStatusChange={setStatusFilter}
-        onApply={() => console.log('Apply filter', { searchQuery, statusFilter })}
+        onSearch={(value) => {
+          setSearchQuery(value);
+          setPage(1);
+        }}
+        onTypeChange={(value) => {
+          setEventType(value === "all" ? "" : value);
+          setPage(1);
+        }}
+        onStatusChange={(value) => {
+          setStatusFilter(value === "all" ? "" : value);
+          setPage(1);
+        }}
+        onDateChange={(value) => {
+          setDateFilter(value);
+          setPage(1);
+        }}
+        onApply={() => setPage(1)}
       />
 
       <ViewToggle view={view} onChange={setView} />
 
-      {view === 'card' ? (
+      {error && <p role="alert">{error}</p>}
+      {loading ? (
+        <p>Loading job events...</p>
+      ) : view === "card" ? (
         <div className="pe-cards-grid">
-          {filteredEvents.map((event) => (
+          {events.map((event) => (
             <EventCard
               key={event.id}
               event={event}
-              onOpenWorkspace={(e) => setDetailEventId(e.id)}
+              onOpenMap={handleOpenMap}
               onUploadMedia={(e) => setUploadEventId(e.id)}
             />
           ))}
         </div>
       ) : (
         <EventListView
-          events={filteredEvents}
-          onOpenWorkspace={(e) => setDetailEventId(e.id)}
+          events={events}
+          pagination={{
+            page,
+            totalPages,
+            totalRecords,
+            onPrev: () => setPage((value) => Math.max(1, value - 1)),
+            onNext: () => setPage((value) => Math.min(totalPages, value + 1)),
+          }}
+          onOpenMap={handleOpenMap}
           onUploadMedia={(e) => setUploadEventId(e.id)}
         />
       )}
-
-      <EventDetailModal
-        event={detailEvent}
-        onClose={() => setDetailEventId(null)}
-        onOpenUpload={handleOpenUploadFromDetail}
-      />
 
       <UploadMediaModal
         event={uploadEvent}

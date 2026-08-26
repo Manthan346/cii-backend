@@ -1,21 +1,3 @@
-// Data for the Mobilizer Dashboard page.
-// Swap these for live API data whenever the backend is wired up — every
-// component below just expects this same shape.
-
-// icon/tone map to lucide-react icons + a CSS tone class in StatCard.css
-export const dashboardStats = [
-  { id: 'total-leads', icon: 'Calendar', value: 148, label: 'Total Leads', tone: 'blue' },
-  { id: 'interested', icon: 'FileText', value: 24, label: 'Interested', tone: 'green' },
-  { id: 'not-connected', icon: 'PhoneMissed', value: 32, label: 'Not Connected Leads', tone: 'cyan' },
-  { id: 'connected', icon: 'Link2', value: 10, label: 'Connected Leads', tone: 'magenta' },
-  { id: 'followup-pending', icon: 'Share2', value: 11, label: 'Follow Up Pending', tone: 'purple' },
-  { id: 'counseling-done', icon: 'MonitorCheck', value: 62, label: 'Counseling Done', tone: 'teal' },
-  { id: 'registered', icon: 'LogIn', value: 2, label: 'Registered', tone: 'orange' },
-  { id: 'doc-pending', icon: 'IdCard', value: 11, label: 'Document Pending', tone: 'purple' },
-  { id: 'doc-verification', icon: 'FileCheck2', value: 62, label: 'Document Verification', tone: 'magenta' },
-  { id: 'batch-assigned', icon: 'Layers', value: 2, label: 'Batch Assigned/ Admission', tone: 'blue' },
-];
-
 export const dailyEnrollmentsData = [
   { label: 'Mon', value: 20 },
   { label: 'Tue', value: 34 },

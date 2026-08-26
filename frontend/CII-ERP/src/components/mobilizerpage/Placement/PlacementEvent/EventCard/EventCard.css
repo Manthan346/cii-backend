@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
 }
 
 .ev-card__top {
@@ -42,24 +43,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-}
-
-.ev-open-btn {
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 8px;
-  border: none;
-  background: #14224d;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  flex: 1;
-}
-
-.ev-open-btn:hover {
-  background: #1c2e63;
+  margin-top: auto;
 }
 
 .ev-map-btn {
@@ -76,6 +60,7 @@
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  flex: 1;
 }
 
 .ev-map-btn:hover {

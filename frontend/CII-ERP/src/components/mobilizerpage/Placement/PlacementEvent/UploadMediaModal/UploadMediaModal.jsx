@@ -1,20 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { X, UploadCloud } from 'lucide-react';
-import Modal from '../../../shared/Modal/Modal';
-import StatusPill from '../../../shared/StatusPill/StatusPill';
-import './UploadMediaModal.css';
+import React, { useEffect, useRef, useState } from "react";
+import { X, UploadCloud } from "lucide-react";
+import Modal from "../../../shared/Modal/Modal";
+import StatusPill from "../../../shared/StatusPill/StatusPill";
+import "./UploadMediaModal.css";
 
 const STATUS_TONE = {
-  Upcoming: 'blue',
-  Cancelled: 'red',
-  Completed: 'green',
-  Today: 'amber',
+  Upcoming: "blue",
+  Cancelled: "red",
+  Completed: "green",
+  Today: "amber",
 };
 
 /**
  * UploadMediaModal
- * Opens from the card/list image icon, or from EventDetailModal's
- * "Add Images & video" button.
+ * Opens from the card/list image icon.
  *
  * The dropzone is a real clickable label wrapping a hidden file input —
  * selecting files updates the small status line beneath it. The "File"
@@ -26,37 +25,64 @@ const STATUS_TONE = {
  *  - onUpload: (event, { title, description, fileLink, files }) => void
  */
 export default function UploadMediaModal({ event, onClose, onUpload }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [fileLink, setFileLink] = useState('');
   const [files, setFiles] = useState([]);
+  const [uploadError, setUploadError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
   const isOpen = Boolean(event);
 
   // Reset the form whenever a different event's modal is opened.
   useEffect(() => {
-    setTitle(event?.title || '');
-    setDescription(event?.description || '');
-    setFileLink('');
     setFiles([]);
+    setUploadError("");
+    setUploading(false);
   }, [event?.id]);
 
   const handleCancel = () => onClose();
 
-  const handleUpload = () => {
-    onUpload?.(event, { title, description, fileLink, files });
+  const handleUpload = async () => {
+    setUploadError("");
+    setUploading(true);
+    try {
+      await onUpload?.(event, files);
+    } catch (error) {
+      setUploadError(
+        error.response?.data?.message ||
+          error.message ||
+          "Unable to upload images",
+      );
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleFilesSelected = (e) => {
-    setFiles(Array.from(e.target.files || []));
+    const selectedFiles = Array.from(e.target.files || []).slice(0, 10);
+    const oversizedFile = selectedFiles.find(
+      (file) => file.size > 5 * 1024 * 1024,
+    );
+
+    if (oversizedFile) {
+      setFiles([]);
+      setUploadError(`${oversizedFile.name} is larger than the 5 MB limit`);
+      return;
+    }
+
+    setUploadError("");
+    setFiles(selectedFiles);
   };
 
   return (
     <Modal isOpen={isOpen} onClose={handleCancel} width={520}>
       {event && (
         <div className="um-modal">
-          <button type="button" className="um-modal__close" onClick={handleCancel} aria-label="Close">
+          <button
+            type="button"
+            className="um-modal__close"
+            onClick={handleCancel}
+            aria-label="Close"
+          >
             <X size={16} />
           </button>
 
@@ -65,63 +91,55 @@ export default function UploadMediaModal({ event, onClose, onUpload }) {
               <p className="um-modal__date">{event.date}</p>
               <p className="um-modal__location">{event.venue}</p>
             </div>
-            <StatusPill status={event.status} tone={STATUS_TONE[event.status] || 'gray'} />
+            <StatusPill
+              status={event.status}
+              tone={STATUS_TONE[event.status] || "gray"}
+            />
           </div>
-
-          <label className="um-field">
-            <span className="um-field__label">Title</span>
-            <input
-              type="text"
-              className="um-field__input um-field__input--title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-
-          <label className="um-field">
-            <span className="um-field__label">Description</span>
-            <textarea
-              className="um-field__textarea"
-              placeholder="Add a short description...."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={3}
-            />
-          </label>
 
           <div className="um-field">
             <span className="um-field__label">File</span>
-            <input
-              type="text"
-              className="um-field__input"
-              placeholder="paste link here..."
-              value={fileLink}
-              onChange={(e) => setFileLink(e.target.value)}
-            />
-
             <label className="um-dropzone">
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*,video/*"
+                accept="image/*"
                 multiple
                 onChange={handleFilesSelected}
                 hidden
               />
               <UploadCloud size={22} className="um-dropzone__icon" />
-              <span className="um-dropzone__label">Paste link here</span>
+              <span className="um-dropzone__label">
+                Select images to upload
+              </span>
               {files.length > 0 && (
-                <span className="um-dropzone__count">{files.length} file(s) selected</span>
+                <span className="um-dropzone__count">
+                  {files.length} file(s) selected
+                </span>
               )}
             </label>
+            {uploadError && (
+              <p className="um-upload-error" role="alert">
+                {uploadError}
+              </p>
+            )}
           </div>
 
           <div className="um-modal__actions">
-            <button type="button" className="um-btn um-btn--ghost" onClick={handleCancel}>
+            <button
+              type="button"
+              className="um-btn um-btn--ghost"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
-            <button type="button" className="um-btn um-btn--primary" onClick={handleUpload}>
-              Upload
+            <button
+              type="button"
+              className="um-btn um-btn--primary"
+              onClick={handleUpload}
+              disabled={files.length === 0 || uploading}
+            >
+              {uploading ? "Uploading..." : "Upload"}
             </button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { enquiryTabs, enquiriesStats } from '../../data/enquiriesData';
 import './EnquiriesTabs.css';
+
+const ENQUIRY_TABS = ['All', 'Follow Up Pending', 'Call Received', 'Center Visited', 'Not Connected'];
 
 /**
  * EnquiriesTabs
@@ -8,12 +9,10 @@ import './EnquiriesTabs.css';
  *  - activeTab: string
  *  - onChange: (tab: string) => void
  */
-export default function EnquiriesTabs({ activeTab, onChange }) {
-  const total = enquiriesStats.find((s) => s.id === 'total')?.value ?? 0;
-
+export default function EnquiriesTabs({ activeTab, total = 0, onChange }) {
   return (
     <div className="eq-tabs">
-      {enquiryTabs.map((tab) => (
+      {ENQUIRY_TABS.map((tab) => (
         <button
           type="button"
           key={tab}

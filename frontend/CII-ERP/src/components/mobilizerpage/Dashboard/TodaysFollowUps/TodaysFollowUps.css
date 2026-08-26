@@ -12,12 +12,17 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .md-followup-row {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex: 1;
+  min-height: 0;
   padding: 14px 0;
   border-bottom: 1px solid #eef0f3;
 }
