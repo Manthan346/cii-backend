@@ -1,0 +1,24 @@
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.applications-list__header {
+  margin-bottom: 2px;
+}
+
+.applications-list__title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.applications-list__subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #7b8194;
+}

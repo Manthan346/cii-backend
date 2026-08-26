@@ -35,7 +35,7 @@ import RecruiterLayout from "../components/recruiterpage/layout/RecruiterLayout"
 import Dashboard from "../components/recruiterpage/Dashboard/Dashboard";
 import JobManagement from "../components/recruiterpage/JobManagement/JobManagement";
 import JobFairJobDrive from "../components/recruiterpage/JobFairJobDrive/JobFairJobDrive";
-// import Applications from "../components/recruiterpage/Applications/Applications";
+import Applications from "../components/recruiterpage/Applications/Applications";
 import Notifications from "../components/recruiterpage/Notifications/Notifications";
 import Profile from "../components/recruiterpage/Profile/Profile";
 
@@ -49,7 +49,7 @@ export default function RecruiterDashboard() {
         <Route path="job-fair-job-drive" element={<JobFairJobDrive />} />
         <Route path="notifications" element={<Notifications />} />
          <Route path="profile" element={<Profile />} />
-        {/* <Route path="applications" element={<Applications />} /> */}
+        <Route path="applications" element={<Applications />} />
         
        
       </Route>

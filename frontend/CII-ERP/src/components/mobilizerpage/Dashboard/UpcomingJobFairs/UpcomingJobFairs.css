@@ -12,6 +12,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .md-list__row {
@@ -19,6 +23,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex: 1;
+  min-height: 0;
   padding: 14px 0;
   border-bottom: 1px solid #eef0f3;
 }
@@ -32,8 +38,14 @@
   padding-bottom: 0;
 }
 
+.md-list__row:only-child,
+.md-list__row:last-child {
+  flex: 1;
+}
+
 .md-list__main {
   min-width: 0;
+  flex: 1;
 }
 
 .md-list__title {
@@ -47,4 +59,10 @@
   margin: 4px 0 0;
   font-size: 13px;
   color: #9aa2b1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.7;
 }

@@ -1,20 +1,33 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Users, Eye, Pencil, Trash2 } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Eye, Pencil, Trash2, Download } from 'lucide-react';
 import StatusBadge from '../../shared/StatusBadge/StatusBadge';
+import StatusSelect from '../../shared/StatusSelect/StatusSelect';
 import RowActionsMenu from '../../shared/RowActionsMenu/RowActionsMenu';
-import { eventTypeStyles, eventStatusStyles } from '../../data';
+import { eventTypeStyles, eventStatusStyles, eventStatusOptions } from '../../data';
 import './EventTable.css';
 
 /**
  * EventTable
  *
- * Renders the placement events list as a table: Event, Type,
- * Date & Time, Venue, Candidates, Status, plus a row action menu.
+ * Renders the events list as a table: Event, Type, Date & Time,
+ * Venue, Candidates, Status, a per-row "Import" button, and a row
+ * action menu.
  *
- * Per the request, the row menu only has three items: View (opens
- * EventApplicationsView, showing that event's candidates), Edit, and Delete.
+ * Status is editable, not just displayed: the recruiter picks
+ * Upcoming / Ongoing / Completed directly from the pill via
+ * StatusSelect (onChange calls onStatusChange(eventId, nextStatus)).
+ * Type stays a plain read-only StatusBadge - only the event's status
+ * is meant to be settable.
+ *
+ * Per request, "Import" lives on each row (opens ImportModal scoped
+ * to that specific event) instead of a single button in the page
+ * header - see JobFairJobDrive.jsx / JobFairJobDriveList.jsx for
+ * where the modal itself is owned.
+ *
+ * The row menu only has three items: View (opens EventApplicationsView,
+ * showing that event's candidates), Edit, and Delete.
  */
-const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
+const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent, onImportEvent, onStatusChange }) => {
   return (
     <div className="event-table">
       <table className="event-table__table">
@@ -26,6 +39,7 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
             <th>Venue</th>
             <th>Candidates</th>
             <th>Status</th>
+            <th aria-hidden="true" />
             <th aria-hidden="true" />
           </tr>
         </thead>
@@ -61,7 +75,22 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
                 </span>
               </td>
               <td>
-                <StatusBadge label={event.status} {...(eventStatusStyles[event.status] ?? {})} />
+                <StatusSelect
+                  value={event.status}
+                  options={eventStatusOptions}
+                  stylesMap={eventStatusStyles}
+                  onChange={(nextStatus) => onStatusChange(event.id, nextStatus)}
+                />
+              </td>
+              <td>
+                <button
+                  type="button"
+                  className="event-table__import-btn"
+                  onClick={() => onImportEvent(event.id)}
+                >
+                  Import
+                  <Download size={14} />
+                </button>
               </td>
               <td className="event-table__actions">
                 <RowActionsMenu
@@ -77,7 +106,7 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
 
           {events.length === 0 && (
             <tr>
-              <td colSpan={7} className="event-table__empty">
+              <td colSpan={8} className="event-table__empty">
                 No events match the current filters.
               </td>
             </tr>

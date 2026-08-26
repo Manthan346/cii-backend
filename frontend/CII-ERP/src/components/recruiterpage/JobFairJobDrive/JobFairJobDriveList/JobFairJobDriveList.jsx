@@ -18,8 +18,13 @@ const PAGE_SIZE = 5;
  * table, and pagination. Filtering here is live (every change in
  * EventFilterBar re-filters immediately) - unlike Job Management's
  * "apply on click" pattern, this design has no Apply button.
+ *
+ * "Import" lives per-row on EventTable (not a header button here) -
+ * onImportEvent is just threaded through to it, same as
+ * onStatusChange for the editable Status column. Both modals/state
+ * are still owned one level up in JobFairJobDrive.jsx.
  */
-const JobFairJobDriveList = ({ events, onAddEvent, onViewEvent, onEditEvent, onDeleteEvent }) => {
+const JobFairJobDriveList = ({ events, onAddEvent, onImportEvent, onViewEvent, onEditEvent, onDeleteEvent, onStatusChange }) => {
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -76,6 +81,8 @@ const JobFairJobDriveList = ({ events, onAddEvent, onViewEvent, onEditEvent, onD
         onViewEvent={onViewEvent}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
+        onImportEvent={onImportEvent}
+        onStatusChange={onStatusChange}
       />
 
       <Pagination

@@ -3,6 +3,7 @@ import axios from "axios";
 const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1",
   withCredentials: true,
+  timeout: 15000,
 });
 
 API.interceptors.request.use((config) => {
@@ -18,7 +19,13 @@ API.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const isLoginRequest = originalRequest?.url?.includes("/user/login");
+
+    if (
+      error.response?.status === 401 &&
+      !isLoginRequest &&
+      !originalRequest?._retry
+    ) {
       originalRequest._retry = true;
 
       try {

@@ -26,32 +26,6 @@
   gap: 12px;
 }
 
-.event-applications-view__header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.event-applications-view__import-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 10px;
-  border: 1px solid #e7eaf1;
-  background: #ffffff;
-  color: #1c1f2e;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.event-applications-view__import-btn:hover {
-  background: #f7f8fb;
-}
-
 .event-applications-view__title {
   margin: 0;
   font-size: 21px;
@@ -100,9 +74,5 @@
 @media (max-width: 640px) {
   .event-applications-view__stats {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .event-applications-view__header-top {
-    flex-wrap: wrap;
   }
 }

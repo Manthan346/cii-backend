@@ -16,17 +16,17 @@ const getInitials = (name = '') => {
  * ApplicationsTable
  *
  * Candidate applications table for one event: Candidate, Applied To,
- * Company, Contact No., Applied Date, Resume (Preview button),
- * Source, Status, plus a row action menu.
+ * Company, Contact No., Applied Date, Source, Status, plus a row
+ * action menu.
  *
- * The reference design's Resume "Preview" button and the row menu's
- * "View Profile" both open the same CandidateDetailsModal - there's
- * no real resume file to preview, so both just open the candidate's
- * details popup (see onPreview prop).
+ * The Resume column / "Preview" button has been removed entirely per
+ * request - there's no resume preview anywhere in this table now.
+ * "View Profile" in the row menu is the only way to see a candidate's
+ * details (opens CandidateDetailsModal - contact info/status popup).
  *
  * The row menu only has two items: View Profile and Remove.
  */
-const ApplicationsTable = ({ applications, onPreview, onRemove }) => {
+const ApplicationsTable = ({ applications, onViewProfile, onRemove }) => {
   return (
     <div className="applications-table">
       <table className="applications-table__table">
@@ -37,7 +37,6 @@ const ApplicationsTable = ({ applications, onPreview, onRemove }) => {
             <th>Company</th>
             <th>Contact No.</th>
             <th>Applied Date</th>
-            <th>Resume</th>
             <th>Source</th>
             <th>Status</th>
             <th aria-hidden="true" />
@@ -63,16 +62,6 @@ const ApplicationsTable = ({ applications, onPreview, onRemove }) => {
               </td>
               <td>{candidate.contactNo}</td>
               <td>{candidate.appliedDate}</td>
-              <td>
-                <button
-                  type="button"
-                  className="applications-table__preview-btn"
-                  onClick={() => onPreview(candidate.id)}
-                >
-                  <Eye size={14} />
-                  Preview
-                </button>
-              </td>
               <td>{candidate.source}</td>
               <td>
                 <StatusBadge label={candidate.status} {...(applicationStatusStyles[candidate.status] ?? {})} />
@@ -80,7 +69,7 @@ const ApplicationsTable = ({ applications, onPreview, onRemove }) => {
               <td className="applications-table__actions">
                 <RowActionsMenu
                   items={[
-                    { id: 'view-profile', label: 'View Profile', icon: Eye, onClick: () => onPreview(candidate.id) },
+                    { id: 'view-profile', label: 'View Profile', icon: Eye, onClick: () => onViewProfile(candidate.id) },
                     { id: 'remove', label: 'Remove', icon: X, danger: true, onClick: () => onRemove(candidate.id) },
                   ]}
                 />
@@ -90,7 +79,7 @@ const ApplicationsTable = ({ applications, onPreview, onRemove }) => {
 
           {applications.length === 0 && (
             <tr>
-              <td colSpan={9} className="applications-table__empty">
+              <td colSpan={8} className="applications-table__empty">
                 No applications match the current filters.
               </td>
             </tr>
