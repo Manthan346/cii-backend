@@ -44,7 +44,8 @@ export const instructorProfileDetails = asyncHandler(
           dateOfBirth: profile.date_of_birth,
           bloodGroup: profile.instructor_blood_group,
           highestQualification: profile.highest_qualification,
-          profilePhoto: profile.profile_photo
+          profilePhoto: profile.profile_photo,
+          designation: profile.instructor_designation
           
         },
         contactDetails: {

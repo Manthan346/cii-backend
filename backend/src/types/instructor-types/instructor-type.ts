@@ -28,7 +28,8 @@ type PersonalInformation = {
   dateOfBirth: Date | null;
   bloodGroup: string | null;
   highestQualification: string | null;
-  profilePhoto?: string | null
+  profilePhoto?: string | null,
+  designation: string
 };
 
 type ContactDetails = {

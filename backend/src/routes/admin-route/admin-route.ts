@@ -14,6 +14,7 @@ import { getCandidateJourney } from "../../controllers/admin-controllers/get-can
 import { getCoursePerformance } from "../../controllers/admin-controllers/get-course-performance";
 import { getCourses } from "../../controllers/admin-controllers/get-courses";
 import { downloadEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment-report";
+import { getDashboardEnrollment } from "../../controllers/admin-controllers/get-dashboard-enrollment";
 import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
 import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
 import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-ActiveUsers";
@@ -84,6 +85,13 @@ adminRouter.get(
     "/reports/enrollment",
     verifyAdminUsingAccessToken,
     downloadEnrollmentReport
+);
+
+// GET dashboard enrollment data - course-wise & monthly (with optional course_id, date range)
+adminRouter.get(
+    "/dashboard/enrollment",
+    verifyAdminUsingAccessToken,
+    getDashboardEnrollment
 );
 
 export default adminRouter
