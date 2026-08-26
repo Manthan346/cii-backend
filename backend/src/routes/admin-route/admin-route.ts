@@ -21,6 +21,7 @@ import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-a
 import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-ActiveUsers";
 import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
 import { getDeactivatedUsers } from "../../controllers/admin-controllers/fetch-all-DeactivateUsers";
+import { getUserStats } from "../../controllers/admin-controllers/get-totaluser-dashboardStats";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -52,6 +53,8 @@ adminRouter.get("/total-users/:userId/view-profile",verifyAdminUsingAccessToken,
 //fetch all freezed accounts
 adminRouter.get("/total-users/deactivated",verifyAdminUsingAccessToken,
 paginationMiddleware,getDeactivatedUsers);
+//total user dashboard stat boxes
+adminRouter.get("/total-users/dashboard",verifyAdminUsingAccessToken,getUserStats)
 
 //create candidate (same flow as mobilizer enroll-candidate, with center isolation from admin token)
 adminRouter.post(
