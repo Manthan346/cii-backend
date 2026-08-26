@@ -3,68 +3,134 @@
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding: 60px 20px 20px;
-  z-index: 100;
+  z-index: 1000;
+  padding: 16px;
 }
 
 .attendance-management-mark-attendance-modal-modal {
-  width: 100%;
-  max-width: 480px;
-  max-height: 85vh;
   background: var(--color-white);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   font-family: var(--font-family);
 }
 
+.attendance-management-mark-attendance-modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--color-page-bg);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.attendance-management-mark-attendance-modal-close-btn:hover {
+  background: var(--color-border);
+}
+
+.attendance-management-mark-attendance-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-right: 32px;
+  margin-bottom: 20px;
+}
+
 .attendance-management-mark-attendance-modal-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0;
 }
 
-.attendance-management-mark-attendance-modal-field {
+.attendance-management-mark-attendance-modal-subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 4px 0 0;
+}
+
+.attendance-management-mark-attendance-modal-batch {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 6px 0 0;
+}
+
+.attendance-management-mark-attendance-modal-counts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.attendance-management-mark-attendance-modal-count-box {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.attendance-management-mark-attendance-modal-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.attendance-management-mark-attendance-modal-input {
-  border: 1px solid var(--color-border);
+  align-items: center;
+  gap: 2px;
+  min-width: 70px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  font-family: var(--font-family);
-  font-size: 14px;
-  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
   background: var(--color-white);
-  outline: none;
 }
 
-.attendance-management-mark-attendance-modal-input:focus {
-  border-color: var(--color-teal);
+.attendance-management-mark-attendance-modal-count-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.attendance-management-mark-attendance-modal-count-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.attendance-management-mark-attendance-modal-count-present {
+  border-color: var(--color-green);
+}
+.attendance-management-mark-attendance-modal-count-present .attendance-management-mark-attendance-modal-count-label {
+  color: var(--color-green);
+}
+
+.attendance-management-mark-attendance-modal-count-absent {
+  border-color: #dc2626;
+}
+.attendance-management-mark-attendance-modal-count-absent .attendance-management-mark-attendance-modal-count-label {
+  color: #dc2626;
+}
+
+.attendance-management-mark-attendance-modal-count-late {
+  border-color: var(--color-orange);
+}
+.attendance-management-mark-attendance-modal-count-late .attendance-management-mark-attendance-modal-count-label {
+  color: var(--color-orange);
 }
 
 .attendance-management-mark-attendance-modal-student-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  max-height: 46vh;
   overflow-y: auto;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 6px;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 8px;
 }
 
 .attendance-management-mark-attendance-modal-student-row {
@@ -72,97 +138,95 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px;
-  border-radius: var(--radius-sm);
-}
-
-.attendance-management-mark-attendance-modal-student-row:hover {
-  background: var(--color-page-bg);
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--color-border-light);
+  flex-wrap: wrap;
 }
 
 .attendance-management-mark-attendance-modal-student-info {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 0;
+  gap: 10px;
 }
 
 .attendance-management-mark-attendance-modal-student-avatar {
-  color: #9ca3af;
+  color: var(--color-text-muted);
   flex-shrink: 0;
-}
-
-.attendance-management-mark-attendance-modal-student-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
 }
 
 .attendance-management-mark-attendance-modal-student-name {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.attendance-management-mark-attendance-modal-student-id {
-  font-size: 11.5px;
-  color: var(--color-text-secondary);
 }
 
 .attendance-management-mark-attendance-modal-toggle {
   display: flex;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  background: var(--color-page-bg);
-  padding: 2px;
-  gap: 2px;
+  gap: 8px;
 }
 
 .attendance-management-mark-attendance-modal-toggle-btn {
-  border: none;
-  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
   font-family: var(--font-family);
-  font-size: 12.5px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: calc(var(--radius-md) - 2px);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
   color: var(--color-text-secondary);
-  transition: background 0.15s ease, color 0.15s ease;
 }
 
+.attendance-management-mark-attendance-modal-toggle-btn-present {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
 .attendance-management-mark-attendance-modal-toggle-btn-present.attendance-management-mark-attendance-modal-toggle-btn-active {
-  background: #16a34a;
+  background: var(--color-green);
   color: var(--color-white);
 }
 
+.attendance-management-mark-attendance-modal-toggle-btn-absent {
+  border-color: #dc2626;
+  color: #dc2626;
+}
 .attendance-management-mark-attendance-modal-toggle-btn-absent.attendance-management-mark-attendance-modal-toggle-btn-active {
   background: #dc2626;
   color: var(--color-white);
+}
+
+.attendance-management-mark-attendance-modal-toggle-btn-late {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+.attendance-management-mark-attendance-modal-toggle-btn-late.attendance-management-mark-attendance-modal-toggle-btn-active {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+.attendance-management-mark-attendance-modal-empty {
+  padding: 20px 4px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
 }
 
 .attendance-management-mark-attendance-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 4px;
-  padding-top: 12px;
-  border-top: 1px solid var(--color-border);
+  margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-  .attendance-management-mark-attendance-modal-overlay {
-    padding: 30px 16px;
+@media (max-width: 560px) {
+  .attendance-management-mark-attendance-modal-student-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .attendance-management-mark-attendance-modal-modal {
-    max-height: 90vh;
+  .attendance-management-mark-attendance-modal-toggle {
+    width: 100%;
   }
-
-  .attendance-management-mark-attendance-modal-student-name {
-    max-width: 120px;
+  .attendance-management-mark-attendance-modal-toggle-btn {
+    flex: 1;
+    text-align: center;
   }
 }

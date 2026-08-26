@@ -1,5 +1,5 @@
-import { StatusBadge, Avatar, ActionButtons } from '../../../shared';
-import './TaskTable.css';
+import { StatusBadge, ActionButtons } from "../../../shared";
+import "./TaskTable.css";
 
 /**
  * TaskTable
@@ -24,9 +24,6 @@ export default function TaskTable({ tasks = [], onView, onEdit, onDelete }) {
       <table className="task-table">
         <thead>
           <tr>
-            <th className="task-table__checkbox-col">
-              <input type="checkbox" aria-label="Select all tasks" />
-            </th>
             <th>Task</th>
             <th>Assigned to</th>
             <th>Priority</th>
@@ -39,23 +36,13 @@ export default function TaskTable({ tasks = [], onView, onEdit, onDelete }) {
           {tasks.map((task) => (
             <tr key={task.id}>
               <td>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  aria-label={`Select ${task.title}`}
-                />
-              </td>
-              <td>
                 <div className="task-table__task-cell">
                   <p className="task-table__task-title">{task.title}</p>
                   <p className="task-table__task-subtitle">{task.subtitle}</p>
                 </div>
               </td>
-              <td>
-                <div className="task-table__assignee-cell">
-                  <Avatar name={task.assignee} size={28} tone="mint" />
-                  <span>{task.assignee}</span>
-                </div>
+              <td className="task-table__nowrap">
+                {task.assignedTo ?? task.assignee}
               </td>
               <td>
                 <StatusBadge status={task.priority} />

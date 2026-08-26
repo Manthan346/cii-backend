@@ -26,7 +26,6 @@ import "./Dashboard.css";
  */
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
 
   return (
     <div className="mobilizer-dashboard">
@@ -34,7 +33,6 @@ const Dashboard = () => {
         user={{ name: "Sonal Ahire", role: "Mobilizer · Kandivali Centre" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="mobilizer-dashboard__content">

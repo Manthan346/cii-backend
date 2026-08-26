@@ -43,7 +43,9 @@ export { attendanceStatusOptions } from './filterOptions';
 export {
   attendanceStats,
   attendanceMeta,
-  attendanceRecords,
+  attendanceSessions,
+  sessionFilterOptions,
+  batchRosters,
 } from './attendanceData';
 
 /* ---- Resources additions ---- */

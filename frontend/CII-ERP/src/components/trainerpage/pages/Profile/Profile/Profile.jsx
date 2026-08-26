@@ -1,31 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { Pencil } from 'lucide-react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import ProfileTabs from '../ProfileTabs/ProfileTabs';
-import BasicInformationTab from '../BasicInformationTab/BasicInformationTab';
-import AcademicDetailTab from '../AcademicDetailTab/AcademicDetailTab';
-import DocumentTab from '../DocumentTab/DocumentTab';
-import ContactDetailsTab from '../GuardianDetailsTab/GuardianDetailsTab';
-import EditProfileModal from '../EditProfileModal/EditProfileModal';
-import { fetchAcademicDetails } from '../../../../../../api/trainer/academicService';
-import { fetchInstructorProfile } from '../../../../../../api/trainer/profileService';
-import { getCompletionLabel, getCompletionChecklist } from '../../../data/getCompletionMeta';
-import { fetchGuardianDetails } from '../../../../../../api/trainer/guardianService';
+import React, { useEffect, useState } from "react";
+import { Pencil } from "lucide-react";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import ProfileTabs from "../ProfileTabs/ProfileTabs";
+import BasicInformationTab from "../BasicInformationTab/BasicInformationTab";
+import AcademicDetailTab from "../AcademicDetailTab/AcademicDetailTab";
+import DocumentTab from "../DocumentTab/DocumentTab";
+import ContactDetailsTab from "../GuardianDetailsTab/GuardianDetailsTab";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { fetchAcademicDetails } from "../../../../../../api/trainer/academicService";
+import {
+  fetchInstructorProfile,
+  updateInstructorProfile,
+} from "../../../../../../api/trainer/profileService";
+import {
+  getCompletionLabel,
+  getCompletionChecklist,
+} from "../../../data/getCompletionMeta";
+import { fetchGuardianDetails } from "../../../../../../api/trainer/guardianService";
 import {
   uploadInstructorDocuments,
   fetchInstructorDocuments,
   DOCUMENT_FIELD_MAP,
-} from '../../../../../../api/trainer/documentService';
+} from "../../../../../../api/trainer/documentService";
 import {
   staffProfile,
   profileTabs,
   // profileDocuments,
   profileDocumentNote,
   profileGuardianDetail,
-} from '../../../data';
-import '../../../styles/variables.css';
-import './Profile.css';
+} from "../../../data";
+import "../../../styles/variables.css";
+import "./Profile.css";
 
 /**
  * Profile (full page, "My Profile")
@@ -54,7 +60,6 @@ import './Profile.css';
  */
 const Profile = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
   const [activeTab, setActiveTab] = useState(profileTabs[0].id);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -86,11 +91,46 @@ const Profile = () => {
   const [academicError, setAcademicError] = useState(null);
 
   const INITIAL_DOCUMENTS = [
-    { id: 'doc-1', name: 'Highest Qualification Document', required: false, uploaded: false, uploadedOn: 'Not uploaded', status: null },
-    { id: 'doc-2', name: 'Past Experience letter', required: false, uploaded: false, uploadedOn: 'Not uploaded', status: null },
-    { id: 'doc-3', name: 'PAN Card', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
-    { id: 'doc-4', name: 'Aadhar Card', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
-    { id: 'doc-5', name: 'Resume', required: true, uploaded: false, uploadedOn: 'Not uploaded', status: null },
+    {
+      id: "doc-1",
+      name: "Highest Qualification Document",
+      required: false,
+      uploaded: false,
+      uploadedOn: "Not uploaded",
+      status: null,
+    },
+    {
+      id: "doc-2",
+      name: "Past Experience letter",
+      required: false,
+      uploaded: false,
+      uploadedOn: "Not uploaded",
+      status: null,
+    },
+    {
+      id: "doc-3",
+      name: "PAN Card",
+      required: true,
+      uploaded: false,
+      uploadedOn: "Not uploaded",
+      status: null,
+    },
+    {
+      id: "doc-4",
+      name: "Aadhar Card",
+      required: true,
+      uploaded: false,
+      uploadedOn: "Not uploaded",
+      status: null,
+    },
+    {
+      id: "doc-5",
+      name: "Resume",
+      required: true,
+      uploaded: false,
+      uploadedOn: "Not uploaded",
+      status: null,
+    },
   ];
 
   const [documents, setDocuments] = useState(INITIAL_DOCUMENTS);
@@ -104,39 +144,45 @@ const Profile = () => {
       const candidateValue =
         raw?.[fieldName] ??
         raw?.[fieldName?.toLowerCase?.()] ??
-        raw?.[fieldName?.replace('instructor_', '')] ??
+        raw?.[fieldName?.replace("instructor_", "")] ??
         raw?.documents?.[fieldName] ??
         raw?.documents?.[fieldName?.toLowerCase?.()] ??
-        raw?.documents?.[fieldName?.replace('instructor_', '')] ??
+        raw?.documents?.[fieldName?.replace("instructor_", "")] ??
         raw?.[doc.name] ??
         null;
 
       const value =
-        typeof candidateValue === 'string'
+        typeof candidateValue === "string"
           ? { url: candidateValue }
-          : candidateValue ?? null;
+          : (candidateValue ?? null);
 
       const url =
-        typeof value === 'string'
+        typeof value === "string"
           ? value
-          : value?.url ?? value?.fileUrl ?? value?.downloadUrl ?? value?.path ?? null;
+          : (value?.url ??
+            value?.fileUrl ??
+            value?.downloadUrl ??
+            value?.path ??
+            null);
 
       const uploaded = Boolean(
         url ||
         value?.uploaded ||
         value?.isUploaded ||
-        value?.status === 'uploaded' ||
-        value?.status === 'Verified' ||
-        value?.verified
+        value?.status === "uploaded" ||
+        value?.status === "Verified" ||
+        value?.verified,
       );
 
       return {
         ...doc,
         uploaded,
         uploadedOn: uploaded
-          ? (value?.uploadedOn || value?.updatedAt || new Date().toLocaleDateString())
-          : 'Not uploaded',
-        status: uploaded ? (value?.status || 'Verified') : null,
+          ? value?.uploadedOn ||
+            value?.updatedAt ||
+            new Date().toLocaleDateString()
+          : "Not uploaded",
+        status: uploaded ? value?.status || "Verified" : null,
         url,
       };
     });
@@ -152,7 +198,7 @@ const Profile = () => {
           setDocuments(mapDocumentsFromApi(payload));
         }
       } catch (err) {
-        console.warn('Failed to fetch instructor documents on page load', err);
+        console.warn("Failed to fetch instructor documents on page load", err);
       }
     }
 
@@ -169,7 +215,8 @@ const Profile = () => {
       setBasicInfoLoading(true);
       setBasicInfoError(null);
       try {
-        const { profileCompletion, basicInformation } = await fetchInstructorProfile();
+        const { profileCompletion, basicInformation } =
+          await fetchInstructorProfile();
         if (!cancelled) {
           setPersonal(basicInformation.personalInformation);
           setContact(basicInformation.contactDetails);
@@ -179,7 +226,8 @@ const Profile = () => {
           setCompletionChecklist(getCompletionChecklist(basicInformation));
         }
       } catch (err) {
-        if (!cancelled) setBasicInfoError(err.message || 'Failed to load profile');
+        if (!cancelled)
+          setBasicInfoError(err.message || "Failed to load profile");
       } finally {
         if (!cancelled) setBasicInfoLoading(false);
       }
@@ -204,7 +252,8 @@ const Profile = () => {
           setExperience(details.experience);
         }
       } catch (err) {
-        if (!cancelled) setAcademicError(err.message || 'Failed to load academic details');
+        if (!cancelled)
+          setAcademicError(err.message || "Failed to load academic details");
       } finally {
         if (!cancelled) setAcademicLoading(false);
       }
@@ -230,7 +279,8 @@ const Profile = () => {
           setGuardianDetails(details.guardianDetails);
         }
       } catch (err) {
-        if (!cancelled) setGuardiansError(err.message || 'Failed to load guardian details');
+        if (!cancelled)
+          setGuardiansError(err.message || "Failed to load guardian details");
       } finally {
         if (!cancelled) setGuardiansLoading(false);
       }
@@ -239,7 +289,7 @@ const Profile = () => {
     loadGuardiansDetails();
     return () => {
       cancelled = true;
-    }
+    };
   }, []);
 
   const handleUploadDocument = async (doc, file) => {
@@ -257,9 +307,35 @@ const Profile = () => {
     setDocuments(mapDocumentsFromApi(payload));
   };
 
-  const handleSaveProfile = (updated) => {
-    setPersonal(updated.personal);
-    setContact(updated.contact);
+  const handleSaveProfile = async (updated) => {
+    const profile = await updateInstructorProfile({
+      personal: updated.personal,
+      contact: updated.contact,
+      photo: updated.avatarFile,
+    });
+    const firstName = profile.first_name ?? updated.personal.firstName;
+    const lastName = profile.last_name ?? updated.personal.lastName;
+
+    setPersonal({
+      ...personal,
+      ...updated.personal,
+      firstName,
+      lastName,
+      name: `${firstName} ${lastName}`.trim(),
+      gender: profile.gender ?? updated.personal.gender,
+      dob: profile.date_of_birth ?? updated.personal.dob,
+      bloodGroup: profile.blood_group ?? updated.personal.bloodGroup,
+      highestQualification:
+        profile.highest_qualification ?? updated.personal.highestQualification,
+      designation: profile.designation ?? updated.personal.designation,
+    });
+    setContact({
+      ...contact,
+      ...updated.contact,
+      mobileNumber: profile.contact_number ?? updated.contact.mobileNumber,
+      emergencyContactNumber:
+        profile.emergency_contact ?? updated.contact.emergencyContactNumber,
+    });
     setCurrentAddress(updated.currentAddress);
     setPermanentAddress(updated.permanentAddress);
     setFatherDetails(updated.fatherDetails);
@@ -267,13 +343,15 @@ const Profile = () => {
     setGuardianDetails(updated.guardianDetails);
     setEducation(updated.education);
     setExperience(updated.experience);
-    setAvatarUrl(updated.avatarUrl ?? staffProfile.avatar);
+    setAvatarUrl(
+      profile.profile_photo ?? updated.avatarUrl ?? staffProfile.avatar,
+    );
     setShowEditModal(false);
   };
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'basic-information':
+      case "basic-information":
         if (basicInfoLoading) return <p>Loading profile…</p>;
         if (basicInfoError) return <p>Error: {basicInfoError}</p>;
         return (
@@ -289,16 +367,13 @@ const Profile = () => {
             }}
           />
         );
-      case 'academic-detail':
+      case "academic-detail":
         if (academicLoading) return <p>Loading academic details…</p>;
         if (academicError) return <p>Error: {academicError}</p>;
         return (
-          <AcademicDetailTab 
-            education={education} 
-            experience={experience} 
-          />
+          <AcademicDetailTab education={education} experience={experience} />
         );
-      case 'document':
+      case "document":
         return (
           <DocumentTab
             documents={documents}
@@ -306,7 +381,7 @@ const Profile = () => {
             onUploadDocument={handleUploadDocument}
           />
         );
-      case 'guardian-details':
+      case "guardian-details":
         if (guardiansLoading) return <p>Loading guardian details…</p>;
         if (guardiansError) return <p>Error: {guardiansError}</p>;
         return (
@@ -324,10 +399,9 @@ const Profile = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: 'Staff Admin' }}
+        user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="staff-dashboard__content">
@@ -354,11 +428,12 @@ const Profile = () => {
                   </button>
 
                   <p className="profile-page__completed">
-                    {basicInfoLoading ? '—' : completionPercent} % Profile Completed
+                    {basicInfoLoading ? "—" : completionPercent} % Profile
+                    Completed
                   </p>
 
                   <h1 className="profile-page__name">
-                    {personal?.name ?? staffProfile.name}{' '}
+                    {personal?.name ?? staffProfile.name}{" "}
                     <span className="profile-page__role">
                       ({staffProfile.role})
                     </span>

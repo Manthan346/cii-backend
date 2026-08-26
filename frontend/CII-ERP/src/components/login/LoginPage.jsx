@@ -235,7 +235,7 @@ function LoginPage() {
       localStorage.setItem("token", accessToken);
       localStorage.setItem(
         "userSession",
-        JSON.stringify({ userDetails, roleDetails })
+        JSON.stringify({ userDetails, roleDetails }),
       );
 
       // route based on the role returned by the backend, not just the
@@ -297,6 +297,8 @@ function LoginPage() {
                 </span>
                 <input
                   type="email"
+                  name="email"
+                  autoComplete="username"
                   placeholder="you@example.com"
                   className="lp-input"
                   value={email}
@@ -323,6 +325,8 @@ function LoginPage() {
                 </span>
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
+                  autoComplete="current-password"
                   placeholder="Enter your password"
                   className="lp-input lp-input-pw"
                   value={password}

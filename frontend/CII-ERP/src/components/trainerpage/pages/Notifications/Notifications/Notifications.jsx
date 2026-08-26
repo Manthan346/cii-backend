@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from 'react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import { Button } from '../../../shared';
-import NotificationTabs from '../NotificationTabs/NotificationTabs';
-import NotificationList from '../NotificationList/NotificationList';
+import React, { useMemo, useState } from "react";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import { Button } from "../../../shared";
+import NotificationTabs from "../NotificationTabs/NotificationTabs";
+import NotificationList from "../NotificationList/NotificationList";
 import {
   notificationTabs,
   notificationMeta,
   notificationRecords,
-} from '../../../data';
-import '../../../styles/variables.css';
-import './Notifications.css';
+} from "../../../data";
+import "../../../styles/variables.css";
+import "./Notifications.css";
 
 /**
  * Notifications (full page)
@@ -25,12 +25,11 @@ import './Notifications.css';
  */
 const Notifications = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState("all");
 
   const filteredNotifications = useMemo(() => {
-    if (activeTab === 'all') return notificationRecords;
-    if (activeTab === 'unread')
+    if (activeTab === "all") return notificationRecords;
+    if (activeTab === "unread")
       return notificationRecords.filter((n) => n.unread);
     return notificationRecords.filter((n) => n.category === activeTab);
   }, [activeTab]);
@@ -42,10 +41,9 @@ const Notifications = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: 'Staff Admin' }}
+        user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="staff-dashboard__content">

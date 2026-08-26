@@ -20,7 +20,7 @@ const STATUS_TONE = {
   overdue: 'red',
   /* ---- Attendance Management additions ---- */
   present: 'green',
-  late: 'red',
+  late: 'orange',
   absent: 'dark',
   /* ---- Study Material Upload additions ---- */
   published: 'green',
