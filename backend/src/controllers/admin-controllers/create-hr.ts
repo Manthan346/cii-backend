@@ -121,7 +121,7 @@ export const createHrByAdmin = asyncHandler(
             String(today.getFullYear()).slice(-2),
         ].join("");
 
-        const prefix = `${centerCode}-${formattedDate}-`;
+        const prefix = `${centerCode}-${formattedDate}-H`;
 
         let result;
 
@@ -154,7 +154,8 @@ export const createHrByAdmin = asyncHandler(
                             .pop();
 
                         if (lastSerial) {
-                            serialNumber = parseInt(lastSerial, 10) + 1;
+                            serialNumber =
+                                parseInt(lastSerial.replace(/^H/, ""), 10) + 1;
                         }
                     }
 

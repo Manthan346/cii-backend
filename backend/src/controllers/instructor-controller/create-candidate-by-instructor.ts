@@ -80,7 +80,7 @@ export const createCandidateByInstructor = asyncHandler(
                     candidate_id: candidate.candidate_id,
                     candidate_name:
                         `${candidate.candidate_first_name} ${candidate.candidate_last_name ?? ""}`,
-                    is_active: candidate.is_active,
+                    //is_active: candidate.is_active,
                 },
                 "Candidate created successfully."
             )
