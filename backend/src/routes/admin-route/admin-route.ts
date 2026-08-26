@@ -19,6 +19,7 @@ import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-a
 import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-ActiveUsers";
 import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
 import { getDeactivatedUsers } from "../../controllers/admin-controllers/fetch-all-DeactivateUsers";
+import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
 
 const adminRouter = Router();
 
@@ -39,6 +40,8 @@ validateBody(updateUserApprovalSchema),updateUserApproval);
 //fetch all active users 
 adminRouter.get("/total-users",verifyAdminUsingAccessToken,paginationMiddleware,
 getAllUsers);
+//view profile of selected users 
+adminRouter.get("/total-users/:userId/view-profile",verifyAdminUsingAccessToken,getUserProfile);
 //fetch all freezed accounts
 adminRouter.get("/total-users/deactivated",verifyAdminUsingAccessToken,
 paginationMiddleware,getDeactivatedUsers);
