@@ -1,11 +1,11 @@
-import { StatusBadge, ActionButtons } from '../../../shared';
-import './MaterialTable.css';
+import { StatusBadge, ActionButtons } from "../../../shared";
+import "./MaterialTable.css";
 
 /**
  * MaterialTable
  *
  * "All Materials" table for the Study Material Upload page. Column
- * shape (Material / Course / Type / Uploaded by / Date / Size /
+ * shape (Material / Batch / Uploaded by / Date /
  * Status / Action) is specific to study materials, so it lives inside
  * pages/StudyMaterialUpload rather than /shared - only the generic
  * bits (StatusBadge, ActionButtons) come from /shared.
@@ -20,19 +20,14 @@ export default function MaterialTable({
   onDelete,
 }) {
   return (
-    <div className={'study-material-upload-material-table-table-wrap'}>
-      <table className={'study-material-upload-material-table-table'}>
+    <div className={"study-material-upload-material-table-table-wrap"}>
+      <table className={"study-material-upload-material-table-table"}>
         <thead>
           <tr>
-            <th className={'study-material-upload-material-table-checkbox-col'}>
-              <input type="checkbox" aria-label="Select all materials" />
-            </th>
             <th>Material</th>
-            <th>Course</th>
-            <th>Type</th>
+            <th>Batch</th>
             <th>Uploaded by</th>
             <th>Date</th>
-            <th>Size</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -40,30 +35,17 @@ export default function MaterialTable({
         <tbody>
           {records.map((record) => (
             <tr key={record.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  aria-label={`Select ${record.name}`}
-                />
-              </td>
-              <td className={'study-material-upload-material-table-name-cell'}>
+              <td className={"study-material-upload-material-table-name-cell"}>
                 {record.name}
               </td>
-              <td className={'study-material-upload-material-table-nowrap'}>
-                {record.course}
+              <td className={"study-material-upload-material-table-nowrap"}>
+                {record.batch}
               </td>
-              <td className={'study-material-upload-material-table-nowrap'}>
-                {record.type}
-              </td>
-              <td className={'study-material-upload-material-table-nowrap'}>
+              <td className={"study-material-upload-material-table-nowrap"}>
                 {record.uploadedBy}
               </td>
-              <td className={'study-material-upload-material-table-nowrap'}>
+              <td className={"study-material-upload-material-table-nowrap"}>
                 {record.date}
-              </td>
-              <td className={'study-material-upload-material-table-nowrap'}>
-                {record.size}
               </td>
               <td>
                 <StatusBadge status={record.status} />

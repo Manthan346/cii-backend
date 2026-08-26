@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Search, Bell, Menu } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import bannerImage from '../../assets/topbar-banner.png';
-import ciiLogo from '../../assets/cii-logo2.png';
-import './Topbar.css';
+import { useState } from "react";
+import { Search, Bell, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import bannerImage from "../../assets/topbar-banner.png";
+import ciiLogo from "../../assets/cii-logo2.png";
+import "./Topbar.css";
 
 /**
  * Topbar
@@ -32,26 +32,26 @@ import './Topbar.css';
  *  `onSearch` in the parent before calling a `/api/search?q=` endpoint.
  */
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
 const Topbar = ({
-  user = { name: 'Staff Admin' },
+  user = { name: "Staff Admin" },
   hasUnreadNotifications = true,
   onMenuToggle,
   onSearch,
   onNotificationClick,
   onAvatarClick,
 }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter' && onSearch) {
+    if (e.key === "Enter" && onSearch) {
       onSearch(searchValue);
     }
   };
@@ -60,7 +60,7 @@ const Topbar = ({
     if (onNotificationClick) {
       onNotificationClick();
     } else {
-      navigate('/trainer/notifications');
+      navigate("/trainer/notifications");
     }
   };
 
@@ -72,7 +72,7 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate('/trainer/profile');
+      navigate("/trainer/profile");
     }
   };
 

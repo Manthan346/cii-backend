@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Search, Bell, Menu } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import bannerImage from '../../assets/topbar-banner.png';
-import './Topbar.css';
+import { useState } from "react";
+import { Search, Bell, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import bannerImage from "../../assets/topbar-banner.png";
+import "./Topbar.css";
 
 /**
  * Topbar (Admin)
@@ -38,9 +38,9 @@ import './Topbar.css';
  *  `onSearch` in the parent before calling a `/api/search?q=` endpoint.
  */
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
@@ -55,18 +55,18 @@ const AdminBrandMark = () => (
 );
 
 const Topbar = ({
-  user = { name: 'System Admin' },
+  user = { name: "System Admin" },
   hasUnreadNotifications = true,
   onMenuToggle,
   onSearch,
   onNotificationClick,
   onAvatarClick,
 }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter' && onSearch) {
+    if (e.key === "Enter" && onSearch) {
       onSearch(searchValue);
     }
   };
@@ -75,7 +75,7 @@ const Topbar = ({
     if (onNotificationClick) {
       onNotificationClick();
     } else {
-      navigate('/admin/notifications');
+      navigate("/admin/notifications");
     }
   };
 
@@ -83,16 +83,15 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate('/admin/profile');
+      navigate("/admin/profile");
     }
   };
 
   return (
-      <header
-          className="trainer-topbar"
-          style={{ backgroundImage: `url(${bannerImage})` }}
-        >
-      
+    <header
+      className="trainer-topbar"
+      style={{ backgroundImage: `url(${bannerImage})` }}
+    >
       {/* Hamburger: mobile only, opens a Sidebar drawer supplied by the parent layout */}
       <button
         type="button"

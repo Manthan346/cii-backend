@@ -32,46 +32,46 @@ import {
   UserCircle,
   CalendarClock,
   LogOut,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const sidebarMenu = [
   {
-    title: 'WORKSPACE',
+    title: "WORKSPACE",
     items: [
       {
-        id: 'dashboard',
-        title: 'Dashboard',
+        id: "dashboard",
+        title: "Dashboard",
         icon: LayoutGrid,
-        route: '/trainer/dashboard',
+        route: "/trainer/dashboard",
       },
       {
-        id: 'profile',
-        title: 'Profile',
+        id: "profile",
+        title: "Profile",
         icon: UserCircle,
-        route: '/trainer/profile',
+        route: "/trainer/profile",
       },
       {
-        id: 'candidate-management',
-        title: 'Candidate Management',
+        id: "candidate-management",
+        title: "Candidate Management",
         icon: Users,
-        route: '/trainer/candidates',
+        route: "/trainer/candidates",
       },
       {
-        id: 'batch-management',
-        title: 'Batch Management',
+        id: "batch-management",
+        title: "Batch Management",
         icon: Layers,
-        route: '/trainer/batch-management',
+        route: "/trainer/batch-management",
       },
       {
-        id: 'attendance-management',
-        title: 'Attendance Management',
+        id: "attendance-management",
+        title: "Attendance Management",
         icon: Calendar,
-        route: '/trainer/attendance',
+        route: "/trainer/attendance",
       },
     ],
   },
   {
-    title: 'RESOURCES',
+    title: "RESOURCES",
     items: [
       // {
       //   id: 'resources',
@@ -80,10 +80,16 @@ export const sidebarMenu = [
       //   route: '/trainer/resources',
       // },
       {
-        id: 'study-material-upload',
-        title: 'Study Material Upload',
+        id: "study-material-upload",
+        title: "Study Material Upload",
         icon: Upload,
-        route: '/trainer/study-material',
+        route: "/trainer/study-material",
+      },
+      {
+        id: "Assign-Task",
+        title: "Task Assigned",
+        icon: ClipboardCheck,
+        route: "/trainer/task-assigned",
       },
       // {
       //   id: 'reports',
@@ -94,26 +100,26 @@ export const sidebarMenu = [
     ],
   },
   {
-    title: 'WORK',
+    title: "WORK",
     items: [
       {
-        id: 'work',
-        title: 'Work',
+        id: "work",
+        title: "Work",
         icon: BriefcaseBusiness,
-        route: '/trainer/work',
+        route: "/trainer/work",
       },
       {
-        id: 'events',
-        title: 'Events',
+        id: "events",
+        title: "Events",
         icon: CalendarClock,
-        route: '/trainer/events',
+        route: "/trainer/events",
       },
-      {
-        id: 'task-assigned',
-        title: 'Task Assigned',
-        icon: ClipboardCheck,
-        route: '/trainer/task-assigned',
-      },
+      // {
+      //   id: "task-assigned",
+      //   title: "Task Assigned",
+      //   icon: ClipboardCheck,
+      //   route: "/trainer/task-assigned",
+      // },
       // {
       //   id: "notifications",
       //   title: "Notifications",
@@ -121,10 +127,10 @@ export const sidebarMenu = [
       //   route: "/trainer/notifications",
       // },
       {
-        id: 'logout',
-        title: 'Logout',
+        id: "logout",
+        title: "Logout",
         icon: LogOut,
-        route: '/trainer/logout',
+        route: "/trainer/logout",
       },
     ],
   },

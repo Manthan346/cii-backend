@@ -13,6 +13,7 @@ export const batches = [
     progress: 85,
     candidates: 32,
     startDate: '12 jan 2026',
+    endDate: '12 apr 2026',
     status: 'Active',
   },
   {
@@ -23,6 +24,7 @@ export const batches = [
     progress: 98,
     candidates: 48,
     startDate: '16 jan 2026',
+    endDate: '16 mar 2026',
     status: 'Active',
   },
   {
@@ -33,6 +35,7 @@ export const batches = [
     progress: 50,
     candidates: 24,
     startDate: '2 feb 2026',
+    endDate: '2 may 2026',
     status: 'Dropped',
   },
   {
@@ -43,6 +46,7 @@ export const batches = [
     progress: 30,
     candidates: 30,
     startDate: '20 feb 2026',
+    endDate: '20 apr 2026',
     status: 'Active',
   },
   {
@@ -53,6 +57,7 @@ export const batches = [
     progress: 75,
     candidates: 35,
     startDate: '12 feb 2026',
+    endDate: '12 apr 2026',
     status: 'Dropped',
   },
   {
@@ -63,6 +68,7 @@ export const batches = [
     progress: 60,
     candidates: 38,
     startDate: '12 mar 2026',
+    endDate: '12 may 2026',
     status: 'Active',
   },
 ];
