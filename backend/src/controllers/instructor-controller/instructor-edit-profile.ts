@@ -90,6 +90,7 @@ export const instructorEditProfile = asyncHandler(
                 emergency_contact: true,
                 instructor_designation: true
                 
+                
             },
         });
 
