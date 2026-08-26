@@ -527,7 +527,8 @@ export const Instructor_detailsScalarFieldEnum = {
   permanent_pincode: 'permanent_pincode',
   permanent_state: 'permanent_state',
   permanent_taluka: 'permanent_taluka',
-  instructor_unique_id: 'instructor_unique_id'
+  instructor_unique_id: 'instructor_unique_id',
+  instructor_designation: 'instructor_designation'
 } as const
 
 export type Instructor_detailsScalarFieldEnum = (typeof Instructor_detailsScalarFieldEnum)[keyof typeof Instructor_detailsScalarFieldEnum]
