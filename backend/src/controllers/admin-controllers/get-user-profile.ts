@@ -4,8 +4,8 @@ import { prisma } from "../../lib/prisma";
 import { ApiError } from "../../helpers/ApiError";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiResponse } from "../../helpers/ApiResponse";
-import { role_types } from "../../generated/prisma/enums";
 import {
+    role_types,
     batch_enrollment_status_type,
     attend_types,
 } from "../../generated/prisma/enums";
@@ -16,7 +16,12 @@ export const getUserProfile = asyncHandler(
 
         const adminReq = req as adminAuthRequest;
         const adminUserId = adminReq.user.user_id;
+
+        /*
+         * Validate target user ID
+         */
         const userIdSchema = z.string().uuid("Invalid user ID");
+
         const validation = userIdSchema.safeParse(
             req.params.userId
         );
@@ -30,6 +35,9 @@ export const getUserProfile = asyncHandler(
 
         const targetUserId = validation.data;
 
+        /*
+         * Get logged-in admin
+         */
         const admin = await prisma.user_login.findUnique({
             where: {
                 user_id: adminUserId,
@@ -55,6 +63,9 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * Get target user
+         */
         const targetUser = await prisma.user_login.findUnique({
             where: {
                 user_id: targetUserId,
@@ -75,6 +86,9 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * Admin can only view users from the same center
+         */
         if (targetUser.center_id !== admin.center_id) {
             throw new ApiError(
                 403,
@@ -89,6 +103,11 @@ export const getUserProfile = asyncHandler(
             is_active: targetUser.is_active,
         };
 
+        /*
+         * ============================================================
+         * CANDIDATE
+         * ============================================================
+         */
         if (targetUser.user_role === role_types.candidate) {
 
             const candidate =
@@ -99,27 +118,36 @@ export const getUserProfile = asyncHandler(
                     select: {
                         candidate_id: true,
                         candidate_unique_id: true,
+
                         candidate_first_name: true,
                         candidate_last_name: true,
+
                         contact_number: true,
                         gender: true,
                         date_of_birth: true,
+
                         education: true,
                         highest_qualification: true,
                         qualification_percentage: true,
+
                         category: true,
                         blood_group: true,
+
                         candidate_current_address: true,
+
                         current_city: true,
                         current_district: true,
                         current_pin_code: true,
                         current_state_name: true,
+
                         permanent_city: true,
                         permanent_pin_code: true,
                         permanent_state_name: true,
                         permanent_district: true,
                         candidate_permanent_address: true,
+
                         enquiry_source: true,
+
                         guardian_name: true,
                         guardian_phone_no: true,
                         guardian_relationship: true,
@@ -128,24 +156,32 @@ export const getUserProfile = asyncHandler(
                         guardian_blood_group: true,
                         guardian_dob: true,
                         guardian_address: true,
+
                         father_name: true,
                         father_occupation: true,
                         father_phone_no: true,
                         father_blood_group: true,
                         father_address: true,
+
                         mother_name: true,
                         mother_occupation: true,
                         mother_phone_no: true,
                         mother_blood_group: true,
                         mother_address: true,
+
                         candidate_emergency_contact_no: true,
+
                         profile_photo: true,
+
                         training_start_date: true,
                         training_end_date: true,
+
                         candidate_status: true,
                         verification_status: true,
+
                         created_at: true,
                         updated_at: true,
+
                         batch_enrollment: {
                             select: {
                                 enrollment_id: true,
@@ -154,6 +190,7 @@ export const getUserProfile = asyncHandler(
                                 grade: true,
                                 certificate_url: true,
                                 candidate_batch_id: true,
+
                                 batch_details: {
                                     select: {
                                         batch_id: true,
@@ -163,12 +200,15 @@ export const getUserProfile = asyncHandler(
                                         batch_end_date: true,
                                         batch_type: true,
                                         b_status: true,
+                                        instructor_id: true,
+
                                         course_details: {
                                             select: {
                                                 course_id: true,
                                                 course_name: true,
                                                 course_duration: true,
                                                 course_mode: true,
+
                                                 company_details: {
                                                     select: {
                                                         company_id: true,
@@ -177,21 +217,14 @@ export const getUserProfile = asyncHandler(
                                                 },
                                             },
                                         },
-                                        instructor: {
-                                            select: {
-                                                instructor_id: true,
-                                                instructor_first_name: true,
-                                                instructor_last_name: true,
-                                            },
-                                        },
                                     },
                                 },
                             },
+
                             orderBy: {
                                 enrollment_date: "desc",
                             },
                         },
-                        
                     },
                 });
 
@@ -202,19 +235,25 @@ export const getUserProfile = asyncHandler(
                 );
             }
 
-            const attendanceRecords = await prisma.attendance_records.findMany({
-                where: {
-                    candidate_id: candidate.candidate_id,
-                },
-                select: {
-                    attendance_status: true,
-                    attendance_sessions: {
-                        select: {
-                            batch_id: true,
+            /*
+             * Fetch only attendance information required
+             * for calculating attendance percentage per batch.
+             */
+            const attendanceRecords =
+                await prisma.attendance_records.findMany({
+                    where: {
+                        candidate_id: candidate.candidate_id,
+                    },
+                    select: {
+                        attendance_status: true,
+
+                        attendance_sessions: {
+                            select: {
+                                batch_id: true,
+                            },
                         },
                     },
-                },
-            });
+                });
 
             /*
              * Course summary
@@ -225,37 +264,43 @@ export const getUserProfile = asyncHandler(
             const today = new Date();
 
             const coursesInProgress =
-                candidate.batch_enrollment.filter((enrollment) => {
+                candidate.batch_enrollment.filter(
+                    (enrollment) => {
 
-                    return (
-                        enrollment.enrollment_status ===
-                            batch_enrollment_status_type.ACTIVE &&
-                        enrollment.batch_details.batch_end_date >= today
-                    );
-                }).length;
+                        return (
+                            enrollment.enrollment_status ===
+                                batch_enrollment_status_type.ACTIVE &&
+                            enrollment.batch_details.batch_end_date >= today
+                        );
+                    }
+                ).length;
 
             const completedCourses =
-                candidate.batch_enrollment.filter((enrollment) => {
+                candidate.batch_enrollment.filter(
+                    (enrollment) => {
 
-                    const isValidCompletedEnrollment =
-                        enrollment.enrollment_status ===
-                            batch_enrollment_status_type.ACTIVE ||
-                        enrollment.enrollment_status ===
-                            batch_enrollment_status_type.INACTIVE;
+                        const validCompletedEnrollment =
+                            enrollment.enrollment_status ===
+                                batch_enrollment_status_type.ACTIVE ||
+                            enrollment.enrollment_status ===
+                                batch_enrollment_status_type.INACTIVE;
 
-                    return (
-                        isValidCompletedEnrollment &&
-                        enrollment.batch_details.batch_end_date < today
-                    );
-                }).length;
+                        return (
+                            validCompletedEnrollment &&
+                            enrollment.batch_details.batch_end_date < today
+                        );
+                    }
+                ).length;
 
             /*
-             * Attendance calculation
+             * ========================================================
+             * Attendance grouped by batch
              *
              * present  = 1
              * late     = 1
              * half_day = 0.5
              * absent   = 0
+             * ========================================================
              */
             const attendanceByBatch = new Map<
                 string,
@@ -266,6 +311,7 @@ export const getUserProfile = asyncHandler(
             >();
 
             for (const record of attendanceRecords) {
+
                 const batchId =
                     record.attendance_sessions.batch_id;
 
@@ -294,77 +340,193 @@ export const getUserProfile = asyncHandler(
                     existing.score += 0.5;
                 }
 
-                attendanceByBatch.set(batchId, existing);
+                attendanceByBatch.set(
+                    batchId,
+                    existing
+                );
             }
 
+            /*
+             * ========================================================
+             * Fetch instructors for the candidate's batches
+             * ========================================================
+             */
+            const instructorIds = [
+                ...new Set(
+                    candidate.batch_enrollment.map(
+                        (enrollment) =>
+                            enrollment.batch_details.instructor_id
+                    )
+                ),
+            ];
+
+            const instructors =
+                await prisma.instructor_details.findMany({
+                    where: {
+                        instructor_id: {
+                            in: instructorIds,
+                        },
+                    },
+                    select: {
+                        instructor_id: true,
+                        instructor_first_name: true,
+                        instructor_last_name: true,
+                    },
+                });
+
+            const instructorMap = new Map(
+                instructors.map((instructor) => [
+                    instructor.instructor_id,
+                    instructor,
+                ])
+            );
+
+            /*
+             * ========================================================
+             * Format courses
+             * ========================================================
+             */
             const courses =
                 candidate.batch_enrollment.map(
                     (enrollment) => {
-                        const batch =enrollment.batch_details;
-                        const course =batch.course_details;
-                        const instructor =batch.instructor;
-                        const attendance =attendanceByBatch.get(batch.batch_id);
+
+                        const batch =
+                            enrollment.batch_details;
+
+                        const course =
+                            batch.course_details;
+
+                        const instructor =
+                            instructorMap.get(
+                                batch.instructor_id
+                            );
+
+                        const attendance =
+                            attendanceByBatch.get(
+                                batch.batch_id
+                            );
+
                         const attendancePercentage =
-                            !attendance || attendance.total === 0
+                            !attendance ||
+                            attendance.total === 0
                                 ? 0
                                 : Number(
                                     (
-                                        (attendance.score /
-                                            attendance.total) *
-                                        100
+                                        (
+                                            attendance.score /
+                                            attendance.total
+                                        ) * 100
                                     ).toFixed(2)
                                 );
+
                         return {
-                            enrollment_id:enrollment.enrollment_id,
-                            enrollment_date:enrollment.enrollment_date,
-                            enrollment_status:enrollment.enrollment_status,
-                            grade:enrollment.grade,
-                            certificate_url:enrollment.certificate_url,
-                            candidate_batch_id:enrollment.candidate_batch_id,
-                            attendance_percentage:attendancePercentage,
+                            enrollment_id:
+                                enrollment.enrollment_id,
+
+                            enrollment_date:
+                                enrollment.enrollment_date,
+
+                            enrollment_status:
+                                enrollment.enrollment_status,
+
+                            grade:
+                                enrollment.grade,
+
+                            certificate_url:
+                                enrollment.certificate_url,
+
+                            candidate_batch_id:
+                                enrollment.candidate_batch_id,
+
+                            attendance_percentage:
+                                attendancePercentage,
+
                             batch: {
-                                batch_id:batch.batch_id,
-                                batch_name:batch.batch_name,
-                                batch_code:batch.batch_code,
-                                start_date:batch.batch_start_date,
-                                end_date:batch.batch_end_date,
-                                type:batch.batch_type,
-                                status:batch.b_status,
+                                batch_id:
+                                    batch.batch_id,
+
+                                batch_name:
+                                    batch.batch_name,
+
+                                batch_code:
+                                    batch.batch_code,
+
+                                start_date:
+                                    batch.batch_start_date,
+
+                                end_date:
+                                    batch.batch_end_date,
+
+                                type:
+                                    batch.batch_type,
+
+                                status:
+                                    batch.b_status,
                             },
+
                             course: {
-                                course_id:course.course_id,
-                                course_name:course.course_name,
-                                duration:course.course_duration,
-                                mode: course.course_mode,
+                                course_id:
+                                    course.course_id,
+
+                                course_name:
+                                    course.course_name,
+
+                                duration:
+                                    course.course_duration,
+
+                                mode:
+                                    course.course_mode,
                             },
+
                             company:
                                 course.company_details,
-                            instructor: {
-                                instructor_id:instructor.instructor_id,
-                                first_name:instructor.instructor_first_name,
-                                last_name:instructor.instructor_last_name,
-                                full_name:
-                                    [
+
+                            instructor: instructor
+                                ? {
+                                    instructor_id:
+                                        instructor.instructor_id,
+
+                                    first_name:
                                         instructor.instructor_first_name,
+
+                                    last_name:
                                         instructor.instructor_last_name,
-                                    ]
-                                        .filter(Boolean)
-                                        .join(" "),
-                            },
+
+                                    full_name:
+                                        [
+                                            instructor.instructor_first_name,
+                                            instructor.instructor_last_name,
+                                        ]
+                                            .filter(Boolean)
+                                            .join(" "),
+                                }
+                                : null,
                         };
                     }
                 );
 
+            /*
+             * Candidate response
+             */
             return res.status(200).json(
                 new ApiResponse(
                     200,
                     {
                         userDetails,
+
                         profile: {
-                            candidate_id:candidate.candidate_id,
-                            candidate_unique_id:candidate.candidate_unique_id,
-                            first_name:candidate.candidate_first_name,
-                            last_name:candidate.candidate_last_name,
+                            candidate_id:
+                                candidate.candidate_id,
+
+                            candidate_unique_id:
+                                candidate.candidate_unique_id,
+
+                            first_name:
+                                candidate.candidate_first_name,
+
+                            last_name:
+                                candidate.candidate_last_name,
+
                             full_name:
                                 [
                                     candidate.candidate_first_name,
@@ -372,67 +534,159 @@ export const getUserProfile = asyncHandler(
                                 ]
                                     .filter(Boolean)
                                     .join(" "),
-                            contact_number:candidate.contact_number,
-                            gender:candidate.gender,
-                            date_of_birth:candidate.date_of_birth,
-                            education:candidate.education,
-                            highest_qualification:candidate.highest_qualification,
-                            qualification_percentage:candidate.qualification_percentage,
-                            category:candidate.category,
-                            blood_group:candidate.blood_group,
-                            current_address:candidate.candidate_current_address,
+
+                            contact_number:
+                                candidate.contact_number,
+
+                            gender:
+                                candidate.gender,
+
+                            date_of_birth:
+                                candidate.date_of_birth,
+
+                            education:
+                                candidate.education,
+
+                            highest_qualification:
+                                candidate.highest_qualification,
+
+                            qualification_percentage:
+                                candidate.qualification_percentage,
+
+                            category:
+                                candidate.category,
+
+                            blood_group:
+                                candidate.blood_group,
+
+                            current_address:
+                                candidate.candidate_current_address,
+
                             current_location: {
-                                city:candidate.current_city,
-                                district:candidate.current_district,
-                                state:candidate.current_state_name,
-                                pin_code:candidate.current_pin_code,
+                                city:
+                                    candidate.current_city,
+
+                                district:
+                                    candidate.current_district,
+
+                                state:
+                                    candidate.current_state_name,
+
+                                pin_code:
+                                    candidate.current_pin_code,
                             },
-                            permanent_address:candidate.candidate_permanent_address,
+
+                            permanent_address:
+                                candidate.candidate_permanent_address,
+
                             permanent_location: {
-                                city:candidate.permanent_city,
-                                district:candidate.permanent_district,
-                                state:candidate.permanent_state_name,
-                                pin_code:candidate.permanent_pin_code,
+                                city:
+                                    candidate.permanent_city,
+
+                                district:
+                                    candidate.permanent_district,
+
+                                state:
+                                    candidate.permanent_state_name,
+
+                                pin_code:
+                                    candidate.permanent_pin_code,
                             },
+
                             enquiry_source:
                                 candidate.enquiry_source,
+
                             guardian: {
-                                name:candidate.guardian_name,
-                                phone:candidate.guardian_phone_no,
-                                relationship:candidate.guardian_relationship,
-                                occupation:candidate.guardian_occupation,
-                                gender:candidate.guardian_gender,
-                                blood_group:candidate.guardian_blood_group,
-                                date_of_birth:candidate.guardian_dob,
-                                address:candidate.guardian_address,
+                                name:
+                                    candidate.guardian_name,
+
+                                phone:
+                                    candidate.guardian_phone_no,
+
+                                relationship:
+                                    candidate.guardian_relationship,
+
+                                occupation:
+                                    candidate.guardian_occupation,
+
+                                gender:
+                                    candidate.guardian_gender,
+
+                                blood_group:
+                                    candidate.guardian_blood_group,
+
+                                date_of_birth:
+                                    candidate.guardian_dob,
+
+                                address:
+                                    candidate.guardian_address,
                             },
+
                             father: {
-                                name:candidate.father_name,
-                                occupation:candidate.father_occupation,
-                                phone:candidate.father_phone_no,
-                                blood_group:candidate.father_blood_group,
-                                address:candidate.father_address,
+                                name:
+                                    candidate.father_name,
+
+                                occupation:
+                                    candidate.father_occupation,
+
+                                phone:
+                                    candidate.father_phone_no,
+
+                                blood_group:
+                                    candidate.father_blood_group,
+
+                                address:
+                                    candidate.father_address,
                             },
+
                             mother: {
-                                name:candidate.mother_name,
-                                occupation:candidate.mother_occupation,
-                                phone:candidate.mother_phone_no,
-                                blood_group:candidate.mother_blood_group,
-                                address:candidate.mother_address,
+                                name:
+                                    candidate.mother_name,
+
+                                occupation:
+                                    candidate.mother_occupation,
+
+                                phone:
+                                    candidate.mother_phone_no,
+
+                                blood_group:
+                                    candidate.mother_blood_group,
+
+                                address:
+                                    candidate.mother_address,
                             },
-                            emergency_contact:candidate.candidate_emergency_contact_no,
-                            profile_photo:candidate.profile_photo,
+
+                            emergency_contact:
+                                candidate.candidate_emergency_contact_no,
+
+                            profile_photo:
+                                candidate.profile_photo,
+
                             training: {
-                                start_date:candidate.training_start_date,
-                                end_date:candidate.training_end_date,
-                                status:candidate.candidate_status,
-                                verification_status:candidate.verification_status,
+                                start_date:
+                                    candidate.training_start_date,
+
+                                end_date:
+                                    candidate.training_end_date,
+
+                                status:
+                                    candidate.candidate_status,
+
+                                verification_status:
+                                    candidate.verification_status,
                             },
+
                             course_summary: {
-                                total_enrolled_courses:totalEnrolledCourses,
-                                courses_in_progress:coursesInProgress,
-                                completed_courses:completedCourses
+                                total_enrolled_courses:
+                                    totalEnrolledCourses,
+
+                                courses_in_progress:
+                                    coursesInProgress,
+
+                                completed_courses:
+                                    completedCourses,
                             },
+
                             courses,
                         },
                     },
@@ -441,6 +695,11 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * ============================================================
+         * INSTRUCTOR
+         * ============================================================
+         */
         if (targetUser.user_role === role_types.instructor) {
 
             const instructor =
@@ -450,14 +709,19 @@ export const getUserProfile = asyncHandler(
                     },
                     select: {
                         instructor_id: true,
+
                         instructor_first_name: true,
                         instructor_last_name: true,
+
                         contact_number: true,
                         gender: true,
                         date_of_birth: true,
+
                         specialization: true,
                         experience_years: true,
+
                         instructor_blood_group: true,
+
                         current_address: true,
                         current_city: true,
                         current_state: true,
@@ -479,10 +743,17 @@ export const getUserProfile = asyncHandler(
                     200,
                     {
                         userDetails,
+
                         profile: {
-                            instructor_id:instructor.instructor_id,
-                            first_name:instructor.instructor_first_name,
-                            last_name:instructor.instructor_last_name,
+                            instructor_id:
+                                instructor.instructor_id,
+
+                            first_name:
+                                instructor.instructor_first_name,
+
+                            last_name:
+                                instructor.instructor_last_name,
+
                             full_name:
                                 [
                                     instructor.instructor_first_name,
@@ -490,20 +761,46 @@ export const getUserProfile = asyncHandler(
                                 ]
                                     .filter(Boolean)
                                     .join(" "),
-                            email:targetUser.user_email,
-                            contact_number:instructor.contact_number,
-                            gender:instructor.gender,
-                            date_of_birth:instructor.date_of_birth,
-                            specialization:instructor.specialization,
-                            experience_years:instructor.experience_years,
-                            blood_group:instructor.instructor_blood_group,
+
+                            email:
+                                targetUser.user_email,
+
+                            contact_number:
+                                instructor.contact_number,
+
+                            gender:
+                                instructor.gender,
+
+                            date_of_birth:
+                                instructor.date_of_birth,
+
+                            specialization:
+                                instructor.specialization,
+
+                            experience_years:
+                                instructor.experience_years,
+
+                            blood_group:
+                                instructor.instructor_blood_group,
+
                             address: {
-                                address:instructor.current_address,
-                                city:instructor.current_city,
-                                state:instructor.current_state,
-                                district:instructor.current_district,
-                                taluka:instructor.current_taluka,
-                                pin_code:instructor.current_pincode,
+                                address:
+                                    instructor.current_address,
+
+                                city:
+                                    instructor.current_city,
+
+                                state:
+                                    instructor.current_state,
+
+                                district:
+                                    instructor.current_district,
+
+                                taluka:
+                                    instructor.current_taluka,
+
+                                pin_code:
+                                    instructor.current_pincode,
                             },
                         },
                     },
@@ -512,7 +809,13 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * ============================================================
+         * MOBILIZER
+         * ============================================================
+         */
         if (targetUser.user_role === role_types.mobilizer) {
+
             const mobilizer =
                 await prisma.mobilizer_details.findUnique({
                     where: {
@@ -520,10 +823,14 @@ export const getUserProfile = asyncHandler(
                     },
                     select: {
                         mobilizer_id: true,
+
                         mobilizer_unique_id: true,
+
                         mobilizer_first_name: true,
                         mobilizer_last_name: true,
+
                         mobilizer_designation: true,
+
                         mobilizer_phone_no: true,
                     },
                 });
@@ -540,11 +847,20 @@ export const getUserProfile = asyncHandler(
                     200,
                     {
                         userDetails,
+
                         profile: {
-                            mobilizer_id:mobilizer.mobilizer_id,
-                            unique_id:mobilizer.mobilizer_unique_id,
-                            first_name:mobilizer.mobilizer_first_name,
-                            last_name:mobilizer.mobilizer_last_name,
+                            mobilizer_id:
+                                mobilizer.mobilizer_id,
+
+                            unique_id:
+                                mobilizer.mobilizer_unique_id,
+
+                            first_name:
+                                mobilizer.mobilizer_first_name,
+
+                            last_name:
+                                mobilizer.mobilizer_last_name,
+
                             full_name:
                                 [
                                     mobilizer.mobilizer_first_name,
@@ -552,9 +868,15 @@ export const getUserProfile = asyncHandler(
                                 ]
                                     .filter(Boolean)
                                     .join(" "),
-                            email:targetUser.user_email,
-                            phone_number:mobilizer.mobilizer_phone_no,
-                            designation:mobilizer.mobilizer_designation,
+
+                            email:
+                                targetUser.user_email,
+
+                            phone_number:
+                                mobilizer.mobilizer_phone_no,
+
+                            designation:
+                                mobilizer.mobilizer_designation,
                         },
                     },
                     "Mobilizer profile fetched successfully."
@@ -562,6 +884,11 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * ============================================================
+         * HR
+         * ============================================================
+         */
         if (targetUser.user_role === role_types.hr) {
 
             const hr =
@@ -571,11 +898,15 @@ export const getUserProfile = asyncHandler(
                     },
                     select: {
                         hr_id: true,
+
                         hr_unique_id: true,
+
                         hr_first_name: true,
                         hr_last_name: true,
+
                         hr_designation: true,
                         hr_phone_no: true,
+
                         company_details: {
                             select: {
                                 company_id: true,
@@ -597,11 +928,20 @@ export const getUserProfile = asyncHandler(
                     200,
                     {
                         userDetails,
+
                         profile: {
-                            hr_id:hr.hr_id,
-                            unique_id:hr.hr_unique_id,
-                            first_name:hr.hr_first_name,
-                            last_name:hr.hr_last_name,
+                            hr_id:
+                                hr.hr_id,
+
+                            unique_id:
+                                hr.hr_unique_id,
+
+                            first_name:
+                                hr.hr_first_name,
+
+                            last_name:
+                                hr.hr_last_name,
+
                             full_name:
                                 [
                                     hr.hr_first_name,
@@ -609,10 +949,18 @@ export const getUserProfile = asyncHandler(
                                 ]
                                     .filter(Boolean)
                                     .join(" "),
-                            email:targetUser.user_email,
-                            designation:hr.hr_designation,
-                            phone_number:hr.hr_phone_no,
-                            company:hr.company_details,
+
+                            email:
+                                targetUser.user_email,
+
+                            designation:
+                                hr.hr_designation,
+
+                            phone_number:
+                                hr.hr_phone_no,
+
+                            company:
+                                hr.company_details,
                         },
                     },
                     "HR profile fetched successfully."
@@ -620,6 +968,11 @@ export const getUserProfile = asyncHandler(
             );
         }
 
+        /*
+         * ============================================================
+         * ADMIN
+         * ============================================================
+         */
         if (targetUser.user_role === role_types.admin) {
 
             const adminProfile =
@@ -629,10 +982,13 @@ export const getUserProfile = asyncHandler(
                     },
                     select: {
                         admin_id: true,
+
                         admin_first_name: true,
                         admin_last_name: true,
+
                         blood_group: true,
                         date_of_birth: true,
+
                         highest_qualification: true,
                         specialization: true,
                     },
@@ -689,7 +1045,6 @@ export const getUserProfile = asyncHandler(
                 )
             );
         }
-        
         throw new ApiError(
             400,
             "Unsupported user role."
