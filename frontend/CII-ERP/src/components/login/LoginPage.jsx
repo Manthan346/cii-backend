@@ -14,7 +14,7 @@ const ROLE_LABELS = {
   instructor: "Instructor",
   admin: "Admin",
   "super-admin": "Super Admin",
-  recruiter: "Recruiter",
+  hr: "HR",
   mobilizer: "Mobilizer",
 };
 
@@ -203,7 +203,7 @@ function LoginPage() {
       { role_name: "instructor" },
       { role_name: "admin" },
       { role_name: "super-admin" },
-      { role_name: "recruiter" },
+      { role_name: "hr" },
       { role_name: "mobilizer" },
     ]);
 
@@ -255,7 +255,7 @@ function LoginPage() {
         case "super-admin":
           navigate("/admin/dashboard");
           break;
-        case "recruiter":
+        case "hr":
           navigate("/recruiter/dashboard");
           break;
         case "mobilizer":
