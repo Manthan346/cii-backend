@@ -29,7 +29,7 @@ type PersonalInformation = {
   bloodGroup: string | null;
   highestQualification: string | null;
   profilePhoto?: string | null,
-  designation: string
+  designation: string | null
 };
 
 type ContactDetails = {
