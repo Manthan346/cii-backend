@@ -12,6 +12,8 @@ import { adminCreateCandidate } from "../../controllers/admin-controllers/create
 import { getCenterStats } from "../../controllers/admin-controllers/get-center-stats";
 import { getCandidateJourney } from "../../controllers/admin-controllers/get-candidate-journey";
 import { getCoursePerformance } from "../../controllers/admin-controllers/get-course-performance";
+import { getCourses } from "../../controllers/admin-controllers/get-courses";
+import { downloadEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment-report";
 import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
 import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
 import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-users";
@@ -64,6 +66,20 @@ adminRouter.get(
     "/center/course-performance",
     verifyAdminUsingAccessToken,
     getCoursePerformance
+);
+
+// GET center-scoped courses with pagination & filters
+adminRouter.get(
+    "/courses",
+    verifyAdminUsingAccessToken,
+    getCourses
+);
+
+// GET enrollment report as Excel - filters: from_month, from_year, to_month, to_year, course_id (optional)
+adminRouter.get(
+    "/reports/enrollment",
+    verifyAdminUsingAccessToken,
+    downloadEnrollmentReport
 );
 
 export default adminRouter
