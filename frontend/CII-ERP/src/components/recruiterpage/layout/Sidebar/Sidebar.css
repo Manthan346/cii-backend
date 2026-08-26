@@ -1,0 +1,191 @@
+/* ==========================================================================
+   Recruiter Sidebar
+   ========================================================================== */
+
+.recruiter-sidebar {
+  --sidebar-width: 248px;
+  --recruiter-navy: #16234e;
+  --recruiter-accent: #f5a623;
+
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100%;
+  background: #ffffff;
+  padding: 20px 12px 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  margin-top: 15px;
+  border-top-right-radius: 20px;
+}
+
+.recruiter-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.recruiter-sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Section headings (MAIN / HIRING)
+   ========================================================================== */
+
+.recruiter-sidebar__heading {
+  padding: 14px 14px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #9aa1b1;
+  text-transform: uppercase;
+}
+
+.recruiter-sidebar__heading:first-child {
+  padding-top: 4px;
+}
+
+.recruiter-sidebar__divider {
+  height: 1px;
+  background: #eef1f7;
+  margin: 10px 8px;
+}
+
+/* Regular / parent items
+   ========================================================================== */
+
+.recruiter-sidebar__item {
+  width: 195px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #1c1f2e;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.recruiter-sidebar__item:hover {
+  background: #f2f4f9;
+}
+
+.recruiter-sidebar__item--active {
+  background: var(--recruiter-navy);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.recruiter-sidebar__item--active:hover {
+  background: var(--recruiter-navy);
+}
+
+.recruiter-sidebar__item--action:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.recruiter-sidebar__icon {
+  flex-shrink: 0;
+}
+
+.recruiter-sidebar__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Expandable parent - orange accent stripe + chevron
+   ========================================================================== */
+
+.recruiter-sidebar__item--parent.recruiter-sidebar__item--active {
+  position: relative;
+  border-left: 4px solid var(--recruiter-accent);
+  padding-left: 10px;
+}
+
+.recruiter-sidebar__chevron {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.recruiter-sidebar__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Submenu
+   ========================================================================== */
+
+.recruiter-sidebar__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 6px 8px 10px 24px;
+  border-radius: 0 0 12px 12px;
+  margin-top: -4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recruiter-sidebar__subitem {
+  display: block;
+  margin: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.recruiter-sidebar__subitem:hover {
+  background: #f2f4f9;
+}
+
+.recruiter-sidebar__subitem--active {
+  background: #d7d7d7;
+  color: black;
+  font-weight: 700;
+}
+
+/* Mobile off-canvas drawer
+   ========================================================================== */
+
+.recruiter-sidebar__overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .recruiter-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .recruiter-sidebar--open {
+    transform: translateX(0);
+    box-shadow: 12px 0 28px rgba(15, 18, 40, 0.18);
+  }
+
+  .recruiter-sidebar__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 18, 40, 0.35);
+    z-index: 39;
+  }
+}

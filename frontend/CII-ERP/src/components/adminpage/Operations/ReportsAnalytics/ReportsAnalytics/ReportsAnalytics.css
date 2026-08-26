@@ -1,0 +1,130 @@
+.reports-analytics {
+  --ra-blue: #3e6ff3;
+  --ra-blue-dark: #2e56d9;
+  --ra-black: #12141c;
+  --ra-gray: #c7ccd6;
+  --ra-text: #101323;
+  --ra-subtext: #6b7280;
+  --ra-border: #e4e8f0;
+  --ra-bg: #eef2fa;
+  --ra-card-radius: 16px;
+
+  background: var(--ra-bg);
+  /* padding: 28px 32px 40px; */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: inherit;
+}
+
+/* ---- header ---- */
+.ra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ra-header__title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ra-text);
+}
+
+.ra-header__subtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--ra-subtext);
+  max-width: 420px;
+  line-height: 1.4;
+}
+
+.ra-header__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ---- shared local button styles (swap for your Button component when available) ---- */
+.ra-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.ra-btn--outline {
+  background: #ffffff;
+  border-color: var(--ra-border);
+  color: var(--ra-text);
+}
+
+.ra-btn--outline:hover {
+  border-color: #c9d0dc;
+}
+
+.ra-btn--primary {
+  background: var(--ra-blue);
+  color: #ffffff;
+}
+
+.ra-btn--primary:hover {
+  background: var(--ra-blue-dark);
+}
+
+/* ---- chart grid + cards ---- */
+.ra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.ra-card {
+  background: #ffffff;
+  border-radius: var(--ra-card-radius);
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.ra-card__title {
+  margin: 0 0 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ra-text);
+}
+
+.ra-card__center {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .ra-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .reports-analytics {
+    padding: 20px 16px 32px;
+  }
+  .ra-header__actions {
+    width: 100%;
+  }
+  .ra-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}

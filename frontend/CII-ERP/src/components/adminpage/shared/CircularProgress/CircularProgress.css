@@ -1,0 +1,17 @@
+.admin-circular-progress {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-circular-progress svg circle {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.admin-circular-progress__label {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 800;
+  color: #14162b;
+}

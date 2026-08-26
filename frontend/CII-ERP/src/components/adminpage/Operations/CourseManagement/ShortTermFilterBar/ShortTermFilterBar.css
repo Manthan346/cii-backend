@@ -1,0 +1,52 @@
+.admin-short-term-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-short-term-filter__search {
+  flex: 1.2;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-short-term-filter__date {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-short-term-filter__label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa1b1;
+}
+
+.admin-short-term-filter__search-input,
+.admin-short-term-filter__date-input {
+  height: 44px;
+  min-width: 150px;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #14162b;
+  outline: none;
+}
+
+.admin-short-term-filter__search-input::placeholder,
+.admin-short-term-filter__date-input::placeholder {
+  color: #9aa1b1;
+}
+
+.admin-short-term-filter__search-input:focus,
+.admin-short-term-filter__date-input:focus {
+  border-color: #3e5feb;
+  box-shadow: 0 0 0 3px rgba(62, 95, 235, 0.14);
+}

@@ -1,0 +1,37 @@
+.ra-linechart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.ra-linechart__grid {
+  stroke: #e3e8f0;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.ra-linechart__line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ra-linechart__dot {
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.ra-linechart__ytick {
+  font-size: 11px;
+  fill: #8a93a3;
+  font-family: inherit;
+}
+
+.ra-linechart__xtick {
+  font-size: 12px;
+  fill: #6b7280;
+  font-family: inherit;
+  text-transform: capitalize;
+}

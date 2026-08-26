@@ -1,57 +1,72 @@
+/* ==========================================================================
+   Mobilizer Topbar
+   ========================================================================== */
+
 .mobilizer-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
   height: 112px;
-  width: 100%;
-  max-width: 100%;
+  min-height: 76px;
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 0 28px;
-  background-color: #f5f7fa; /* fallback while the banner image loads */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  flex-shrink: 0;
+  padding: 0 24px;
+  background: #eef1f7;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(22, 35, 78, 0.05), transparent 55%),
+    radial-gradient(circle at 85% 100%, rgba(22, 35, 78, 0.05), transparent 55%);
+  border-bottom: 1px solid #e7eaf1;
   box-sizing: border-box;
 }
 
-/* -------- Left: logo card -------- */
-.mobilizer-topbar__left {
-  display: flex;
+.mobilizer-topbar__hamburger {
+  display: none;
   align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #1c1f2e;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Left: brand mark
+   ========================================================================== */
+
+.mobilizer-topbar__left {
   flex-shrink: 0;
 }
 
 .mobilizer-topbar__logo-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
+  gap: 10px;
   background: #ffffff;
+  border: 1px solid #e7eaf1;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  padding: 10px 22px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 6px rgba(15, 18, 40, 0.05);
 }
 
-.mobilizer-topbar__logo-image {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
+.mobilizer-topbar__logo-mark {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #16234e;
+  border: 2px solid #16234e;
+  border-radius: 6px;
+  padding: 1px 6px;
 }
 
 .mobilizer-topbar__logo-caption {
-  font-size: 0.68rem;
+  font-size: 11.5px;
   font-weight: 600;
-  color: #1a2a6c;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
+  color: #16234e;
+  line-height: 1.2;
+  max-width: 110px;
 }
 
-/* -------- Center: search -------- */
+/* Center: search
+   ========================================================================== */
+
 .mobilizer-topbar__center {
   flex: 1;
   display: flex;
@@ -59,44 +74,44 @@
 }
 
 .mobilizer-topbar__search {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 460px;
-  height: 44px;
-  padding: 0 18px;
-  background: #ffffff;
-  border-radius: 999px;
-  border: 1.5px solid transparent;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.mobilizer-topbar__search:focus-within {
-  border-color: var(--color-navy, #16214b);
-  box-shadow: 0 0 0 3px var(--color-navy-light, #e8eaf5);
 }
 
 .mobilizer-topbar__search-icon {
-  color: #8b8b8b;
-  flex-shrink: 0;
+  position: absolute;
+  left: 14px;
+  color: #9aa1b1;
 }
 
 .mobilizer-topbar__search-input {
-  flex: 1;
-  border: none;
+  width: 100%;
+  height: 42px;
+   border-radius: 22px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 0 14px 0 40px;
+  font-size: 14px;
+  color: #1c1f2e;
   outline: none;
-  background: transparent;
-  font-size: 0.9rem;
-  color: #1a1a1a;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .mobilizer-topbar__search-input::placeholder {
-  color: #a5a5a5;
+  color: #9aa1b1;
 }
 
-/* -------- Right: bell + identity -------- */
+.mobilizer-topbar__search-input:focus {
+  border-color: #16234e;
+  box-shadow: 0 0 0 3px rgba(22, 35, 78, 0.12);
+}
+
+/* Right: notifications
+   ========================================================================== */
+
 .mobilizer-topbar__right {
   display: flex;
   align-items: center;
@@ -112,74 +127,36 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid #e7eaf1;
   background: #ffffff;
-  color: #1a1a1a;
+  color: #4b5164;
   cursor: pointer;
-  flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.mobilizer-topbar__bell:hover {
-  transform: scale(1.08);
-  background: #fafafa;
-}
-
-.mobilizer-topbar__bell:active {
-  transform: scale(0.96);
 }
 
 .mobilizer-topbar__bell-dot {
   position: absolute;
-  top: 8px;
-  right: 9px;
+  top: 9px;
+  right: 10px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #e0483f;
+  background: #ef4444;
   border: 1.5px solid #ffffff;
 }
 
-.mobilizer-topbar__profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: none;
-  background: #ffffff;
-  border-radius: 999px;
-  padding: 6px 16px 6px 6px;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.mobilizer-topbar__profile:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(22, 33, 75, 0.18);
-}
-
-.mobilizer-topbar__profile:active {
-  transform: scale(0.99);
-}
-
 .mobilizer-topbar__avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-navy, #16214b);
+  border: none;
+  background: #16234e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   overflow: hidden;
   flex-shrink: 0;
-}
-
-.mobilizer-topbar__avatar-initials {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
 }
 
 .mobilizer-topbar__avatar-image {
@@ -188,108 +165,27 @@
   object-fit: cover;
 }
 
-.mobilizer-topbar__identity {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  text-align: left;
-}
-
-.mobilizer-topbar__name {
-  font-size: 0.88rem;
+.mobilizer-topbar__avatar-initials {
+  font-size: 13.5px;
   font-weight: 700;
-  color: #14141a;
-  white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
-.mobilizer-topbar__role {
-  font-size: 0.72rem;
-  color: #8b8b8b;
-  white-space: nowrap;
-}
+/* Responsive
+   ========================================================================== */
 
-/* -------- Hamburger: mobile only -------- */
-.mobilizer-topbar__hamburger {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: #ffffff;
-  color: #1a1a1a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-/* -------- Tablet -------- */
-@media (max-width: 1024px) {
-  .mobilizer-topbar {
-    padding: 0 18px;
-    gap: 14px;
-  }
-
-  .mobilizer-topbar__search {
-    max-width: 320px;
-  }
-
-  .mobilizer-topbar__identity {
-    display: none;
-  }
-}
-
-/* -------- Mobile -------- */
-@media (max-width: 640px) {
-  .mobilizer-topbar {
-    height: auto;
-    min-height: 84px;
-    padding: 14px;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
+@media (max-width: 900px) {
   .mobilizer-topbar__hamburger {
     display: flex;
-    order: 1;
-  }
-
-  .mobilizer-topbar__left {
-    order: 2;
-  }
-
-  .mobilizer-topbar__right {
-    order: 3;
-    margin-left: auto;
-  }
-
-  .mobilizer-topbar__center {
-    order: 4;
-    width: 100%;
-    flex-basis: 100%;
-  }
-
-  .mobilizer-topbar__search {
-    max-width: none;
-    height: 40px;
-    padding: 0 14px;
-  }
-
-  .mobilizer-topbar__logo-card {
-    padding: 8px 14px;
-  }
-
-  .mobilizer-topbar__logo-image {
-    height: 24px;
   }
 
   .mobilizer-topbar__logo-caption {
     display: none;
   }
+}
 
-  .mobilizer-topbar__profile {
-    padding: 4px;
+@media (max-width: 640px) {
+  .mobilizer-topbar__center {
+    display: none;
   }
 }

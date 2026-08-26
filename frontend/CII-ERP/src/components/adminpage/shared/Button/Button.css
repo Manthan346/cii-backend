@@ -43,3 +43,29 @@
   border: 1px solid #e7eaf1;
   box-shadow: none;
 }
+
+.admin-button--danger {
+  background: #fee2e2;
+  color: #dc2626;
+  box-shadow: none;
+}
+
+.admin-button--success {
+  background: #dcfce7;
+  color: #15803d;
+  box-shadow: none;
+}
+
+.admin-button--accent {
+  background: #ffffff;
+  color: #3e5feb;
+  border: 1px solid #c7d2fe;
+  box-shadow: none;
+}
+
+/* Shape
+   ========================================================================== */
+
+.admin-button--pill {
+  border-radius: 999px;
+}

@@ -1,0 +1,21 @@
+.coming-soon-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 0 1px 3px rgba(15, 18, 40, 0.06);
+  text-align: center;
+}
+
+.coming-soon-card__title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.coming-soon-card__description {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #7b8194;
+}

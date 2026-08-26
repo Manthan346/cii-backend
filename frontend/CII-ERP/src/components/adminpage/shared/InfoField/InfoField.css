@@ -1,0 +1,16 @@
+.admin-info-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-info-field__label {
+  font-size: 13px;
+  color: #9aa1b1;
+}
+
+.admin-info-field__value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14162b;
+}

@@ -1,0 +1,108 @@
+.el-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 8px 22px 16px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.el-scroll {
+  overflow-x: auto;
+}
+
+.el-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.el-table thead th {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2430;
+  padding: 18px 12px;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.el-table tbody td {
+  padding: 16px 12px;
+  font-size: 14px;
+  color: #1f2430;
+  border-bottom: 1px solid #eef0f3;
+  vertical-align: middle;
+}
+
+.el-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.el-table__title {
+  font-weight: 700;
+}
+
+.el-table__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.el-open-btn {
+  height: 34px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #d5d9e0;
+  background: #ffffff;
+  color: #1f2430;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.el-open-btn:hover {
+  background: #f6f7f9;
+}
+
+.el-upload-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e4e8f0;
+  background: #ffffff;
+  color: #3e6ff3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.el-upload-btn:hover {
+  border-color: #c9d0dc;
+  background: #f6f7f9;
+}
+
+.el-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 4px 8px;
+}
+
+.el-pagination__btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e4e8f0;
+  background: #ffffff;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.el-pagination__btn:hover {
+  background: #f6f7f9;
+}
+
+.el-pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

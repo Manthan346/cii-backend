@@ -1,0 +1,28 @@
+.evt-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.evt-tab {
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #e4e8f0;
+  background: #ffffff;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.evt-tab:hover {
+  border-color: #c9d0dc;
+}
+
+.evt-tab--active {
+  background: #14224d;
+  border-color: #14224d;
+  color: #ffffff;
+}

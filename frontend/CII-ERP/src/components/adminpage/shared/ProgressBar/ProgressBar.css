@@ -1,0 +1,43 @@
+.admin-progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.admin-progress-bar__track {
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  background: #e7eaf1;
+  overflow: hidden;
+}
+
+.admin-progress-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.admin-progress-bar__fill--green {
+  background: #22c55e;
+}
+
+.admin-progress-bar__fill--blue {
+  background: #3e5feb;
+}
+
+.admin-progress-bar__fill--red {
+  background: #ef4444;
+}
+
+.admin-progress-bar__fill--amber {
+  background: #d97706;
+}
+
+.admin-progress-bar__label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #6b7280;
+  min-width: 30px;
+}

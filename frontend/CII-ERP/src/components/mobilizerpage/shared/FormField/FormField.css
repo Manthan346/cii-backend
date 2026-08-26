@@ -1,0 +1,44 @@
+.mobilizer-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobilizer-form-field__label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #14162b;
+}
+
+.mobilizer-form-field__input,
+.mobilizer-form-field__textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #14162b;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.mobilizer-form-field__input {
+  height: 46px;
+}
+
+.mobilizer-form-field__textarea {
+  resize: vertical;
+}
+
+.mobilizer-form-field__input::placeholder,
+.mobilizer-form-field__textarea::placeholder {
+  color: #9aa1b1;
+}
+
+.mobilizer-form-field__input:focus,
+.mobilizer-form-field__textarea:focus {
+  border-color: #16234e;
+  box-shadow: 0 0 0 3px rgba(22, 35, 78, 0.12);
+}

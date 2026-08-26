@@ -1,0 +1,155 @@
+.evu-modal {
+  position: relative;
+  padding: 26px 28px 28px;
+}
+
+.evu-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f1f2f4;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.evu-modal__close:hover {
+  background: #e5e7eb;
+}
+
+.evu-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-right: 36px;
+}
+
+.evu-modal__date {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.evu-modal__time {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.evu-field {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.evu-field__label {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.evu-field__input,
+.evu-field__textarea {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: #eef0f3;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.evu-field__input--title {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.evu-field__input:focus,
+.evu-field__textarea:focus {
+  background: #e5e8ec;
+}
+
+.evu-field__input {
+  margin-bottom: 10px;
+}
+
+.evu-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #eef0f3;
+  border-radius: 10px;
+  padding: 26px 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.evu-dropzone:hover {
+  background: #e5e8ec;
+}
+
+.evu-dropzone__icon {
+  color: #4b5563;
+}
+
+.evu-dropzone__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14224d;
+}
+
+.evu-dropzone__count {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.evu-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.evu-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.evu-btn--ghost {
+  background: #ffffff;
+  border-color: #e4e8f0;
+  color: #6b7280;
+}
+
+.evu-btn--ghost:hover {
+  border-color: #c9d0dc;
+}
+
+.evu-btn--primary {
+  background: #14224d;
+  color: #ffffff;
+}
+
+.evu-btn--primary:hover {
+  background: #1c2e63;
+}

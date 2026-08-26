@@ -1,0 +1,63 @@
+.donut-chart-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 20px 18px;
+  box-shadow: 0 1px 3px rgba(15, 18, 40, 0.06);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.donut-chart-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c1f2e;
+}
+
+.donut-chart-card__donut {
+  margin: 4px 0 8px;
+}
+
+.donut-chart-card__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  row-gap: 12px;
+  column-gap: 8px;
+}
+
+.donut-chart-card__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.donut-chart-card__legend-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.donut-chart-card__legend-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #4b5164;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .donut-chart-card__legend {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

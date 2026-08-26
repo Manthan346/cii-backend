@@ -1,0 +1,143 @@
+.ac-modal {
+  padding: 26px 28px 28px;
+}
+
+.ac-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.ac-modal__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #101323;
+}
+
+.ac-modal__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: #f1f2f4;
+  color: #4b5563;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ac-modal__close:hover {
+  background: #e5e7eb;
+}
+
+.ac-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.ac-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.ac-modal__grid .ac-field {
+  margin-bottom: 0;
+}
+
+.ac-field--full {
+  width: 100%;
+}
+
+.ac-field__label {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.ac-field input {
+  height: 42px;
+  border: 1px solid #e4e8f0;
+  border-radius: 9px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  box-sizing: border-box;
+  background: #fafbfc;
+}
+
+.ac-field input:focus {
+  border-color: var(--md-blue, #3e6ff3);
+  background: #ffffff;
+}
+
+.ac-interest-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.ac-interest-btn {
+  flex: 1;
+  height: 42px;
+  border-radius: 9px;
+  border: 1px solid #e4e8f0;
+  background: #fafbfc;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ac-interest-btn:hover {
+  border-color: #c9d0dc;
+}
+
+.ac-interest-btn--selected {
+  background: #14224d;
+  border-color: #14224d;
+  color: #ffffff;
+}
+
+.ac-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.ac-btn {
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.ac-btn--ghost {
+  background: #ffffff;
+  border-color: #e4e8f0;
+  color: #6b7280;
+}
+
+.ac-btn--ghost:hover {
+  border-color: #c9d0dc;
+}
+
+.ac-btn--primary {
+  background: #14224d;
+  color: #ffffff;
+}
+
+.ac-btn--primary:hover {
+  background: #1c2e63;
+}

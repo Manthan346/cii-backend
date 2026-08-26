@@ -1,0 +1,45 @@
+.admin-guardian-panel__heading {
+  margin: 22px 0 20px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #3e5feb;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #3e5feb;
+  display: inline-block;
+}
+
+.admin-guardian-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 560px) {
+  .admin-guardian-panel__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-guardian-panel__pager {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-guardian-panel__pager-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e7eaf1;
+  background: #f5f6fa;
+  color: #4b5164;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.admin-guardian-panel__pager-btn:hover {
+  background: #eef1f7;
+}

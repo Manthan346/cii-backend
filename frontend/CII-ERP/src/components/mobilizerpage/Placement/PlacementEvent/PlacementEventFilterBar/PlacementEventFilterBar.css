@@ -1,0 +1,128 @@
+.pe-filterbar {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pe-filterbar__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pe-filterbar__row--filters {
+  justify-content: flex-start;
+}
+
+.pe-search {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+}
+
+.pe-search input {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #e4e8f0;
+  border-radius: 10px;
+  padding: 0 14px 0 38px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.pe-search input:focus {
+  border-color: var(--md-blue, #3e6ff3);
+}
+
+.pe-search__icon {
+  position: absolute;
+  left: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+.pe-apply-btn {
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: 1px solid #e4e8f0;
+  background: #f6f7f9;
+  color: #1f2430;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pe-apply-btn:hover {
+  background: #eef0f3;
+}
+
+.pe-select-wrap,
+.pe-date-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pe-select-wrap select {
+  height: 42px;
+  border: 1px solid #e4e8f0;
+  border-radius: 999px;
+  padding: 0 32px 0 16px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  background: #ffffff;
+  appearance: none;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.pe-select__chevron {
+  position: absolute;
+  right: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+.pe-date-wrap input {
+  height: 42px;
+  border: 1px solid #e4e8f0;
+  border-radius: 10px;
+  padding: 0 34px 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1f2430;
+  outline: none;
+  width: 150px;
+  box-sizing: border-box;
+}
+
+.pe-date__icon {
+  position: absolute;
+  right: 12px;
+  color: #9aa2b1;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .pe-filterbar__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pe-select-wrap select,
+  .pe-date-wrap input {
+    width: 100%;
+  }
+}

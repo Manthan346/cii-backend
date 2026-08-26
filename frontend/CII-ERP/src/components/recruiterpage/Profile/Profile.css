@@ -1,0 +1,174 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.profile-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-page__title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.profile-page__subtitle {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #7b8194;
+}
+
+.profile-page__edit-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 24px;
+  border: none;
+  background: #16234e;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.profile-page__edit-btn:hover {
+  background: #16234e;
+}
+
+.profile-page__card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(15, 18, 40, 0.06);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-page__identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.profile-page__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #16234e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.profile-page__name {
+  margin: 0 0 2px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1c1f2e;
+}
+
+.profile-page__role {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #9aa1b1;
+}
+
+.profile-page__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 28px;
+  margin-bottom: 8px;
+}
+
+.profile-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-page__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5164;
+}
+
+.profile-page__input {
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  background: #f7f8fb;
+  padding: 0 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #4b5164;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  cursor: default;
+}
+
+/* Disabled read-only fields (Designation, Organization, Email - and
+   Name/Phone outside edit mode) stay flat and grayed out. */
+.profile-page__input:disabled {
+  background: #f7f8fb;
+  color: #4b5164;
+}
+
+/* Editable fields (Name, Phone while isEditing is true) get a
+   distinct white background + visible border so edit mode reads as
+   an actual form, not the same static page with a button relabeled. */
+.profile-page__input--editable:not(:disabled) {
+  background: #ffffff;
+  color: #1c1f2e;
+  border-color: #c7cbe6;
+  cursor: text;
+}
+
+.profile-page__input--editable:not(:disabled):focus {
+  border-color: #16234e;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+}
+
+.profile-page__actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+
+.profile-page__cancel-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 24px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #4b5164;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-page__cancel-btn:hover {
+  background: #f7f8fb;
+}
+
+@media (max-width: 560px) {
+  .profile-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
