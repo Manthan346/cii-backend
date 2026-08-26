@@ -31,7 +31,7 @@ export const editInstructorAddressSchema = z
         current_state: z
             .string()
             .trim()
-            .max(10, "Current state must not exceed 10 characters")
+            .max(50, "Current state must not exceed 10 characters")
             .optional(),
 
         current_district: z

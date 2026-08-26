@@ -12,6 +12,7 @@ type AdminAccessTokenPayload = {
     role: string;
     centre_name?: string;
     email: string;
+    is_active?: boolean;
 };
 
 export const verifyAdminUsingAccessToken = asyncHandler(
@@ -60,6 +61,7 @@ export const verifyAdminUsingAccessToken = asyncHandler(
             role: decoded.role,
             email: decoded.email,
             center_id: decoded.center_id,
+            is_active: decoded.is_active ?? true,
         };
 
         next();

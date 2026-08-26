@@ -14,5 +14,5 @@ export const generateMobilizerUniqueId = (
 
     const formattedSerial = String(serialNumber).padStart(4, "0");
 
-    return `${centerCode}-${formattedDate}-${formattedSerial}`;
+    return `${centerCode}-${formattedDate}-M${formattedSerial}`;
 };

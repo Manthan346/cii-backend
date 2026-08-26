@@ -8,9 +8,10 @@ export interface TokenPayload {
     center_id?: string
     role: string
     centre_name?: string,
-    
-   
-    email?: string
+
+
+    email?: string,
+    is_active?: boolean
 } 
 
 
@@ -24,7 +25,8 @@ export interface InstructorTokenPayload{
     center_id:string,
     center_name?:string,
     company_id?: string,
-    email?:string
+    email?:string,
+    is_active?: boolean
 }
 
 export interface MobilizerTokenPayload {
@@ -36,6 +38,7 @@ export interface MobilizerTokenPayload {
     center_id: string;
     center_name?: string;
     email?: string;
+    is_active?: boolean;
 }
 
 export interface HrTokenPayload {
@@ -49,4 +52,5 @@ export interface HrTokenPayload {
     company_id: string;
 
     email?: string;
+    is_active?: boolean;
 }

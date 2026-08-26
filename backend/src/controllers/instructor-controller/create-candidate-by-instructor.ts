@@ -61,7 +61,7 @@ export const createCandidateByInstructor = asyncHandler(
                         candidate_first_name: first_name,
                         candidate_last_name: last_name,
                         contact_number,
-                        admin_approval: false,
+                        is_active: false,
                         user_id: user.user_id,
                     },
                 });
@@ -80,7 +80,7 @@ export const createCandidateByInstructor = asyncHandler(
                     candidate_id: candidate.candidate_id,
                     candidate_name:
                         `${candidate.candidate_first_name} ${candidate.candidate_last_name ?? ""}`,
-                    admin_approval: candidate.admin_approval,
+                    //is_active: candidate.is_active,
                 },
                 "Candidate created successfully."
             )

@@ -88,7 +88,7 @@ export const createMobilizerByAdmin = async (
             String(today.getFullYear()).slice(-2),
         ].join("");
 
-        const prefix = `${centerCode}-${formattedDate}-`;
+        const prefix = `${centerCode}-${formattedDate}-M`;
 
 
         const result = await prisma.$transaction(async (tx) => {
@@ -118,7 +118,8 @@ export const createMobilizerByAdmin = async (
                     .pop();
 
                 if (lastSerial) {
-                    serialNumber = parseInt(lastSerial, 10) + 1;
+                    serialNumber =
+                        parseInt(lastSerial.replace(/^M/, ""), 10) + 1;
                 }
             }
 

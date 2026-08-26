@@ -61,7 +61,7 @@ export const viewCandidateProfile = asyncHandler(
                         date_of_birth:true,
                         category:true,
                         candidate_current_address:true,
-                        pin_code:true,
+                        current_pin_code:true,
                         user_login:{
                             select:{
                                 user_email:true
@@ -141,7 +141,7 @@ export const viewCandidateProfile = asyncHandler(
                 email_id:enrollment.candidates_details.user_login.user_email,
                 category : enrollment.candidates_details.category,
                 address: enrollment.candidates_details.candidate_current_address,
-                pin_code: enrollment.candidates_details.pin_code,
+                pin_code: enrollment.candidates_details.current_pin_code,
                 candidate_batch_id:enrollment.candidate_batch_id,
                 attendancePercentage
             },

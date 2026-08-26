@@ -20,6 +20,7 @@ type TokenContext = {
   centerId: string;
   centreName: string;
   email: string;
+  is_active?: boolean;
 };
 
 type NewTokenPair = { accessToken: string; refreshToken: string; roleDetails: Record<string, any> };
@@ -38,6 +39,7 @@ const buildCandidateTokens: RoleHandler = async (ctx) => {
     user_id: ctx.userId,
     role: ctx.role,
     center_id: ctx.centerId,
+    is_active: ctx.is_active ?? true
   };
 
   return {
@@ -63,7 +65,9 @@ const buildInstructorTokens: RoleHandler = async (ctx) => {
     user_id: ctx.userId,
     role: ctx.role,
     center_id: ctx.centerId,
-    company_id: instructor.company_id
+    company_id: instructor.company_id,
+    is_active: ctx.is_active ?? true
+
   };
 
   return {
@@ -131,7 +135,6 @@ const buildHrTokens: RoleHandler = async (ctx) => {
         hr_id: hr.hr_id,
         hr_first_name: hr.hr_first_name,
         hr_last_name: hr.hr_last_name ?? "",
-
         user_id: ctx.userId,
         role: ctx.role,
         company_id: hr.company_id,
@@ -141,6 +144,7 @@ const buildHrTokens: RoleHandler = async (ctx) => {
         accessToken: generateHrAccessToken({
             ...shared,
             email: ctx.email,
+            is_active: ctx.is_active ?? true
         }),
 
         refreshToken: generateHrRefreshToken(shared),
@@ -160,17 +164,19 @@ const buildAdminTokens: RoleHandler = async (ctx) => {
   if (!admin) throw new ApiError(404, "admin profile not found");
 
   const shared = {
-    
+
     // capabilities: admin.capabilities, // e.g. ["BLACKLIST_CANDIDATE", "GENERATE_REPORTS"]
     user_id: ctx.userId,
     role: ctx.role,
     centerName: ctx.centreName,
-    email: ctx.email
-    
+    email: ctx.email,
+    is_active: ctx.is_active ?? true,
+
+
   };
 
   return {
-    accessToken: generateAdminAccessToken({ ...shared, email: ctx.email }),
+    accessToken: generateAdminAccessToken({ ...shared, email: ctx.email, center_id: ctx.centerId }),
     refreshToken: generateAdminRefreshToken(shared),
     roleDetails: {
       // adminId: admin.user_id,

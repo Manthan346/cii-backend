@@ -789,6 +789,7 @@ export type instructor_detailsWhereUniqueInput = Prisma.AtLeast<{
   permanent_pincode?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   permanent_state?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   permanent_taluka?: Prisma.StringNullableFilter<"instructor_details"> | string | null
+  instructor_designation?: Prisma.StringNullableFilter<"instructor_details"> | string | null
   attendance_sessions?: Prisma.Attendance_sessionsListRelationFilter
   batch_details?: Prisma.Batch_detailsListRelationFilter
   batch_syllabus?: Prisma.Batch_syllabusListRelationFilter
