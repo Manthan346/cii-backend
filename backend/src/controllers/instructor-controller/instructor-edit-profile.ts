@@ -11,10 +11,10 @@ import { upload } from "../../middlewares/multer-middleware/multer";
 import { uploadCloudnary } from "../../services/cloudinary";
 
 /**
- * Edit instructor profile — instructor can edit name, gender, dob, blood group, highest qualification.
+ * Edit instructor profile — instructor can edit name, gender, dob, blood group, highest qualification, designation.
  *
  * Identity comes from token (req.instructor.instructor_id), never from body.
- * Allowed fields: first_name, last_name, gender, date_of_birth, blood_group, highest_qualification.
+ * Allowed fields: first_name, last_name, gender, date_of_birth, blood_group, highest_qualification, designation.
  *
  * After update, the instructor profile response will reflect the new values.
  */
@@ -38,8 +38,10 @@ export const instructorEditProfile = asyncHandler(
             date_of_birth,
             blood_group,
             highest_qualification,
+            designation,
             contact_number,
             emergency_contact,
+
         } = req.body;
 
         // Build update payload from ONLY allowed columns
@@ -50,9 +52,11 @@ export const instructorEditProfile = asyncHandler(
             date_of_birth?: Date;
             instructor_blood_group?: string;
             highest_qualification?: string;
+            instructor_designation?: string;
             profile_photo?: string;
             contact_number?: string;
             emergency_contact?: string;
+
         } = {};
 
         if (first_name !== undefined) data.instructor_first_name = first_name;
@@ -64,6 +68,7 @@ export const instructorEditProfile = asyncHandler(
         }
         if (blood_group !== undefined) data.instructor_blood_group = blood_group;
         if (highest_qualification !== undefined) data.highest_qualification = highest_qualification;
+        if (designation !== undefined) data.instructor_designation = designation;
         if (contact_number !== undefined) data.contact_number = contact_number;
         if (emergency_contact !== undefined) data.emergency_contact = emergency_contact;
         if (profile_photo !== undefined) data.profile_photo = profile_photo;
@@ -83,6 +88,8 @@ export const instructorEditProfile = asyncHandler(
                 profile_photo: true,
                 contact_number: true,
                 emergency_contact: true,
+                instructor_designation: true
+                
             },
         });
 
@@ -97,6 +104,7 @@ export const instructorEditProfile = asyncHandler(
                         date_of_birth: updated.date_of_birth,
                         blood_group: updated.instructor_blood_group,
                         highest_qualification: updated.highest_qualification,
+                        designation: updated.instructor_designation,
                         profile_photo: updated.profile_photo,
                         contact_number: updated.contact_number,
                         emergency_contact: updated.emergency_contact,

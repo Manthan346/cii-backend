@@ -10,6 +10,7 @@ import { z } from "zod";
  *  - date_of_birth (optional, ISO date YYYY-MM-DD)
  *  - blood_group (optional, max 5 chars)
  *  - highest_qualification (optional, max 100 chars)
+ *  - designation (optional, max 100 chars)
  *
  * All fields optional for PATCH behavior — send only what you want to change.
  * This works as a true PATCH: send only first_name, only gender, or any combination.
@@ -51,6 +52,12 @@ export const editInstructorProfileSchema = z
             .string()
             .trim()
             .max(100, "Highest qualification must not exceed 100 characters")
+            .optional(),
+
+        designation: z
+            .string()
+            .trim()
+            .max(100, "Designation must not exceed 100 characters")
             .optional(),
 
         contact_number: z

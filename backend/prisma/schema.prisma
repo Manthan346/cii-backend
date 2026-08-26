@@ -290,6 +290,7 @@ model instructor_details {
   permanent_state                  String?
   permanent_taluka                 String?
   instructor_unique_id             String                @unique(map: "uq_instructor_unique_id")
+  instructor_designation           String?
   attendance_sessions              attendance_sessions[]
   batches                          batch_details[]
   batch_syllabus                   batch_syllabus[]
