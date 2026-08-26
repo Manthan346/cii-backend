@@ -62,6 +62,14 @@ const SECTIONS = [
 ];
 const GENDER_OPTIONS = ["Male", "Female", "Other"];
 
+function formatDateForInput(value) {
+  if (!value) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
+}
+
 export default function EditProfileModal({
   personal,
   contact,
@@ -146,24 +154,38 @@ export default function EditProfileModal({
     occupation: "",
     blood_group: "",
     address: "",
+    dob: "",
   };
   const [fatherForm, setFatherForm] = useState({
     ...EMPTY_GUARDIAN,
     ...father,
+    dob: formatDateForInput(father?.dob),
   });
   const [motherForm, setMotherForm] = useState({
     ...EMPTY_GUARDIAN,
     ...mother,
+    dob: formatDateForInput(mother?.dob),
   });
   const [guardianForm, setGuardianForm] = useState({
     ...EMPTY_GUARDIAN,
     ...guardian,
+    dob: formatDateForInput(guardian?.dob),
   });
   const [educationForm, setEducationForm] = useState({
     ...education,
+    highestEducation:
+      education?.highestEducation ?? education?.highestQualification ?? "",
+    additionalQualification:
+      education?.additionalQualification ??
+      education?.additionalQualifications?.join(", ") ??
+      "",
   });
   const [experienceForm, setExperienceForm] = useState({
     ...experience,
+    previousOrganization:
+      experience?.previousOrganization ??
+      experience?.previousOrganisation ??
+      "",
   });
   const updateField = (setter) => (field) => (event) => {
     const { value } = event.target;
@@ -618,6 +640,17 @@ export default function EditProfileModal({
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
+                    Date of Birth
+                  </label>
+                  <input
+                    type="date"
+                    className={"profile-edit-profile-modal-input"}
+                    value={fatherForm.dob}
+                    onChange={updateField(setFatherForm)("dob")}
+                  />
+                </div>
+                <div className={"profile-edit-profile-modal-field"}>
+                  <label className={"profile-edit-profile-modal-label"}>
                     Address
                   </label>
                   <textarea
@@ -680,6 +713,17 @@ export default function EditProfileModal({
                       onChange={updateField(setMotherForm)("blood_group")}
                     />
                   </div>
+                </div>
+                <div className={"profile-edit-profile-modal-field"}>
+                  <label className={"profile-edit-profile-modal-label"}>
+                    Date of Birth
+                  </label>
+                  <input
+                    type="date"
+                    className={"profile-edit-profile-modal-input"}
+                    value={motherForm.dob}
+                    onChange={updateField(setMotherForm)("dob")}
+                  />
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
@@ -759,6 +803,17 @@ export default function EditProfileModal({
                       onChange={updateField(setGuardianForm)("blood_group")}
                     />
                   </div>
+                </div>
+                <div className={"profile-edit-profile-modal-field"}>
+                  <label className={"profile-edit-profile-modal-label"}>
+                    Date of Birth
+                  </label>
+                  <input
+                    type="date"
+                    className={"profile-edit-profile-modal-input"}
+                    value={guardianForm.dob}
+                    onChange={updateField(setGuardianForm)("dob")}
+                  />
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>

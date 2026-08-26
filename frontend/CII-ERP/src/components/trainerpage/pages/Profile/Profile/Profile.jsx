@@ -9,10 +9,13 @@ import DocumentTab from "../DocumentTab/DocumentTab";
 import ContactDetailsTab from "../GuardianDetailsTab/GuardianDetailsTab";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { fetchAcademicDetails } from "../../../../../../api/trainer/academicService";
+import { fetchInstructorProfile } from "../../../../../../api/trainer/profileService";
 import {
-  fetchInstructorProfile,
+  updateInstructorAddress,
   updateInstructorProfile,
-} from "../../../../../../api/trainer/profileService";
+  updateInstructorGuardian,
+  updateInstructorAcademic,
+} from "../../../../../../api/trainer/editServices";
 import {
   getCompletionLabel,
   getCompletionChecklist,
@@ -23,31 +26,27 @@ import {
   fetchInstructorDocuments,
   DOCUMENT_FIELD_MAP,
 } from "../../../../../../api/trainer/documentService";
-import {
-  staffProfile,
-  profileTabs,
-  // profileDocuments,
-  profileDocumentNote,
-  profileGuardianDetail,
-} from "../../../data";
+import { profileTabs, profileDocumentNote } from "../../../data";
 import "../../../styles/variables.css";
 import "./Profile.css";
 
 /**
  * Profile (full page, "My Profile")
- *
- * Basic Information (personal + contact + both addresses + completion)
- * is now fetched from GET /instructor-profile on mount, replacing the
- * profileBasicInfo / profileCompletion mocks. See
- * api/trainer/profileService.js and data/getCompletionMeta.js.
- *
- * The backend returns one `profileCompletion` number, not two - so the
- * hero card's "% Profile Completed" and the ProfileCompletionCard ring
- * now both read from the same completionPercent state, instead of the
- * old mock's two different values (staffProfile.profileCompletedPercent
- * vs profileCompletion.percent).
- *
- * The checklist under the completion ring is derived live from which
+                  <div className="profile-page__hero-actions">
+                    <button
+                      type="button"
+                      className="profile-page__edit-btn"
+                      onClick={() => setShowEditModal(true)}
+                    >
+                      <Pencil size={13} />
+                      Edit Profile
+                    </button>
+
+                    <p className="profile-page__completed">
+                      {basicInfoLoading ? "—" : completionPercent} % Profile
+                      Completed
+                    </p>
+                  </div>
  * basicInformation fields are actually filled (see getCompletionMeta.js)
  * rather than hardcoded booleans - it only covers the 2 items this
  * endpoint can know about (Basic Information, Contact). "Upload ID
@@ -68,13 +67,12 @@ const Profile = () => {
   const [currentAddress, setCurrentAddress] = useState(null);
   const [permanentAddress, setPermanentAddress] = useState(null);
   const [completionPercent, setCompletionPercent] = useState(0);
+  const [instructorId, setInstructorId] = useState(null);
   const [completionChecklist, setCompletionChecklist] = useState([]);
   const [basicInfoLoading, setBasicInfoLoading] = useState(true);
   const [basicInfoError, setBasicInfoError] = useState(null);
 
-  // Session-only - no backend field/endpoint for this yet, see
-  // EditProfileModal.jsx's file header. Gone on refresh.
-  const [avatarUrl, setAvatarUrl] = useState(staffProfile.avatar);
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
   // const [guardians, setGuardians] = useState(profileGuardianDetail.guardians);
   // const [guardians, setGuardians] = useState(null);
@@ -215,9 +213,15 @@ const Profile = () => {
       setBasicInfoLoading(true);
       setBasicInfoError(null);
       try {
-        const { profileCompletion, basicInformation } =
-          await fetchInstructorProfile();
+        const {
+          profileCompletion,
+          instructorId: fetchedInstructorId,
+          profilePhoto,
+          basicInformation,
+        } = await fetchInstructorProfile();
         if (!cancelled) {
+          setInstructorId(fetchedInstructorId);
+          if (profilePhoto) setAvatarUrl(profilePhoto);
           setPersonal(basicInformation.personalInformation);
           setContact(basicInformation.contactDetails);
           setCurrentAddress(basicInformation.currentAddress);
@@ -313,6 +317,19 @@ const Profile = () => {
       contact: updated.contact,
       photo: updated.avatarFile,
     });
+    const address = await updateInstructorAddress({
+      currentAddress: updated.currentAddress,
+      permanentAddress: updated.permanentAddress,
+    });
+    const guardian = await updateInstructorGuardian({
+      fatherDetails: updated.fatherDetails,
+      motherDetails: updated.motherDetails,
+      guardianDetails: updated.guardianDetails,
+    });
+    const academics = await updateInstructorAcademic({
+      education: updated.education,
+      experience: updated.experience,
+    });
     const firstName = profile.first_name ?? updated.personal.firstName;
     const lastName = profile.last_name ?? updated.personal.lastName;
 
@@ -327,7 +344,10 @@ const Profile = () => {
       bloodGroup: profile.blood_group ?? updated.personal.bloodGroup,
       highestQualification:
         profile.highest_qualification ?? updated.personal.highestQualification,
-      designation: profile.designation ?? updated.personal.designation,
+      designation:
+        profile.designation ??
+        profile.instructor_designation ??
+        updated.personal.designation,
     });
     setContact({
       ...contact,
@@ -336,16 +356,47 @@ const Profile = () => {
       emergencyContactNumber:
         profile.emergency_contact ?? updated.contact.emergencyContactNumber,
     });
-    setCurrentAddress(updated.currentAddress);
-    setPermanentAddress(updated.permanentAddress);
-    setFatherDetails(updated.fatherDetails);
-    setMotherDetails(updated.motherDetails);
-    setGuardianDetails(updated.guardianDetails);
-    setEducation(updated.education);
-    setExperience(updated.experience);
-    setAvatarUrl(
-      profile.profile_photo ?? updated.avatarUrl ?? staffProfile.avatar,
-    );
+    setCurrentAddress({
+      ...updated.currentAddress,
+      ...(address.current_address ?? {}),
+      line:
+        address.current_address?.current_address ?? updated.currentAddress.line,
+      state:
+        address.current_address?.current_state ?? updated.currentAddress.state,
+      city:
+        address.current_address?.current_city ?? updated.currentAddress.city,
+      district:
+        address.current_address?.current_district ??
+        updated.currentAddress.district,
+      pinCode:
+        address.current_address?.current_pincode ??
+        updated.currentAddress.pinCode,
+    });
+    setPermanentAddress({
+      ...updated.permanentAddress,
+      ...(address.permanent_address ?? {}),
+      line:
+        address.permanent_address?.permanent_address ??
+        updated.permanentAddress.line,
+      state:
+        address.permanent_address?.permanent_state ??
+        updated.permanentAddress.state,
+      city:
+        address.permanent_address?.permanenet_city ??
+        updated.permanentAddress.city,
+      district:
+        address.permanent_address?.permanent_district ??
+        updated.permanentAddress.district,
+      pinCode:
+        address.permanent_address?.permanent_pincode ??
+        updated.permanentAddress.pinCode,
+    });
+    setFatherDetails(guardian?.fatherDetails ?? updated.fatherDetails);
+    setMotherDetails(guardian?.motherDetails ?? updated.motherDetails);
+    setGuardianDetails(guardian?.guardianDetails ?? updated.guardianDetails);
+    setEducation(academics.education ?? updated.education);
+    setExperience(academics.experience ?? updated.experience);
+    setAvatarUrl(profile.profile_photo ?? updated.avatarUrl ?? null);
     setShowEditModal(false);
   };
 
@@ -397,7 +448,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="staff-dashboard">
+    <div className="staff-dashboard profile-screen">
       <Topbar
         user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
@@ -413,7 +464,7 @@ const Profile = () => {
               <div className="profile-page__hero">
                 <img
                   src={avatarUrl}
-                  alt={personal?.name ?? staffProfile.name}
+                  alt={personal?.name ?? "Profile"}
                   className="profile-page__photo"
                 />
 
@@ -433,18 +484,21 @@ const Profile = () => {
                   </p>
 
                   <h1 className="profile-page__name">
-                    {personal?.name ?? staffProfile.name}{" "}
+                    {personal?.name ?? (basicInfoLoading ? "Loading..." : "")}{" "}
                     <span className="profile-page__role">
-                      ({staffProfile.role})
+                      {personal?.designation ? `(${personal.designation})` : ""}
                     </span>
                   </h1>
                   <p className="profile-page__id">
-                    ID : {staffProfile.employeeId}
+                    ID :{" "}
+                    {instructorId ?? (basicInfoLoading ? "Loading..." : "")}
                   </p>
 
-                  <span className="profile-page__status">
-                    {staffProfile.status}
-                  </span>
+                  {!basicInfoLoading && personal?.status && (
+                    <span className="profile-page__status">
+                      {personal.status}
+                    </span>
+                  )}
                 </div>
               </div>
 
