@@ -26,7 +26,7 @@ export const getEventDetails = asyncHandler(
         event_id: true,
         center_id: true,
         event_title: true,
-        event_description: true,
+        event_description: true, 
         event_date: true,
         event_time: true,
         venue: true,
