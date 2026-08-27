@@ -22,6 +22,10 @@ import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-Activ
 import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
 import { getDeactivatedUsers } from "../../controllers/admin-controllers/fetch-all-DeactivateUsers";
 import { getUserStats } from "../../controllers/admin-controllers/get-totaluser-dashboardStats";
+import { getCertificateEnrollments } from "../../controllers/admin-controllers/get-batch-enrollments";
+import { uploadCandidateCertificate } from "../../controllers/admin-controllers/upload-candidate-certificate";
+import { multerErrorHandler } from "../../middlewares/multer-middleware/file-limit-middleware";
+import { upload } from "../../middlewares/multer-middleware/multer";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -47,11 +51,13 @@ adminRouter.get("/total-users",verifyAdminUsingAccessToken,paginationMiddleware,
 getAllUsers);
 //view profile of selected users 
 adminRouter.get("/total-users/:userId/view-profile",verifyAdminUsingAccessToken,getUserProfile);
-//fetch all freezed accounts
+//fetch all freezed accounts (center-scoped)
 adminRouter.get("/total-users/deactivated",verifyAdminUsingAccessToken,
 paginationMiddleware,getDeactivatedUsers);
-//total user dashboard stat boxes
+//total user dashboard stat boxes (center-scoped)
 adminRouter.get("/total-users/dashboard",verifyAdminUsingAccessToken,getUserStats)
+//fetch all candidate enrollemnts (center-scoped)
+adminRouter.get("/candidates/",verifyAdminUsingAccessToken,paginationMiddleware,getCertificateEnrollments);
 
 //create candidate (same flow as mobilizer enroll-candidate, with center isolation from admin token)
 adminRouter.post(
@@ -108,6 +114,14 @@ adminRouter.get(
     "/dashboard/enrollment",
     verifyAdminUsingAccessToken,
     getDashboardEnrollment
+);
+//upload certificate for candidate whose enrollment status is active 
+adminRouter.post(
+    "/candidates/:candidateId/enrollments/:enrollmentId/certificate",
+    verifyAdminUsingAccessToken,
+    upload.single("certificate"),
+    multerErrorHandler,
+    uploadCandidateCertificate
 );
 
 export default adminRouter
