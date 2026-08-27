@@ -23,6 +23,9 @@ import { paginationMiddleware } from "../../middlewares/pagination-middleware/pa
 import { getDeactivatedUsers } from "../../controllers/admin-controllers/fetch-all-DeactivateUsers";
 import { getUserStats } from "../../controllers/admin-controllers/get-totaluser-dashboardStats";
 import { getCertificateEnrollments } from "../../controllers/admin-controllers/get-batch-enrollments";
+import { uploadCandidateCertificate } from "../../controllers/admin-controllers/upload-candidate-certificate";
+import { multerErrorHandler } from "../../middlewares/multer-middleware/file-limit-middleware";
+import { upload } from "../../middlewares/multer-middleware/multer";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -107,6 +110,14 @@ adminRouter.get(
     "/dashboard/enrollment",
     verifyAdminUsingAccessToken,
     getDashboardEnrollment
+);
+//upload certificate for candidate whose enrollment status is active 
+adminRouter.post(
+    "/candidates/:candidateId/enrollments/:enrollmentId/certificate",
+    verifyAdminUsingAccessToken,
+    upload.single("certificate"),
+    multerErrorHandler,
+    uploadCandidateCertificate
 );
 
 export default adminRouter
