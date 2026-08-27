@@ -69,7 +69,7 @@ export const getDashboardCharts = asyncHandler(
                     where: {
                         center_id: centerId,
                         enq_status: { in: CALL_STATUSES },
-                        created_at: { gte: dayStart, lt: dayEnd },
+                        updated_at: { gte: dayStart, lt: dayEnd },
                     },
                 })
                 .then((count) => ({ day: WEEKDAY_LABELS[i], count }));
