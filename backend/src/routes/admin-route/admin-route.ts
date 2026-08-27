@@ -25,6 +25,7 @@ import { getCertificateEnrollments } from "../../controllers/admin-controllers/g
 import { uploadCandidateCertificate } from "../../controllers/admin-controllers/upload-candidate-certificate";
 import { multerErrorHandler } from "../../middlewares/multer-middleware/file-limit-middleware";
 import { upload } from "../../middlewares/multer-middleware/multer";
+import { getAdminCandidateDashboardSummary } from "../../controllers/admin-controllers/get-candidate-stats";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -57,6 +58,7 @@ paginationMiddleware,getDeactivatedUsers);
 adminRouter.get("/total-users/dashboard",verifyAdminUsingAccessToken,getUserStats)
 //fetch all candidate enrollemnts (center-scoped)
 adminRouter.get("/candidates/",verifyAdminUsingAccessToken,paginationMiddleware,getCertificateEnrollments);
+adminRouter.get("/candidates/stats",verifyAdminUsingAccessToken,getAdminCandidateDashboardSummary)
 
 //create candidate (same flow as mobilizer enroll-candidate, with center isolation from admin token)
 adminRouter.post(
