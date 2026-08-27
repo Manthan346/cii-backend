@@ -21,7 +21,7 @@ export const getEventDetails = asyncHandler(
 
     // Fetch event with documents and verify it belongs to mobilizer's center
     const event = await prisma.event_details.findUnique({
-      where: { event_id: eventId, target_type: "PUBLIC" },
+      where: { event_id: eventId,  },
       select: {
         event_id: true,
         center_id: true,
