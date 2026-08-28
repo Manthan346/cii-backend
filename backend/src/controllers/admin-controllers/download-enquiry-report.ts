@@ -157,7 +157,7 @@ const downloadEnquiryReport = asyncHandler(async (req: adminAuthRequest, res: Re
     }
     totalRow.push(grandTotal);
     const totalRowObj = worksheet.addRow(totalRow);
-    totalRowObj.font = { bold: true };
+    totalRowObj.font = { bold: true };   
     totalRowObj.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD9E2F3' } };
   }
 
