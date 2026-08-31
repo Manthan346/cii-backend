@@ -49,20 +49,3 @@ export const applicationsByStatus = [
   { status: 'Rejected', value: 9, color: '#ef4444' },
 ];
 
-// Recent Activity feed
-export const recentActivity = [
-  { id: 1, text: 'Aisha Sheikh applied for Cyber Security', time: '1 hour ago' },
-  { id: 2, text: 'Sneha Iyer shortlisted for Graphic Design', time: '1 hour ago' },
-  { id: 3, text: 'Interview scheduled with Karan Mehta', time: '3 hour ago' },
-  { id: 4, text: 'Hotel Management job published', time: 'Yesterday' },
-  { id: 5, text: 'UI/UX Intern posting is closing soon', time: '2 days ago' },
-];
-
-// Hiring Progress funnel bars
-export const hiringProgress = [
-  { id: 'applied', stage: 'Applied', count: 13, percent: 20 },
-  { id: 'screening', stage: 'Screening', count: 11, percent: 15 },
-  { id: 'shortlisted', stage: 'Shortlisted', count: 17, percent: 20 },
-  { id: 'interview-scheduled', stage: 'Interview scheduled', count: 12, percent: 15 },
-  { id: 'selected', stage: 'Selected', count: 17, percent: 30 },
-];
