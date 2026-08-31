@@ -44,9 +44,9 @@ export const updatePublicEvent = asyncHandler(
     }
 
     // Only allow updating PUBLIC events
-    if (event.target_type !== "PUBLIC") {
-      throw new ApiError(403, "Only PUBLIC events can be updated via this endpoint.");
-    }
+    // if (event.target_type !== "PUBLIC") {
+    //   throw new ApiError(403, "Only PUBLIC events can be updated via this endpoint.");
+    // }
 
     // Only allow mobilizers from the same center to update
     if (event.center_id !== mobilizer.center_id) {

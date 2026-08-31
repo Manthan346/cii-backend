@@ -21,12 +21,12 @@ export const getEventDetails = asyncHandler(
 
     // Fetch event with documents and verify it belongs to mobilizer's center
     const event = await prisma.event_details.findUnique({
-      where: { event_id: eventId },
+      where: { event_id: eventId,  },
       select: {
         event_id: true,
         center_id: true,
         event_title: true,
-        event_description: true,
+        event_description: true, 
         event_date: true,
         event_time: true,
         venue: true,

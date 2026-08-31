@@ -13,6 +13,7 @@ import { createEventSchema, updatePublicEventSchema } from '../../services/zod/e
 import { validateBody } from '../../middlewares/zod-middleware/zod-body-validator';
 import { uploadEventImages } from '../../middlewares/multer-middleware/image-upload';
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
+import { getJobEventDetails } from '../../controllers/mobilizer-controller/get-job-event-details';
 
 import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 import { editMobilizerProfile } from '../../controllers/mobilizer-controller/edit-profile';
@@ -44,6 +45,13 @@ mobilizerRouter.post(
     verifyMobilizerUsingAccessToken,
     uploadEventImages,
     addJobEventImages
+);
+
+// Get specific job event details with candidates
+mobilizerRouter.get(
+    "/job-event/:job_event_id",
+    verifyMobilizerUsingAccessToken,
+    getJobEventDetails
 );
 
 // Assign mobilizer to enquiry

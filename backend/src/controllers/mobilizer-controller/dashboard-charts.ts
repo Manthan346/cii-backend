@@ -60,14 +60,16 @@ export const getDashboardCharts = asyncHandler(
         ];
 
         // 3) Weekly calls (Sun-Sat): per-day TOTAL across all call statuses
-        //    (CALL_RECIEVED + CALL_BUSY + CALL_DROPPED_OUT combined per day).
-        //    Single line chart: one count per day, NOT per call type.
+        //    Uses enquiry_status_history.created_at — captures the EXACT DATE when status
+        //    was CHANGED TO a call status (CALL_RECIEVED, CALL_BUSY, CALL_DROPPED_OUT).
+        //    This is different from enquiry_records.updated_at which changes on ANY update.
         const weeklyCallsPromises = dayStarts.map((dayStart, i) => {
             const dayEnd = getNextDayStart(dayStart);
-            return prisma.enquiry_records
+            return prisma.enquiry_status_history
                 .count({
                     where: {
-                        center_id: centerId,
+                        // Join via enquiry_records to filter by center_id
+                        enquiry_records: { center_id: centerId },
                         enq_status: { in: CALL_STATUSES },
                         created_at: { gte: dayStart, lt: dayEnd },
                     },
