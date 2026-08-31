@@ -20,14 +20,14 @@ import {
 
 // Top stat cards (2 rows x 4 cards)
 export const statCards = [
-  { id: 'total-job-events', icon: CalendarDays, iconBg: '#3b82f6', value: 4, label: 'Total Job Events' },
-  { id: 'completed-job-event', icon: CheckCircle2, iconBg: '#ec4899', value: 2, label: 'Completed Job Event' },
-  { id: 'total-job', icon: Briefcase, iconBg: '#22c55e', value: 25, label: 'Total Job' },
-  { id: 'closed-job', icon: Lock, iconBg: '#38bdf8', value: 25, label: 'Closed Job' },
-  { id: 'total-applications', icon: FileInput, iconBg: '#f97316', value: 4, label: 'Total Applications' },
-  { id: 'pending-candidate-process', icon: Hourglass, iconBg: '#ec4899', value: 2, label: 'Pending Candidate Process' },
-  { id: 'selected-candidates', icon: Star, iconBg: '#a855f7', value: 25, label: 'Selected Candidates' },
-  { id: 'hired-candidates', icon: MonitorCheck, iconBg: '#14b8a6', value: 25, label: 'Hired Candidates' },
+  { id: 'total-job-applications', metric: 'totalJobApplications', icon: FileInput, iconBg: '#f97316', label: 'Total Applications' },
+  { id: 'total-job-events', metric: 'totalJobEvents', icon: CalendarDays, iconBg: '#3b82f6', label: 'Total Job Events' },
+  { id: 'upcoming-job-events', metric: 'upcomingJobEvents', icon: Hourglass, iconBg: '#ec4899', label: 'Upcoming Job Events' },
+  { id: 'completed-job-events', metric: 'completedJobEvents', icon: CheckCircle2, iconBg: '#22c55e', label: 'Completed Job Events' },
+  { id: 'shortlisted-students', metric: 'shortlistedStudents', icon: Star, iconBg: '#a855f7', label: 'Shortlisted Students' },
+  { id: 'selected-students', metric: 'selectedStudents', icon: MonitorCheck, iconBg: '#14b8a6', label: 'Selected Students' },
+  { id: 'current-jobs-posted', metric: 'currentJobsPosted', icon: Briefcase, iconBg: '#38bdf8', label: 'Current Jobs Posted' },
+  { id: 'interviewed-candidates', metric: 'interviewedCandidates', icon: Lock, iconBg: '#6366f1', label: 'Interviewed Candidates' },
 ];
 
 // "Applications per job" bar chart

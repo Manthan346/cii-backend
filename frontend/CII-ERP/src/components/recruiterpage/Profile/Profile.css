@@ -44,6 +44,21 @@
   background: #16234e;
 }
 
+.profile-page__edit-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.profile-page__status {
+  margin: 0;
+  font-size: 13px;
+  color: #6f7689;
+}
+
+.profile-page__status--error {
+  color: #b42318;
+}
+
 .profile-page__card {
   background: #ffffff;
   border-radius: 16px;

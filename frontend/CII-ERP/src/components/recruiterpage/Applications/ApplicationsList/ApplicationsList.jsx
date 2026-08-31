@@ -1,11 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from "react";
 import ApplicationFilterBar from '../ApplicationFilterBar/ApplicationFilterBar';
 import ApplicationTable from '../ApplicationTable/ApplicationTable';
 import Pagination from '../../shared/Pagination/Pagination';
 import './ApplicationsList.css';
-
-const EMPTY_FILTERS = { search: '', company: '', role: '', from: '', to: '' };
-const PAGE_SIZE = 6;
 
 /**
  * ApplicationsList
@@ -15,34 +12,17 @@ const PAGE_SIZE = 6;
  * click" - ApplicationFilterBar keeps its own draft state and only
  * calls back here once "Apply Filter" is clicked.
  */
-const ApplicationsList = ({ applications, onViewProfile }) => {
-  const [appliedFilters, setAppliedFilters] = useState(EMPTY_FILTERS);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const filteredApplications = useMemo(() => {
-    return applications.filter((item) => {
-      const search = appliedFilters.search.toLowerCase();
-      const matchesSearch =
-        !search ||
-        item.jobRole.toLowerCase().includes(search) ||
-        item.name.toLowerCase().includes(search);
-      const matchesCompany = !appliedFilters.company || item.company === appliedFilters.company;
-      const matchesRole = !appliedFilters.role || item.jobRole === appliedFilters.role;
-      const matchesFrom = !appliedFilters.from || item.appliedDateISO >= appliedFilters.from;
-      const matchesTo = !appliedFilters.to || item.appliedDateISO <= appliedFilters.to;
-
-      return matchesSearch && matchesCompany && matchesRole && matchesFrom && matchesTo;
-    });
-  }, [applications, appliedFilters]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [appliedFilters]);
-
-  const paginatedApplications = useMemo(() => {
-    const start = (currentPage - 1) * PAGE_SIZE;
-    return filteredApplications.slice(start, start + PAGE_SIZE);
-  }, [filteredApplications, currentPage]);
+const ApplicationsList = ({
+  applications,
+  currentPage,
+  totalItems,
+  pageSize,
+  isLoading,
+  error,
+  onViewProfile,
+  onPageChange,
+  onApplyFilters,
+}) => {
 
   return (
     <div className="applications-list">
@@ -51,16 +31,26 @@ const ApplicationsList = ({ applications, onViewProfile }) => {
         <p className="applications-list__subtitle">Every application received across all job postings</p>
       </header>
 
-      <ApplicationFilterBar onApplyFilter={setAppliedFilters} />
+      <ApplicationFilterBar onApplyFilter={onApplyFilters} />
 
-      <ApplicationTable applications={paginatedApplications} onViewProfile={onViewProfile} />
+      {error && <div className="applications-list__error">{error}</div>}
 
-      <Pagination
-        currentPage={currentPage}
-        totalItems={filteredApplications.length}
-        pageSize={PAGE_SIZE}
-        onPageChange={setCurrentPage}
-      />
+      {!isLoading && !error && (
+        <>
+          <ApplicationTable applications={applications} onViewProfile={onViewProfile} />
+
+          <Pagination
+            currentPage={currentPage}
+            totalItems={totalItems}
+            pageSize={pageSize}
+            onPageChange={onPageChange}
+          />
+        </>
+      )}
+
+      {isLoading && !error && (
+        <div className="applications-list__loading">Loading applications...</div>
+      )}
     </div>
   );
 };

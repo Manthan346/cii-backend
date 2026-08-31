@@ -12,6 +12,8 @@ export const notificationTypeStyles = {
   application: { bg: '#dbeafe', color: '#2563eb' },
   shortlisted: { bg: '#dcfce7', color: '#16a34a' },
   interview: { bg: '#fee2e2', color: '#dc2626' },
+  'job-opportunity': { bg: '#dbeafe', color: '#2563eb' },
+  update: { bg: '#eef2ff', color: '#4f46e5' },
   'job-closing': { bg: '#dbeafe', color: '#2563eb' },
   'offer-accepted': { bg: '#16234e', color: '#ffffff' },
 };
@@ -20,6 +22,8 @@ export const notificationCategoryLabels = {
   application: 'APPLICATION',
   shortlisted: 'SHORTLIST',
   interview: 'INTERVIEW',
+  'job-opportunity': 'JOB OPPORTUNITY',
+  update: 'UPDATE',
   'job-closing': 'JOB ALERT',
   'offer-accepted': 'OFFER',
 };

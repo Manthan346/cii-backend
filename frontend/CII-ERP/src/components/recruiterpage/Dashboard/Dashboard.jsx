@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import StatCard from '../shared/StatCard/StatCard';
 import BarChartCard from '../shared/BarChartCard/BarChartCard';
 import DonutChartCard from '../shared/DonutChartCard/DonutChartCard';
 import ActivityFeedCard from '../shared/ActivityFeedCard/ActivityFeedCard';
 import ProgressBarCard from '../shared/ProgressBarCard/ProgressBarCard';
-import { statCards, applicationsPerJob, applicationsByStatus, recentActivity, hiringProgress } from '../data';
+import { statCards, applicationsByStatus, recentActivity, hiringProgress } from '../data';
+import {
+  fetchRecruiterApplicationsPerJob,
+  fetchRecruiterDashboard,
+} from "../../../../api/recruiter/dashboardService";
 import './Dashboard.css';
 
 /**
@@ -31,6 +35,60 @@ import './Dashboard.css';
  * way if that's wanted later.
  */
 const Dashboard = () => {
+  const [dashboardMetrics, setDashboardMetrics] = useState({});
+  const [applicationsPerJobData, setApplicationsPerJobData] = useState([]);
+  const [metricsError, setMetricsError] = useState("");
+  const [graphError, setGraphError] = useState("");
+
+  useEffect(() => {
+    const loadDashboard = async () => {
+      try {
+        setMetricsError("");
+        setDashboardMetrics(await fetchRecruiterDashboard());
+      } catch (error) {
+        console.error("Failed to load recruiter dashboard:", error);
+        setMetricsError(
+          error?.response?.data?.message ||
+            "Unable to load dashboard metrics right now.",
+        );
+      }
+    };
+
+    loadDashboard();
+  }, []);
+
+  useEffect(() => {
+    const loadApplicationsPerJob = async () => {
+      try {
+        setGraphError("");
+        const records = await fetchRecruiterApplicationsPerJob();
+        setApplicationsPerJobData(
+          records.map((record) => ({
+            id: record.placement_id,
+            job: record.job_role ?? "Untitled role",
+            value: Number(record.application_count ?? 0),
+          })),
+        );
+      } catch (error) {
+        console.error("Failed to load applications per job:", error);
+        setGraphError(
+          error?.response?.data?.message ||
+            "Unable to load applications per job right now.",
+        );
+      }
+    };
+
+    loadApplicationsPerJob();
+  }, []);
+
+  const graphData = applicationsPerJobData;
+  const graphMaximum = Math.max(100, ...graphData.map((item) => item.value));
+  const graphCeiling = Math.ceil(graphMaximum / 20) * 20;
+  const graphTicks = Array.from(
+    { length: 6 },
+    (_, index) => (graphCeiling / 5) * index,
+  );
+
   return (
     <div className="recruiter-dashboard">
       <header className="recruiter-dashboard__header">
@@ -46,18 +104,24 @@ const Dashboard = () => {
             key={card.id}
             icon={card.icon}
             iconBg={card.iconBg}
-            value={card.value}
+            value={dashboardMetrics[card.metric] ?? 0}
             label={card.label}
           />
         ))}
       </div>
 
+      {metricsError && (
+        <p className="recruiter-dashboard__metrics-error">{metricsError}</p>
+      )}
+
       <div className="recruiter-dashboard__row">
         <BarChartCard
           title="Applications per job"
-          data={applicationsPerJob}
+          data={graphData}
           xKey="job"
           valueKey="value"
+          yDomain={[0, graphCeiling]}
+          yTicks={graphTicks}
         />
         <DonutChartCard
           title="Applications by status"
@@ -67,6 +131,10 @@ const Dashboard = () => {
           colorKey="color"
         />
       </div>
+
+      {graphError && (
+        <p className="recruiter-dashboard__metrics-error">{graphError}</p>
+      )}
 
       <div className="recruiter-dashboard__row">
         <ActivityFeedCard title="Recent Activity" items={recentActivity} />

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 import ApplicationsList from './ApplicationsList/ApplicationsList';
 import CandidateProfile from './CandidateProfile/CandidateProfile';
-import { applications as initialApplications } from '../data';
+import { fetchRecruiterApplications } from "../../../../api/recruiter/applicationService";
 
 /**
  * Applications (Recruiter)
@@ -17,8 +17,46 @@ import { applications as initialApplications } from '../data';
  * in this app (no backend yet).
  */
 const Applications = () => {
-  const [applications, setApplications] = useState(initialApplications);
+  const [applications, setApplications] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({});
+  const [pagination, setPagination] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const loadApplications = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+      const { applications: records, pagination: pageData } =
+        await fetchRecruiterApplications({
+          page: currentPage,
+          limit: 10,
+          search: filters.search || undefined,
+          company_name: filters.company || undefined,
+          job_role: filters.role || undefined,
+          from_date: filters.from || undefined,
+          to_date: filters.to || undefined,
+        });
+      setApplications(records);
+      setPagination(pageData);
+    } catch (loadError) {
+      console.error("Failed to load applications:", loadError);
+      setApplications([]);
+      setPagination({});
+      setError(
+        loadError?.response?.data?.message ||
+          "Unable to load applications right now.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [currentPage, filters]);
+
+  useEffect(() => {
+    loadApplications();
+  }, [loadApplications]);
 
   const selectedCandidate = applications.find((item) => item.id === selectedId) ?? null;
 
@@ -38,7 +76,22 @@ const Applications = () => {
     );
   }
 
-  return <ApplicationsList applications={applications} onViewProfile={setSelectedId} />;
+  return (
+    <ApplicationsList
+      applications={applications}
+      currentPage={currentPage}
+      totalItems={pagination.totalItems ?? 0}
+      pageSize={pagination.limit ?? 10}
+      isLoading={isLoading}
+      error={error}
+      onViewProfile={setSelectedId}
+      onPageChange={setCurrentPage}
+      onApplyFilters={(nextFilters) => {
+        setCurrentPage(1);
+        setFilters(nextFilters);
+      }}
+    />
+  );
 };
 
 export default Applications;

@@ -22,3 +22,22 @@
   font-weight: 500;
   color: #7b8194;
 }
+
+.applications-list__loading,
+.applications-list__error {
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.applications-list__loading {
+  color: #4b5563;
+  background: #f3f4f6;
+}
+
+.applications-list__error {
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+}
