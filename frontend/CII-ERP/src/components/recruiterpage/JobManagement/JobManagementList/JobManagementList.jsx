@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Plus } from 'lucide-react';
-import JobFilterBar from '../JobFilterBar/JobFilterBar';
-import JobTable from '../JobTable/JobTable';
-import Pagination from '../../shared/Pagination/Pagination';
-import './JobManagementList.css';
+import React, { useEffect, useMemo, useState } from "react";
+import { Plus } from "lucide-react";
+import JobFilterBar from "../JobFilterBar/JobFilterBar";
+import JobTable from "../JobTable/JobTable";
+import Pagination from "../../shared/Pagination/Pagination";
+import "./JobManagementList.css";
 
 const EMPTY_FILTERS = {
-  search: '',
-  jobRole: '',
-  sector: '',
-  companyName: '',
-  mode: '',
-  location: '',
+  search: "",
+  jobRole: "",
+  sector: "",
+  companyName: "",
+  mode: "",
+  location: "",
 };
 
 const PAGE_SIZE = 5;
@@ -32,22 +32,44 @@ const PAGE_SIZE = 5;
  * filters change, so a new filter never leaves you stranded on a
  * page that no longer has any rows.
  */
-const JobManagementList = ({ jobs, onCreateJob, onViewJob, onEditJob, onCloseJob }) => {
+const JobManagementList = ({
+  jobs,
+  onCreateJob,
+  onViewJob,
+  onEditJob,
+  onCloseJob,
+  isLoading = false,
+  error = "",
+}) => {
   const [appliedFilters, setAppliedFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
+      const searchText = (job.jobRole ?? "").toLowerCase();
       const matchesSearch =
         !appliedFilters.search ||
-        job.jobRole.toLowerCase().includes(appliedFilters.search.toLowerCase());
-      const matchesJobRole = !appliedFilters.jobRole || job.jobRole === appliedFilters.jobRole;
-      const matchesSector = !appliedFilters.sector || job.sector === appliedFilters.sector;
-      const matchesCompany = !appliedFilters.companyName || job.companyName === appliedFilters.companyName;
-      const matchesMode = !appliedFilters.mode || job.mode === appliedFilters.mode;
-      const matchesLocation = !appliedFilters.location || job.location === appliedFilters.location;
+        searchText.includes(appliedFilters.search.toLowerCase());
+      const matchesJobRole =
+        !appliedFilters.jobRole || job.jobRole === appliedFilters.jobRole;
+      const matchesSector =
+        !appliedFilters.sector || job.sector === appliedFilters.sector;
+      const matchesCompany =
+        !appliedFilters.companyName ||
+        job.companyName === appliedFilters.companyName;
+      const matchesMode =
+        !appliedFilters.mode || job.mode === appliedFilters.mode;
+      const matchesLocation =
+        !appliedFilters.location || job.location === appliedFilters.location;
 
-      return matchesSearch && matchesJobRole && matchesSector && matchesCompany && matchesMode && matchesLocation;
+      return (
+        matchesSearch &&
+        matchesJobRole &&
+        matchesSector &&
+        matchesCompany &&
+        matchesMode &&
+        matchesLocation
+      );
     });
   }, [jobs, appliedFilters]);
 
@@ -64,21 +86,42 @@ const JobManagementList = ({ jobs, onCreateJob, onViewJob, onEditJob, onCloseJob
     <div className="job-management">
       <header className="job-management__header">
         <h1 className="job-management__title">Job Management</h1>
-        <p className="job-management__subtitle">Create and manage every job posting on the platform</p>
+        <p className="job-management__subtitle">
+          Create and manage every job posting on the platform
+        </p>
       </header>
 
       <JobFilterBar onApplyFilter={setAppliedFilters} />
 
-      <JobTable jobs={paginatedJobs} onViewJob={onViewJob} onEditJob={onEditJob} onCloseJob={onCloseJob} />
+      {error && <div className="job-management__error">{error}</div>}
 
-      <Pagination
-        currentPage={currentPage}
-        totalItems={filteredJobs.length}
-        pageSize={PAGE_SIZE}
-        onPageChange={setCurrentPage}
-      />
+      {!isLoading && !error && (
+        <>
+          <JobTable
+            jobs={paginatedJobs}
+            onViewJob={onViewJob}
+            onEditJob={onEditJob}
+            onCloseJob={onCloseJob}
+          />
 
-      <button type="button" className="job-management__create-btn" onClick={onCreateJob}>
+          <Pagination
+            currentPage={currentPage}
+            totalItems={filteredJobs.length}
+            pageSize={PAGE_SIZE}
+            onPageChange={setCurrentPage}
+          />
+        </>
+      )}
+
+      {isLoading && !error && (
+        <div className="job-management__loading">Loading job postings...</div>
+      )}
+
+      <button
+        type="button"
+        className="job-management__create-btn"
+        onClick={onCreateJob}
+      >
         <Plus size={18} strokeWidth={2.4} />
         Create Job
       </button>

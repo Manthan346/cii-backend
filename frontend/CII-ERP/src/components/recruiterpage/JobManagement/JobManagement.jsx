@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import JobManagementList from './JobManagementList/JobManagementList';
-import CreateJobForm from './CreateJobForm/CreateJobForm';
-import JobDetails from './JobDetails/JobDetails';
-import { jobs as initialJobs } from '../data';
+import React, { useEffect, useState } from "react";
+import JobManagementList from "./JobManagementList/JobManagementList";
+import CreateJobForm from "./CreateJobForm/CreateJobForm";
+import JobDetails from "./JobDetails/JobDetails";
+import {
+  fetchRecruiterJobPostings,
+  fetchRecruiterJobPostingDetails,
+  normalizeJobPosting,
+  mapFormToRecruiterJobPayload,
+  createRecruiterJobPosting,
+  updateRecruiterJobPosting,
+} from "../../../../api/recruiter/jobManagementService";
 
 /**
  * JobManagement (Recruiter)
@@ -18,45 +25,172 @@ import { jobs as initialJobs } from '../data';
  * list - it just flips that job's status to Closed in state.
  */
 const JobManagement = () => {
-  const [jobs, setJobs] = useState(initialJobs);
-  const [view, setView] = useState('list'); // 'list' | 'create' | 'details'
+  const [jobs, setJobs] = useState([]);
+  const [view, setView] = useState("list"); // 'list' | 'create' | 'details'
   const [selectedJobId, setSelectedJobId] = useState(null);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const selectedJob = jobs.find((job) => job.id === selectedJobId) ?? null;
+  useEffect(() => {
+    const loadJobs = async () => {
+      try {
+        setIsLoading(true);
+        setError("");
+        const { jobs: liveJobs } = await fetchRecruiterJobPostings({
+          page: 1,
+          limit: 50,
+        });
+        setJobs(liveJobs);
+      } catch (loadErr) {
+        console.error("Failed to load job postings:", loadErr);
+        setError(
+          loadErr?.response?.data?.message ||
+            "Unable to load job postings right now.",
+        );
+        setJobs([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const goToList = () => setView('list');
+    loadJobs();
+  }, []);
 
-  const handleViewJob = (jobId) => {
-    setSelectedJobId(jobId);
-    setView('details');
+  const selectedJobFromList =
+    jobs.find((job) => job.id === selectedJobId) ?? null;
+  const activeSelectedJob = selectedJob ?? selectedJobFromList ?? null;
+
+  const goToList = () => {
+    setSelectedJob(null);
+    setSelectedJobId(null);
+    setView("list");
   };
 
-  const handleEditJob = (jobId) => {
-    // TODO: prefill CreateJobForm with this job's data once an edit mode is built.
-    setSelectedJobId(jobId);
-    setView('create');
+  const handleViewJob = async (jobId) => {
+    try {
+      setSelectedJobId(jobId);
+      setError("");
+      const detail = await fetchRecruiterJobPostingDetails(jobId);
+      setSelectedJob(detail);
+      setJobs((prev) => {
+        const exists = prev.some((job) => job.id === detail.id);
+        if (!exists) return [detail, ...prev];
+
+        return prev.map((job) =>
+          job.id === detail.id ? { ...job, ...detail } : job,
+        );
+      });
+      setView("details");
+    } catch (err) {
+      console.error("Failed to fetch job details:", err);
+      setError(err?.response?.data?.message || "Unable to load job details.");
+    }
   };
 
-  const handleCloseJobStatus = (jobId) => {
-    setJobs((prev) => prev.map((job) => (job.id === jobId ? { ...job, status: 'Closed' } : job)));
+  const handleEditJob = async (jobId) => {
+    try {
+      setSelectedJobId(jobId);
+      setError("");
+      const detail = await fetchRecruiterJobPostingDetails(jobId);
+      setSelectedJob(detail);
+      setJobs((prev) =>
+        prev.some((job) => job.id === detail.id)
+          ? prev.map((job) =>
+              job.id === detail.id ? { ...job, ...detail } : job,
+            )
+          : [detail, ...prev],
+      );
+      setView("create");
+    } catch (err) {
+      console.error("Failed to load job for edit:", err);
+      setError(
+        err?.response?.data?.message ||
+          "Unable to load job details for editing.",
+      );
+    }
   };
 
-  const handleCreateJob = (jobPayload) => {
-    setJobs((prev) => [{ ...jobPayload, id: `job-${prev.length + 1}` }, ...prev]);
-    goToList();
+  const handleCloseJobStatus = async (jobId) => {
+    const target = jobs.find((job) => job.id === jobId);
+    if (!target) return;
+
+    try {
+      const updated = await updateRecruiterJobPosting(jobId, {
+        is_active: false,
+      });
+      setJobs((prev) =>
+        prev.map((job) =>
+          job.id === jobId
+            ? normalizeJobPosting({
+                ...job,
+                ...updated,
+                is_active: false,
+                status: "Closed",
+              })
+            : job,
+        ),
+      );
+    } catch (err) {
+      console.error("Failed to close job:", err);
+      setError(
+        err?.response?.data?.message || "Unable to close this job posting.",
+      );
+    }
   };
 
-  if (view === 'create') {
-    return <CreateJobForm onCancel={goToList} onSubmit={handleCreateJob} />;
+  const handleCreateJob = async (jobPayload, isEditMode = false) => {
+    try {
+      if (isEditMode && selectedJobId) {
+        const updated = await updateRecruiterJobPosting(
+          selectedJobId,
+          jobPayload,
+        );
+        setJobs((prev) =>
+          prev.map((job) =>
+            job.id === selectedJobId
+              ? normalizeJobPosting({ ...job, ...updated })
+              : job,
+          ),
+        );
+        setSelectedJob(null);
+        setSelectedJobId(null);
+        goToList();
+        return;
+      }
+
+      const created = await createRecruiterJobPosting(jobPayload);
+      setJobs((prev) => [normalizeJobPosting(created), ...prev]);
+      goToList();
+    } catch (err) {
+      console.error("Failed to create/update job:", err);
+      setError(
+        err?.response?.data?.message ||
+          (isEditMode
+            ? "Unable to update job posting."
+            : "Unable to create job posting."),
+      );
+    }
+  };
+
+  if (view === "create") {
+    return (
+      <CreateJobForm
+        onCancel={goToList}
+        onSubmit={handleCreateJob}
+        initialValues={selectedJob ?? selectedJobFromList ?? null}
+        isEdit={Boolean(selectedJobId && (selectedJob || selectedJobFromList))}
+      />
+    );
   }
 
-  if (view === 'details' && selectedJob) {
+  if (view === "details" && activeSelectedJob) {
     return (
       <JobDetails
-        job={selectedJob}
+        job={activeSelectedJob}
         onBack={goToList}
-        onEdit={() => handleEditJob(selectedJob.id)}
-        onCloseJob={() => handleCloseJobStatus(selectedJob.id)}
+        onEdit={() => handleEditJob(activeSelectedJob.id)}
+        onCloseJob={() => handleCloseJobStatus(activeSelectedJob.id)}
       />
     );
   }
@@ -64,10 +198,12 @@ const JobManagement = () => {
   return (
     <JobManagementList
       jobs={jobs}
-      onCreateJob={() => setView('create')}
+      onCreateJob={() => setView("create")}
       onViewJob={handleViewJob}
       onEditJob={handleEditJob}
       onCloseJob={handleCloseJobStatus}
+      isLoading={isLoading}
+      error={error}
     />
   );
 };
