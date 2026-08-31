@@ -153,3 +153,15 @@
 .evu-btn--primary:hover {
   background: #1c2e63;
 }
+
+.evu-upload-error {
+  margin: 8px 0 0;
+  color: #d6435a;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.evu-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

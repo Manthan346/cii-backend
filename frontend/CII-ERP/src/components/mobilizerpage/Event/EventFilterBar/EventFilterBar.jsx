@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Download } from 'lucide-react';
-import { eventTypeOptions } from '../../data/eventData';
+import { Search, ChevronDown } from 'lucide-react';
 import './EventFilterBar.css';
+
+const EVENT_TYPE_OPTIONS = [
+  { value: 'all', label: 'Event type' },
+  { value: 'WEBINAR', label: 'Webinar' },
+  { value: 'SEMINAR', label: 'Seminar' },
+  { value: 'UPSKILLING', label: 'Upskilling' },
+  { value: 'WORKSHOP', label: 'Workshop' },
+];
 
 /**
  * EventFilterBar
@@ -11,7 +18,7 @@ import './EventFilterBar.css';
  *  - onDateChange: (value: string) => void
  *  - onExport: () => void
  */
-export default function EventFilterBar({ onSearch, onTypeChange, onDateChange, onExport }) {
+export default function EventFilterBar({ onSearch, onTypeChange, onStatusChange, onDateChange }) {
   const [query, setQuery] = useState('');
   const [date, setDate] = useState('');
 
@@ -34,11 +41,21 @@ export default function EventFilterBar({ onSearch, onTypeChange, onDateChange, o
 
       <div className="evf-select-wrap">
         <select defaultValue="all" onChange={(e) => onTypeChange?.(e.target.value)}>
-          {eventTypeOptions.map((opt) => (
+          {EVENT_TYPE_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
           ))}
+        </select>
+        <ChevronDown size={14} className="evf-select__chevron" />
+      </div>
+
+      <div className="evf-select-wrap">
+        <select defaultValue="all" onChange={(e) => onStatusChange?.(e.target.value)}>
+          <option value="all">Status</option>
+          <option value="UPCOMING">Upcoming</option>
+          <option value="ONGOING">Ongoing</option>
+          <option value="COMPLETED">Completed</option>
         </select>
         <ChevronDown size={14} className="evf-select__chevron" />
       </div>
@@ -54,10 +71,6 @@ export default function EventFilterBar({ onSearch, onTypeChange, onDateChange, o
         />
       </div>
 
-      <button type="button" className="evf-export-btn" onClick={onExport}>
-        <Download size={14} />
-        Export as
-      </button>
     </div>
   );
 }

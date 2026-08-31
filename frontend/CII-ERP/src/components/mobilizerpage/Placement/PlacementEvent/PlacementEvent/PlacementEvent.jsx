@@ -4,8 +4,10 @@ import PlacementEventFilterBar from "../PlacementEventFilterBar/PlacementEventFi
 import ViewToggle from "../ViewToggle/ViewToggle";
 import EventCard from "../EventCard/EventCard";
 import EventListView from "../EventListView/EventListView";
+import EventDetailModal from "../EventDetailModal/EventDetailModal";
 import UploadMediaModal from "../UploadMediaModal/UploadMediaModal";
 import {
+  fetchJobEventDetails,
   fetchJobEvents,
   uploadJobEventImages,
 } from "../../../../../../api/mobilizer/placementEventsService";
@@ -24,6 +26,7 @@ export default function PlacementEvent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [uploadEventId, setUploadEventId] = useState(null);
+  const [detailEvent, setDetailEvent] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -32,6 +35,7 @@ export default function PlacementEvent() {
     fetchJobEvents({
       page,
       limit: 20,
+      sort_order: "desc",
       search: searchQuery.trim() || undefined,
       event_type: eventType || undefined,
       event_status: statusFilter || undefined,
@@ -55,6 +59,16 @@ export default function PlacementEvent() {
   }, [dateFilter, eventType, page, searchQuery, statusFilter]);
 
   const uploadEvent = events.find((e) => e.id === uploadEventId) || null;
+
+  const handleViewEvent = async (event) => {
+    try {
+      setDetailEvent(await fetchJobEventDetails(event.id));
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message || "Unable to load event details",
+      );
+    }
+  };
 
   const handleUploadSubmit = async (event, files) => {
     await uploadJobEventImages(event.id, files);
@@ -113,6 +127,7 @@ export default function PlacementEvent() {
             <EventCard
               key={event.id}
               event={event}
+              onViewEvent={handleViewEvent}
               onOpenMap={handleOpenMap}
               onUploadMedia={(e) => setUploadEventId(e.id)}
             />
@@ -128,10 +143,17 @@ export default function PlacementEvent() {
             onPrev: () => setPage((value) => Math.max(1, value - 1)),
             onNext: () => setPage((value) => Math.min(totalPages, value + 1)),
           }}
+          onViewEvent={handleViewEvent}
           onOpenMap={handleOpenMap}
           onUploadMedia={(e) => setUploadEventId(e.id)}
         />
       )}
+
+      <EventDetailModal
+        event={detailEvent}
+        onClose={() => setDetailEvent(null)}
+        onOpenUpload={(event) => setUploadEventId(event.id)}
+      />
 
       <UploadMediaModal
         event={uploadEvent}

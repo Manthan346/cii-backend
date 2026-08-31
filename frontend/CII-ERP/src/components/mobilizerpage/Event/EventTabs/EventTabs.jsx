@@ -1,6 +1,7 @@
 import React from 'react';
-import { eventTabs } from '../../data/eventData';
 import './EventTabs.css';
+
+const EVENT_TABS = ['All', 'Upcoming', 'Ongoing', 'Completed'];
 
 /**
  * EventTabs
@@ -11,7 +12,7 @@ import './EventTabs.css';
 export default function EventTabs({ activeTab, onChange }) {
   return (
     <div className="evt-tabs">
-      {eventTabs.map((tab) => (
+      {EVENT_TABS.map((tab) => (
         <button
           type="button"
           key={tab}

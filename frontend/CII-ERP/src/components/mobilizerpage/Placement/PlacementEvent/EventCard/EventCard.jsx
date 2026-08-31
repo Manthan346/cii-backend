@@ -14,10 +14,16 @@ const STATUS_TONE = {
  * EventCard
  * Props:
  *  - event: placement event object
+ *  - onViewEvent: (event) => void — opens the event detail modal
  *  - onOpenMap: (event) => void — opens the event address in Google Maps
  *  - onUploadMedia: (event) => void — the small image icon button
  */
-export default function EventCard({ event, onOpenMap, onUploadMedia }) {
+export default function EventCard({
+  event,
+  onViewEvent,
+  onOpenMap,
+  onUploadMedia,
+}) {
   return (
     <div className="ev-card">
       <div className="ev-card__top">
@@ -41,6 +47,13 @@ export default function EventCard({ event, onOpenMap, onUploadMedia }) {
       </div>
 
       <div className="ev-card__footer">
+        <button
+          type="button"
+          className="ev-view-btn"
+          onClick={() => onViewEvent?.(event)}
+        >
+          View
+        </button>
         <button
           type="button"
           className="ev-map-btn"
