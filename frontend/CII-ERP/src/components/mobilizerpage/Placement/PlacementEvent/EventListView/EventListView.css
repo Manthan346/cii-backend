@@ -46,6 +46,24 @@
   gap: 10px;
 }
 
+.el-view-btn {
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #26324a;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.el-view-btn:hover {
+  border-color: #aebbd0;
+  background: #f6f7f9;
+}
+
 .el-map-btn {
   height: 34px;
   padding: 0 18px;
@@ -60,6 +78,13 @@
 
 .el-map-btn:hover {
   background: #f6f7f9;
+}
+
+.el-view-btn:focus-visible,
+.el-map-btn:focus-visible,
+.el-upload-btn:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
 }
 
 .el-upload-btn {

@@ -14,11 +14,13 @@ const STATUS_TONE = {
  * EventListView
  * Props:
  *  - events: array
+ *  - onViewEvent: (event) => void — opens the event detail modal
  *  - onOpenMap: (event) => void — opens the event address in Google Maps
  *  - onUploadMedia: (event) => void
  */
 export default function EventListView({
   events,
+  onViewEvent,
   onOpenMap,
   onUploadMedia,
   pagination,
@@ -50,6 +52,13 @@ export default function EventListView({
                 </td>
                 <td>
                   <div className="el-table__actions">
+                    <button
+                      type="button"
+                      className="el-view-btn"
+                      onClick={() => onViewEvent?.(event)}
+                    >
+                      View
+                    </button>
                     <button
                       type="button"
                       className="el-map-btn"

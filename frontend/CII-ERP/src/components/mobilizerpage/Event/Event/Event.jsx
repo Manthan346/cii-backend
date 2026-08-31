@@ -1,57 +1,111 @@
-import React, { useMemo, useState } from 'react';
-import { Plus } from 'lucide-react';
-import EventStats from '../EventStats/EventStats';
-import EventFilterBar from '../EventFilterBar/EventFilterBar';
-import EventTabs from '../EventTabs/EventTabs';
-import EventList from '../EventList/EventList';
-import AddEventModal from '../AddEventModal/AddEventModal';
-import UploadMediaModal from '../UploadMediaModal/UploadMediaModal';
-import { events as initialEvents } from '../../data/eventData';
-import './Event.css';
+import React, { useEffect, useState } from "react";
+import { Plus } from "lucide-react";
+import EventStats from "../EventStats/EventStats";
+import EventFilterBar from "../EventFilterBar/EventFilterBar";
+import EventTabs from "../EventTabs/EventTabs";
+import EventList from "../EventList/EventList";
+import AddEventModal from "../AddEventModal/AddEventModal";
+import UploadMediaModal from "../UploadMediaModal/UploadMediaModal";
+import EventDetailsModal from "../EventDetailsModal/EventDetailsModal";
+import {
+  fetchCenterEvents,
+  fetchEventDetails,
+  createPublicEvent,
+  updatePublicEvent,
+  uploadEventImages,
+} from "../../../../../api/mobilizer/eventService";
+import { fetchMobilizerProfile } from "../../../../../api/mobilizer/profileService";
+import "./Event.css";
 
 export default function Event() {
-  const [eventList, setEventList] = useState(initialEvents);
-  const [activeTab, setActiveTab] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [typeFilter, setTypeFilter] = useState('all');
+  const [eventList, setEventList] = useState([]);
+  const [activeTab, setActiveTab] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [uploadEventId, setUploadEventId] = useState(null);
+  const [detailEvent, setDetailEvent] = useState(null);
+  const [mobilizerName, setMobilizerName] = useState("Mobilizer");
 
-  const filteredEvents = useMemo(() => {
-    let list = eventList;
+  useEffect(() => {
+    fetchMobilizerProfile()
+      .then((response) => {
+        const profile = response.data?.data?.profile;
+        const name =
+          profile?.name ||
+          [profile?.first_name, profile?.last_name].filter(Boolean).join(" ");
+        if (name) setMobilizerName(name);
+      })
+      .catch(() => {});
+  }, []);
 
-    if (activeTab !== 'All') {
-      list = list.filter((e) => e.status === activeTab);
-    }
-    if (typeFilter !== 'all') {
-      list = list.filter((e) => e.type === typeFilter);
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.trim().toLowerCase();
-      list = list.filter((e) => e.title.toLowerCase().includes(q));
-    }
-
-    return list;
-  }, [eventList, activeTab, typeFilter, searchQuery]);
-
-  const uploadEvent = eventList.find((e) => e.id === uploadEventId) || null;
-
-  const handleCreateEvent = (form) => {
-    const [month, day] = form.date
-      ? [new Date(form.date).toLocaleDateString('en-GB', { month: 'short' }), new Date(form.date).getDate()]
-      : ['—', '—'];
-
-    const newEvent = {
-      id: `ev-${Date.now()}`,
-      title: form.eventName || 'Untitled Event',
-      type: form.eventType || 'Seminar',
-      day: String(day),
-      month,
-      time: '—',
-      status: 'Upcoming',
+  useEffect(() => {
+    let isMounted = true;
+    setLoading(true);
+    setError("");
+    const status = activeTab === "All" ? statusFilter : activeTab.toUpperCase();
+    fetchCenterEvents({
+      page,
+      limit: 20,
+      title: searchQuery.trim() || undefined,
+      event_type: typeFilter || undefined,
+      status: status || undefined,
+      date: dateFilter || undefined,
+    })
+      .then(({ events, pagination }) => {
+        if (!isMounted) return;
+        setEventList(events);
+        setTotalPages(Math.max(1, pagination.totalPages));
+        setTotalRecords(pagination.totalRecords);
+      })
+      .catch(() => {
+        if (isMounted) setError("Unable to load events");
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
     };
-    setEventList((prev) => [newEvent, ...prev]);
+  }, [activeTab, dateFilter, page, searchQuery, statusFilter, typeFilter]);
+
+  const uploadEvent =
+    eventList.find((event) => event.id === uploadEventId) || null;
+
+  const handleSaveEvent = async (form) => {
+    try {
+      if (editingEvent) await updatePublicEvent(editingEvent.id, form);
+      else await createPublicEvent(form);
+      setAddModalOpen(false);
+      setEditingEvent(null);
+      setPage(1);
+    } catch (requestError) {
+      setError(requestError.response?.data?.message || "Unable to save event");
+    }
+  };
+
+  const handleViewEvent = async (event) => {
+    try {
+      setDetailEvent(await fetchEventDetails(event.id));
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message || "Unable to load event details",
+      );
+    }
+  };
+
+  const handleUpload = async (event, files) => {
+    await uploadEventImages(event.id, files);
     setAddModalOpen(false);
+    setUploadEventId(null);
   };
 
   return (
@@ -60,10 +114,15 @@ export default function Event() {
         <div className="ev-header__text">
           <h1 className="ev-header__title">Events</h1>
           <p className="ev-header__subtitle">
-            Create and manage seminars, webinars, workshops, bootcamps, and guest visits
+            Create and manage seminars, webinars, workshops, bootcamps, and
+            guest visits
           </p>
         </div>
-        <button type="button" className="ev-add-btn" onClick={() => setAddModalOpen(true)}>
+        <button
+          type="button"
+          className="ev-add-btn"
+          onClick={() => setAddModalOpen(true)}
+        >
           <Plus size={16} />
           Add New Event
         </button>
@@ -72,23 +131,74 @@ export default function Event() {
       <EventStats />
 
       <EventFilterBar
-        onSearch={setSearchQuery}
-        onTypeChange={setTypeFilter}
-        onExport={() => console.log('Export as...')}
+        onSearch={(value) => {
+          setSearchQuery(value);
+          setPage(1);
+        }}
+        onTypeChange={(value) => {
+          setTypeFilter(value === "all" ? "" : value);
+          setPage(1);
+        }}
+        onStatusChange={(value) => {
+          setStatusFilter(value === "all" ? "" : value);
+          setPage(1);
+        }}
+        onDateChange={(value) => {
+          setDateFilter(value);
+          setPage(1);
+        }}
       />
 
-      <EventTabs activeTab={activeTab} onChange={setActiveTab} />
+      <EventTabs
+        activeTab={activeTab}
+        onChange={(tab) => {
+          setActiveTab(tab);
+          setStatusFilter("");
+          setPage(1);
+        }}
+      />
 
-      <EventList events={filteredEvents} onUploadMedia={(e) => setUploadEventId(e.id)} />
+      {error && <p role="alert">{error}</p>}
+      {loading ? (
+        <p>Loading events...</p>
+      ) : (
+        <EventList
+          events={eventList}
+          onViewEvent={handleViewEvent}
+          onUploadMedia={(event) => setUploadEventId(event.id)}
+          pagination={{
+            page,
+            totalPages,
+            totalRecords,
+            onPrev: () => setPage((value) => Math.max(1, value - 1)),
+            onNext: () => setPage((value) => Math.min(totalPages, value + 1)),
+          }}
+        />
+      )}
 
-      <AddEventModal isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} onSubmit={handleCreateEvent} />
+      <AddEventModal
+        event={editingEvent}
+        isOpen={addModalOpen}
+        onClose={() => {
+          setAddModalOpen(false);
+          setEditingEvent(null);
+        }}
+        onSubmit={handleSaveEvent}
+      />
 
       <UploadMediaModal
         event={uploadEvent}
         onClose={() => setUploadEventId(null)}
-        onUpload={(event, payload) => {
-          console.log('Upload media for', event.id, payload);
-          setUploadEventId(null);
+        onUpload={handleUpload}
+      />
+      <EventDetailsModal
+        event={detailEvent}
+        creatorName={mobilizerName}
+        onClose={() => setDetailEvent(null)}
+        onEdit={(event) => {
+          setDetailEvent(null);
+          setEditingEvent(event);
+          setAddModalOpen(true);
         }}
       />
     </div>
