@@ -14,7 +14,7 @@ import './JobDetails.css';
  * StatusBadge (for the Status field), same as the Dashboard and
  * JobTable.
  */
-const JobDetails = ({ job, onBack, onEdit, onCloseJob }) => {
+const JobDetails = ({ job, onBack, onEdit, onCloseJob, error = "" }) => {
   const stats = job.stats ?? {};
   const eligibility = job.eligibility ?? {};
 
@@ -39,9 +39,11 @@ const JobDetails = ({ job, onBack, onEdit, onCloseJob }) => {
 
         <div className="job-details__actions">
           <button type="button" className="job-details__btn" onClick={onEdit}>Edit</button>
-          <button type="button" className="job-details__btn job-details__btn--danger" onClick={onCloseJob}>Close job</button>
+          <button type="button" className="job-details__btn job-details__btn--danger" onClick={onCloseJob}>Close</button>
         </div>
       </div>
+
+      {error && <div className="job-details__error">{error}</div>}
 
       <div className="job-details__stats">
         <StatCard icon={LogIn} iconBg="#f97316" value={stats.totalApplications ?? 0} label="Total Applications" />

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { notifications as initialNotifications, notificationTypeStyles } from '../data';
+import React, { useCallback, useEffect, useState } from "react";
+import { notificationTypeStyles } from '../data';
 import NotificationDetailsModal from './NotificationDetailsModal/NotificationDetailsModal';
+import Pagination from "../shared/Pagination/Pagination";
+import { fetchRecruiterNotifications } from "../../../../api/recruiter/notificationService";
 import './Notifications.css';
 
 const TABS = ['All', 'Unread'];
@@ -13,9 +15,38 @@ const TABS = ['All', 'Unread'];
  * notification read and opens NotificationDetailsModal for it.
  */
 const Notifications = () => {
-  const [notificationsList, setNotificationsList] = useState(initialNotifications);
+  const [notificationsList, setNotificationsList] = useState([]);
   const [activeTab, setActiveTab] = useState('All');
   const [selectedId, setSelectedId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const loadNotifications = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError("");
+      const { notifications, pagination: pageData } =
+        await fetchRecruiterNotifications({ page: currentPage, limit: 10 });
+      setNotificationsList(notifications);
+      setPagination(pageData);
+    } catch (loadError) {
+      console.error("Failed to load notifications:", loadError);
+      setNotificationsList([]);
+      setPagination({});
+      setError(
+        loadError?.response?.data?.message ||
+          "Unable to load notifications right now.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    loadNotifications();
+  }, [loadNotifications]);
 
   const unreadCount = notificationsList.filter((item) => item.unread).length;
   const visibleNotifications = activeTab === 'Unread'
@@ -61,7 +92,7 @@ const Notifications = () => {
       </div>
 
       <div className="notifications-page__list">
-        {visibleNotifications.map((item) => {
+        {!isLoading && !error && visibleNotifications.map((item) => {
           const Icon = item.icon;
           const style = notificationTypeStyles[item.type] ?? {};
 
@@ -87,10 +118,21 @@ const Notifications = () => {
           );
         })}
 
-        {visibleNotifications.length === 0 && (
+        {isLoading && <p className="notifications-page__loading">Loading notifications...</p>}
+        {error && <p className="notifications-page__error">{error}</p>}
+        {!isLoading && !error && visibleNotifications.length === 0 && (
           <p className="notifications-page__empty">You're all caught up.</p>
         )}
       </div>
+
+      {!error && !isLoading && (
+        <Pagination
+          currentPage={currentPage}
+          totalItems={pagination.totalCount ?? 0}
+          pageSize={pagination.limit ?? 10}
+          onPageChange={setCurrentPage}
+        />
+      )}
 
       <NotificationDetailsModal
         notification={selectedNotification}

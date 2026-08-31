@@ -116,20 +116,27 @@ const JobManagement = () => {
     if (!target) return;
 
     try {
+      setError("");
       const updated = await updateRecruiterJobPosting(jobId, {
         is_active: false,
       });
+
+      const closedJob = normalizeJobPosting({
+        ...target,
+        ...updated,
+        is_active: false,
+        status: "Closed",
+      });
+
       setJobs((prev) =>
         prev.map((job) =>
-          job.id === jobId
-            ? normalizeJobPosting({
-                ...job,
-                ...updated,
-                is_active: false,
-                status: "Closed",
-              })
-            : job,
+          job.id === jobId ? closedJob : job,
         ),
+      );
+      setSelectedJob((current) =>
+        current?.id === jobId
+          ? { ...current, is_active: false, status: "Closed" }
+          : current,
       );
     } catch (err) {
       console.error("Failed to close job:", err);
@@ -190,7 +197,8 @@ const JobManagement = () => {
         job={activeSelectedJob}
         onBack={goToList}
         onEdit={() => handleEditJob(activeSelectedJob.id)}
-        onCloseJob={() => handleCloseJobStatus(activeSelectedJob.id)}
+        onCloseJob={goToList}
+        error={error}
       />
     );
   }

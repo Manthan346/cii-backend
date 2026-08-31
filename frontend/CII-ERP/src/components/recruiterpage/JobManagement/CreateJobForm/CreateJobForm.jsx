@@ -54,40 +54,44 @@ const normalizeWorkModeForUi = (mode) => {
   return "Hybrid";
 };
 
-const buildInitialForm = (initialValues = {}) => ({
-  ...INITIAL_FORM,
-  companyName: initialValues.companyName ?? initialValues.company_name ?? "",
-  jobTitle: initialValues.jobRole ?? initialValues.job_role ?? "",
-  department:
-    initialValues.department ?? initialValues.sector ?? DEPARTMENT_OPTIONS[0],
-  role: initialValues.role ?? initialValues.job_role ?? "",
-  employmentType:
-    initialValues.employmentType ??
-    initialValues.employment_type ??
-    EMPLOYMENT_TYPE_OPTIONS[0],
-  experience: initialValues.experience ?? "",
-  vacancies: initialValues.vacancy ?? "",
-  city: initialValues.location ?? "",
-  state: initialValues.state ?? "",
-  workMode: normalizeWorkModeForUi(
-    initialValues.mode ?? initialValues.work_mode,
-  ),
-  description: initialValues.description ?? initialValues.job_description ?? "",
-  qualification:
-    initialValues.eligibility?.qualification ??
-    initialValues.eligible_qualification ??
-    "",
-  minPercentage:
-    initialValues.eligibility?.minPercentage ??
-    initialValues.eligible_percentage_cgpa ??
-    "",
-  salaryAmount: initialValues.salary ?? "",
-  applicationLink:
-    initialValues.applicationLink ?? initialValues.application_link ?? "",
-  deadline: normalizeDateForInput(
-    initialValues.last_date_to_apply ?? initialValues.deadline,
-  ),
-});
+const buildInitialForm = (initialValues) => {
+  const values = initialValues ?? {};
+
+  return {
+    ...INITIAL_FORM,
+    companyName: values.companyName ?? values.company_name ?? "",
+    jobTitle: values.jobRole ?? values.job_role ?? "",
+    department:
+      values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
+    role: values.role ?? values.job_role ?? "",
+    employmentType:
+      values.employmentType ??
+      values.employment_type ??
+      EMPLOYMENT_TYPE_OPTIONS[0],
+    experience: values.experience ?? "",
+    vacancies: values.vacancy ?? "",
+    city: values.location ?? "",
+    state: values.state ?? "",
+    workMode: normalizeWorkModeForUi(
+      values.mode ?? values.work_mode,
+    ),
+    description: values.description ?? values.job_description ?? "",
+    qualification:
+      values.eligibility?.qualification ??
+      values.eligible_qualification ??
+      "",
+    minPercentage:
+      values.eligibility?.minPercentage ??
+      values.eligible_percentage_cgpa ??
+      "",
+    salaryAmount: values.salary ?? "",
+    applicationLink:
+      values.applicationLink ?? values.application_link ?? "",
+    deadline: normalizeDateForInput(
+      values.last_date_to_apply ?? values.deadline,
+    ),
+  };
+};
 
 const todayFormatted = () =>
   new Date().toLocaleDateString("en-GB", {
