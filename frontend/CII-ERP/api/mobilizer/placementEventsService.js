@@ -1,7 +1,10 @@
 import API from "../api.js";
 
 export async function fetchJobEvents(params = {}) {
-  const response = await API.get("/mobilizer/job-event", { params });
+  const sortOrder = params.sort_order ?? "desc";
+  const response = await API.get("/mobilizer/job-event", {
+    params: { ...params, sort_order: sortOrder },
+  });
   const data = response.data?.data;
   const events = data?.jobEvents ?? data?.job_events;
 
@@ -9,9 +12,20 @@ export async function fetchJobEvents(params = {}) {
     throw new Error("Job events response has an invalid format");
   }
 
+  const orderedEvents = [...events].sort((a, b) => {
+    const dateA = new Date(a.event_date ?? a.eventDate ?? a.date ?? 0).getTime();
+    const dateB = new Date(b.event_date ?? b.eventDate ?? b.date ?? 0).getTime();
+
+    if (Number.isNaN(dateA) && Number.isNaN(dateB)) return 0;
+    if (Number.isNaN(dateA)) return 1;
+    if (Number.isNaN(dateB)) return -1;
+
+    return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+  });
+
   const pagination = data?.pagination ?? {};
   return {
-    events: events.map(normalizeJobEvent),
+    events: orderedEvents.map(normalizeJobEvent),
     pagination: {
       page: pagination.page ?? params.page ?? 1,
       limit: pagination.limit ?? params.limit ?? 20,

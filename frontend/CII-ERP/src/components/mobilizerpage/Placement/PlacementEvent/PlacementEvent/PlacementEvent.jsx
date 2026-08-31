@@ -35,6 +35,7 @@ export default function PlacementEvent() {
     fetchJobEvents({
       page,
       limit: 20,
+      sort_order: "desc",
       search: searchQuery.trim() || undefined,
       event_type: eventType || undefined,
       event_status: statusFilter || undefined,

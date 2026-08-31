@@ -12,7 +12,7 @@ export default function UpcomingJobFairs() {
 
   useEffect(() => {
     let isMounted = true;
-    fetchJobEvents({ limit: 2, event_status: "UPCOMING", sort_order: "asc" })
+    fetchJobEvents({ limit: 2, event_status: "UPCOMING", sort_order: "desc" })
       .then(({ events: jobEvents }) => {
         if (isMounted) setEvents(jobEvents);
       })
