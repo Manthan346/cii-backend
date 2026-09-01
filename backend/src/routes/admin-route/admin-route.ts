@@ -28,6 +28,7 @@ import { uploadCandidateCertificate } from "../../controllers/admin-controllers/
 import { multerErrorHandler } from "../../middlewares/multer-middleware/file-limit-middleware";
 import { upload } from "../../middlewares/multer-middleware/multer";
 import { getAdminCandidateDashboardSummary } from "../../controllers/admin-controllers/get-candidate-stats";
+import { getAdminProfile } from "../../controllers/admin-controllers/get-admin-profile";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -137,5 +138,7 @@ adminRouter.post(
     multerErrorHandler,
     uploadCandidateCertificate
 );
+//fetch admin profile
+adminRouter.get("/profile",verifyAdminUsingAccessToken,getAdminProfile)
 
 export default adminRouter
