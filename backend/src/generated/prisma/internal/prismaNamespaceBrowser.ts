@@ -611,7 +611,6 @@ export const PlacementScalarFieldEnum = {
   eligible_qualification: 'eligible_qualification',
   eligible_percentage_cgpa: 'eligible_percentage_cgpa',
   employment_type: 'employment_type',
-  application_link: 'application_link',
   sector: 'sector',
   experience: 'experience',
   salary_min: 'salary_min',

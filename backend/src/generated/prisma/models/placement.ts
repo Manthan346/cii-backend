@@ -54,7 +54,6 @@ export type PlacementMinAggregateOutputType = {
   eligible_qualification: string | null
   eligible_percentage_cgpa: string | null
   employment_type: string | null
-  application_link: string | null
   sector: string | null
   experience: string | null
   salary_min: number | null
@@ -77,7 +76,6 @@ export type PlacementMaxAggregateOutputType = {
   eligible_qualification: string | null
   eligible_percentage_cgpa: string | null
   employment_type: string | null
-  application_link: string | null
   sector: string | null
   experience: string | null
   salary_min: number | null
@@ -100,7 +98,6 @@ export type PlacementCountAggregateOutputType = {
   eligible_qualification: number
   eligible_percentage_cgpa: number
   employment_type: number
-  application_link: number
   sector: number
   experience: number
   salary_min: number
@@ -137,7 +134,6 @@ export type PlacementMinAggregateInputType = {
   eligible_qualification?: true
   eligible_percentage_cgpa?: true
   employment_type?: true
-  application_link?: true
   sector?: true
   experience?: true
   salary_min?: true
@@ -160,7 +156,6 @@ export type PlacementMaxAggregateInputType = {
   eligible_qualification?: true
   eligible_percentage_cgpa?: true
   employment_type?: true
-  application_link?: true
   sector?: true
   experience?: true
   salary_min?: true
@@ -183,7 +178,6 @@ export type PlacementCountAggregateInputType = {
   eligible_qualification?: true
   eligible_percentage_cgpa?: true
   employment_type?: true
-  application_link?: true
   sector?: true
   experience?: true
   salary_min?: true
@@ -293,7 +287,6 @@ export type PlacementGroupByOutputType = {
   eligible_qualification: string | null
   eligible_percentage_cgpa: string | null
   employment_type: string | null
-  application_link: string | null
   sector: string | null
   experience: string | null
   salary_min: number | null
@@ -339,7 +332,6 @@ export type placementWhereInput = {
   eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
   eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
-  application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
   experience?: Prisma.StringNullableFilter<"placement"> | string | null
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
@@ -364,7 +356,6 @@ export type placementOrderByWithRelationInput = {
   eligible_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   eligible_percentage_cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
   employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
-  application_link?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
   salary_min?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -392,7 +383,6 @@ export type placementWhereUniqueInput = Prisma.AtLeast<{
   eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
   eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
-  application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
   experience?: Prisma.StringNullableFilter<"placement"> | string | null
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
@@ -417,7 +407,6 @@ export type placementOrderByWithAggregationInput = {
   eligible_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   eligible_percentage_cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
   employment_type?: Prisma.SortOrderInput | Prisma.SortOrder
-  application_link?: Prisma.SortOrderInput | Prisma.SortOrder
   sector?: Prisma.SortOrderInput | Prisma.SortOrder
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
   salary_min?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -448,7 +437,6 @@ export type placementScalarWhereWithAggregatesInput = {
   eligible_qualification?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   eligible_percentage_cgpa?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   employment_type?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
-  application_link?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   sector?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   experience?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
   salary_min?: Prisma.IntNullableWithAggregatesFilter<"placement"> | number | null
@@ -470,7 +458,6 @@ export type placementCreateInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -495,7 +482,6 @@ export type placementUncheckedCreateInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -518,7 +504,6 @@ export type placementUpdateInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -543,7 +528,6 @@ export type placementUncheckedUpdateInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -567,7 +551,6 @@ export type placementCreateManyInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -589,7 +572,6 @@ export type placementUpdateManyMutationInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -612,7 +594,6 @@ export type placementUncheckedUpdateManyInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -645,7 +626,6 @@ export type placementCountOrderByAggregateInput = {
   eligible_qualification?: Prisma.SortOrder
   eligible_percentage_cgpa?: Prisma.SortOrder
   employment_type?: Prisma.SortOrder
-  application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   experience?: Prisma.SortOrder
   salary_min?: Prisma.SortOrder
@@ -674,7 +654,6 @@ export type placementMaxOrderByAggregateInput = {
   eligible_qualification?: Prisma.SortOrder
   eligible_percentage_cgpa?: Prisma.SortOrder
   employment_type?: Prisma.SortOrder
-  application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   experience?: Prisma.SortOrder
   salary_min?: Prisma.SortOrder
@@ -697,7 +676,6 @@ export type placementMinOrderByAggregateInput = {
   eligible_qualification?: Prisma.SortOrder
   eligible_percentage_cgpa?: Prisma.SortOrder
   employment_type?: Prisma.SortOrder
-  application_link?: Prisma.SortOrder
   sector?: Prisma.SortOrder
   experience?: Prisma.SortOrder
   salary_min?: Prisma.SortOrder
@@ -790,7 +768,6 @@ export type placementCreateWithoutHr_detailsInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -813,7 +790,6 @@ export type placementUncheckedCreateWithoutHr_detailsInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -866,7 +842,6 @@ export type placementScalarWhereInput = {
   eligible_qualification?: Prisma.StringNullableFilter<"placement"> | string | null
   eligible_percentage_cgpa?: Prisma.StringNullableFilter<"placement"> | string | null
   employment_type?: Prisma.StringNullableFilter<"placement"> | string | null
-  application_link?: Prisma.StringNullableFilter<"placement"> | string | null
   sector?: Prisma.StringNullableFilter<"placement"> | string | null
   experience?: Prisma.StringNullableFilter<"placement"> | string | null
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
@@ -888,7 +863,6 @@ export type placementCreateWithoutPlacement_applicationsInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -912,7 +886,6 @@ export type placementUncheckedCreateWithoutPlacement_applicationsInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -950,7 +923,6 @@ export type placementUpdateWithoutPlacement_applicationsInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -974,7 +946,6 @@ export type placementUncheckedUpdateWithoutPlacement_applicationsInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -996,7 +967,6 @@ export type placementCreateManyHr_detailsInput = {
   eligible_qualification?: string | null
   eligible_percentage_cgpa?: string | null
   employment_type?: string | null
-  application_link?: string | null
   sector?: string | null
   experience?: string | null
   salary_min?: number | null
@@ -1018,7 +988,6 @@ export type placementUpdateWithoutHr_detailsInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1041,7 +1010,6 @@ export type placementUncheckedUpdateWithoutHr_detailsInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1064,7 +1032,6 @@ export type placementUncheckedUpdateManyWithoutHr_detailsInput = {
   eligible_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   eligible_percentage_cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employment_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  application_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sector?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1118,7 +1085,6 @@ export type placementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   eligible_qualification?: boolean
   eligible_percentage_cgpa?: boolean
   employment_type?: boolean
-  application_link?: boolean
   sector?: boolean
   experience?: boolean
   salary_min?: boolean
@@ -1144,7 +1110,6 @@ export type placementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   eligible_qualification?: boolean
   eligible_percentage_cgpa?: boolean
   employment_type?: boolean
-  application_link?: boolean
   sector?: boolean
   experience?: boolean
   salary_min?: boolean
@@ -1168,7 +1133,6 @@ export type placementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   eligible_qualification?: boolean
   eligible_percentage_cgpa?: boolean
   employment_type?: boolean
-  application_link?: boolean
   sector?: boolean
   experience?: boolean
   salary_min?: boolean
@@ -1192,14 +1156,13 @@ export type placementSelectScalar = {
   eligible_qualification?: boolean
   eligible_percentage_cgpa?: boolean
   employment_type?: boolean
-  application_link?: boolean
   sector?: boolean
   experience?: boolean
   salary_min?: boolean
   salary_max?: boolean
 }
 
-export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "employment_type" | "application_link" | "sector" | "experience" | "salary_min" | "salary_max", ExtArgs["result"]["placement"]>
+export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "employment_type" | "sector" | "experience" | "salary_min" | "salary_max", ExtArgs["result"]["placement"]>
 export type placementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   placement_applications?: boolean | Prisma.placement$placement_applicationsArgs<ExtArgs>
@@ -1234,7 +1197,6 @@ export type $placementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     eligible_qualification: string | null
     eligible_percentage_cgpa: string | null
     employment_type: string | null
-    application_link: string | null
     sector: string | null
     experience: string | null
     salary_min: number | null
@@ -1679,7 +1641,6 @@ export interface placementFieldRefs {
   readonly eligible_qualification: Prisma.FieldRef<"placement", 'String'>
   readonly eligible_percentage_cgpa: Prisma.FieldRef<"placement", 'String'>
   readonly employment_type: Prisma.FieldRef<"placement", 'String'>
-  readonly application_link: Prisma.FieldRef<"placement", 'String'>
   readonly sector: Prisma.FieldRef<"placement", 'String'>
   readonly experience: Prisma.FieldRef<"placement", 'String'>
   readonly salary_min: Prisma.FieldRef<"placement", 'Int'>

@@ -532,7 +532,6 @@ model placement {
   eligible_qualification   String?
   eligible_percentage_cgpa String?
   employment_type          String?
-  application_link         String?
   sector                   String?
   experience               String?
   salary_min               Int?
