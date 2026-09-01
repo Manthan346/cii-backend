@@ -65,6 +65,7 @@ export const updatePublicEvent = asyncHandler(
     if (data.event_mode !== undefined) updateData.event_mode = data.event_mode;
     if (data.event_type !== undefined) updateData.event_type = data.event_type;
     if (data.is_show !== undefined) updateData.is_show = data.is_show;
+    if (data.event_status_type !== undefined) updateData.event_status_type = data.event_status_type
 
     // Handle image uploads - if event_images is provided, add to event_documents array
     if (data.event_images !== undefined && data.event_images !== null && Array.isArray(data.event_images) && data.event_images.length > 0) {
