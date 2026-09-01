@@ -47,6 +47,30 @@
   background: #372fb0;
 }
 
+.job-fair-job-drive__action-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.job-fair-job-drive__action-error-dismiss {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
 .job-fair-job-drive__stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

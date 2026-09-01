@@ -3,8 +3,6 @@ export {
   statCards,
   applicationsPerJob,
   applicationsByStatus,
-  recentActivity,
-  hiringProgress,
 } from './dashboardData';
 export {
   jobs,

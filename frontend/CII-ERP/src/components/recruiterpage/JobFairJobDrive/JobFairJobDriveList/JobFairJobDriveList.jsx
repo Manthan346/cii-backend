@@ -1,62 +1,97 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Plus } from 'lucide-react';
-import StatCard from '../../shared/StatCard/StatCard';
-import Pagination from '../../shared/Pagination/Pagination';
-import EventFilterBar from '../EventFilterBar/EventFilterBar';
-import EventTable from '../EventTable/EventTable';
-import { placementStatCards } from '../../data';
-import './JobFairJobDriveList.css';
+import React, { useEffect, useState } from "react";
+import { Plus } from "lucide-react";
+import StatCard from "../../shared/StatCard/StatCard";
+import Pagination from "../../shared/Pagination/Pagination";
+import EventFilterBar from "../EventFilterBar/EventFilterBar";
+import EventTable from "../EventTable/EventTable";
+import { placementStatCards } from "../../data";
+import { fetchJobEvents } from "../../../../../api/recruiter/jobEventService";
+import "./JobFairJobDriveList.css";
 
-const EMPTY_FILTERS = { search: '', type: 'All', status: 'All status' };
-const PAGE_SIZE = 5;
+const EMPTY_FILTERS = { search: "", type: "All", status: "All status" };
+const PAGE_SIZE = 10;
 
 /**
  * JobFairJobDriveList
  *
- * The default Job Fair / Job Drive view: page header + "+ Add
- * Events" button, the 4 stat cards, EventFilterBar, the events
- * table, and pagination. Filtering here is live (every change in
- * EventFilterBar re-filters immediately) - unlike Job Management's
- * "apply on click" pattern, this design has no Apply button.
- *
- * "Import" lives per-row on EventTable (not a header button here) -
- * onImportEvent is just threaded through to it, same as
- * onStatusChange for the editable Status column. Both modals/state
- * are still owned one level up in JobFairJobDrive.jsx.
+ * Fetches from GET /hr/job-event with server-side pagination and
+ * filtering (search / type / status all passed as query params, not
+ * filtered client-side anymore). Debounces search slightly isn't
+ * done here — every filter change refetches immediately per the
+ * original "no Apply button" design.
  */
-const JobFairJobDriveList = ({ events, onAddEvent, onImportEvent, onViewEvent, onEditEvent, onDeleteEvent, onStatusChange }) => {
+const JobFairJobDriveList = ({
+  onAddEvent,
+  onImportEvent,
+  onViewEvent,
+  onEditEvent,
+  onDeleteEvent,
+  onStatusChange,
+}) => {
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const filteredEvents = useMemo(() => {
-    return events.filter((event) => {
-      const matchesSearch =
-        !filters.search || event.name.toLowerCase().includes(filters.search.toLowerCase());
-      const matchesType = filters.type === 'All' || event.type === filters.type;
-      const matchesStatus = filters.status === 'All status' || event.status === filters.status;
-
-      return matchesSearch && matchesType && matchesStatus;
-    });
-  }, [events, filters]);
+  const [events, setEvents] = useState([]);
+  const [pagination, setPagination] = useState({
+    totalRecords: 0,
+    totalPages: 1,
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setCurrentPage(1);
   }, [filters]);
 
-  const paginatedEvents = useMemo(() => {
-    const start = (currentPage - 1) * PAGE_SIZE;
-    return filteredEvents.slice(start, start + PAGE_SIZE);
-  }, [filteredEvents, currentPage]);
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError("");
+
+    fetchJobEvents({
+      page: currentPage,
+      limit: PAGE_SIZE,
+      search: filters.search,
+      type: filters.type,
+      status: filters.status,
+    })
+      .then((data) => {
+        if (cancelled) return;
+        setEvents(data.events);
+        setPagination({
+          totalRecords: data.pagination.totalRecords ?? 0,
+          totalPages: data.pagination.totalPages ?? 1,
+        });
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        console.error("Failed to load job events:", err);
+        setError(
+          err?.response?.data?.message || "Unable to load events right now.",
+        );
+        setEvents([]);
+      })
+      .finally(() => !cancelled && setLoading(false));
+
+    return () => {
+      cancelled = true;
+    };
+  }, [currentPage, filters]);
 
   return (
     <div className="job-fair-job-drive">
       <header className="job-fair-job-drive__header">
         <div>
           <h1 className="job-fair-job-drive__title">Job Fair / Job Drive</h1>
-          <p className="job-fair-job-drive__subtitle">Create and manage every job fair &amp; job drive on the platform</p>
+          <p className="job-fair-job-drive__subtitle">
+            Create and manage every job fair &amp; job drive on the platform
+          </p>
         </div>
 
-        <button type="button" className="job-fair-job-drive__add-btn" onClick={onAddEvent}>
+        <button
+          type="button"
+          className="job-fair-job-drive__add-btn"
+          onClick={onAddEvent}
+        >
           <Plus size={18} strokeWidth={2.4} />
           Add Events
         </button>
@@ -76,8 +111,10 @@ const JobFairJobDriveList = ({ events, onAddEvent, onImportEvent, onViewEvent, o
 
       <EventFilterBar filters={filters} onChange={setFilters} />
 
+      {error && <p className="job-fair-job-drive__error">{error}</p>}
+
       <EventTable
-        events={paginatedEvents}
+        events={loading ? [] : events}
         onViewEvent={onViewEvent}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
@@ -87,7 +124,7 @@ const JobFairJobDriveList = ({ events, onAddEvent, onImportEvent, onViewEvent, o
 
       <Pagination
         currentPage={currentPage}
-        totalItems={filteredEvents.length}
+        totalItems={pagination.totalRecords}
         pageSize={PAGE_SIZE}
         onPageChange={setCurrentPage}
       />
