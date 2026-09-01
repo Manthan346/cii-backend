@@ -65,6 +65,7 @@ import { addBatchSyllabusTopic } from "../../controllers/instructor-controller/i
 import { deleteBatchSyllabusTopic } from "../../controllers/instructor-controller/instructor-delete-batchSyllabusTopic";
 import { addAttendanceBodySchema } from "../../services/zod/instructor/mark-attendance-schema";
 import { getActiveStudentsForSession } from "../../controllers/instructor-controller/fetch-active-CandidatesForAttendance";
+import { getInstructorNotifications } from "../../controllers/instructor-controller/fetch-all-instructorNotifications";
 
 const instructorRouter = Router();
 
@@ -194,6 +195,8 @@ verifyInstructorUsingAccessToken,deleteBatchSyllabusTopic
 //fetch all active students for marking attendance for particular session/lecture
 instructorRouter.get("/attendance-sessions/:attendance_session_id/active-students",verifyInstructorUsingAccessToken,getActiveStudentsForSession
 );
+//fetch all instructor notifications
+instructorRouter.get("/notifications",verifyInstructorUsingAccessToken,getInstructorNotifications);
 
 export { instructorRouter };
 
