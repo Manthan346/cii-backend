@@ -148,10 +148,10 @@ export const getAllJobPostings = asyncHandler(
                         work_mode: true,
                         eligible_qualification: true,
                         eligible_percentage_cgpa: true,
-                        salary: true,
+                        salary_min:true,
+                        salary_max:true,
                         employment_type: true,
-                        sector: true,
-                        application_link: true,
+                        sector: true
                     },
                 }),
 

@@ -1,14 +1,19 @@
 import { Response } from "express";
+
 import { prisma } from "../../lib/prisma";
+
 import { asyncHandler } from "../../helpers/asyncHandler";
+
 import { ApiError } from "../../helpers/ApiError";
+
 import { ApiResponse } from "../../helpers/ApiResponse";
+
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
+
 import { updatePlacementSchema } from "../../services/zod/hr/placement-validation";
 
 export const updateJobPosting = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
-
 
         const placementId = req.params.placement_id;
 
@@ -16,13 +21,6 @@ export const updateJobPosting = asyncHandler(
             throw new ApiError(
                 400,
                 "Invalid placement ID"
-            );
-        }
-
-        if (!placementId) {
-            throw new ApiError(
-                400,
-                "Placement ID is required"
             );
         }
 
@@ -51,7 +49,7 @@ export const updateJobPosting = asyncHandler(
         const existingPlacement =
             await prisma.placement.findUnique({
                 where: {
-                    placement_id:placementId,
+                    placement_id: placementId,
                 },
             });
 
@@ -94,9 +92,42 @@ export const updateJobPosting = asyncHandler(
                 data.job_description.trim();
         }
 
-        if (data.salary !== undefined) {
-            updateData.salary =
-                data.salary.trim();
+        // Salary
+        if (data.salary_min !== undefined) {
+            updateData.salary_min =
+                data.salary_min;
+        }
+
+        if (data.salary_max !== undefined) {
+            updateData.salary_max =
+                data.salary_max;
+        }
+
+        /*
+         * Validate the final salary range.
+         *
+         * If only one salary value is being updated,
+         * use the existing value for the other side.
+         */
+        const finalSalaryMin =
+            data.salary_min !== undefined
+                ? data.salary_min
+                : existingPlacement.salary_min;
+
+        const finalSalaryMax =
+            data.salary_max !== undefined
+                ? data.salary_max
+                : existingPlacement.salary_max;
+
+        if (
+            finalSalaryMin !== null &&
+            finalSalaryMax !== null &&
+            finalSalaryMax < finalSalaryMin
+        ) {
+            throw new ApiError(
+                400,
+                "Maximum salary must be greater than or equal to minimum salary"
+            );
         }
 
         if (data.employment_type !== undefined) {
@@ -119,17 +150,13 @@ export const updateJobPosting = asyncHandler(
                 data.eligible_percentage_cgpa.trim();
         }
 
-        if (data.application_link !== undefined) {
-            updateData.application_link =
-                data.application_link.trim();
-        }
-
         if (data.experience !== undefined) {
             updateData.experience =
                 data.experience.trim();
         }
 
         if (data.last_date_to_apply !== undefined) {
+
             const applicationDeadline = new Date(
                 `${data.last_date_to_apply}T12:00:00.000Z`
             );
@@ -142,9 +169,12 @@ export const updateJobPosting = asyncHandler(
             }
 
             const today = new Date();
+
             today.setUTCHours(0, 0, 0, 0);
 
-            const deadlineDate = new Date(applicationDeadline);
+            const deadlineDate =
+                new Date(applicationDeadline);
+
             deadlineDate.setUTCHours(0, 0, 0, 0);
 
             if (deadlineDate < today) {
@@ -154,19 +184,17 @@ export const updateJobPosting = asyncHandler(
                 );
             }
 
-            updateData.last_date_to_apply = applicationDeadline;
+            updateData.last_date_to_apply =
+                applicationDeadline;
         }
-
 
         const updatedPlacement =
             await prisma.placement.update({
                 where: {
-                    placement_id:placementId,
+                    placement_id: placementId,
                 },
-
                 data: updateData,
             });
-
 
         res.status(200).json(
             new ApiResponse(
