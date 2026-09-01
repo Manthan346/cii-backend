@@ -477,6 +477,7 @@ model admin_details {
   guardian_blood_group  String?           @db.VarChar(5)
   guardian_phone_number String?           @db.VarChar(10)
   user_id               String            @unique @db.Uuid
+  admin_phone_no        String?           @db.VarChar(10)
   user_login            user_login        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_admin_details_user")
   admin_documents       admin_documents[]
 }
