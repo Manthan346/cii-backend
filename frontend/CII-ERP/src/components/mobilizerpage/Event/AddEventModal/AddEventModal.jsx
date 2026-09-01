@@ -21,6 +21,12 @@ const TARGET_TYPE_OPTIONS = [
   { value: "BATCH", label: "Batch" },
 ];
 
+const EVENT_STATUS_OPTIONS = [
+  { value: "UPCOMING", label: "Upcoming" },
+  { value: "ONGOING", label: "Ongoing" },
+  { value: "COMPLETED", label: "Completed" },
+];
+
 const EMPTY_FORM = {
   eventType: "",
   eventName: "",
@@ -29,6 +35,7 @@ const EMPTY_FORM = {
   time: "",
   eventMode: "OFFLINE",
   targetType: "PUBLIC",
+  eventStatus: "UPCOMING",
   venue: "",
   eventLink: "",
 };
@@ -54,6 +61,8 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
         time: event.rawTime || "",
         eventMode: event.event_mode || "OFFLINE",
         targetType: event.target_type || "PUBLIC",
+        eventStatus:
+          event.event_status || event.status?.toUpperCase().replace(/ /g, "_") || "UPCOMING",
         venue: event.venue || "",
         eventLink: event.event_link || "",
         description: event.description || "",
@@ -135,6 +144,26 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
             <ChevronDown size={14} className="ae-select__chevron" />
           </span>
         </label>
+
+        {event && (
+          <label className="ae-field">
+            <span className="ae-field__label">Event Status</span>
+            <span className="ae-select-wrap">
+              <select
+                required
+                value={form.eventStatus}
+                onChange={updateField("eventStatus")}
+              >
+                {EVENT_STATUS_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown size={14} className="ae-select__chevron" />
+            </span>
+          </label>
+        )}
 
         <label className="ae-field">
           <span className="ae-field__label">Event Title</span>

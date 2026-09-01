@@ -25,6 +25,7 @@ export default function Event() {
   const [statusFilter, setStatusFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [page, setPage] = useState(1);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -75,18 +76,47 @@ export default function Event() {
     return () => {
       isMounted = false;
     };
-  }, [activeTab, dateFilter, page, searchQuery, statusFilter, typeFilter]);
+  }, [
+    activeTab,
+    dateFilter,
+    page,
+    refreshKey,
+    searchQuery,
+    statusFilter,
+    typeFilter,
+  ]);
 
   const uploadEvent =
     eventList.find((event) => event.id === uploadEventId) || null;
 
   const handleSaveEvent = async (form) => {
     try {
-      if (editingEvent) await updatePublicEvent(editingEvent.id, form);
-      else await createPublicEvent(form);
+      const savedEvent = editingEvent
+        ? await updatePublicEvent(editingEvent.id, form)
+        : await createPublicEvent(form);
+      if (editingEvent && savedEvent) {
+        setEventList((currentEvents) =>
+          currentEvents.map((event) =>
+            event.id === editingEvent.id
+              ? {
+                  ...event,
+                  ...savedEvent,
+                  event_status: form.eventStatus,
+                  status: form.eventStatus
+                    .toLowerCase()
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+                }
+              : event,
+          ),
+        );
+      }
       setAddModalOpen(false);
       setEditingEvent(null);
-      setPage(1);
+      if (!editingEvent) {
+        setPage(1);
+        setRefreshKey((value) => value + 1);
+      }
     } catch (requestError) {
       setError(requestError.response?.data?.message || "Unable to save event");
     }
