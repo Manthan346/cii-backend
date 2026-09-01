@@ -93,8 +93,12 @@ export function mapJobEventRecord(raw) {
     id: raw.job_event_id,
     name: raw.event_name,
     type: EVENT_TYPE_ENUM_TO_LABEL[raw.event_type] ?? raw.event_type,
-    date: formatEventDate(raw.event_date),
-    time: formatEventTime(raw.event_time),
+    date: formatEventDate(raw.event_date), // "15 Mar 2024" — unchanged, still used by the table
+    time: formatEventTime(raw.event_time), // "10:00 AM" — unchanged, still used by the table
+    dateISO: raw.event_date ? raw.event_date.slice(0, 10) : "", // ← new: for edit form only
+    timeISO: raw.event_time
+      ? new Date(raw.event_time).toISOString().slice(11, 16)
+      : "", // ← new: for edit form only
     venue: raw.address ?? "—",
     mapLink: raw.google_map_link ?? null,
     description: raw.description ?? "",
@@ -198,5 +202,47 @@ export async function updateJobEventStatus(eventId, statusLabel) {
   const res = await API.patch(`/hr/job-event/${eventId}/status`, {
     event_status: enumStatus,
   });
+  return mapJobEventRecord(res.data?.data ?? {});
+}
+
+/**
+ * Checks how many job events already exist on a given date.
+ * Used to warn (not block) the recruiter in AddEventModal before
+ * they create a 3rd+ event on the same day.
+ */
+export async function checkJobEventDateConflict(date) {
+  const res = await API.get("/hr/job-event/check-date", { params: { date } });
+  const data = res.data?.data ?? {};
+  return {
+    eventCount: data.eventCount ?? 0,
+    hasExistingEvents: Boolean(data.hasExistingEvents),
+  };
+}
+
+export async function updateJobEvent(eventId, form) {
+  if (!form.name?.trim()) {
+    throw new Error("Event name is required.");
+  }
+  if (!form.date) {
+    throw new Error("Please select a date.");
+  }
+  if (!form.time) {
+    throw new Error("Please select a time.");
+  }
+  if (!form.address?.trim()) {
+    throw new Error("Please enter a venue/address.");
+  }
+
+  const payload = {
+    event_type: EVENT_TYPE_LABEL_TO_ENUM[form.type] ?? form.type,
+    event_name: form.name.trim(),
+    event_date: form.date,
+    event_time: form.time,
+    address: form.address.trim(),
+    google_map_link: form.mapsLink?.trim() || undefined,
+    description: form.description?.trim() || undefined,
+  };
+
+  const res = await API.patch(`/hr/job-event/update/${eventId}`, payload);
   return mapJobEventRecord(res.data?.data ?? {});
 }

@@ -1,13 +1,14 @@
-import React from 'react';
-import { Eye } from 'lucide-react';
-import StatusBadge from '../../shared/StatusBadge/StatusBadge';
-import RowActionsMenu from '../../shared/RowActionsMenu/RowActionsMenu';
-import { applicationsPageStatusStyles } from '../../data';
-import './ApplicationTable.css';
+import React from "react";
+import { Eye } from "lucide-react";
+import StatusSelect from "../../shared/StatusSelect/StatusSelect";
+import RowActionsMenu from "../../shared/RowActionsMenu/RowActionsMenu";
+import { applicationsPageStatusStyles } from "../../data";
+import { applicationStatusOptions } from "../../../../../api/recruiter/applicationService";
+import "./ApplicationTable.css";
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
@@ -15,17 +16,20 @@ const getInitials = (name = '') => {
 /**
  * ApplicationTable
  *
- * The Applications list table: Candidate, Job Role, Company, Contact
- * No., Applied Date, Resume (Preview button - opens resumeUrl in a
- * new tab), Source, Status, plus a row action menu.
+ * Status is now editable via StatusSelect (same pattern as the Events
+ * table) — onStatusChange(candidateId, nextStatus) bubbles up to
+ * Applications.jsx, which calls the backend and refetches.
  *
- * Per request, the row menu only has one item: View Profile - opens
- * CandidateProfile for that candidate (a full page, not a modal).
+ * NOTE: "Applied" is intentionally excluded from applicationStatusOptions
+ * (see applicationService.js) since it's not a valid target for a
+ * status PATCH — it's only ever the initial state. If a candidate's
+ * current status IS "Applied", the dropdown will show it as selected
+ * but won't offer it as an option to select back into once changed.
  */
-const ApplicationTable = ({ applications, onViewProfile }) => {
+const ApplicationTable = ({ applications, onViewProfile, onStatusChange }) => {
   const handlePreview = (candidate) => {
     if (candidate.resumeUrl) {
-      window.open(candidate.resumeUrl, '_blank', 'noopener,noreferrer');
+      window.open(candidate.resumeUrl, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -61,7 +65,9 @@ const ApplicationTable = ({ applications, onViewProfile }) => {
               </td>
               <td className="application-table__role">{candidate.jobRole}</td>
               <td>
-                <span className="application-table__company">{candidate.company}</span>
+                <span className="application-table__company">
+                  {candidate.company}
+                </span>
               </td>
               <td>{candidate.contactNo}</td>
               <td>{candidate.appliedDate}</td>
@@ -71,19 +77,39 @@ const ApplicationTable = ({ applications, onViewProfile }) => {
                   className="application-table__preview-btn"
                   onClick={() => handlePreview(candidate)}
                   disabled={!candidate.resumeUrl}
-                  title={candidate.resumeUrl ? 'Open resume in a new tab' : 'No resume on file'}
+                  title={
+                    candidate.resumeUrl
+                      ? "Open resume in a new tab"
+                      : "No resume on file"
+                  }
                 >
                   Preview
                 </button>
               </td>
               <td>{candidate.source}</td>
               <td>
-                <StatusBadge label={candidate.status} {...(applicationsPageStatusStyles[candidate.status] ?? {})} />
+                <StatusSelect
+                  value={candidate.status}
+                  options={
+                    applicationStatusOptions.includes(candidate.status)
+                      ? applicationStatusOptions
+                      : [candidate.status, ...applicationStatusOptions]
+                  }
+                  stylesMap={applicationsPageStatusStyles}
+                  onChange={(nextStatus) =>
+                    onStatusChange(candidate.id, nextStatus)
+                  }
+                />
               </td>
               <td className="application-table__actions">
                 <RowActionsMenu
                   items={[
-                    { id: 'view-profile', label: 'View Profile', icon: Eye, onClick: () => onViewProfile(candidate.id) },
+                    {
+                      id: "view-profile",
+                      label: "View Profile",
+                      icon: Eye,
+                      onClick: () => onViewProfile(candidate.id),
+                    },
                   ]}
                 />
               </td>

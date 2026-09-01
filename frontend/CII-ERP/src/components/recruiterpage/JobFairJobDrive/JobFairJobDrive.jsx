@@ -5,10 +5,22 @@ import ImportModal from "../shared/ImportModal/ImportModal";
 import EventApplicationsView from "./EventApplicationsView/EventApplicationsView";
 import { updateJobEventStatus } from "../../../../api/recruiter/jobEventService";
 
+/**
+ * JobFairJobDrive (Recruiter)
+ *
+ * Owns view-switching between 'list' and 'applications', and the
+ * Add/Edit Event + Import modals. AddEventModal doubles as both
+ * create and edit — passing `eventBeingEdited` as its `initialValues`
+ * switches it into edit mode (see AddEventModal.jsx).
+ *
+ * refreshKey forces JobFairJobDriveList to refetch after any
+ * create/edit/delete/status-change by remounting it.
+ */
 const JobFairJobDrive = () => {
-  const [view, setView] = useState("list");
-  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [view, setView] = useState("list"); // 'list' | 'applications'
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [isAddEventOpen, setIsAddEventOpen] = useState(false);
+  const [eventBeingEdited, setEventBeingEdited] = useState(null);
   const [importEventId, setImportEventId] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [actionError, setActionError] = useState("");
@@ -16,16 +28,29 @@ const JobFairJobDrive = () => {
   const goToList = () => setView("list");
   const refresh = () => setRefreshKey((k) => k + 1);
 
-  const handleAddEvent = () => {
-    setIsAddEventOpen(false);
-    refresh();
-  };
-
-  const handleEditEvent = () => {
+  const handleOpenAddEvent = () => {
+    setEventBeingEdited(null);
     setIsAddEventOpen(true);
   };
 
+  const handleEditEvent = (event) => {
+    setEventBeingEdited(event);
+    setIsAddEventOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsAddEventOpen(false);
+    setEventBeingEdited(null);
+  };
+
+  const handleModalSubmit = () => {
+    setIsAddEventOpen(false);
+    setEventBeingEdited(null);
+    refresh();
+  };
+
   const handleDeleteEvent = (eventId) => {
+    // TODO: wire to a DELETE endpoint once available; refresh() afterward.
     refresh();
   };
 
@@ -44,17 +69,15 @@ const JobFairJobDrive = () => {
     }
   };
 
-  const handleViewEvent = (eventId) => {
-    setSelectedEventId(eventId);
+  const handleViewEvent = (event) => {
+    setSelectedEvent(event);
     setView("applications");
   };
 
   const importEvent = importEventId ? { id: importEventId } : null;
 
-  if (view === "applications" && selectedEventId) {
-    return (
-      <EventApplicationsView eventId={selectedEventId} onBack={goToList} />
-    );
+  if (view === "applications" && selectedEvent) {
+    return <EventApplicationsView event={selectedEvent} onBack={goToList} />;
   }
 
   return (
@@ -75,7 +98,7 @@ const JobFairJobDrive = () => {
 
       <JobFairJobDriveList
         key={refreshKey}
-        onAddEvent={() => setIsAddEventOpen(true)}
+        onAddEvent={handleOpenAddEvent}
         onImportEvent={setImportEventId}
         onViewEvent={handleViewEvent}
         onEditEvent={handleEditEvent}
@@ -85,8 +108,9 @@ const JobFairJobDrive = () => {
 
       <AddEventModal
         isOpen={isAddEventOpen}
-        onClose={() => setIsAddEventOpen(false)}
-        onSubmit={handleAddEvent}
+        onClose={handleModalClose}
+        onSubmit={handleModalSubmit}
+        initialValues={eventBeingEdited}
       />
 
       <ImportModal
