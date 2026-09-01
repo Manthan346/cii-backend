@@ -14,6 +14,7 @@ export const PUBLIC_EVENT_FIELDS = {
     event_link: true,
     event_mode: true,
     event_type: true,
+    event_documents: true
 } as const satisfies Prisma.event_detailsSelect;
 
 /** Type for public event with derived status */
