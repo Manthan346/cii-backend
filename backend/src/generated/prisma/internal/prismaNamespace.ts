@@ -2804,7 +2804,8 @@ export const Admin_detailsScalarFieldEnum = {
   guardian_gender: 'guardian_gender',
   guardian_blood_group: 'guardian_blood_group',
   guardian_phone_number: 'guardian_phone_number',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  admin_phone_no: 'admin_phone_no'
 } as const
 
 export type Admin_detailsScalarFieldEnum = (typeof Admin_detailsScalarFieldEnum)[keyof typeof Admin_detailsScalarFieldEnum]
