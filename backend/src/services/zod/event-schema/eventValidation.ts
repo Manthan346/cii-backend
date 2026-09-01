@@ -177,6 +177,8 @@ export const updatePublicEventSchema = z.object({
 
   event_type: z.nativeEnum(event_type).optional(),
 
+  event_status_type: z.enum(event_status_type).optional(),
+
   is_show: z.boolean().optional(),
 
   // Optional image upload field
