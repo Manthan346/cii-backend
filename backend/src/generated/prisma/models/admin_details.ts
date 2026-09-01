@@ -68,6 +68,7 @@ export type Admin_detailsMinAggregateOutputType = {
   guardian_blood_group: string | null
   guardian_phone_number: string | null
   user_id: string | null
+  admin_phone_no: string | null
 }
 
 export type Admin_detailsMaxAggregateOutputType = {
@@ -102,6 +103,7 @@ export type Admin_detailsMaxAggregateOutputType = {
   guardian_blood_group: string | null
   guardian_phone_number: string | null
   user_id: string | null
+  admin_phone_no: string | null
 }
 
 export type Admin_detailsCountAggregateOutputType = {
@@ -136,6 +138,7 @@ export type Admin_detailsCountAggregateOutputType = {
   guardian_blood_group: number
   guardian_phone_number: number
   user_id: number
+  admin_phone_no: number
   _all: number
 }
 
@@ -182,6 +185,7 @@ export type Admin_detailsMinAggregateInputType = {
   guardian_blood_group?: true
   guardian_phone_number?: true
   user_id?: true
+  admin_phone_no?: true
 }
 
 export type Admin_detailsMaxAggregateInputType = {
@@ -216,6 +220,7 @@ export type Admin_detailsMaxAggregateInputType = {
   guardian_blood_group?: true
   guardian_phone_number?: true
   user_id?: true
+  admin_phone_no?: true
 }
 
 export type Admin_detailsCountAggregateInputType = {
@@ -250,6 +255,7 @@ export type Admin_detailsCountAggregateInputType = {
   guardian_blood_group?: true
   guardian_phone_number?: true
   user_id?: true
+  admin_phone_no?: true
   _all?: true
 }
 
@@ -371,6 +377,7 @@ export type Admin_detailsGroupByOutputType = {
   guardian_blood_group: string | null
   guardian_phone_number: string | null
   user_id: string
+  admin_phone_no: string | null
   _count: Admin_detailsCountAggregateOutputType | null
   _avg: Admin_detailsAvgAggregateOutputType | null
   _sum: Admin_detailsSumAggregateOutputType | null
@@ -428,6 +435,7 @@ export type admin_detailsWhereInput = {
   guardian_blood_group?: Prisma.StringNullableFilter<"admin_details"> | string | null
   guardian_phone_number?: Prisma.StringNullableFilter<"admin_details"> | string | null
   user_id?: Prisma.UuidFilter<"admin_details"> | string
+  admin_phone_no?: Prisma.StringNullableFilter<"admin_details"> | string | null
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   admin_documents?: Prisma.Admin_documentsListRelationFilter
 }
@@ -464,6 +472,7 @@ export type admin_detailsOrderByWithRelationInput = {
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  admin_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   user_login?: Prisma.user_loginOrderByWithRelationInput
   admin_documents?: Prisma.admin_documentsOrderByRelationAggregateInput
 }
@@ -503,6 +512,7 @@ export type admin_detailsWhereUniqueInput = Prisma.AtLeast<{
   guardian_gender?: Prisma.StringNullableFilter<"admin_details"> | string | null
   guardian_blood_group?: Prisma.StringNullableFilter<"admin_details"> | string | null
   guardian_phone_number?: Prisma.StringNullableFilter<"admin_details"> | string | null
+  admin_phone_no?: Prisma.StringNullableFilter<"admin_details"> | string | null
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
   admin_documents?: Prisma.Admin_documentsListRelationFilter
 }, "admin_id" | "user_id">
@@ -539,6 +549,7 @@ export type admin_detailsOrderByWithAggregationInput = {
   guardian_blood_group?: Prisma.SortOrderInput | Prisma.SortOrder
   guardian_phone_number?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  admin_phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.admin_detailsCountOrderByAggregateInput
   _avg?: Prisma.admin_detailsAvgOrderByAggregateInput
   _max?: Prisma.admin_detailsMaxOrderByAggregateInput
@@ -581,6 +592,7 @@ export type admin_detailsScalarWhereWithAggregatesInput = {
   guardian_blood_group?: Prisma.StringNullableWithAggregatesFilter<"admin_details"> | string | null
   guardian_phone_number?: Prisma.StringNullableWithAggregatesFilter<"admin_details"> | string | null
   user_id?: Prisma.UuidWithAggregatesFilter<"admin_details"> | string
+  admin_phone_no?: Prisma.StringNullableWithAggregatesFilter<"admin_details"> | string | null
 }
 
 export type admin_detailsCreateInput = {
@@ -614,6 +626,7 @@ export type admin_detailsCreateInput = {
   guardian_gender?: string | null
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
+  admin_phone_no?: string | null
   user_login: Prisma.user_loginCreateNestedOneWithoutAdmin_detailsInput
   admin_documents?: Prisma.admin_documentsCreateNestedManyWithoutAdmin_detailsInput
 }
@@ -650,6 +663,7 @@ export type admin_detailsUncheckedCreateInput = {
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
   user_id: string
+  admin_phone_no?: string | null
   admin_documents?: Prisma.admin_documentsUncheckedCreateNestedManyWithoutAdmin_detailsInput
 }
 
@@ -684,6 +698,7 @@ export type admin_detailsUpdateInput = {
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutAdmin_detailsNestedInput
   admin_documents?: Prisma.admin_documentsUpdateManyWithoutAdmin_detailsNestedInput
 }
@@ -720,6 +735,7 @@ export type admin_detailsUncheckedUpdateInput = {
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_documents?: Prisma.admin_documentsUncheckedUpdateManyWithoutAdmin_detailsNestedInput
 }
 
@@ -755,6 +771,7 @@ export type admin_detailsCreateManyInput = {
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
   user_id: string
+  admin_phone_no?: string | null
 }
 
 export type admin_detailsUpdateManyMutationInput = {
@@ -788,6 +805,7 @@ export type admin_detailsUpdateManyMutationInput = {
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type admin_detailsUncheckedUpdateManyInput = {
@@ -822,6 +840,7 @@ export type admin_detailsUncheckedUpdateManyInput = {
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Admin_detailsNullableScalarRelationFilter = {
@@ -861,6 +880,7 @@ export type admin_detailsCountOrderByAggregateInput = {
   guardian_blood_group?: Prisma.SortOrder
   guardian_phone_number?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  admin_phone_no?: Prisma.SortOrder
 }
 
 export type admin_detailsAvgOrderByAggregateInput = {
@@ -900,6 +920,7 @@ export type admin_detailsMaxOrderByAggregateInput = {
   guardian_blood_group?: Prisma.SortOrder
   guardian_phone_number?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  admin_phone_no?: Prisma.SortOrder
 }
 
 export type admin_detailsMinOrderByAggregateInput = {
@@ -934,6 +955,7 @@ export type admin_detailsMinOrderByAggregateInput = {
   guardian_blood_group?: Prisma.SortOrder
   guardian_phone_number?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  admin_phone_no?: Prisma.SortOrder
 }
 
 export type admin_detailsSumOrderByAggregateInput = {
@@ -1023,6 +1045,7 @@ export type admin_detailsCreateWithoutUser_loginInput = {
   guardian_gender?: string | null
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
+  admin_phone_no?: string | null
   admin_documents?: Prisma.admin_documentsCreateNestedManyWithoutAdmin_detailsInput
 }
 
@@ -1057,6 +1080,7 @@ export type admin_detailsUncheckedCreateWithoutUser_loginInput = {
   guardian_gender?: string | null
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
+  admin_phone_no?: string | null
   admin_documents?: Prisma.admin_documentsUncheckedCreateNestedManyWithoutAdmin_detailsInput
 }
 
@@ -1107,6 +1131,7 @@ export type admin_detailsUpdateWithoutUser_loginInput = {
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_documents?: Prisma.admin_documentsUpdateManyWithoutAdmin_detailsNestedInput
 }
 
@@ -1141,6 +1166,7 @@ export type admin_detailsUncheckedUpdateWithoutUser_loginInput = {
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   admin_documents?: Prisma.admin_documentsUncheckedUpdateManyWithoutAdmin_detailsNestedInput
 }
 
@@ -1175,6 +1201,7 @@ export type admin_detailsCreateWithoutAdmin_documentsInput = {
   guardian_gender?: string | null
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
+  admin_phone_no?: string | null
   user_login: Prisma.user_loginCreateNestedOneWithoutAdmin_detailsInput
 }
 
@@ -1210,6 +1237,7 @@ export type admin_detailsUncheckedCreateWithoutAdmin_documentsInput = {
   guardian_blood_group?: string | null
   guardian_phone_number?: string | null
   user_id: string
+  admin_phone_no?: string | null
 }
 
 export type admin_detailsCreateOrConnectWithoutAdmin_documentsInput = {
@@ -1259,6 +1287,7 @@ export type admin_detailsUpdateWithoutAdmin_documentsInput = {
   guardian_gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_login?: Prisma.user_loginUpdateOneRequiredWithoutAdmin_detailsNestedInput
 }
 
@@ -1294,6 +1323,7 @@ export type admin_detailsUncheckedUpdateWithoutAdmin_documentsInput = {
   guardian_blood_group?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   guardian_phone_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  admin_phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1359,6 +1389,7 @@ export type admin_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   guardian_blood_group?: boolean
   guardian_phone_number?: boolean
   user_id?: boolean
+  admin_phone_no?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   admin_documents?: boolean | Prisma.admin_details$admin_documentsArgs<ExtArgs>
   _count?: boolean | Prisma.Admin_detailsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1396,6 +1427,7 @@ export type admin_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   guardian_blood_group?: boolean
   guardian_phone_number?: boolean
   user_id?: boolean
+  admin_phone_no?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admin_details"]>
 
@@ -1431,6 +1463,7 @@ export type admin_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   guardian_blood_group?: boolean
   guardian_phone_number?: boolean
   user_id?: boolean
+  admin_phone_no?: boolean
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admin_details"]>
 
@@ -1466,9 +1499,10 @@ export type admin_detailsSelectScalar = {
   guardian_blood_group?: boolean
   guardian_phone_number?: boolean
   user_id?: boolean
+  admin_phone_no?: boolean
 }
 
-export type admin_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"admin_id" | "admin_first_name" | "admin_last_name" | "blood_group" | "date_of_birth" | "highest_qualification" | "specialization" | "university" | "passing_year" | "total_experience" | "prev_organization" | "prev_org_role" | "father_name" | "father_mobile_no" | "father_address" | "father_occupation" | "father_blood_group" | "father_dob" | "mother_name" | "mother_mobile_no" | "mother_address" | "mother_occupation" | "mother_blood_group" | "mother_dob" | "guardian_name" | "guardian_dob" | "guardian_address" | "guardian_gender" | "guardian_blood_group" | "guardian_phone_number" | "user_id", ExtArgs["result"]["admin_details"]>
+export type admin_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"admin_id" | "admin_first_name" | "admin_last_name" | "blood_group" | "date_of_birth" | "highest_qualification" | "specialization" | "university" | "passing_year" | "total_experience" | "prev_organization" | "prev_org_role" | "father_name" | "father_mobile_no" | "father_address" | "father_occupation" | "father_blood_group" | "father_dob" | "mother_name" | "mother_mobile_no" | "mother_address" | "mother_occupation" | "mother_blood_group" | "mother_dob" | "guardian_name" | "guardian_dob" | "guardian_address" | "guardian_gender" | "guardian_blood_group" | "guardian_phone_number" | "user_id" | "admin_phone_no", ExtArgs["result"]["admin_details"]>
 export type admin_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   admin_documents?: boolean | Prisma.admin_details$admin_documentsArgs<ExtArgs>
@@ -1519,6 +1553,7 @@ export type $admin_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     guardian_blood_group: string | null
     guardian_phone_number: string | null
     user_id: string
+    admin_phone_no: string | null
   }, ExtArgs["result"]["admin_details"]>
   composites: {}
 }
@@ -1975,6 +2010,7 @@ export interface admin_detailsFieldRefs {
   readonly guardian_blood_group: Prisma.FieldRef<"admin_details", 'String'>
   readonly guardian_phone_number: Prisma.FieldRef<"admin_details", 'String'>
   readonly user_id: Prisma.FieldRef<"admin_details", 'String'>
+  readonly admin_phone_no: Prisma.FieldRef<"admin_details", 'String'>
 }
     
 
