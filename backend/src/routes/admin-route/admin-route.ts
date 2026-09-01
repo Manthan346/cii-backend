@@ -16,6 +16,7 @@ import { getCourses } from "../../controllers/admin-controllers/get-courses";
 import { downloadEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment-report";
 import { downloadEnquiryReport } from "../../controllers/admin-controllers/download-enquiry-report";
 import { getDashboardEnrollment } from "../../controllers/admin-controllers/get-dashboard-enrollment";
+import { getEnrollmentAnalytics } from "../../controllers/admin-controllers/get-enrollment-analytics";
 import { updateUserApproval } from "../../controllers/admin-controllers/update-user-approval";
 import { updateUserApprovalSchema } from "../../services/zod/admin/update-user-approval-schema";
 import { getAllUsers } from "../../controllers/admin-controllers/fetch-all-ActiveUsers";
@@ -114,6 +115,17 @@ adminRouter.get(
     "/dashboard/enrollment",
     verifyAdminUsingAccessToken,
     getDashboardEnrollment
+);
+
+// GET enrollment analytics - course-wise, monthly, and course-monthly breakdown for charts
+// Query params: course_id (optional), from_month, from_year, to_month, to_year
+// If course_id not provided: shows all courses enrollment
+// Returns: course_wise_enrollment (bar chart), monthly_enrollment (bar chart),
+//          course_monthly_breakdown (stacked/grouped bar chart), available_courses (for filter dropdown)
+adminRouter.get(
+    "/reports/enrollment-analytics",
+    verifyAdminUsingAccessToken,
+    getEnrollmentAnalytics
 );
 //upload certificate for candidate whose enrollment status is active 
 adminRouter.post(
