@@ -1,4 +1,5 @@
 import { Response } from "express";
+
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
 import { asyncHandler } from "../../helpers/asyncHandler";
@@ -26,12 +27,12 @@ export const createPlacement = asyncHandler(
             location,
             job_role,
             job_description,
-            salary,
+            salary_min,
+            salary_max,
             employment_type,
             work_mode,
             eligible_qualification,
             eligible_percentage_cgpa,
-            application_link,
             last_date_to_apply,
             experience
         } = validation.data;
@@ -46,10 +47,7 @@ export const createPlacement = asyncHandler(
             );
         }
 
-        const [year, month, day] =
-            last_date_to_apply.split("-").map(Number);
-
-                const applicationDeadline = new Date(
+        const applicationDeadline = new Date(
             `${last_date_to_apply}T12:00:00.000Z`
         );
 
@@ -78,42 +76,28 @@ export const createPlacement = asyncHandler(
             const placement = await tx.placement.create({
                 data: {
                     company_name: company_name.trim(),
-                    sector:sector.trim(),
-
+                    sector: sector.trim(),
                     vacancy,
-
                     location: location.trim(),
-
                     job_role: job_role.trim(),
-
                     job_description:
                         job_description?.trim() || null,
-
-                    salary:
-                        salary?.trim() || null,
-
+                    salary_min: salary_min ?? null,
+                    salary_max: salary_max ?? null,
                     employment_type:
                         employment_type?.trim() || null,
-
                     work_mode,
-
                     eligible_qualification:
                         eligible_qualification?.trim() || null,
-
                     eligible_percentage_cgpa:
                         eligible_percentage_cgpa?.trim() || null,
-
-                    application_link:
-                        application_link?.trim() || null,
-
                     last_date_to_apply:
                         applicationDeadline,
-
                     is_active: true,
-
                     created_by: hrId,
-                    experience:experience
-                },
+                    experience:
+                        experience?.trim() || null
+                }
             });
 
             const notification =
@@ -131,8 +115,8 @@ export const createPlacement = asyncHandler(
                             "JOB_POSTING",
 
                         reference_id:
-                            placement.placement_id,
-                    },
+                            placement.placement_id
+                    }
                 });
 
             const users = await tx.user_login.findMany({
@@ -142,14 +126,14 @@ export const createPlacement = asyncHandler(
                             "hr",
                             "mobilizer",
                             "admin",
-                            "candidate",
-                        ],
-                    },
+                            "candidate"
+                        ]
+                    }
                 },
 
                 select: {
-                    user_id: true,
-                },
+                    user_id: true
+                }
             });
 
             if (users.length > 0) {
@@ -159,10 +143,10 @@ export const createPlacement = asyncHandler(
                             notification.notification_id,
 
                         user_id:
-                            user.user_id,
+                            user.user_id
                     })),
 
-                    skipDuplicates: true,
+                    skipDuplicates: true
                 });
             }
 
@@ -173,7 +157,7 @@ export const createPlacement = asyncHandler(
                     notification.notification_id,
 
                 notified_users:
-                    users.length,
+                    users.length
             };
         });
 
@@ -184,6 +168,5 @@ export const createPlacement = asyncHandler(
                 "Job posting created successfully"
             )
         );
-  
     }
 );

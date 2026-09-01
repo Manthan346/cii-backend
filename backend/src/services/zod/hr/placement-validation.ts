@@ -1,17 +1,18 @@
 import { z } from "zod";
 
-export const createPlacementSchema = z.object({
+const placementBaseSchema = z.object({
+
     company_name: z
-    .string()
-    .trim()
-    .min(1, "Company name is required")
-    .max(255, "Company name cannot exceed 255 characters"),
+        .string()
+        .trim()
+        .min(1, "Company name is required")
+        .max(255, "Company name cannot exceed 255 characters"),
 
     sector: z
-    .string()
-    .trim()
-    .min(1,"Sector field is required")
-    .max(255,"Sector name cannot exceed 255 characters"),
+        .string()
+        .trim()
+        .min(1, "Sector field is required")
+        .max(255, "Sector name cannot exceed 255 characters"),
 
     vacancy: z
         .number()
@@ -35,10 +36,16 @@ export const createPlacementSchema = z.object({
         .trim()
         .optional(),
 
-    salary: z
-        .string()
-        .trim()
-        .max(100, "Salary cannot exceed 100 characters")
+    salary_min: z
+        .number()
+        .int("Minimum salary must be an integer")
+        .nonnegative("Minimum salary cannot be negative")
+        .optional(),
+
+    salary_max: z
+        .number()
+        .int("Maximum salary must be an integer")
+        .nonnegative("Maximum salary cannot be negative")
         .optional(),
 
     employment_type: z
@@ -61,31 +68,67 @@ export const createPlacementSchema = z.object({
         .trim()
         .optional(),
 
-    application_link: z
+    last_date_to_apply: z
+        .string()
+        .regex(
+            /^\d{4}-\d{2}-\d{2}$/,
+            "Last date to apply must be in YYYY-MM-DD format"
+        ),
+
+    experience: z
         .string()
         .trim()
-        .url("Invalid application link")
-        .optional(),
-
-    last_date_to_apply: z
-    .string()
-    .regex(
-        /^\d{4}-\d{2}-\d{2}$/,
-        "Last date to apply must be in YYYY-MM-DD format"
-    ),
-
-    experience:z
-    .string()
-    .trim()
-    .min(1,"Experience required.")
-    .max(255,"Experience cannot exceed 255 characters.")
+        .min(1, "Experience required.")
+        .max(255, "Experience cannot exceed 255 characters.")
 });
 
-export const updatePlacementSchema = createPlacementSchema
+
+export const createPlacementSchema = placementBaseSchema
+    .refine(
+        (data) => {
+
+            if (
+                data.salary_min !== undefined &&
+                data.salary_max !== undefined
+            ) {
+                return data.salary_max >= data.salary_min;
+            }
+
+            return true;
+        },
+        {
+            message:
+                "Maximum salary must be greater than or equal to minimum salary",
+
+            path: ["salary_max"]
+        }
+    );
+
+
+export const updatePlacementSchema = placementBaseSchema
     .partial()
+    .refine(
+        (data) => {
+
+            if (
+                data.salary_min !== undefined &&
+                data.salary_max !== undefined
+            ) {
+                return data.salary_max >= data.salary_min;
+            }
+
+            return true;
+        },
+        {
+            message:
+                "Maximum salary must be greater than or equal to minimum salary",
+
+            path: ["salary_max"]
+        }
+    )
     .refine(
         (data) => Object.keys(data).length > 0,
         {
-            message: "At least one field is required to update",
+            message: "At least one field is required to update"
         }
     );
