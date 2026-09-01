@@ -29,6 +29,7 @@ import { multerErrorHandler } from "../../middlewares/multer-middleware/file-lim
 import { upload } from "../../middlewares/multer-middleware/multer";
 import { getAdminCandidateDashboardSummary } from "../../controllers/admin-controllers/get-candidate-stats";
 import { getAdminProfile } from "../../controllers/admin-controllers/get-admin-profile";
+import { updateAdminProfile } from "../../controllers/admin-controllers/update-admin-profile";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -137,5 +138,7 @@ adminRouter.post(
 );
 //fetch admin profile
 adminRouter.get("/profile",verifyAdminUsingAccessToken,getAdminProfile)
+//update admin profile 
+adminRouter.patch("/profile/edit",verifyAdminUsingAccessToken,updateAdminProfile);
 
 export default adminRouter
