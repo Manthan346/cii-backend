@@ -132,7 +132,7 @@ export const adminCreateCandidate = asyncHandler(
                         user_password: hashedPassword,
                         user_role: "candidate",
                         center_id: centerId,
-                        is_active: false
+                        is_active: true
                     }
                 });
                 candidateUserId = userLogin.user_id;
