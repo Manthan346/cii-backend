@@ -14,7 +14,7 @@ import { validateBody } from '../../middlewares/zod-middleware/zod-body-validato
 import { uploadEventImages } from '../../middlewares/multer-middleware/image-upload';
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
 import { getJobEventDetails } from '../../controllers/mobilizer-controller/get-job-event-details';
-
+import { getMobilizerCandidates } from '../../controllers/mobilizer-controller/get-mobilizer-candidates';
 import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 import { editMobilizerProfile } from '../../controllers/mobilizer-controller/edit-profile';
 import { editMobilizerProfileSchema } from '../../services/zod/mobilizer-schema/mobilizer-edit-schema';
@@ -149,6 +149,14 @@ mobilizerRouter.post(
     verifyMobilizerUsingAccessToken,
     validateBody(mobilizerEnrollCandidateSchema),
     mobilizerEnrollCandidate
+);
+
+// Get all candidates for this mobilizer's center (enrolled or not) - paginated
+mobilizerRouter.get(
+    "/candidates",
+    verifyMobilizerUsingAccessToken,
+    paginationMiddleware,
+    getMobilizerCandidates
 );
 
 export default mobilizerRouter

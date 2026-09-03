@@ -46,7 +46,7 @@ export const createJobEvent = asyncHandler(
               : "New Job Drive",
 
           notification_message:
-            `${event_name} has been created. Check the event details for more information.`,
+            `${event_name} has been created. Check the event details for more information .`,
 
           notification_type: "JOB_EVENT_CREATED",
           reference_type: "JOB_EVENT",
