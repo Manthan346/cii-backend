@@ -14,12 +14,16 @@ import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import AcademicDetail from "../AcademicDetail/AcademicDetail";
 import Document from "../Document/Document";
 import GuardianDetails from "../GuardianDetails/GuardianDetails";
+import EditProfileModal from "../EditProfile/EditProfileModal";
 
 import {
   fetchCandidateProfile,
   fetchCandidateAcademics,
   fetchCandidateDocuments,
   fetchCandidateGuardianDetails,
+  updateCandidateProfile,
+  updateCandidateAddress,
+  updateCandidateGuardianDetails,
 } from "../../../../services/profileService";
 
 import "./Profile.css";
@@ -47,11 +51,52 @@ function mapPersonalInfo(personalInfo) {
     Qualification: personalInfo.highest_qualification ?? "-",
     currentAddress: personalInfo.candidate_current_address ?? "-",
     permanentAddress: personalInfo.candidate_permanent_address ?? "-",
-    city: personalInfo.district ?? "-",
-    state: personalInfo.state_name ?? "-",
-    country: personalInfo.country ?? "India",
-    pincode: personalInfo.pin_code ?? "-",
+    currentCity: personalInfo.current_city ?? personalInfo.district ?? "-",
+    currentState:
+      personalInfo.current_state_name ?? personalInfo.state_name ?? "-",
+    currentDistrict: personalInfo.current_district ?? "-",
+    currentCountry:
+      personalInfo.current_country ?? personalInfo.country ?? "India",
+    currentPincode:
+      personalInfo.current_pin_code ?? personalInfo.pin_code ?? "-",
+    permanentCity: personalInfo.permanent_city ?? personalInfo.district ?? "-",
+    permanentState:
+      personalInfo.permanent_state_name ?? personalInfo.state_name ?? "-",
+    permanentDistrict: personalInfo.permanent_district ?? "-",
+    permanentCountry:
+      personalInfo.permanent_country ?? personalInfo.country ?? "India",
+    permanentPincode:
+      personalInfo.permanent_pin_code ?? personalInfo.pin_code ?? "-",
   };
+}
+
+function getProfilePhoto(personalInfo) {
+  if (!personalInfo) return null;
+  if (typeof personalInfo === "string") return personalInfo;
+
+  const photo =
+    personalInfo.avatar_url ??
+    personalInfo.profile_photo ??
+    personalInfo.profilePhoto ??
+    personalInfo.candidate_photo ??
+    personalInfo.candidate_profile_photo ??
+    personalInfo.profile_image ??
+    personalInfo.profile_image_url;
+
+  if (typeof photo === "string") return photo;
+  if (photo?.secure_url ?? photo?.url) return photo.secure_url ?? photo.url;
+
+  for (const key of ["personalInfo", "profile", "candidate", "data"]) {
+    const nestedPhoto = getProfilePhoto(personalInfo[key]);
+    if (nestedPhoto) return nestedPhoto;
+  }
+
+  return null;
+}
+
+function getProfileFromResponse(response) {
+  const payload = response?.data?.data ?? response?.data ?? {};
+  return payload.personalInfo ?? payload.profile ?? payload;
 }
 
 function mapCandidateHeader(personalInfo, completionPct) {
@@ -73,7 +118,7 @@ function mapCandidateHeader(personalInfo, completionPct) {
       "-",
     batch: personalInfo.batch ?? "-",
     status: personalInfo.status ?? "Active",
-    avatarSrc: personalInfo.avatar_url ?? null,
+    avatarSrc: getProfilePhoto(personalInfo),
     completionPct,
   };
 }
@@ -212,6 +257,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState("personal");
   const [documents, setDocuments] = useState(INITIAL_DOCUMENTS);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   const [personalInfo, setPersonalInfo] = useState(null);
   const [academicDetails, setAcademicDetails] = useState(null);
@@ -235,7 +281,7 @@ export default function Profile() {
 
         if (!cancelled) {
           if (profileRes.status === "fulfilled") {
-            setPersonalInfo(profileRes.value.data?.data?.personalInfo ?? null);
+            setPersonalInfo(getProfileFromResponse(profileRes.value));
           }
 
           if (academicsRes.status === "fulfilled") {
@@ -268,6 +314,36 @@ export default function Profile() {
       cancelled = true;
     };
   }, []);
+
+  // Persists edits made in the Edit Profile modal, then updates local state
+  // so the page reflects the changes immediately without a full re-fetch.
+  // `payload` is { personalInfo, guardianDetails } using the same raw API
+  // field names the mappers above already read — see EditProfileModal.jsx.
+  async function handleProfileSave(payload, avatarFile) {
+    const profileResponse = await updateCandidateProfile(
+      payload.personalInfo,
+      avatarFile,
+    );
+    await updateCandidateAddress(payload.personalInfo);
+    await updateCandidateGuardianDetails(payload.guardianDetails);
+
+    const refreshedProfile = await fetchCandidateProfile();
+    const savedProfile = getProfileFromResponse(profileResponse);
+    const latestProfile = getProfileFromResponse(refreshedProfile);
+    const uploadedPhoto = avatarFile
+      ? (getProfilePhoto(savedProfile) ??
+        getProfilePhoto(latestProfile) ??
+        URL.createObjectURL(avatarFile))
+      : (getProfilePhoto(savedProfile) ?? getProfilePhoto(latestProfile));
+
+    setPersonalInfo((previous) => ({
+      ...previous,
+      ...payload.personalInfo,
+      ...latestProfile,
+      ...(uploadedPhoto ? { profile_photo: uploadedPhoto } : {}),
+    }));
+    setGuardianDetails(payload.guardianDetails);
+  }
 
   const mappedInfo = mapPersonalInfo(personalInfo);
   // Checklist is built from the RAW personalInfo, not mappedInfo — see note
@@ -305,7 +381,12 @@ export default function Profile() {
         />
 
         <main className="profile-page__body">
-          {candidateHeader && <ProfileHeader candidate={candidateHeader} />}
+          {candidateHeader && (
+            <ProfileHeader
+              candidate={candidateHeader}
+              onEdit={() => setEditOpen(true)}
+            />
+          )}
 
           <ProfileTabs active={activeTab} onChange={setActiveTab} />
 
@@ -330,6 +411,14 @@ export default function Profile() {
           )}
         </main>
       </div>
+
+      <EditProfileModal
+        isOpen={editOpen}
+        onClose={() => setEditOpen(false)}
+        personalInfo={personalInfo}
+        guardianDetails={guardianDetails}
+        onSave={handleProfileSave}
+      />
     </div>
   );
 }

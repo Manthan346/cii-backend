@@ -20,24 +20,80 @@
 // place while you clean those call sites up, but worth removing them.
 // ──────────────────────────────────────────────────────────────
 
-import { useNavigate } from 'react-router-dom';
-import Icon from '../../shared/Icon/Icon';
-import { useAuthUser } from '../../../../services/useAuthUser'; // adjust path to wherever useAuthUser.js lives
-import './Topbar.css';
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Icon from "../../shared/Icon/Icon";
+import { fetchNotifications } from "../../../../services/Notificationservice";
+import "./Topbar.css";
+
+function flattenNotifications(data) {
+  return ["today", "yesterday", "older"]
+    .flatMap((group) => data?.notifications?.[group] ?? [])
+    .slice(0, 5);
+}
 
 export default function Topbar({
-  search = '',
+  search = "",
   onSearch = () => {},
   onMenuClick = () => {},
 }) {
   const navigate = useNavigate();
-  const { initials } = useAuthUser();
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [selectedNotification, setSelectedNotification] = useState(null);
+  const notificationRef = useRef(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchNotifications()
+      .then((data) => {
+        if (!cancelled) {
+          setNotifications(flattenNotifications(data));
+          setUnreadCount(data?.unreadCount ?? 0);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!notificationOpen) return undefined;
+    const closeOnOutsideClick = (event) => {
+      if (!notificationRef.current?.contains(event.target)) {
+        setNotificationOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
+  }, [notificationOpen]);
+
+  const toggleNotifications = async () => {
+    const nextOpen = !notificationOpen;
+    setNotificationOpen(nextOpen);
+    if (nextOpen) {
+      try {
+        const data = await fetchNotifications();
+        setNotifications(flattenNotifications(data));
+        setUnreadCount(data?.unreadCount ?? 0);
+      } catch {
+        // Keep the last successful notification snapshot visible.
+      }
+    }
+  };
 
   return (
     <header className="topbar">
-
-      <button className="topbar__hamburger" onClick={onMenuClick} aria-label="Open menu">
-        <span /><span /><span />
+      <button
+        className="topbar__hamburger"
+        onClick={onMenuClick}
+        aria-label="Open menu"
+      >
+        <span />
+        <span />
+        <span />
       </button>
 
       {/* Search */}
@@ -46,7 +102,7 @@ export default function Topbar({
         <input
           type="search"
           value={search}
-          onChange={e => onSearch(e.target.value)}
+          onChange={(e) => onSearch(e.target.value)}
           placeholder="Search courses, classes..."
           aria-label="Search courses"
         />
@@ -54,20 +110,94 @@ export default function Topbar({
 
       {/* Actions */}
       <div className="topbar__actions">
-
         {/* Notification bell */}
-        <button onClick={() => navigate('/notifications')} className="topbar__bell-btn" aria-label="Notifications">
-          <Icon name="bell" size={17} color="var(--ink-soft)" />
-          {/* TODO: hide dot when there are no unread notifications */}
-          <span className="topbar__bell-dot" aria-hidden="true" />
-        </button>
+        <div className="topbar__notification-wrap" ref={notificationRef}>
+          <button
+            onClick={toggleNotifications}
+            className="topbar__bell-btn"
+            aria-label="Notifications"
+            aria-expanded={notificationOpen}
+          >
+            <Icon name="bell" size={17} color="var(--ink-soft)" />
+            {unreadCount > 0 && (
+              <span
+                className="topbar__bell-dot"
+                aria-label={`${unreadCount} unread notifications`}
+              />
+            )}
+          </button>
+          {notificationOpen && (
+            <div
+              className="topbar__notification-popover"
+              role="dialog"
+              aria-label="Recent notifications"
+            >
+              <div className="topbar__notification-header">
+                <strong>Notifications</strong>
+                {unreadCount > 0 && <span>{unreadCount} new</span>}
+              </div>
+              {notifications.length === 0 ? (
+                <p className="topbar__notification-empty">No notifications</p>
+              ) : (
+                notifications.map((notification) => (
+                  <div
+                    className="topbar__notification-item"
+                    key={notification.user_notification_id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedNotification(notification)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        setSelectedNotification(notification);
+                      }
+                    }}
+                  >
+                    <strong>{notification.title}</strong>
+                    <p>{notification.message}</p>
+                    <time dateTime={notification.created_at}>
+                      {new Date(notification.created_at).toLocaleString(
+                        "en-IN",
+                      )}
+                    </time>
+                  </div>
+                ))
+              )}
+              {selectedNotification && (
+                <div className="topbar__notification-detail">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedNotification(null)}
+                  >
+                    Close
+                  </button>
+                  <strong>{selectedNotification.title}</strong>
+                  <p>{selectedNotification.message}</p>
+                  <time>
+                    {new Date(selectedNotification.created_at).toLocaleString(
+                      "en-IN",
+                    )}
+                  </time>
+                </div>
+              )}
+              <button
+                type="button"
+                className="topbar__view-all"
+                onClick={() => {
+                  setNotificationOpen(false);
+                  navigate("/notifications");
+                }}
+              >
+                View all notifications
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* User avatar */}
         {/* TODO: replace initials with <img> when profile photo is available
         <div className="topbar__avatar" role="button" aria-label="User menu" onClick={() => navigate('/my-profile')}>
           {initials}
         </div> */}
-
       </div>
     </header>
   );

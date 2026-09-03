@@ -195,7 +195,7 @@ export default function MyCourses() {
             ) : (
               <CompletedCourses courses={completed} />
             )}
-            <UpSkillActivities activities={upSkill} />
+            {/* <UpSkillActivities activities={upSkill} /> */}
           </div>
           {/* 
           <SuggestedCourses suggestions={suggested} onEnroll={handleEnroll} />

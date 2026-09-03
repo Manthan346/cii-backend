@@ -40,16 +40,24 @@
   gap: 22px 24px;
 }
 
-.personal-info__grid_mainaddress {
-  margin-bottom: 25px;
-  display: flow-root; 
+.personal-info__address-section + .personal-info__address-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.personal-info__address-heading {
+  margin-bottom: 16px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .personal-info__grid_address {
   display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 22px 24px;
+  margin-top: 22px;
 }
 
 
