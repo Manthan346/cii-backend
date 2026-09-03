@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
-import { computeEventStatus } from "../../utils/event-utils/compute-event-status";
+import { computeEventStatus, resolveEventStatus } from "../../utils/event-utils/compute-event-status";
 import { event_status_type } from "../../generated/prisma/enums";
 import type { pagination } from "../../interfaces/pagination-interface";
 import {
@@ -58,10 +58,10 @@ export const getPublicEvents = asyncHandler(
             prisma.event_details.count({ where }),
         ]);
 
-        // Add derived status to each event
+        // Add status to each event (use DB status if set, otherwise compute)
         const items: PublicEventWithStatus[] = events.map((e) => ({
             ...e,
-            event_status: computeEventStatus(e.event_date, e.event_time),
+            event_status: resolveEventStatus(e.event_status, e.event_date, e.event_time),
         }));
 
         return res.status(200).json(

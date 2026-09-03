@@ -14,10 +14,11 @@ export const PUBLIC_EVENT_FIELDS = {
     event_link: true,
     event_mode: true,
     event_type: true,
-    event_documents: true
+    event_documents: true,
+    event_status: true
 } as const satisfies Prisma.event_detailsSelect;
 
-/** Type for public event with derived status */
+/** Type for public event with status (from DB or derived) */
 export type PublicEventWithStatus = Prisma.event_detailsGetPayload<{
     select: typeof PUBLIC_EVENT_FIELDS;
 }> & { event_status: "UPCOMING" | "ONGOING" | "COMPLETED" };

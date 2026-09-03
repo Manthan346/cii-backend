@@ -14,6 +14,9 @@ import { z } from "zod";
  *  - highest_qualification (optional)
  *  - candidate_current_address (optional)
  *  - candidate_permanent_address (optional)
+ *  - pancard_no (optional, 12-char PAN card)
+ *  - aadhar_card (optional, 12-digit Aadhar)
+ *  - qualification_percentage (optional, decimal with 2 decimals)
  *  - profile_photo (optional, Cloudinary URL from upload middleware)
  *
  * All fields optional for PATCH behavior — only send what you want to change.
@@ -81,6 +84,24 @@ export const editCandidateProfileSchema = z
             .string()
             .trim()
             .max(200, "Permanent address must not exceed 200 characters")
+            .optional(),
+
+        pancard_no: z
+            .string()
+            .trim()
+            .max(10, "PAN card must not exceed 10 characters")
+            .optional(),
+
+        aadhar_card: z
+            .string()
+            .trim()
+            .regex(/^[0-9]{12}$/, "Aadhar card must be exactly 12 digits")
+            .optional(),
+
+        qualification_percentage: z
+            .string()
+            .trim()
+            .regex(/^\d+(\.\d{1,2})?$/, "Qualification percentage must be a valid decimal number")
             .optional(),
 
         // Cloudinary URL from upload middleware
