@@ -79,11 +79,11 @@ export async function createPublicEvent(event) {
     event_date: event.date,
     event_time: String(event.time || "09:00"),
     venue: event.venue || "",
-    event_link: event.eventLink || "",
     event_mode: event.eventMode || "OFFLINE",
     event_type: event.eventType,
     target_type: event.targetType,
     event_status: "UPCOMING",
+    ...(event.eventLink ? { event_link: event.eventLink } : {}),
   });
   return normalizeEvent(response.data?.data);
 }
@@ -122,6 +122,7 @@ function buildEventPayload(event) {
     event_mode: event.eventMode,
     event_type: event.eventType,
     target_type: event.targetType,
+    event_status: event.eventStatus,
     ...(event.venue ? { venue: event.venue } : {}),
     ...(event.eventLink ? { event_link: event.eventLink } : {}),
   };
@@ -129,11 +130,8 @@ function buildEventPayload(event) {
 
 function normalizeEvent(event = {}) {
   const date = event.event_date ?? event.date;
-  const status = formatStatus(
-    event.event_status ?? event.status,
-    date,
-    event.event_time,
-  );
+  const rawStatus = event.event_status ?? event.status;
+  const status = formatStatus(rawStatus, date, event.event_time);
   return {
     ...event,
     id: event.event_id ?? event.id,
@@ -146,6 +144,7 @@ function normalizeEvent(event = {}) {
     time: formatTime(event.event_time ?? event.time),
     rawTime: normalizeTimeInput(event.event_time ?? event.time),
     createdByName: normalizeCreatorName(event),
+    event_status: rawStatus ?? status.toUpperCase().replace(/ /g, "_"),
     status,
     venue: event.venue ?? "-",
     description: event.event_description ?? event.description ?? "",
@@ -189,13 +188,20 @@ function formatDatePart(value, part) {
 
 function formatTime(value) {
   if (!value) return "-";
+  const timeInput = normalizeTimeInput(value);
+  if (/^\d{2}:\d{2}$/.test(timeInput)) {
+    const [hours, minutes] = timeInput.split(":").map(Number);
+    const period = hours >= 12 ? "PM" : "AM";
+    const displayHours = hours % 12 || 12;
+    return `${displayHours}:${String(minutes).padStart(2, "0")} ${period}`;
+  }
   const date = new Date(value);
   return Number.isNaN(date.getTime())
     ? value
     : date.toLocaleTimeString("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
-        hourCycle: "h23",
+        hour12: true,
       });
 }
 
@@ -216,9 +222,9 @@ function normalizeCreatorName(event) {
     event.creator_name ??
     event.mobilizer_name ??
     event.created_by_user?.name ??
-      event.createdByUser?.name ??
-      event.user?.name ??
-      event.mobilizer?.name;
+    event.createdByUser?.name ??
+    event.user?.name ??
+    event.mobilizer?.name;
   if (!creator) return "Mobilizer";
   if (typeof creator === "object")
     return (

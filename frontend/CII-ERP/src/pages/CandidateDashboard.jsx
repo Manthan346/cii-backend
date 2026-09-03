@@ -45,12 +45,12 @@ export default function CandidateDashboard() {
         <Route path="/my-courses"  element={<MyCourses />} />
         <Route path="/my-profile"  element={<Profile />} />
         <Route path="/attendance" element={<Attendance />} />
-         <Route path="/tasks" element={<Task />} />
+         {/* <Route path="/tasks" element={<Task />} /> */}
         <Route path="/progress/assessments" element={<Assessments />} />
         <Route path="/progress/studymaterial" element={<StudyMaterial />} />
         <Route path="/progress/certificates" element={<Certificates />} />
         <Route path="/notifications" element={<NotificationDashboard />} />
-        <Route path="/progress/jobopportunities" element={<JobOpportunities />} />
+        {/* <Route path="/progress/jobopportunities" element={<JobOpportunities />} /> */}
 
       </Routes>
     </div>
