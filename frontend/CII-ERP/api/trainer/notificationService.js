@@ -74,8 +74,13 @@ export function normalizeInstructorNotification(raw = {}) {
 
   return {
     id: raw.user_notification_id,
+    notificationId: detail.notification_id ?? raw.user_notification_id,
     title: detail.title ?? "Notification",
     meta,
+    message: detail.notification_message ?? "",
+    notificationType: type,
+    referenceType: detail.reference_type ?? "",
+    referenceId: detail.reference_id ?? "",
     icon: config.icon,
     category: config.category,
     unread: !raw.is_read,

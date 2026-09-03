@@ -19,7 +19,6 @@
   border-bottom: 1px solid #e7eaf1;
 }
 
-.admin-users-table__checkbox-col,
 .admin-users-table__actions-col {
   width: 44px;
 }
@@ -37,7 +36,7 @@
   border-bottom: none;
 }
 
-.admin-users-table input[type='checkbox'] {
+.admin-users-table input[type="checkbox"] {
   width: 16px;
   height: 16px;
   accent-color: #3e5feb;

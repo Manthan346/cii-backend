@@ -4,6 +4,7 @@ import Topbar from "../../../layout/Topbar/Topbar";
 import { Button } from "../../../shared";
 import NotificationTabs from "../NotificationTabs/NotificationTabs";
 import NotificationList from "../NotificationList/NotificationList";
+import NotificationDetailModal from "../NotificationDetailModal/NotificationDetailModal";
 import { fetchInstructorNotifications } from "../../../../../../api/trainer/notificationService";
 import "../../../styles/variables.css";
 import "./Notifications.css";
@@ -11,9 +12,6 @@ import "./Notifications.css";
 const TAB_LABELS = [
   { id: "all", label: "All" },
   { id: "unread", label: "Unread" },
-  { id: "task", label: "Task" },
-  { id: "resources", label: "Resources" },
-  { id: "system", label: "System" },
 ];
 
 /**
@@ -30,6 +28,7 @@ const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedNotification, setSelectedNotification] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -115,12 +114,19 @@ const Notifications = () => {
                 </p>
               )}
               {!loading && !error && (
-                <NotificationList notifications={filteredNotifications} />
+                <NotificationList
+                  notifications={filteredNotifications}
+                  onSelect={setSelectedNotification}
+                />
               )}
             </div>
           </main>
         </div>
       </div>
+      <NotificationDetailModal
+        notification={selectedNotification}
+        onClose={() => setSelectedNotification(null)}
+      />
     </div>
   );
 };

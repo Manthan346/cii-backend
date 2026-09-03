@@ -163,6 +163,7 @@
 .profile-page__actions {
   display: flex;
   justify-content: flex-start;
+  gap: 12px;
   margin-top: 18px;
 }
 

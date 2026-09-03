@@ -1,18 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  Calendar,
-  CheckSquare,
-  XSquare,
-  RefreshCw,
-  Filter,
-  Download,
-} from "lucide-react";
+import { Filter, Download } from "lucide-react";
 import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
 import SessionsTable from "../SessionsTable/SessionsTable";
 import SessionDetailView from "../SessionDetailView/SessionDetailView";
 import MarkAttendanceModal from "../MarkAttendanceModal/MarkAttendanceModal";
-import { attendanceStats, attendanceMeta } from "../../../data";
+import { attendanceMeta } from "../../../data";
 import {
   fetchAttendanceSessionDetails,
   fetchAttendanceSessions,
@@ -21,13 +13,6 @@ import {
 } from "../../../../../../api/trainer/attendanceService";
 import { fetchCoursesAndBatches } from "../../../../../../api/trainer/candidateService";
 import "./AttendanceTracker.css";
-
-const STAT_ICONS = {
-  calendar: Calendar,
-  check: CheckSquare,
-  close: XSquare,
-  refresh: RefreshCw,
-};
 
 function formatSessionDate(isoString) {
   if (!isoString) return "";
@@ -278,18 +263,6 @@ export default function AttendanceTracker() {
             active batches
           </p>
         </div>
-      </div>
-
-      <div className={"attendance-management-attendance-tracker-stats-grid"}>
-        {attendanceStats.map((stat) => (
-          <StatCard
-            key={stat.id}
-            icon={STAT_ICONS[stat.icon]}
-            value={stat.value}
-            label={stat.label}
-            tone={stat.tone}
-          />
-        ))}
       </div>
 
       <div className={"attendance-management-attendance-tracker-filter-bar"}>

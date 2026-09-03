@@ -1,6 +1,6 @@
-import { ClipboardList, CalendarClock, PlusCircle, Bell } from 'lucide-react';
-import { SectionCard } from '../../../shared';
-import './NotificationList.css';
+import { ClipboardList, CalendarClock, PlusCircle, Bell } from "lucide-react";
+import { SectionCard } from "../../../shared";
+import "./NotificationList.css";
 
 // icon key -> lucide component (mirrors the STAT_ICONS/ACTIVITY_ICONS
 // lookup pattern already used in TaskAssigned/RecentActivity)
@@ -12,9 +12,9 @@ const NOTIFICATION_ICONS = {
 
 // notification category -> icon badge tone
 const CATEGORY_TONE = {
-  task: 'navy',
-  resources: 'blue',
-  system: 'blue',
+  task: "navy",
+  resources: "blue",
+  system: "blue",
 };
 
 /**
@@ -26,19 +26,28 @@ const CATEGORY_TONE = {
  * card + underlined heading (no "View all" action here, unlike
  * RecentActivity on the Work page).
  */
-export default function NotificationList({ notifications = [] }) {
+export default function NotificationList({ notifications = [], onSelect }) {
   return (
     <SectionCard title="Recent Notifications" className="notification-list">
       <ul className="notification-list__list">
         {notifications.map((item) => {
           const Icon = NOTIFICATION_ICONS[item.icon] || Bell;
-          const tone = CATEGORY_TONE[item.category] || 'navy';
+          const tone = CATEGORY_TONE[item.category] || "navy";
           return (
             <li
               key={item.id}
               className={`notification-list__item${
-                item.unread ? ' notification-list__item--unread' : ''
+                item.unread ? " notification-list__item--unread" : ""
               }`}
+              role="button"
+              tabIndex={0}
+              onClick={() => onSelect?.(item)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  onSelect?.(item);
+                }
+              }}
             >
               <div
                 className={`notification-list__icon notification-list__icon--${tone}`}

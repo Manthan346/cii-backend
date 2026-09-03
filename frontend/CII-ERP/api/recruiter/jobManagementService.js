@@ -39,6 +39,24 @@ export function normalizeJobPosting(job = {}) {
   const employmentType =
     job.employment_type ?? job.employmentType ?? "Full-time";
 
+  const formattedSalary = (() => {
+    const minSalary = job.salary_min ?? job.minSalary;
+    const maxSalary = job.salary_max ?? job.maxSalary;
+
+    if (
+      minSalary !== undefined &&
+      minSalary !== null &&
+      maxSalary !== undefined &&
+      maxSalary !== null
+    ) {
+      return `${minSalary} - ${maxSalary}`;
+    }
+    if (minSalary !== undefined && minSalary !== null) return String(minSalary);
+    if (maxSalary !== undefined && maxSalary !== null) return String(maxSalary);
+
+    return job.salary ?? "";
+  })();
+
   return {
     ...job,
     id: job.placement_id ?? job.id ?? `${job.job_role ?? "job"}-${Date.now()}`,
@@ -57,7 +75,7 @@ export function normalizeJobPosting(job = {}) {
     role: job.role ?? job.job_role ?? jobRole,
     employmentType,
     experience: job.experience ?? "",
-    salary: job.salary ?? "",
+    salary: formattedSalary,
     description: job.job_description ?? job.description ?? "",
     eligibility: {
       qualification: job.eligible_qualification ?? job.qualification ?? "",
@@ -157,22 +175,36 @@ export function mapFormToRecruiterJobPayload(form = {}) {
   const city = form.location || form.city || "";
   const workMode = form.mode || form.workMode || "hybrid";
 
-  return {
+  const parseSalaryValue = (value) => {
+    if (value === null || value === undefined || value === "") return null;
+    const cleaned = String(value).replace(/[^\d.]/g, "");
+    if (!cleaned) return null;
+    const numeric = Number(cleaned);
+    return Number.isFinite(numeric) ? numeric : null;
+  };
+
+  const payload = {
     company_name: companyName,
     sector: department,
     vacancy: Number(form.vacancy ?? form.vacancies ?? 0),
     location: city,
     job_role: jobRole,
     job_description: form.description ?? form.job_description ?? "",
-    salary: form.salary ?? form.salaryAmount ?? "",
     employment_type: form.employmentType ?? form.type ?? "Full-time",
     work_mode: String(workMode).trim().toLowerCase().replace(/\s+/g, "-"),
     eligible_qualification:
       form.eligibility?.qualification ?? form.qualification ?? "",
     eligible_percentage_cgpa:
       form.eligibility?.minPercentage ?? form.minPercentage ?? "",
-    application_link: form.applicationLink ?? form.application_link ?? "",
     last_date_to_apply: form.deadline || form.last_date_to_apply || "",
     experience: form.experience ?? "",
   };
+
+  const minSalary = parseSalaryValue(form.salary_min ?? form.salaryMin);
+  const maxSalary = parseSalaryValue(form.salary_max ?? form.salaryMax);
+
+  if (minSalary !== null) payload.salary_min = minSalary;
+  if (maxSalary !== null) payload.salary_max = maxSalary;
+
+  return payload;
 }

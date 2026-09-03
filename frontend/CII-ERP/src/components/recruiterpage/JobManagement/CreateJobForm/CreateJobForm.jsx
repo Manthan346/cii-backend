@@ -21,7 +21,6 @@ const INITIAL_FORM = {
   companyName: "",
   jobTitle: "",
   department: DEPARTMENT_OPTIONS[0],
-  role: "",
   employmentType: EMPLOYMENT_TYPE_OPTIONS[0],
   experience: "",
   vacancies: "",
@@ -31,9 +30,32 @@ const INITIAL_FORM = {
   description: "",
   qualification: "",
   minPercentage: "",
-  salaryAmount: "",
-  applicationLink: "",
+  salaryMin: "",
+  salaryMax: "",
   deadline: "",
+};
+
+const parseSalaryRange = (value) => {
+  if (!value && value !== 0) return { salaryMin: "", salaryMax: "" };
+
+  const raw = String(value).trim();
+  const match = raw.match(/(\d+(?:\.\d+)?)\s*(?:-|to)\s*(\d+(?:\.\d+)?)/i);
+
+  if (match) {
+    return { salaryMin: match[1], salaryMax: match[2] };
+  }
+
+  return { salaryMin: raw.replace(/[^\d.]/g, ""), salaryMax: "" };
+};
+
+const toNumericSalary = (value) => {
+  if (value === null || value === undefined || value === "") return null;
+
+  const cleaned = String(value).replace(/[^\d.]/g, "");
+  if (!cleaned) return null;
+
+  const numeric = Number(cleaned);
+  return Number.isFinite(numeric) ? numeric : null;
 };
 
 const normalizeDateForInput = (value) => {
@@ -56,14 +78,26 @@ const normalizeWorkModeForUi = (mode) => {
 
 const buildInitialForm = (initialValues) => {
   const values = initialValues ?? {};
+  const salaryRange = parseSalaryRange(
+    values.salary ?? values.salary_range ?? values.salary_min ?? "",
+  );
+
+  if (values.salary_min !== undefined || values.salary_max !== undefined) {
+    salaryRange.salaryMin =
+      values.salary_min !== undefined && values.salary_min !== null
+        ? String(values.salary_min)
+        : salaryRange.salaryMin;
+    salaryRange.salaryMax =
+      values.salary_max !== undefined && values.salary_max !== null
+        ? String(values.salary_max)
+        : salaryRange.salaryMax;
+  }
 
   return {
     ...INITIAL_FORM,
     companyName: values.companyName ?? values.company_name ?? "",
     jobTitle: values.jobRole ?? values.job_role ?? "",
-    department:
-      values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
-    role: values.role ?? values.job_role ?? "",
+    department: values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
     employmentType:
       values.employmentType ??
       values.employment_type ??
@@ -72,21 +106,16 @@ const buildInitialForm = (initialValues) => {
     vacancies: values.vacancy ?? "",
     city: values.location ?? "",
     state: values.state ?? "",
-    workMode: normalizeWorkModeForUi(
-      values.mode ?? values.work_mode,
-    ),
+    workMode: normalizeWorkModeForUi(values.mode ?? values.work_mode),
     description: values.description ?? values.job_description ?? "",
     qualification:
-      values.eligibility?.qualification ??
-      values.eligible_qualification ??
-      "",
+      values.eligibility?.qualification ?? values.eligible_qualification ?? "",
     minPercentage:
       values.eligibility?.minPercentage ??
       values.eligible_percentage_cgpa ??
       "",
-    salaryAmount: values.salary ?? "",
-    applicationLink:
-      values.applicationLink ?? values.application_link ?? "",
+    salaryMin: salaryRange.salaryMin,
+    salaryMax: salaryRange.salaryMax,
     deadline: normalizeDateForInput(
       values.last_date_to_apply ?? values.deadline,
     ),
@@ -160,19 +189,26 @@ const CreateJobForm = ({
       vacancy: Number(form.vacancies) || 0,
       location: (form.city || form.state || "").trim(),
       job_role: form.jobTitle.trim(),
-      job_description: form.description.trim(),
-      salary: form.salaryAmount.trim(),
       employment_type: form.employmentType,
       work_mode: mapWorkModeToApiValue(form.workMode),
-      eligible_qualification: form.qualification.trim(),
-      eligible_percentage_cgpa: form.minPercentage.trim(),
       last_date_to_apply: form.deadline,
-      experience: form.experience.trim(),
     };
 
-    if (form.applicationLink && form.applicationLink.trim()) {
-      payload.application_link = form.applicationLink.trim();
-    }
+    const description = form.description.trim();
+    const qualification = form.qualification.trim();
+    const minPercentage = form.minPercentage.trim();
+    const experience = form.experience.trim();
+
+    if (description) payload.job_description = description;
+    if (qualification) payload.eligible_qualification = qualification;
+    if (minPercentage) payload.eligible_percentage_cgpa = minPercentage;
+    if (experience) payload.experience = experience;
+
+    const minSalary = toNumericSalary(form.salaryMin);
+    const maxSalary = toNumericSalary(form.salaryMax);
+
+    if (minSalary !== null) payload.salary_min = minSalary;
+    if (maxSalary !== null) payload.salary_max = maxSalary;
 
     return payload;
   };
@@ -244,17 +280,6 @@ const CreateJobForm = ({
                 </option>
               ))}
             </select>
-          </label>
-
-          <label className="create-job-form__field">
-            <span className="create-job-form__label">Role</span>
-            <input
-              type="text"
-              placeholder="eg. Graphic Design"
-              value={form.role}
-              onChange={handleChange("role")}
-              className="create-job-form__input"
-            />
           </label>
 
           <label className="create-job-form__field">
@@ -395,23 +420,36 @@ const CreateJobForm = ({
         </div>
       </section>
 
-      {/* 5. Salary (amount only, no Not Disclosed/Range/Fixed toggle) */}
+      {/* 5. Salary */}
       <section className="create-job-form__section">
         <h2 className="create-job-form__section-title">
           <span className="create-job-form__badge">5</span>
           Salary (optional)
         </h2>
 
-        <label className="create-job-form__field">
-          <span className="create-job-form__label">Amount</span>
-          <input
-            type="text"
-            placeholder="e.g. ₹4,50,000 / year or 3,00,000 - ₹5,00,000"
-            value={form.salaryAmount}
-            onChange={handleChange("salaryAmount")}
-            className="create-job-form__input"
-          />
-        </label>
+        <div className="create-job-form__grid">
+          <label className="create-job-form__field">
+            <span className="create-job-form__label">Minimum Salary</span>
+            <input
+              type="text"
+              placeholder="e.g. 400000"
+              value={form.salaryMin}
+              onChange={handleChange("salaryMin")}
+              className="create-job-form__input"
+            />
+          </label>
+
+          <label className="create-job-form__field">
+            <span className="create-job-form__label">Maximum Salary</span>
+            <input
+              type="text"
+              placeholder="e.g. 600000"
+              value={form.salaryMax}
+              onChange={handleChange("salaryMax")}
+              className="create-job-form__input"
+            />
+          </label>
+        </div>
       </section>
 
       {/* 6. Application Deadline */}
@@ -432,26 +470,6 @@ const CreateJobForm = ({
             />
             <Calendar size={16} className="create-job-form__date-icon" />
           </div>
-        </label>
-      </section>
-
-      <section className="create-job-form__section">
-        <h2 className="create-job-form__section-title">
-          <span className="create-job-form__badge">7</span>
-          Application Link (optional)
-        </h2>
-
-        <label className="create-job-form__field">
-          <span className="create-job-form__label">
-            External application URL
-          </span>
-          <input
-            type="url"
-            placeholder="https://example.com/careers"
-            value={form.applicationLink}
-            onChange={handleChange("applicationLink")}
-            className="create-job-form__input"
-          />
         </label>
       </section>
 
