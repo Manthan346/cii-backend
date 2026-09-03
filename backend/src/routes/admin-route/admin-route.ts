@@ -32,6 +32,7 @@ import { upload } from "../../middlewares/multer-middleware/multer";
 import { getAdminCandidateDashboardSummary } from "../../controllers/admin-controllers/get-candidate-stats";
 import { getAdminProfile } from "../../controllers/admin-controllers/get-admin-profile";
 import { updateAdminProfile } from "../../controllers/admin-controllers/update-admin-profile";
+import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/fetch-company";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -159,5 +160,7 @@ adminRouter.post(
 adminRouter.get("/profile",verifyAdminUsingAccessToken,getAdminProfile)
 //update admin profile 
 adminRouter.patch("/profile/edit",verifyAdminUsingAccessToken,updateAdminProfile);
+//fetch all companies (center-scoped)
+adminRouter.get("/total-users/companies",verifyAdminUsingAccessToken,getCompaniesByAdminCenter);
 
 export default adminRouter

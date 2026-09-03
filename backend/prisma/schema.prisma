@@ -588,6 +588,13 @@ model placement {
   salary_max               Int?
   hr_details               hr_details               @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
   placement_applications   placement_applications[]
+
+  @@index([company_name(ops: raw("gin_trgm_ops"))], map: "idx_placement_company_name_trgm", type: Gin)
+  @@index([job_role(ops: raw("gin_trgm_ops"))], map: "idx_placement_job_role_trgm", type: Gin)
+  @@index([location(ops: raw("gin_trgm_ops"))], map: "idx_placement_location_trgm", type: Gin)
+  @@index([salary_min, salary_max], map: "idx_placement_salary_range")
+  @@index([sector(ops: raw("gin_trgm_ops"))], map: "idx_placement_sector_trgm", type: Gin)
+  @@index([work_mode], map: "idx_placement_work_mode")
 }
 
 model placement_applications {
