@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../shared/Modal/Modal";
-import { createJobEvent } from "../../../../../api/recruiter/jobEventService";
+import {
+  createJobEvent,
+  updateJobEvent,
+  checkJobEventDateConflict,
+} from "../../../../../api/recruiter/jobEventService";
 import "./AddEventModal.css";
 
 const EVENT_TYPES = ["Job Drive", "Job Fair"];
@@ -10,8 +14,7 @@ const INITIAL_FORM = {
   name: "",
   date: "",
   time: "",
-  venue: "",
-  address: "",
+  address: "", // combined venue + address — one field, one backend column
   mapsLink: "",
   description: "",
 };
@@ -19,19 +22,54 @@ const INITIAL_FORM = {
 /**
  * AddEventModal
  *
- * Opened by the "+ Add Events" button. Posts directly to
- * POST /job-event/add via createJobEvent(). On success calls
- * onSubmit() with no arguments — JobFairJobDrive.jsx just uses that
- * as a signal to close the modal and refetch the list, it doesn't
- * need the created event back.
+ * Doubles as the Edit modal: pass `initialValues` (a mapped event
+ * record from jobEventService, e.g. { type, name, date, time, venue,
+ * address, mapsLink, description }) to prefill and switch to update
+ * mode. Venue/Address were merged into one field since the backend
+ * only ever stores a single combined `address` string — no way to
+ * split it back apart on edit, so the UI doesn't pretend to.
  */
-const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
+const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
+  const isEditing = Boolean(initialValues);
   const [form, setForm] = useState(INITIAL_FORM);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [dateWarning, setDateWarning] = useState("");
+
+  useEffect(() => {
+    if (isOpen && initialValues) {
+      setForm({
+        type: initialValues.type ?? "",
+        name: initialValues.name ?? "",
+        date: initialValues.dateISO ?? "", // see note below on dateISO
+        time: initialValues.timeISO ?? "",
+        address: initialValues.venue ?? initialValues.address ?? "",
+        mapsLink: initialValues.mapLink ?? "",
+        description: initialValues.description ?? "",
+      });
+    } else if (isOpen && !initialValues) {
+      setForm(INITIAL_FORM);
+    }
+  }, [isOpen, initialValues]);
 
   const handleChange = (field) => (event) => {
-    setForm((prev) => ({ ...prev, [field]: event.target.value }));
+    const value = event.target.value;
+    setForm((prev) => ({ ...prev, [field]: value }));
+
+    if (field === "date") {
+      setDateWarning("");
+      if (value) {
+        checkJobEventDateConflict(value)
+          .then(({ eventCount }) => {
+            if (eventCount >= 2) {
+              setDateWarning(
+                `${eventCount} events are already scheduled on this date. You can still proceed if needed.`,
+              );
+            }
+          })
+          .catch((err) => console.error("Failed to check date conflict:", err));
+      }
+    }
   };
 
   const handleTypeSelect = (type) => {
@@ -41,6 +79,7 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
   const handleClose = () => {
     setForm(INITIAL_FORM);
     setError("");
+    setDateWarning("");
     onClose();
   };
 
@@ -48,14 +87,17 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
     setError("");
     setSubmitting(true);
     try {
-      await createJobEvent(form);
+      if (isEditing) {
+        await updateJobEvent(initialValues.id, form);
+      } else {
+        await createJobEvent(form);
+      }
       setForm(INITIAL_FORM);
+      setDateWarning("");
       onSubmit();
     } catch (err) {
       setError(
-        err?.response?.data?.message ||
-          err.message ||
-          "Failed to create event.",
+        err?.response?.data?.message || err.message || "Failed to save event.",
       );
     } finally {
       setSubmitting(false);
@@ -64,7 +106,9 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} maxWidth={760}>
-      <h2 className="add-event-modal__title">Add Event</h2>
+      <h2 className="add-event-modal__title">
+        {isEditing ? "Edit Event" : "Add Event"}
+      </h2>
 
       {error && <p className="add-event-modal__error">{error}</p>}
 
@@ -106,6 +150,9 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
             onChange={handleChange("date")}
             className="add-event-modal__input"
           />
+          {dateWarning && (
+            <p className="add-event-modal__date-warning">{dateWarning}</p>
+          )}
         </label>
 
         <label className="add-event-modal__field">
@@ -119,21 +166,10 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
         </label>
 
         <label className="add-event-modal__field">
-          <span className="add-event-modal__label">Venue</span>
+          <span className="add-event-modal__label">Venue / Address</span>
           <input
             type="text"
-            placeholder="e.g. Community hall"
-            value={form.venue}
-            onChange={handleChange("venue")}
-            className="add-event-modal__input"
-          />
-        </label>
-
-        <label className="add-event-modal__field">
-          <span className="add-event-modal__label">Address</span>
-          <input
-            type="text"
-            placeholder="Enter full address....."
+            placeholder="e.g. Community Hall, 75 Nirlon Knowledge Park Rd, Mumbai"
             value={form.address}
             onChange={handleChange("address")}
             className="add-event-modal__input"
@@ -151,7 +187,10 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
           />
         </label>
 
-        <label className="add-event-modal__field">
+        <label
+          className="add-event-modal__field"
+          style={{ gridColumn: "1 / -1" }}
+        >
           <span className="add-event-modal__label">Description</span>
           <input
             type="text"
@@ -178,7 +217,7 @@ const AddEventModal = ({ isOpen, onClose, onSubmit }) => {
           onClick={handleSubmit}
           disabled={submitting}
         >
-          {submitting ? "Adding..." : "Add Event"}
+          {submitting ? "Saving..." : isEditing ? "Save Changes" : "Add Event"}
         </button>
       </div>
     </Modal>

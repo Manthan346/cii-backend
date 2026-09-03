@@ -27,14 +27,33 @@ const formatRelativeTime = (value) => {
   const seconds = Math.max(0, Math.floor((Date.now() - date.getTime()) / 1000));
   if (seconds < 60) return "Just now";
   if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`;
-  if (seconds < 86400) return `${Math.floor(seconds / 3600)} hour${seconds >= 7200 ? "s" : ""} ago`;
+  if (seconds < 86400)
+    return `${Math.floor(seconds / 3600)} hour${seconds >= 7200 ? "s" : ""} ago`;
   return `${Math.floor(seconds / 86400)} day${seconds >= 172800 ? "s" : ""} ago`;
+};
+
+/**
+ * Pill/icon colors per normalized type (see TYPE_CONFIG above).
+ * Keyed to the same lowercase type strings normalizeRecruiterNotification
+ * produces, not the raw backend notification_type enum.
+ */
+export const notificationTypeStyles = {
+  application: { bg: "#eff6ff", color: "#3b82f6" },
+  shortlisted: { bg: "#f0fdf4", color: "#22c55e" },
+  interview: { bg: "#fef2f2", color: "#ef4444" },
+  "job-opportunity": { bg: "#eff6ff", color: "#3b82f6" },
+  "job-closing": { bg: "#fffbeb", color: "#d97706" },
+  "offer-accepted": { bg: "#f0fdf4", color: "#22c55e" },
+  update: { bg: "#f3f4f6", color: "#6b7280" },
 };
 
 export function normalizeRecruiterNotification(notification = {}) {
   const detail = notification.notifications ?? {};
   const notificationType = String(detail.notification_type ?? "").toUpperCase();
-  const config = TYPE_CONFIG[notificationType] ?? { type: "update", icon: Bell };
+  const config = TYPE_CONFIG[notificationType] ?? {
+    type: "update",
+    icon: Bell,
+  };
 
   return {
     id: notification.user_notification_id ?? detail.notification_id,

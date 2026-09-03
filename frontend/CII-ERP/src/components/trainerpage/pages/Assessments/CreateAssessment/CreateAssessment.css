@@ -1,0 +1,11 @@
+.assessment-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+.assessment-dialog-error {
+  margin: 0 0 16px;
+  color: #b42318;
+  font-size: 14px;
+}

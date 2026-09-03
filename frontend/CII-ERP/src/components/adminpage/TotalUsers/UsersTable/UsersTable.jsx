@@ -1,10 +1,10 @@
-import React from 'react';
-import { UserRound, Eye, MoreVertical } from 'lucide-react';
-import SectionCard from '../../shared/SectionCard/SectionCard';
-import StatusPill from '../../shared/StatusPill/StatusPill';
-import Button from '../../shared/Button/Button';
-import Pagination from '../../shared/Pagination/Pagination';
-import './UsersTable.css';
+import React from "react";
+import { UserRound, Eye, MoreVertical } from "lucide-react";
+import SectionCard from "../../shared/SectionCard/SectionCard";
+import StatusPill from "../../shared/StatusPill/StatusPill";
+import Button from "../../shared/Button/Button";
+import Pagination from "../../shared/Pagination/Pagination";
+import "./UsersTable.css";
 
 /**
  * UsersTable
@@ -35,8 +35,12 @@ const UsersTable = ({
   onToggleSelect,
   onToggleSelectAll,
 }) => {
-  const { currentPage = 1, totalPages = 1, pageSize = users.length, totalResults = users.length } =
-    pagination;
+  const {
+    currentPage = 1,
+    totalPages = 1,
+    pageSize = users.length,
+    totalResults = users.length,
+  } = pagination;
 
   const isSelected = (id) => selectedIds.includes(id);
   const allSelected = users.length > 0 && users.every((u) => isSelected(u.id));
@@ -47,42 +51,30 @@ const UsersTable = ({
   return (
     <SectionCard
       title={`All User-${totalResults.toLocaleString()} results`}
-      action={<Button size="sm" onClick={onAddUser}>Add user</Button>}
+      action={
+        <Button size="sm" onClick={onAddUser}>
+          Add user
+        </Button>
+      }
     >
       <div className="admin-table-wrap">
         <table className="admin-users-table">
           <thead>
             <tr>
-              <th className="admin-users-table__checkbox-col">
-                <input
-                  type="checkbox"
-                  checked={allSelected}
-                  onChange={onToggleSelectAll}
-                  aria-label="Select all users"
-                />
-              </th>
-              <th>User ID</th>
               <th>Name</th>
               <th>Email-ID</th>
               <th>Mobile</th>
               <th>Role</th>
               <th>Status</th>
-              <th>Last Login</th>
-              <th className="admin-users-table__actions-col" aria-hidden="true" />
+              <th
+                className="admin-users-table__actions-col"
+                aria-hidden="true"
+              />
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={isSelected(user.id)}
-                    onChange={() => onToggleSelect?.(user.id)}
-                    aria-label={`Select ${user.name}`}
-                  />
-                </td>
-                <td className="admin-users-table__user-id">{user.userId}</td>
                 <td>
                   <div className="admin-users-table__name">
                     <span className="admin-users-table__avatar">
@@ -102,11 +94,12 @@ const UsersTable = ({
                 <td>{user.mobile}</td>
                 <td>{user.roleLabel}</td>
                 <td>
-                  <StatusPill tone={user.status === 'active' ? 'success' : 'neutral'}>
-                    {user.status === 'active' ? 'Active' : 'Inactive'}
+                  <StatusPill
+                    tone={user.status === "active" ? "success" : "neutral"}
+                  >
+                    {user.status === "active" ? "Active" : "Inactive"}
                   </StatusPill>
                 </td>
-                <td>{user.lastLogin}</td>
                 <td>
                   <div className="admin-users-table__row-actions">
                     <button
@@ -135,7 +128,8 @@ const UsersTable = ({
 
       <div className="admin-users-table__footer">
         <span className="admin-users-table__showing">
-          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()} Users
+          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()}{" "}
+          Users
         </span>
         <Pagination
           currentPage={currentPage}

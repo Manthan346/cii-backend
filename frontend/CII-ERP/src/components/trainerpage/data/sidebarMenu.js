@@ -86,10 +86,16 @@ export const sidebarMenu = [
         route: "/trainer/study-material",
       },
       {
+        id: "assessments",
+        title: "Assessments",
+        icon: ClipboardCheck,
+        route: "/trainer/assessments",
+      },
+      {
         id: "Assign-Task",
         title: "Task Assigned",
         icon: ClipboardCheck,
-        route: "/trainer/task-assigned",
+        // route: "/trainer/task-assigned",
       },
       // {
       //   id: 'reports',
@@ -106,7 +112,7 @@ export const sidebarMenu = [
         id: "work",
         title: "Work",
         icon: BriefcaseBusiness,
-        route: "/trainer/work",
+        // route: "/trainer/work",
       },
       {
         id: "events",
@@ -120,12 +126,12 @@ export const sidebarMenu = [
       //   icon: ClipboardCheck,
       //   route: "/trainer/task-assigned",
       // },
-      // {
-      //   id: "notifications",
-      //   title: "Notifications",
-      //   icon: Bell,
-      //   route: "/trainer/notifications",
-      // },
+      {
+        id: "notifications",
+        title: "Notifications",
+        icon: Bell,
+        route: "/trainer/notifications",
+      },
       {
         id: "logout",
         title: "Logout",

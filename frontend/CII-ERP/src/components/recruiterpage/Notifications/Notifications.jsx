@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { notificationTypeStyles } from '../data';
-import NotificationDetailsModal from './NotificationDetailsModal/NotificationDetailsModal';
+// import { notificationTypeStyles } from '../data';
+import NotificationDetailsModal from "./NotificationDetailsModal/NotificationDetailsModal";
 import Pagination from "../shared/Pagination/Pagination";
-import { fetchRecruiterNotifications } from "../../../../api/recruiter/notificationService";
-import './Notifications.css';
+import {
+  notificationTypeStyles,
+  fetchRecruiterNotifications,
+} from "../../../../api/recruiter/notificationService";
+import "./Notifications.css";
 
-const TABS = ['All', 'Unread'];
+const TABS = ["All", "Unread"];
 
 /**
  * Notifications (Recruiter)
@@ -16,7 +19,7 @@ const TABS = ['All', 'Unread'];
  */
 const Notifications = () => {
   const [notificationsList, setNotificationsList] = useState([]);
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState("All");
   const [selectedId, setSelectedId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState({});
@@ -49,19 +52,23 @@ const Notifications = () => {
   }, [loadNotifications]);
 
   const unreadCount = notificationsList.filter((item) => item.unread).length;
-  const visibleNotifications = activeTab === 'Unread'
-    ? notificationsList.filter((item) => item.unread)
-    : notificationsList;
-  const selectedNotification = notificationsList.find((item) => item.id === selectedId) ?? null;
+  const visibleNotifications =
+    activeTab === "Unread"
+      ? notificationsList.filter((item) => item.unread)
+      : notificationsList;
+  const selectedNotification =
+    notificationsList.find((item) => item.id === selectedId) ?? null;
 
   const handleMarkAllAsRead = () => {
-    setNotificationsList((prev) => prev.map((item) => ({ ...item, unread: false })));
+    setNotificationsList((prev) =>
+      prev.map((item) => ({ ...item, unread: false })),
+    );
   };
 
   const handleOpenNotification = (id) => {
     setSelectedId(id);
     setNotificationsList((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, unread: false } : item))
+      prev.map((item) => (item.id === id ? { ...item, unread: false } : item)),
     );
   };
 
@@ -70,10 +77,16 @@ const Notifications = () => {
       <header className="notifications-page__header">
         <div>
           <h1 className="notifications-page__title">Notifications</h1>
-          <p className="notifications-page__subtitle">Updates on applications, interviews, and job postings</p>
+          <p className="notifications-page__subtitle">
+            Updates on applications, interviews, and job postings
+          </p>
         </div>
 
-        <button type="button" className="notifications-page__mark-read-btn" onClick={handleMarkAllAsRead}>
+        <button
+          type="button"
+          className="notifications-page__mark-read-btn"
+          onClick={handleMarkAllAsRead}
+        >
           Mark all as read
         </button>
       </header>
@@ -83,42 +96,60 @@ const Notifications = () => {
           <button
             key={tab}
             type="button"
-            className={`notifications-page__tab ${activeTab === tab ? 'notifications-page__tab--active' : ''}`}
+            className={`notifications-page__tab ${activeTab === tab ? "notifications-page__tab--active" : ""}`}
             onClick={() => setActiveTab(tab)}
           >
-            {tab} ({tab === 'Unread' ? unreadCount : notificationsList.length})
+            {tab} ({tab === "Unread" ? unreadCount : notificationsList.length})
           </button>
         ))}
       </div>
 
       <div className="notifications-page__list">
-        {!isLoading && !error && visibleNotifications.map((item) => {
-          const Icon = item.icon;
-          const style = notificationTypeStyles[item.type] ?? {};
+        {!isLoading &&
+          !error &&
+          visibleNotifications.map((item) => {
+            const Icon = item.icon;
+            const style = notificationTypeStyles[item.type] ?? {};
 
-          return (
-            <button
-              key={item.id}
-              type="button"
-              className="notifications-page__card"
-              onClick={() => handleOpenNotification(item.id)}
-            >
-              <span className="notifications-page__icon" style={{ backgroundColor: style.bg }}>
-                <Icon size={18} color={style.color} strokeWidth={2} />
-              </span>
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className="notifications-page__card"
+                onClick={() => handleOpenNotification(item.id)}
+              >
+                <span
+                  className="notifications-page__icon"
+                  style={{ backgroundColor: style.bg }}
+                >
+                  <Icon size={18} color={style.color} strokeWidth={2} />
+                </span>
 
-              <div className="notifications-page__content">
-                <span className="notifications-page__card-title">{item.title}</span>
-                <p className="notifications-page__description">{item.description}</p>
-                <span className="notifications-page__time">{item.time}</span>
-              </div>
+                <div className="notifications-page__content">
+                  <span className="notifications-page__card-title">
+                    {item.title}
+                  </span>
+                  <p className="notifications-page__description">
+                    {item.description}
+                  </p>
+                  <span className="notifications-page__time">{item.time}</span>
+                </div>
 
-              {item.unread && <span className="notifications-page__unread-dot" aria-hidden="true" />}
-            </button>
-          );
-        })}
+                {item.unread && (
+                  <span
+                    className="notifications-page__unread-dot"
+                    aria-hidden="true"
+                  />
+                )}
+              </button>
+            );
+          })}
 
-        {isLoading && <p className="notifications-page__loading">Loading notifications...</p>}
+        {isLoading && (
+          <p className="notifications-page__loading">
+            Loading notifications...
+          </p>
+        )}
         {error && <p className="notifications-page__error">{error}</p>}
         {!isLoading && !error && visibleNotifications.length === 0 && (
           <p className="notifications-page__empty">You're all caught up.</p>

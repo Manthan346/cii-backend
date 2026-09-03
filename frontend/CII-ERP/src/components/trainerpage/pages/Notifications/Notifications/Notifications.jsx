@@ -1,54 +1,87 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 import { Button } from "../../../shared";
 import NotificationTabs from "../NotificationTabs/NotificationTabs";
 import NotificationList from "../NotificationList/NotificationList";
-import {
-  notificationTabs,
-  notificationMeta,
-  notificationRecords,
-} from "../../../data";
+import NotificationDetailModal from "../NotificationDetailModal/NotificationDetailModal";
+import { fetchInstructorNotifications } from "../../../../../../api/trainer/notificationService";
 import "../../../styles/variables.css";
 import "./Notifications.css";
+
+const TAB_LABELS = [
+  { id: "all", label: "All" },
+  { id: "unread", label: "Unread" },
+];
 
 /**
  * Notifications (full page)
  *
- * Staff "Notification" page. Mounts the shared Topbar + Sidebar shell
- * (identical composition to every other staff page, e.g.
- * CandidateManagement/TaskAssigned) around the page-specific content:
- * header + "Mark all as read", the All/Unread/Task/Resources/System
- * filter pills, and the "Recent Notifications" list. All fake data
- * comes from data/notificationsData.js so it can be swapped for API
- * responses later without touching this file.
+ * Now fetches from GET /instructor/notifications instead of mock
+ * data/notificationsData.js. "Mark all as read" has no backend
+ * endpoint yet — it's local-only (flips `unread` in this component's
+ * state, doesn't persist, will revert on next fetch/reload).
  */
 const Notifications = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [selectedNotification, setSelectedNotification] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchInstructorNotifications()
+      .then((data) => !cancelled && setNotifications(data))
+      .catch((err) => {
+        console.error("Failed to load notifications:", err);
+        if (!cancelled) setError("Unable to load notifications right now.");
+      })
+      .finally(() => !cancelled && setLoading(false));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const unreadCount = notifications.filter((n) => n.unread).length;
+
+  const tabsWithCounts = useMemo(
+    () =>
+      TAB_LABELS.map((tab) => {
+        if (tab.id === "all") return { ...tab, count: notifications.length };
+        if (tab.id === "unread") return { ...tab, count: unreadCount };
+        return {
+          ...tab,
+          count: notifications.filter((n) => n.category === tab.id).length,
+        };
+      }),
+    [notifications, unreadCount],
+  );
 
   const filteredNotifications = useMemo(() => {
-    if (activeTab === "all") return notificationRecords;
-    if (activeTab === "unread")
-      return notificationRecords.filter((n) => n.unread);
-    return notificationRecords.filter((n) => n.category === activeTab);
-  }, [activeTab]);
+    if (activeTab === "all") return notifications;
+    if (activeTab === "unread") return notifications.filter((n) => n.unread);
+    return notifications.filter((n) => n.category === activeTab);
+  }, [activeTab, notifications]);
 
   const handleMarkAllRead = () => {
-    // Wire up to PATCH /api/notifications/read-all when the backend is ready.
+    // No backend endpoint for this yet — local-only, reverts on next
+    // fetch/reload. Same deliberate stopgap used on the recruiter side.
+    setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
   };
 
   return (
     <div className="staff-dashboard">
       <Topbar
         user={{ name: "Staff Admin" }}
-        hasUnreadNotifications={true}
+        hasUnreadNotifications={unreadCount > 0}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
       />
 
       <div className="staff-dashboard__content">
-        <Sidebar /*isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)}*/
-        />
+        <Sidebar />
 
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
@@ -57,7 +90,8 @@ const Notifications = () => {
                 <div>
                   <h1 className="notifications-page__title">Notification</h1>
                   <p className="notifications-page__subtitle">
-                    you have {notificationMeta.unreadCount} unread notification
+                    you have {unreadCount} unread notification
+                    {unreadCount === 1 ? "" : "s"}
                   </p>
                 </div>
                 <Button variant="outline" onClick={handleMarkAllRead}>
@@ -67,17 +101,32 @@ const Notifications = () => {
 
               <div className="notifications-page__tabs-card">
                 <NotificationTabs
-                  tabs={notificationTabs}
+                  tabs={tabsWithCounts}
                   activeTab={activeTab}
                   onChange={setActiveTab}
                 />
               </div>
 
-              <NotificationList notifications={filteredNotifications} />
+              {error && <p className="notifications-page__error">{error}</p>}
+              {loading && !error && (
+                <p className="notifications-page__loading">
+                  Loading notifications...
+                </p>
+              )}
+              {!loading && !error && (
+                <NotificationList
+                  notifications={filteredNotifications}
+                  onSelect={setSelectedNotification}
+                />
+              )}
             </div>
           </main>
         </div>
       </div>
+      <NotificationDetailModal
+        notification={selectedNotification}
+        onClose={() => setSelectedNotification(null)}
+      />
     </div>
   );
 };

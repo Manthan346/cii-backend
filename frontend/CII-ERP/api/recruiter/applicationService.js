@@ -7,6 +7,18 @@ const STATUS_LABELS = {
   INTERVIEW: "Interview",
   SELECTED: "Selected",
   REJECTED: "Rejected",
+  WITHDRAWN: "Withdrawn",
+};
+
+const STATUS_LABEL_TO_ENUM = {
+  Screening: "SCREENING",
+  Shortlisted: "SHORTLISTED",
+  Interview: "INTERVIEW",
+  Selected: "SELECTED",
+  Rejected: "REJECTED",
+  Withdrawn: "WITHDRAWN",
+  // "Applied" intentionally excluded — not a valid value to PATCH to,
+  // per the endpoint's accepted list (it's only ever a starting state).
 };
 
 const AVATAR_COLORS = ["#7c3aed", "#0f766e", "#b45309", "#2563eb"];
@@ -25,7 +37,9 @@ const formatDisplayDate = (value) => {
 };
 
 const formatStatus = (value) => {
-  const normalized = String(value ?? "APPLIED").trim().toUpperCase();
+  const normalized = String(value ?? "APPLIED")
+    .trim()
+    .toUpperCase();
   return STATUS_LABELS[normalized] ?? normalized.replace(/_/g, " ");
 };
 
@@ -64,3 +78,23 @@ export async function fetchRecruiterApplications(params = {}) {
     pagination: response.data?.pagination ?? {},
   };
 }
+
+/**
+ * Updates a single application's status.
+ * @param {string} applicationId
+ * @param {string} statusLabel - UI label e.g. "Shortlisted"
+ */
+export async function updateApplicationStatus(applicationId, statusLabel) {
+  const enumStatus = STATUS_LABEL_TO_ENUM[statusLabel];
+  if (!enumStatus) {
+    throw new Error(`"${statusLabel}" is not a settable status.`);
+  }
+
+  const res = await API.patch(`/hr/applications/${applicationId}/status`, {
+    application_status: enumStatus,
+  });
+  return res.data?.data;
+}
+
+export const applicationStatusOptions = Object.keys(STATUS_LABEL_TO_ENUM);
+// -> ["Screening", "Shortlisted", "Interview", "Selected", "Rejected", "Withdrawn"]

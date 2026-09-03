@@ -95,13 +95,13 @@ const EventTable = ({
                       id: "view",
                       label: "View",
                       icon: Eye,
-                      onClick: () => onViewEvent(event.id),
+                      onClick: () => onViewEvent(event),
                     },
                     {
                       id: "edit",
                       label: "Edit",
                       icon: Pencil,
-                      onClick: () => onEditEvent(event.id),
+                      onClick: () => onEditEvent(event), // was onEditEvent(event.id)
                     },
                     {
                       id: "delete",

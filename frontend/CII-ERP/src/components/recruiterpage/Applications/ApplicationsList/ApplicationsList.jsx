@@ -1,8 +1,8 @@
 import React from "react";
-import ApplicationFilterBar from '../ApplicationFilterBar/ApplicationFilterBar';
-import ApplicationTable from '../ApplicationTable/ApplicationTable';
-import Pagination from '../../shared/Pagination/Pagination';
-import './ApplicationsList.css';
+import ApplicationFilterBar from "../ApplicationFilterBar/ApplicationFilterBar";
+import ApplicationTable from "../ApplicationTable/ApplicationTable";
+import Pagination from "../../shared/Pagination/Pagination";
+import "./ApplicationsList.css";
 
 /**
  * ApplicationsList
@@ -20,15 +20,17 @@ const ApplicationsList = ({
   isLoading,
   error,
   onViewProfile,
+  onStatusChange,
   onPageChange,
   onApplyFilters,
 }) => {
-
   return (
     <div className="applications-list">
       <header className="applications-list__header">
         <h1 className="applications-list__title">Applications</h1>
-        <p className="applications-list__subtitle">Every application received across all job postings</p>
+        <p className="applications-list__subtitle">
+          Every application received across all job postings
+        </p>
       </header>
 
       <ApplicationFilterBar onApplyFilter={onApplyFilters} />
@@ -37,7 +39,11 @@ const ApplicationsList = ({
 
       {!isLoading && !error && (
         <>
-          <ApplicationTable applications={applications} onViewProfile={onViewProfile} />
+          <ApplicationTable
+            applications={applications}
+            onViewProfile={onViewProfile}
+            onStatusChange={onStatusChange}
+          />
 
           <Pagination
             currentPage={currentPage}
@@ -49,7 +55,9 @@ const ApplicationsList = ({
       )}
 
       {isLoading && !error && (
-        <div className="applications-list__loading">Loading applications...</div>
+        <div className="applications-list__loading">
+          Loading applications...
+        </div>
       )}
     </div>
   );

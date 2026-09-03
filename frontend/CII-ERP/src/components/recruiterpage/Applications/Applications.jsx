@@ -1,21 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import ApplicationsList from './ApplicationsList/ApplicationsList';
-import CandidateProfile from './CandidateProfile/CandidateProfile';
-import { fetchRecruiterApplications } from "../../../../api/recruiter/applicationService";
+import ApplicationsList from "./ApplicationsList/ApplicationsList";
+import CandidateProfile from "./CandidateProfile/CandidateProfile";
+import {
+  fetchRecruiterApplications,
+  updateApplicationStatus,
+} from "../../../../api/recruiter/applicationService";
 
-/**
- * Applications (Recruiter)
- *
- * Owns the applications list and switches between two views entirely
- * on the client, same pattern as Job Management:
- *   - 'list'    -> ApplicationsList (filter bar + table + pagination)
- *   - 'profile' -> CandidateProfile (opened by a row's "View Profile")
- *
- * "Shortlist" / "Reject" / "Schedule Interview" on CandidateProfile
- * all just update that one candidate's `status` in place via
- * handleUpdateStatus - same local-state pattern used everywhere else
- * in this app (no backend yet).
- */
 const Applications = () => {
   const [applications, setApplications] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
@@ -24,6 +14,7 @@ const Applications = () => {
   const [pagination, setPagination] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [statusError, setStatusError] = useState("");
 
   const loadApplications = useCallback(async () => {
     try {
@@ -58,12 +49,31 @@ const Applications = () => {
     loadApplications();
   }, [loadApplications]);
 
-  const selectedCandidate = applications.find((item) => item.id === selectedId) ?? null;
+  const selectedCandidate =
+    applications.find((item) => item.id === selectedId) ?? null;
 
-  const handleUpdateStatus = (nextStatus) => {
-    setApplications((prev) =>
-      prev.map((item) => (item.id === selectedId ? { ...item, status: nextStatus } : item))
-    );
+  const handleUpdateStatus = async (nextStatus) => {
+    // Used by CandidateProfile (Shortlist / Reject / Schedule Interview buttons)
+    await handleStatusChange(selectedId, nextStatus);
+  };
+
+  const handleStatusChange = async (candidateId, nextStatus) => {
+    setStatusError("");
+    try {
+      await updateApplicationStatus(candidateId, nextStatus);
+      setApplications((prev) =>
+        prev.map((item) =>
+          item.id === candidateId ? { ...item, status: nextStatus } : item,
+        ),
+      );
+    } catch (err) {
+      console.error("Failed to update application status:", err);
+      setStatusError(
+        err?.response?.data?.message ||
+          err.message ||
+          "Failed to update status.",
+      );
+    }
   };
 
   if (selectedCandidate) {
@@ -77,20 +87,28 @@ const Applications = () => {
   }
 
   return (
-    <ApplicationsList
-      applications={applications}
-      currentPage={currentPage}
-      totalItems={pagination.totalItems ?? 0}
-      pageSize={pagination.limit ?? 10}
-      isLoading={isLoading}
-      error={error}
-      onViewProfile={setSelectedId}
-      onPageChange={setCurrentPage}
-      onApplyFilters={(nextFilters) => {
-        setCurrentPage(1);
-        setFilters(nextFilters);
-      }}
-    />
+    <>
+      {statusError && (
+        <div className="applications-list__error" role="alert">
+          {statusError}
+        </div>
+      )}
+      <ApplicationsList
+        applications={applications}
+        currentPage={currentPage}
+        totalItems={pagination.totalItems ?? 0}
+        pageSize={pagination.limit ?? 10}
+        isLoading={isLoading}
+        error={error}
+        onViewProfile={setSelectedId}
+        onStatusChange={handleStatusChange}
+        onPageChange={setCurrentPage}
+        onApplyFilters={(nextFilters) => {
+          setCurrentPage(1);
+          setFilters(nextFilters);
+        }}
+      />
+    </>
   );
 };
 

@@ -72,12 +72,6 @@
   flex-wrap: wrap;
 }
 
-.attendance-management-attendance-tracker-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
 /* ---- Filter bar (Search / Batch / Date / Status / Apply) ---- */
 .attendance-management-attendance-tracker-filter-bar {
   display: grid;
@@ -199,9 +193,6 @@
 }
 
 @media (max-width: 1024px) {
-  .attendance-management-attendance-tracker-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .attendance-management-attendance-tracker-filter-bar {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -210,9 +201,6 @@
 @media (max-width: 640px) {
   .attendance-management-attendance-tracker-content {
     padding: 0 16px;
-  }
-  .attendance-management-attendance-tracker-stats-grid {
-    grid-template-columns: 1fr;
   }
   .attendance-management-attendance-tracker-filter-bar {
     grid-template-columns: 1fr;
