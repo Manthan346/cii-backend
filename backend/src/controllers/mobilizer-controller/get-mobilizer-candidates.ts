@@ -34,7 +34,13 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
         candidate_last_name: true,
         candidate_unique_id: true,
         contact_number: true,
-        is_active: true,
+      
+        user_login: {
+          select: {
+          user_email: true,
+          is_active: true
+          },
+        },
       },
       orderBy: {
         candidate_first_name: "asc",
@@ -106,8 +112,8 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
     candidate_unique_id: candidate.candidate_unique_id,
     full_name: `${candidate.candidate_first_name} ${candidate.candidate_last_name}`.trim(),
     contact_number: candidate.contact_number,
-    email_id: "", // Email is in user_login, not candidates_details - mobilizer can get it from user login if needed
-    is_active: candidate.is_active,
+    email_id: candidate.user_login?.user_email || "", // Email from user_login
+   
 
     // Enrollment info
     course_name: enrollmentMap.get(candidate.candidate_id)?.course_name || "Not Enrolled",
