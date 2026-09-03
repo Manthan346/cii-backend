@@ -24,6 +24,13 @@ function formatDate(value) {
   }).format(new Date(value));
 }
 
+function normalizeEventStatus(event) {
+  return String(event.event_status ?? event.status ?? "")
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "_");
+}
+
 function toEvent(event) {
   const photos = (event.event_documents || []).map((url, index) => ({
     url,
@@ -34,6 +41,7 @@ function toEvent(event) {
   return {
     ...event,
     id: event.event_id,
+    event_status: normalizeEventStatus(event),
     title: event.event_title,
     date: formatDate(event.event_date),
     dateObj: new Date(event.event_date),

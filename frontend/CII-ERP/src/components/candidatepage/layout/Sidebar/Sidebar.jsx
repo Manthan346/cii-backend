@@ -63,7 +63,7 @@ const NAV_PROGRESS = [
   { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
   { icon: 'upload',       label: 'Study Material',    to: '/progress/studymaterial'    },
   { icon: 'certificate',  label: 'Certificates',      to: '/progress/certificates'     },
-  { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
+  // { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 
 const NAV_SCHEDULE = [

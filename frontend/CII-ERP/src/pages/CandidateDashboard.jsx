@@ -50,7 +50,7 @@ export default function CandidateDashboard() {
         <Route path="/progress/studymaterial" element={<StudyMaterial />} />
         <Route path="/progress/certificates" element={<Certificates />} />
         <Route path="/notifications" element={<NotificationDashboard />} />
-        <Route path="/progress/jobopportunities" element={<JobOpportunities />} />
+        {/* <Route path="/progress/jobopportunities" element={<JobOpportunities />} /> */}
 
       </Routes>
     </div>
