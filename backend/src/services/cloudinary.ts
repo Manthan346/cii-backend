@@ -22,7 +22,7 @@ export const uploadCloudnary = async (localFilePath: string) => {
   console.log('[Cloudinary] Uploading file:', absolutePath);
 
   try {
-    const response = await cloudnary.uploader.upload(absolutePath, {
+    const response = await cloudnary.uploader.upload(absolutePath,{
       resource_type: "raw",
     });
 
