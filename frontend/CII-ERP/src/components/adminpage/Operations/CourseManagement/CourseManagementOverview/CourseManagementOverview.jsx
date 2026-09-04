@@ -1,6 +1,6 @@
-import React from 'react';
-import StatCard from '../../../shared/StatCard/StatCard';
-import './CourseManagementOverview.css';
+import React from "react";
+import StatCard from "../../../shared/StatCard/StatCard";
+import "./CourseManagementOverview.css";
 
 /**
  * CourseManagementOverview
@@ -26,8 +26,6 @@ const CourseManagementOverview = ({ stats = [] }) => {
           value={stat.value}
           icon={stat.icon}
           iconBg={stat.iconBg}
-          trendValue={stat.trendValue}
-          trendDirection={stat.trendDirection}
         />
       ))}
     </div>

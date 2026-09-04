@@ -29,6 +29,7 @@ const UsersTable = ({
   pagination = {},
   onPageChange,
   onAddUser,
+  showAddUser = true,
   onViewUser,
   onRowMenu,
   selectedIds = [],
@@ -52,9 +53,11 @@ const UsersTable = ({
     <SectionCard
       title={`All User-${totalResults.toLocaleString()} results`}
       action={
-        <Button size="sm" onClick={onAddUser}>
-          Add user
-        </Button>
+        showAddUser ? (
+          <Button size="sm" onClick={onAddUser}>
+            Add user
+          </Button>
+        ) : null
       }
     >
       <div className="admin-table-wrap">

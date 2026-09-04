@@ -1,6 +1,6 @@
-import React from 'react';
-import StatCard from '../../../shared/StatCard/StatCard';
-import './ApprovalRequestsOverview.css';
+import React from "react";
+import StatCard from "../../../shared/StatCard/StatCard";
+import "./ApprovalRequestsOverview.css";
 
 /**
  * ApprovalRequestsOverview
@@ -27,10 +27,6 @@ const ApprovalRequestsOverview = ({ stats = [] }) => {
           value={stat.value}
           icon={stat.icon}
           iconBg={stat.iconBg}
-          trendValue={stat.trendValue}
-          trendLabel={stat.trendLabel}
-          trendDirection={stat.trendDirection}
-          trendText={stat.trendText}
         />
       ))}
     </div>

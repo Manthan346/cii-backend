@@ -1,6 +1,6 @@
-import React from 'react';
-import StatCard from '../../shared/StatCard/StatCard';
-import './StatsOverview.css';
+import React from "react";
+import StatCard from "../../shared/StatCard/StatCard";
+import "./StatsOverview.css";
 
 /**
  * StatsOverview
@@ -23,8 +23,6 @@ const StatsOverview = ({ stats = [] }) => {
           value={stat.value}
           icon={stat.icon}
           iconBg={stat.iconBg}
-          trendValue={stat.trendValue}
-          trendDirection={stat.trendDirection}
         />
       ))}
     </div>

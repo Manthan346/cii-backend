@@ -1,16 +1,15 @@
-import React from 'react';
-import { UserRound, Eye, Pencil, MoreVertical } from 'lucide-react';
-import SectionCard from '../../shared/SectionCard/SectionCard';
-import Button from '../../shared/Button/Button';
-import Pagination from '../../shared/Pagination/Pagination';
-import ProgressBar from '../../shared/ProgressBar/ProgressBar';
-import './CandidatesTable.css';
+import React from "react";
+import { UserRound, Eye, Pencil, MoreVertical } from "lucide-react";
+import SectionCard from "../../shared/SectionCard/SectionCard";
+import Button from "../../shared/Button/Button";
+import Pagination from "../../shared/Pagination/Pagination";
+import "./CandidatesTable.css";
 
 /**
  * CandidatesTable
  *
  * "All Candidates - N results" list: selectable rows, candidate
- * identity, course/batch, attendance progress bar, certificate status,
+ * identity, course/batch, attendance percentage, certificate status,
  * row actions, and pagination. Rows with no course assigned yet (e.g.
  * a freshly-registered candidate) render "—" for course/batch/
  * attendance/certificate, matching the reference design.
@@ -48,7 +47,8 @@ const CandidatesTable = ({
   } = pagination;
 
   const isSelected = (id) => selectedIds.includes(id);
-  const allSelected = candidates.length > 0 && candidates.every((c) => isSelected(c.id));
+  const allSelected =
+    candidates.length > 0 && candidates.every((c) => isSelected(c.id));
 
   const rangeStart = totalResults === 0 ? 0 : (currentPage - 1) * pageSize + 1;
   const rangeEnd = Math.min(currentPage * pageSize, totalResults);
@@ -56,20 +56,11 @@ const CandidatesTable = ({
   return (
     <SectionCard
       title={`All Candidates-${totalResults.toLocaleString()} results`}
-      action={<Button size="sm" onClick={onAddCandidate}>Add Candidate</Button>}
     >
       <div className="admin-table-wrap">
         <table className="admin-candidates-table">
           <thead>
             <tr>
-              <th className="admin-candidates-table__checkbox-col">
-                <input
-                  type="checkbox"
-                  checked={allSelected}
-                  onChange={onToggleSelectAll}
-                  aria-label="Select all candidates"
-                />
-              </th>
               <th>candidate ID</th>
               <th>Name</th>
               <th>Course</th>
@@ -82,14 +73,6 @@ const CandidatesTable = ({
           <tbody>
             {candidates.map((candidate) => (
               <tr key={candidate.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={isSelected(candidate.id)}
-                    onChange={() => onToggleSelect?.(candidate.id)}
-                    aria-label={`Select ${candidate.name}`}
-                  />
-                </td>
                 <td className="admin-candidates-table__candidate-id">
                   {candidate.candidateId}
                 </td>
@@ -101,27 +84,25 @@ const CandidatesTable = ({
                     {candidate.name}
                   </div>
                 </td>
-                <td>{candidate.course || '—'}</td>
-                <td>{candidate.batch || '—'}</td>
+                <td>{candidate.course || "—"}</td>
+                <td>{candidate.batch || "—"}</td>
                 <td>
-                  {candidate.attendance != null ? (
-                    <ProgressBar value={candidate.attendance} />
-                  ) : (
-                    '—'
-                  )}
+                  {candidate.attendance != null
+                    ? `${candidate.attendance}%`
+                    : "—"}
                 </td>
                 <td>
-                  {candidate.certificate === 'issued' && (
+                  {candidate.certificate === "issued" && (
                     <span className="admin-candidates-table__cert admin-candidates-table__cert--issued">
                       Issued
                     </span>
                   )}
-                  {candidate.certificate === 'not-issued' && (
+                  {candidate.certificate === "not-issued" && (
                     <span className="admin-candidates-table__cert admin-candidates-table__cert--pending">
                       Not Issued
                     </span>
                   )}
-                  {!candidate.certificate && '—'}
+                  {!candidate.certificate && "—"}
                 </td>
                 <td>
                   <div className="admin-candidates-table__row-actions">
@@ -159,7 +140,8 @@ const CandidatesTable = ({
 
       <div className="admin-candidates-table__footer">
         <span className="admin-candidates-table__showing">
-          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()} Users
+          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()}{" "}
+          Users
         </span>
         <Pagination
           currentPage={currentPage}

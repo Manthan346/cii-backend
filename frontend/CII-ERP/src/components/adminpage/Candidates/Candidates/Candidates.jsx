@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { FileDown, Lock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { FileDown } from 'lucide-react';
 import Button from '../../shared/Button/Button';
 import CandidatesOverview from '../CandidatesOverview/CandidatesOverview';
 import CandidatesFilterBar from '../CandidatesFilterBar/CandidatesFilterBar';
@@ -40,8 +39,6 @@ const attendanceMatchesBucket = (attendance, bucket) => {
 };
 
 const Candidates = () => {
-  const navigate = useNavigate();
-
   const [search, setSearch] = useState('');
   const [course, setCourse] = useState('all');
   const [company, setCompany] = useState('all');
@@ -102,10 +99,6 @@ const Candidates = () => {
     console.log('export candidates');
   };
 
-  const handleViewDeactivated = () => {
-    navigate('/admin/candidates/suspended-accounts');
-  };
-
   return (
     <div className="admin-candidates">
       <div className="admin-candidates__heading">
@@ -116,9 +109,6 @@ const Candidates = () => {
           </p>
         </div>
         <div className="admin-candidates__heading-actions">
-          <Button variant="danger" icon={Lock} onClick={handleViewDeactivated}>
-            Deactivated Account
-          </Button>
           <Button icon={FileDown} onClick={handleExport}>
             Export As
           </Button>

@@ -19,10 +19,6 @@
   border-bottom: 1px solid #e7eaf1;
 }
 
-.admin-candidates-table__checkbox-col {
-  width: 44px;
-}
-
 .admin-candidates-table tbody td {
   padding: 16px 12px;
   border-bottom: 1px solid #f0f2f7;
