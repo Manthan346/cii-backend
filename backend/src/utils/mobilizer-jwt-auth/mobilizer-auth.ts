@@ -33,7 +33,7 @@ const generateMobilizerAccessToken = (token: accessTokenPayload) => {
     }
 
     const generateToken = jwt.sign(token, process.env.JWT_SECRET, {
-        expiresIn: "10m",
+        expiresIn: "10d",
     });
 
     return generateToken;
@@ -45,7 +45,7 @@ const generateMobilizerRefreshToken = (token: refreshTokenPayload) => {
     }
 
     const generateToken = jwt.sign(token, process.env.JWT_SECRET, {
-        expiresIn: "1d",
+        expiresIn: "20d",
     });
 
     return generateToken;

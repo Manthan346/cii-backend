@@ -34,7 +34,7 @@ type refreshTokenPayload = {
         throw new ApiError(404,"token is not generated")
     }
     const generateToken = jwt.sign(token, process.env.JWT_SECRET, {
-        expiresIn: "10m"
+        expiresIn: "10d"
     })
     return generateToken
 
@@ -46,7 +46,7 @@ type refreshTokenPayload = {
         throw new ApiError(404,"token is not generated")
     }
     const generateToken = jwt.sign(token, process.env.JWT_SECRET,{
-        expiresIn: "1d"
+        expiresIn: "20d"
     })
 
     return generateToken

@@ -32,7 +32,7 @@ const generateHrAccessToken = (token: HrAccessTokenPayload) => {
     }
 
     const generateToken = jwt.sign(token, process.env.JWT_SECRET, {
-        expiresIn: "10m",
+        expiresIn: "10d",
     });
 
     return generateToken;
@@ -44,7 +44,7 @@ const generateHrRefreshToken = (token: HrRefreshTokenPayload) => {
     }
 
     const generateToken = jwt.sign(token, process.env.JWT_SECRET, {
-        expiresIn: "1d",
+        expiresIn: "20d",
     });
 
     return generateToken;
