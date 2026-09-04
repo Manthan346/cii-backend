@@ -8,6 +8,7 @@ const links = [
   { label: "Course / Training", href: "#courses", route: null },
   { label: "Achievements", href: "#showcase", route: null },
   { label: "Events", href: null, route: "/events" },
+  { label: "Placements", href: null, route: "/placements" },
   { label: "Testimonials", href: "#testimonials", route: null },
   { label: "Contact Us", href: "#contact", route: null },
   { label: "Login", href: "#login", route: "/LoginPage" },
@@ -23,6 +24,7 @@ export default function Navbar() {
   // Auto-highlight correct link based on current route
   useEffect(() => {
     if (location.pathname === "/events") setActive("Events");
+    else if (location.pathname.startsWith("/placements")) setActive("Placements");
     else if (location.pathname === "/") setActive("Home");
   }, [location.pathname]);
 

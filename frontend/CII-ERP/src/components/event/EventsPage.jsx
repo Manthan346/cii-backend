@@ -5,7 +5,7 @@ import Footer from "../homepage/footer/Footer";
 import { getPublicEvents } from "../../../api/homepage/eventPageService";
 import "./EventsPage.css";
 
-const COMPLETED_EVENTS_PER_PAGE = 3;
+const COMPLETED_EVENTS_PER_PAGE = 6;
 const UPCOMING_EVENTS_PER_PAGE = 10;
 const CATEGORY_COLORS = {
   SEMINAR: "#0f2463",
@@ -22,6 +22,18 @@ function formatDate(value) {
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(value));
+}
+
+function formatTime(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return new Intl.DateTimeFormat("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+  }).format(date);
 }
 
 function normalizeEventStatus(event) {
@@ -45,6 +57,8 @@ function toEvent(event) {
     title: event.event_title,
     date: formatDate(event.event_date),
     dateObj: new Date(event.event_date),
+    startTime: formatTime(event.event_start_time),
+    endTime: formatTime(event.event_end_time),
     location: event.venue,
     category: event.event_type,
     description: event.event_description,
@@ -87,12 +101,12 @@ export default function EventsPage() {
   useEffect(() => {
     async function loadEvents() {
       try {
-        const firstPage = await getPublicEvents({ page: 1, limit: 100 });
+        const firstPage = await getPublicEvents({ page: 1, limit: 50 });
         const allEvents = [...(firstPage.events || [])];
         const totalPages = firstPage.pagination?.totalPages || 1;
 
         for (let page = 2; page <= totalPages; page += 1) {
-          const nextPage = await getPublicEvents({ page, limit: 100 });
+          const nextPage = await getPublicEvents({ page, limit: 50 });
           allEvents.push(...(nextPage.events || []));
         }
 
@@ -521,6 +535,9 @@ function UpcomingCard({ event }) {
         <div className="ep-ucard__location">
           <ModeIcon /> <strong>{event.event_mode || "-"}</strong>
         </div>
+        <div className="ep-ucard__location">
+          <span>Time</span> {event.startTime} - {event.endTime}
+        </div>
         <div className="ep-ucard__actions">
           {event.event_link && (
             <a
@@ -610,6 +627,11 @@ function PastCard({ event, reverse, onViewPhotos }) {
           </div>
           <div className="ep-pcard__meta-item">
             <span>{event.event_mode} event</span>
+          </div>
+          <div className="ep-pcard__meta-item">
+            <span>
+              {event.startTime} - {event.endTime}
+            </span>
           </div>
         </div>
         <div className="ep-pcard__actions">

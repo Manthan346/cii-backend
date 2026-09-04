@@ -32,6 +32,18 @@ function flattenNotifications(data) {
     .slice(0, 5);
 }
 
+function getUnreadCount(data) {
+  const notifications = ["today", "yesterday", "older"].flatMap(
+    (group) => data?.notifications?.[group] ?? [],
+  );
+  const apiCount = data?.unreadCount ?? data?.unread_count;
+
+  return (
+    apiCount ??
+    notifications.filter((notification) => !notification.is_read).length
+  );
+}
+
 export default function Topbar({
   search = "",
   onSearch = () => {},
@@ -50,7 +62,7 @@ export default function Topbar({
       .then((data) => {
         if (!cancelled) {
           setNotifications(flattenNotifications(data));
-          setUnreadCount(data?.unreadCount ?? 0);
+          setUnreadCount(getUnreadCount(data));
         }
       })
       .catch(() => {});
@@ -77,7 +89,7 @@ export default function Topbar({
       try {
         const data = await fetchNotifications();
         setNotifications(flattenNotifications(data));
-        setUnreadCount(data?.unreadCount ?? 0);
+        setUnreadCount(getUnreadCount(data));
       } catch {
         // Keep the last successful notification snapshot visible.
       }

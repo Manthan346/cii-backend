@@ -32,7 +32,8 @@ const EMPTY_FORM = {
   eventName: "",
   description: "",
   date: "",
-  time: "",
+  startTime: "",
+  endTime: "",
   eventMode: "OFFLINE",
   targetType: "PUBLIC",
   eventStatus: "UPCOMING",
@@ -58,7 +59,8 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
         eventName: event.title,
         eventType: event.type,
         date: event.rawDate || "",
-        time: event.rawTime || "",
+        startTime: event.rawStartTime || event.rawTime || "",
+        endTime: event.rawEndTime || "",
         eventMode: event.event_mode || "OFFLINE",
         targetType: event.target_type || "PUBLIC",
         eventStatus:
@@ -77,7 +79,14 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
     const digits = e.target.value.replace(/\D/g, "").slice(0, 4);
     const time =
       digits.length > 2 ? `${digits.slice(0, 2)}:${digits.slice(2)}` : digits;
-    setForm((f) => ({ ...f, time }));
+    setForm((f) => ({ ...f, startTime: time }));
+  };
+
+  const updateEndTime = (e) => {
+    const digits = e.target.value.replace(/\D/g, "").slice(0, 4);
+    const time =
+      digits.length > 2 ? `${digits.slice(0, 2)}:${digits.slice(2)}` : digits;
+    setForm((f) => ({ ...f, endTime: time }));
   };
 
   const handleClose = () => {
@@ -92,15 +101,23 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
       !form.eventName ||
       !form.description ||
       !form.date ||
-      !form.time ||
+      !form.startTime ||
+      !form.endTime ||
       !form.eventMode ||
       !form.targetType
     ) {
       setFormError("Please complete all required fields.");
       return;
     }
-    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(form.time)) {
+    if (
+      !/^([01]\d|2[0-3]):[0-5]\d$/.test(form.startTime) ||
+      !/^([01]\d|2[0-3]):[0-5]\d$/.test(form.endTime)
+    ) {
       setFormError("Enter a valid time in 24-hour format (HH:MM).");
+      return;
+    }
+    if (form.endTime <= form.startTime) {
+      setFormError("End time must be after start time.");
       return;
     }
     if (["OFFLINE", "HYBRID"].includes(form.eventMode) && !form.venue) {
@@ -205,8 +222,21 @@ export default function AddEventModal({ event, isOpen, onClose, onSubmit }) {
               maxLength={5}
               pattern="([01]\\d|2[0-3]):[0-5]\\d"
               required
-              value={form.time}
+              value={form.startTime}
               onChange={updateTime}
+            />
+          </label>
+          <label className="ae-field">
+            <span className="ae-field__label">Event End Time</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              placeholder="HH:MM"
+              maxLength={5}
+              pattern="([01]\\d|2[0-3]):[0-5]\\d"
+              required
+              value={form.endTime}
+              onChange={updateEndTime}
             />
           </label>
         </div>
