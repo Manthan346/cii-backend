@@ -7,11 +7,10 @@
  * `export * from './fileName'` line here to become available
  * app-wide - no import paths change elsewhere.
  */
-export * from './sidebarMenu';
-export * from './dashboardData';
-export * from './totalUsersData';
-export * from './candidatesData';
-export * from './suspendedAccountsData';
-export * from './courseManagementData';
-export * from './approvalRequestsPageData';
-export * from './profileData';
+export * from "./sidebarMenu";
+export * from "./dashboardData";
+export * from "./totalUsersData";
+export * from "./candidatesData";
+export * from "./courseManagementData";
+export * from "./approvalRequestsPageData";
+export * from "./profileData";

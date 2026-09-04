@@ -28,8 +28,8 @@ import AdminLayout from "../components/adminpage/layout/AdminLayout";
 import Dashboard from "../components/adminpage/Dashboard/Dashboard/Dashboard";
 import TotalUsers from "../components/adminpage/TotalUsers/TotalUsers/TotalUsers";
 import UserRecordView from "../components/adminpage/TotalUsers/UserRecordView/UserRecordView";
+import DeactivatedUsers from "../components/adminpage/TotalUsers/DeactivatedUsers/DeactivatedUsers";
 import Candidates from "../components/adminpage/Candidates/Candidates/Candidates";
-import SuspendedAccounts from "../components/adminpage/SuspendedAccounts/SuspendedAccounts/SuspendedAccounts";
 import CourseManagement from "../components/adminpage/Operations/CourseManagement/CourseManagement/CourseManagement";
 import ReportsAnalytics from "../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics";
 import ApprovalRequests from "../components/adminpage/System/ApprovalRequests/ApprovalRequests/ApprovalRequests";
@@ -42,12 +42,12 @@ export default function AdminDashboard() {
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="total-users" element={<TotalUsers />} />
+        <Route
+          path="total-users/deactivated-accounts"
+          element={<DeactivatedUsers />}
+        />
         <Route path="total-users/:userId" element={<UserRecordView />} />
         <Route path="candidates" element={<Candidates />} />
-        <Route
-          path="candidates/suspended-accounts"
-          element={<SuspendedAccounts />}
-        />
         <Route path="course-management" element={<CourseManagement />} />
         <Route path="reports-analytics" element={<ReportsAnalytics />} />
         <Route path="approval-requests" element={<ApprovalRequests />} />
