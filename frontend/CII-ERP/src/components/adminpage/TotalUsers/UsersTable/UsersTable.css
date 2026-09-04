@@ -76,6 +76,40 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  position: relative;
+}
+
+.admin-users-table__menu {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  z-index: 2;
+  min-width: 170px;
+  padding: 4px;
+  border: 1px solid #e7eaf1;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(20, 22, 43, 0.12);
+}
+
+.admin-users-table__menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #14162b;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-users-table__menu-item:hover {
+  background: #f5f6fa;
 }
 
 .admin-users-table__icon-btn {

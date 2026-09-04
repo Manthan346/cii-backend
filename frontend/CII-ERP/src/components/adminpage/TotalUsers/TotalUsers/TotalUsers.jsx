@@ -14,6 +14,7 @@ import {
 import {
   fetchAdminUsers,
   fetchAdminUserFilterOptions,
+  updateAdminUserApproval,
 } from "../../../../../api/admin/adminUsersService";
 import "./TotalUsers.css";
 
@@ -258,6 +259,19 @@ const TotalUsers = () => {
     navigate("/admin/total-users/deactivated-accounts");
   };
 
+  const handleToggleUserStatus = async (user) => {
+    try {
+      setError("");
+      await updateAdminUserApproval(user.id, user.status !== "active");
+      setRefreshTick((tick) => tick + 1);
+    } catch (err) {
+      setError(
+        err?.response?.data?.message ||
+          "Unable to update the user account status.",
+      );
+    }
+  };
+
   return (
     <div className="admin-total-users">
       <div className="admin-total-users__heading">
@@ -300,7 +314,7 @@ const TotalUsers = () => {
         onPageChange={setPage}
         onAddUser={handleAddUser}
         onViewUser={handleViewUser}
-        onRowMenu={(id) => console.log("menu", id)}
+        onToggleStatus={handleToggleUserStatus}
         selectedIds={selectedIds}
         onToggleSelect={handleToggleSelect}
         onToggleSelectAll={handleToggleSelectAll}

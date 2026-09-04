@@ -1,5 +1,5 @@
-import React from "react";
-import { UserRound, Eye, Pencil, MoreVertical } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { UserRound, MoreVertical, Upload } from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
 import Button from "../../shared/Button/Button";
 import Pagination from "../../shared/Pagination/Pagination";
@@ -31,14 +31,13 @@ const CandidatesTable = ({
   candidates = [],
   pagination = {},
   onPageChange,
-  onAddCandidate,
-  onViewCandidate,
-  onEditCandidate,
-  onRowMenu,
+  onUploadCertificate,
   selectedIds = [],
   onToggleSelect,
   onToggleSelectAll,
 }) => {
+  const [openMenuId, setOpenMenuId] = useState(null);
+  const fileInputRefs = useRef({});
   const {
     currentPage = 1,
     totalPages = 1,
@@ -109,27 +108,52 @@ const CandidatesTable = ({
                     <button
                       type="button"
                       className="admin-candidates-table__icon-btn"
-                      onClick={() => onViewCandidate?.(candidate.id)}
-                      aria-label={`View ${candidate.name}`}
-                    >
-                      <Eye size={15} strokeWidth={2} />
-                    </button>
-                    <button
-                      type="button"
-                      className="admin-candidates-table__icon-btn"
-                      onClick={() => onEditCandidate?.(candidate.id)}
-                      aria-label={`Edit ${candidate.name}`}
-                    >
-                      <Pencil size={14} strokeWidth={2} />
-                    </button>
-                    <button
-                      type="button"
-                      className="admin-candidates-table__icon-btn"
-                      onClick={() => onRowMenu?.(candidate.id)}
+                      onClick={() =>
+                        setOpenMenuId((currentId) =>
+                          currentId === candidate.id ? null : candidate.id,
+                        )
+                      }
                       aria-label={`More actions for ${candidate.name}`}
+                      aria-expanded={openMenuId === candidate.id}
                     >
                       <MoreVertical size={15} strokeWidth={2} />
                     </button>
+                    {openMenuId === candidate.id && (
+                      <div className="admin-candidates-table__menu">
+                        <button
+                          type="button"
+                          className="admin-candidates-table__menu-item"
+                          onClick={() =>
+                            fileInputRefs.current[candidate.id]?.click()
+                          }
+                          disabled={candidate.certificate === "issued"}
+                        >
+                          <Upload size={14} strokeWidth={2} />
+                          {candidate.certificate === "issued"
+                            ? "Certificate issued"
+                            : "Upload certificate"}
+                        </button>
+                        {candidate.certificate !== "issued" && (
+                          <span className="admin-candidates-table__menu-warning">
+                            PDF only, maximum size 5 MB
+                          </span>
+                        )}
+                        <input
+                          ref={(element) => {
+                            fileInputRefs.current[candidate.id] = element;
+                          }}
+                          type="file"
+                          accept="application/pdf,.pdf"
+                          hidden
+                          onChange={(event) => {
+                            const file = event.target.files?.[0];
+                            event.target.value = "";
+                            setOpenMenuId(null);
+                            onUploadCertificate?.(candidate, file);
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </td>
               </tr>

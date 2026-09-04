@@ -3,7 +3,10 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/Button/Button";
 import UsersTable from "../UsersTable/UsersTable";
-import { fetchAdminUsers } from "../../../../../api/admin/adminUsersService";
+import {
+  fetchDeactivatedUsers,
+  updateAdminUserApproval,
+} from "../../../../../api/admin/adminUsersService";
 import "../TotalUsers/TotalUsers.css";
 
 const DEFAULT_PAGINATION = {
@@ -46,8 +49,7 @@ const DeactivatedUsers = () => {
     setError("");
 
     try {
-      const response = await fetchAdminUsers({
-        status: "inactive",
+      const response = await fetchDeactivatedUsers({
         page,
         limit: 10,
       });
@@ -80,6 +82,18 @@ const DeactivatedUsers = () => {
     loadUsers();
   }, [loadUsers]);
 
+  const handleActivateUser = async (user) => {
+    try {
+      setError("");
+      await updateAdminUserApproval(user.id, true);
+      await loadUsers();
+    } catch (err) {
+      setError(
+        err?.response?.data?.message || "Unable to activate the user account.",
+      );
+    }
+  };
+
   return (
     <div className="admin-total-users">
       <Button
@@ -106,6 +120,7 @@ const DeactivatedUsers = () => {
         pagination={{ ...pagination, currentPage: page }}
         onPageChange={setPage}
         showAddUser={false}
+        onToggleStatus={handleActivateUser}
       />
 
       {loading && (

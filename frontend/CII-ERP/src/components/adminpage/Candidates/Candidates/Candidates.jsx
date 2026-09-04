@@ -1,19 +1,21 @@
-import React, { useMemo, useState } from 'react';
-import { FileDown } from 'lucide-react';
-import Button from '../../shared/Button/Button';
-import CandidatesOverview from '../CandidatesOverview/CandidatesOverview';
-import CandidatesFilterBar from '../CandidatesFilterBar/CandidatesFilterBar';
-import CandidatesTable from '../CandidatesTable/CandidatesTable';
+import React, { useEffect, useMemo, useState } from "react";
+import { CheckCircle2, ClipboardX, UserCheck, Users } from "lucide-react";
+import CandidatesOverview from "../CandidatesOverview/CandidatesOverview";
+import CandidatesFilterBar from "../CandidatesFilterBar/CandidatesFilterBar";
+import CandidatesTable from "../CandidatesTable/CandidatesTable";
 import {
-  candidateStats,
   candidateCourseOptions,
   candidateCompanyOptions,
   candidateAttendanceOptions,
   candidateCertificateOptions,
-  candidatesList,
   candidatesPagination,
-} from '../../data';
-import './Candidates.css';
+} from "../../data";
+import {
+  fetchAdminCandidateEnrollments,
+  fetchAdminCandidateStats,
+  uploadAdminCandidateCertificate,
+} from "../../../../../api/admin/candidateService";
+import "./Candidates.css";
 
 /**
  * Candidates (Admin)
@@ -30,54 +32,197 @@ import './Candidates.css';
  * the section components don't need to change, they just take the
  * same props.
  */
-const attendanceMatchesBucket = (attendance, bucket) => {
-  if (bucket === 'all' || attendance == null) return bucket === 'all';
-  if (bucket === 'high') return attendance >= 70;
-  if (bucket === 'mid') return attendance >= 40 && attendance < 70;
-  if (bucket === 'low') return attendance < 40;
-  return true;
+const normalizeEnrollment = (enrollment) => {
+  const candidate = enrollment.candidate ?? {};
+  const course = enrollment.course ?? {};
+  const batch = enrollment.batch ?? {};
+  const certificateStatus = String(
+    enrollment.certificate_status ?? "",
+  ).toLowerCase();
+
+  return {
+    id: enrollment.enrollment_id,
+    candidateUuid: candidate.candidate_id,
+    candidateId: candidate.candidate_unique_id ?? candidate.candidate_id,
+    name:
+      candidate.full_name ||
+      [candidate.first_name, candidate.last_name].filter(Boolean).join(" ") ||
+      "Unknown Candidate",
+    course: course.course_name,
+    batch: batch.batch_name || batch.batch_code,
+    attendance: enrollment.attendance_percentage,
+    certificate: certificateStatus === "issued" ? "issued" : "not-issued",
+  };
 };
 
+const MAX_CERTIFICATE_SIZE = 5 * 1024 * 1024;
+
 const Candidates = () => {
-  const [search, setSearch] = useState('');
-  const [course, setCourse] = useState('all');
-  const [company, setCompany] = useState('all');
-  const [attendance, setAttendance] = useState('all');
-  const [certificate, setCertificate] = useState('all');
+  const [candidateStats, setCandidateStats] = useState([]);
+  const [statsLoading, setStatsLoading] = useState(true);
+  const [statsError, setStatsError] = useState("");
+  const [search, setSearch] = useState("");
+  const [course, setCourse] = useState("all");
+  const [company, setCompany] = useState("all");
+  const [attendance, setAttendance] = useState("all");
+  const [certificate, setCertificate] = useState("all");
   const [page, setPage] = useState(candidatesPagination.currentPage);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [candidates, setCandidates] = useState([]);
+  const [candidatePagination, setCandidatePagination] = useState({
+    ...candidatesPagination,
+    totalResults: 0,
+  });
+  const [candidatesLoading, setCandidatesLoading] = useState(true);
+  const [candidatesError, setCandidatesError] = useState("");
 
-  // Client-side filtering over the mock list, standing in for a real
-  // `GET /api/admin/candidates?search=&course=&company=&attendance=&certificates=&page=` call.
-  const filteredCandidates = useMemo(() => {
-    return candidatesList.filter((candidate) => {
-      const q = search.trim().toLowerCase();
-      const matchesSearch =
-        !q ||
-        candidate.name.toLowerCase().includes(q) ||
-        candidate.candidateId.toLowerCase().includes(q);
-      const matchesCourse =
-        course === 'all' ||
-        (candidate.course &&
-          candidate.course.toLowerCase().replace(/\s+/g, '-') === course);
-      const matchesCompany = company === 'all';
-      const matchesAttendance = attendanceMatchesBucket(candidate.attendance, attendance);
-      const matchesCertificate =
-        certificate === 'all' || candidate.certificate === certificate;
+  useEffect(() => {
+    let cancelled = false;
 
-      return (
-        matchesSearch &&
-        matchesCourse &&
-        matchesCompany &&
-        matchesAttendance &&
-        matchesCertificate
+    fetchAdminCandidateStats()
+      .then((summary) => {
+        if (cancelled) return;
+
+        setCandidateStats([
+          {
+            id: "total-candidates",
+            label: "Total Candidates",
+            value: summary.total_candidates ?? 0,
+            icon: Users,
+            iconBg: "#5B7CFA",
+          },
+          {
+            id: "total-enrollments",
+            label: "Total Enrollments",
+            value: summary.total_enrollments ?? 0,
+            icon: UserCheck,
+            iconBg: "#34D399",
+          },
+          {
+            id: "certificates-issued",
+            label: "Certificates Issued",
+            value: summary.certificates_issued ?? 0,
+            icon: CheckCircle2,
+            iconBg: "#60A5FA",
+          },
+          {
+            id: "enrolled-this-month",
+            label: "Enrolled This Month",
+            value: summary.enrollments_this_month ?? 0,
+            icon: ClipboardX,
+            iconBg: "#F87171",
+          },
+        ]);
+      })
+      .catch(() => {
+        if (!cancelled) setStatsError("Unable to load candidate stats.");
+      })
+      .finally(() => {
+        if (!cancelled) setStatsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    setCandidatesLoading(true);
+    setCandidatesError("");
+
+    fetchAdminCandidateEnrollments({
+      page,
+      limit: 10,
+      search,
+      attendance,
+    })
+      .then((response) => {
+        if (cancelled) return;
+
+        const responsePagination = response.pagination ?? {};
+        setCandidates((response.enrollments ?? []).map(normalizeEnrollment));
+        setCandidatePagination({
+          currentPage: Number(responsePagination.page ?? page),
+          totalPages: Number(responsePagination.totalPages ?? 1),
+          pageSize: Number(responsePagination.limit ?? 10),
+          totalResults: Number(responsePagination.total ?? 0),
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCandidatesError("Unable to load candidates.");
+          setCandidates([]);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setCandidatesLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [page, search, attendance]);
+
+  const handleUploadCertificate = async (candidate, file) => {
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      setCandidatesError("Please select a PDF certificate file.");
+      return;
+    }
+
+    if (file.size > MAX_CERTIFICATE_SIZE) {
+      setCandidatesError("Certificate file size must not exceed 5 MB.");
+      return;
+    }
+
+    try {
+      setCandidatesError("");
+      await uploadAdminCandidateCertificate(
+        candidate.candidateUuid,
+        candidate.id,
+        file,
       );
+      const response = await fetchAdminCandidateEnrollments({
+        page,
+        limit: 10,
+        search,
+        attendance,
+      });
+      const responsePagination = response.pagination ?? {};
+      setCandidates((response.enrollments ?? []).map(normalizeEnrollment));
+      setCandidatePagination({
+        currentPage: Number(responsePagination.page ?? page),
+        totalPages: Number(responsePagination.totalPages ?? 1),
+        pageSize: Number(responsePagination.limit ?? 10),
+        totalResults: Number(responsePagination.total ?? 0),
+      });
+    } catch (error) {
+      setCandidatesError(
+        error?.response?.data?.message || "Unable to upload the certificate.",
+      );
+    }
+  };
+
+  const filteredCandidates = useMemo(() => {
+    return candidates.filter((candidate) => {
+      const matchesCourse =
+        course === "all" ||
+        (candidate.course &&
+          candidate.course.toLowerCase().replace(/\s+/g, "-") === course);
+      const matchesCompany = company === "all";
+      const matchesCertificate =
+        certificate === "all" || candidate.certificate === certificate;
+
+      return matchesCourse && matchesCompany && matchesCertificate;
     });
-  }, [search, course, company, attendance, certificate]);
+  }, [candidates, course, company, certificate]);
 
   const handleToggleSelect = (id) => {
     setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((sel) => sel !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((sel) => sel !== id) : [...prev, id],
     );
   };
 
@@ -85,18 +230,8 @@ const Candidates = () => {
     setSelectedIds((prev) =>
       prev.length === filteredCandidates.length
         ? []
-        : filteredCandidates.map((c) => c.id)
+        : filteredCandidates.map((c) => c.id),
     );
-  };
-
-  const handleAddCandidate = () => {
-    // TODO: open an "Add Candidate" modal / navigate to a create form
-    console.log('add candidate');
-  };
-
-  const handleExport = () => {
-    // TODO: GET /api/admin/candidates/export?format=csv (or similar)
-    console.log('export candidates');
   };
 
   return (
@@ -108,14 +243,22 @@ const Candidates = () => {
             Manage all candidates across all centers
           </p>
         </div>
-        <div className="admin-candidates__heading-actions">
-          <Button icon={FileDown} onClick={handleExport}>
-            Export As
-          </Button>
-        </div>
       </div>
 
-      <CandidatesOverview stats={candidateStats} />
+      {statsError && (
+        <div className="admin-candidates__error">{statsError}</div>
+      )}
+      {statsLoading ? (
+        <div className="admin-candidates__loading">
+          Loading candidate stats...
+        </div>
+      ) : (
+        <CandidatesOverview stats={candidateStats} />
+      )}
+
+      {candidatesError && (
+        <div className="admin-candidates__error">{candidatesError}</div>
+      )}
 
       <CandidatesFilterBar
         search={search}
@@ -136,16 +279,17 @@ const Candidates = () => {
 
       <CandidatesTable
         candidates={filteredCandidates}
-        pagination={{ ...candidatesPagination, currentPage: page }}
+        pagination={{ ...candidatePagination, currentPage: page }}
         onPageChange={setPage}
-        onAddCandidate={handleAddCandidate}
-        onViewCandidate={(id) => console.log('view', id)}
-        onEditCandidate={(id) => console.log('edit', id)}
-        onRowMenu={(id) => console.log('menu', id)}
+        onUploadCertificate={handleUploadCertificate}
         selectedIds={selectedIds}
         onToggleSelect={handleToggleSelect}
         onToggleSelectAll={handleToggleSelectAll}
       />
+
+      {candidatesLoading && (
+        <div className="admin-candidates__loading">Loading candidates...</div>
+      )}
     </div>
   );
 };
