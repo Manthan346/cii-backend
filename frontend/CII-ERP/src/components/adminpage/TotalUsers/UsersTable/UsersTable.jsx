@@ -1,5 +1,5 @@
-import React from "react";
-import { UserRound, Eye, MoreVertical } from "lucide-react";
+import React, { useState } from "react";
+import { UserRound, Eye, MoreVertical, Lock, Unlock } from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
 import StatusPill from "../../shared/StatusPill/StatusPill";
 import Button from "../../shared/Button/Button";
@@ -32,10 +32,12 @@ const UsersTable = ({
   showAddUser = true,
   onViewUser,
   onRowMenu,
+  onToggleStatus,
   selectedIds = [],
   onToggleSelect,
   onToggleSelectAll,
 }) => {
+  const [openMenuId, setOpenMenuId] = useState(null);
   const {
     currentPage = 1,
     totalPages = 1,
@@ -116,11 +118,38 @@ const UsersTable = ({
                     <button
                       type="button"
                       className="admin-users-table__icon-btn"
-                      onClick={() => onRowMenu?.(user.id)}
+                      onClick={() => {
+                        setOpenMenuId((currentId) =>
+                          currentId === user.id ? null : user.id,
+                        );
+                        onRowMenu?.(user.id);
+                      }}
                       aria-label={`More actions for ${user.name}`}
+                      aria-expanded={openMenuId === user.id}
                     >
                       <MoreVertical size={15} strokeWidth={2} />
                     </button>
+                    {openMenuId === user.id && (
+                      <div className="admin-users-table__menu">
+                        <button
+                          type="button"
+                          className="admin-users-table__menu-item"
+                          onClick={() => {
+                            setOpenMenuId(null);
+                            onToggleStatus?.(user);
+                          }}
+                        >
+                          {user.status === "active" ? (
+                            <Lock size={14} strokeWidth={2} />
+                          ) : (
+                            <Unlock size={14} strokeWidth={2} />
+                          )}
+                          {user.status === "active"
+                            ? "Deactivate account"
+                            : "Activate account"}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </td>
               </tr>

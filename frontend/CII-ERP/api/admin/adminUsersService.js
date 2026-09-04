@@ -25,6 +25,30 @@ export async function fetchAdminUsers({
   );
 }
 
+export async function fetchDeactivatedUsers({
+  page = 1,
+  limit = DEFAULT_LIMIT,
+} = {}) {
+  const response = await API.get("/admin/total-users/deactivated", {
+    params: { page, limit },
+  });
+
+  return (
+    response?.data?.data ?? {
+      users: [],
+      pagination: { page, limit, totalUsers: 0, totalPages: 1 },
+    }
+  );
+}
+
+export async function updateAdminUserApproval(userId, isActive) {
+  const response = await API.patch(`/admin/total-users/${userId}/approval`, {
+    is_active: isActive,
+  });
+
+  return response?.data?.data;
+}
+
 const normalizeFilterOptionValue = (value) => {
   if (value === null || value === undefined) return "";
 

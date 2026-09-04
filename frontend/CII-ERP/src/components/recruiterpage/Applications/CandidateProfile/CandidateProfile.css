@@ -90,36 +90,6 @@
   white-space: nowrap;
 }
 
-.candidate-profile__btn--shortlist {
-  border-color: #ddd6fe;
-  background: #f3f0ff;
-  color: #4338ca;
-}
-
-.candidate-profile__btn--shortlist:hover {
-  background: #ede9fe;
-}
-
-.candidate-profile__btn--reject {
-  border-color: #fecaca;
-  background: #fff1f1;
-  color: #dc2626;
-}
-
-.candidate-profile__btn--reject:hover {
-  background: #fee2e2;
-}
-
-.candidate-profile__btn--schedule {
-  border: none;
-  background: #4338ca;
-  color: #ffffff;
-}
-
-.candidate-profile__btn--schedule:hover {
-  background: #372fb0;
-}
-
 .candidate-profile__btn--download:hover {
   background: #f7f8fb;
 }

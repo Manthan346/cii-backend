@@ -32,7 +32,7 @@
   border-bottom: none;
 }
 
-.admin-candidates-table input[type='checkbox'] {
+.admin-candidates-table input[type="checkbox"] {
   width: 16px;
   height: 16px;
   accent-color: #3e5feb;
@@ -79,6 +79,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  position: relative;
 }
 
 .admin-candidates-table__icon-btn {
@@ -96,6 +97,53 @@
 
 .admin-candidates-table__icon-btn:hover {
   background: #f5f6fa;
+}
+
+.admin-candidates-table__menu {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  z-index: 2;
+  min-width: 190px;
+  padding: 4px;
+  border: 1px solid #e7eaf1;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(20, 22, 43, 0.12);
+}
+
+.admin-candidates-table__menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #14162b;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.admin-candidates-table__menu-item:hover:not(:disabled) {
+  background: #f5f6fa;
+}
+
+.admin-candidates-table__menu-item:disabled {
+  color: #9aa1b1;
+  cursor: not-allowed;
+}
+
+.admin-candidates-table__menu-warning {
+  display: block;
+  padding: 4px 10px 6px;
+  color: #9a3412;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 /* Footer: showing count + pagination

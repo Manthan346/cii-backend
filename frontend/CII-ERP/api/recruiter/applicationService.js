@@ -51,12 +51,21 @@ export function normalizeRecruiterApplication(application = {}, index = 0) {
     jobRole: application.placement?.job_role ?? "-",
     company: application.placement?.company_name ?? "-",
     contactNo: application.contact_no ?? "-",
+    phone: application.contact_no ?? "-",
     appliedDate: formatDisplayDate(application.applied_date),
     appliedDateISO: application.applied_date?.slice(0, 10) ?? "",
     resumeUrl: application.resume ?? "",
     source: application.source ?? "-",
     status: formatStatus(application.application_status),
     email: application.email ?? "-",
+    location: "-",
+    dob: "-",
+    degree: "-",
+    college: "-",
+    graduationYear: "-",
+    percentage: "-",
+    certificates: [],
+    coursesCompleted: [],
   };
 }
 
