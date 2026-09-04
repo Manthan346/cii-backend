@@ -10,7 +10,8 @@ export const createJobEvent = asyncHandler(
       event_type,
       event_name,
       event_date,
-      event_time,
+      event_start_time,
+      event_end_time,
       address,
       google_map_link,
       description,
@@ -22,14 +23,27 @@ export const createJobEvent = asyncHandler(
       throw new ApiError(401, "HR authentication required");
     }
 
+    // Parse base date
+    const baseDate = new Date(event_date);
+
+    // Create proper DateTime values for time fields (combine date with time)
+    const eventStartTime = event_start_time
+      ? new Date(`${baseDate.toISOString().split('T')[0]}T${event_start_time}:00.000Z`)
+      : undefined;
+
+    const eventEndTime = event_end_time
+      ? new Date(`${baseDate.toISOString().split('T')[0]}T${event_end_time}:00.000Z`)
+      : undefined;
+
     const result = await prisma.$transaction(async (tx) => {
       // Create job event
       const jobEvent = await tx.job_events.create({
         data: {
           event_type,
           event_name,
-          event_date: new Date(event_date),
-          event_time: new Date(`1970-01-01T${event_time}:00`),
+          event_date: baseDate,
+          event_start_time: eventStartTime,
+          event_end_time: eventEndTime,
           address,
           google_map_link,
           description,
@@ -46,7 +60,7 @@ export const createJobEvent = asyncHandler(
               : "New Job Drive",
 
           notification_message:
-            `${event_name} has been created. Check the event details for more information .`,
+            `${event_name} has been created on ${baseDate.toDateString()} from ${event_start_time || 'Time not specified'} to ${event_end_time || 'Time not specified'}. Check the event details for more information.`,
 
           notification_type: "JOB_EVENT_CREATED",
           reference_type: "JOB_EVENT",
@@ -66,7 +80,7 @@ export const createJobEvent = asyncHandler(
         },
       });
 
-      // Notifications are sent to all relevent users 
+      // Notifications are sent to all relevent users
       if (users.length > 0) {
         await tx.user_notifications.createMany({
           data: users.map((user) => ({

@@ -36,6 +36,7 @@ import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/f
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
+import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
 
 const adminRouter = Router();
 
@@ -73,6 +74,13 @@ adminRouter.post(
     verifyAdminUsingAccessToken,
     validateBody(mobilizerEnrollCandidateSchema),
     adminCreateCandidate
+);
+
+// GET candidate details by ID (admin only)
+adminRouter.get(
+    "/candidates/:candidateId",
+    verifyAdminUsingAccessToken,
+    getMobilizerCandidateDetails
 );
 
 // GET center-scoped stats: total users, total instructors, total candidates, new users this month

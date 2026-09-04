@@ -59,7 +59,26 @@ export const updatePublicEvent = asyncHandler(
     if (data.event_title !== undefined) updateData.event_title = data.event_title;
     if (data.event_description !== undefined) updateData.event_description = data.event_description;
     if (data.event_date !== undefined) updateData.event_date = new Date(data.event_date);
-    if (data.event_time !== undefined) updateData.event_time = new Date(`1970-01-01T${data.event_time}:00`);
+
+    // Handle date and time conversion for DateTime fields
+    let eventStartTime: Date | undefined;
+    let eventEndTime: Date | undefined;
+
+    if (data.event_date !== undefined && data.event_start_time !== undefined) {
+      const baseDate = new Date(data.event_date);
+      eventStartTime = new Date(`${baseDate.toISOString().split('T')[0]}T${data.event_start_time}:00.000Z`);
+    }
+
+    if (data.event_date !== undefined && data.event_end_time !== undefined) {
+      const baseDate = new Date(data.event_date);
+      eventEndTime = new Date(`${baseDate.toISOString().split('T')[0]}T${data.event_end_time}:00.000Z`);
+    }
+
+    if (data.event_title !== undefined) updateData.event_title = data.event_title;
+    if (data.event_description !== undefined) updateData.event_description = data.event_description;
+    if (data.event_date !== undefined) updateData.event_date = new Date(data.event_date);
+    if (eventStartTime !== undefined) updateData.event_start_time = eventStartTime;
+    if (eventEndTime !== undefined) updateData.event_end_time = eventEndTime;
     if (data.venue !== undefined) updateData.venue = data.venue;
     if (data.event_link !== undefined) updateData.event_link = data.event_link;
     if (data.event_mode !== undefined) updateData.event_mode = data.event_mode;
@@ -81,6 +100,24 @@ export const updatePublicEvent = asyncHandler(
     const updatedEvent = await prisma.event_details.update({
       where: { event_id },
       data: updateData,
+    });
+
+    // Create notification
+    const startTimeStr = updatedEvent.event_start_time
+      ? updatedEvent.event_start_time.toISOString().substring(11, 16)
+      : 'Time not specified';
+    const endTimeStr = updatedEvent.event_end_time
+      ? updatedEvent.event_end_time.toISOString().substring(11, 16)
+      : 'Time not specified';
+    const notification = await prisma.notifications.create({
+      data: {
+        title: "Event Updated",
+        notification_message:
+          `${updatedEvent.event_title} has been updated. The event is scheduled for ${updatedEvent.event_date.toISOString().split('T')[0]} from ${startTimeStr} to ${endTimeStr} at ${updatedEvent.venue}.`,
+        notification_type: "EVENT_UPDATED",
+        reference_type: "EVENT",
+        reference_id: updatedEvent.event_id
+      }
     });
 
     // Prepare response with mobilizer name

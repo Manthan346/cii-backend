@@ -25,7 +25,8 @@ import { getEnquiryStats } from '../../controllers/mobilizer-controller/enquiry-
 import { getMobilizerNotifications } from '../../controllers/mobilizer-controller/get-notifications';
 import { mobilizerEnrollCandidate } from '../../controllers/mobilizer-controller/enroll-candidate';
 import { mobilizerEnrollCandidateSchema } from '../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema';
-import { getMobilizerCandidateDetailById } from '../../controllers/mobilizer-controller/get-mobilizer-candidate-detail-by-id';
+import { getMobilizerCandidateDetails } from '../../controllers/mobilizer-controller/get-mobilizer-candidate-details';
+
 
 const mobilizerRouter = Router();
 
@@ -160,14 +161,14 @@ mobilizerRouter.get(
     getMobilizerCandidates
 );
 
-// Get detailed profile for each candidate (documents, enrollment, batch info)
-
-
 // Get specific candidate details by ID (full profile with documents, enrollments, batch info)
 mobilizerRouter.get(
-    "/candidates/:candidateId/details",
+    "/candidates/:candidateId",
     verifyMobilizerUsingAccessToken,
-    getMobilizerCandidateDetailById
+    getMobilizerCandidateDetails
 );
+
+// Get detailed profile for each candidate (documents, enrollment, batch info)
+
 
 export default mobilizerRouter

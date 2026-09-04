@@ -30,7 +30,7 @@ export type Event_detailsMinAggregateOutputType = {
   event_title: string | null
   event_description: string | null
   event_date: Date | null
-  event_time: Date | null
+  event_start_time: Date | null
   venue: string | null
   is_show: boolean | null
   created_by: string | null
@@ -42,6 +42,7 @@ export type Event_detailsMinAggregateOutputType = {
   event_type: $Enums.event_type | null
   target_type: $Enums.event_target_type | null
   event_status: $Enums.event_status_type | null
+  event_end_time: Date | null
 }
 
 export type Event_detailsMaxAggregateOutputType = {
@@ -50,7 +51,7 @@ export type Event_detailsMaxAggregateOutputType = {
   event_title: string | null
   event_description: string | null
   event_date: Date | null
-  event_time: Date | null
+  event_start_time: Date | null
   venue: string | null
   is_show: boolean | null
   created_by: string | null
@@ -62,6 +63,7 @@ export type Event_detailsMaxAggregateOutputType = {
   event_type: $Enums.event_type | null
   target_type: $Enums.event_target_type | null
   event_status: $Enums.event_status_type | null
+  event_end_time: Date | null
 }
 
 export type Event_detailsCountAggregateOutputType = {
@@ -70,7 +72,7 @@ export type Event_detailsCountAggregateOutputType = {
   event_title: number
   event_description: number
   event_date: number
-  event_time: number
+  event_start_time: number
   venue: number
   is_show: number
   created_by: number
@@ -83,6 +85,7 @@ export type Event_detailsCountAggregateOutputType = {
   target_type: number
   event_status: number
   event_documents: number
+  event_end_time: number
   _all: number
 }
 
@@ -93,7 +96,7 @@ export type Event_detailsMinAggregateInputType = {
   event_title?: true
   event_description?: true
   event_date?: true
-  event_time?: true
+  event_start_time?: true
   venue?: true
   is_show?: true
   created_by?: true
@@ -105,6 +108,7 @@ export type Event_detailsMinAggregateInputType = {
   event_type?: true
   target_type?: true
   event_status?: true
+  event_end_time?: true
 }
 
 export type Event_detailsMaxAggregateInputType = {
@@ -113,7 +117,7 @@ export type Event_detailsMaxAggregateInputType = {
   event_title?: true
   event_description?: true
   event_date?: true
-  event_time?: true
+  event_start_time?: true
   venue?: true
   is_show?: true
   created_by?: true
@@ -125,6 +129,7 @@ export type Event_detailsMaxAggregateInputType = {
   event_type?: true
   target_type?: true
   event_status?: true
+  event_end_time?: true
 }
 
 export type Event_detailsCountAggregateInputType = {
@@ -133,7 +138,7 @@ export type Event_detailsCountAggregateInputType = {
   event_title?: true
   event_description?: true
   event_date?: true
-  event_time?: true
+  event_start_time?: true
   venue?: true
   is_show?: true
   created_by?: true
@@ -146,6 +151,7 @@ export type Event_detailsCountAggregateInputType = {
   target_type?: true
   event_status?: true
   event_documents?: true
+  event_end_time?: true
   _all?: true
 }
 
@@ -227,7 +233,7 @@ export type Event_detailsGroupByOutputType = {
   event_title: string
   event_description: string | null
   event_date: Date
-  event_time: Date
+  event_start_time: Date
   venue: string | null
   is_show: boolean | null
   created_by: string
@@ -240,6 +246,7 @@ export type Event_detailsGroupByOutputType = {
   target_type: $Enums.event_target_type | null
   event_status: $Enums.event_status_type | null
   event_documents: string[]
+  event_end_time: Date | null
   _count: Event_detailsCountAggregateOutputType | null
   _min: Event_detailsMinAggregateOutputType | null
   _max: Event_detailsMaxAggregateOutputType | null
@@ -269,7 +276,7 @@ export type event_detailsWhereInput = {
   event_title?: Prisma.StringFilter<"event_details"> | string
   event_description?: Prisma.StringNullableFilter<"event_details"> | string | null
   event_date?: Prisma.DateTimeFilter<"event_details"> | Date | string
-  event_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
+  event_start_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
   venue?: Prisma.StringNullableFilter<"event_details"> | string | null
   is_show?: Prisma.BoolNullableFilter<"event_details"> | boolean | null
   created_by?: Prisma.UuidFilter<"event_details"> | string
@@ -282,6 +289,7 @@ export type event_detailsWhereInput = {
   target_type?: Prisma.Enumevent_target_typeNullableFilter<"event_details"> | $Enums.event_target_type | null
   event_status?: Prisma.Enumevent_status_typeNullableFilter<"event_details"> | $Enums.event_status_type | null
   event_documents?: Prisma.StringNullableListFilter<"event_details">
+  event_end_time?: Prisma.DateTimeNullableFilter<"event_details"> | Date | string | null
   event_batches?: Prisma.Event_batchesListRelationFilter
   center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
   user_login_event_details_created_byTouser_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
@@ -294,7 +302,7 @@ export type event_detailsOrderByWithRelationInput = {
   event_title?: Prisma.SortOrder
   event_description?: Prisma.SortOrderInput | Prisma.SortOrder
   event_date?: Prisma.SortOrder
-  event_time?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
   venue?: Prisma.SortOrderInput | Prisma.SortOrder
   is_show?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
@@ -307,6 +315,7 @@ export type event_detailsOrderByWithRelationInput = {
   target_type?: Prisma.SortOrderInput | Prisma.SortOrder
   event_status?: Prisma.SortOrderInput | Prisma.SortOrder
   event_documents?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrderInput | Prisma.SortOrder
   event_batches?: Prisma.event_batchesOrderByRelationAggregateInput
   center_details?: Prisma.center_detailsOrderByWithRelationInput
   user_login_event_details_created_byTouser_login?: Prisma.user_loginOrderByWithRelationInput
@@ -322,7 +331,7 @@ export type event_detailsWhereUniqueInput = Prisma.AtLeast<{
   event_title?: Prisma.StringFilter<"event_details"> | string
   event_description?: Prisma.StringNullableFilter<"event_details"> | string | null
   event_date?: Prisma.DateTimeFilter<"event_details"> | Date | string
-  event_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
+  event_start_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
   venue?: Prisma.StringNullableFilter<"event_details"> | string | null
   is_show?: Prisma.BoolNullableFilter<"event_details"> | boolean | null
   created_by?: Prisma.UuidFilter<"event_details"> | string
@@ -335,6 +344,7 @@ export type event_detailsWhereUniqueInput = Prisma.AtLeast<{
   target_type?: Prisma.Enumevent_target_typeNullableFilter<"event_details"> | $Enums.event_target_type | null
   event_status?: Prisma.Enumevent_status_typeNullableFilter<"event_details"> | $Enums.event_status_type | null
   event_documents?: Prisma.StringNullableListFilter<"event_details">
+  event_end_time?: Prisma.DateTimeNullableFilter<"event_details"> | Date | string | null
   event_batches?: Prisma.Event_batchesListRelationFilter
   center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
   user_login_event_details_created_byTouser_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
@@ -347,7 +357,7 @@ export type event_detailsOrderByWithAggregationInput = {
   event_title?: Prisma.SortOrder
   event_description?: Prisma.SortOrderInput | Prisma.SortOrder
   event_date?: Prisma.SortOrder
-  event_time?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
   venue?: Prisma.SortOrderInput | Prisma.SortOrder
   is_show?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
@@ -360,6 +370,7 @@ export type event_detailsOrderByWithAggregationInput = {
   target_type?: Prisma.SortOrderInput | Prisma.SortOrder
   event_status?: Prisma.SortOrderInput | Prisma.SortOrder
   event_documents?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.event_detailsCountOrderByAggregateInput
   _max?: Prisma.event_detailsMaxOrderByAggregateInput
   _min?: Prisma.event_detailsMinOrderByAggregateInput
@@ -374,7 +385,7 @@ export type event_detailsScalarWhereWithAggregatesInput = {
   event_title?: Prisma.StringWithAggregatesFilter<"event_details"> | string
   event_description?: Prisma.StringNullableWithAggregatesFilter<"event_details"> | string | null
   event_date?: Prisma.DateTimeWithAggregatesFilter<"event_details"> | Date | string
-  event_time?: Prisma.DateTimeWithAggregatesFilter<"event_details"> | Date | string
+  event_start_time?: Prisma.DateTimeWithAggregatesFilter<"event_details"> | Date | string
   venue?: Prisma.StringNullableWithAggregatesFilter<"event_details"> | string | null
   is_show?: Prisma.BoolNullableWithAggregatesFilter<"event_details"> | boolean | null
   created_by?: Prisma.UuidWithAggregatesFilter<"event_details"> | string
@@ -387,6 +398,7 @@ export type event_detailsScalarWhereWithAggregatesInput = {
   target_type?: Prisma.Enumevent_target_typeNullableWithAggregatesFilter<"event_details"> | $Enums.event_target_type | null
   event_status?: Prisma.Enumevent_status_typeNullableWithAggregatesFilter<"event_details"> | $Enums.event_status_type | null
   event_documents?: Prisma.StringNullableListFilter<"event_details">
+  event_end_time?: Prisma.DateTimeNullableWithAggregatesFilter<"event_details"> | Date | string | null
 }
 
 export type event_detailsCreateInput = {
@@ -394,7 +406,7 @@ export type event_detailsCreateInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -405,6 +417,7 @@ export type event_detailsCreateInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
   user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
@@ -417,7 +430,7 @@ export type event_detailsUncheckedCreateInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -430,6 +443,7 @@ export type event_detailsUncheckedCreateInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
 }
 
@@ -438,7 +452,7 @@ export type event_detailsUpdateInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -449,6 +463,7 @@ export type event_detailsUpdateInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUpdateManyWithoutEvent_detailsNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutEvent_detailsNestedInput
   user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
@@ -461,7 +476,7 @@ export type event_detailsUncheckedUpdateInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -474,6 +489,7 @@ export type event_detailsUncheckedUpdateInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutEvent_detailsNestedInput
 }
 
@@ -483,7 +499,7 @@ export type event_detailsCreateManyInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -496,6 +512,7 @@ export type event_detailsCreateManyInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
 }
 
 export type event_detailsUpdateManyMutationInput = {
@@ -503,7 +520,7 @@ export type event_detailsUpdateManyMutationInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -514,6 +531,7 @@ export type event_detailsUpdateManyMutationInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type event_detailsUncheckedUpdateManyInput = {
@@ -522,7 +540,7 @@ export type event_detailsUncheckedUpdateManyInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -535,6 +553,7 @@ export type event_detailsUncheckedUpdateManyInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type Event_detailsListRelationFilter = {
@@ -558,7 +577,7 @@ export type event_detailsCountOrderByAggregateInput = {
   event_title?: Prisma.SortOrder
   event_description?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
-  event_time?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
   venue?: Prisma.SortOrder
   is_show?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
@@ -571,6 +590,7 @@ export type event_detailsCountOrderByAggregateInput = {
   target_type?: Prisma.SortOrder
   event_status?: Prisma.SortOrder
   event_documents?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
 }
 
 export type event_detailsMaxOrderByAggregateInput = {
@@ -579,7 +599,7 @@ export type event_detailsMaxOrderByAggregateInput = {
   event_title?: Prisma.SortOrder
   event_description?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
-  event_time?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
   venue?: Prisma.SortOrder
   is_show?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
@@ -591,6 +611,7 @@ export type event_detailsMaxOrderByAggregateInput = {
   event_type?: Prisma.SortOrder
   target_type?: Prisma.SortOrder
   event_status?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
 }
 
 export type event_detailsMinOrderByAggregateInput = {
@@ -599,7 +620,7 @@ export type event_detailsMinOrderByAggregateInput = {
   event_title?: Prisma.SortOrder
   event_description?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
-  event_time?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
   venue?: Prisma.SortOrder
   is_show?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
@@ -611,6 +632,7 @@ export type event_detailsMinOrderByAggregateInput = {
   event_type?: Prisma.SortOrder
   target_type?: Prisma.SortOrder
   event_status?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
 }
 
 export type event_detailsCreateNestedManyWithoutCenter_detailsInput = {
@@ -783,7 +805,7 @@ export type event_detailsCreateWithoutCenter_detailsInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -794,6 +816,7 @@ export type event_detailsCreateWithoutCenter_detailsInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
   user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
   user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
@@ -804,7 +827,7 @@ export type event_detailsUncheckedCreateWithoutCenter_detailsInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -817,6 +840,7 @@ export type event_detailsUncheckedCreateWithoutCenter_detailsInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
 }
 
@@ -855,7 +879,7 @@ export type event_detailsScalarWhereInput = {
   event_title?: Prisma.StringFilter<"event_details"> | string
   event_description?: Prisma.StringNullableFilter<"event_details"> | string | null
   event_date?: Prisma.DateTimeFilter<"event_details"> | Date | string
-  event_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
+  event_start_time?: Prisma.DateTimeFilter<"event_details"> | Date | string
   venue?: Prisma.StringNullableFilter<"event_details"> | string | null
   is_show?: Prisma.BoolNullableFilter<"event_details"> | boolean | null
   created_by?: Prisma.UuidFilter<"event_details"> | string
@@ -868,6 +892,7 @@ export type event_detailsScalarWhereInput = {
   target_type?: Prisma.Enumevent_target_typeNullableFilter<"event_details"> | $Enums.event_target_type | null
   event_status?: Prisma.Enumevent_status_typeNullableFilter<"event_details"> | $Enums.event_status_type | null
   event_documents?: Prisma.StringNullableListFilter<"event_details">
+  event_end_time?: Prisma.DateTimeNullableFilter<"event_details"> | Date | string | null
 }
 
 export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_loginInput = {
@@ -875,7 +900,7 @@ export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -886,6 +911,7 @@ export type event_detailsCreateWithoutUser_login_event_details_created_byTouser_
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
   user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
@@ -897,7 +923,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_created_
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -909,6 +935,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_created_
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
 }
 
@@ -927,7 +954,7 @@ export type event_detailsCreateWithoutUser_login_event_details_updated_byTouser_
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -938,6 +965,7 @@ export type event_detailsCreateWithoutUser_login_event_details_updated_byTouser_
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesCreateNestedManyWithoutEvent_detailsInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
   user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
@@ -949,7 +977,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_updated_
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -961,6 +989,7 @@ export type event_detailsUncheckedCreateWithoutUser_login_event_details_updated_
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   event_batches?: Prisma.event_batchesUncheckedCreateNestedManyWithoutEvent_detailsInput
 }
 
@@ -1011,7 +1040,7 @@ export type event_detailsCreateWithoutEvent_batchesInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -1022,6 +1051,7 @@ export type event_detailsCreateWithoutEvent_batchesInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
   center_details?: Prisma.center_detailsCreateNestedOneWithoutEvent_detailsInput
   user_login_event_details_created_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_created_byTouser_loginInput
   user_login_event_details_updated_byTouser_login: Prisma.user_loginCreateNestedOneWithoutEvent_details_event_details_updated_byTouser_loginInput
@@ -1033,7 +1063,7 @@ export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -1046,6 +1076,7 @@ export type event_detailsUncheckedCreateWithoutEvent_batchesInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
 }
 
 export type event_detailsCreateOrConnectWithoutEvent_batchesInput = {
@@ -1069,7 +1100,7 @@ export type event_detailsUpdateWithoutEvent_batchesInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1080,6 +1111,7 @@ export type event_detailsUpdateWithoutEvent_batchesInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   center_details?: Prisma.center_detailsUpdateOneWithoutEvent_detailsNestedInput
   user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
   user_login_event_details_updated_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_updated_byTouser_loginNestedInput
@@ -1091,7 +1123,7 @@ export type event_detailsUncheckedUpdateWithoutEvent_batchesInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1104,6 +1136,7 @@ export type event_detailsUncheckedUpdateWithoutEvent_batchesInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type event_detailsCreateManyCenter_detailsInput = {
@@ -1111,7 +1144,7 @@ export type event_detailsCreateManyCenter_detailsInput = {
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -1124,6 +1157,7 @@ export type event_detailsCreateManyCenter_detailsInput = {
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
 }
 
 export type event_detailsUpdateWithoutCenter_detailsInput = {
@@ -1131,7 +1165,7 @@ export type event_detailsUpdateWithoutCenter_detailsInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1142,6 +1176,7 @@ export type event_detailsUpdateWithoutCenter_detailsInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUpdateManyWithoutEvent_detailsNestedInput
   user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
   user_login_event_details_updated_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_updated_byTouser_loginNestedInput
@@ -1152,7 +1187,7 @@ export type event_detailsUncheckedUpdateWithoutCenter_detailsInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1165,6 +1200,7 @@ export type event_detailsUncheckedUpdateWithoutCenter_detailsInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutEvent_detailsNestedInput
 }
 
@@ -1173,7 +1209,7 @@ export type event_detailsUncheckedUpdateManyWithoutCenter_detailsInput = {
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1186,6 +1222,7 @@ export type event_detailsUncheckedUpdateManyWithoutCenter_detailsInput = {
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type event_detailsCreateManyUser_login_event_details_created_byTouser_loginInput = {
@@ -1194,7 +1231,7 @@ export type event_detailsCreateManyUser_login_event_details_created_byTouser_log
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_at?: Date | string | null
@@ -1206,6 +1243,7 @@ export type event_detailsCreateManyUser_login_event_details_created_byTouser_log
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
 }
 
 export type event_detailsCreateManyUser_login_event_details_updated_byTouser_loginInput = {
@@ -1214,7 +1252,7 @@ export type event_detailsCreateManyUser_login_event_details_updated_byTouser_log
   event_title: string
   event_description?: string | null
   event_date: Date | string
-  event_time: Date | string
+  event_start_time: Date | string
   venue?: string | null
   is_show?: boolean | null
   created_by: string
@@ -1226,6 +1264,7 @@ export type event_detailsCreateManyUser_login_event_details_updated_byTouser_log
   target_type?: $Enums.event_target_type | null
   event_status?: $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsCreateevent_documentsInput | string[]
+  event_end_time?: Date | string | null
 }
 
 export type event_detailsUpdateWithoutUser_login_event_details_created_byTouser_loginInput = {
@@ -1233,7 +1272,7 @@ export type event_detailsUpdateWithoutUser_login_event_details_created_byTouser_
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1244,6 +1283,7 @@ export type event_detailsUpdateWithoutUser_login_event_details_created_byTouser_
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUpdateManyWithoutEvent_detailsNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutEvent_detailsNestedInput
   user_login_event_details_updated_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_updated_byTouser_loginNestedInput
@@ -1255,7 +1295,7 @@ export type event_detailsUncheckedUpdateWithoutUser_login_event_details_created_
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1267,6 +1307,7 @@ export type event_detailsUncheckedUpdateWithoutUser_login_event_details_created_
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutEvent_detailsNestedInput
 }
 
@@ -1276,7 +1317,7 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_crea
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1288,6 +1329,7 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_crea
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type event_detailsUpdateWithoutUser_login_event_details_updated_byTouser_loginInput = {
@@ -1295,7 +1337,7 @@ export type event_detailsUpdateWithoutUser_login_event_details_updated_byTouser_
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1306,6 +1348,7 @@ export type event_detailsUpdateWithoutUser_login_event_details_updated_byTouser_
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUpdateManyWithoutEvent_detailsNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutEvent_detailsNestedInput
   user_login_event_details_created_byTouser_login?: Prisma.user_loginUpdateOneRequiredWithoutEvent_details_event_details_created_byTouser_loginNestedInput
@@ -1317,7 +1360,7 @@ export type event_detailsUncheckedUpdateWithoutUser_login_event_details_updated_
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1329,6 +1372,7 @@ export type event_detailsUncheckedUpdateWithoutUser_login_event_details_updated_
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   event_batches?: Prisma.event_batchesUncheckedUpdateManyWithoutEvent_detailsNestedInput
 }
 
@@ -1338,7 +1382,7 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_upda
   event_title?: Prisma.StringFieldUpdateOperationsInput | string
   event_description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   venue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_show?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   created_by?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1350,6 +1394,7 @@ export type event_detailsUncheckedUpdateManyWithoutUser_login_event_details_upda
   target_type?: Prisma.NullableEnumevent_target_typeFieldUpdateOperationsInput | $Enums.event_target_type | null
   event_status?: Prisma.NullableEnumevent_status_typeFieldUpdateOperationsInput | $Enums.event_status_type | null
   event_documents?: Prisma.event_detailsUpdateevent_documentsInput | string[]
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1389,7 +1434,7 @@ export type event_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   event_title?: boolean
   event_description?: boolean
   event_date?: boolean
-  event_time?: boolean
+  event_start_time?: boolean
   venue?: boolean
   is_show?: boolean
   created_by?: boolean
@@ -1402,6 +1447,7 @@ export type event_detailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   target_type?: boolean
   event_status?: boolean
   event_documents?: boolean
+  event_end_time?: boolean
   event_batches?: boolean | Prisma.event_details$event_batchesArgs<ExtArgs>
   center_details?: boolean | Prisma.event_details$center_detailsArgs<ExtArgs>
   user_login_event_details_created_byTouser_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
@@ -1415,7 +1461,7 @@ export type event_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   event_title?: boolean
   event_description?: boolean
   event_date?: boolean
-  event_time?: boolean
+  event_start_time?: boolean
   venue?: boolean
   is_show?: boolean
   created_by?: boolean
@@ -1428,6 +1474,7 @@ export type event_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   target_type?: boolean
   event_status?: boolean
   event_documents?: boolean
+  event_end_time?: boolean
   center_details?: boolean | Prisma.event_details$center_detailsArgs<ExtArgs>
   user_login_event_details_created_byTouser_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   user_login_event_details_updated_byTouser_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
@@ -1439,7 +1486,7 @@ export type event_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   event_title?: boolean
   event_description?: boolean
   event_date?: boolean
-  event_time?: boolean
+  event_start_time?: boolean
   venue?: boolean
   is_show?: boolean
   created_by?: boolean
@@ -1452,6 +1499,7 @@ export type event_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   target_type?: boolean
   event_status?: boolean
   event_documents?: boolean
+  event_end_time?: boolean
   center_details?: boolean | Prisma.event_details$center_detailsArgs<ExtArgs>
   user_login_event_details_created_byTouser_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
   user_login_event_details_updated_byTouser_login?: boolean | Prisma.user_loginDefaultArgs<ExtArgs>
@@ -1463,7 +1511,7 @@ export type event_detailsSelectScalar = {
   event_title?: boolean
   event_description?: boolean
   event_date?: boolean
-  event_time?: boolean
+  event_start_time?: boolean
   venue?: boolean
   is_show?: boolean
   created_by?: boolean
@@ -1476,9 +1524,10 @@ export type event_detailsSelectScalar = {
   target_type?: boolean
   event_status?: boolean
   event_documents?: boolean
+  event_end_time?: boolean
 }
 
-export type event_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"event_id" | "center_id" | "event_title" | "event_description" | "event_date" | "event_time" | "venue" | "is_show" | "created_by" | "created_at" | "updated_at" | "updated_by" | "event_link" | "event_mode" | "event_type" | "target_type" | "event_status" | "event_documents", ExtArgs["result"]["event_details"]>
+export type event_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"event_id" | "center_id" | "event_title" | "event_description" | "event_date" | "event_start_time" | "venue" | "is_show" | "created_by" | "created_at" | "updated_at" | "updated_by" | "event_link" | "event_mode" | "event_type" | "target_type" | "event_status" | "event_documents" | "event_end_time", ExtArgs["result"]["event_details"]>
 export type event_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event_batches?: boolean | Prisma.event_details$event_batchesArgs<ExtArgs>
   center_details?: boolean | Prisma.event_details$center_detailsArgs<ExtArgs>
@@ -1511,7 +1560,7 @@ export type $event_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     event_title: string
     event_description: string | null
     event_date: Date
-    event_time: Date
+    event_start_time: Date
     venue: string | null
     is_show: boolean | null
     created_by: string
@@ -1524,6 +1573,7 @@ export type $event_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     target_type: $Enums.event_target_type | null
     event_status: $Enums.event_status_type | null
     event_documents: string[]
+    event_end_time: Date | null
   }, ExtArgs["result"]["event_details"]>
   composites: {}
 }
@@ -1956,7 +2006,7 @@ export interface event_detailsFieldRefs {
   readonly event_title: Prisma.FieldRef<"event_details", 'String'>
   readonly event_description: Prisma.FieldRef<"event_details", 'String'>
   readonly event_date: Prisma.FieldRef<"event_details", 'DateTime'>
-  readonly event_time: Prisma.FieldRef<"event_details", 'DateTime'>
+  readonly event_start_time: Prisma.FieldRef<"event_details", 'DateTime'>
   readonly venue: Prisma.FieldRef<"event_details", 'String'>
   readonly is_show: Prisma.FieldRef<"event_details", 'Boolean'>
   readonly created_by: Prisma.FieldRef<"event_details", 'String'>
@@ -1969,6 +2019,7 @@ export interface event_detailsFieldRefs {
   readonly target_type: Prisma.FieldRef<"event_details", 'event_target_type'>
   readonly event_status: Prisma.FieldRef<"event_details", 'event_status_type'>
   readonly event_documents: Prisma.FieldRef<"event_details", 'String[]'>
+  readonly event_end_time: Prisma.FieldRef<"event_details", 'DateTime'>
 }
     
 
