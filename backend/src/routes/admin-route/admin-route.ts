@@ -36,7 +36,9 @@ import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/f
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
+import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
 import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
+import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 
 const adminRouter = Router();
 
@@ -170,5 +172,12 @@ adminRouter.get("/profile",verifyAdminUsingAccessToken,getAdminProfile)
 adminRouter.patch("/profile/edit",verifyAdminUsingAccessToken,updateAdminProfile);
 //fetch all companies (center-scoped)
 adminRouter.get("/total-users/companies",verifyAdminUsingAccessToken,getCompaniesByAdminCenter);
+//change user password (admin only)
+adminRouter.patch(
+    "/total-users/:userId/change-password",
+    verifyAdminUsingAccessToken,
+    validateBody(changePasswordSchema),
+    changeUserPassword
+);
 
 export default adminRouter

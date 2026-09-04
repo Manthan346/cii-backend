@@ -17,7 +17,7 @@ export const createPlacement = asyncHandler(
         if (req.file) {
             const profile_photo = await uploadCloudnary(req.file.path || '') || undefined;
             const photo_url = profile_photo?.secure_url
-            if (photo_url) {
+            if (profile_photo) {
                 job_image = photo_url;
             }
         }

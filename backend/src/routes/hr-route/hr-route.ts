@@ -44,8 +44,8 @@ hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,valida
 hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,upload.single('job_image'),validateBody(createPlacementSchema),createPlacement);
 //fetch all job postings 
 hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,getAllJobPostings);
-//update specific job postings 
-hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,validateBody(updatePlacementSchema),updateJobPosting);
+//update specific job postings
+hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,upload.single('job_image'),updateJobPosting);
 //fetch all notifications
 hrRouter.get('/notifications',verifyHrUsingAccessToken,paginationMiddleware,getAllNotifications);
 //fetch all job applications
