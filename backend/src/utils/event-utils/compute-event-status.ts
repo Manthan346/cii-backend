@@ -44,7 +44,8 @@ export const computeEventStatus = (
 export const resolveEventStatus = (
   event_status: string | null | undefined,
   event_date: Date,
-  event_time?: Date | null
+  event_start_time?: Date | null,
+  
 ): "UPCOMING" | "ONGOING" | "COMPLETED" => {
   if (
     event_status === event_status_type.UPCOMING ||
@@ -53,5 +54,5 @@ export const resolveEventStatus = (
   ) {
     return event_status as "UPCOMING" | "ONGOING" | "COMPLETED";
   }
-  return computeEventStatus(event_date, event_time);
+  return computeEventStatus(event_date, event_start_time, );
 };

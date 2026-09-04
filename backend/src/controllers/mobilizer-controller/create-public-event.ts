@@ -34,13 +34,8 @@ export const createPublicEvent = asyncHandler(
         });
 
         const data = createEventSchema.parse(req.body);
-
-        if (data.target_type !== event_target_type.PUBLIC) {
-            throw new ApiError(
-                400,
-                "Only PUBLIC events can be created via this endpoint."
-            );
-        }
+        // Override target_type to PUBLIC as this endpoint is for public events only
+        data.target_type = event_target_type.PUBLIC;
 
         // Center-scoped audience — every user_login of this center
         const centerUsers = await prisma.user_login.findMany({
@@ -58,15 +53,22 @@ export const createPublicEvent = asyncHandler(
         const createdEvent = await prisma.$transaction(
             async (tx) => {
 
-                const event = await tx.event_details.create({
+                // Parse the base date
+  const baseDate = new Date(data.event_date);
+        const dateOnly = baseDate.toISOString().split('T')[0];
+
+        // Create proper DateTime values for time fields (combine date with time)
+        const eventStartTime = new Date(`${dateOnly}T${data.event_start_time}:00.000Z`);
+        const eventEndTime = new Date(`${dateOnly}T${data.event_end_time}:00.000Z`);
+
+const event = await tx.event_details.create({
                     data: {
                         center_id: center_id,
                         event_title: data.event_title,
                         event_description: data.event_description,
-                        event_date: new Date(data.event_date),
-                        event_time: new Date(
-                            `1970-01-01T${data.event_time}:00`
-                        ),
+                        event_date: baseDate,
+                        event_start_time: eventStartTime,
+                        event_end_time: eventEndTime,
                         venue: data.venue,
                         event_link: data.event_link,
                         event_mode: data.event_mode,
@@ -79,11 +81,15 @@ export const createPublicEvent = asyncHandler(
                     }
                 });
 
+                // Format date for display (just the date part)
+const displayDate = event.event_date.toISOString().split('T')[0];
+const startTimeStr = data.event_start_time || 'Time not specified';
+const endTimeStr = data.event_end_time || 'Time not specified';
                 const notification = await tx.notifications.create({
                     data: {
                         title: data.event_title,
                         notification_message:
-                            `A new public event "${data.event_title}" has been scheduled on ${data.event_date}.`,
+                            `A new public event "${data.event_title}" has been scheduled on ${displayDate} from ${startTimeStr} to ${endTimeStr}.`,
                         notification_type: notification_type.EVENT_CREATED,
                         reference_type: notification_reference_type.EVENT,
                         reference_id: event.event_id

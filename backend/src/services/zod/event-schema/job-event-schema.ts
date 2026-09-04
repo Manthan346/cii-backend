@@ -10,7 +10,9 @@ export const createJobEventSchema = z.object({
 
   event_date: z.coerce.date(),
 
-  event_time: z.string().min(1, "Event time is required"),
+  event_start_time: z.string().min(1, "Event start time is required"),
+
+  event_end_time: z.string().min(1, "Event end time is required"),
 
   address: z
     .string()
@@ -42,9 +44,14 @@ export const updateJobEventSchema = z.object({
     .date()
     .optional(),
 
-  event_time: z
+  event_start_time: z
     .string()
-    .min(1, "Event time is required")
+    .min(1, "Event start time is required")
+    .optional(),
+
+  event_end_time: z
+    .string()
+    .min(1, "Event end time is required")
     .optional(),
 
   address: z

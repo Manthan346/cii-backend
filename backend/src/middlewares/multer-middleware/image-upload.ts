@@ -15,11 +15,41 @@ const upload = multer({
   },
   fileFilter: (req, file, cb) => {
     // Accept only image files
-    if (file.mimetype.startsWith('image/')) {
-      cb(null, true);
-    } else {
-      cb(new Error('Only image files are allowed!'), false);
+    const isImageMimetype = file.mimetype && file.mimetype.toLowerCase().startsWith('image/');
+
+    let isImageExtension = false;
+    if (file.originalname && typeof file.originalname === 'string') {
+      try {
+        const ext = path.extname(file.originalname).toLowerCase();
+        const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+        isImageExtension = allowedExtensions.includes(ext);
+      } catch (e) {
+        // If path.extname fails for any reason, treat as not an image by extension
+        isImageExtension = false;
+      }
     }
+
+    if (isImageMimetype || isImageExtension) {
+      cb(null, true);
+      return;
+    }
+
+    // Provide detailed error for debugging
+    const mimetypeInfo = file.mimetype ? `"${file.mimetype}"` : 'undefined';
+    const originalnameInfo = file.originalname ? `"${file.originalname}"` : 'undefined';
+    let extensionInfo = '';
+    if (file.originalname && typeof file.originalname === 'string') {
+      try {
+        const ext = path.extname(file.originalname).toLowerCase();
+        extensionInfo = `"${ext}"`;
+      } catch (e) {
+        extensionInfo = 'undefined (path error)';
+      }
+    } else {
+      extensionInfo = 'no originalname or not string';
+    }
+
+    cb(new Error(`Only image files are allowed! Received mimetype: ${mimetypeInfo}, originalname: ${originalnameInfo}, extension: ${extensionInfo}`), false);
   }
 });
 

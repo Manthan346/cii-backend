@@ -26,9 +26,13 @@ export const createEventSchema = z.object({
       "Invalid event date"
     ),
 
-  event_time: z
+  event_start_time: z
     .string()
-    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event time"),
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event start time"),
+
+  event_end_time: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event end time"),
 
   venue: z
     .string()
@@ -52,7 +56,7 @@ export const createEventSchema = z.object({
 
   event_status: z.nativeEnum(event_status_type).optional(),
 
-  target_type: z.nativeEnum(event_target_type),
+  target_type: z.nativeEnum(event_target_type).optional().default(event_target_type.PUBLIC),
 })
 .superRefine((data, ctx) => {
     if (data.event_mode === event_mode.ONLINE) {
@@ -154,11 +158,14 @@ export const updatePublicEventSchema = z.object({
     )
     .optional(),
 
-    
-
-  event_time: z
+  event_start_time: z
     .string()
-    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event time")
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event start time")
+    .optional(),
+
+  event_end_time: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event end time")
     .optional(),
 
   venue: z

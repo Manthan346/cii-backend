@@ -79,8 +79,14 @@ const placementBaseSchema = z.object({
         .string()
         .trim()
         .min(1, "Experience required.")
-        .max(255, "Experience cannot exceed 255 characters.")
+        .max(255, "Experience cannot exceed 255 characters."),
+
+    job_image: z
+        .string()
+        .url("Invalid image URL")
+        .optional(),
 });
+    
 
 
 export const createPlacementSchema = placementBaseSchema
@@ -126,9 +132,4 @@ export const updatePlacementSchema = placementBaseSchema
             path: ["salary_max"]
         }
     )
-    .refine(
-        (data) => Object.keys(data).length > 0,
-        {
-            message: "At least one field is required to update"
-        }
-    );
+    

@@ -61,7 +61,7 @@ export const getPublicEvents = asyncHandler(
         // Add status to each event (use DB status if set, otherwise compute)
         const items: PublicEventWithStatus[] = events.map((e) => ({
             ...e,
-            event_status: resolveEventStatus(e.event_status, e.event_date, e.event_time),
+            event_status: resolveEventStatus(e.event_status, e.event_date, e.event_start_time, ),
         }));
 
         return res.status(200).json(

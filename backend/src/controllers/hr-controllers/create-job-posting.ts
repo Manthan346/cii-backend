@@ -1,4 +1,6 @@
 import { Response } from "express";
+import { upload } from "../../middlewares/multer-middleware/multer";
+import { uploadCloudnary } from "../../services/cloudinary";
 
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
@@ -9,6 +11,16 @@ import { createPlacementSchema } from "../../services/zod/hr/placement-validatio
 
 export const createPlacement = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
+
+        // Handle single job image upload
+        let job_image = undefined;
+        if (req.file) {
+            const profile_photo = await uploadCloudnary(req.file.path || '') || undefined;
+            const photo_url = profile_photo?.secure_url
+            if (profile_photo) {
+                job_image = photo_url;
+            }
+        }
 
         const validation = createPlacementSchema.safeParse(req.body);
 
@@ -96,7 +108,8 @@ export const createPlacement = asyncHandler(
                     is_active: true,
                     created_by: hrId,
                     experience:
-                        experience?.trim() || null
+                        experience?.trim() || null,
+                    job_image
                 }
             });
 

@@ -37,6 +37,9 @@ import { downloadCompanyEnrollmentReport } from "../../controllers/admin-control
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
+import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
+import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
+import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 
 const adminRouter = Router();
 
@@ -74,6 +77,13 @@ adminRouter.post(
     verifyAdminUsingAccessToken,
     validateBody(mobilizerEnrollCandidateSchema),
     adminCreateCandidate
+);
+
+// GET candidate details by ID (admin only)
+adminRouter.get(
+    "/candidates/:candidateId",
+    verifyAdminUsingAccessToken,
+    getMobilizerCandidateDetails
 );
 
 // GET center-scoped stats: total users, total instructors, total candidates, new users this month
@@ -165,5 +175,12 @@ adminRouter.patch("/profile/edit",verifyAdminUsingAccessToken,updateAdminProfile
 adminRouter.get("/total-users/companies",verifyAdminUsingAccessToken,getCompaniesByAdminCenter);
 //download report of enrollments with candidate data 
 adminRouter.get("/reports/company-course-batch-academics",verifyAdminUsingAccessToken,downloadCompanyEnrollmentReport);
+//change user password (admin only)
+adminRouter.patch(
+    "/total-users/:userId/change-password",
+    verifyAdminUsingAccessToken,
+    validateBody(changePasswordSchema),
+    changeUserPassword
+);
 
 export default adminRouter

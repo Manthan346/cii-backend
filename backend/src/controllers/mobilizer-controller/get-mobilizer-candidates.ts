@@ -38,7 +38,6 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
         user_login: {
           select: {
           user_email: true,
-          is_active: true
           },
         },
       },
