@@ -355,7 +355,7 @@ model event_details {
   event_title                                     String             @db.VarChar(255)
   event_description                               String?
   event_date                                      DateTime           @db.Date
-  event_time                                      DateTime           @db.Time(6)
+  event_start_time                                DateTime           @db.Time(6)
   venue                                           String?            @db.VarChar(255)
   is_show                                         Boolean?           @default(true)
   created_by                                      String             @db.Uuid
@@ -368,6 +368,7 @@ model event_details {
   target_type                                     event_target_type?
   event_status                                    event_status_type?
   event_documents                                 String[]
+  event_end_time                                  DateTime?          @db.Time(6)
   event_batches                                   event_batches[]
   center_details                                  center_details?    @relation(fields: [center_id], references: [center_id], onDelete: Cascade, onUpdate: NoAction)
   user_login_event_details_created_byTouser_login user_login         @relation("event_details_created_byTouser_login", fields: [created_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
@@ -479,7 +480,6 @@ model job_events {
   event_type          job_event_type
   event_name          String                @db.VarChar(255)
   event_date          DateTime              @db.Date
-  event_time          DateTime              @db.Time(6)
   address             String
   google_map_link     String?
   description         String?
@@ -488,6 +488,8 @@ model job_events {
   created_by          String                @db.Uuid
   jobevent_photos     String[]              @default([])
   event_status        job_event_status      @default(UPCOMING)
+  event_end_time      DateTime?             @db.Time(6)
+  event_start_time    DateTime?             @db.Time(6)
   hr_details          hr_details            @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_job_events_created_by")
   job_fair_candidates job_fair_candidates[]
 }
@@ -537,8 +539,17 @@ model placement {
   experience               String?
   salary_min               Int?
   salary_max               Int?
+  job_image                String?
+  job_logo                 String?
   hr_details               hr_details               @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_placement_created_by")
   placement_applications   placement_applications[]
+
+  @@index([company_name(ops: raw("gin_trgm_ops"))], map: "idx_placement_company_name_trgm", type: Gin)
+  @@index([job_role(ops: raw("gin_trgm_ops"))], map: "idx_placement_job_role_trgm", type: Gin)
+  @@index([location(ops: raw("gin_trgm_ops"))], map: "idx_placement_location_trgm", type: Gin)
+  @@index([salary_min, salary_max], map: "idx_placement_salary_range")
+  @@index([sector(ops: raw("gin_trgm_ops"))], map: "idx_placement_sector_trgm", type: Gin)
+  @@index([work_mode], map: "idx_placement_work_mode")
 }
 
 model study_material {

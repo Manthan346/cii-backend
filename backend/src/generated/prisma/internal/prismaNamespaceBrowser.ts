@@ -434,7 +434,7 @@ export const Event_detailsScalarFieldEnum = {
   event_title: 'event_title',
   event_description: 'event_description',
   event_date: 'event_date',
-  event_time: 'event_time',
+  event_start_time: 'event_start_time',
   venue: 'venue',
   is_show: 'is_show',
   created_by: 'created_by',
@@ -446,7 +446,8 @@ export const Event_detailsScalarFieldEnum = {
   event_type: 'event_type',
   target_type: 'target_type',
   event_status: 'event_status',
-  event_documents: 'event_documents'
+  event_documents: 'event_documents',
+  event_end_time: 'event_end_time'
 } as const
 
 export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
@@ -555,7 +556,6 @@ export const Job_eventsScalarFieldEnum = {
   event_type: 'event_type',
   event_name: 'event_name',
   event_date: 'event_date',
-  event_time: 'event_time',
   address: 'address',
   google_map_link: 'google_map_link',
   description: 'description',
@@ -563,7 +563,9 @@ export const Job_eventsScalarFieldEnum = {
   updated_at: 'updated_at',
   created_by: 'created_by',
   jobevent_photos: 'jobevent_photos',
-  event_status: 'event_status'
+  event_status: 'event_status',
+  event_end_time: 'event_end_time',
+  event_start_time: 'event_start_time'
 } as const
 
 export type Job_eventsScalarFieldEnum = (typeof Job_eventsScalarFieldEnum)[keyof typeof Job_eventsScalarFieldEnum]
@@ -615,7 +617,9 @@ export const PlacementScalarFieldEnum = {
   sector: 'sector',
   experience: 'experience',
   salary_min: 'salary_min',
-  salary_max: 'salary_max'
+  salary_max: 'salary_max',
+  job_image: 'job_image',
+  job_logo: 'job_logo'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
