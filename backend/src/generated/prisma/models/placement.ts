@@ -59,7 +59,6 @@ export type PlacementMinAggregateOutputType = {
   salary_min: number | null
   salary_max: number | null
   job_image: string | null
-  job_logo: string | null
 }
 
 export type PlacementMaxAggregateOutputType = {
@@ -83,7 +82,6 @@ export type PlacementMaxAggregateOutputType = {
   salary_min: number | null
   salary_max: number | null
   job_image: string | null
-  job_logo: string | null
 }
 
 export type PlacementCountAggregateOutputType = {
@@ -107,7 +105,6 @@ export type PlacementCountAggregateOutputType = {
   salary_min: number
   salary_max: number
   job_image: number
-  job_logo: number
   _all: number
 }
 
@@ -145,7 +142,6 @@ export type PlacementMinAggregateInputType = {
   salary_min?: true
   salary_max?: true
   job_image?: true
-  job_logo?: true
 }
 
 export type PlacementMaxAggregateInputType = {
@@ -169,7 +165,6 @@ export type PlacementMaxAggregateInputType = {
   salary_min?: true
   salary_max?: true
   job_image?: true
-  job_logo?: true
 }
 
 export type PlacementCountAggregateInputType = {
@@ -193,7 +188,6 @@ export type PlacementCountAggregateInputType = {
   salary_min?: true
   salary_max?: true
   job_image?: true
-  job_logo?: true
   _all?: true
 }
 
@@ -304,7 +298,6 @@ export type PlacementGroupByOutputType = {
   salary_min: number | null
   salary_max: number | null
   job_image: string | null
-  job_logo: string | null
   _count: PlacementCountAggregateOutputType | null
   _avg: PlacementAvgAggregateOutputType | null
   _sum: PlacementSumAggregateOutputType | null
@@ -351,7 +344,6 @@ export type placementWhereInput = {
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
   salary_max?: Prisma.IntNullableFilter<"placement"> | number | null
   job_image?: Prisma.StringNullableFilter<"placement"> | string | null
-  job_logo?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
   placement_applications?: Prisma.Placement_applicationsListRelationFilter
 }
@@ -377,7 +369,6 @@ export type placementOrderByWithRelationInput = {
   salary_min?: Prisma.SortOrderInput | Prisma.SortOrder
   salary_max?: Prisma.SortOrderInput | Prisma.SortOrder
   job_image?: Prisma.SortOrderInput | Prisma.SortOrder
-  job_logo?: Prisma.SortOrderInput | Prisma.SortOrder
   hr_details?: Prisma.hr_detailsOrderByWithRelationInput
   placement_applications?: Prisma.placement_applicationsOrderByRelationAggregateInput
 }
@@ -406,7 +397,6 @@ export type placementWhereUniqueInput = Prisma.AtLeast<{
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
   salary_max?: Prisma.IntNullableFilter<"placement"> | number | null
   job_image?: Prisma.StringNullableFilter<"placement"> | string | null
-  job_logo?: Prisma.StringNullableFilter<"placement"> | string | null
   hr_details?: Prisma.XOR<Prisma.Hr_detailsScalarRelationFilter, Prisma.hr_detailsWhereInput>
   placement_applications?: Prisma.Placement_applicationsListRelationFilter
 }, "placement_id">
@@ -432,7 +422,6 @@ export type placementOrderByWithAggregationInput = {
   salary_min?: Prisma.SortOrderInput | Prisma.SortOrder
   salary_max?: Prisma.SortOrderInput | Prisma.SortOrder
   job_image?: Prisma.SortOrderInput | Prisma.SortOrder
-  job_logo?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.placementCountOrderByAggregateInput
   _avg?: Prisma.placementAvgOrderByAggregateInput
   _max?: Prisma.placementMaxOrderByAggregateInput
@@ -464,7 +453,6 @@ export type placementScalarWhereWithAggregatesInput = {
   salary_min?: Prisma.IntNullableWithAggregatesFilter<"placement"> | number | null
   salary_max?: Prisma.IntNullableWithAggregatesFilter<"placement"> | number | null
   job_image?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
-  job_logo?: Prisma.StringNullableWithAggregatesFilter<"placement"> | string | null
 }
 
 export type placementCreateInput = {
@@ -487,7 +475,6 @@ export type placementCreateInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
   hr_details: Prisma.hr_detailsCreateNestedOneWithoutPlacementInput
   placement_applications?: Prisma.placement_applicationsCreateNestedManyWithoutPlacementInput
 }
@@ -513,7 +500,6 @@ export type placementUncheckedCreateInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
   placement_applications?: Prisma.placement_applicationsUncheckedCreateNestedManyWithoutPlacementInput
 }
 
@@ -537,7 +523,6 @@ export type placementUpdateInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_details?: Prisma.hr_detailsUpdateOneRequiredWithoutPlacementNestedInput
   placement_applications?: Prisma.placement_applicationsUpdateManyWithoutPlacementNestedInput
 }
@@ -563,7 +548,6 @@ export type placementUncheckedUpdateInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUncheckedUpdateManyWithoutPlacementNestedInput
 }
 
@@ -588,7 +572,6 @@ export type placementCreateManyInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
 }
 
 export type placementUpdateManyMutationInput = {
@@ -611,7 +594,6 @@ export type placementUpdateManyMutationInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementUncheckedUpdateManyInput = {
@@ -635,7 +617,6 @@ export type placementUncheckedUpdateManyInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlacementListRelationFilter = {
@@ -669,7 +650,6 @@ export type placementCountOrderByAggregateInput = {
   salary_min?: Prisma.SortOrder
   salary_max?: Prisma.SortOrder
   job_image?: Prisma.SortOrder
-  job_logo?: Prisma.SortOrder
 }
 
 export type placementAvgOrderByAggregateInput = {
@@ -699,7 +679,6 @@ export type placementMaxOrderByAggregateInput = {
   salary_min?: Prisma.SortOrder
   salary_max?: Prisma.SortOrder
   job_image?: Prisma.SortOrder
-  job_logo?: Prisma.SortOrder
 }
 
 export type placementMinOrderByAggregateInput = {
@@ -723,7 +702,6 @@ export type placementMinOrderByAggregateInput = {
   salary_min?: Prisma.SortOrder
   salary_max?: Prisma.SortOrder
   job_image?: Prisma.SortOrder
-  job_logo?: Prisma.SortOrder
 }
 
 export type placementSumOrderByAggregateInput = {
@@ -817,7 +795,6 @@ export type placementCreateWithoutHr_detailsInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
   placement_applications?: Prisma.placement_applicationsCreateNestedManyWithoutPlacementInput
 }
 
@@ -841,7 +818,6 @@ export type placementUncheckedCreateWithoutHr_detailsInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
   placement_applications?: Prisma.placement_applicationsUncheckedCreateNestedManyWithoutPlacementInput
 }
 
@@ -895,7 +871,6 @@ export type placementScalarWhereInput = {
   salary_min?: Prisma.IntNullableFilter<"placement"> | number | null
   salary_max?: Prisma.IntNullableFilter<"placement"> | number | null
   job_image?: Prisma.StringNullableFilter<"placement"> | string | null
-  job_logo?: Prisma.StringNullableFilter<"placement"> | string | null
 }
 
 export type placementCreateWithoutPlacement_applicationsInput = {
@@ -918,7 +893,6 @@ export type placementCreateWithoutPlacement_applicationsInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
   hr_details: Prisma.hr_detailsCreateNestedOneWithoutPlacementInput
 }
 
@@ -943,7 +917,6 @@ export type placementUncheckedCreateWithoutPlacement_applicationsInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
 }
 
 export type placementCreateOrConnectWithoutPlacement_applicationsInput = {
@@ -982,7 +955,6 @@ export type placementUpdateWithoutPlacement_applicationsInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hr_details?: Prisma.hr_detailsUpdateOneRequiredWithoutPlacementNestedInput
 }
 
@@ -1007,7 +979,6 @@ export type placementUncheckedUpdateWithoutPlacement_applicationsInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placementCreateManyHr_detailsInput = {
@@ -1030,7 +1001,6 @@ export type placementCreateManyHr_detailsInput = {
   salary_min?: number | null
   salary_max?: number | null
   job_image?: string | null
-  job_logo?: string | null
 }
 
 export type placementUpdateWithoutHr_detailsInput = {
@@ -1053,7 +1023,6 @@ export type placementUpdateWithoutHr_detailsInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUpdateManyWithoutPlacementNestedInput
 }
 
@@ -1077,7 +1046,6 @@ export type placementUncheckedUpdateWithoutHr_detailsInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement_applications?: Prisma.placement_applicationsUncheckedUpdateManyWithoutPlacementNestedInput
 }
 
@@ -1101,7 +1069,6 @@ export type placementUncheckedUpdateManyWithoutHr_detailsInput = {
   salary_min?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   salary_max?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   job_image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job_logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1156,7 +1123,6 @@ export type placementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   salary_min?: boolean
   salary_max?: boolean
   job_image?: boolean
-  job_logo?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   placement_applications?: boolean | Prisma.placement$placement_applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.PlacementCountOutputTypeDefaultArgs<ExtArgs>
@@ -1183,7 +1149,6 @@ export type placementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   salary_min?: boolean
   salary_max?: boolean
   job_image?: boolean
-  job_logo?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -1208,7 +1173,6 @@ export type placementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   salary_min?: boolean
   salary_max?: boolean
   job_image?: boolean
-  job_logo?: boolean
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement"]>
 
@@ -1233,10 +1197,9 @@ export type placementSelectScalar = {
   salary_min?: boolean
   salary_max?: boolean
   job_image?: boolean
-  job_logo?: boolean
 }
 
-export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "employment_type" | "sector" | "experience" | "salary_min" | "salary_max" | "job_image" | "job_logo", ExtArgs["result"]["placement"]>
+export type placementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"placement_id" | "company_name" | "vacancy" | "location" | "job_role" | "job_description" | "last_date_to_apply" | "is_active" | "created_at" | "updated_at" | "created_by" | "work_mode" | "eligible_qualification" | "eligible_percentage_cgpa" | "employment_type" | "sector" | "experience" | "salary_min" | "salary_max" | "job_image", ExtArgs["result"]["placement"]>
 export type placementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   placement_applications?: boolean | Prisma.placement$placement_applicationsArgs<ExtArgs>
@@ -1276,7 +1239,6 @@ export type $placementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     salary_min: number | null
     salary_max: number | null
     job_image: string | null
-    job_logo: string | null
   }, ExtArgs["result"]["placement"]>
   composites: {}
 }
@@ -1722,7 +1684,6 @@ export interface placementFieldRefs {
   readonly salary_min: Prisma.FieldRef<"placement", 'Int'>
   readonly salary_max: Prisma.FieldRef<"placement", 'Int'>
   readonly job_image: Prisma.FieldRef<"placement", 'String'>
-  readonly job_logo: Prisma.FieldRef<"placement", 'String'>
 }
     
 

@@ -618,8 +618,7 @@ export const PlacementScalarFieldEnum = {
   experience: 'experience',
   salary_min: 'salary_min',
   salary_max: 'salary_max',
-  job_image: 'job_image',
-  job_logo: 'job_logo'
+  job_image: 'job_image'
 } as const
 
 export type PlacementScalarFieldEnum = (typeof PlacementScalarFieldEnum)[keyof typeof PlacementScalarFieldEnum]
@@ -678,7 +677,12 @@ export const Placement_applicationsScalarFieldEnum = {
   source: 'source',
   application_status: 'application_status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  graduation_year: 'graduation_year',
+  cgpa: 'cgpa',
+  percentage: 'percentage',
+  highest_qualification: 'highest_qualification',
+  institute_name: 'institute_name'
 } as const
 
 export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
