@@ -203,7 +203,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #e05a2b;
+  background: #ef4444;
+  border: 1.5px solid #ffffff;
   pointer-events: none;
 }
 

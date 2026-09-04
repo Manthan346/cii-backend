@@ -20,8 +20,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage/Home";
 import LoginPage from "./components/login/LoginPage";
 import EventsPage from "./components/event/EventsPage";
+import Placements from "./components/homepage/placement/Placements/Placements";
+import JobDetails from "./components/homepage/placement/JobDetails/JobDetails";
 import CandidatePage from "./pages/CandidateDashboard";
-import CandidateDashboard from "./pages/CandidateDashboard";
 import TrainerDashboard from "./pages/TrainerDashboard";
 import MobilizerDashboard from "./pages/MobilizerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -34,11 +35,13 @@ function App() {
       <Route path="/LoginPage" element={<LoginPage />} />
       <Route path="/Registration" element={<Home />} />
       <Route path="/events" element={<EventsPage />} />
+      <Route path="/placements" element={<Placements />} />
+      <Route path="/placements/:jobId" element={<JobDetails />} />
       <Route path="/trainer/*" element={<TrainerDashboard />} />
       <Route path="/mobilizer/*" element={<MobilizerDashboard />} />
       <Route path="/admin/*" element={<AdminDashboard />} />
-      <Route path="/*" element={<CandidatePage />} />
       <Route path="/recruiter/*" element={<RecruiterDashboard />} />
+      <Route path="/*" element={<CandidatePage />} />
     </Routes>
   );
 }

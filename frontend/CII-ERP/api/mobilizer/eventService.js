@@ -77,12 +77,12 @@ export async function createPublicEvent(event) {
     event_title: event.eventName,
     event_description: event.description,
     event_date: event.date,
-    event_time: String(event.time || "09:00"),
+    event_start_time: String(event.startTime || "09:00"),
+    event_end_time: String(event.endTime || "17:00"),
     venue: event.venue || "",
     event_mode: event.eventMode || "OFFLINE",
     event_type: event.eventType,
-    target_type: event.targetType,
-    event_status: "UPCOMING",
+    target_type: "PUBLIC",
     ...(event.eventLink ? { event_link: event.eventLink } : {}),
   });
   return normalizeEvent(response.data?.data);
@@ -118,10 +118,10 @@ function buildEventPayload(event) {
     event_title: event.eventName,
     event_description: event.description,
     event_date: event.date,
-    event_time: String(event.time || ""),
+    event_start_time: String(event.startTime || ""),
+    event_end_time: String(event.endTime || ""),
     event_mode: event.eventMode,
     event_type: event.eventType,
-    target_type: event.targetType,
     event_status: event.eventStatus,
     ...(event.venue ? { venue: event.venue } : {}),
     ...(event.eventLink ? { event_link: event.eventLink } : {}),
@@ -131,7 +131,9 @@ function buildEventPayload(event) {
 function normalizeEvent(event = {}) {
   const date = event.event_date ?? event.date;
   const rawStatus = event.event_status ?? event.status;
-  const status = formatStatus(rawStatus, date, event.event_time);
+  const startTime = event.event_start_time ?? event.start_time ?? event.event_time ?? event.time;
+  const endTime = event.event_end_time ?? event.end_time;
+  const status = formatStatus(rawStatus, date, startTime);
   return {
     ...event,
     id: event.event_id ?? event.id,
@@ -141,8 +143,12 @@ function normalizeEvent(event = {}) {
     month: formatDatePart(date, "month"),
     date: formatDate(date),
     rawDate: date ? String(date).slice(0, 10) : "",
-    time: formatTime(event.event_time ?? event.time),
-    rawTime: normalizeTimeInput(event.event_time ?? event.time),
+    time: formatTime(startTime),
+    rawTime: normalizeTimeInput(startTime),
+    startTime: formatTime(startTime),
+    rawStartTime: normalizeTimeInput(startTime),
+    endTime: formatTime(endTime),
+    rawEndTime: normalizeTimeInput(endTime),
     createdByName: normalizeCreatorName(event),
     event_status: rawStatus ?? status.toUpperCase().replace(/ /g, "_"),
     status,
