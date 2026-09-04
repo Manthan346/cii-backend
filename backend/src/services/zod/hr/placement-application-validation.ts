@@ -24,6 +24,41 @@ export const createPlacementApplicationSchema = z.object({
         .trim()
         .url("Invalid resume URL"),
 
+    graduation_year: z
+        .coerce
+        .number()
+        .int("Graduation year must be a valid year")
+        .positive("Graduation year must be a positive number"),
+
+    highest_qualification: z
+        .string()
+        .trim()
+        .min(1, "Highest qualification is required")
+        .max(
+            255,
+            "Highest qualification cannot exceed 255 characters"
+        ),
+
+    institute_name: z
+        .string()
+        .trim()
+        .min(1, "Institute name is required")
+        .max(255, "Institute name cannot exceed 255 characters"),
+
+    cgpa: z
+        .coerce
+        .number()
+        .min(0, "CGPA cannot be negative")
+        .max(10, "CGPA cannot exceed 10")
+        .optional(),
+
+    percentage: z
+        .coerce
+        .number()
+        .min(0, "Percentage cannot be negative")
+        .max(100, "Percentage cannot exceed 100")
+        .optional(),
+
     source: z
         .string()
         .trim()
