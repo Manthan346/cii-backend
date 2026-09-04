@@ -13,6 +13,8 @@ import { getCenterStats } from "../../controllers/admin-controllers/get-center-s
 import { getCandidateJourney } from "../../controllers/admin-controllers/get-candidate-journey";
 import { getCoursePerformance } from "../../controllers/admin-controllers/get-course-performance";
 import { getCourses } from "../../controllers/admin-controllers/get-courses";
+import { getSimpleCourses } from "../../controllers/admin-controllers/get-simple-courses";
+import { getBatchesByCourse } from "../../controllers/admin-controllers/get-batches-by-course";
 import { downloadEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment-report";
 import { downloadEnquiryReport } from "../../controllers/admin-controllers/download-enquiry-report";
 import { getDashboardEnrollment } from "../../controllers/admin-controllers/get-dashboard-enrollment";
@@ -99,6 +101,20 @@ adminRouter.get(
     "/courses",
     verifyAdminUsingAccessToken,
     getCourses
+);
+
+// GET simple courses list (id + name only) for dropdowns - center-scoped
+adminRouter.get(
+    "/courses/simple",
+    verifyAdminUsingAccessToken,
+    getSimpleCourses
+);
+
+// GET batches for a specific course (no pagination - returns all batches with enrollment counts)
+adminRouter.get(
+    "/batches",
+    verifyAdminUsingAccessToken,
+    getBatchesByCourse
 );
 
 // GET enrollment report as Excel - filters: from_month, from_year, to_month, to_year, course_id (optional)

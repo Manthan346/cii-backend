@@ -29,6 +29,8 @@ export type Job_eventsMinAggregateOutputType = {
   event_type: $Enums.job_event_type | null
   event_name: string | null
   event_date: Date | null
+  event_start_time: Date | null
+  event_end_time: Date | null
   address: string | null
   google_map_link: string | null
   description: string | null
@@ -45,6 +47,8 @@ export type Job_eventsMaxAggregateOutputType = {
   event_type: $Enums.job_event_type | null
   event_name: string | null
   event_date: Date | null
+  event_start_time: Date | null
+  event_end_time: Date | null
   address: string | null
   google_map_link: string | null
   description: string | null
@@ -61,6 +65,8 @@ export type Job_eventsCountAggregateOutputType = {
   event_type: number
   event_name: number
   event_date: number
+  event_start_time: number
+  event_end_time: number
   address: number
   google_map_link: number
   description: number
@@ -80,6 +86,8 @@ export type Job_eventsMinAggregateInputType = {
   event_type?: true
   event_name?: true
   event_date?: true
+  event_start_time?: true
+  event_end_time?: true
   address?: true
   google_map_link?: true
   description?: true
@@ -96,6 +104,8 @@ export type Job_eventsMaxAggregateInputType = {
   event_type?: true
   event_name?: true
   event_date?: true
+  event_start_time?: true
+  event_end_time?: true
   address?: true
   google_map_link?: true
   description?: true
@@ -112,6 +122,8 @@ export type Job_eventsCountAggregateInputType = {
   event_type?: true
   event_name?: true
   event_date?: true
+  event_start_time?: true
+  event_end_time?: true
   address?: true
   google_map_link?: true
   description?: true
@@ -202,6 +214,8 @@ export type Job_eventsGroupByOutputType = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date
+  event_start_time: Date | null
+  event_end_time: Date | null
   address: string
   google_map_link: string | null
   description: string | null
@@ -240,6 +254,8 @@ export type job_eventsWhereInput = {
   event_type?: Prisma.Enumjob_event_typeFilter<"job_events"> | $Enums.job_event_type
   event_name?: Prisma.StringFilter<"job_events"> | string
   event_date?: Prisma.DateTimeFilter<"job_events"> | Date | string
+  event_start_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
+  event_end_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
   address?: Prisma.StringFilter<"job_events"> | string
   google_map_link?: Prisma.StringNullableFilter<"job_events"> | string | null
   description?: Prisma.StringNullableFilter<"job_events"> | string | null
@@ -259,6 +275,8 @@ export type job_eventsOrderByWithRelationInput = {
   event_type?: Prisma.SortOrder
   event_name?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  event_end_time?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrder
   google_map_link?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -281,6 +299,8 @@ export type job_eventsWhereUniqueInput = Prisma.AtLeast<{
   event_type?: Prisma.Enumjob_event_typeFilter<"job_events"> | $Enums.job_event_type
   event_name?: Prisma.StringFilter<"job_events"> | string
   event_date?: Prisma.DateTimeFilter<"job_events"> | Date | string
+  event_start_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
+  event_end_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
   address?: Prisma.StringFilter<"job_events"> | string
   google_map_link?: Prisma.StringNullableFilter<"job_events"> | string | null
   description?: Prisma.StringNullableFilter<"job_events"> | string | null
@@ -300,6 +320,8 @@ export type job_eventsOrderByWithAggregationInput = {
   event_type?: Prisma.SortOrder
   event_name?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  event_end_time?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrder
   google_map_link?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -323,6 +345,8 @@ export type job_eventsScalarWhereWithAggregatesInput = {
   event_type?: Prisma.Enumjob_event_typeWithAggregatesFilter<"job_events"> | $Enums.job_event_type
   event_name?: Prisma.StringWithAggregatesFilter<"job_events"> | string
   event_date?: Prisma.DateTimeWithAggregatesFilter<"job_events"> | Date | string
+  event_start_time?: Prisma.DateTimeNullableWithAggregatesFilter<"job_events"> | Date | string | null
+  event_end_time?: Prisma.DateTimeNullableWithAggregatesFilter<"job_events"> | Date | string | null
   address?: Prisma.StringWithAggregatesFilter<"job_events"> | string
   google_map_link?: Prisma.StringNullableWithAggregatesFilter<"job_events"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"job_events"> | string | null
@@ -340,6 +364,8 @@ export type job_eventsCreateInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -358,6 +384,8 @@ export type job_eventsUncheckedCreateInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -376,6 +404,8 @@ export type job_eventsUpdateInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -394,6 +424,8 @@ export type job_eventsUncheckedUpdateInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,6 +444,8 @@ export type job_eventsCreateManyInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -429,6 +463,8 @@ export type job_eventsUpdateManyMutationInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -445,6 +481,8 @@ export type job_eventsUncheckedUpdateManyInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -472,6 +510,8 @@ export type job_eventsCountOrderByAggregateInput = {
   event_type?: Prisma.SortOrder
   event_name?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
   address?: Prisma.SortOrder
   google_map_link?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -489,6 +529,8 @@ export type job_eventsMaxOrderByAggregateInput = {
   event_type?: Prisma.SortOrder
   event_name?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
   address?: Prisma.SortOrder
   google_map_link?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -505,6 +547,8 @@ export type job_eventsMinOrderByAggregateInput = {
   event_type?: Prisma.SortOrder
   event_name?: Prisma.SortOrder
   event_date?: Prisma.SortOrder
+  event_start_time?: Prisma.SortOrder
+  event_end_time?: Prisma.SortOrder
   address?: Prisma.SortOrder
   google_map_link?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -599,6 +643,8 @@ export type job_eventsCreateWithoutHr_detailsInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -616,6 +662,8 @@ export type job_eventsUncheckedCreateWithoutHr_detailsInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -662,6 +710,8 @@ export type job_eventsScalarWhereInput = {
   event_type?: Prisma.Enumjob_event_typeFilter<"job_events"> | $Enums.job_event_type
   event_name?: Prisma.StringFilter<"job_events"> | string
   event_date?: Prisma.DateTimeFilter<"job_events"> | Date | string
+  event_start_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
+  event_end_time?: Prisma.DateTimeNullableFilter<"job_events"> | Date | string | null
   address?: Prisma.StringFilter<"job_events"> | string
   google_map_link?: Prisma.StringNullableFilter<"job_events"> | string | null
   description?: Prisma.StringNullableFilter<"job_events"> | string | null
@@ -679,6 +729,8 @@ export type job_eventsCreateWithoutJob_fair_candidatesInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -696,6 +748,8 @@ export type job_eventsUncheckedCreateWithoutJob_fair_candidatesInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -729,6 +783,8 @@ export type job_eventsUpdateWithoutJob_fair_candidatesInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -746,6 +802,8 @@ export type job_eventsUncheckedUpdateWithoutJob_fair_candidatesInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -763,6 +821,8 @@ export type job_eventsCreateManyHr_detailsInput = {
   event_type: $Enums.job_event_type
   event_name: string
   event_date: Date | string
+  event_start_time?: Date | string | null
+  event_end_time?: Date | string | null
   address: string
   google_map_link?: string | null
   description?: string | null
@@ -779,6 +839,8 @@ export type job_eventsUpdateWithoutHr_detailsInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -796,6 +858,8 @@ export type job_eventsUncheckedUpdateWithoutHr_detailsInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -813,6 +877,8 @@ export type job_eventsUncheckedUpdateManyWithoutHr_detailsInput = {
   event_type?: Prisma.Enumjob_event_typeFieldUpdateOperationsInput | $Enums.job_event_type
   event_name?: Prisma.StringFieldUpdateOperationsInput | string
   event_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  event_start_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  event_end_time?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   address?: Prisma.StringFieldUpdateOperationsInput | string
   google_map_link?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -860,6 +926,8 @@ export type job_eventsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   event_type?: boolean
   event_name?: boolean
   event_date?: boolean
+  event_start_time?: boolean
+  event_end_time?: boolean
   address?: boolean
   google_map_link?: boolean
   description?: boolean
@@ -880,6 +948,8 @@ export type job_eventsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   event_type?: boolean
   event_name?: boolean
   event_date?: boolean
+  event_start_time?: boolean
+  event_end_time?: boolean
   address?: boolean
   google_map_link?: boolean
   description?: boolean
@@ -898,6 +968,8 @@ export type job_eventsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   event_type?: boolean
   event_name?: boolean
   event_date?: boolean
+  event_start_time?: boolean
+  event_end_time?: boolean
   address?: boolean
   google_map_link?: boolean
   description?: boolean
@@ -916,6 +988,8 @@ export type job_eventsSelectScalar = {
   event_type?: boolean
   event_name?: boolean
   event_date?: boolean
+  event_start_time?: boolean
+  event_end_time?: boolean
   address?: boolean
   google_map_link?: boolean
   description?: boolean
@@ -928,7 +1002,7 @@ export type job_eventsSelectScalar = {
   event_start_time?: boolean
 }
 
-export type job_eventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"job_event_id" | "event_type" | "event_name" | "event_date" | "address" | "google_map_link" | "description" | "created_at" | "updated_at" | "created_by" | "jobevent_photos" | "event_status" | "event_end_time" | "event_start_time", ExtArgs["result"]["job_events"]>
+export type job_eventsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"job_event_id" | "event_type" | "event_name" | "event_date" | "event_start_time" | "event_end_time" | "address" | "google_map_link" | "description" | "created_at" | "updated_at" | "created_by" | "jobevent_photos" | "event_status", ExtArgs["result"]["job_events"]>
 export type job_eventsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hr_details?: boolean | Prisma.hr_detailsDefaultArgs<ExtArgs>
   job_fair_candidates?: boolean | Prisma.job_events$job_fair_candidatesArgs<ExtArgs>
@@ -952,6 +1026,8 @@ export type $job_eventsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     event_type: $Enums.job_event_type
     event_name: string
     event_date: Date
+    event_start_time: Date | null
+    event_end_time: Date | null
     address: string
     google_map_link: string | null
     description: string | null
@@ -1391,6 +1467,8 @@ export interface job_eventsFieldRefs {
   readonly event_type: Prisma.FieldRef<"job_events", 'job_event_type'>
   readonly event_name: Prisma.FieldRef<"job_events", 'String'>
   readonly event_date: Prisma.FieldRef<"job_events", 'DateTime'>
+  readonly event_start_time: Prisma.FieldRef<"job_events", 'DateTime'>
+  readonly event_end_time: Prisma.FieldRef<"job_events", 'DateTime'>
   readonly address: Prisma.FieldRef<"job_events", 'String'>
   readonly google_map_link: Prisma.FieldRef<"job_events", 'String'>
   readonly description: Prisma.FieldRef<"job_events", 'String'>

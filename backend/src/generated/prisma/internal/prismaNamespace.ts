@@ -3300,6 +3300,8 @@ export const Job_eventsScalarFieldEnum = {
   event_type: 'event_type',
   event_name: 'event_name',
   event_date: 'event_date',
+  event_start_time: 'event_start_time',
+  event_end_time: 'event_end_time',
   address: 'address',
   google_map_link: 'google_map_link',
   description: 'description',

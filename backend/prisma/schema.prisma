@@ -554,6 +554,8 @@ model job_events {
   event_type          job_event_type
   event_name          String                @db.VarChar(255)
   event_date          DateTime              @db.Date
+  event_start_time    DateTime?              @db.Time(6)
+  event_end_time      DateTime?              @db.Time(6)
   address             String
   google_map_link     String?
   description         String?
@@ -562,8 +564,6 @@ model job_events {
   created_by          String                @db.Uuid
   jobevent_photos     String[]              @default([])
   event_status        job_event_status      @default(UPCOMING)
-  event_end_time      DateTime?             @db.Time(6)
-  event_start_time    DateTime?             @db.Time(6)
   hr_details          hr_details            @relation(fields: [created_by], references: [hr_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_job_events_created_by")
   job_fair_candidates job_fair_candidates[]
 }
