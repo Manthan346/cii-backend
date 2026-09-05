@@ -139,6 +139,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                         user_password: hashedPassword,
                         user_role: "candidate",
                         center_id: centerId,
+                        is_active: true, // Requires admin approval
                     }
                 });
                 candidateUserId = userLogin.user_id;
@@ -154,7 +155,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                         date_of_birth: date_of_birth ? new Date(date_of_birth) : null,
                         blood_group: blood_group?.trim() || null,
                         candidate_unique_id: candidateUniqueId,
-                        is_active: false, // Requires admin approval
+                        
                     }
                 });
                 candidateId = candidate.candidate_id;

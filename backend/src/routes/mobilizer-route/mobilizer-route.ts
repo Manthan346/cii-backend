@@ -26,6 +26,9 @@ import { getMobilizerNotifications } from '../../controllers/mobilizer-controlle
 import { mobilizerEnrollCandidate } from '../../controllers/mobilizer-controller/enroll-candidate';
 import { mobilizerEnrollCandidateSchema } from '../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema';
 import { getMobilizerCandidateDetails } from '../../controllers/mobilizer-controller/get-mobilizer-candidate-details';
+import { downloadMobilizerEnquiryExcel } from '../../controllers/mobilizer-controller/download-mobilizer-enquiry-excel';
+import { getMobilizerSimpleCourses } from '../../controllers/mobilizer-controller/get-mobilizer-simple-courses';
+import { getMobilizerBatchesByCourse } from '../../controllers/mobilizer-controller/get-mobilizer-batches-by-course';
 
 
 const mobilizerRouter = Router();
@@ -169,6 +172,31 @@ mobilizerRouter.get(
 );
 
 // Get detailed profile for each candidate (documents, enrollment, batch info)
+mobilizerRouter.get(
+    "/candidates/details",
+    verifyMobilizerUsingAccessToken,
+    
+);
 
+// Download enquiry records as Excel/CSV
+mobilizerRouter.get(
+    "/download-enquiry-excel",
+    verifyMobilizerUsingAccessToken,
+    downloadMobilizerEnquiryExcel
+);
+
+// Get simple courses list (id + name only) for dropdowns - center-scoped
+mobilizerRouter.get(
+    "/courses/simple",
+    verifyMobilizerUsingAccessToken,
+    getMobilizerSimpleCourses
+);
+
+// Get batches for a specific course (no pagination - returns all batches with enrollment counts) - center-scoped
+mobilizerRouter.get(
+    "/batches",
+    verifyMobilizerUsingAccessToken,
+    getMobilizerBatchesByCourse
+);
 
 export default mobilizerRouter
