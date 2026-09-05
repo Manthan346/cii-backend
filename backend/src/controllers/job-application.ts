@@ -1,5 +1,4 @@
-import { Request,Response } from "express";
-
+import { Request, Response } from "express";
 import { prisma } from "../lib/prisma";
 import { asyncHandler } from "../helpers/asyncHandler";
 import { ApiError } from "../helpers/ApiError";
@@ -7,8 +6,8 @@ import { createPlacementApplicationSchema } from "../services/zod/hr/placement-a
 
 export const createPlacementApplication = asyncHandler(
     async (req: Request, res: Response) => {
-
         const { placementId } = req.params;
+
         if (!placementId || Array.isArray(placementId)) {
             throw new ApiError(400, "Invalid placement ID");
         }
@@ -18,8 +17,13 @@ export const createPlacementApplication = asyncHandler(
             email,
             contact_no,
             resume,
+            graduation_year,
+            highest_qualification,
+            institute_name,
+            cgpa,
+            percentage,
             source,
-        } = req.body;
+        } = createPlacementApplicationSchema.parse(req.body);
 
         const placement = await prisma.placement.findUnique({
             where: {
@@ -74,6 +78,11 @@ export const createPlacementApplication = asyncHandler(
                     email,
                     contact_no,
                     resume,
+                    graduation_year,
+                    highest_qualification,
+                    institute_name,
+                    cgpa,
+                    percentage,
                     source,
                     application_status: "SCREENING",
                 },

@@ -33,6 +33,7 @@ import { getAdminCandidateDashboardSummary } from "../../controllers/admin-contr
 import { getAdminProfile } from "../../controllers/admin-controllers/get-admin-profile";
 import { updateAdminProfile } from "../../controllers/admin-controllers/update-admin-profile";
 import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/fetch-company";
+import { downloadCompanyEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -173,6 +174,8 @@ adminRouter.get("/profile",verifyAdminUsingAccessToken,getAdminProfile)
 adminRouter.patch("/profile/edit",verifyAdminUsingAccessToken,updateAdminProfile);
 //fetch all companies (center-scoped)
 adminRouter.get("/total-users/companies",verifyAdminUsingAccessToken,getCompaniesByAdminCenter);
+//download report of enrollments with candidate data 
+adminRouter.get("/reports/company-course-batch-academics",verifyAdminUsingAccessToken,downloadCompanyEnrollmentReport);
 //change user password (admin only)
 adminRouter.patch(
     "/total-users/:userId/change-password",
