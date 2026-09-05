@@ -55,6 +55,7 @@ export type Placement_applicationsMinAggregateOutputType = {
   percentage: runtime.Decimal | null
   highest_qualification: string | null
   institute_name: string | null
+  applicant_location: string | null
 }
 
 export type Placement_applicationsMaxAggregateOutputType = {
@@ -74,6 +75,7 @@ export type Placement_applicationsMaxAggregateOutputType = {
   percentage: runtime.Decimal | null
   highest_qualification: string | null
   institute_name: string | null
+  applicant_location: string | null
 }
 
 export type Placement_applicationsCountAggregateOutputType = {
@@ -93,6 +95,7 @@ export type Placement_applicationsCountAggregateOutputType = {
   percentage: number
   highest_qualification: number
   institute_name: number
+  applicant_location: number
   _all: number
 }
 
@@ -126,6 +129,7 @@ export type Placement_applicationsMinAggregateInputType = {
   percentage?: true
   highest_qualification?: true
   institute_name?: true
+  applicant_location?: true
 }
 
 export type Placement_applicationsMaxAggregateInputType = {
@@ -145,6 +149,7 @@ export type Placement_applicationsMaxAggregateInputType = {
   percentage?: true
   highest_qualification?: true
   institute_name?: true
+  applicant_location?: true
 }
 
 export type Placement_applicationsCountAggregateInputType = {
@@ -164,6 +169,7 @@ export type Placement_applicationsCountAggregateInputType = {
   percentage?: true
   highest_qualification?: true
   institute_name?: true
+  applicant_location?: true
   _all?: true
 }
 
@@ -270,6 +276,7 @@ export type Placement_applicationsGroupByOutputType = {
   percentage: runtime.Decimal | null
   highest_qualification: string | null
   institute_name: string | null
+  applicant_location: string | null
   _count: Placement_applicationsCountAggregateOutputType | null
   _avg: Placement_applicationsAvgAggregateOutputType | null
   _sum: Placement_applicationsSumAggregateOutputType | null
@@ -312,6 +319,7 @@ export type placement_applicationsWhereInput = {
   percentage?: Prisma.DecimalNullableFilter<"placement_applications"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.StringNullableFilter<"placement_applications"> | string | null
   institute_name?: Prisma.StringNullableFilter<"placement_applications"> | string | null
+  applicant_location?: Prisma.StringNullableFilter<"placement_applications"> | string | null
   placement?: Prisma.XOR<Prisma.PlacementScalarRelationFilter, Prisma.placementWhereInput>
 }
 
@@ -332,6 +340,7 @@ export type placement_applicationsOrderByWithRelationInput = {
   percentage?: Prisma.SortOrderInput | Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   institute_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicant_location?: Prisma.SortOrderInput | Prisma.SortOrder
   placement?: Prisma.placementOrderByWithRelationInput
 }
 
@@ -356,6 +365,7 @@ export type placement_applicationsWhereUniqueInput = Prisma.AtLeast<{
   percentage?: Prisma.DecimalNullableFilter<"placement_applications"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.StringNullableFilter<"placement_applications"> | string | null
   institute_name?: Prisma.StringNullableFilter<"placement_applications"> | string | null
+  applicant_location?: Prisma.StringNullableFilter<"placement_applications"> | string | null
   placement?: Prisma.XOR<Prisma.PlacementScalarRelationFilter, Prisma.placementWhereInput>
 }, "application_id" | "placement_id_email">
 
@@ -376,6 +386,7 @@ export type placement_applicationsOrderByWithAggregationInput = {
   percentage?: Prisma.SortOrderInput | Prisma.SortOrder
   highest_qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   institute_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  applicant_location?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.placement_applicationsCountOrderByAggregateInput
   _avg?: Prisma.placement_applicationsAvgOrderByAggregateInput
   _max?: Prisma.placement_applicationsMaxOrderByAggregateInput
@@ -403,6 +414,7 @@ export type placement_applicationsScalarWhereWithAggregatesInput = {
   percentage?: Prisma.DecimalNullableWithAggregatesFilter<"placement_applications"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.StringNullableWithAggregatesFilter<"placement_applications"> | string | null
   institute_name?: Prisma.StringNullableWithAggregatesFilter<"placement_applications"> | string | null
+  applicant_location?: Prisma.StringNullableWithAggregatesFilter<"placement_applications"> | string | null
 }
 
 export type placement_applicationsCreateInput = {
@@ -421,6 +433,7 @@ export type placement_applicationsCreateInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
   placement: Prisma.placementCreateNestedOneWithoutPlacement_applicationsInput
 }
 
@@ -441,6 +454,7 @@ export type placement_applicationsUncheckedCreateInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
 }
 
 export type placement_applicationsUpdateInput = {
@@ -459,6 +473,7 @@ export type placement_applicationsUpdateInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   placement?: Prisma.placementUpdateOneRequiredWithoutPlacement_applicationsNestedInput
 }
 
@@ -479,6 +494,7 @@ export type placement_applicationsUncheckedUpdateInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placement_applicationsCreateManyInput = {
@@ -498,6 +514,7 @@ export type placement_applicationsCreateManyInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
 }
 
 export type placement_applicationsUpdateManyMutationInput = {
@@ -516,6 +533,7 @@ export type placement_applicationsUpdateManyMutationInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placement_applicationsUncheckedUpdateManyInput = {
@@ -535,6 +553,7 @@ export type placement_applicationsUncheckedUpdateManyInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Placement_applicationsListRelationFilter = {
@@ -569,6 +588,7 @@ export type placement_applicationsCountOrderByAggregateInput = {
   percentage?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   institute_name?: Prisma.SortOrder
+  applicant_location?: Prisma.SortOrder
 }
 
 export type placement_applicationsAvgOrderByAggregateInput = {
@@ -594,6 +614,7 @@ export type placement_applicationsMaxOrderByAggregateInput = {
   percentage?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   institute_name?: Prisma.SortOrder
+  applicant_location?: Prisma.SortOrder
 }
 
 export type placement_applicationsMinOrderByAggregateInput = {
@@ -613,6 +634,7 @@ export type placement_applicationsMinOrderByAggregateInput = {
   percentage?: Prisma.SortOrder
   highest_qualification?: Prisma.SortOrder
   institute_name?: Prisma.SortOrder
+  applicant_location?: Prisma.SortOrder
 }
 
 export type placement_applicationsSumOrderByAggregateInput = {
@@ -683,6 +705,7 @@ export type placement_applicationsCreateWithoutPlacementInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
 }
 
 export type placement_applicationsUncheckedCreateWithoutPlacementInput = {
@@ -701,6 +724,7 @@ export type placement_applicationsUncheckedCreateWithoutPlacementInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
 }
 
 export type placement_applicationsCreateOrConnectWithoutPlacementInput = {
@@ -749,6 +773,7 @@ export type placement_applicationsScalarWhereInput = {
   percentage?: Prisma.DecimalNullableFilter<"placement_applications"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.StringNullableFilter<"placement_applications"> | string | null
   institute_name?: Prisma.StringNullableFilter<"placement_applications"> | string | null
+  applicant_location?: Prisma.StringNullableFilter<"placement_applications"> | string | null
 }
 
 export type placement_applicationsCreateManyPlacementInput = {
@@ -767,6 +792,7 @@ export type placement_applicationsCreateManyPlacementInput = {
   percentage?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: string | null
   institute_name?: string | null
+  applicant_location?: string | null
 }
 
 export type placement_applicationsUpdateWithoutPlacementInput = {
@@ -785,6 +811,7 @@ export type placement_applicationsUpdateWithoutPlacementInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placement_applicationsUncheckedUpdateWithoutPlacementInput = {
@@ -803,6 +830,7 @@ export type placement_applicationsUncheckedUpdateWithoutPlacementInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type placement_applicationsUncheckedUpdateManyWithoutPlacementInput = {
@@ -821,6 +849,7 @@ export type placement_applicationsUncheckedUpdateManyWithoutPlacementInput = {
   percentage?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   highest_qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institute_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applicant_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -842,6 +871,7 @@ export type placement_applicationsSelect<ExtArgs extends runtime.Types.Extension
   percentage?: boolean
   highest_qualification?: boolean
   institute_name?: boolean
+  applicant_location?: boolean
   placement?: boolean | Prisma.placementDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement_applications"]>
 
@@ -862,6 +892,7 @@ export type placement_applicationsSelectCreateManyAndReturn<ExtArgs extends runt
   percentage?: boolean
   highest_qualification?: boolean
   institute_name?: boolean
+  applicant_location?: boolean
   placement?: boolean | Prisma.placementDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement_applications"]>
 
@@ -882,6 +913,7 @@ export type placement_applicationsSelectUpdateManyAndReturn<ExtArgs extends runt
   percentage?: boolean
   highest_qualification?: boolean
   institute_name?: boolean
+  applicant_location?: boolean
   placement?: boolean | Prisma.placementDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["placement_applications"]>
 
@@ -902,9 +934,10 @@ export type placement_applicationsSelectScalar = {
   percentage?: boolean
   highest_qualification?: boolean
   institute_name?: boolean
+  applicant_location?: boolean
 }
 
-export type placement_applicationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"application_id" | "placement_id" | "applicant_name" | "email" | "contact_no" | "applied_date" | "resume" | "source" | "application_status" | "created_at" | "updated_at" | "graduation_year" | "cgpa" | "percentage" | "highest_qualification" | "institute_name", ExtArgs["result"]["placement_applications"]>
+export type placement_applicationsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"application_id" | "placement_id" | "applicant_name" | "email" | "contact_no" | "applied_date" | "resume" | "source" | "application_status" | "created_at" | "updated_at" | "graduation_year" | "cgpa" | "percentage" | "highest_qualification" | "institute_name" | "applicant_location", ExtArgs["result"]["placement_applications"]>
 export type placement_applicationsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   placement?: boolean | Prisma.placementDefaultArgs<ExtArgs>
 }
@@ -937,6 +970,7 @@ export type $placement_applicationsPayload<ExtArgs extends runtime.Types.Extensi
     percentage: runtime.Decimal | null
     highest_qualification: string | null
     institute_name: string | null
+    applicant_location: string | null
   }, ExtArgs["result"]["placement_applications"]>
   composites: {}
 }
@@ -1377,6 +1411,7 @@ export interface placement_applicationsFieldRefs {
   readonly percentage: Prisma.FieldRef<"placement_applications", 'Decimal'>
   readonly highest_qualification: Prisma.FieldRef<"placement_applications", 'String'>
   readonly institute_name: Prisma.FieldRef<"placement_applications", 'String'>
+  readonly applicant_location: Prisma.FieldRef<"placement_applications", 'String'>
 }
     
 

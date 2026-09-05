@@ -3357,7 +3357,8 @@ export const Placement_applicationsScalarFieldEnum = {
   cgpa: 'cgpa',
   percentage: 'percentage',
   highest_qualification: 'highest_qualification',
-  institute_name: 'institute_name'
+  institute_name: 'institute_name',
+  applicant_location: 'applicant_location'
 } as const
 
 export type Placement_applicationsScalarFieldEnum = (typeof Placement_applicationsScalarFieldEnum)[keyof typeof Placement_applicationsScalarFieldEnum]
