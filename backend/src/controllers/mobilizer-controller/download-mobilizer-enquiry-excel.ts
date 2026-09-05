@@ -21,7 +21,7 @@ export const downloadMobilizerEnquiryExcel = asyncHandler(
 
     // Build where clause for enquiry records
     const whereClause: any = {
-      mobilizer_id: mobilizerId, // Enquiries assigned to this mobilizer
+      // mobilizer_id: mobilizerId, // Enquiries assigned to this mobilizer
     };
 
     // Date range filter
@@ -100,8 +100,8 @@ export const downloadMobilizerEnquiryExcel = asyncHandler(
       { header: 'Course', key: 'course', width: 20 },
       { header: 'Company', key: 'company', width: 20 },
       { header: 'Enquiry Status', key: 'enquiryStatus', width: 15 },
-      { header: 'Created At', key: 'createdAt', width: 15 },
-      { header: 'Updated At', key: 'updatedAt', width: 15 }
+      { header: 'date', key: 'date', width: 15 },
+     
     ];
 
     // Add rows with data
@@ -116,8 +116,8 @@ export const downloadMobilizerEnquiryExcel = asyncHandler(
         course: enquiry.course_details?.course_name || 'N/A',
         company: enquiry.course_details?.company_details?.company_name || 'N/A',
         enquiryStatus: enquiry.enq_status || 'N/A',
-        createdAt: enquiry.created_at.toISOString().split('T')[0], // YYYY-MM-DD
-        updatedAt: enquiry.updated_at.toISOString().split('T')[0] // YYYY-MM-DD
+        date: enquiry.created_at.toISOString().split('T')[0], // YYYY-MM-DD
+        
       });
     });
 
