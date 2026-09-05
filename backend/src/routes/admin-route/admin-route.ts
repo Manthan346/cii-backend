@@ -37,6 +37,7 @@ import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/f
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
 import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
+import { deleteUser } from "../../controllers/admin-controllers/delete-user";
 import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
 import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 
@@ -178,6 +179,12 @@ adminRouter.patch(
     verifyAdminUsingAccessToken,
     validateBody(changePasswordSchema),
     changeUserPassword
+);
+//delete user (admin only) - deletes user and all associated role-specific data
+adminRouter.delete(
+    "/total-users/:userId",
+    verifyAdminUsingAccessToken,
+    deleteUser
 );
 
 export default adminRouter
