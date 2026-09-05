@@ -617,6 +617,7 @@ model placement_applications {
   percentage            Decimal?                @db.Decimal(5, 2)
   highest_qualification String?
   institute_name        String?
+  applicant_location    String?
   placement             placement               @relation(fields: [placement_id], references: [placement_id], onDelete: Cascade, map: "fk_placement_application_placement")
 
   @@unique([placement_id, email], map: "unique_placement_applicant_email")
