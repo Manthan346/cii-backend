@@ -110,6 +110,12 @@ export const getPlacementApplications = asyncHandler(
                     resume: true,
                     source: true,
                     application_status: true,
+                    cgpa:true,
+                    percentage:true,
+                    highest_qualification:true,
+                    institute_name:true,
+                    graduation_year:true,
+                    applicant_location:true,
 
                     placement: {
                         select: {

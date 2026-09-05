@@ -45,6 +45,12 @@ export const createPlacementApplicationSchema = z.object({
         .min(1, "Institute name is required")
         .max(255, "Institute name cannot exceed 255 characters"),
 
+    applicant_location: z
+        .string()
+        .trim()
+        .min(1, "Applicant location is required")
+        .max(255, "Applicant location cannot exceed 255 characters"),
+
     cgpa: z
         .coerce
         .number()
