@@ -7,12 +7,10 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 
 export const getActiveStudentsForSession = asyncHandler(
     async (req: InstructorAuthRequest, res: Response) => {
-
         const instructorId = req.instructor?.instructor_id;
         const company_id = req.instructor?.company_id;
         const attendance_session_id =
             req.params.attendance_session_id as string;
-
         if (!instructorId) {
             throw new ApiError(
                 401,
@@ -43,10 +41,12 @@ export const getActiveStudentsForSession = asyncHandler(
                     attendance_session_id: true,
                     instructor_id: true,
                     batch_id: true,
+
                     batch_details: {
                         select: {
                             batch_id: true,
                             batch_code: true,
+
                             course_details: {
                                 select: {
                                     company_id: true
@@ -111,8 +111,10 @@ export const getActiveStudentsForSession = asyncHandler(
                     session: {
                         attendance_session_id:
                             attendanceSession.attendance_session_id,
-                        batch_id: attendanceSession.batch_details.batch_id,
-                        batch_code: attendanceSession.batch_details.batch_code
+                        batch_id:
+                            attendanceSession.batch_details.batch_id,
+                        batch_code:
+                            attendanceSession.batch_details.batch_code
                     },
                     students
                 },
