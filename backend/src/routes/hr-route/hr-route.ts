@@ -25,6 +25,7 @@ import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-appl
 import { getApplicationPieChartStatus } from "../../controllers/hr-controllers/get-application-statusPieChart";
 import { uploadJobFairCandidates } from "../../controllers/hr-controllers/upload-job-fair-candidates";
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
+import { getJobFairCandidates } from "../../controllers/hr-controllers/fetch-candidates-forJobFairDrive";
 
 const hrRouter = Router();
 
@@ -39,6 +40,8 @@ updateJobEventStatus);
 hrRouter.get("/profile",verifyHrUsingAccessToken,getHrProfile);
 //update Job fair details
 hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,validateBody(updateJobEventSchema),updateJobEvent)
+//fetch all candidates in job fair 
+hrRouter.get('/job-event/:job_event_id/view',verifyHrUsingAccessToken,paginationMiddleware,getJobFairCandidates);
 //create job postings
 hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,validateBody(createPlacementSchema),createPlacement);
 //fetch all job postings 
