@@ -104,7 +104,7 @@ const Topbar = ({
       </div>
 
       <div className="mobilizer-topbar__center">
-        <div className="mobilizer-topbar__search">
+        {/* <div className="mobilizer-topbar__search">
           <Search size={18} strokeWidth={2} className="mobilizer-topbar__search-icon" />
           <input
             type="text"
@@ -115,7 +115,7 @@ const Topbar = ({
             onKeyDown={handleSearchKeyDown}
             aria-label="Search"
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="mobilizer-topbar__right">

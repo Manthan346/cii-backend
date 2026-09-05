@@ -10,6 +10,9 @@ const EMPTY_FORM = {
   phone: "",
   resume: "",
   graduationYear: "",
+  highestQualification: "",
+  instituteName: "",
+  applicant_location: "",
   cgpa: "",
   percentage: "",
   source: "Website",
@@ -39,6 +42,11 @@ function validate(form) {
       errors.resume = "Enter a valid resume URL";
     }
   }
+  if (!form.highestQualification.trim()) {
+    errors.highestQualification = "Required";
+  }
+  if (!form.instituteName.trim()) errors.instituteName = "Required";
+  if (!form.applicant_location.trim()) errors.applicant_location = "Required";
   if (!/^\d{4}$/.test(form.graduationYear)) {
     errors.graduationYear = "Enter a valid year";
   }
@@ -46,9 +54,8 @@ function validate(form) {
     errors.cgpa = "Enter CGPA between 0 and 10";
   }
   if (
-    !form.percentage ||
-    Number(form.percentage) < 0 ||
-    Number(form.percentage) > 100
+    form.percentage &&
+    (Number(form.percentage) < 0 || Number(form.percentage) > 100)
   ) {
     errors.percentage = "Enter percentage between 0 and 100";
   }
@@ -82,8 +89,11 @@ export default function ApplyModal({ job, onClose, onSubmitted }) {
         contact_no: form.phone.replace(/\D/g, ""),
         resume: form.resume.trim(),
         graduation_year: Number(form.graduationYear),
+        highest_qualification: form.highestQualification.trim(),
+        institute_name: form.instituteName.trim(),
+        applicant_location: form.applicant_location.trim(),
         cgpa: Number(form.cgpa),
-        percentage: Number(form.percentage),
+        percentage: form.percentage ? Number(form.percentage) : null,
         source: form.source.trim(),
       });
       setApplicationId(response.data?.application_id || "");
@@ -159,6 +169,21 @@ export default function ApplyModal({ job, onClose, onSubmitted }) {
                   />
                   {errors.lastName && (
                     <span className={styles.error}>{errors.lastName}</span>
+                  )}
+                </div>
+                <div className={styles.field}>
+                  <label className={styles.label} htmlFor="applicant_location">
+                    applicant_location
+                  </label>
+                  <input
+                    id="applicant_location"
+                    className={styles.input}
+                    value={form.applicant_location}
+                    onChange={updateField("applicant_location")}
+                    placeholder="City, State"
+                  />
+                  {errors.applicant_location && (
+                    <span className={styles.error}>{errors.applicant_location}</span>
                   )}
                 </div>
               </div>
@@ -245,6 +270,44 @@ export default function ApplyModal({ job, onClose, onSubmitted }) {
 
               <div className={styles.row}>
                 <div className={styles.field}>
+                  <label
+                    className={styles.label}
+                    htmlFor="highestQualification"
+                  >
+                    Highest Qualification
+                  </label>
+                  <input
+                    id="highestQualification"
+                    className={styles.input}
+                    value={form.highestQualification}
+                    onChange={updateField("highestQualification")}
+                    placeholder="Bachelor of Engineering"
+                  />
+                  {errors.highestQualification && (
+                    <span className={styles.error}>
+                      {errors.highestQualification}
+                    </span>
+                  )}
+                </div>
+                <div className={styles.field}>
+                  <label className={styles.label} htmlFor="instituteName">
+                    Institute Name
+                  </label>
+                  <input
+                    id="instituteName"
+                    className={styles.input}
+                    value={form.instituteName}
+                    onChange={updateField("instituteName")}
+                    placeholder="Your institute name"
+                  />
+                  {errors.instituteName && (
+                    <span className={styles.error}>{errors.instituteName}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.field}>
                   <label className={styles.label} htmlFor="graduationYear">
                     Graduation Year
                   </label>
@@ -312,7 +375,7 @@ export default function ApplyModal({ job, onClose, onSubmitted }) {
                     className={styles.input}
                     value={form.percentage}
                     onChange={updateField("percentage")}
-                    placeholder="85.50"
+                    placeholder="Optional"
                   />
                   {errors.percentage && (
                     <span className={styles.error}>{errors.percentage}</span>
