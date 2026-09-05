@@ -157,10 +157,10 @@ export const deleteUser = asyncHandler(
               where: { instructor_id: targetUser.instructor_details.instructor_id }
             });
 
-            // Set instructor_id to NULL in batch_details for all batches taught by this instructor
-            await tx.batch_details.updateMany({
+            // batch_details.instructor_id is required, so remove dependent batch
+            // records before deleting the instructor rather than assigning NULL.
+            await tx.batch_details.deleteMany({
               where: { instructor_id: targetUser.instructor_details.instructor_id },
-              data: { instructor_id: null }
             });
 
             // Delete instructor_details
@@ -197,12 +197,24 @@ export const deleteUser = asyncHandler(
           if (targetUser.hr_details) {
             // Delete job_events
             await tx.job_events.deleteMany({
-              where: { hr_id: targetUser.hr_details.hr_id }
+              where: {
+                job_event_id: {
+                  in: targetUser.hr_details.job_events.map(
+                    ({ job_event_id }) => job_event_id
+                  )
+                }
+              }
             });
 
             // Delete placement
             await tx.placement.deleteMany({
-              where: { hr_id: targetUser.hr_details.hr_id }
+              where: {
+                placement_id: {
+                  in: targetUser.hr_details.placement.map(
+                    ({ placement_id }) => placement_id
+                  )
+                }
+              }
             });
 
             // Delete hr_details
