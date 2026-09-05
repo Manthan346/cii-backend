@@ -2,7 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import Header from "../homepage/header/Header";
 import Navbar from "../homepage/navbar/Navbar";
 import Footer from "../homepage/footer/Footer";
-import { getPublicEvents } from "../../../api/homepage/eventPageService";
+import {
+  getPublicEvents,
+  getPublicJobEvents,
+} from "../../../api/homepage/eventPageService";
 import "./EventsPage.css";
 
 const COMPLETED_EVENTS_PER_PAGE = 6;
@@ -13,6 +16,8 @@ const CATEGORY_COLORS = {
   WEBINAR: "#14b8a6",
   CONFERENCE: "#6366f1",
   CEREMONY: "#ec4899",
+  "JOB FAIR": "#f59e0b",
+  "JOB DRIVE": "#dc2626",
 };
 
 function formatDate(value) {
@@ -44,28 +49,40 @@ function normalizeEventStatus(event) {
 }
 
 function toEvent(event) {
-  const photos = (event.event_documents || []).map((url, index) => ({
+  const isJobEvent = Boolean(event.job_event_id);
+  const eventTitle = isJobEvent ? event.event_name : event.event_title;
+  const eventType = isJobEvent
+    ? event.event_type === "JOB_FAIR"
+      ? "JOB FAIR"
+      : "JOB DRIVE"
+    : event.event_type;
+  const photoUrls = isJobEvent
+    ? event.jobevent_photos || []
+    : event.event_documents || [];
+  const photos = photoUrls.map((url, index) => ({
     url,
-    caption: `${event.event_title} photo ${index + 1}`,
+    caption: `${eventTitle} photo ${index + 1}`,
   }));
   const fallbackPhoto =
     "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&auto=format&fit=crop&q=80";
   return {
     ...event,
-    id: event.event_id,
+    id: isJobEvent ? `job-${event.job_event_id}` : event.event_id,
     event_status: normalizeEventStatus(event),
-    title: event.event_title,
+    title: eventTitle,
     date: formatDate(event.event_date),
     dateObj: new Date(event.event_date),
     startTime: formatTime(event.event_start_time),
     endTime: formatTime(event.event_end_time),
-    location: event.venue,
-    category: event.event_type,
-    description: event.event_description,
+    location: isJobEvent ? event.address : event.venue,
+    category: eventType,
+    description: isJobEvent ? event.description : event.event_description,
+    event_link: isJobEvent ? event.google_map_link : event.event_link,
+    isJobEvent,
     coverImage: photos[0]?.url || fallbackPhoto,
     photos: photos.length
       ? photos
-      : [{ url: fallbackPhoto, caption: event.event_title }],
+      : [{ url: fallbackPhoto, caption: eventTitle }],
   };
 }
 
@@ -101,13 +118,29 @@ export default function EventsPage() {
   useEffect(() => {
     async function loadEvents() {
       try {
-        const firstPage = await getPublicEvents({ page: 1, limit: 50 });
-        const allEvents = [...(firstPage.events || [])];
+        const [firstPage, firstJobPage] = await Promise.all([
+          getPublicEvents({ page: 1, limit: 50 }),
+          getPublicJobEvents({ page: 1, limit: 50 }),
+        ]);
+        const allEvents = [
+          ...(firstPage.events || []),
+          ...(firstJobPage.jobFairs || []),
+          ...(firstJobPage.jobDrives || []),
+        ];
         const totalPages = firstPage.pagination?.totalPages || 1;
+        const totalJobPages = firstJobPage.pagination?.totalPages || 1;
 
         for (let page = 2; page <= totalPages; page += 1) {
           const nextPage = await getPublicEvents({ page, limit: 50 });
           allEvents.push(...(nextPage.events || []));
+        }
+
+        for (let page = 2; page <= totalJobPages; page += 1) {
+          const nextJobPage = await getPublicJobEvents({ page, limit: 50 });
+          allEvents.push(
+            ...(nextJobPage.jobFairs || []),
+            ...(nextJobPage.jobDrives || []),
+          );
         }
 
         setEvents(allEvents.map(toEvent));
@@ -124,10 +157,13 @@ export default function EventsPage() {
 
   const upcomingEvents = useMemo(
     () =>
-      events.filter(
-        (event) =>
-          event.event_status === "UPCOMING" || event.event_status === "ONGOING",
-      ),
+      events
+        .filter(
+          (event) =>
+            event.event_status === "UPCOMING" ||
+            event.event_status === "ONGOING",
+        )
+        .sort((a, b) => b.dateObj - a.dateObj),
     [events],
   );
   const completedEvents = useMemo(
@@ -509,7 +545,9 @@ function DateFilter({ label, value, onChange }) {
   );
 }
 function UpcomingCard({ event }) {
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location || event.title)}`;
+  const mapUrl =
+    event.event_link ||
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location || event.title)}`;
 
   return (
     <div className="ep-ucard">
@@ -532,14 +570,16 @@ function UpcomingCard({ event }) {
         <div className="ep-ucard__location">
           <PinIcon /> {event.location}
         </div>
-        <div className="ep-ucard__location">
-          <ModeIcon /> <strong>{event.event_mode || "-"}</strong>
-        </div>
+        {!event.isJobEvent && (
+          <div className="ep-ucard__location">
+            <ModeIcon /> <strong>{event.event_mode}</strong>
+          </div>
+        )}
         <div className="ep-ucard__location">
           <span>Time</span> {event.startTime} - {event.endTime}
         </div>
         <div className="ep-ucard__actions">
-          {event.event_link && (
+          {event.event_link && !event.isJobEvent && (
             <a
               className="ep-ucard__action ep-ucard__action--primary"
               href={event.event_link}
@@ -625,9 +665,11 @@ function PastCard({ event, reverse, onViewPhotos }) {
             <PinIcon />
             <span>{event.location}</span>
           </div>
-          <div className="ep-pcard__meta-item">
-            <span>{event.event_mode} event</span>
-          </div>
+          {!event.isJobEvent && (
+            <div className="ep-pcard__meta-item">
+              <span>{event.event_mode} event</span>
+            </div>
+          )}
           <div className="ep-pcard__meta-item">
             <span>
               {event.startTime} - {event.endTime}

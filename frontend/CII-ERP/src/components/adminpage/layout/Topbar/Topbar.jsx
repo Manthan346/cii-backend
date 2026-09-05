@@ -109,7 +109,7 @@ const Topbar = ({
 
       {/* Center: search */}
       <div className="admin-topbar__center">
-        <div className="admin-topbar__search">
+        {/* <div className="admin-topbar__search">
           <Search
             size={18}
             strokeWidth={2}
@@ -124,7 +124,7 @@ const Topbar = ({
             onKeyDown={handleSearchKeyDown}
             aria-label="Search"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Right: notifications + avatar */}
