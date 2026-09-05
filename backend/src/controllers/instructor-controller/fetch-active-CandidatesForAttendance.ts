@@ -11,7 +11,6 @@ export const getActiveStudentsForSession = asyncHandler(
         const company_id = req.instructor?.company_id;
         const attendance_session_id =
             req.params.attendance_session_id as string;
-
         if (!instructorId) {
             throw new ApiError(
                 401,
@@ -42,10 +41,12 @@ export const getActiveStudentsForSession = asyncHandler(
                     attendance_session_id: true,
                     instructor_id: true,
                     batch_id: true,
+
                     batch_details: {
                         select: {
                             batch_id: true,
                             batch_code: true,
+
                             course_details: {
                                 select: {
                                     company_id: true
@@ -80,7 +81,6 @@ export const getActiveStudentsForSession = asyncHandler(
             );
         }
 
-        // Fetch active students
         const students = await prisma.batch_enrollment.findMany({
             where: {
                 batch_id: attendanceSession.batch_id,
@@ -104,33 +104,6 @@ export const getActiveStudentsForSession = asyncHandler(
             }
         });
 
-        // Fetch attendance records for this session
-        const attendanceRecords =
-            await prisma.attendance_records.findMany({
-                where: {
-                    attendance_session_id
-                },
-                select: {
-                    candidate_id: true,
-                    attendance_status: true
-                }
-            });
-
-        // Calculate summary
-        const total = students.length;
-        const present = attendanceRecords.filter(
-            (record) =>
-                record.attendance_status === "present"
-        ).length;
-        const absent = attendanceRecords.filter(
-            (record) =>
-                record.attendance_status === "absent"
-        ).length;
-        const late = attendanceRecords.filter(
-            (record) =>
-                record.attendance_status === "late"
-        ).length;
-
         return res.status(200).json(
             new ApiResponse(
                 200,
@@ -138,21 +111,11 @@ export const getActiveStudentsForSession = asyncHandler(
                     session: {
                         attendance_session_id:
                             attendanceSession.attendance_session_id,
-
                         batch_id:
                             attendanceSession.batch_details.batch_id,
-
                         batch_code:
                             attendanceSession.batch_details.batch_code
                     },
-
-                    summary: {
-                        total,
-                        present,
-                        absent,
-                        late
-                    },
-
                     students
                 },
                 "Active students fetched successfully."
