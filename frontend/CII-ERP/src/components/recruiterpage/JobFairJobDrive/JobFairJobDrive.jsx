@@ -21,7 +21,7 @@ const JobFairJobDrive = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isAddEventOpen, setIsAddEventOpen] = useState(false);
   const [eventBeingEdited, setEventBeingEdited] = useState(null);
-  const [importEventId, setImportEventId] = useState(null);
+  const [importEvent, setImportEvent] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [actionError, setActionError] = useState("");
 
@@ -74,8 +74,6 @@ const JobFairJobDrive = () => {
     setView("applications");
   };
 
-  const importEvent = importEventId ? { id: importEventId } : null;
-
   if (view === "applications" && selectedEvent) {
     return <EventApplicationsView event={selectedEvent} onBack={goToList} />;
   }
@@ -99,7 +97,7 @@ const JobFairJobDrive = () => {
       <JobFairJobDriveList
         key={refreshKey}
         onAddEvent={handleOpenAddEvent}
-        onImportEvent={setImportEventId}
+        onImportEvent={setImportEvent}
         onViewEvent={handleViewEvent}
         onEditEvent={handleEditEvent}
         onDeleteEvent={handleDeleteEvent}
@@ -115,8 +113,13 @@ const JobFairJobDrive = () => {
 
       <ImportModal
         isOpen={Boolean(importEvent)}
-        onClose={() => setImportEventId(null)}
-        title={importEvent ? `Import - ${importEvent.id}` : "Import"}
+        onClose={() => setImportEvent(null)}
+        eventId={importEvent?.id}
+        title={importEvent ? `Import - ${importEvent.name}` : "Import"}
+        onImported={() => {
+          setImportEvent(null);
+          refresh();
+        }}
       />
     </>
   );

@@ -1,15 +1,11 @@
-import React from 'react';
-import StatsOverview from '../StatsOverview/StatsOverview';
-import CandidateJourney from '../CandidateJourney/CandidateJourney';
-import CoursePerformance from '../CoursePerformance/CoursePerformance';
-import ApprovalRequests from '../ApprovalRequests/ApprovalRequests';
+import React from "react";
+import StatsOverview from "../StatsOverview/StatsOverview";
+import CoursePerformance from "../CoursePerformance/CoursePerformance";
 import {
   summaryStats,
-  candidateJourney,
   coursePerformance,
-  approvalRequests,
-} from '../../data';
-import './Dashboard.css';
+} from "../../data";
+import "./Dashboard.css";
 
 /**
  * Dashboard (Admin)
@@ -29,12 +25,12 @@ import './Dashboard.css';
 const Dashboard = () => {
   const handleApprove = (id) => {
     // TODO: PATCH /api/admin/approval-requests/:id { status: 'approved' }
-    console.log('approve', id);
+    console.log("approve", id);
   };
 
   const handleReject = (id) => {
     // TODO: PATCH /api/admin/approval-requests/:id { status: 'rejected' }
-    console.log('reject', id);
+    console.log("reject", id);
   };
 
   return (
@@ -48,16 +44,10 @@ const Dashboard = () => {
 
       <StatsOverview stats={summaryStats} />
 
-      <CandidateJourney steps={candidateJourney} />
+      {/* <CandidateJourney steps={candidateJourney} /> */}
 
       <CoursePerformance courses={coursePerformance} />
 
-      <ApprovalRequests
-        requests={approvalRequests}
-        onApprove={handleApprove}
-        onReject={handleReject}
-        viewAllHref="/admin/approvals"
-      />
     </div>
   );
 };

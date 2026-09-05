@@ -118,7 +118,9 @@ const JobFairJobDriveList = ({
         onViewEvent={onViewEvent}
         onEditEvent={onEditEvent}
         onDeleteEvent={onDeleteEvent}
-        onImportEvent={onImportEvent}
+        onImportEvent={(eventId) =>
+          onImportEvent(events.find((event) => event.id === eventId) ?? { id: eventId })
+        }
         onStatusChange={onStatusChange}
       />
 

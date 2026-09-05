@@ -1,19 +1,23 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { FileDown, Lock } from "lucide-react";
+import {
+  FileDown,
+  Lock,
+  Users,
+  UserCheck,
+  UserX,
+  UserPlus,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/Button/Button";
 import UsersOverview from "../UsersOverview/UsersOverview";
 import UsersFilterBar from "../UsersFilterBar/UsersFilterBar";
 import UsersTable from "../UsersTable/UsersTable";
 import AddUserModal from "../AddUserModal/AddUserModal";
-import {
-  userStats,
-  userRoleOptions,
-  userStatusOptions,
-} from "../../data/totalUsersData";
+import { userRoleOptions, userStatusOptions } from "../../data/totalUsersData";
 import {
   fetchAdminUsers,
   fetchAdminUserFilterOptions,
+  fetchAdminUserStats,
   updateAdminUserApproval,
 } from "../../../../../api/admin/adminUsersService";
 import "./TotalUsers.css";
@@ -24,6 +28,37 @@ const DEFAULT_PAGINATION = {
   pageSize: 10,
   totalResults: 0,
 };
+
+const buildUserStats = (data = {}) => [
+  {
+    id: "total",
+    label: "Total User",
+    value: (data.totalUsers ?? 0).toLocaleString(),
+    icon: Users,
+    iconBg: "#3e5feb",
+  },
+  {
+    id: "active",
+    label: "Active User",
+    value: (data.activeUsers ?? 0).toLocaleString(),
+    icon: UserCheck,
+    iconBg: "#1f9d5c",
+  },
+  {
+    id: "inactive",
+    label: "Inactive User",
+    value: (data.inactiveUsers ?? 0).toLocaleString(),
+    icon: UserX,
+    iconBg: "#e0554f",
+  },
+  {
+    id: "new",
+    label: "New User this month",
+    value: (data.newUsersThisMonth ?? 0).toLocaleString(),
+    icon: UserPlus,
+    iconBg: "#f2a93b",
+  },
+];
 
 const formatUserRole = (role) => {
   if (!role) return "Unknown";
@@ -142,6 +177,7 @@ const TotalUsers = () => {
   const [statusOptions, setStatusOptions] = useState(userStatusOptions);
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
   const [refreshTick, setRefreshTick] = useState(0);
+  const [stats, setStats] = useState(() => buildUserStats());
 
   useEffect(() => {
     const loadFilterOptions = async () => {
@@ -162,6 +198,19 @@ const TotalUsers = () => {
 
     loadFilterOptions();
   }, []);
+
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        const data = await fetchAdminUserStats();
+        setStats(buildUserStats(data));
+      } catch (err) {
+        console.warn("Unable to load user stats:", err);
+      }
+    };
+
+    loadStats();
+  }, [refreshTick]);
 
   const loadUsers = useCallback(async () => {
     setLoading(true);
@@ -292,7 +341,7 @@ const TotalUsers = () => {
         </div>
       </div>
 
-      <UsersOverview stats={userStats} />
+      <UsersOverview stats={stats} />
 
       <UsersFilterBar
         search={search}

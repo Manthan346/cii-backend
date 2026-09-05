@@ -2,6 +2,19 @@ import API from "../api";
 
 const DEFAULT_LIMIT = 10;
 
+export async function fetchAdminUserStats() {
+  const response = await API.get("/admin/total-users/dashboard");
+
+  return (
+    response?.data?.data ?? {
+      totalUsers: 0,
+      activeUsers: 0,
+      inactiveUsers: 0,
+      newUsersThisMonth: 0,
+    }
+  );
+}
+
 export async function fetchAdminUsers({
   search = "",
   role = "all",

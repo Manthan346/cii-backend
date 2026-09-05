@@ -14,6 +14,7 @@ const INITIAL_FORM = {
   name: "",
   date: "",
   time: "",
+  endTime: "",
   address: "", // combined venue + address — one field, one backend column
   mapsLink: "",
   description: "",
@@ -43,6 +44,7 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
         name: initialValues.name ?? "",
         date: initialValues.dateISO ?? "", // see note below on dateISO
         time: initialValues.timeISO ?? "",
+        endTime: initialValues.endTimeISO ?? "",
         address: initialValues.venue ?? initialValues.address ?? "",
         mapsLink: initialValues.mapLink ?? "",
         description: initialValues.description ?? "",
@@ -161,6 +163,16 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             type="time"
             value={form.time}
             onChange={handleChange("time")}
+            className="add-event-modal__input"
+          />
+        </label>
+
+        <label className="add-event-modal__field">
+          <span className="add-event-modal__label">End Time</span>
+          <input
+            type="time"
+            value={form.endTime}
+            onChange={handleChange("endTime")}
             className="add-event-modal__input"
           />
         </label>

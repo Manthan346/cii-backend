@@ -58,7 +58,7 @@ const EventTable = ({
                   </span>
                   <span className="event-table__meta-line">
                     <Clock size={14} className="event-table__meta-icon" />
-                    {event.time}
+                    {event.endTime ? `${event.time} - ${event.endTime}` : event.time}
                   </span>
                 </div>
               </td>
