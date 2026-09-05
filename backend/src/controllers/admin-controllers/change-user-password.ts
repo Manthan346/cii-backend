@@ -12,7 +12,7 @@ export const changeUserPassword = asyncHandler(
   async (req: Request, res: Response) => {
     const adminReq = req as adminAuthRequest;
     const adminUserId = adminReq.user.user_id;
-    const targetUserId = req.params.userId;
+    const targetUserId = req.params.userId as string;
 
     // Validate admin is authenticated
     if (!adminUserId) {

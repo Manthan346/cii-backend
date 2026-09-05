@@ -5,8 +5,6 @@ import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 import { updatePlacementSchema } from "../../services/zod/hr/placement-validation";
-import { upload } from "../../middlewares/multer-middleware/image-upload";
-import { uploadCloudnary } from "../../services/cloudinary";
 
 export const updateJobPosting = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
@@ -20,16 +18,9 @@ export const updateJobPosting = asyncHandler(
             );
         }
 
-        // Handle single job image upload
-        let job_image_from_upload = undefined;
-        if (req.file) {
-            const profile_photo = await uploadCloudnary(req.file.path || '') || undefined;
-            const photo_url = profile_photo?.secure_url
-            if (profile_photo) {
-                job_image_from_upload = photo_url;
-            }
-        }
-
+        // req.body.job_image is already set to the Cloudinary secure_url
+        // by the uploadJobImage middleware (if a file was uploaded), or left
+        // as whatever the client sent (or omitted) otherwise.
         const validation =
             updatePlacementSchema.safeParse(req.body);
 
@@ -201,16 +192,8 @@ export const updateJobPosting = asyncHandler(
                 applicationDeadline;
         }
 
-        // Determine job_image value: prefer upload, then body, then unchanged
-        let job_image_to_set = undefined;
-        if (job_image_from_upload !== undefined) {
-            job_image_to_set = job_image_from_upload;
-        } else if (data.job_image !== undefined) {
-            job_image_to_set = data.job_image;
-        }
-
-        if (job_image_to_set !== undefined) {
-            updateData.job_image = job_image_to_set;
+        if (data.job_image !== undefined) {
+            updateData.job_image = data.job_image;
         }
 
         const updatedPlacement =

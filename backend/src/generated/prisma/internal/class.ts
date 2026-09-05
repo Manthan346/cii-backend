@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "C:\\CII\\CII-ERP\\backend\\src\\generated\\prisma",
+      "value": "C:\\cii-backend\\CII-ERP\\backend\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\CII\\CII-ERP\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\cii-backend\\CII-ERP\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
