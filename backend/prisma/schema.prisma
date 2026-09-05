@@ -601,18 +601,23 @@ model placement {
 }
 
 model placement_applications {
-  application_id     String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  placement_id       String                  @db.Uuid
-  applicant_name     String                  @db.VarChar(255)
-  email              String                  @db.VarChar(255)
-  contact_no         String                  @db.VarChar(20)
-  applied_date       DateTime                @default(dbgenerated("CURRENT_DATE")) @db.Date
-  resume             String
-  source             String?                 @db.VarChar(100)
-  application_status application_status_type @default(SCREENING)
-  created_at         DateTime?               @default(now()) @db.Timestamp(6)
-  updated_at         DateTime?               @default(now()) @db.Timestamp(6)
-  placement          placement               @relation(fields: [placement_id], references: [placement_id], onDelete: Cascade, map: "fk_placement_application_placement")
+  application_id        String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  placement_id          String                  @db.Uuid
+  applicant_name        String                  @db.VarChar(255)
+  email                 String                  @db.VarChar(255)
+  contact_no            String                  @db.VarChar(20)
+  applied_date          DateTime                @default(dbgenerated("CURRENT_DATE")) @db.Date
+  resume                String
+  source                String?                 @db.VarChar(100)
+  application_status    application_status_type @default(SCREENING)
+  created_at            DateTime?               @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?               @default(now()) @db.Timestamp(6)
+  graduation_year       Int?
+  cgpa                  Decimal?                @db.Decimal(4, 2)
+  percentage            Decimal?                @db.Decimal(5, 2)
+  highest_qualification String?
+  institute_name        String?
+  placement             placement               @relation(fields: [placement_id], references: [placement_id], onDelete: Cascade, map: "fk_placement_application_placement")
 
   @@unique([placement_id, email], map: "unique_placement_applicant_email")
 }
