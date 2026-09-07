@@ -1,29 +1,21 @@
-import React from 'react';
-import { Pencil, Trash2 } from 'lucide-react';
-import SectionCard from '../../../shared/SectionCard/SectionCard';
-import StatusDot from '../../../shared/StatusDot/StatusDot';
-import ProgressBar from '../../../shared/ProgressBar/ProgressBar';
-import Pagination from '../../../shared/Pagination/Pagination';
-import './CoursesTable.css';
-
-const STATUS_META = {
-  ongoing: { label: 'Ongoing', dotTone: 'success', barTone: 'green' },
-  upcoming: { label: 'Upcoming', dotTone: 'pending', barTone: 'amber' },
-  completed: { label: 'Completed', dotTone: 'info', barTone: 'blue' },
-};
+import React from "react";
+import { Pencil, Trash2 } from "lucide-react";
+import SectionCard from "../../../shared/SectionCard/SectionCard";
+import Pagination from "../../../shared/Pagination/Pagination";
+import "./CoursesTable.css";
 
 /**
  * CoursesTable
  *
- * "Courses catalog - N results" list: course identity, batch/duration/
- * size, schedule, trainer, status (dot-style, not a filled pill - see
- * StatusDot), progress bar, and edit/delete row actions.
+ * "Courses catalog - N results" list: course identity, description,
+ * duration, mode, company, and edit/delete row actions.
  *
  * Props:
- *  - courses: array of { id, name, batch, duration, batchSize,
- *             startDate, endDate, trainer, status, progress } - see
- *             data/courseManagementData.js -> coursesCatalogList for
- *             the shape. `status` is one of 'ongoing' | 'upcoming' | 'completed'.
+ *  - courses: array of { id, name, description, duration, mode,
+ *             companyName } - see data/courseManagementData.js ->
+ *             coursesCatalogList for the shape. `mode` is e.g.
+ *             'online' | 'offline' | 'hybrid', shown as-is
+ *             (title-cased).
  *  - pagination: { currentPage, totalPages, pageSize, totalResults }
  *  - onPageChange: function(page)
  *  - onEditCourse / onDeleteCourse: function(id)
@@ -46,71 +38,54 @@ const CoursesTable = ({
   const rangeEnd = Math.min(currentPage * pageSize, totalResults);
 
   return (
-    <SectionCard title={`Courses catalog - ${totalResults.toLocaleString()} results`}>
+    <SectionCard
+      title={`Courses catalog - ${totalResults.toLocaleString()} results`}
+    >
       <div className="admin-table-wrap">
         <table className="admin-courses-table">
           <thead>
             <tr>
               <th>Course Name</th>
-              <th>Batch</th>
               <th>Duration</th>
-              <th>Batch Size</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Trainer</th>
-              <th>Status</th>
-              <th>Progress</th>
+              <th>Mode</th>
+              <th>Company</th>
+              <th>Functions</th>
               <th aria-hidden="true" />
             </tr>
           </thead>
           <tbody>
-            {courses.map((course) => {
-              const meta = STATUS_META[course.status] || STATUS_META.ongoing;
-              return (
-                <tr key={course.id}>
-                  <td className="admin-courses-table__name">{course.name}</td>
-                  <td>{course.batch}</td>
-                  <td>{course.duration}</td>
-                  <td>{course.batchSize}</td>
-                  <td>{course.startDate}</td>
-                  <td>{course.endDate}</td>
-                  <td>{course.trainer}</td>
-                  <td>
-                    <StatusDot tone={meta.dotTone}>{meta.label}</StatusDot>
-                  </td>
-                  <td>
-                    <ProgressBar value={course.progress} tone={meta.barTone} />
-                  </td>
-                  <td>
-                    <div className="admin-courses-table__row-actions">
-                      <button
-                        type="button"
-                        className="admin-courses-table__icon-btn"
-                        onClick={() => onEditCourse?.(course.id)}
-                        aria-label={`Edit ${course.name}`}
-                      >
-                        <Pencil size={14} strokeWidth={2} />
-                      </button>
-                      <button
-                        type="button"
-                        className="admin-courses-table__icon-btn admin-courses-table__icon-btn--danger"
-                        onClick={() => onDeleteCourse?.(course.id)}
-                        aria-label={`Delete ${course.name}`}
-                      >
-                        <Trash2 size={14} strokeWidth={2} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+            {courses.map((course) => (
+              <tr key={course.id}>
+                <td className="admin-courses-table__name">{course.name}</td>
+                <td>{course.duration}</td>
+                <td className="admin-courses-table__mode">
+                  {course.mode
+                    ? course.mode.charAt(0).toUpperCase() + course.mode.slice(1)
+                    : "—"}
+                </td>
+                <td>{course.companyName || "—"}</td>
+                <td>
+                  <div className="admin-courses-table__row-actions">
+                    <button
+                      type="button"
+                      className="admin-courses-table__icon-btn"
+                      onClick={() => onEditCourse?.(course.id)}
+                      aria-label={`Edit ${course.name}`}
+                    >
+                      <Pencil size={14} strokeWidth={2} />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       <div className="admin-courses-table__footer">
         <span className="admin-courses-table__showing">
-          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()} courses
+          Showing {rangeStart}-{rangeEnd} of {totalResults.toLocaleString()}{" "}
+          courses
         </span>
         <Pagination
           currentPage={currentPage}
