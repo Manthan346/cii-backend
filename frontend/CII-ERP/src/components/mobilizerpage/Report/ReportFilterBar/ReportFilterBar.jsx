@@ -8,7 +8,7 @@ import './ReportFilterBar.css';
  *  - onApply: ({ from, to }) => void
  *  - onExport: () => void
  */
-export default function ReportFilterBar({ onApply, onExport }) {
+export default function ReportFilterBar({ onApply, onExport, exporting = false }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
 
@@ -22,12 +22,9 @@ export default function ReportFilterBar({ onApply, onExport }) {
             <span className="rp-date__label">From</span>
             <span className="rp-date__input-wrap">
               <input
-                type="text"
-                placeholder="DD/MM/YYYY"
+                type="date"
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
-                onFocus={(e) => (e.target.type = 'date')}
-                onBlur={(e) => !e.target.value && (e.target.type = 'text')}
               />
               <Calendar size={15} className="rp-date__icon" />
             </span>
@@ -37,12 +34,9 @@ export default function ReportFilterBar({ onApply, onExport }) {
             <span className="rp-date__label">To</span>
             <span className="rp-date__input-wrap">
               <input
-                type="text"
-                placeholder="DD/MM/YYYY"
+                type="date"
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
-                onFocus={(e) => (e.target.type = 'date')}
-                onBlur={(e) => !e.target.value && (e.target.type = 'text')}
               />
               <Calendar size={15} className="rp-date__icon" />
             </span>
@@ -54,8 +48,8 @@ export default function ReportFilterBar({ onApply, onExport }) {
         </div>
       </div>
 
-      <button type="button" className="rp-btn rp-btn--export" onClick={onExport}>
-        Export
+      <button type="button" className="rp-btn rp-btn--export" onClick={onExport} disabled={exporting}>
+        {exporting ? 'Exporting...' : 'Export'}
       </button>
     </div>
   );
