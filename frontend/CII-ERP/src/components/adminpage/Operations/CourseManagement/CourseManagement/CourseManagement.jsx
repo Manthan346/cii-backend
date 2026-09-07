@@ -122,9 +122,9 @@ const CourseManagement = () => {
             Manage course catalog, batches and trainers
           </p>
         </div>
-        <Button icon={FileDown} onClick={handleExport}>
+        {/* <Button icon={FileDown} onClick={handleExport}>
           Export As
-        </Button>
+        </Button> */}
       </div>
 
       <CourseManagementOverview stats={courseStats} />
