@@ -1,20 +1,10 @@
 // AlertsTabs.jsx
-// Single-panel Alerts list. The "Upcoming" tab has been removed per product
-// request — this component no longer accepts or renders an `upcoming` prop.
-// Header now matches the same left-title / right-"View all" pattern used by
-// My Courses and Job Opportunities.
-//
-// Props:
-//   alerts  {Array}  – [{ text, meta }]  TODO: /api/candidate/alerts
+// Dashboard panel for the candidate's recent assessment activity.
 
-import { Link } from 'react-router-dom';
-import './AlertsTabs.css';
-
-const DEFAULT_ALERTS = [
-  { text: 'Assignment "Brand Identity" due tomorrow',  meta: 'Graphic Design · 2h ago'    },
-  { text: 'New study material uploaded for Cyber Sec', meta: 'Academics · 5h ago'          },
-  { text: "Attendance marked for today's session",     meta: 'Housekeeping · Today'        },
-];
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchCandidateAssessments } from "../../../../services/Assessmentsservice";
+import "./AlertsTabs.css";
 
 function ItemList({ items }) {
   return items.map((item, i) => (
@@ -28,18 +18,86 @@ function ItemList({ items }) {
   ));
 }
 
-export default function AlertsTabs({ alerts = DEFAULT_ALERTS }) {
+export default function AlertsTabs() {
+  const [recentAssessments, setRecentAssessments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchCandidateAssessments()
+      .then((response) => {
+        if (cancelled) return;
+
+        const data = response.data?.data;
+        const attempts = [
+          ...(data?.pending || []).map((item) => ({
+            ...item,
+            state: "Being checked",
+          })),
+          ...(data?.completed || []).map((item) => ({
+            ...item,
+            state: "Completed",
+          })),
+        ]
+          .filter((item) => item.assessments?.title)
+          .sort((first, second) => {
+            const firstTime = new Date(first.attempted_at || 0).getTime();
+            const secondTime = new Date(second.attempted_at || 0).getTime();
+            return secondTime - firstTime;
+          })
+          .slice(0, 5)
+          .map((item) => ({
+            text: item.assessments.title,
+            meta: `${item.state} · ${
+              item.attempted_at
+                ? new Date(item.attempted_at).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })
+                : "Date unavailable"
+            }`,
+          }));
+
+        setRecentAssessments(attempts);
+      })
+      .catch(() => {
+        if (!cancelled) setRecentAssessments([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="alerts-tabs">
       <div className="alerts-tabs__header">
-        <span className="alerts-tabs__title">Alerts</span>
-        <Link to="/alerts" className="alerts-tabs__view-all">
+        <span className="alerts-tabs__title">Recent assessments</span>
+        <Link to="/progress/assessments" className="alerts-tabs__view-all">
           View all
         </Link>
       </div>
 
       <div className="alerts-tabs__panel">
-        <ItemList items={alerts} />
+        {loading ? (
+          <div
+            className="alerts-tabs__skeleton"
+            aria-label="Loading assessments"
+          >
+            <span className="skeleton-line" />
+            <span className="skeleton-line" />
+            <span className="skeleton-line" />
+          </div>
+        ) : recentAssessments.length ? (
+          <ItemList items={recentAssessments} />
+        ) : (
+          <p className="alerts-tabs__empty">No recent assessments yet.</p>
+        )}
       </div>
     </div>
   );
