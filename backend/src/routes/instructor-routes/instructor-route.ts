@@ -68,6 +68,7 @@ import { getActiveStudentsForSession } from "../../controllers/instructor-contro
 import { getInstructorNotifications } from "../../controllers/instructor-controller/fetch-all-instructorNotifications";
 import { instructorGetMyBatches } from "../../controllers/instructor-controller/instructor-get-my-batches";
 import { createAttendanceSessionsFromExcel } from "../../controllers/instructor-controller/instructor-create-session";
+import { getSessionAttendanceHistory } from "../../controllers/instructor-controller/fetch-attendance-sessionHistory";
 
 const instructorRouter = Router();
 
@@ -206,6 +207,9 @@ instructorRouter.get("/attendance-sessions/:attendance_session_id/active-student
 );
 //fetch all instructor notifications
 instructorRouter.get("/notifications",verifyInstructorUsingAccessToken,getInstructorNotifications);
+//fetch specific attendance session history
+instructorRouter.get("/attendance-sessions/:attendance_session_id/history",
+verifyInstructorUsingAccessToken,getSessionAttendanceHistory);
 
 export { instructorRouter };
 
