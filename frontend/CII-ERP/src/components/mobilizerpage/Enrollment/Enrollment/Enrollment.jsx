@@ -7,6 +7,14 @@ import {
 } from "../../../../../api/mobilizer/enrollmentService";
 import "./Enrollment.css";
 
+function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 const EMPTY_FORM = {
   first_name: "",
   last_name: "",
@@ -17,11 +25,26 @@ const EMPTY_FORM = {
   blood_group: "",
   course_id: "",
   batch_id: "",
-  enrollment_date: "",
+  enrollment_date: getTodayDate(),
 };
 
 function getErrorMessage(error, fallback) {
-  return error.response?.data?.message || error.message || fallback;
+  const responseData = error.response?.data;
+  if (typeof responseData?.message === "string") return responseData.message;
+  if (typeof responseData?.error === "string") return responseData.error;
+  if (Array.isArray(responseData?.errors)) {
+    return responseData.errors
+      .map((item) => item.message || item)
+      .filter(Boolean)
+      .join(", ");
+  }
+  return error.message || fallback;
+}
+
+function getAdultDate() {
+  const adultDate = new Date();
+  adultDate.setFullYear(adultDate.getFullYear() - 18);
+  return adultDate.toISOString().slice(0, 10);
 }
 
 export default function Enrollment() {
@@ -33,6 +56,8 @@ export default function Enrollment() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(null);
+  const adultDate = getAdultDate();
+  const todayDate = getTodayDate();
 
   useEffect(() => {
     let mounted = true;
@@ -80,6 +105,17 @@ export default function Enrollment() {
     event.preventDefault();
     setError("");
     setSuccess(null);
+
+    if (form.date_of_birth && form.date_of_birth > adultDate) {
+      setError("Candidate must be at least 18 years old.");
+      return;
+    }
+
+    if (form.enrollment_date !== todayDate) {
+      setError("Enrollment date must be today.");
+      return;
+    }
+
     setSubmitting(true);
 
     const payload = Object.fromEntries(
@@ -119,7 +155,9 @@ export default function Enrollment() {
         </div>
       </header>
 
-      {error && <div className="enrollment-alert enrollment-alert--error">{error}</div>}
+      {error && (
+        <div className="enrollment-alert enrollment-alert--error">{error}</div>
+      )}
 
       {success ? (
         <section className="enrollment-success" role="status">
@@ -145,7 +183,8 @@ export default function Enrollment() {
             </div>
           ) : (
             <p className="enrollment-note">
-              This candidate already had an account, so no new password was generated.
+              This candidate already had an account, so no new password was
+              generated.
             </p>
           )}
           <button
@@ -163,10 +202,35 @@ export default function Enrollment() {
             <span>* Required</span>
           </div>
           <div className="enrollment-grid">
-            <Field label="First name *" name="first_name" value={form.first_name} onChange={updateField("first_name")} required />
-            <Field label="Last name" name="last_name" value={form.last_name} onChange={updateField("last_name")} />
-            <Field label="Contact number *" name="contact_number" value={form.contact_number} onChange={updateField("contact_number")} required type="tel" />
-            <Field label="Email *" name="email" value={form.email} onChange={updateField("email")} required type="email" />
+            <Field
+              label="First name *"
+              name="first_name"
+              value={form.first_name}
+              onChange={updateField("first_name")}
+              required
+            />
+            <Field
+              label="Last name"
+              name="last_name"
+              value={form.last_name}
+              onChange={updateField("last_name")}
+            />
+            <Field
+              label="Contact number *"
+              name="contact_number"
+              value={form.contact_number}
+              onChange={updateField("contact_number")}
+              required
+              type="tel"
+            />
+            <Field
+              label="Email *"
+              name="email"
+              value={form.email}
+              onChange={updateField("email")}
+              required
+              type="email"
+            />
             <SelectField
               label="Gender"
               name="gender"
@@ -185,43 +249,90 @@ export default function Enrollment() {
               onChange={updateField("blood_group")}
             >
               <option value="">Select blood group</option>
-              {[
-                "A+",
-                "A-",
-                "B+",
-                "B-",
-                "AB+",
-                "AB-",
-                "O+",
-                "O-",
-              ].map((bloodGroup) => (
-                <option key={bloodGroup} value={bloodGroup}>
-                  {bloodGroup}
-                </option>
-              ))}
+              {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
+                (bloodGroup) => (
+                  <option key={bloodGroup} value={bloodGroup}>
+                    {bloodGroup}
+                  </option>
+                ),
+              )}
             </SelectField>
-            <Field label="Date of birth" name="date_of_birth" value={form.date_of_birth} onChange={updateField("date_of_birth")} type="date" />
-            <Field label="Enrollment date" name="enrollment_date" value={form.enrollment_date} onChange={updateField("enrollment_date")} type="date" />
+            <Field
+              label="Date of birth"
+              name="date_of_birth"
+              value={form.date_of_birth}
+              onChange={updateField("date_of_birth")}
+              type="date"
+              max={adultDate}
+            />
+            <Field
+              label="Enrollment date *"
+              name="enrollment_date"
+              value={form.enrollment_date}
+              onChange={updateField("enrollment_date")}
+              type="date"
+              min={todayDate}
+              max={todayDate}
+              required
+            />
           </div>
 
           <div className="enrollment-section-heading enrollment-section-heading--course">
             <h2>Course and batch</h2>
           </div>
           <div className="enrollment-grid">
-            <SelectField label="Course *" name="course_id" value={form.course_id} onChange={updateField("course_id")} required disabled={loadingCourses}>
-              <option value="">{loadingCourses ? "Loading courses..." : "Select a course"}</option>
-              {courses.map((course) => <option key={course.course_id} value={course.course_id}>{course.course_name}</option>)}
+            <SelectField
+              label="Course *"
+              name="course_id"
+              value={form.course_id}
+              onChange={updateField("course_id")}
+              required
+              disabled={loadingCourses}
+            >
+              <option value="">
+                {loadingCourses ? "Loading courses..." : "Select a course"}
+              </option>
+              {courses.map((course) => (
+                <option key={course.course_id} value={course.course_id}>
+                  {course.course_name}
+                </option>
+              ))}
             </SelectField>
-            <SelectField label="Batch *" name="batch_id" value={form.batch_id} onChange={updateField("batch_id")} required disabled={!form.course_id || loadingBatches}>
-              <option value="">{loadingBatches ? "Loading batches..." : "Select a batch"}</option>
-              {batches.map((batch) => <option key={batch.batch_id} value={batch.batch_id} disabled={batch.status !== "ACTIVE"}>{batch.batch_name} ({batch.batch_code}) - {batch.status}</option>)}
+            <SelectField
+              label="Batch *"
+              name="batch_id"
+              value={form.batch_id}
+              onChange={updateField("batch_id")}
+              required
+              disabled={!form.course_id || loadingBatches}
+            >
+              <option value="">
+                {loadingBatches ? "Loading batches..." : "Select a batch"}
+              </option>
+              {batches.map((batch) => (
+                <option
+                  key={batch.batch_id}
+                  value={batch.batch_id}
+                  disabled={batch.status !== "ACTIVE"}
+                >
+                  {batch.batch_name} ({batch.batch_code}) - {batch.status}
+                </option>
+              ))}
             </SelectField>
           </div>
-          {form.course_id && !loadingBatches && batches.length === 0 && <p className="enrollment-hint">No batches are available for this course.</p>}
+          {form.course_id && !loadingBatches && batches.length === 0 && (
+            <p className="enrollment-hint">
+              No batches are available for this course.
+            </p>
+          )}
 
           <div className="enrollment-form-footer">
             <p>Required fields are checked before enrollment.</p>
-            <button className="enrollment-submit-btn" type="submit" disabled={submitting || loadingBatches}>
+            <button
+              className="enrollment-submit-btn"
+              type="submit"
+              disabled={submitting || loadingBatches}
+            >
               {submitting ? "Enrolling..." : "Enroll candidate"}
             </button>
           </div>
@@ -235,7 +346,13 @@ function Field({ label, name, value, onChange, ...props }) {
   return (
     <label className="enrollment-field" htmlFor={name}>
       <span>{label}</span>
-      <input id={name} name={name} value={value} onChange={onChange} {...props} />
+      <input
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        {...props}
+      />
     </label>
   );
 }
@@ -244,7 +361,9 @@ function SelectField({ label, name, children, ...props }) {
   return (
     <label className="enrollment-field" htmlFor={name}>
       <span>{label}</span>
-      <select id={name} name={name} {...props}>{children}</select>
+      <select id={name} name={name} {...props}>
+        {children}
+      </select>
     </label>
   );
 }
