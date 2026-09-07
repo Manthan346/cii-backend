@@ -42,6 +42,7 @@ import {
   Award,
   Briefcase,
   Clock,
+  Bell,
   LogOut,
   X,
 } from "lucide-react";
@@ -52,18 +53,19 @@ import Icon from "../../shared/Icon/Icon";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
-  { icon: LayoutDashboard, label: "Dashboard",  to: "/my-dashboard" },
-  { icon: User,            label: "My Profile", to: "/my-profile"   },
-  { icon: GraduationCap,   label: "My Courses", to: "/my-courses"   },
-  { icon: CalendarCheck,   label: "Attendance", to: "/attendance"   },
-  { icon: ClipboardList,   label: "Task",       to: "/tasks"        },
+  { icon: LayoutDashboard, label: "Dashboard", to: "/my-dashboard" },
+  { icon: User, label: "My Profile", to: "/my-profile" },
+  { icon: GraduationCap, label: "My Courses", to: "/my-courses" },
+  { icon: CalendarCheck, label: "Attendance", to: "/attendance" },
+  { icon: Bell, label: "Notifications", to: "/notifications" },
+  // { icon: ClipboardList,   label: "Task",       to: "/tasks"        },
 ];
 
 const NAV_PROGRESS = [
-  { icon: 'assessments',  label: 'Assessments',       to: '/progress/assessments'      },
-  { icon: 'upload',       label: 'Study Material',    to: '/progress/studymaterial'    },
-  { icon: 'certificate',  label: 'Certificates',      to: '/progress/certificates'     },
-  { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
+  { icon: "assessments", label: "Assessments", to: "/progress/assessments" },
+  { icon: "upload", label: "Study Material", to: "/progress/studymaterial" },
+  { icon: "certificate", label: "Certificates", to: "/progress/certificates" },
+  // { icon: 'jobs',         label: 'Job Opportunities', to: '/progress/jobopportunities' },
 ];
 
 const NAV_SCHEDULE = [
@@ -79,10 +81,19 @@ function NavItem({ icon, label, active, to }) {
   // rendered instead of assuming one shape for both.
   let iconEl;
   if (typeof icon === "string") {
-    iconEl = <Icon name={icon} size={18} color="currentColor" className="sidebar__nav-icon" />;
+    iconEl = (
+      <Icon
+        name={icon}
+        size={18}
+        color="currentColor"
+        className="sidebar__nav-icon"
+      />
+    );
   } else {
     const IconComp = icon;
-    iconEl = <IconComp size={18} strokeWidth={2} className="sidebar__nav-icon" />;
+    iconEl = (
+      <IconComp size={18} strokeWidth={2} className="sidebar__nav-icon" />
+    );
   }
 
   const content = (
@@ -164,7 +175,6 @@ export default function Sidebar({
             active={activeItem === item.label}
           />
         ))}
-
 
         {/* Schedule navigation */}
         {/* <SectionLabel>Schedule</SectionLabel>

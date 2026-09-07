@@ -23,21 +23,22 @@
 // between the screens below without a full page reload.
 // ─────────────────────────────────────────────────────────────────────
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import Dashboard from '../components/trainerpage/pages/Dashboard/Dashboard/Dashboard';
-import CandidateManagement from '../components/trainerpage/pages/CandidateManagement/CandidateManagement/CandidateManagement';
-import BatchManagement from '../components/trainerpage/pages/BatchManagement/BatchManagement/BatchManagement';
-import AttendanceManagement from '../components/trainerpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement';
+import Dashboard from "../components/trainerpage/pages/Dashboard/Dashboard/Dashboard";
+import CandidateManagement from "../components/trainerpage/pages/CandidateManagement/CandidateManagement/CandidateManagement";
+import BatchManagement from "../components/trainerpage/pages/BatchManagement/BatchManagement/BatchManagement";
+import AttendanceManagement from "../components/trainerpage/pages/AttendanceManagement/AttendanceManagement/AttendanceManagement";
 // import Resources from '../components/trainerpage/pages/Resources/Resources/Resources';
-import StudyMaterialUpload from '../components/trainerpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload';
+import StudyMaterialUpload from "../components/trainerpage/pages/StudyMaterialUpload/StudyMaterialUpload/StudyMaterialUpload";
+import Assessments from "../components/trainerpage/pages/Assessments/Assessments/Assessments";
 // import Reports from '../components/trainerpage/pages/Reports/Reports/Reports';
-import Work from '../components/trainerpage/pages/Work/Work/Work';
-import Notifications from '../components/trainerpage/pages/Notifications/Notifications/Notifications';
-import TaskAssigned from '../components/trainerpage/pages/TaskAssigned/TaskAssigned/TaskAssigned';
-import Profile from '../components/trainerpage/pages/Profile/Profile/Profile';
-import Events from '../components/trainerpage/pages/Events/Events/Events';
-import Logout from '../components/trainerpage/pages/Logout/Logout';
+import Work from "../components/trainerpage/pages/Work/Work/Work";
+import Notifications from "../components/trainerpage/pages/Notifications/Notifications/Notifications";
+import TaskAssigned from "../components/trainerpage/pages/TaskAssigned/TaskAssigned/TaskAssigned";
+import Profile from "../components/trainerpage/pages/Profile/Profile/Profile";
+import Events from "../components/trainerpage/pages/Events/Events/Events";
+import Logout from "../components/trainerpage/pages/Logout/Logout";
 
 export default function TrainerDashboard() {
   return (
@@ -48,6 +49,7 @@ export default function TrainerDashboard() {
       <Route path="/attendance" element={<AttendanceManagement />} />
       {/* <Route path="/resources" element={<Resources />} /> */}
       <Route path="/study-material" element={<StudyMaterialUpload />} />
+      <Route path="/assessments" element={<Assessments />} />
       {/* <Route path="/reports" element={<Reports />} /> */}
       <Route path="/work" element={<Work />} />
       <Route path="/notifications" element={<Notifications />} />

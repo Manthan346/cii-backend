@@ -47,7 +47,7 @@
 // mock-data fallbacks in certificatesData.js.
 // ============================================================================
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 
@@ -55,10 +55,10 @@ import CertificateStats from "../CertificateStats/CertificateStats";
 import CertificateTabs from "../CertificateTabs/CertificateTabs";
 import CertificateGrid from "../CertificateGrid/CertificateGrid";
 
-import { certificateStatsByTab, certificatesByTab } from "../../../../../data/certificatesData";
+import { fetchCandidateCertificates } from "../../../../../services/certificateService";
 import "./Certificates.css";
 
-import orgLogo from '../../../../../assets/Logo.png';
+import orgLogo from "../../../../../assets/Logo.png";
 
 const Certificates = () => {
   // Local UI state. Replace `certificates`/`stats` derivations with real
@@ -66,14 +66,44 @@ const Certificates = () => {
   const [activeTab, setActiveTab] = useState("courses"); // 'courses' | 'workshops'
   const [search, setSearch] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false); // mobile sidebar toggle
+  const [certificates, setCertificates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
 
-  const stats = certificateStatsByTab[activeTab] || [];
-  const certificates = certificatesByTab[activeTab] || [];
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchCandidateCertificates()
+      .then((items) => {
+        if (isMounted) setCertificates(items);
+      })
+      .catch(() => {
+        if (isMounted) setLoadError("Unable to load your certificates.");
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const visibleCertificates = activeTab === "courses" ? certificates : [];
+  const stats = [
+    {
+      id: "earned",
+      icon: "certificate",
+      value: String(visibleCertificates.length),
+      label: "Certificate earned",
+    },
+  ];
 
   // BACKEND NOTE: wire this to the real download endpoint, e.g.
   //   window.open(`/api/certificates/${certificate.id}/download`, "_blank");
   const handleDownload = (certificate) => {
-    console.log("Download certificate:", certificate.id);
+    if (certificate.certificateUrl)
+      window.open(certificate.certificateUrl, "_blank");
   };
 
   // BACKEND NOTE: wire this to POST /api/certificates/:id/share
@@ -119,8 +149,10 @@ const Certificates = () => {
 
           <CertificateTabs activeTab={activeTab} onChange={setActiveTab} />
 
+          {loadError && <p role="alert">{loadError}</p>}
+          {isLoading && <p>Loading certificates...</p>}
           <CertificateGrid
-            items={certificates}
+            items={isLoading || loadError ? [] : visibleCertificates}
             onDownload={handleDownload}
             onShare={handleShare}
           />

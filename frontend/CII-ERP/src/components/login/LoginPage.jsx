@@ -14,6 +14,8 @@ const ROLE_LABELS = {
   instructor: "Instructor",
   admin: "Admin",
   "super-admin": "Super Admin",
+  hr: "HR",
+  mobilizer: "Mobilizer",
 };
 
 const CENTER_LABELS = {
@@ -201,6 +203,8 @@ function LoginPage() {
       { role_name: "instructor" },
       { role_name: "admin" },
       { role_name: "super-admin" },
+      { role_name: "hr" },
+      { role_name: "mobilizer" },
     ]);
 
     // TEMP: hardcoded — center_id is a UUID (from center_details table), no GET /centers endpoint exists yet
@@ -235,7 +239,7 @@ function LoginPage() {
       localStorage.setItem("token", accessToken);
       localStorage.setItem(
         "userSession",
-        JSON.stringify({ userDetails, roleDetails })
+        JSON.stringify({ userDetails, roleDetails }),
       );
 
       // route based on the role returned by the backend, not just the
@@ -250,6 +254,12 @@ function LoginPage() {
         case "admin":
         case "super-admin":
           navigate("/admin/dashboard");
+          break;
+        case "hr":
+          navigate("/recruiter/dashboard");
+          break;
+        case "mobilizer":
+          navigate("/mobilizer/dashboard");
           break;
         default:
           navigate("/my-dashboard");
@@ -297,6 +307,8 @@ function LoginPage() {
                 </span>
                 <input
                   type="email"
+                  name="email"
+                  autoComplete="username"
                   placeholder="you@example.com"
                   className="lp-input"
                   value={email}
@@ -323,6 +335,8 @@ function LoginPage() {
                 </span>
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
+                  autoComplete="current-password"
                   placeholder="Enter your password"
                   className="lp-input lp-input-pw"
                   value={password}

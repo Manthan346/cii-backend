@@ -98,7 +98,7 @@ const Topbar = ({
       </div>
 
       <div className="recruiter-topbar__center">
-        <div className="recruiter-topbar__search">
+        {/* <div className="recruiter-topbar__search">
           <Search size={18} strokeWidth={2} className="recruiter-topbar__search-icon" />
           <input
             type="text"
@@ -109,7 +109,7 @@ const Topbar = ({
             onKeyDown={handleSearchKeyDown}
             aria-label="Search"
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="recruiter-topbar__right">

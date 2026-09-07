@@ -8,7 +8,7 @@
 .event-table__table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 860px;
+  min-width: 960px;
 }
 
 .event-table__table thead th {
@@ -52,6 +52,25 @@
 .event-table__meta-icon {
   color: #9aa1b1;
   flex-shrink: 0;
+}
+
+.event-table__import-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+  color: #4b5164;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.event-table__import-btn:hover {
+  background: #f7f8fb;
 }
 
 .event-table__actions {

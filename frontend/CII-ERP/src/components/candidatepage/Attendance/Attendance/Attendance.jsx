@@ -294,16 +294,16 @@ export default function Attendance() {
                   onNextMonth={handleNextMonth}
                   navDisabled={calendarLoading}
                 />
-                <CourseAttendanceList courses={data.courses} />
+                {/* <CourseAttendanceList courses={data.courses} /> */}
               </div>
 
               {/* 6. Recent log (live) + Overview (still mock-fed) */}
               <div className="attendance-page__row attendance-page__row--split">
                 <RecentAttendanceLog logs={recentLog} />
-                <AttendanceOverview
+                {/* <AttendanceOverview
                   presentPct={data.overview.presentPct}
                   absentPct={data.overview.absentPct}
-                />
+                /> */}
               </div>
             </>
           )}

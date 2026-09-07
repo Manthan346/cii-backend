@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { X, UploadCloud } from 'lucide-react';
-import Modal from '../../shared/Modal/Modal';
-import StatusPill from '../../shared/StatusPill/StatusPill';
-import './UploadMediaModal.css';
+import React, { useEffect, useRef, useState } from "react";
+import { X, UploadCloud } from "lucide-react";
+import Modal from "../../shared/Modal/Modal";
+import StatusPill from "../../shared/StatusPill/StatusPill";
+import "./UploadMediaModal.css";
 
 // This page's "Upcoming" pill is gray in the reference (matching
 // EventListRow's own mapping) — kept consistent with that here.
 const STATUS_TONE = {
-  Upcoming: 'gray',
-  Ongoing: 'blue',
-  Completed: 'green',
+  Upcoming: "gray",
+  Ongoing: "blue",
+  Completed: "green",
 };
 
 /**
@@ -21,40 +21,65 @@ const STATUS_TONE = {
  * Props:
  *  - event: event object, or null when closed
  *  - onClose: () => void
- *  - onUpload: (event, { title, description, fileLink, files }) => void
+ *  - onUpload: (event, files) => void
  */
 export default function UploadMediaModal({ event, onClose, onUpload }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [fileLink, setFileLink] = useState('');
   const [files, setFiles] = useState([]);
+  const [uploadError, setUploadError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
 
   const isOpen = Boolean(event);
 
   // Reset the form whenever a different event's modal is opened.
   useEffect(() => {
-    setTitle(event?.title || '');
-    setDescription('');
-    setFileLink('');
     setFiles([]);
+    setUploadError("");
+    setUploading(false);
   }, [event?.id]);
 
   const handleCancel = () => onClose();
 
-  const handleUpload = () => {
-    onUpload?.(event, { title, description, fileLink, files });
+  const handleUpload = async () => {
+    setUploading(true);
+    setUploadError("");
+    try {
+      await onUpload?.(event, files);
+    } catch (error) {
+      setUploadError(
+        error.response?.data?.message ||
+          error.message ||
+          "Unable to upload images",
+      );
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleFilesSelected = (e) => {
-    setFiles(Array.from(e.target.files || []));
+    const selectedFiles = Array.from(e.target.files || []).slice(0, 10);
+    const oversizedFile = selectedFiles.find(
+      (file) => file.size > 5 * 1024 * 1024,
+    );
+    if (oversizedFile) {
+      setFiles([]);
+      setUploadError(`${oversizedFile.name} is larger than the 5 MB limit`);
+      return;
+    }
+    setUploadError("");
+    setFiles(selectedFiles);
   };
 
   return (
     <Modal isOpen={isOpen} onClose={handleCancel} width={520}>
       {event && (
         <div className="evu-modal">
-          <button type="button" className="evu-modal__close" onClick={handleCancel} aria-label="Close">
+          <button
+            type="button"
+            className="evu-modal__close"
+            onClick={handleCancel}
+            aria-label="Close"
+          >
             <X size={16} />
           </button>
 
@@ -65,63 +90,55 @@ export default function UploadMediaModal({ event, onClose, onUpload }) {
               </p>
               <p className="evu-modal__time">{event.time}</p>
             </div>
-            <StatusPill status={event.status} tone={STATUS_TONE[event.status] || 'gray'} />
+            <StatusPill
+              status={event.status}
+              tone={STATUS_TONE[event.status] || "gray"}
+            />
           </div>
-
-          <label className="evu-field">
-            <span className="evu-field__label">Title</span>
-            <input
-              type="text"
-              className="evu-field__input evu-field__input--title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-
-          <label className="evu-field">
-            <span className="evu-field__label">Description</span>
-            <textarea
-              className="evu-field__textarea"
-              placeholder="Add a short description...."
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={3}
-            />
-          </label>
 
           <div className="evu-field">
             <span className="evu-field__label">File</span>
-            <input
-              type="text"
-              className="evu-field__input"
-              placeholder="paste link here..."
-              value={fileLink}
-              onChange={(e) => setFileLink(e.target.value)}
-            />
-
             <label className="evu-dropzone">
               <input
                 ref={fileInputRef}
                 type="file"
-                accept="image/*,video/*"
+                accept="image/*"
                 multiple
                 onChange={handleFilesSelected}
                 hidden
               />
               <UploadCloud size={22} className="evu-dropzone__icon" />
-              <span className="evu-dropzone__label">Paste link here</span>
+              <span className="evu-dropzone__label">
+                Select images to upload
+              </span>
               {files.length > 0 && (
-                <span className="evu-dropzone__count">{files.length} file(s) selected</span>
+                <span className="evu-dropzone__count">
+                  {files.length} file(s) selected
+                </span>
               )}
             </label>
+            {uploadError && (
+              <p className="evu-upload-error" role="alert">
+                {uploadError}
+              </p>
+            )}
           </div>
 
           <div className="evu-modal__actions">
-            <button type="button" className="evu-btn evu-btn--ghost" onClick={handleCancel}>
+            <button
+              type="button"
+              className="evu-btn evu-btn--ghost"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
-            <button type="button" className="evu-btn evu-btn--primary" onClick={handleUpload}>
-              Upload
+            <button
+              type="button"
+              className="evu-btn evu-btn--primary"
+              onClick={handleUpload}
+              disabled={!files.length || uploading}
+            >
+              {uploading ? "Uploading..." : "Upload"}
             </button>
           </div>
         </div>

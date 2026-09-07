@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FileText, FileEdit, MessageSquare, BadgeCheck } from 'lucide-react';
-import { eventStats } from '../../data/eventData';
+import { fetchEventStats } from '../../../../../api/mobilizer/eventService';
 import './EventStats.css';
 
 const ICON_MAP = { FileText, FileEdit, MessageSquare, BadgeCheck };
 
 export default function EventStats() {
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    fetchEventStats().then(setStats).catch(() => setStats([]));
+  }, []);
+
   return (
     <div className="ev-stats">
-      {eventStats.map((stat) => {
+      {stats.map((stat) => {
         const Icon = ICON_MAP[stat.icon];
         return (
           <div className="ev-stat-card" key={stat.id}>

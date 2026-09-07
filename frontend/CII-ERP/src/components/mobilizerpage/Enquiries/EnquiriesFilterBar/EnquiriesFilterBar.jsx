@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, Download, Calendar } from 'lucide-react';
-import { statusFilterOptions, enquirySourceOptions } from '../../data/enquiriesData';
 import './EnquiriesFilterBar.css';
+
+const STATUS_FILTER_OPTIONS = [
+  { value: 'all', label: 'Status' },
+  { value: 'FOLLOW_UP_PENDING', label: 'Follow Up Pending' },
+  { value: 'CALL_RECIEVED', label: 'Call Received' },
+  { value: 'CENTER_VISITED', label: 'Center Visited' },
+  { value: 'NOT_CONNECTED', label: 'Not Connected' },
+];
+
+const ENQUIRY_SOURCE_OPTIONS = [
+  { value: 'all', label: 'Enquiry Source' },
+  { value: 'training', label: 'Training' },
+  { value: 'placement', label: 'Placement' },
+];
 
 /**
  * EnquiriesFilterBar
@@ -53,7 +66,7 @@ export default function EnquiriesFilterBar({ onSearch, onStatusChange, onSourceC
 
         <div className="eq-select-wrap">
           <select defaultValue="all" onChange={(e) => onStatusChange?.(e.target.value)}>
-            {statusFilterOptions.map((opt) => (
+            {STATUS_FILTER_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
@@ -64,7 +77,7 @@ export default function EnquiriesFilterBar({ onSearch, onStatusChange, onSourceC
 
         <div className="eq-select-wrap">
           <select defaultValue="all" onChange={(e) => onSourceChange?.(e.target.value)}>
-            {enquirySourceOptions.map((opt) => (
+            {ENQUIRY_SOURCE_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>

@@ -3,8 +3,6 @@ export {
   statCards,
   applicationsPerJob,
   applicationsByStatus,
-  recentActivity,
-  hiringProgress,
 } from './dashboardData';
 export {
   jobs,
@@ -15,6 +13,7 @@ export {
   placementStatCards,
   eventTypeStyles,
   eventStatusStyles,
+  eventStatusOptions,
   placementEvents,
   applicationStatusStyles,
   applicationStatusOptions,
@@ -27,6 +26,12 @@ export {
   notificationCategoryLabels,
 } from './notificationsData';
 export { profile } from './profileData';
+export {
+  applications,
+  applicationsPageStatusStyles,
+  applicationCompanyOptions,
+  applicationRoleOptions,
+} from './applicationsData';
 
 // As each remaining section is built out, its data file gets exported here too, e.g.:
-// export { applicationsData } from './applicationsData';
+// (none remaining)

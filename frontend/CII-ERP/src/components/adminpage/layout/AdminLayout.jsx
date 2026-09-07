@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar/Sidebar';
-import Topbar from './Topbar/Topbar';
-import './AdminLayout.css';
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar/Sidebar";
+import Topbar from "./Topbar/Topbar";
+import "./AdminLayout.css";
 
 /**
  * AdminLayout

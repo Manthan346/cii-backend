@@ -15,21 +15,27 @@ import './EditProfileModal.css';
  *  - onClose: () => void
  *  - onSave: ({ name, mobile }) => void
  */
-export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
-  const [name, setName] = useState(profile.name);
+export default function EditProfileModal({ isOpen, profile, onClose, onSave, saving }) {
+  const [firstName, setFirstName] = useState(profile.firstName || profile.name.split(' ')[0]);
+  const [lastName, setLastName] = useState(profile.lastName || profile.name.split(' ').slice(1).join(' '));
   const [mobile, setMobile] = useState(profile.mobile);
 
   // Re-sync the form whenever the modal is (re)opened, so edits from a
   // previous open don't linger if the user cancelled out last time.
   useEffect(() => {
     if (isOpen) {
-      setName(profile.name);
+      setFirstName(profile.firstName || profile.name.split(' ')[0]);
+      setLastName(profile.lastName || profile.name.split(' ').slice(1).join(' '));
       setMobile(profile.mobile);
     }
-  }, [isOpen, profile.name, profile.mobile]);
+  }, [isOpen, profile.firstName, profile.lastName, profile.name, profile.mobile]);
 
   const handleSave = () => {
-    onSave?.({ name, mobile });
+    onSave?.({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      mobile_number: mobile.trim(),
+    });
   };
 
   return (
@@ -43,8 +49,13 @@ export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
         </div>
 
         <label className="epm-field">
-          <span className="epm-field__label">Name</span>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <span className="epm-field__label">First name</span>
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        </label>
+
+        <label className="epm-field">
+          <span className="epm-field__label">Last name</span>
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </label>
 
         <label className="epm-field">
@@ -56,8 +67,8 @@ export default function EditProfileModal({ isOpen, profile, onClose, onSave }) {
           <button type="button" className="epm-btn epm-btn--ghost" onClick={onClose}>
             Cancel
           </button>
-          <button type="button" className="epm-btn epm-btn--primary" onClick={handleSave}>
-            Save
+          <button type="button" className="epm-btn epm-btn--primary" onClick={handleSave} disabled={saving}>
+            {saving ? 'Saving...' : 'Save'}
           </button>
         </div>
       </div>

@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, Calendar } from 'lucide-react';
-import { eventTypeOptions, locationOptions, eventStatusOptions } from '../../../data/placementEventData';
 import './PlacementEventFilterBar.css';
+
+const EVENT_TYPE_OPTIONS = [
+  { value: 'all', label: 'Event type' },
+  { value: 'JOB_FAIR', label: 'Job Fair' },
+  { value: 'JOB_DRIVE', label: 'Job Drive' },
+];
+
+const EVENT_STATUS_OPTIONS = [
+  { value: 'all', label: 'Status' },
+  { value: 'UPCOMING', label: 'Upcoming' },
+  { value: 'COMPLETED', label: 'Completed' },
+  { value: 'CANCELLED', label: 'Cancelled' },
+];
 
 /**
  * PlacementEventFilterBar
  * Props:
- *  - onSearch, onTypeChange, onLocationChange, onStatusChange, onDateChange: (value) => void
+ *  - onSearch, onTypeChange, onStatusChange, onDateChange: (value) => void
  *  - onApply: () => void
  */
 export default function PlacementEventFilterBar({
   onSearch,
   onTypeChange,
-  onLocationChange,
   onStatusChange,
   onDateChange,
   onApply,
@@ -56,9 +67,8 @@ export default function PlacementEventFilterBar({
       </div>
 
       <div className="pe-filterbar__row pe-filterbar__row--filters">
-        <Dropdown options={eventTypeOptions} onChange={onTypeChange} />
-        <Dropdown options={locationOptions} onChange={onLocationChange} />
-        <Dropdown options={eventStatusOptions} onChange={onStatusChange} />
+        <Dropdown options={EVENT_TYPE_OPTIONS} onChange={onTypeChange} />
+        <Dropdown options={EVENT_STATUS_OPTIONS} onChange={onStatusChange} />
 
         <div className="pe-date-wrap">
           <input

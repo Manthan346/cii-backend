@@ -28,6 +28,17 @@
   gap: 16px;
 }
 
+.recruiter-dashboard__metrics-error {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #b91c1c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .recruiter-dashboard__row {
   display: grid;
   grid-template-columns: 1fr 1fr;

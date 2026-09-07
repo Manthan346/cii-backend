@@ -1,27 +1,22 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
 import SectionHeading from "../../shared/SectionHeading/SectionHeading";
-import NotificationTabs from "../../shared/NotificationTabs/NotificationTabs";
 import NotificationCard from "../../shared/NotificationCard/NotificationCard";
+import Icon from "../../shared/Icon/Icon";
 
 import { fetchNotifications } from "../../../../services/Notificationservice";
-import {
-  getNotificationTypeConfig,
-  buildNotificationLink,
-  REFERENCE_TYPE_OPTIONS,
-} from "../../../../config/notificationTypeConfig";
-
 import styles from "./NotificationDashboard.module.css";
 
 import orgLogo from "../../../../assets/Logo.png";
 
-// Reference-type ids to hide from the filter row entirely. "INTERVIEW" and
-// "EXAMINATION" were removed per product request — "EXAM" already covers
-// the examination case, and "INTERVIEW" wasn't needed as a separate tab.
-const HIDDEN_REFERENCE_TYPES = ["INTERVIEW", "EXAMINATION"];
+const NOTIFICATION_FILTERS = [
+  { id: "ALL", label: "All" },
+  { id: "UNREAD", label: "Unread" },
+  { id: "TASK", label: "Task" },
+  { id: "RESOURCES", label: "Resources" },
+];
 
 function formatRelativeTime(isoDate) {
   const diffMs = Date.now() - new Date(isoDate).getTime();
@@ -39,32 +34,51 @@ function formatRelativeTime(isoDate) {
 
 // Backend shape -> what NotificationCard renders.
 function mapNotification(raw) {
-  const { category, icon, color } = getNotificationTypeConfig(
-    raw.notification_type,
-    raw.reference_type
-  );
+  const categoryByReferenceType = {
+    JOB: "Job",
+    INTERVIEW: "Job",
+    EXAM: "Examination",
+    EXAMINATION: "Examination",
+    ASSESSMENT: "Academics",
+    STUDY_MATERIAL: "Academics",
+    EVENT: "Events",
+  };
   return {
     id: raw.user_notification_id,
     title: raw.title,
     description: raw.message,
-    category,
-    icon,
-    color,
+    category: categoryByReferenceType[raw.reference_type] ?? "System",
+    icon: "bell",
+    color: "gray",
     referenceType: raw.reference_type, // used for the reference-type filter
     // is_read here is the value captured BEFORE the backend's GET-marks-read
     // side effect — i.e. "was this unread when the user opened this page".
     isUnread: !raw.is_read,
     createdAt: raw.created_at,
-    link: buildNotificationLink(raw.reference_type, raw.reference_id),
   };
 }
 
-function NotificationDashboard() {
-  const navigate = useNavigate();
+function matchesFilter(notification, filter) {
+  if (filter === "ALL") return true;
+  if (filter === "UNREAD") return notification.isUnread;
+  if (filter === "TASK") {
+    return ["ASSESSMENT", "EXAM", "EXAMINATION"].includes(
+      notification.referenceType,
+    );
+  }
+  if (filter === "RESOURCES") {
+    return ["JOB", "INTERVIEW", "STUDY_MATERIAL", "EVENT"].includes(
+      notification.referenceType,
+    );
+  }
+  return true;
+}
 
+function NotificationDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [referenceTypeFilter, setReferenceTypeFilter] = useState("ALL");
+  const [notificationFilter, setNotificationFilter] = useState("ALL");
+  const [sortBy, setSortBy] = useState("newest");
 
   // The category tabs (All/Job/Examination/Academics/Events) were removed
   // from the UI, but fetchNotifications still takes a category param.
@@ -72,9 +86,17 @@ function NotificationDashboard() {
   // reference type happens client-side below, same as before.
   const activeTab = "All";
 
-  const [buckets, setBuckets] = useState({ today: [], yesterday: [], older: [] });
+  const [buckets, setBuckets] = useState({
+    today: [],
+    yesterday: [],
+    older: [],
+  });
   const [unreadCount, setUnreadCount] = useState(0);
-  const [pagination, setPagination] = useState({ nextCursor: null, hasNextPage: false });
+  const [pagination, setPagination] = useState({
+    nextCursor: null,
+    hasNextPage: false,
+  });
+  const [selectedNotification, setSelectedNotification] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -96,7 +118,7 @@ function NotificationDashboard() {
               yesterday: [...prev.yesterday, ...mapped.yesterday],
               older: [...prev.older, ...mapped.older],
             }
-          : mapped
+          : mapped,
       );
       setUnreadCount(data.unreadCount);
       setPagination(data.pagination);
@@ -120,12 +142,10 @@ function NotificationDashboard() {
 
   const allLoaded = useMemo(
     () => [...buckets.today, ...buckets.yesterday, ...buckets.older],
-    [buckets]
+    [buckets],
   );
 
-  // Filters applied client-side, on top of whatever page/tab is already
-  // loaded. Neither `searchValue` nor `referenceTypeFilter` re-fetches or
-  // searches across unloaded pages — same limitation as before.
+  // Filters are applied client-side to the loaded notification pages.
   const filteredBuckets = useMemo(() => {
     const query = searchValue.trim().toLowerCase();
 
@@ -135,18 +155,30 @@ function NotificationDashboard() {
         n.title.toLowerCase().includes(query) ||
         n.category.toLowerCase().includes(query);
 
-      const matchesReferenceType =
-        referenceTypeFilter === "ALL" || n.referenceType === referenceTypeFilter;
+      const matchesReferenceType = matchesFilter(n, notificationFilter);
 
       return matchesQuery && matchesReferenceType;
     };
 
+    const sortNotifications = (items) =>
+      [...items].sort((first, second) => {
+        if (sortBy === "unread") {
+          return (
+            Number(second.isUnread) - Number(first.isUnread) ||
+            new Date(second.createdAt) - new Date(first.createdAt)
+          );
+        }
+        const difference =
+          new Date(second.createdAt) - new Date(first.createdAt);
+        return sortBy === "oldest" ? -difference : difference;
+      });
+
     return {
-      today: buckets.today.filter(matches),
-      yesterday: buckets.yesterday.filter(matches),
-      older: buckets.older.filter(matches),
+      today: sortNotifications(buckets.today.filter(matches)),
+      yesterday: sortNotifications(buckets.yesterday.filter(matches)),
+      older: sortNotifications(buckets.older.filter(matches)),
     };
-  }, [buckets, searchValue, referenceTypeFilter]);
+  }, [buckets, searchValue, notificationFilter, sortBy]);
 
   const groupedNotifications = useMemo(
     () =>
@@ -155,7 +187,7 @@ function NotificationDashboard() {
         ["YESTERDAY", filteredBuckets.yesterday],
         ["OLDER", filteredBuckets.older],
       ].filter(([, items]) => items.length > 0),
-    [filteredBuckets]
+    [filteredBuckets],
   );
 
   // Counts per reference type, computed from whatever's currently loaded
@@ -163,37 +195,23 @@ function NotificationDashboard() {
   // not a true global total. If the user hasn't paged through everything,
   // these numbers only reflect what's been fetched so far. A dedicated
   // counts endpoint would be needed for accurate totals across all pages.
-  const referenceTypeCounts = useMemo(() => {
-    const counts = {};
-    allLoaded.forEach((n) => {
-      if (!n.referenceType) return;
-      counts[n.referenceType] = (counts[n.referenceType] ?? 0) + 1;
-    });
-    return counts;
-  }, [allLoaded]);
-
-  // Reference-type filter tabs: REFERENCE_TYPE_OPTIONS minus the hidden
-  // ids, with a `count` field NotificationTabs renders in its own badge span.
-  const referenceTypeTabs = useMemo(
+  const notificationFilterTabs = useMemo(
     () =>
-      REFERENCE_TYPE_OPTIONS.filter((opt) => !HIDDEN_REFERENCE_TYPES.includes(opt.id)).map(
-        ({ id, label }) => {
-          const count = id === "ALL" ? allLoaded.length : referenceTypeCounts[id] ?? 0;
-          return { id, label, count };
-        }
-      ),
-    [referenceTypeCounts, allLoaded]
+      NOTIFICATION_FILTERS.map(({ id, label }) => ({
+        id,
+        label,
+        count:
+          id === "ALL"
+            ? allLoaded.length
+            : allLoaded.filter((notification) =>
+                matchesFilter(notification, id),
+              ).length,
+      })),
+    [allLoaded],
   );
 
-  // Clicking just navigates. There's no PATCH /notifications/:id/read
-  // endpoint — the backend already marks a page's items read the moment
-  // it's fetched (see candidate-getAllNotification.ts), so no client call
-  // is needed here.
   const handleNotificationClick = (id) => {
-    const notification = allLoaded.find((item) => item.id === id);
-    if (notification?.link) {
-      navigate(notification.link);
-    }
+    setSelectedNotification(allLoaded.find((item) => item.id === id) ?? null);
   };
 
   return (
@@ -206,7 +224,10 @@ function NotificationDashboard() {
       />
 
       {sidebarOpen && (
-        <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
 
       <div className={styles.content}>
@@ -223,21 +244,88 @@ function NotificationDashboard() {
             subtitle={`${unreadCount} Unread · Stay On Top of Deadlines, Classes, and Updates`}
           />
 
-          <div className={styles.referenceTypeRow}>
-            <NotificationTabs
-              tabs={referenceTypeTabs}
-              activeTab={referenceTypeFilter}
-              onTabChange={setReferenceTypeFilter}
-              className={styles.referenceTypeFilter}
-              compact
-            />
+          <div className={styles.filterPanel}>
+            <div
+              className={styles.filterTabs}
+              role="tablist"
+              aria-label="Notification filters"
+            >
+              {notificationFilterTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={notificationFilter === tab.id}
+                  className={`${styles.filterTab} ${notificationFilter === tab.id ? styles.filterTabActive : ""}`}
+                  onClick={() => setNotificationFilter(tab.id)}
+                >
+                  {tab.label}
+                  {tab.id !== "ALL" && (
+                    <span className={styles.filterCount}>{tab.count}</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            <select
+              value={sortBy}
+              onChange={(event) => setSortBy(event.target.value)}
+              className={styles.sortFilter}
+              aria-label="Sort notifications"
+            >
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="unread">Unread first</option>
+            </select>
           </div>
 
-          <section className={styles.notificationColumn} aria-label="Notification list">
+          {selectedNotification && (
+            <div
+              className={styles.notificationDetailsOverlay}
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget)
+                  setSelectedNotification(null);
+              }}
+            >
+              <section
+                className={styles.notificationDetails}
+                aria-label="Notification details"
+                role="dialog"
+                aria-modal="true"
+              >
+                <div className={styles.detailIcon}>
+                  <Icon name="bell" size={28} color="#ffffff" />
+                </div>
+                <span className={styles.detailCategory}>
+                  {selectedNotification.category}
+                </span>
+                <button
+                  type="button"
+                  className={styles.closeDetails}
+                  onClick={() => setSelectedNotification(null)}
+                >
+                  Close
+                </button>
+                <h2>{selectedNotification.title}</h2>
+                <p>{selectedNotification.description}</p>
+                <time dateTime={selectedNotification.createdAt}>
+                  {new Date(selectedNotification.createdAt).toLocaleString(
+                    "en-IN",
+                  )}
+                </time>
+              </section>
+            </div>
+          )}
+
+          <section
+            className={styles.notificationColumn}
+            aria-label="Notification list"
+          >
             {error && <p className={styles.emptyState}>{error}</p>}
 
             {!error && groupedNotifications.length === 0 && !loading && (
-              <p className={styles.emptyState}>No notifications match your filters.</p>
+              <p className={styles.emptyState}>
+                No notifications match your filters.
+              </p>
             )}
 
             {groupedNotifications.map(([groupLabel, items]) => (

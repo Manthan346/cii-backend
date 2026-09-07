@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { sidebarMenu } from '../../data';
-import './Sidebar.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { sidebarMenu } from "../../data";
+import "./Sidebar.css";
 
 /**
  * Sidebar
@@ -35,8 +35,8 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
       )}
 
       <aside
-        className={`trainer-sidebar ${isOpen ? 'trainer-sidebar--open' : ''} ${
-          isCollapsed ? 'trainer-sidebar--collapsed' : ''
+        className={`trainer-sidebar ${isOpen ? "trainer-sidebar--open" : ""} ${
+          isCollapsed ? "trainer-sidebar--collapsed" : ""
         }`}
         aria-label="Trainer navigation"
       >
@@ -46,36 +46,38 @@ const Sidebar = ({ isCollapsed = false, isOpen = false, onClose }) => {
               <p className="trainer-sidebar__section-title">{group.title}</p>
 
               <ul className="trainer-sidebar__list">
-                {group.items.map((item) => {
-                  const Icon = item.icon;
+                {group.items
+                  .filter((item) => item.route)
+                  .map((item) => {
+                    const Icon = item.icon;
 
-                  return (
-                    <li key={item.id}>
-                      <NavLink
-                        to={item.route}
-                        onClick={onClose}
-                        className={({ isActive }) =>
-                          `trainer-sidebar__item ${
-                            isActive ? 'trainer-sidebar__item--active' : ''
-                          }`
-                        }
-                      >
-                        {({ isActive }) => (
-                          <>
-                            <Icon
-                              size={19}
-                              strokeWidth={isActive ? 2.1 : 1.6}
-                              className="trainer-sidebar__icon"
-                            />
-                            <span className="trainer-sidebar__label">
-                              {item.title}
-                            </span>
-                          </>
-                        )}
-                      </NavLink>
-                    </li>
-                  );
-                })}
+                    return (
+                      <li key={item.id}>
+                        <NavLink
+                          to={item.route}
+                          onClick={onClose}
+                          className={({ isActive }) =>
+                            `trainer-sidebar__item ${
+                              isActive ? "trainer-sidebar__item--active" : ""
+                            }`
+                          }
+                        >
+                          {({ isActive }) => (
+                            <>
+                              <Icon
+                                size={19}
+                                strokeWidth={isActive ? 2.1 : 1.6}
+                                className="trainer-sidebar__icon"
+                              />
+                              <span className="trainer-sidebar__label">
+                                {item.title}
+                              </span>
+                            </>
+                          )}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           ))}

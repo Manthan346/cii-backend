@@ -7,6 +7,7 @@
   justify-content: center;
   padding: 60px 20px 20px;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .profile-edit-profile-modal-modal {
@@ -17,6 +18,7 @@
   border-radius: var(--radius-lg);
   box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
   padding: 24px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -36,6 +38,7 @@
   flex-wrap: wrap;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 12px;
+  flex-shrink: 0;
 }
 
 .profile-edit-profile-modal-section-tab {
@@ -48,7 +51,18 @@
   padding: 8px 14px;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.profile-edit-profile-modal-section-tab:focus-visible,
+.profile-edit-profile-modal-avatar-upload-btn:focus-visible,
+.profile-edit-profile-modal-avatar-delete-btn:focus-visible,
+.profile-edit-profile-modal-guardian-remove-btn:focus-visible,
+.profile-edit-profile-modal-guardian-add-btn:focus-visible {
+  outline: 3px solid rgba(15, 109, 92, 0.22);
+  outline-offset: 2px;
 }
 
 .profile-edit-profile-modal-section-tab:hover {
@@ -85,6 +99,10 @@
   gap: 16px;
 }
 
+.profile-edit-profile-modal-row > .profile-edit-profile-modal-field {
+  min-width: 0;
+}
+
 .profile-edit-profile-modal-field {
   display: flex;
   flex-direction: column;
@@ -99,6 +117,8 @@
 
 .profile-edit-profile-modal-input,
 .profile-edit-profile-modal-textarea {
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -110,9 +130,29 @@
   resize: vertical;
 }
 
+.profile-edit-profile-modal-input:not([type="file"]):not(textarea) {
+  min-height: 42px;
+}
+
+.profile-edit-profile-modal-input:is(select) {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #64748b 50%),
+    linear-gradient(135deg, #64748b 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) 18px,
+    calc(100% - 12px) 18px;
+  background-repeat: no-repeat;
+  background-size:
+    5px 5px,
+    5px 5px;
+  padding-right: 34px;
+}
+
 .profile-edit-profile-modal-input:focus,
 .profile-edit-profile-modal-textarea:focus {
   border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(15, 109, 92, 0.12);
 }
 
 .profile-edit-profile-modal-guardian-hint {
@@ -148,7 +188,8 @@
   justify-content: space-between;
 }
 
-.profile-edit-profile-modal-guardian-card-header .profile-edit-profile-modal-subheading {
+.profile-edit-profile-modal-guardian-card-header
+  .profile-edit-profile-modal-subheading {
   margin: 0;
 }
 
@@ -192,10 +233,15 @@
 .profile-edit-profile-modal-actions {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 12px;
   margin-top: 4px;
   padding-top: 12px;
   border-top: 1px solid var(--color-border);
+}
+
+.profile-edit-profile-modal-actions .profile-edit-profile-modal-error {
+  flex: 1;
 }
 
 /* ---- Profile picture (Personal section, session-only upload) ---- */
@@ -240,7 +286,9 @@
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .profile-edit-profile-modal-avatar-upload-btn {
@@ -271,7 +319,7 @@
   display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .profile-edit-profile-modal-row {
     grid-template-columns: 1fr;
   }
@@ -286,5 +334,18 @@
 
   .profile-edit-profile-modal-avatar-row {
     flex-wrap: wrap;
+  }
+
+  .profile-edit-profile-modal-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profile-edit-profile-modal-actions .profile-edit-profile-modal-error {
+    flex: none;
+  }
+
+  .profile-edit-profile-modal-actions button {
+    width: 100%;
   }
 }

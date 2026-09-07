@@ -35,7 +35,7 @@
   gap: 16px;
 }
 
-/* ---- Filter bar (Search / Trainers / Courses / Status / Apply) ---- */
+/* ---- Filter bar (Search / Courses / Status / Apply) ---- */
 .batch-management-batch-list-filter-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr) auto;

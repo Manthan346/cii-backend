@@ -273,8 +273,8 @@ const Assessments = () => {
             </div>
 
             <div className="assessments-page__right">
-              <PerformanceByCourse />
-              <TipsCard />
+              {/* <PerformanceByCourse />
+              <TipsCard /> */}
             </div>
           </div>
         </div>

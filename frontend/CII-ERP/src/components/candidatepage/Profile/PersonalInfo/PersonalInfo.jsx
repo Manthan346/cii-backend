@@ -114,15 +114,27 @@ export default function PersonalInfo({ info, checklist, completionPct }) {
 
       <div className="personal-info__card">
         <div className="personal-info__card-title">Address</div>
-        <div className="personal-info__grid_mainaddress">
-          <Field label="CURRENT ADDRESS" value={info.currentAddress} />
-          <Field label="PERMANENT ADDRESS" value={info.permanentAddress} />
+        <div className="personal-info__address-section">
+          <div className="personal-info__address-heading">Current Address</div>
+          <Field label="ADDRESS" value={info.currentAddress} />
+          <div className="personal-info__grid_address">
+            <Field label="CITY" value={info.currentCity} />
+            <Field label="STATE" value={info.currentState} />
+            <Field label="DISTRICT" value={info.currentDistrict} />
+            <Field label="COUNTRY" value={info.currentCountry} />
+            <Field label="PINCODE" value={info.currentPincode} />
+          </div>
         </div>
-        <div className="personal-info__grid_address">
-          <Field label="CITY" value={info.city} />
-          <Field label="STATE" value={info.state} />
-          <Field label="COUNTRY" value={info.country} />
-          <Field label="PINCODE" value={info.pincode} />
+        <div className="personal-info__address-section">
+          <div className="personal-info__address-heading">Permanent Address</div>
+          <Field label="ADDRESS" value={info.permanentAddress} />
+          <div className="personal-info__grid_address">
+            <Field label="CITY" value={info.permanentCity} />
+            <Field label="STATE" value={info.permanentState} />
+            <Field label="DISTRICT" value={info.permanentDistrict} />
+            <Field label="COUNTRY" value={info.permanentCountry} />
+            <Field label="PINCODE" value={info.permanentPincode} />
+          </div>
         </div>
       </div>
 

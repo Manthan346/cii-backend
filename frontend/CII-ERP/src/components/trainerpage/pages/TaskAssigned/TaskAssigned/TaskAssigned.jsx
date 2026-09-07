@@ -1,68 +1,117 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import {
   LayoutGrid,
-  History,
-  CheckCircle2,
   CalendarClock,
+  CheckCircle2,
   Search,
   Filter,
   Plus,
-  Download,
-  Printer,
-} from 'lucide-react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import { StatCard, Dropdown, Button, Pagination } from '../../../shared';
-import TaskTable from '../TaskTable/TaskTable';
+} from "lucide-react";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import { StatCard, Dropdown, Button, Pagination } from "../../../shared";
+import TaskTable from "../TaskTable/TaskTable";
+import AssignTaskModal from "../AssignTaskModal/AssignTaskModal";
+import MarkAssessment from "../MarkAssessment/MarkAssessment";
 import {
-  taskAssignedStats,
   taskAssignedMeta,
-  taskAssignedRecords,
-  taskAssigneeOptions,
+  taskAssignedRecords as defaultRecords,
   taskPriorityOptions,
   taskStatusOptions,
-} from '../../../data';
-import '../../../styles/variables.css';
-import './TaskAssigned.css';
+} from "../../../data";
+import "../../../styles/variables.css";
+import "./TaskAssigned.css";
 
 /**
- * TaskAssigned (full page)
- *
- * Staff "Task assigned" page. Mounts the shared Topbar + Sidebar shell
- * (identical composition to every other staff page, e.g.
- * CandidateManagement/AttendanceManagement) around the task-specific
- * content: stat cards, filter bar, "All Task" table, and pagination
- * footer. All fake data comes from data/tasksAssignedData.js +
- * data/filterOptions.js so it can be swapped for API responses later
- * without touching this file.
- *
- * Not to be confused with pages/Dashboard/TaskAssigned, which is only
- * the 4-item preview widget shown on the Dashboard.
+ * No backend exists yet for tasks (no getTasks/createTask/mark
+ * endpoints shared) — everything here is local-only state, same
+ * pattern Study Material used before it was connected. Swap for real
+ * API calls once those endpoints exist.
  */
-const STAT_ICONS = {
-  grid: LayoutGrid,
-  history: History,
-  check: CheckCircle2,
-  calendar: CalendarClock,
-};
-
 const TaskAssigned = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
 
-  const [searchTask, setSearchTask] = useState('');
-  const [assignee, setAssignee] = useState(taskAssigneeOptions[0]);
+  const [searchTask, setSearchTask] = useState("");
   const [priority, setPriority] = useState(taskPriorityOptions[0]);
   const [status, setStatus] = useState(taskStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [records, setRecords] = useState(defaultRecords);
+  const [showAssignModal, setShowAssignModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  // view switching: "list" (default) or "assessment" (Mark Assesment
+  // page, opened via the eye icon on a row)
+  const [view, setView] = useState("list");
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  // Stats derived from local records instead of a separate stats
+  // array, so a newly-assigned task immediately reflects in the count
+  // without needing to know the exact shape of an unseen stats file.
+  const totalTasks = records.length;
+  const inProgressCount = records.filter(
+    (t) => t.status?.toLowerCase() === "in progress",
+  ).length;
+  const completedCount = records.filter(
+    (t) => t.status?.toLowerCase() === "completed",
+  ).length;
+  const pendingCount = records.filter(
+    (t) => t.status?.toLowerCase() !== "completed",
+  ).length;
+
+  const handleAssignTask = (formValues) => {
+    const newTask = {
+      id: Date.now(),
+      title: formValues.title,
+      subtitle: formValues.course || "",
+      assignedTo: formValues.batch || formValues.assignTo || "—",
+      priority: formValues.priority || "medium", // default until the modal exposes a priority field
+      dueDate: formValues.dueDate || "—",
+      status: "In progress",
+    };
+    setRecords((prev) => [newTask, ...prev]);
+    setShowAssignModal(false);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 2500);
+  };
+
+  const handleViewTask = (task) => {
+    setSelectedTask(task);
+    setView("assessment");
+  };
+
+  if (view === "assessment") {
+    return (
+      <div className="staff-dashboard">
+        <Topbar
+          user={{ name: "Staff Admin" }}
+          hasUnreadNotifications={true}
+          onMenuToggle={() => setSidebarOpen((o) => !o)}
+        />
+        <div className="staff-dashboard__content">
+          <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+          <div className="staff-dashboard__main">
+            <main className="staff-dashboard__body">
+              <MarkAssessment
+                task={selectedTask}
+                onBack={() => {
+                  setView("list");
+                  setSelectedTask(null);
+                }}
+              />
+            </main>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: 'Staff Admin' }}
+        user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="staff-dashboard__content">
@@ -71,29 +120,48 @@ const TaskAssigned = () => {
         <div className="staff-dashboard__main">
           <main className="staff-dashboard__body">
             <div className="task-assigned-page">
+              {showToast && (
+                <div className="task-assigned-page__toast" role="status">
+                  Task assigned successfully
+                </div>
+              )}
+
               <div className="task-assigned-page__header">
                 <div>
-                  <h1 className="task-assigned-page__title">Task assigned</h1>
+                  <h1 className="task-assigned-page__title">Assigned tasks</h1>
                   <p className="task-assigned-page__subtitle">
-                    {taskAssignedMeta.totalRecords} task.{' '}
-                    {taskAssignedMeta.pendingCount} pending across the team
+                    {totalTasks} task. {pendingCount} pending across the team
                   </p>
                 </div>
-                <Button variant="primary" icon={Plus} iconPosition="left">
+                <Button
+                  variant="primary"
+                  icon={Plus}
+                  iconPosition="left"
+                  onClick={() => setShowAssignModal(true)}
+                >
                   Assign task
                 </Button>
               </div>
 
               <div className="task-assigned-page__stats-grid">
-                {taskAssignedStats.map((stat) => (
-                  <StatCard
-                    key={stat.id}
-                    icon={STAT_ICONS[stat.icon]}
-                    value={stat.value}
-                    label={stat.label}
-                    tone={stat.tone}
-                  />
-                ))}
+                <StatCard
+                  icon={LayoutGrid}
+                  value={totalTasks}
+                  label="Total Task"
+                  tone="blue"
+                />
+                <StatCard
+                  icon={CalendarClock}
+                  value={inProgressCount}
+                  label="In progress"
+                  tone="green"
+                />
+                <StatCard
+                  icon={CheckCircle2}
+                  value={completedCount}
+                  label="Completed"
+                  tone="blue"
+                />
               </div>
 
               <div className="task-assigned-page__filter-bar">
@@ -117,12 +185,6 @@ const TaskAssigned = () => {
                 </div>
 
                 <Dropdown
-                  label="Assignee"
-                  options={taskAssigneeOptions}
-                  value={assignee}
-                  onChange={setAssignee}
-                />
-                <Dropdown
                   label="Priority"
                   options={taskPriorityOptions}
                   value={priority}
@@ -145,39 +207,30 @@ const TaskAssigned = () => {
               <section className="task-assigned-page__table-section">
                 <div className="task-assigned-page__table-header">
                   <h2 className="task-assigned-page__table-title">All Task</h2>
-                  <div className="task-assigned-page__table-actions">
-                    <button
-                      type="button"
-                      className="task-assigned-page__icon-btn"
-                      aria-label="Download"
-                    >
-                      <Download size={16} />
-                    </button>
-                    <button
-                      type="button"
-                      className="task-assigned-page__icon-btn"
-                      aria-label="Print"
-                    >
-                      <Printer size={16} />
-                    </button>
-                  </div>
                 </div>
 
-                <TaskTable tasks={taskAssignedRecords} />
+                <TaskTable records={records} onView={handleViewTask} />
 
                 <Pagination
-                  showing={taskAssignedRecords.length}
+                  showing={records.length}
                   total={taskAssignedMeta.totalRecords}
                   currentPage={currentPage}
                   totalPages={taskAssignedMeta.totalPages}
                   onPageChange={setCurrentPage}
-                  label={`Showing 1-${taskAssignedRecords.length} out of ${taskAssignedMeta.totalRecords}`}
+                  label={`Showing 1-${records.length} out of ${taskAssignedMeta.totalRecords}`}
                 />
               </section>
             </div>
           </main>
         </div>
       </div>
+
+      {showAssignModal && (
+        <AssignTaskModal
+          onCancel={() => setShowAssignModal(false)}
+          onAssign={handleAssignTask}
+        />
+      )}
     </div>
   );
 };

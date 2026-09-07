@@ -103,13 +103,13 @@ export default function Dashboard() {
               {/* 3. My Courses Progress + Unlock Certificate */}
               <div className="dashboard__row dashboard__row--split">
                 <CourseProgressList courses={data.courses} />
-                <UnlockCertificate {...data.unlockCertificate} />
+                {/* <UnlockCertificate {...data.unlockCertificate} /> */}
               </div>
 
               {/* 4. Alerts/Upcoming + Job Opportunities */}
               <div className="dashboard__row dashboard__row--split dashboard__row--bottom">
                 <AlertsTabs alerts={data.alerts} upcoming={data.upcoming} />
-                <JobOpportunities jobs={data.jobs} />
+                {/* <JobOpportunities jobs={data.jobs} /> */}
               </div>
             </>
           )}

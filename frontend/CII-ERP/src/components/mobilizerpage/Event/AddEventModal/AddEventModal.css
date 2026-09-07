@@ -1,18 +1,20 @@
 .ae-modal {
   position: relative;
-  padding: 26px 28px 28px;
+  padding: 30px 32px 32px;
+  background: linear-gradient(145deg, #ffffff 0%, #f7f9fc 100%);
+  color: #17213b;
 }
 
 .ae-modal__close {
   position: absolute;
-  top: 18px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: none;
-  background: #f1f2f4;
-  color: #4b5563;
+  top: 20px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #dbe3ee;
+  background: #eef3f8;
+  color: #24324d;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -20,38 +22,72 @@
 }
 
 .ae-modal__close:hover {
-  background: #e5e7eb;
+  background: #dce8f2;
+  border-color: #b9cedf;
 }
 
 .ae-field {
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .ae-field__label {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1f2430;
-  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #33415f;
+  margin-bottom: 9px;
 }
 
-.ae-field input[type='text'],
-.ae-field input[type='date'] {
+.ae-field input[type="text"],
+.ae-field input[type="date"],
+.ae-field input[type="url"] {
   width: 100%;
-  height: 42px;
-  border: 1px solid #d5d9e0;
-  border-radius: 8px;
-  padding: 0 14px;
-  font-size: 14px;
+  height: 46px;
+  border: 1px solid #ccd6e3;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-size: 15px;
   font-family: inherit;
-  color: #1f2430;
+  color: #17213b;
+  background: #ffffff;
   outline: none;
   box-sizing: border-box;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
-.ae-field input:focus {
-  border-color: var(--md-blue, #3e6ff3);
+.ae-field input::placeholder {
+  color: #9aa7b8;
+}
+
+.ae-field input[type="text"]:focus,
+.ae-field input[type="date"]:focus,
+.ae-field input[type="url"]:focus,
+.ae-field textarea:focus,
+.ae-select-wrap select:focus {
+  border-color: #168c8a;
+  box-shadow: 0 0 0 3px rgba(22, 140, 138, 0.14);
+}
+
+.ae-field textarea {
+  width: 100%;
+  min-height: 96px;
+  border: 1px solid #ccd6e3;
+  border-radius: 10px;
+  padding: 13px 15px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #17213b;
+  background: #ffffff;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .ae-select-wrap {
@@ -62,13 +98,13 @@
 
 .ae-select-wrap select {
   width: 100%;
-  height: 42px;
-  border: 1px solid #d5d9e0;
-  border-radius: 8px;
-  padding: 0 32px 0 14px;
-  font-size: 14px;
+  height: 46px;
+  border: 1px solid #ccd6e3;
+  border-radius: 10px;
+  padding: 0 36px 0 15px;
+  font-size: 15px;
   font-family: inherit;
-  color: #1f2430;
+  color: #17213b;
   background: #ffffff;
   appearance: none;
   cursor: pointer;
@@ -114,33 +150,64 @@
 }
 
 .ae-modal__grid .ae-field {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .ae-modal__actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .ae-create-btn {
-  height: 44px;
-  padding: 0 28px;
-  border-radius: 9px;
+  min-width: 172px;
+  height: 48px;
+  padding: 0 26px;
+  border-radius: 10px;
   border: none;
-  background: #14224d;
+  background: #172a5c;
   color: #ffffff;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 8px 16px rgba(23, 42, 92, 0.18);
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .ae-create-btn:hover {
-  background: #1c2e63;
+  background: #203a78;
+  box-shadow: 0 10px 20px rgba(23, 42, 92, 0.24);
+  transform: translateY(-1px);
+}
+
+.ae-create-btn:active {
+  transform: translateY(0);
+}
+
+.ae-form-error {
+  margin: 0 0 14px;
+  color: #c23d52;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 @media (max-width: 480px) {
+  .ae-modal {
+    padding: 24px 18px 20px;
+  }
+
   .ae-modal__grid {
     grid-template-columns: 1fr;
+  }
+
+  .ae-modal__actions {
+    justify-content: stretch;
+  }
+
+  .ae-create-btn {
+    width: 100%;
   }
 }

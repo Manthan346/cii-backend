@@ -1,0 +1,164 @@
+.task-assigned-assign-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px 20px;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.task-assigned-assign-modal-modal {
+  width: 100%;
+  max-width: 620px;
+  padding: 24px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
+  font-family: var(--font-family);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.task-assigned-assign-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.task-assigned-assign-modal-title {
+  margin: 0 0 4px;
+  color: var(--color-text-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.task-assigned-assign-modal-subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.task-assigned-assign-modal-close-btn {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.task-assigned-assign-modal-close-btn:hover {
+  background: #f3f4f6;
+}
+
+.task-assigned-assign-modal-error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.task-assigned-assign-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.task-assigned-assign-modal-field label {
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.task-assigned-assign-modal-field input,
+.task-assigned-assign-modal-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+.task-assigned-assign-modal-field input:focus,
+.task-assigned-assign-modal-field textarea:focus {
+  border-color: var(--color-teal);
+}
+
+.task-assigned-assign-modal-field textarea {
+  resize: vertical;
+}
+
+.task-assigned-assign-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.task-assigned-assign-modal-upload-section {
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.task-assigned-assign-modal-upload-label {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.task-assigned-assign-modal-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  background: var(--color-page-bg, #f8fafc);
+}
+
+.task-assigned-assign-modal-upload-link {
+  color: var(--color-teal);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.task-assigned-assign-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .task-assigned-assign-modal-row {
+    grid-template-columns: 1fr;
+  }
+}

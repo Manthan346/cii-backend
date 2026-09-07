@@ -1,4 +1,10 @@
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import {
+  getCoursesByCenter,
+  getEnquiryCenters,
+  submitEnquiry,
+} from "../../../api/homepage/enquiryService";
 import "./EnquiryForm.css";
 
 const educationOptions = [
@@ -10,22 +16,27 @@ const educationOptions = [
   "Diploma",
 ];
 
-const courseOptions = [
-  "Blue Star",
-  "ITC",
-  "Cosmos Creative Academy",
-  "NASSCOM - DSCI",
-  "PSIPL - Kalpataru",
-  "Nihon Edutech",
-  "Apparel",
-  "Bajaj Finserv",
-  "Jubilant Food Works",
-  "L'Oreal",
-  "Cisco",
-  "VFS Global",
-];
-
 export default function EnquiryForm() {
+  const [submitStatus, setSubmitStatus] = useState({ type: "idle", message: "" });
+  const [centers, setCenters] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [isLoadingCenters, setIsLoadingCenters] = useState(true);
+  const [isLoadingCourses, setIsLoadingCourses] = useState(false);
+
+  useEffect(() => {
+    async function loadCenters() {
+      try {
+        setCenters(await getEnquiryCenters());
+      } catch {
+        setSubmitStatus({ type: "error", message: "Unable to load centres right now." });
+      } finally {
+        setIsLoadingCenters(false);
+      }
+    }
+
+    loadCenters();
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -37,8 +48,38 @@ export default function EnquiryForm() {
       education: "",
       course: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        setSubmitStatus({ type: "loading", message: "Submitting your enquiry..." });
+
+        await submitEnquiry({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          mobile: values.mobile,
+          location: values.location,
+          center_id: values.center,
+          education: values.education,
+          course_id: values.course,
+          enquiry_source: "Website",
+          course_type: "Full-time",
+          query: `Enquiry for ${values.course || "course"}`,
+          remarks: `Interested in ${values.course || "this course"}`,
+        });
+
+        setSubmitStatus({
+          type: "success",
+          message: "Your enquiry has been submitted successfully.",
+        });
+        resetForm();
+      } catch (error) {
+        setSubmitStatus({
+          type: "error",
+          message:
+            error?.response?.data?.message ||
+            "Unable to submit enquiry right now. Please try again.",
+        });
+      }
     },
   });
 
@@ -150,14 +191,39 @@ export default function EnquiryForm() {
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
             </span>
-            <input
+            <select
               name="center"
-              type="text"
-              placeholder="Your centre name"
-              className="reg-input reg-input-icon-pad"
-              onChange={formik.handleChange}
+              className="reg-select"
+              onChange={async (event) => {
+                const centerId = event.target.value;
+                formik.setFieldValue("center", centerId);
+                formik.setFieldValue("course", "");
+                setCourses([]);
+
+                if (!centerId) return;
+
+                try {
+                  setIsLoadingCourses(true);
+                  setCourses(await getCoursesByCenter(centerId));
+                } catch {
+                  setSubmitStatus({ type: "error", message: "Unable to load courses for this centre." });
+                } finally {
+                  setIsLoadingCourses(false);
+                }
+              }}
               value={formik.values.center}
-            />
+              disabled={isLoadingCenters}
+              required
+            >
+              <option value="">
+                {isLoadingCenters ? "Loading centres..." : "Select your centre"}
+              </option>
+              {centers.map((center) => (
+                <option key={center.center_id} value={center.center_id}>
+                  {center.center_name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -200,16 +266,33 @@ export default function EnquiryForm() {
               className="reg-select"
               onChange={formik.handleChange}
               value={formik.values.course}
+              disabled={!formik.values.center || isLoadingCourses}
+              required
             >
-              <option value="">Select a course</option>
-              {courseOptions.map((opt) => (
-                <option key={opt} value={opt}>{opt}</option>
+              <option value="">
+                {isLoadingCourses ? "Loading courses..." : "Select a course"}
+              </option>
+              {courses.map((course) => (
+                <option key={course.course_id} value={course.course_id}>
+                  {course.course_name}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
-        <button type="submit" className="reg-submit-btn">Submit Enquiry</button>
+        <button type="submit" className="reg-submit-btn" disabled={formik.isSubmitting || submitStatus.type === "loading"}>
+          {submitStatus.type === "loading" ? "Submitting..." : "Submit Enquiry"}
+        </button>
+
+        {submitStatus.message && (
+          <p
+            className={`reg-status ${submitStatus.type === "error" ? "reg-status--error" : submitStatus.type === "success" ? "reg-status--success" : ""}`}
+            role="status"
+          >
+            {submitStatus.message}
+          </p>
+        )}
       </form>
     </div>
   );

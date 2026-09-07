@@ -1,116 +1,120 @@
-import React, { useMemo, useState } from 'react';
-import { FileDown, Filter } from 'lucide-react';
-import Button from '../../../shared/Button/Button';
-import Tabs from '../../../shared/Tabs/Tabs';
-import CourseManagementOverview from '../CourseManagementOverview/CourseManagementOverview';
-import CoursesFilterBar from '../CoursesFilterBar/CoursesFilterBar';
-import CoursesTable from '../CoursesTable/CoursesTable';
-import ShortTermFilterBar from '../ShortTermFilterBar/ShortTermFilterBar';
-import ShortTermTrainingTable from '../ShortTermTrainingTable/ShortTermTrainingTable';
+import React, { useCallback, useEffect, useState } from "react";
+import { FileDown } from "lucide-react";
+import Button from "../../../shared/Button/Button";
+import CoursesFilterBar from "../CoursesFilterBar/CoursesFilterBar";
+import CoursesTable from "../CoursesTable/CoursesTable";
 import {
-  courseStats,
-  courseBatchOptions,
-  courseStatusOptions,
-  courseNameOptions,
-  courseCompanyOptions,
-  coursesCatalogList,
-  coursesPagination,
-  trainingTypeOptions,
-  trainingTrainerOptions,
-  trainingStatusOptions,
-  shortTermTrainingList,
-  shortTermPagination,
-} from '../../../data';
-import './CourseManagement.css';
+  fetchAdminCourses,
+  fetchAdminCourseCompanyOptions,
+} from "../../../../../../api/admin/coursesService";
+import "./CourseManagement.css";
 
-const TABS = [
-  { id: 'courses', label: 'Courses' },
-  { id: 'short-term', label: 'Short term Training' },
+// Matches the course_mode values getCourses actually filters on.
+
+const COURSE_MODE_OPTIONS = [
+  { value: "all", label: "All modes" },
+  { value: "online", label: "Online" },
+  { value: "offline", label: "Offline" },
+  { value: "hybrid", label: "Hybrid" },
 ];
+
+const DEFAULT_PAGINATION = {
+  currentPage: 1,
+  totalPages: 1,
+  pageSize: 10,
+  totalResults: 0,
+};
+
+// getCourses' select doesn't include course_desc, even though the API docs
+// mention it — every row will show "—" for Description until the backend
+// adds that field to its query.
+const normalizeCourse = (course) => ({
+  id: course.course_id,
+  name: course.course_name,
+  description: course.course_desc,
+  duration: course.course_duration,
+  mode: course.course_mode,
+  companyName: course.company_name,
+});
 
 /**
  * CourseManagement (Admin)
  *
- * "Manage course catalog, batches and trainers" page: KPI row, a
- * Courses / Short term Training tab switch, and a filter bar + table
- * that swap based on the active tab. The page-level "Apply Filters"
- * button applies whichever filter set is currently visible.
- *
- * All content currently comes from data/courseManagementData.js
- * mocks, and tab/filter/pagination state is held locally here just to
- * make the UI interactive. Swap in real data-fetching hooks once the
- * backend endpoints noted in courseManagementData.js are ready - the
- * section components don't need to change, they just take the same
- * props.
+ * "Manage course catalog, batches and trainers" page: filter bar +
+ * paginated courses table, backed by GET /admin/courses.
  */
 const CourseManagement = () => {
-  const [activeTab, setActiveTab] = useState('courses');
+  const [search, setSearch] = useState("");
+  const [mode, setMode] = useState("all");
+  const [company, setCompany] = useState("all");
+  const [page, setPage] = useState(1);
 
-  // Courses tab filter/pagination state
-  const [courseSearch, setCourseSearch] = useState('');
-  const [batch, setBatch] = useState('all');
-  const [courseStatus, setCourseStatus] = useState('all');
-  const [courseName, setCourseName] = useState('all');
-  const [company, setCompany] = useState('all');
-  const [coursePage, setCoursePage] = useState(coursesPagination.currentPage);
+  const [courses, setCourses] = useState([]);
+  const [pagination, setPagination] = useState(DEFAULT_PAGINATION);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [companyOptions, setCompanyOptions] = useState([
+    { value: "all", label: "All Companies" },
+  ]);
 
-  // Short term Training tab filter/pagination state
-  const [trainingSearch, setTrainingSearch] = useState('');
-  const [trainingType, setTrainingType] = useState('all');
-  const [trainer, setTrainer] = useState('all');
-  const [trainingStatus, setTrainingStatus] = useState('all');
-  const [trainingDate, setTrainingDate] = useState('');
-  const [trainingPage, setTrainingPage] = useState(shortTermPagination.currentPage);
+  const loadCourses = useCallback(async () => {
+    setLoading(true);
+    setError("");
 
-  // Client-side filtering, standing in for real
-  // `GET /api/admin/courses?...` / `GET /api/admin/short-term-trainings?...` calls.
-  const filteredCourses = useMemo(() => {
-    return coursesCatalogList.filter((course) => {
-      const q = courseSearch.trim().toLowerCase();
-      const matchesSearch =
-        !q ||
-        course.name.toLowerCase().includes(q) ||
-        course.batch.toLowerCase().includes(q);
-      const matchesBatch =
-        batch === 'all' || course.batch.toLowerCase() === batch;
-      const matchesStatus = courseStatus === 'all' || course.status === courseStatus;
-      const matchesCourse =
-        courseName === 'all' ||
-        course.name.toLowerCase().replace(/\s+/g, '-') === courseName;
-      const matchesCompany = company === 'all';
+    try {
+      const data = await fetchAdminCourses({
+        page,
+        limit: 10,
+        search,
+        companyId: company,
+        courseMode: mode,
+      });
 
-      return matchesSearch && matchesBatch && matchesStatus && matchesCourse && matchesCompany;
-    });
-  }, [courseSearch, batch, courseStatus, courseName, company]);
+      setCourses((data.courses ?? []).map(normalizeCourse));
+      setPagination({
+        currentPage: Number(data.page ?? page),
+        totalPages: Number(data.totalPages ?? 1),
+        pageSize: Number(data.limit ?? 10),
+        totalResults: Number(data.total ?? 0),
+      });
+    } catch (err) {
+      setError(
+        err?.response?.data?.message || "Unable to load courses right now.",
+      );
+      setCourses([]);
+      setPagination(DEFAULT_PAGINATION);
+    } finally {
+      setLoading(false);
+    }
+  }, [page, search, company, mode]);
 
-  const filteredTrainings = useMemo(() => {
-    return shortTermTrainingList.filter((training) => {
-      const q = trainingSearch.trim().toLowerCase();
-      const matchesSearch = !q || training.name.toLowerCase().includes(q);
-      const matchesType =
-        trainingType === 'all' || training.type.toLowerCase() === trainingType;
-      const matchesTrainer =
-        trainer === 'all' ||
-        training.trainer.toLowerCase().replace(/\.?\s+/g, '-') === trainer;
-      const matchesStatus =
-        trainingStatus === 'all' || training.status === trainingStatus;
+  useEffect(() => {
+    loadCourses();
+  }, [loadCourses]);
 
-      return matchesSearch && matchesType && matchesTrainer && matchesStatus;
-    });
-  }, [trainingSearch, trainingType, trainer, trainingStatus]);
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchAdminCourseCompanyOptions()
+      .then((options) => {
+        if (!cancelled) setCompanyOptions(options);
+      })
+      .catch(() => {
+        // fall back to whatever's already in state (just 'All Companies')
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleApplyFilters = () => {
-    if (activeTab === 'courses') {
-      setCoursePage(1);
-    } else {
-      setTrainingPage(1);
-    }
-    // TODO: trigger the real fetch for the active tab here once wired to the backend.
+    setPage(1);
   };
 
   const handleExport = () => {
-    // TODO: GET /api/admin/courses/export?format=csv (or the training equivalent)
-    console.log('export', activeTab);
+    // TODO: GET /api/admin/courses/export?format=csv
+    console.log("export courses");
   };
 
   return (
@@ -127,66 +131,32 @@ const CourseManagement = () => {
         </Button>
       </div>
 
-      <CourseManagementOverview stats={courseStats} />
+      <CoursesFilterBar
+        search={search}
+        onSearchChange={setSearch}
+        mode={mode}
+        onModeChange={setMode}
+        company={company}
+        onCompanyChange={setCompany}
+        modeOptions={COURSE_MODE_OPTIONS}
+        companyOptions={companyOptions}
+        onApply={handleApplyFilters}
+      />
 
-      <div className="admin-course-management__tabs-row">
-        <Tabs tabs={TABS} activeId={activeTab} onChange={setActiveTab} />
-        <Button icon={Filter} onClick={handleApplyFilters}>
-          Apply Filters
-        </Button>
-      </div>
+      {error && <div className="admin-course-management__error">{error}</div>}
 
-      {activeTab === 'courses' ? (
-        <>
-          <CoursesFilterBar
-            search={courseSearch}
-            onSearchChange={setCourseSearch}
-            batch={batch}
-            onBatchChange={setBatch}
-            status={courseStatus}
-            onStatusChange={setCourseStatus}
-            course={courseName}
-            onCourseChange={setCourseName}
-            company={company}
-            onCompanyChange={setCompany}
-            batchOptions={courseBatchOptions}
-            statusOptions={courseStatusOptions}
-            courseOptions={courseNameOptions}
-            companyOptions={courseCompanyOptions}
-          />
+      <CoursesTable
+        courses={courses}
+        pagination={{ ...pagination, currentPage: page }}
+        onPageChange={setPage}
+        onEditCourse={(id) => console.log("edit course", id)}
+        onDeleteCourse={(id) => console.log("delete course", id)}
+      />
 
-          <CoursesTable
-            courses={filteredCourses}
-            pagination={{ ...coursesPagination, currentPage: coursePage }}
-            onPageChange={setCoursePage}
-            onEditCourse={(id) => console.log('edit course', id)}
-            onDeleteCourse={(id) => console.log('delete course', id)}
-          />
-        </>
-      ) : (
-        <>
-          <ShortTermFilterBar
-            search={trainingSearch}
-            onSearchChange={setTrainingSearch}
-            type={trainingType}
-            onTypeChange={setTrainingType}
-            trainer={trainer}
-            onTrainerChange={setTrainer}
-            status={trainingStatus}
-            onStatusChange={setTrainingStatus}
-            date={trainingDate}
-            onDateChange={setTrainingDate}
-            typeOptions={trainingTypeOptions}
-            trainerOptions={trainingTrainerOptions}
-            statusOptions={trainingStatusOptions}
-          />
-
-          <ShortTermTrainingTable
-            trainings={filteredTrainings}
-            pagination={{ ...shortTermPagination, currentPage: trainingPage }}
-            onPageChange={setTrainingPage}
-          />
-        </>
+      {loading && (
+        <div className="admin-course-management__loading">
+          Loading courses...
+        </div>
       )}
     </div>
   );

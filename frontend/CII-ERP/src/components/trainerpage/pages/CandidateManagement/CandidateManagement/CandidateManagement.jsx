@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { UserRound, CheckCircle2, Clock, Phone } from 'lucide-react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import { FilterBar, Pagination } from '../../../shared';
-import StatCard from '../StatCard/StatCard';
-import CandidateTable from '../CandidateTable/CandidateTable';
-import { fetchCandidateOverview, fetchCandidateStats, updateCandidateStatus, fetchCandidateProfile, fetchCoursesAndBatches } from '../../../../../../api/trainer/candidateService';
-import { statusOptions } from '../../../data/filterOptions';
+import React, { useEffect, useState } from "react";
+import { UserRound, CheckCircle2, Clock, Phone } from "lucide-react";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import { FilterBar, Pagination } from "../../../shared";
+import StatCard from "../StatCard/StatCard";
+import CandidateTable from "../CandidateTable/CandidateTable";
+import {
+  fetchCandidateOverview,
+  fetchCandidateStats,
+  updateCandidateStatus,
+  fetchCandidateProfile,
+  fetchCoursesAndBatches,
+} from "../../../../../../api/trainer/candidateService";
+import { statusOptions } from "../../../data/filterOptions";
 // import { fetchCandidateOverview } from '../../../../../../api/trainer/candidateService';
-import '../../../styles/variables.css';
-import './CandidateManagement.css';
+import "../../../styles/variables.css";
+import "./CandidateManagement.css";
 
-const STAT_ICONS = { user: UserRound, check: CheckCircle2, clock: Clock, phone: Phone };
+const STAT_ICONS = {
+  user: UserRound,
+  check: CheckCircle2,
+  clock: Clock,
+  phone: Phone,
+};
 const PAGE_LIMIT = 6;
 
 function mapCandidate(apiCandidate) {
@@ -57,34 +68,36 @@ function mapCandidateProfile(apiProfile) {
 }
 
 function formatDate(isoString) {
-  if (!isoString) return '—';
-  return new Date(isoString).toLocaleDateString('en-GB', {
-    day: 'numeric', month: 'short', year: 'numeric',
+  if (!isoString) return "—";
+  return new Date(isoString).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
   }); // e.g. "12 Jan 2026"
 }
 
 function formatStatus(enrollmentStatus) {
-  if (!enrollmentStatus) return '—';
+  if (!enrollmentStatus) return "—";
   const s = enrollmentStatus.toLowerCase();
   return s.charAt(0).toUpperCase() + s.slice(1); // "ACTIVE" -> "Active"
 }
 
 const CandidateManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
 
   const [candidates, setCandidates] = useState([]);
-  const [pagination, setPagination] = useState({ currentPage: 1, totalPages: 1, totalCandidates: 0, limit: PAGE_LIMIT });
-  const [filters, setFilters] = useState({ status: '', search: '' });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    totalCandidates: 0,
+    limit: PAGE_LIMIT,
+  });
+  const [filters, setFilters] = useState({ status: "", search: "" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-
-
-
-  const [batchLabels, setBatchLabels] = useState(['All Batches']);
-  const [courseLabels, setCourseLabels] = useState(['All Courses']);
+  const [batchLabels, setBatchLabels] = useState(["All Batches"]);
+  const [courseLabels, setCourseLabels] = useState(["All Courses"]);
   const [batchLabelToId, setBatchLabelToId] = useState({});
   const [courseLabelToId, setCourseLabelToId] = useState({});
 
@@ -95,28 +108,24 @@ const CandidateManagement = () => {
         const { batches, courses } = await fetchCoursesAndBatches();
         if (cancelled) return;
 
-        setBatchLabels(['All Batches', ...batches.map((b) => b.batch_code)]);
+        setBatchLabels(["All Batches", ...batches.map((b) => b.batch_code)]);
         setBatchLabelToId(
-          Object.fromEntries(batches.map((b) => [b.batch_code, b.batchId]))
+          Object.fromEntries(batches.map((b) => [b.batch_code, b.batchId])),
         );
 
-        setCourseLabels(['All Courses', ...courses.map((c) => c.course_name)]);
+        setCourseLabels(["All Courses", ...courses.map((c) => c.course_name)]);
         setCourseLabelToId(
-          Object.fromEntries(courses.map((c) => [c.course_name, c.course_id]))
+          Object.fromEntries(courses.map((c) => [c.course_name, c.course_id])),
         );
       } catch (err) {
-        console.error('Failed to load batch/course filter options:', err);
+        console.error("Failed to load batch/course filter options:", err);
       }
     }
     loadFilterOptions();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-
-
-
-
-
 
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -132,28 +141,24 @@ const CandidateManagement = () => {
           limit: PAGE_LIMIT,
           status: filters.status,
           search: filters.search,
-          batchId: filters.batchId,  
+          batchId: filters.batchId,
         });
         if (!cancelled) {
           setCandidates(data.candidates.map(mapCandidate));
           setPagination(data.pagination);
         }
       } catch (err) {
-        if (!cancelled) setError(err.message || 'Failed to load candidates');
+        if (!cancelled) setError(err.message || "Failed to load candidates");
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
     load();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [pagination.currentPage, filters, refreshKey]);
-
-
-
-
-
-
 
   const [stats, setStats] = useState(null);
   const [statsLoading, setStatsLoading] = useState(true);
@@ -172,13 +177,10 @@ const CandidateManagement = () => {
       }
     }
     loadStats();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-
-
-
-
 
   const handleApplyFilter = ({ status, searchTerm, batch }) => {
     setPagination((p) => ({ ...p, currentPage: 1 }));
@@ -200,7 +202,7 @@ const CandidateManagement = () => {
       // rather than trusting an optimistic local update.
       setRefreshKey((k) => k + 1);
     } catch (err) {
-      console.error('Failed to update candidate status:', err);
+      console.error("Failed to update candidate status:", err);
       // consider surfacing this to the user — e.g. a toast
     }
   };
@@ -208,19 +210,18 @@ const CandidateManagement = () => {
   return (
     <div className="trainer-dashboard">
       <Topbar
-        user={{ name: 'Trainer Admin' }}
+        user={{ name: "Trainer Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
       <div className="trainer-dashboard__content">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="trainer-dashboard__main">
           <main className="trainer-dashboard__body">
-            <div className={'candidate-management-content'}>
-              <div className={'candidate-management-page-header'}>
-                <h1 className={'candidate-management-title'}>Candidate List</h1>
-                <p className={'candidate-management-subtitle'}>
+            <div className={"candidate-management-content"}>
+              <div className={"candidate-management-page-header"}>
+                <h1 className={"candidate-management-title"}>Candidate List</h1>
+                <p className={"candidate-management-subtitle"}>
                   {pagination.totalCandidates} candidates
                 </p>
               </div>
@@ -236,10 +237,25 @@ const CandidateManagement = () => {
                   />
                 ))}
               </div> */}
-              <div className={'candidate-management-stats-grid'}>
-                <StatCard icon={UserRound} value={statsLoading ? '—' : stats?.totalCandidates ?? 0} label="Total Candidate" tone="orange" />
-                <StatCard icon={CheckCircle2} value={statsLoading ? '—' : stats?.activeCandidates ?? 0} label="Active Candidate" tone="green" />
-                <StatCard icon={Phone} value={statsLoading ? '—' : stats?.droppedCandidates ?? 0} label="Dropped out" tone="blue" />
+              <div className={"candidate-management-stats-grid"}>
+                <StatCard
+                  icon={UserRound}
+                  value={statsLoading ? "—" : (stats?.totalCandidates ?? 0)}
+                  label="Total Candidate"
+                  tone="orange"
+                />
+                <StatCard
+                  icon={CheckCircle2}
+                  value={statsLoading ? "—" : (stats?.activeCandidates ?? 0)}
+                  label="Active Candidate"
+                  tone="green"
+                />
+                <StatCard
+                  icon={Phone}
+                  value={statsLoading ? "—" : (stats?.droppedCandidates ?? 0)}
+                  label="Dropped out"
+                  tone="blue"
+                />
               </div>
 
               <FilterBar
@@ -249,9 +265,11 @@ const CandidateManagement = () => {
                 onApply={handleApplyFilter}
               />
 
-              <section className={'candidate-management-table-section'}>
-                <div className={'candidate-management-table-header'}>
-                  <h2 className={'candidate-management-table-title'}>All Candidates</h2>
+              <section className={"candidate-management-table-section"}>
+                <div className={"candidate-management-table-header"}>
+                  <h2 className={"candidate-management-table-title"}>
+                    All Candidates
+                  </h2>
                 </div>
 
                 {loading && <p>Loading candidates…</p>}
@@ -259,7 +277,10 @@ const CandidateManagement = () => {
                 {!loading && !error && (
                   <>
                     {/* <CandidateTable candidates={candidates} onStatusChange={() => {}} /> */}
-                    <CandidateTable candidates={candidates} onStatusChange={handleStatusChange} />
+                    <CandidateTable
+                      candidates={candidates}
+                      onStatusChange={handleStatusChange}
+                    />
                     <Pagination
                       showing={candidates.length}
                       total={pagination.totalCandidates}

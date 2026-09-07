@@ -1,41 +1,33 @@
-import React from 'react';
-import { Search } from 'lucide-react';
-import SectionCard from '../../../shared/SectionCard/SectionCard';
-import Dropdown from '../../../shared/Dropdown/Dropdown';
-import './CoursesFilterBar.css';
+import React from "react";
+import { Search, Filter } from "lucide-react";
+import SectionCard from "../../../shared/SectionCard/SectionCard";
+import Dropdown from "../../../shared/Dropdown/Dropdown";
+import Button from "../../../shared/Button/Button";
+import "./CoursesFilterBar.css";
 
 /**
  * CoursesFilterBar
  *
- * Search + Batches + Status + Course + Company filters for the
- * Courses catalog table. No submit button lives inside this card -
- * the page-level "Apply Filters" button sits above, next to the tabs
- * (see CourseManagement.jsx).
+ * Search + Mode + Company filters, plus the "Apply Filters" button,
+ * for the Courses catalog table (backed by GET /admin/courses).
  *
  * Props:
  *  - search / onSearchChange
- *  - batch / onBatchChange
- *  - status / onStatusChange
- *  - course / onCourseChange
+ *  - mode / onModeChange
  *  - company / onCompanyChange
- *  - batchOptions / statusOptions / courseOptions / companyOptions:
- *    array of { value, label }
+ *  - modeOptions / companyOptions: array of { value, label }
+ *  - onApply: function -> "Apply Filters" button
  */
 const CoursesFilterBar = ({
   search,
   onSearchChange,
-  batch,
-  onBatchChange,
-  status,
-  onStatusChange,
-  course,
-  onCourseChange,
+  mode,
+  onModeChange,
   company,
   onCompanyChange,
-  batchOptions = [],
-  statusOptions = [],
-  courseOptions = [],
+  modeOptions = [],
   companyOptions = [],
+  onApply,
 }) => {
   return (
     <SectionCard>
@@ -55,24 +47,10 @@ const CoursesFilterBar = ({
         </label>
 
         <Dropdown
-          label="Batches"
-          options={batchOptions}
-          value={batch}
-          onChange={onBatchChange}
-        />
-
-        <Dropdown
-          label="Status"
-          options={statusOptions}
-          value={status}
-          onChange={onStatusChange}
-        />
-
-        <Dropdown
-          label="Course"
-          options={courseOptions}
-          value={course}
-          onChange={onCourseChange}
+          label="Mode"
+          options={modeOptions}
+          value={mode}
+          onChange={onModeChange}
         />
 
         <Dropdown
@@ -81,6 +59,12 @@ const CoursesFilterBar = ({
           value={company}
           onChange={onCompanyChange}
         />
+
+        <div className="admin-courses-filter__apply">
+          <Button icon={Filter} onClick={onApply}>
+            Apply Filters
+          </Button>
+        </div>
       </div>
     </SectionCard>
   );

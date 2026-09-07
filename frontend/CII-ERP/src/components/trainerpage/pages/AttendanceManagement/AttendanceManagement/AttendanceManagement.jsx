@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import AttendanceTracker from '../AttendanceTracker/AttendanceTracker';
-import '../../../styles/variables.css';
-import './AttendanceManagement.css';
+import { useState } from "react";
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import AttendanceTracker from "../AttendanceTracker/AttendanceTracker";
+import "../../../styles/variables.css";
+import "./AttendanceManagement.css";
 
 /**
  * AttendanceManagement
@@ -16,15 +16,13 @@ import './AttendanceManagement.css';
  */
 const AttendanceManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div className="trainer-dashboard">
       <Topbar
-        user={{ name: 'Trainer Admin' }}
+        user={{ name: "Trainer Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="trainer-dashboard__content">

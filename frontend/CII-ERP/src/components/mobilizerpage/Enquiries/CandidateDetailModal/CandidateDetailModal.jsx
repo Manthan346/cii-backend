@@ -1,10 +1,70 @@
-import React, { useState } from 'react';
-import { X, Phone, Mail, PhoneOff, UserCheck, UserX, FileCheck2, XCircle, PhoneMissed, ChevronDown } from 'lucide-react';
-import Modal from '../../shared/Modal/Modal';
-import { statusUpdateOptions } from '../../data/enquiriesData';
-import './CandidateDetailModal.css';
+import React, { useState } from "react";
+import {
+  X,
+  Phone,
+  Mail,
+  PhoneOff,
+  UserCheck,
+  UserX,
+  FileCheck2,
+  XCircle,
+  PhoneMissed,
+  ChevronDown,
+  FileText,
+  ThumbsUp,
+  Link2,
+  MessageCircleCheck,
+  Clock3,
+  ThumbsDown,
+} from "lucide-react";
+import Modal from "../../shared/Modal/Modal";
+import "./CandidateDetailModal.css";
 
-const MENU_ICON_MAP = { Phone, PhoneOff, UserCheck, UserX, FileCheck2, XCircle, PhoneMissed };
+const STATUS_UPDATE_OPTIONS = [
+  { label: "Call Received", status: "CALL_RECIEVED", icon: "Phone" },
+  { label: "Center Visited", status: "CENTER_VISITED", icon: "UserCheck" },
+  { label: "Center Not Visited", status: "CENTER_NOT_VISITED", icon: "UserX" },
+  { label: "Enrolled", status: "ENROLLED", icon: "FileCheck2" },
+  { label: "Wrong Number", status: "WRONG_NUMBER", icon: "XCircle" },
+  { label: "Call Busy", status: "CALL_BUSY", icon: "PhoneMissed" },
+  { label: "Call Dropped Out", status: "CALL_DROPPED_OUT", icon: "PhoneOff" },
+  {
+    label: "Document Verification Pending",
+    status: "DOCUMENT_VERIFICATION_PENDING",
+    icon: "FileText",
+  },
+  { label: "Interested", status: "INTERESTED", icon: "ThumbsUp" },
+  {
+    label: "Document Verification Done",
+    status: "DOCUMENT_VERIFICATION_DONE",
+    icon: "FileCheck2",
+  },
+  { label: "Not Connected", status: "NOT_CONNECTED", icon: "PhoneMissed" },
+  { label: "Connected", status: "CONNECTED", icon: "Link2" },
+  {
+    label: "Counseling Done",
+    status: "COUNSELING_DONE",
+    icon: "MessageCircleCheck",
+  },
+  { label: "Follow Up Pending", status: "FOLLOW_UP_PENDING", icon: "Clock3" },
+  { label: "Not Interested", status: "NOT_INTERESTED", icon: "ThumbsDown" },
+];
+
+const MENU_ICON_MAP = {
+  Phone,
+  PhoneOff,
+  UserCheck,
+  UserX,
+  FileCheck2,
+  XCircle,
+  PhoneMissed,
+  FileText,
+  ThumbsUp,
+  Link2,
+  MessageCircleCheck,
+  Clock3,
+  ThumbsDown,
+};
 
 /**
  * CandidateDetailModal
@@ -20,8 +80,13 @@ const MENU_ICON_MAP = { Phone, PhoneOff, UserCheck, UserX, FileCheck2, XCircle, 
  *  - onClose: () => void
  *  - onAddTimelineEntry: (candidateId, entry) => void
  */
-export default function CandidateDetailModal({ candidate, onClose, onAddTimelineEntry }) {
+export default function CandidateDetailModal({
+  candidate,
+  onClose,
+  onStatusChange,
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const isOpen = Boolean(candidate);
 
   const handleClose = () => {
@@ -29,26 +94,27 @@ export default function CandidateDetailModal({ candidate, onClose, onAddTimeline
     onClose();
   };
 
-  const handleSelectStatus = (option) => {
-    const now = new Date();
-    const entry = {
-      event: option.label,
-      dotTone: option.dotTone,
-      date: now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }),
-      time: now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
-      by: 'You',
-      location: candidate?.area || '',
-    };
-    onAddTimelineEntry?.(candidate.id, entry);
+  const handleSelectStatus = async (option) => {
+    setUpdating(true);
+    try {
+      await onStatusChange?.(candidate.id, option);
+    } finally {
+      setUpdating(false);
+    }
     setMenuOpen(false);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} width={480}>
+    <Modal isOpen={isOpen} onClose={handleClose} width={640}>
       {candidate && (
         <div className="cd-modal">
           <div className="cd-modal__header">
-            <button type="button" className="cd-modal__close" onClick={handleClose} aria-label="Close">
+            <button
+              type="button"
+              className="cd-modal__close"
+              onClick={handleClose}
+              aria-label="Close"
+            >
               <X size={16} />
             </button>
 
@@ -97,6 +163,7 @@ export default function CandidateDetailModal({ candidate, onClose, onAddTimeline
                   <button
                     type="button"
                     className="cd-update-status__btn"
+                    disabled={updating}
                     onClick={() => setMenuOpen((v) => !v)}
                   >
                     Update Status
@@ -105,7 +172,7 @@ export default function CandidateDetailModal({ candidate, onClose, onAddTimeline
 
                   {menuOpen && (
                     <div className="cd-update-menu">
-                      {statusUpdateOptions.map((option) => {
+                      {STATUS_UPDATE_OPTIONS.map((option) => {
                         const Icon = MENU_ICON_MAP[option.icon];
                         return (
                           <button
@@ -127,11 +194,14 @@ export default function CandidateDetailModal({ candidate, onClose, onAddTimeline
               <ul className="cd-timeline">
                 {candidate.timeline.map((entry, i) => (
                   <li className="cd-timeline__item" key={i}>
-                    <span className={`cd-timeline__dot cd-timeline__dot--${entry.dotTone}`} />
+                    <span
+                      className={`cd-timeline__dot cd-timeline__dot--${entry.dotTone}`}
+                    />
                     <div className="cd-timeline__content">
                       <p className="cd-timeline__event">{entry.event}</p>
                       <p className="cd-timeline__meta">
-                        {entry.date}, {entry.time} . {entry.by} . {entry.location}
+                        {entry.date}, {entry.time} . {entry.by} .{" "}
+                        {entry.location}
                       </p>
                     </div>
                   </li>

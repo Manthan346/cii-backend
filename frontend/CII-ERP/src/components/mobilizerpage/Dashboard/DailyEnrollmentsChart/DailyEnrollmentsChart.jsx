@@ -1,17 +1,25 @@
 import React from 'react';
 import SectionCard from '../../shared/SectionCard/SectionCard';
 import { LineChartWidget } from '../../shared/charts';
-import { dailyEnrollmentsData, dailyEnrollmentsConfig } from '../../data/dashboardData';
 
-export default function DailyEnrollmentsChart() {
+export default function DailyEnrollmentsChart({ data = [] }) {
+  const yMax = getChartMax(data);
+
   return (
-    <SectionCard title="Daily Enrollments">
+    <SectionCard title="Weekly Enrollments">
       <LineChartWidget
-        data={dailyEnrollmentsData}
-        yMin={dailyEnrollmentsConfig.yMin}
-        yMax={dailyEnrollmentsConfig.yMax}
-        yStep={dailyEnrollmentsConfig.yStep}
+        data={data}
+        yMax={yMax}
+        yStep={getChartStep(yMax)}
       />
     </SectionCard>
   );
+}
+
+function getChartMax(data) {
+  return Math.max(10, ...data.map(({ value }) => value));
+}
+
+function getChartStep(yMax) {
+  return Math.max(1, Math.ceil(yMax / 5));
 }

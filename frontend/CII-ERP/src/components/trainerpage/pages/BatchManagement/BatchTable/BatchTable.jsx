@@ -1,7 +1,7 @@
-import { UserCircle2 } from 'lucide-react';
-import StatusBadge from '../StatusBadge/StatusBadge';
-import ActionButtons from '../ActionButtons/ActionButtons';
-import './BatchTable.css';
+// import { UserCircle2 } from 'lucide-react';
+import StatusBadge from "../StatusBadge/StatusBadge";
+import ActionButtons from "../ActionButtons/ActionButtons";
+import "./BatchTable.css";
 
 /**
  * BatchTable
@@ -15,12 +15,12 @@ import './BatchTable.css';
 export default function BatchTable({
   batches = [],
   onView,
-  onDelete,
-  onAssignTrainer,
+  // onDelete,
+  // onAssignTrainer,
 }) {
   return (
-    <div className={'batch-management-batch-list-batch-table-table-wrap'}>
-      <table className={'batch-management-batch-list-batch-table-table'}>
+    <div className={"batch-management-batch-list-batch-table-table-wrap"}>
+      <table className={"batch-management-batch-list-batch-table-table"}>
         <thead>
           <tr>
             <th>Batch</th>
@@ -28,6 +28,7 @@ export default function BatchTable({
             <th>Course</th>
             <th>Candidates</th>
             <th>Start date</th>
+            <th>End date</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -38,7 +39,7 @@ export default function BatchTable({
               <td>
                 <div
                   className={
-                    'batch-management-batch-list-batch-table-batch-cell'
+                    "batch-management-batch-list-batch-table-batch-cell"
                   }
                 >
                   {/* <span
@@ -49,7 +50,7 @@ export default function BatchTable({
                   /> */}
                   <span
                     className={
-                      'batch-management-batch-list-batch-table-batch-code'
+                      "batch-management-batch-list-batch-table-batch-code"
                     }
                   >
                     {batch.code}
@@ -73,8 +74,11 @@ export default function BatchTable({
               </td> */}
               <td>{batch.course}</td>
               <td>{batch.candidates}</td>
-              <td className={'batch-management-batch-list-batch-table-nowrap'}>
+              <td className={"batch-management-batch-list-batch-table-nowrap"}>
                 {batch.startDate}
+              </td>
+              <td className={"batch-management-batch-list-batch-table-nowrap"}>
+                {batch.endDate}
               </td>
               <td>
                 <StatusBadge status={batch.status} />
@@ -82,7 +86,6 @@ export default function BatchTable({
               <td>
                 <ActionButtons
                   onView={() => onView?.(batch)}
-                  // onDelete={() => onDelete?.(batch)}
                   // onAssignTrainer={() => onAssignTrainer?.(batch)}
                 />
               </td>

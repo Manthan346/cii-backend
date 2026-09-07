@@ -1,0 +1,112 @@
+.assessment-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(19, 32, 38, 0.48);
+}
+.assessment-dialog {
+  width: min(680px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: 0 24px 70px rgba(17, 29, 36, 0.24);
+}
+.assessment-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.assessment-dialog-header p {
+  margin: 0 0 7px;
+  color: var(--color-teal);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.assessment-dialog-header h2 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 22px;
+}
+.assessment-dialog-header button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f4f4;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.assessment-dialog-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.assessment-dialog-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
+.assessment-dialog-field-wide {
+  grid-column: 1 / -1;
+}
+.assessment-dialog-fields input,
+.assessment-dialog-fields select,
+.assessment-dialog-fields textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 11px 12px;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+}
+.assessment-dialog-fields input:focus,
+.assessment-dialog-fields select:focus,
+.assessment-dialog-fields textarea:focus {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(28, 143, 137, 0.12);
+}
+.assessment-dialog-fields strong {
+  color: var(--color-text-primary);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+@media (max-width: 640px) {
+  .assessment-dialog {
+    padding: 20px;
+  }
+  .assessment-dialog-fields {
+    grid-template-columns: 1fr;
+  }
+  .assessment-dialog-field-wide {
+    grid-column: auto;
+  }
+  .assessment-dialog-actions {
+    flex-wrap: wrap;
+  }
+  .assessment-dialog-actions > button {
+    flex: 1;
+  }
+  .assessment-link-button {
+    margin-right: 0;
+    width: 100%;
+  }
+}

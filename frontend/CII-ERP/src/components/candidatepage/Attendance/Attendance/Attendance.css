@@ -60,7 +60,7 @@
 
 .attendance-page__row--split {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr;
   gap: 20px;
   align-items: start;
 }

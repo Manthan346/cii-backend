@@ -18,7 +18,14 @@ const STATUS_TONE = {
  *  - event: event object
  *  - onUploadMedia: (event) => void — the image icon button
  */
-export default function EventListRow({ event, onUploadMedia }) {
+export default function EventListRow({ event, onViewEvent, onUploadMedia }) {
+  const status = event.event_status
+    ? String(event.event_status)
+        .toLowerCase()
+        .replace(/_/g, ' ')
+        .replace(/\b\w/g, (letter) => letter.toUpperCase())
+    : event.status;
+
   return (
     <div className="evr-row">
       <div className="evr-date">
@@ -35,7 +42,8 @@ export default function EventListRow({ event, onUploadMedia }) {
       </div>
 
       <div className="evr-actions">
-        <StatusPill status={event.status} tone={STATUS_TONE[event.status] || 'gray'} />
+        <button type="button" className="evr-view-btn" onClick={() => onViewEvent?.(event)}>View</button>
+        <StatusPill status={status} tone={STATUS_TONE[status] || 'gray'} />
         <button
           type="button"
           className="evr-upload-btn"

@@ -1,0 +1,95 @@
+.attendance-management-session-detail-view-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.attendance-management-session-detail-view-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--color-teal);
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.attendance-management-session-detail-view-back-btn:hover {
+  text-decoration: underline;
+}
+
+.attendance-management-session-detail-view-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.attendance-management-session-detail-view-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  font-family: var(--font-family);
+}
+
+.attendance-management-session-detail-view-table thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  padding: 0 12px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.attendance-management-session-detail-view-table tbody tr {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.attendance-management-session-detail-view-table td {
+  padding: 14px 12px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  vertical-align: top;
+}
+
+.attendance-management-session-detail-view-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.attendance-management-session-detail-view-avatar {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.attendance-management-session-detail-view-session-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.attendance-management-session-detail-view-session-title {
+  font-weight: 600;
+}
+
+.attendance-management-session-detail-view-session-subtitle {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.attendance-management-session-detail-view-nowrap {
+  white-space: nowrap;
+}
+
+.attendance-management-session-detail-view-empty {
+  text-align: center;
+  padding: 32px 12px;
+  color: var(--color-text-secondary);
+}

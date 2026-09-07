@@ -7,7 +7,7 @@ import {
   ClipboardCheck,
   User,
   LogOut,
-} from 'lucide-react';
+} from "lucide-react";
 
 /**
  * sidebarMenu
@@ -31,23 +31,54 @@ import {
  *  array before passing it down, rather than editing Sidebar itself.
  */
 export const sidebarMenu = [
-  { id: 'dashboard', title: 'Dashboard', route: '/mobilizer/dashboard', icon: LayoutGrid },
-  { id: 'enquiries', title: 'Enquiries', route: '/mobilizer/enquiries', icon: Ticket },
-  { id: 'report', title: 'Report', route: '/mobilizer/report', icon: BarChart3 },
-  { id: 'divider-1', isDivider: true },
   {
-    id: 'placement',
-    title: 'Placement',
+    id: "dashboard",
+    title: "Dashboard",
+    route: "/mobilizer/dashboard",
+    icon: LayoutGrid,
+  },
+  {
+    id: "enquiries",
+    title: "Enquiries",
+    route: "/mobilizer/enquiries",
+    icon: Ticket,
+  },
+   {
+    id: "enrollment",
+    title: "Enrollment",
+    route: "/mobilizer/enrollment",
+    icon: ClipboardCheck,
+  },
+   {
+    id: "candidates",
+    title: "Candidates",
+    route: "/mobilizer/candidates",
+    icon: ClipboardCheck,
+  },
+  {
+    id: "report",
+    title: "Report",
+    route: "/mobilizer/report",
+    icon: BarChart3,
+  },
+  { id: "divider-1", isDivider: true },
+  {
+    id: "placement",
+    title: "Placement",
     icon: Briefcase,
     children: [
-      { id: 'placement-dashboard', title: 'Dashboard', route: '/mobilizer/placement/dashboard' },
-      { id: 'placement-event', title: 'Placement Event', route: '/mobilizer/placement/event' },
+      // { id: 'placement-dashboard', title: 'Dashboard', route: '/mobilizer/placement/dashboard' },
+      {
+        id: "placement-event",
+        title: "Placement Event",
+        route: "/mobilizer/placement/event",
+      },
     ],
   },
-  { id: 'divider-2', isDivider: true },
-  { id: 'event', title: 'Event', route: '/mobilizer/events', icon: Star },
-  { id: 'task', title: 'Task', route: '/mobilizer/tasks', icon: ClipboardCheck },
-  { id: 'profile', title: 'Profile', route: '/mobilizer/profile', icon: User },
-  { id: 'divider-3', isDivider: true },
-  { id: 'logout', title: 'Logout', icon: LogOut, isAction: true },
+  { id: "divider-2", isDivider: true },
+  { id: "event", title: "Event", route: "/mobilizer/events", icon: Star },
+  // { id: 'task', title: 'Task', route: '/mobilizer/tasks', icon: ClipboardCheck },
+  { id: "profile", title: "Profile", route: "/mobilizer/profile", icon: User },
+  { id: "divider-3", isDivider: true },
+  { id: "logout", title: "Logout", icon: LogOut, isAction: true },
 ];

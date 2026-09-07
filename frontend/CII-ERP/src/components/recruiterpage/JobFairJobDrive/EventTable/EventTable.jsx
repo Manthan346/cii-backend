@@ -1,20 +1,31 @@
-import React from 'react';
-import { Calendar, Clock, MapPin, Users, Eye, Pencil, Trash2 } from 'lucide-react';
-import StatusBadge from '../../shared/StatusBadge/StatusBadge';
-import RowActionsMenu from '../../shared/RowActionsMenu/RowActionsMenu';
-import { eventTypeStyles, eventStatusStyles } from '../../data';
-import './EventTable.css';
+import React from "react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Eye,
+  Pencil,
+  Trash2,
+  Download,
+} from "lucide-react";
+import StatusBadge from "../../shared/StatusBadge/StatusBadge";
+import StatusSelect from "../../shared/StatusSelect/StatusSelect";
+import RowActionsMenu from "../../shared/RowActionsMenu/RowActionsMenu";
+import {
+  eventTypeStyles,
+  eventStatusStyles,
+  eventStatusOptions,
+} from "../../../../../api/recruiter/jobEventService";
+import "./EventTable.css";
 
-/**
- * EventTable
- *
- * Renders the placement events list as a table: Event, Type,
- * Date & Time, Venue, Candidates, Status, plus a row action menu.
- *
- * Per the request, the row menu only has three items: View (opens
- * EventApplicationsView, showing that event's candidates), Edit, and Delete.
- */
-const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
+const EventTable = ({
+  events,
+  onViewEvent,
+  onEditEvent,
+  onDeleteEvent,
+  onImportEvent,
+  onStatusChange,
+}) => {
   return (
     <div className="event-table">
       <table className="event-table__table">
@@ -24,8 +35,8 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
             <th>Type</th>
             <th>Date &amp; Time</th>
             <th>Venue</th>
-            <th>Candidates</th>
             <th>Status</th>
+            <th aria-hidden="true" />
             <th aria-hidden="true" />
           </tr>
         </thead>
@@ -34,7 +45,10 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
             <tr key={event.id}>
               <td className="event-table__name">{event.name}</td>
               <td>
-                <StatusBadge label={event.type} {...(eventTypeStyles[event.type] ?? {})} />
+                <StatusBadge
+                  label={event.type}
+                  {...(eventTypeStyles[event.type] ?? {})}
+                />
               </td>
               <td>
                 <div className="event-table__datetime">
@@ -44,7 +58,7 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
                   </span>
                   <span className="event-table__meta-line">
                     <Clock size={14} className="event-table__meta-icon" />
-                    {event.time}
+                    {event.endTime ? `${event.time} - ${event.endTime}` : event.time}
                   </span>
                 </div>
               </td>
@@ -55,20 +69,47 @@ const EventTable = ({ events, onViewEvent, onEditEvent, onDeleteEvent }) => {
                 </span>
               </td>
               <td>
-                <span className="event-table__meta-line">
-                  <Users size={14} className="event-table__meta-icon" />
-                  {event.candidates}
-                </span>
+                <StatusSelect
+                  value={event.status}
+                  options={eventStatusOptions}
+                  stylesMap={eventStatusStyles}
+                  onChange={(nextStatus) =>
+                    onStatusChange(event.id, nextStatus)
+                  }
+                />
               </td>
               <td>
-                <StatusBadge label={event.status} {...(eventStatusStyles[event.status] ?? {})} />
+                <button
+                  type="button"
+                  className="event-table__import-btn"
+                  onClick={() => onImportEvent(event.id)}
+                >
+                  Import
+                  <Download size={14} />
+                </button>
               </td>
               <td className="event-table__actions">
                 <RowActionsMenu
                   items={[
-                    { id: 'view', label: 'View', icon: Eye, onClick: () => onViewEvent(event.id) },
-                    { id: 'edit', label: 'Edit', icon: Pencil, onClick: () => onEditEvent(event.id) },
-                    { id: 'delete', label: 'Delete', icon: Trash2, danger: true, onClick: () => onDeleteEvent(event.id) },
+                    {
+                      id: "view",
+                      label: "View",
+                      icon: Eye,
+                      onClick: () => onViewEvent(event),
+                    },
+                    {
+                      id: "edit",
+                      label: "Edit",
+                      icon: Pencil,
+                      onClick: () => onEditEvent(event), // was onEditEvent(event.id)
+                    },
+                    {
+                      id: "delete",
+                      label: "Delete",
+                      icon: Trash2,
+                      danger: true,
+                      onClick: () => onDeleteEvent(event.id),
+                    },
                   ]}
                 />
               </td>

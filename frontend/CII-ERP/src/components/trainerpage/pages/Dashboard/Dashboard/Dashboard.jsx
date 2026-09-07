@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { fetchInstructorDashboard } from '../../../../../../api/trainer/dashboardService';
-import WorkspaceHeader from '../WorkspaceHeader/WorkspaceHeader';
-import BatchOverview from '../BatchOverview/BatchOverview';
+import React, { useState, useEffect } from "react";
+import { fetchInstructorDashboard } from "../../../../../../api/trainer/dashboardService";
+import WorkspaceHeader from "../WorkspaceHeader/WorkspaceHeader";
+import BatchOverview from "../BatchOverview/BatchOverview";
 // import TaskAssigned from '../TaskAssigned/TaskAssigned';
 // import AttendanceChart from '../AttendanceChart/AttendanceChart';
 // import RecentUploads from '../RecentUploads/RecentUploads';
-import Sidebar from '../../../layout/Sidebar/Sidebar';
-import Topbar from '../../../layout/Topbar/Topbar';
-import './Dashboard.css';
+import Sidebar from "../../../layout/Sidebar/Sidebar";
+import Topbar from "../../../layout/Topbar/Topbar";
+import "./Dashboard.css";
 
 /**
  * Dashboard
@@ -19,7 +19,6 @@ import './Dashboard.css';
  */
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,10 +33,9 @@ const Dashboard = () => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: 'Staff Admin' }}
+        user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => setSidebarOpen((o) => !o)}
-        onSearch={setSearchValue}
       />
 
       <div className="staff-dashboard__content">
@@ -47,7 +45,11 @@ const Dashboard = () => {
           <main className="staff-dashboard__body">
             <div className="dashboard">
               {loading && <p>Loading dashboard…</p>}
-              {error && <p className="dashboard__error">Failed to load dashboard: {error}</p>}
+              {error && (
+                <p className="dashboard__error">
+                  Failed to load dashboard: {error}
+                </p>
+              )}
 
               {dashboardData && (
                 <>

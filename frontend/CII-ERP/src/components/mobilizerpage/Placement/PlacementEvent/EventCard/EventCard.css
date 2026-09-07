@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
 }
 
 .ev-card__top {
@@ -42,24 +43,32 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: auto;
 }
 
-.ev-open-btn {
+.ev-view-btn {
   height: 36px;
   padding: 0 16px;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  border: none;
-  background: #14224d;
-  color: #ffffff;
+  background: #ffffff;
+  color: #26324a;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  flex: 1;
+  transition: all 150ms ease;
 }
 
-.ev-open-btn:hover {
-  background: #1c2e63;
+.ev-view-btn:hover {
+  border-color: #aebbd0;
+  background: #f6f7f9;
+}
+
+.ev-view-btn:focus-visible,
+.ev-map-btn:focus-visible,
+.ev-upload-btn:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
 }
 
 .ev-map-btn {
@@ -76,6 +85,7 @@
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  flex: 1;
 }
 
 .ev-map-btn:hover {

@@ -1,55 +1,79 @@
-import React, { useState } from 'react';
-import { profile as initialProfile } from '../data';
-import './Profile.css';
+import React, { useEffect, useState } from "react";
+import { fetchRecruiterProfile } from "../../../../api/recruiter/profileservice";
+import "./Profile.css";
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const emptyProfile = {
+  name: "",
+  designation: "",
+  organization: "",
+  organizationShort: "",
+  email: "",
+  phone: "",
+};
+
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
-/**
- * Profile (Recruiter)
- *
- * "Recruiter Profile" page: header with the Edit/Save action button
- * (top-right, same convention as Job Management's "Create Job" and
- * Placement Management's "+ Add Events"), then a full-width card with
- * an identity row (avatar + name + designation/org) and a form: Name,
- * Designation, Organization, Email, Phone. Per request, the Help and
- * Support field from the reference design is dropped entirely, and
- * only Name + Phone are ever editable - Designation, Organization,
- * and Email stay permanently disabled/read-only.
- *
- * "Edit Profile" flips Name/Phone into editable inputs (backed by a
- * separate `draft` so typing doesn't mutate `profile` until Save is
- * pressed) and gives them a distinct "editable" look (white
- * background + visible border) versus the grayed-out disabled
- * fields, so it reads as an actual edit form rather than a static
- * page with a button. "Save Changes" commits the draft; "Cancel"
- * (bottom of the card, edit mode only) discards it.
- */
 const Profile = () => {
-  const [profile, setProfile] = useState(initialProfile);
+  const [profile, setProfile] = useState(emptyProfile);
+  const [draftProfile, setDraftProfile] = useState(emptyProfile);
   const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState({ name: initialProfile.name, phone: initialProfile.phone });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const handleDraftChange = (field) => (event) => {
-    setDraft((prev) => ({ ...prev, [field]: event.target.value }));
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadProfile = async () => {
+      try {
+        const loadedProfile = await fetchRecruiterProfile();
+        if (!cancelled) {
+          setProfile(loadedProfile);
+          setDraftProfile(loadedProfile);
+        }
+      } catch (requestError) {
+        if (!cancelled) {
+          setError(
+            requestError.response?.data?.message ||
+              "Unable to load your profile.",
+          );
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+
+    loadProfile();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const updateDraft = (field, value) => {
+    setDraftProfile((current) => ({ ...current, [field]: value }));
   };
 
-  const handleEditClick = () => {
-    if (isEditing) {
-      setProfile((prev) => ({ ...prev, name: draft.name, phone: draft.phone }));
-      setIsEditing(false);
-    } else {
-      setDraft({ name: profile.name, phone: profile.phone });
-      setIsEditing(true);
-    }
+  const handleEdit = () => {
+    setDraftProfile(profile);
+    setIsEditing(true);
   };
 
   const handleCancel = () => {
-    setDraft({ name: profile.name, phone: profile.phone });
+    setDraftProfile(profile);
+    setIsEditing(false);
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    setProfile((current) => ({
+      ...current,
+      name: draftProfile.name.trim(),
+      phone: draftProfile.phone.trim(),
+    }));
     setIsEditing(false);
   };
 
@@ -58,21 +82,47 @@ const Profile = () => {
       <header className="profile-page__header">
         <div>
           <h1 className="profile-page__title">Recruiter Profile</h1>
-          <p className="profile-page__subtitle">Manage your personal and organization details</p>
+          <p className="profile-page__subtitle">
+            Manage your personal and organization details
+          </p>
         </div>
 
-        <button type="button" className="profile-page__edit-btn" onClick={handleEditClick}>
-          {isEditing ? 'Save Changes' : 'Edit Profile'}
-        </button>
+        {!isEditing && (
+          <button
+            type="button"
+            className="profile-page__edit-btn"
+            onClick={handleEdit}
+          >
+            Edit Profile
+          </button>
+        )}
       </header>
 
-      <div className="profile-page__card">
+      {loading && <p className="profile-page__status">Loading profile...</p>}
+      {error && (
+        <p
+          className="profile-page__status profile-page__status--error"
+          role="alert"
+        >
+          {error}
+        </p>
+      )}
+
+      <form
+        className="profile-page__card"
+        aria-busy={loading}
+        onSubmit={handleSave}
+      >
         <div className="profile-page__identity">
-          <span className="profile-page__avatar">{getInitials(profile.name)}</span>
+          <span className="profile-page__avatar">
+            {getInitials(profile.name)}
+          </span>
           <div>
-            <p className="profile-page__name">{profile.name}</p>
+            <p className="profile-page__name">{profile.name || "—"}</p>
             <p className="profile-page__role">
-              {profile.designation} · {profile.organizationShort}
+              {[profile.designation, profile.organizationShort]
+                .filter(Boolean)
+                .join(" · ") || "—"}
             </p>
           </div>
         </div>
@@ -82,48 +132,69 @@ const Profile = () => {
             <span className="profile-page__label">Name</span>
             <input
               type="text"
-              value={isEditing ? draft.name : profile.name}
-              onChange={handleDraftChange('name')}
+              value={isEditing ? draftProfile.name : profile.name}
               disabled={!isEditing}
-              className={`profile-page__input ${isEditing ? 'profile-page__input--editable' : ''}`}
+              onChange={(event) => updateDraft("name", event.target.value)}
+              className={`profile-page__input${isEditing ? " profile-page__input--editable" : ""}`}
             />
           </label>
 
           <label className="profile-page__field">
             <span className="profile-page__label">Designation</span>
-            <input type="text" value={profile.designation} disabled className="profile-page__input" />
+            <input
+              type="text"
+              value={profile.designation}
+              disabled
+              className="profile-page__input"
+            />
           </label>
 
           <label className="profile-page__field">
             <span className="profile-page__label">Organization</span>
-            <input type="text" value={profile.organization} disabled className="profile-page__input" />
+            <input
+              type="text"
+              value={profile.organization}
+              disabled
+              className="profile-page__input"
+            />
           </label>
 
           <label className="profile-page__field">
             <span className="profile-page__label">Email</span>
-            <input type="email" value={profile.email} disabled className="profile-page__input" />
+            <input
+              type="email"
+              value={profile.email}
+              disabled
+              className="profile-page__input"
+            />
           </label>
 
           <label className="profile-page__field">
             <span className="profile-page__label">Phone</span>
             <input
-              type="text"
-              value={isEditing ? draft.phone : profile.phone}
-              onChange={handleDraftChange('phone')}
+              type="tel"
+              value={isEditing ? draftProfile.phone : profile.phone}
               disabled={!isEditing}
-              className={`profile-page__input ${isEditing ? 'profile-page__input--editable' : ''}`}
+              onChange={(event) => updateDraft("phone", event.target.value)}
+              className={`profile-page__input${isEditing ? " profile-page__input--editable" : ""}`}
             />
           </label>
         </div>
-
         {isEditing && (
           <div className="profile-page__actions">
-            <button type="button" className="profile-page__cancel-btn" onClick={handleCancel}>
+            <button
+              type="button"
+              className="profile-page__cancel-btn"
+              onClick={handleCancel}
+            >
               Cancel
+            </button>
+            <button type="submit" className="profile-page__edit-btn">
+              Save Changes
             </button>
           </div>
         )}
-      </div>
+      </form>
     </div>
   );
 };

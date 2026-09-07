@@ -1,9 +1,0 @@
-.admin-suspended-overview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.admin-suspended-overview > * {
-  flex: 0 1 240px;
-}

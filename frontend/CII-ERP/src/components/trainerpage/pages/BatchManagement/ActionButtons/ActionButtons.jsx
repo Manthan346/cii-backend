@@ -1,15 +1,15 @@
-import { Eye, Trash2, UserPlus } from 'lucide-react';
+import { Eye, UserPlus } from 'lucide-react';
 import './ActionButtons.css';
 
 /**
  * ActionButtons (Batch Management)
  *
- * Row-level actions for the "All Batches" table: view batch, delete
- * batch, assign a trainer. NOTE: page-local variant, kept out of
- * /shared because shared/ActionButtons (Candidate Management) exposes
- * a different four-icon set (view/edit/lock/delete).
+ * Row-level actions for the "All Batches" table: view batch, assign a
+ * trainer. Delete was removed per request. NOTE: page-local variant,
+ * kept out of /shared because shared/ActionButtons (Candidate
+ * Management) exposes a different four-icon set (view/edit/lock/delete).
  */
-export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
+export default function ActionButtons({ onView, onAssignTrainer }) {
   return (
     <div className={'batch-management-batch-list-action-buttons-actions'}>
       <button
@@ -19,16 +19,6 @@ export default function ActionButtons({ onView, onDelete, onAssignTrainer }) {
         aria-label="View batch"
       >
         <Eye size={15} />
-      </button>
-      <button
-        type="button"
-        className={
-          'batch-management-batch-list-action-buttons-icon-btn batch-management-batch-list-action-buttons-danger'
-        }
-        onClick={onDelete}
-        aria-label="Delete batch"
-      >
-        <Trash2 size={15} />
       </button>
       {/* <button
         type="button"

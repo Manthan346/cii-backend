@@ -17,7 +17,7 @@ export default function ProfileInfoCard({ profile, onEdit }) {
         <span className="pi-avatar">{profile.initials}</span>
         <div>
           <p className="pi-identity__name">{profile.name}</p>
-          <p className="pi-identity__role">{profile.roleLine}</p>
+          {/* <p className="pi-identity__role">{profile.roleLine}</p> */}
         </div>
       </div>
 

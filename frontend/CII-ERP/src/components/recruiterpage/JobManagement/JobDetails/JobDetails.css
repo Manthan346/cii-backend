@@ -50,6 +50,16 @@
   color: #7b8194;
 }
 
+.job-details__error {
+  padding: 10px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #b91c1c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .job-details__actions {
   display: flex;
   align-items: center;

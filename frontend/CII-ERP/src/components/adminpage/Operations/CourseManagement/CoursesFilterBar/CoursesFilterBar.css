@@ -53,3 +53,15 @@
   border-color: #3e5feb;
   box-shadow: 0 0 0 3px rgba(62, 95, 235, 0.14);
 }
+
+.admin-courses-filter__apply {
+  flex-shrink: 0;
+  display: flex;
+  align-self: flex-end;
+}
+
+.admin-courses-filter__apply > button {
+  height: 44px;
+  padding: 0 20px;
+  white-space: nowrap;
+}

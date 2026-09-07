@@ -1,57 +1,53 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import {
-  getNotifications,
-  getUnreadCount,
-  subscribeNotifications,
-  markNotificationAsRead,
-  markAllNotificationsAsRead,
-} from '../../data/notificationsStore';
-import NotificationRow from '../../shared/NotificationRow/NotificationRow';
-import NotificationDetailModal from '../../shared/NotificationDetailModal/NotificationDetailModal';
-import './Notifications.css';
+import React, { useEffect, useMemo, useState } from "react";
+import { fetchMobilizerNotifications } from "../../../../../api/mobilizer/notificationService";
+import NotificationRow from "../../shared/NotificationRow/NotificationRow";
+import NotificationDetailModal from "../../shared/NotificationDetailModal/NotificationDetailModal";
+import "./Notifications.css";
 
 const PAGE_SIZE = 6;
 
 export default function Notifications() {
-  const [notifications, setNotifications] = useState(getNotifications());
-  const [unreadCount, setUnreadCount] = useState(getUnreadCount());
-
-  const [activeTab, setActiveTab] = useState('All');
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [activeTab, setActiveTab] = useState("All");
   const [page, setPage] = useState(1);
   const [activeNotification, setActiveNotification] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const updateNotifications = () => {
-      setNotifications(getNotifications());
-      setUnreadCount(getUnreadCount());
+    const loadNotifications = async () => {
+      try {
+        setLoading(true);
+        const { notifications: items } = await fetchMobilizerNotifications({
+          limit: PAGE_SIZE,
+          unreadOnly: activeTab === "Unread",
+        });
+
+        setNotifications(items);
+        setUnreadCount(items.filter((item) => !item.read).length);
+      } catch (error) {
+        setNotifications([]);
+        setUnreadCount(0);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const unsubscribe = subscribeNotifications(updateNotifications);
-
-    return unsubscribe;
-  }, []);
+    loadNotifications();
+  }, [activeTab]);
 
   const filtered = useMemo(() => {
-    if (activeTab === 'Unread') {
-      return notifications.filter((n) => !n.read);
+    if (activeTab === "Unread") {
+      return notifications.filter((notification) => !notification.read);
     }
 
     return notifications;
-  }, [notifications, activeTab]);
+  }, [activeTab, notifications]);
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filtered.length / PAGE_SIZE)
-  );
-
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
-
   const start = (safePage - 1) * PAGE_SIZE;
-
-  const pageItems = filtered.slice(
-    start,
-    start + PAGE_SIZE
-  );
+  const pageItems = filtered.slice(start, start + PAGE_SIZE);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -59,26 +55,25 @@ export default function Notifications() {
   };
 
   const handleRowClick = (notification) => {
-    markNotificationAsRead(notification.id);
-
-    setActiveNotification({
-      ...notification,
-      read: true,
-    });
+    setNotifications((prev) =>
+      prev.map((item) =>
+        item.id === notification.id ? { ...item, read: true } : item,
+      ),
+    );
+    setUnreadCount((count) => Math.max(0, count - (notification.read ? 0 : 1)));
+    setActiveNotification({ ...notification, read: true });
   };
 
   const handleMarkAllAsRead = () => {
-    markAllNotificationsAsRead();
+    setNotifications((prev) => prev.map((item) => ({ ...item, read: true })));
+    setUnreadCount(0);
   };
 
   return (
     <div className="notifications-page">
       <div className="nt-header">
         <div>
-          <h1 className="nt-header__title">
-            Notifications
-          </h1>
-
+          <h1 className="nt-header__title">Notifications</h1>
           <p className="nt-header__subtitle">
             Updates on enquiries, placements, events, and tasks
           </p>
@@ -96,16 +91,14 @@ export default function Notifications() {
       </div>
 
       <div className="nt-tabs">
-        {['All', 'Unread'].map((tab) => (
+        {["All", "Unread"].map((tab) => (
           <button
             type="button"
             key={tab}
-            className={`nt-tab ${
-              tab === activeTab ? 'nt-tab--active' : ''
-            }`}
+            className={`nt-tab ${tab === activeTab ? "nt-tab--active" : ""}`}
             onClick={() => handleTabChange(tab)}
           >
-            {tab === 'Unread'
+            {tab === "Unread"
               ? `Unread (${unreadCount})`
               : `All (${notifications.length})`}
           </button>
@@ -113,9 +106,11 @@ export default function Notifications() {
       </div>
 
       <div className="nt-list-card">
-        {pageItems.length === 0 ? (
+        {loading ? (
+          <div className="nt-empty">Loading notifications...</div>
+        ) : pageItems.length === 0 ? (
           <div className="nt-empty">
-            You're all caught up — no notifications here.
+            You&apos;re all caught up — no notifications here.
           </div>
         ) : (
           pageItems.map((notification) => (
@@ -133,9 +128,7 @@ export default function Notifications() {
           <button
             type="button"
             className="nt-pagination__btn"
-            onClick={() =>
-              setPage((p) => Math.max(1, p - 1))
-            }
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={safePage === 1}
           >
             &lt;
@@ -148,11 +141,7 @@ export default function Notifications() {
           <button
             type="button"
             className="nt-pagination__btn"
-            onClick={() =>
-              setPage((p) =>
-                Math.min(totalPages, p + 1)
-              )
-            }
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={safePage === totalPages}
           >
             &gt;
