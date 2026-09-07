@@ -66,6 +66,7 @@ function formatEventDate(isoString) {
     day: "2-digit",
     month: "short",
     year: "numeric",
+    timeZone: "UTC",
   });
 }
 
@@ -77,7 +78,15 @@ function formatEventTime(isoString) {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
+    timeZone: "UTC",
   });
+}
+
+function formatEventTimeInput(isoString) {
+  if (!isoString) return "";
+  const d = new Date(isoString);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toISOString().slice(11, 16);
 }
 
 /**
@@ -94,11 +103,11 @@ export function mapJobEventRecord(raw) {
     name: raw.event_name,
     type: EVENT_TYPE_ENUM_TO_LABEL[raw.event_type] ?? raw.event_type,
     date: formatEventDate(raw.event_date), // "15 Mar 2024" — unchanged, still used by the table
-    time: formatEventTime(raw.event_time), // "10:00 AM" — unchanged, still used by the table
+    time: formatEventTime(raw.event_start_time), // "10:00 AM" — used by the table
+    endTime: formatEventTime(raw.event_end_time),
     dateISO: raw.event_date ? raw.event_date.slice(0, 10) : "", // ← new: for edit form only
-    timeISO: raw.event_time
-      ? new Date(raw.event_time).toISOString().slice(11, 16)
-      : "", // ← new: for edit form only
+    timeISO: formatEventTimeInput(raw.event_start_time),
+    endTimeISO: formatEventTimeInput(raw.event_end_time),
     venue: raw.address ?? "—",
     mapLink: raw.google_map_link ?? null,
     description: raw.description ?? "",
@@ -183,7 +192,8 @@ export async function createJobEvent(form) {
     event_type: EVENT_TYPE_LABEL_TO_ENUM[form.type] ?? form.type,
     event_name: form.name.trim(),
     event_date: form.date, // native <input type="date"> gives "YYYY-MM-DD" already
-    event_time: form.time, // native <input type="time"> gives "HH:mm" already
+    event_start_time: form.time, // native <input type="time"> gives "HH:mm" already
+    event_end_time: form.endTime || undefined,
     address: combinedAddress,
     google_map_link: form.mapsLink?.trim() || undefined,
     description: form.description?.trim() || undefined,
@@ -237,7 +247,8 @@ export async function updateJobEvent(eventId, form) {
     event_type: EVENT_TYPE_LABEL_TO_ENUM[form.type] ?? form.type,
     event_name: form.name.trim(),
     event_date: form.date,
-    event_time: form.time,
+    event_start_time: form.time,
+    event_end_time: form.endTime || undefined,
     address: form.address.trim(),
     google_map_link: form.mapsLink?.trim() || undefined,
     description: form.description?.trim() || undefined,
@@ -245,4 +256,22 @@ export async function updateJobEvent(eventId, form) {
 
   const res = await API.patch(`/hr/job-event/update/${eventId}`, payload);
   return mapJobEventRecord(res.data?.data ?? {});
+}
+
+export async function uploadJobEventCandidates(eventId, file) {
+  if (!eventId) {
+    throw new Error("A job event is required.");
+  }
+  if (!file) {
+    throw new Error("Please select an Excel file.");
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const res = await API.post(
+    `/hr/job-event/${eventId}/candidates/upload`,
+    formData,
+  );
+  return res.data?.data;
 }

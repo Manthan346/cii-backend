@@ -97,7 +97,7 @@ const EventApplicationsView = ({ event, onBack }) => {
           </span>
           <span className="event-applications-view__meta-item">
             <Clock size={15} className="event-applications-view__meta-icon" />
-            {event.time}
+            {event.endTime ? `${event.time} - ${event.endTime}` : event.time}
           </span>
           <span className="event-applications-view__meta-item">
             <MapPin size={15} className="event-applications-view__meta-icon" />

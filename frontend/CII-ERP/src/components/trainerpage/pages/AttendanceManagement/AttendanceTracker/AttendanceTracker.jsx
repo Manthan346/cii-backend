@@ -4,6 +4,7 @@ import { Dropdown, Button, Pagination } from "../../../shared";
 import SessionsTable from "../SessionsTable/SessionsTable";
 import SessionDetailView from "../SessionDetailView/SessionDetailView";
 import MarkAttendanceModal from "../MarkAttendanceModal/MarkAttendanceModal";
+import ImportSessionsModal from "../ImportSessionsModal/ImportSessionsModal";
 import { attendanceMeta } from "../../../data";
 import {
   fetchAttendanceSessionDetails,
@@ -85,6 +86,10 @@ export default function AttendanceTracker() {
 
   const [viewedAttendance, setViewedAttendance] = useState([]);
   const [viewedAttendanceLoading, setViewedAttendanceLoading] = useState(false);
+  const [batchOptionsList, setBatchOptionsList] = useState(["All Batches"]);
+  const [batchRecords, setBatchRecords] = useState([]);
+  const [importOpen, setImportOpen] = useState(false);
+  const [sessionsRefreshKey, setSessionsRefreshKey] = useState(0);
 
   useEffect(() => {
     if (!viewingSessionId) {
@@ -131,6 +136,15 @@ export default function AttendanceTracker() {
           page: currentPage,
           limit: 6,
           search: searchTerm,
+          batchId:
+            appliedFilters.batch.toLowerCase().startsWith("all")
+              ? undefined
+              : (batchRecords.find(
+                  (item) => item.batch_code === appliedFilters.batch,
+                )?.batchId ??
+                batchRecords.find(
+                  (item) => item.batch_code === appliedFilters.batch,
+                )?.batch_id),
           sessionDate: appliedFilters.date || undefined,
         });
         if (cancelled) return;
@@ -140,7 +154,13 @@ export default function AttendanceTracker() {
           totalPages: data.pagination?.totalPages ?? 1,
         });
       } catch (err) {
-        if (!cancelled) setError(err);
+        if (!cancelled) {
+          setError(
+            err?.response?.data?.message ||
+              err?.message ||
+              "Unable to load attendance sessions.",
+          );
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -150,7 +170,7 @@ export default function AttendanceTracker() {
     return () => {
       cancelled = true;
     };
-  }, [currentPage, appliedFilters]);
+  }, [currentPage, appliedFilters, batchRecords, sessionsRefreshKey]);
 
   // Fetch the real roster (active enrolled students) whenever a
   // session is opened for marking. Replaces the old mock
@@ -180,14 +200,14 @@ export default function AttendanceTracker() {
     };
   }, [markingSession]);
 
-  const [batchOptionsList, setBatchOptionsList] = useState(["All Batches"]);
-
   useEffect(() => {
     let cancelled = false;
     fetchCoursesAndBatches()
       .then((data) => {
         if (cancelled) return;
-        const codes = (data.batches ?? []).map((b) => b.batch_code);
+        const records = data.batches ?? [];
+        setBatchRecords(records);
+        const codes = records.map((b) => b.batch_code);
         setBatchOptionsList(["All Batches", ...codes]);
       })
       .catch(() => {
@@ -339,7 +359,13 @@ export default function AttendanceTracker() {
                 "attendance-management-attendance-tracker-table-actions"
               }
             >
-              <Button variant="outline" icon={Download}>
+              <Button
+                variant="outline"
+                icon={Download}
+                onClick={() => {
+                  setImportOpen(true);
+                }}
+              >
                 Import
               </Button>
             </div>
@@ -348,7 +374,9 @@ export default function AttendanceTracker() {
 
         {error && (
           <p className={"attendance-management-attendance-tracker-error"}>
-            Couldn't load sessions. Please try again.
+            {typeof error === "string"
+              ? error
+              : "Unable to load attendance sessions."}
           </p>
         )}
 
@@ -386,6 +414,14 @@ export default function AttendanceTracker() {
           </>
         )}
       </section>
+      <ImportSessionsModal
+        isOpen={importOpen}
+        onClose={() => setImportOpen(false)}
+        onImported={() => {
+          setImportOpen(false);
+          setSessionsRefreshKey((key) => key + 1);
+        }}
+      />
 
       {markingSession && (
         <MarkAttendanceModal

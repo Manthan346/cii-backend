@@ -43,7 +43,7 @@ const normalizeEnrollment = (enrollment) => {
   return {
     id: enrollment.enrollment_id,
     candidateUuid: candidate.candidate_id,
-    candidateId: candidate.candidate_unique_id ?? candidate.candidate_id,
+    candidateId: candidate.candidate_unique_id ?? null,
     name:
       candidate.full_name ||
       [candidate.first_name, candidate.last_name].filter(Boolean).join(" ") ||

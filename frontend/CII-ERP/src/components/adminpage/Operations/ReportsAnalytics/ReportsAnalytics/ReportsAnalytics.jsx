@@ -1,37 +1,101 @@
-import React from 'react';
-import { Printer, FileSpreadsheet, FileText } from 'lucide-react';
-import ReportsFilterBar from '../ReportsFilterBar/ReportsFilterBar';
-import { LineChart, DonutChart, BarChart } from '../../../shared/Charts';
+import React, { useEffect, useState } from "react";
+import ReportsFilterBar from "../ReportsFilterBar/ReportsFilterBar";
+import { BarChart } from "../../../shared/Charts";
 import {
-  candidateGrowthData,
-  candidateGrowthConfig,
-  placementStatsData,
-  courseEnrollmentData,
-  courseEnrollmentConfig,
-  monthlyAdmissionsData,
-  monthlyAdmissionsConfig,
-  reportsCourseOptions,
-} from '../../../data/reportsAnalyticsData';
-import './ReportsAnalytics.css';
+  downloadEnrollmentReport,
+  downloadEnquiryReport,
+  fetchEnrollmentAnalytics,
+} from "../../../../../../api/admin/reportsService";
+import { fetchAdminCourseFilterOptions } from "../../../../../../api/admin/coursesService";
+import "./ReportsAnalytics.css";
+
+// Splits a course name into up to 2 lines for the x-axis label,
+// matching the wrapped-label shape BarChart already expects.
+function wrapLabel(text = "") {
+  const words = String(text).trim().split(/\s+/);
+  if (words.length <= 1) return [text];
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+}
+
+// Picks a clean y-axis (min/max/step) from real data instead of the
+// hardcoded 0–100 the mock data used.
+function computeYConfig(values) {
+  const max = Math.max(0, ...values);
+  if (max <= 0) return { yMin: 0, yMax: 10, yStep: 2 };
+  const step = Math.max(1, Math.ceil(max / 5 / 5) * 5);
+  return { yMin: 0, yMax: step * 5, yStep: step };
+}
 
 export default function ReportsAnalytics() {
-  const handleApplyFilters = (filters) => {
-    // Wire this up to your data-fetching layer once the API is ready —
-    // filters = { from, to, course }
-    console.log('Apply filters', filters);
+  const [exportingEnrollment, setExportingEnrollment] = useState(false);
+  const [exportingEnquiry, setExportingEnquiry] = useState(false);
+  const [courseOptions, setCourseOptions] = useState([
+    { value: "all", label: "All Courses" },
+  ]);
+
+  const [analytics, setAnalytics] = useState(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(true);
+  const [analyticsError, setAnalyticsError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchAdminCourseFilterOptions()
+      .then((options) => {
+        if (!cancelled) setCourseOptions(options);
+      })
+      .catch(() => {});
+
+    setAnalyticsLoading(true);
+    setAnalyticsError("");
+    fetchEnrollmentAnalytics()
+      .then((data) => {
+        if (!cancelled) setAnalytics(data);
+      })
+      .catch((err) => {
+        if (!cancelled) setAnalyticsError(err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setAnalyticsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const handleExportEnrollment = async (filters) => {
+    setExportingEnrollment(true);
+    try {
+      await downloadEnrollmentReport(filters);
+    } finally {
+      setExportingEnrollment(false);
+    }
   };
 
-  const handlePrint = () => window.print();
-
-  const handleExportExcel = () => {
-    // Hook up to your export endpoint / xlsx generation utility.
-    console.log('Export Excel');
+  const handleExportEnquiry = async (filters) => {
+    setExportingEnquiry(true);
+    try {
+      await downloadEnquiryReport(filters);
+    } finally {
+      setExportingEnquiry(false);
+    }
   };
 
-  const handleExportPdf = () => {
-    // Hook up to your export endpoint / pdf generation utility.
-    console.log('Export PDF');
-  };
+  const courseEnrollmentData = (analytics?.course_wise_enrollment ?? []).map(
+    (c) => ({ label: wrapLabel(c.course), value: c.enrollment }),
+  );
+  const courseEnrollmentConfig = computeYConfig(
+    courseEnrollmentData.map((d) => d.value),
+  );
+
+  const monthlyAdmissionsData = (analytics?.monthly_enrollment ?? []).map(
+    (m) => ({ label: m.month, value: m.enrollment }),
+  );
+  const monthlyAdmissionsConfig = computeYConfig(
+    monthlyAdmissionsData.map((d) => d.value),
+  );
 
   return (
     <div className="reports-analytics">
@@ -42,61 +106,57 @@ export default function ReportsAnalytics() {
             Institution-wide performance across centers and courses
           </p>
         </div>
-
-        <div className="ra-header__actions">
-          <button type="button" className="ra-btn ra-btn--outline" onClick={handlePrint}>
-            <Printer size={16} />
-            Print
-          </button>
-          <button type="button" className="ra-btn ra-btn--outline" onClick={handleExportExcel}>
-            <FileSpreadsheet size={16} />
-            Export Excel
-          </button>
-          <button type="button" className="ra-btn ra-btn--primary" onClick={handleExportPdf}>
-            <FileText size={16} />
-            Export PDF
-          </button>
-        </div>
       </div>
 
-      <ReportsFilterBar courseOptions={reportsCourseOptions} onApply={handleApplyFilters} />
+      <ReportsFilterBar
+        title="Total Enrollments"
+        courseOptions={courseOptions}
+        onExport={handleExportEnrollment}
+        exporting={exportingEnrollment}
+      />
+
+      <ReportsFilterBar
+        title="Enquiries"
+        courseOptions={courseOptions}
+        onExport={handleExportEnquiry}
+        exporting={exportingEnquiry}
+      />
 
       <div className="ra-grid">
         <section className="ra-card">
-          <h2 className="ra-card__title">Candidate growth — 6 months</h2>
-          <LineChart
-            data={candidateGrowthData}
-            yMin={candidateGrowthConfig.yMin}
-            yMax={candidateGrowthConfig.yMax}
-            yStep={candidateGrowthConfig.yStep}
-          />
-        </section>
-
-        <section className="ra-card">
-          <h2 className="ra-card__title">Placement statistics</h2>
-          <div className="ra-card__center">
-            <DonutChart data={placementStatsData} />
-          </div>
-        </section>
-
-        <section className="ra-card">
           <h2 className="ra-card__title">Course-wise enrollment</h2>
-          <BarChart
-            data={courseEnrollmentData}
-            yMin={courseEnrollmentConfig.yMin}
-            yMax={courseEnrollmentConfig.yMax}
-            yStep={courseEnrollmentConfig.yStep}
-          />
+          {analyticsLoading ? (
+            <p>Loading…</p>
+          ) : analyticsError ? (
+            <p className="ra-filterbar-section__error">{analyticsError}</p>
+          ) : courseEnrollmentData.length === 0 ? (
+            <p>No enrollment data for this period.</p>
+          ) : (
+            <BarChart
+              data={courseEnrollmentData}
+              yMin={courseEnrollmentConfig.yMin}
+              yMax={courseEnrollmentConfig.yMax}
+              yStep={courseEnrollmentConfig.yStep}
+            />
+          )}
         </section>
 
         <section className="ra-card">
           <h2 className="ra-card__title">Monthly admissions</h2>
-          <BarChart
-            data={monthlyAdmissionsData}
-            yMin={monthlyAdmissionsConfig.yMin}
-            yMax={monthlyAdmissionsConfig.yMax}
-            yStep={monthlyAdmissionsConfig.yStep}
-          />
+          {analyticsLoading ? (
+            <p>Loading…</p>
+          ) : analyticsError ? (
+            <p className="ra-filterbar-section__error">{analyticsError}</p>
+          ) : monthlyAdmissionsData.length === 0 ? (
+            <p>No admissions data for this period.</p>
+          ) : (
+            <BarChart
+              data={monthlyAdmissionsData}
+              yMin={monthlyAdmissionsConfig.yMin}
+              yMax={monthlyAdmissionsConfig.yMax}
+              yStep={monthlyAdmissionsConfig.yStep}
+            />
+          )}
         </section>
       </div>
     </div>

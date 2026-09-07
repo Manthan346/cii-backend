@@ -73,7 +73,7 @@ const CandidatesTable = ({
             {candidates.map((candidate) => (
               <tr key={candidate.id}>
                 <td className="admin-candidates-table__candidate-id">
-                  {candidate.candidateId}
+                  {candidate.candidateId || "—"}
                 </td>
                 <td>
                   <div className="admin-candidates-table__name">

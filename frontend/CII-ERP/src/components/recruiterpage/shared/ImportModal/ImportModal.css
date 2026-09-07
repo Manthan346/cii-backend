@@ -40,3 +40,39 @@
   opacity: 0;
   cursor: pointer;
 }
+
+.import-modal__error,
+.import-modal__success {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.import-modal__error {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.import-modal__success {
+  color: #15803d;
+  background: #f0fdf4;
+}
+
+.import-modal__upload-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 24px;
+  background: #4338ca;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.import-modal__upload-btn:disabled {
+  background: #a5a2df;
+  cursor: not-allowed;
+}

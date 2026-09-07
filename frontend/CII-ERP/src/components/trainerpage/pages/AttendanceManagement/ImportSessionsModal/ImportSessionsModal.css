@@ -1,0 +1,40 @@
+.trainer-import-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 18, 40, 0.45);
+}
+
+.trainer-import-modal__card {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 32px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 18, 40, 0.25);
+}
+
+.trainer-import-modal__card h2 { margin: 0 0 8px; color: #1c1f2e; }
+.trainer-import-modal__card p { color: #626a7d; }
+.trainer-import-modal__close {
+  position: absolute; top: 20px; right: 20px; border: 0; border-radius: 50%;
+  padding: 8px; background: #eef1f7; cursor: pointer;
+}
+.trainer-import-modal__dropzone {
+  position: relative; width: 100%; min-height: 150px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px; border: 1.5px dashed #d7dbe6;
+  border-radius: 12px; background: #f2f4f9; color: #4338ca; cursor: pointer;
+}
+.trainer-import-modal__dropzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.trainer-import-modal__error, .trainer-import-modal__success { padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+.trainer-import-modal__error { color: #dc2626; background: #fef2f2; }
+.trainer-import-modal__success { color: #15803d; background: #f0fdf4; }
+.trainer-import-modal__submit {
+  width: 100%; margin-top: 16px; padding: 12px; border: 0; border-radius: 24px;
+  background: #0f766e; color: #fff; font-weight: 700; cursor: pointer;
+}
+.trainer-import-modal__submit:disabled { background: #9bbdb9; cursor: not-allowed; }
