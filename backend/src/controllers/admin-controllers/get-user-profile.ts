@@ -173,6 +173,16 @@ export const getUserProfile = asyncHandler(
 
                         profile_photo: true,
 
+                        candidate_documents:{
+                            select: {
+                                document_id: true,
+                                candidate_photo: true,
+                                candidate_aadhar_card: true,
+                                candidate_pan_card: true,
+                                candidate_resume: true,
+                            },
+                        },
+
                         training_start_date: true,
                         training_end_date: true,
 
@@ -662,6 +672,17 @@ export const getUserProfile = asyncHandler(
                             profile_photo:
                                 candidate.profile_photo,
 
+                            documents:{
+                                candidate_photo:candidate.candidate_documents?.candidate_photo,
+
+                                candidate_aadhar_card:candidate.candidate_documents?.candidate_aadhar_card,
+
+                                candidate_pan_card:candidate.candidate_documents?.candidate_pan_card,
+
+                                candidate_resume:candidate.candidate_documents?.candidate_resume
+
+                            },
+
                             training: {
                                 start_date:
                                     candidate.training_start_date,
@@ -728,6 +749,15 @@ export const getUserProfile = asyncHandler(
                         current_district: true,
                         current_taluka: true,
                         current_pincode: true,
+                        instructor_documents:{
+                            select:{
+                                past_exp_letter: true,
+                                pan_card: true,
+                                aadhar_card: true,
+                                instructor_resume: true,
+                                instructor_highest_qualification_documents: true,
+                            }
+                        }
                     },
                 });
 
@@ -802,6 +832,19 @@ export const getUserProfile = asyncHandler(
                                 pin_code:
                                     instructor.current_pincode,
                             },
+
+                            documents: instructor.instructor_documents?{
+                                past_exp_letter:instructor.instructor_documents?.past_exp_letter,
+
+                                aadhar_card: instructor.instructor_documents?.aadhar_card,
+
+                                pan_card: instructor.instructor_documents?.pan_card,
+
+                                resume: instructor.instructor_documents?.instructor_resume,
+
+                                degree: instructor.instructor_documents?.instructor_highest_qualification_documents
+                            }
+                            :null,
                         },
                     },
                     "Instructor profile fetched successfully."
