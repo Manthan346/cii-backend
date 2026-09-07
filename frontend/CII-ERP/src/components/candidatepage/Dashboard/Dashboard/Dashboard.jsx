@@ -108,7 +108,7 @@ export default function Dashboard() {
 
               {/* 4. Alerts/Upcoming + Job Opportunities */}
               <div className="dashboard__row dashboard__row--split dashboard__row--bottom">
-                <AlertsTabs alerts={data.alerts} upcoming={data.upcoming} />
+                <AlertsTabs />
                 {/* <JobOpportunities jobs={data.jobs} /> */}
               </div>
             </>
