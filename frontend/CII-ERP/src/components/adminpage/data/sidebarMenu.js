@@ -8,6 +8,7 @@ import {
   User,
   RotateCcw,
   LogOut,
+  Bell,
 } from "lucide-react";
 
 /**
@@ -69,6 +70,12 @@ export const sidebarMenu = [
     items: [
       // { id: 'system-settings', title: 'System Settings', route: '/admin/settings', icon: Settings },
       { id: "profile", title: "Profile", route: "/admin/profile", icon: User },
+      {
+        id: "notifications",
+        title: "Notifications",
+        route: "/admin/notifications",
+        icon: Bell,
+      },
       // { id: 'approval-requests', title: 'Approval Requests', route: '/admin/approval-requests', icon: RotateCcw },
     ],
   },
