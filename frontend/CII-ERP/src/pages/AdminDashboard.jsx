@@ -33,6 +33,7 @@ import Candidates from "../components/adminpage/Candidates/Candidates/Candidates
 import CourseManagement from "../components/adminpage/Operations/CourseManagement/CourseManagement/CourseManagement";
 import ReportsAnalytics from "../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics";
 import Profile from "../components/adminpage/Profile/Profile/Profile";
+import Notifications from "../components/adminpage/Notifications/Notifications/Notifications";
 
 export default function AdminDashboard() {
   return (
@@ -50,6 +51,7 @@ export default function AdminDashboard() {
         <Route path="course-management" element={<CourseManagement />} />
         <Route path="reports-analytics" element={<ReportsAnalytics />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="notifications" element={<Notifications />} />
       </Route>
     </Routes>
   );

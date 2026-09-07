@@ -92,7 +92,7 @@ const partners = [
     name: "L'Oréal India",
     category: "Beauty & Make Up",
     desc: "Hairdressing Training, Beauty & Make Up Training, and Beauty Advisor Training. Batches coming soon.",
-    upcoming: true,
+    upcoming: false,
     logo: lorealLogo,
   },
   {
@@ -100,7 +100,7 @@ const partners = [
     name: "Cisco",
     category: "Artificial Intelligence",
     desc: "Artificial Intelligence (AI) training powered by Cisco. Stay connected for upcoming batch details.",
-    upcoming: true,
+    upcoming: false,
     logo: ciscoLogo,
   },
   {
@@ -108,7 +108,7 @@ const partners = [
     name: "VFS Global Academy",
     category: "Retail & AI Training",
     desc: "Retail & AI training with VFS Global Academy. Stay connected for upcoming batch details.",
-    upcoming: true,
+    upcoming: false,
     logo: vfsLogo,
   },
 ];

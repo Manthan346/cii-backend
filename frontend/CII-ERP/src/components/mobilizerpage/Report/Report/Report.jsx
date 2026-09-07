@@ -1,41 +1,50 @@
-import React from 'react';
-import ReportFilterBar from '../ReportFilterBar/ReportFilterBar';
-import ContactStatusReport from '../ContactStatusReport/ContactStatusReport';
-import EnrollmentReport from '../EnrollmentReport/EnrollmentReport';
-import AdmissionDoneReport from '../AdmissionDoneReport/AdmissionDoneReport';
-import './Report.css';
+import React, { useState } from "react";
+import ReportFilterBar from "../ReportFilterBar/ReportFilterBar";
+import { downloadMobilizerEnquiryReport } from "../../../../../api/mobilizer/reportService";
+import "./Report.css";
 
-/**
- * Report
- * Two rows, each an independent flex row (same reasoning as the
- * Dashboard rebuild — keeps one row's card heights from ever affecting
- * another row's spacing):
- *   Row 1: Contact Status Report | Enrollment Report
- *   Row 2: Admission Done report (full width, single card)
- */
 export default function Report() {
+  const [range, setRange] = useState({ from: "", to: "" });
+  const [exporting, setExporting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleExport = async () => {
+    setExporting(true);
+    setError("");
+    try {
+      await downloadMobilizerEnquiryReport({
+        from_date: range.from,
+        to_date: range.to,
+      });
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message || "Unable to export report.",
+      );
+    } finally {
+      setExporting(false);
+    }
+  };
+
   return (
     <div className="report-page">
       <div className="rp-header">
         <h1 className="rp-header__title">Reports</h1>
         <p className="rp-header__subtitle">
-          All reports including enrollment, connected candidate and admission done
+          Export enquiry records with optional date filters
         </p>
       </div>
 
       <ReportFilterBar
-        onApply={(range) => console.log('Apply filter', range)}
-        onExport={() => console.log('Export')}
+        onApply={setRange}
+        onExport={handleExport}
+        exporting={exporting}
       />
 
-      <div className="rp-row">
-        <ContactStatusReport />
-        <EnrollmentReport />
-      </div>
-
-      <div className="rp-row">
-        <AdmissionDoneReport />
-      </div>
+      {error && (
+        <p className="report-page__error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
