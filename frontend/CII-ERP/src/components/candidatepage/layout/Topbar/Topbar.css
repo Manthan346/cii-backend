@@ -7,43 +7,11 @@
   height: 64px;
   display: flex;
   align-items: center;
-  justify-content:space-evenly;
+  justify-content: space-between;
   gap: 16px;
   position: sticky;
   top: 0;
   z-index: 40;
-}
-
-/* ── Search pill ── */
-.topbar__search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f4f6fa;
-  border: 1px solid #e0e8f0;
-  border-radius: 30px;
-  padding: 9px 16px;
-  width: 300px;
-  transition: border-color 0.15s;
-  margin-left: 16px;
-}
-
-.topbar__search:focus-within {
-  border-color: #d0e3f5;
-}
-
-.topbar__search input {
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 13.5px;
-  font-family: "Inter", system-ui, sans-serif;
-  color: #1a2740;
-  width: 100%;
-}
-
-.topbar__search input::placeholder {
-  color: #6b7a94;
 }
 
 /* ── Actions cluster ── */
@@ -51,6 +19,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: auto;
 }
 
 /* ── Bell button ── */
@@ -252,8 +221,3 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 600px) {
-  .topbar__search {
-    width: 180px;
-  }
-}

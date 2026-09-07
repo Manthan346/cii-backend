@@ -8,5 +8,4 @@
  * line here to become available, no import paths change elsewhere.
  */
 export * from "./sidebarMenu";
-export * from "./dashboardData";
 export * from "./reportData";
