@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReportsFilterBar from "../ReportsFilterBar/ReportsFilterBar";
+import CompanyEnrollmentFilterBar from "../CompanyEnrollmentFilterBar/CompanyEnrollmentFilterBar";
 import { BarChart } from "../../../shared/Charts";
 import {
   downloadEnrollmentReport,
@@ -121,6 +122,8 @@ export default function ReportsAnalytics() {
         onExport={handleExportEnquiry}
         exporting={exportingEnquiry}
       />
+
+      <CompanyEnrollmentFilterBar />
 
       <div className="ra-grid">
         <section className="ra-card">

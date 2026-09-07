@@ -1,0 +1,148 @@
+.admin-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1000px;
+}
+
+.admin-profile-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.admin-profile-page__title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.admin-profile-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.admin-profile-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  padding: 32px;
+}
+
+.admin-profile-card__state {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.admin-profile-card__state--error {
+  color: #dc2626;
+}
+
+.admin-profile-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-profile-card__name {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.admin-profile-card__role {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.admin-profile-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+}
+
+.admin-profile-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-profile-card__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.admin-profile-card__value {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.admin-profile-card__initials {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.admin-profile-card__input {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.admin-profile-card__input:focus {
+  outline: none;
+  border-color: #1e3a8a;
+}
+
+.admin-profile-card__value--muted {
+  color: #9ca3af;
+}
+
+.admin-profile-card__error {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+.admin-profile-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .admin-profile-card__grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-profile-page__header {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
