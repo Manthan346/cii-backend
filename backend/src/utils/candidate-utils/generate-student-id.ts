@@ -62,7 +62,7 @@ async function getNextSequence(
 
   // Prefix unique to this center + this day. Counting on this prefix gives us
   // "how many candidates were already created in THIS center TODAY".
-  const prefix = `${centerName}-${datePart}-`;
+  const prefix = `${"ABVKVK"}-${datePart}-`;
 
   const todayCount = await tx.candidates_details.count({
     where: {
