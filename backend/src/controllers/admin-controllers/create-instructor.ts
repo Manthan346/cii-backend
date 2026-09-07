@@ -125,6 +125,29 @@ export const createInstructorByAdmin = asyncHandler(
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        if (date_of_birth) {
+            const dob = new Date(date_of_birth);
+
+            if (isNaN(dob.getTime())) {
+                throw new ApiError(
+                    400,
+                    "Invalid date of birth."
+                );
+            }
+
+            const today = new Date();
+
+            today.setHours(0, 0, 0, 0);
+            dob.setHours(0, 0, 0, 0);
+
+            if (dob > today) {
+                throw new ApiError(
+                    400,
+                    "Date of birth cannot be in the future."
+                );
+            }
+        }
+
         const today = new Date();
 
         const formattedDate = [
