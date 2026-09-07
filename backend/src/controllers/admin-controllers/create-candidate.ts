@@ -110,9 +110,9 @@ export const adminCreateCandidate = asyncHandler(
 
                 // Generate sequence and candidate_unique_id
                 // Use first 3 letters of center name (uppercased) as prefix
-                const centerPrefix = center.center_name.toUpperCase().slice(0, 3);
-                const sequence = await getNextSequence(tx, centerPrefix);
-                candidateUniqueId = buildStudentId(sequence, centerPrefix);
+                
+                const sequence = await getNextSequence(tx, "ABVKVK");
+                candidateUniqueId = buildStudentId(sequence, "ABVKVK");
 
                 // Generate default password: firstname + lastname + last 4 digits of phone
                 const cleanLastName = last_name?.trim() || "";

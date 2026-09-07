@@ -16,7 +16,7 @@ function buildStudentId(sequence: number, centerName: string): string {
   const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
   const yy = String(now.getUTCFullYear()).slice(-2);
   // 6 digits = up to 999,999 per center per day (practically unbounded)
-  return `${centerName}-${dd}${mm}${yy}-${String(sequence).padStart(6, "0")}`;
+  return `${"ABVKVK"}-${dd}${mm}${yy}-${String(sequence).padStart(6, "0")}`;
 }
 
 /**
@@ -62,7 +62,7 @@ async function getNextSequence(
 
   // Prefix unique to this center + this day. Counting on this prefix gives us
   // "how many candidates were already created in THIS center TODAY".
-  const prefix = `${centerName}-${datePart}-`;
+  const prefix = `${"ABVKVK"}-${datePart}-`;
 
   const todayCount = await tx.candidates_details.count({
     where: {
