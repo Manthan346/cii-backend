@@ -8,7 +8,7 @@ import {
   User,
   RotateCcw,
   LogOut,
-} from 'lucide-react';
+} from "lucide-react";
 
 /**
  * sidebarMenu
@@ -25,31 +25,56 @@ import {
  */
 export const sidebarMenu = [
   {
-    title: 'OVERVIEW',
+    title: "OVERVIEW",
     items: [
-      { id: 'dashboard', title: 'Dashboard', route: '/admin/dashboard', icon: LayoutGrid },
-      { id: 'total-users', title: 'Total Users', route: '/admin/total-users', icon: Users },
-      { id: 'candidates', title: 'Candidates', route: '/admin/candidates', icon: IdCard },
+      {
+        id: "dashboard",
+        title: "Dashboard",
+        route: "/admin/dashboard",
+        icon: LayoutGrid,
+      },
+      {
+        id: "total-users",
+        title: "Total Users",
+        route: "/admin/total-users",
+        icon: Users,
+      },
+      {
+        id: "candidates",
+        title: "Candidates",
+        route: "/admin/candidates",
+        icon: IdCard,
+      },
     ],
   },
   {
-    title: 'OPERATIONS',
+    title: "OPERATIONS",
     items: [
-      { id: 'course-management', title: 'Course Management', route: '/admin/course-management', icon: BookOpen },
-      { id: 'reports-analytics', title: 'Reports & Analytics', route: '/admin/reports-analytics', icon: BarChart3 },
+      {
+        id: "course-management",
+        title: "Course Management",
+        route: "/admin/course-management",
+        icon: BookOpen,
+      },
+      {
+        id: "reports-analytics",
+        title: "Reports & Analytics",
+        route: "/admin/reports-analytics",
+        icon: BarChart3,
+      },
     ],
   },
   {
-    title: 'SYSTEM',
+    title: "SYSTEM",
     items: [
       // { id: 'system-settings', title: 'System Settings', route: '/admin/settings', icon: Settings },
-      { id: 'profile', title: 'Profile', route: '/admin/profile', icon: User },
-      { id: 'approval-requests', title: 'Approval Requests', route: '/admin/approval-requests', icon: RotateCcw },
+      { id: "profile", title: "Profile", route: "/admin/profile", icon: User },
+      // { id: 'approval-requests', title: 'Approval Requests', route: '/admin/approval-requests', icon: RotateCcw },
     ],
   },
-   {
+  {
     items: [
-      { id: 'logout', title: 'Logout', route: '/admin/logout', icon: LogOut },
+      { id: "logout", title: "Logout", route: "/admin/logout", icon: LogOut },
     ],
   },
 ];

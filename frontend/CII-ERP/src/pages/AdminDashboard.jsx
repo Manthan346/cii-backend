@@ -32,7 +32,6 @@ import DeactivatedUsers from "../components/adminpage/TotalUsers/DeactivatedUser
 import Candidates from "../components/adminpage/Candidates/Candidates/Candidates";
 import CourseManagement from "../components/adminpage/Operations/CourseManagement/CourseManagement/CourseManagement";
 import ReportsAnalytics from "../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics";
-import ApprovalRequests from "../components/adminpage/System/ApprovalRequests/ApprovalRequests/ApprovalRequests";
 import Profile from "../components/adminpage/Profile/Profile/Profile";
 
 export default function AdminDashboard() {
@@ -50,7 +49,6 @@ export default function AdminDashboard() {
         <Route path="candidates" element={<Candidates />} />
         <Route path="course-management" element={<CourseManagement />} />
         <Route path="reports-analytics" element={<ReportsAnalytics />} />
-        <Route path="approval-requests" element={<ApprovalRequests />} />
         <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>

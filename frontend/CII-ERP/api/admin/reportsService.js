@@ -134,3 +134,97 @@ export async function fetchEnrollmentAnalytics(filters = {}) {
     );
   }
 }
+
+/**
+ * -> fetchCompanies (GET /admin/reports/fetch-company)
+ * Returns: [{ company_id, company_name }]
+ */
+export async function fetchCompanies() {
+  try {
+    const response = await API.get("/admin/reports/fetch-company");
+    return response.data.data;
+  } catch (error) {
+    throw new Error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Failed to load companies.",
+      { cause: error },
+    );
+  }
+}
+
+/**
+ * -> fetchCompanyCourses (GET /admin/reports/fetch-courses-for-company)
+ * Query: company_id (required)
+ * Returns: [{ course_id, course_name }]
+ */
+export async function fetchCompanyCourses(companyId) {
+  try {
+    const response = await API.get("/admin/reports/fetch-courses-for-company", {
+      params: { company_id: companyId },
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Failed to load courses.",
+      { cause: error },
+    );
+  }
+}
+
+/**
+ * -> fetchCourseBatches (GET /admin/reports/fetch-batch-for-course)
+ * Query: course_id (required)
+ * Returns: [{ batch_id, batch_name }]
+ */
+export async function fetchCourseBatches(courseId) {
+  try {
+    const response = await API.get("/admin/reports/fetch-batch-for-course", {
+      params: { course_id: courseId },
+    });
+    return response.data.data;
+  } catch (error) {
+    throw new Error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Failed to load batches.",
+      { cause: error },
+    );
+  }
+}
+
+/**
+ * -> downloadCompanyEnrollmentReport (GET /admin/reports/company-course-batch-academics)
+ * Required: company_id. Optional: course_id, batch_id, from_date, to_date
+ * (from_date/to_date must both be present or both omitted).
+ * Downloads the response as an .xlsx file.
+ */
+export async function downloadCompanyEnrollmentReport({
+  companyId,
+  courseId,
+  batchId,
+  fromDate,
+  toDate,
+}) {
+  const params = { company_id: companyId };
+  if (courseId) params.course_id = courseId;
+  if (batchId) params.batch_id = batchId;
+  if (fromDate) params.from_date = fromDate;
+  if (toDate) params.to_date = toDate;
+
+  try {
+    const response = await API.get(
+      "/admin/reports/company-course-batch-academics",
+      { params, responseType: "blob" },
+    );
+
+    triggerBlobDownload(
+      response.data,
+      extractFilename(response, "company-enrollment-report.xlsx"),
+    );
+  } catch (error) {
+    await throwReportError(error);
+  }
+}
