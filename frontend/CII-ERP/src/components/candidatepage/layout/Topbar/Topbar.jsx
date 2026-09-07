@@ -3,8 +3,6 @@
 // used across the candidate portal (Dashboard, My Courses, Profile).
 //
 // Props:
-//   search       {string}    – Controlled search query value.
-//   onSearch     {function}  – Callback(value: string) on input change.
 //   onMenuClick  {function}  – Opens the mobile sidebar drawer. Optional;
 //                              defaults to a no-op so screens that don't
 //                              wire up a mobile drawer still work fine.
@@ -44,11 +42,7 @@ function getUnreadCount(data) {
   );
 }
 
-export default function Topbar({
-  search = "",
-  onSearch = () => {},
-  onMenuClick = () => {},
-}) {
+export default function Topbar({ onMenuClick = () => {} }) {
   const navigate = useNavigate();
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -107,18 +101,6 @@ export default function Topbar({
         <span />
         <span />
       </button>
-
-      {/* Search */}
-      <div className="topbar__search">
-        <Icon name="search" size={16} color="var(--ink-soft)" />
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => onSearch(e.target.value)}
-          placeholder="Search courses, classes..."
-          aria-label="Search courses"
-        />
-      </div>
 
       {/* Actions */}
       <div className="topbar__actions">

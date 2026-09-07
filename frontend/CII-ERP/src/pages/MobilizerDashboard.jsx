@@ -32,8 +32,10 @@ import Report from "../components/mobilizerpage/Report/Report/Report";
 import PlacementDashboard from "../components/mobilizerpage/Placement/PlacementDashboard/PlacementDashboard/PlacementDashboard";
 import PlacementEvent from "../components/mobilizerpage/Placement/PlacementEvent/PlacementEvent/PlacementEvent";
 import Event from "../components/mobilizerpage/Event/Event/Event";
-import Profile from '../components/mobilizerpage/Profile/Profile/Profile';
-import Notifications from '../components/mobilizerpage/Notifications/Notifications/Notifications';
+import Profile from "../components/mobilizerpage/Profile/Profile/Profile";
+import Notifications from "../components/mobilizerpage/Notifications/Notifications/Notifications";
+import Enrollment from "../components/mobilizerpage/Enrollment/Enrollment/Enrollment";
+import Candidates from "../components/mobilizerpage/Candidates/Candidates/Candidates";
 export default function MobilizerDashboard() {
   return (
     <Routes>
@@ -41,6 +43,8 @@ export default function MobilizerDashboard() {
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="enquiries" element={<Enquiries />} />
+        <Route path="enrollment" element={<Enrollment />} />
+        <Route path="candidates" element={<Candidates />} />
         <Route path="report" element={<Report />} />
         <Route path="placement/dashboard" element={<PlacementDashboard />} />
         <Route path="placement/event" element={<PlacementEvent />} />
