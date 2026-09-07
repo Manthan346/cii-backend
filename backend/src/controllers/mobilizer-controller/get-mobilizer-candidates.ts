@@ -34,6 +34,7 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
         candidate_last_name: true,
         candidate_unique_id: true,
         contact_number: true,
+        created_at: true,
       
         user_login: {
           select: {
@@ -81,6 +82,7 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
         },
       },
       enrollment_status: true,
+      enrollment_date: true,
     },
   });
 
@@ -112,6 +114,8 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
     full_name: `${candidate.candidate_first_name} ${candidate.candidate_last_name}`.trim(),
     contact_number: candidate.contact_number,
     email_id: candidate.user_login?.user_email || "", // Email from user_login
+    candidate_creation_date: candidate.created_at,
+    enrollment_date: enrollments.map((date) => date.enrollment_date),
    
 
     // Enrollment info
