@@ -34,6 +34,9 @@ import { getAdminProfile } from "../../controllers/admin-controllers/get-admin-p
 import { updateAdminProfile } from "../../controllers/admin-controllers/update-admin-profile";
 import { getCompaniesByAdminCenter } from "../../controllers/admin-controllers/fetch-company";
 import { downloadCompanyEnrollmentReport } from "../../controllers/admin-controllers/download-enrollment";
+import { getCompanies } from "../../controllers/admin-controllers/get-companies-forReport";
+import { getCompanyCourses } from "../../controllers/admin-controllers/get-courses-forSpecificCompany";
+import { getCourseBatches } from "../../controllers/admin-controllers/get-batches-courseSpecific";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -189,5 +192,11 @@ adminRouter.delete(
     verifyAdminUsingAccessToken,
     deleteUser
 );
+//fetch all companies partnered with center to generate report 
+adminRouter.get('/reports/fetch-company',verifyAdminUsingAccessToken,getCompanies)
+//fetch all courses for specific company
+adminRouter.get('/reports/fetch-courses-for-company',verifyAdminUsingAccessToken,getCompanyCourses);
+//fetch all batches for specific course 
+adminRouter.get('/reports/fetch-batch-for-course',verifyAdminUsingAccessToken,getCourseBatches);
 
 export default adminRouter
