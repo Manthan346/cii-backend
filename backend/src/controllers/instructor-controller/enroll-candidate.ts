@@ -53,7 +53,7 @@ export const enrollCandidate = asyncHandler(
 
 
 
-        if(!candidate.candidates_details.is_active){
+        if(!candidate.is_active){
             throw new ApiError(
                 400,
                 "Candidate is awaiting admin approval."

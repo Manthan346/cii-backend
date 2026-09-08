@@ -36,7 +36,7 @@ const asyncHandler = (fn: Function) => async (req: Request, res: Response, next:
             console.error("Prisma validation error:", error.message);
             return res.status(400).json({
                 success: false,
-                message: "Invalid data provided",
+                message: `Invalid data provided for ${error.message}`,
             });
         }
 
