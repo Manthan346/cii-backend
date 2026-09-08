@@ -27,6 +27,7 @@ import { uploadJobFairCandidates } from "../../controllers/hr-controllers/upload
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
 import upload, { uploadJobImage } from "../../middlewares/multer-middleware/image-upload";
 import { getJobFairCandidates } from "../../controllers/hr-controllers/fetch-candidates-forJobFairDrive";
+import { editHrProfile } from "../../controllers/hr-controllers/update-hr-profile";
 
 const hrRouter = Router();
 
@@ -79,5 +80,7 @@ hrRouter.post(
   uploadExcel.single("file"),
   uploadJobFairCandidates
 );
+//update profile for hr 
+hrRouter.patch('/profile/update',verifyHrUsingAccessToken,editHrProfile)
 
 export default hrRouter;
