@@ -13,6 +13,7 @@ import UsersOverview from "../UsersOverview/UsersOverview";
 import UsersFilterBar from "../UsersFilterBar/UsersFilterBar";
 import UsersTable from "../UsersTable/UsersTable";
 import AddUserModal from "../AddUserModal/AddUserModal";
+import ChangePasswordModal from "../ChangePasswordModal/ChangePasswordModal";
 import { userRoleOptions, userStatusOptions } from "../../data/totalUsersData";
 import {
   fetchAdminUsers,
@@ -178,6 +179,7 @@ const TotalUsers = () => {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false);
   const [refreshTick, setRefreshTick] = useState(0);
   const [stats, setStats] = useState(() => buildUserStats());
+  const [passwordModalUser, setPasswordModalUser] = useState(null);
 
   useEffect(() => {
     const loadFilterOptions = async () => {
@@ -308,6 +310,10 @@ const TotalUsers = () => {
     navigate("/admin/total-users/deactivated-accounts");
   };
 
+  const handleOpenChangePassword = (user) => {
+    setPasswordModalUser(user);
+  };
+
   const handleToggleUserStatus = async (user) => {
     try {
       setError("");
@@ -364,6 +370,7 @@ const TotalUsers = () => {
         onAddUser={handleAddUser}
         onViewUser={handleViewUser}
         onToggleStatus={handleToggleUserStatus}
+        onChangePassword={handleOpenChangePassword}
         selectedIds={selectedIds}
         onToggleSelect={handleToggleSelect}
         onToggleSelectAll={handleToggleSelectAll}
@@ -378,6 +385,12 @@ const TotalUsers = () => {
         onClose={() => setIsAddUserOpen(false)}
         onUserCreated={handleUserCreated}
         defaultRole="candidate"
+      />
+
+      <ChangePasswordModal
+        isOpen={Boolean(passwordModalUser)}
+        onClose={() => setPasswordModalUser(null)}
+        user={passwordModalUser}
       />
     </div>
   );
