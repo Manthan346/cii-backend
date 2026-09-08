@@ -401,11 +401,11 @@ function LoginPage() {
               {loading ? "Signing in..." : "Sign In"}
             </button>
 
-            <div className="lp-divider">
+            {/* <div className="lp-divider">
               <span>or continue with</span>
-            </div>
+            </div> */}
 
-            <div className="lp-social-row">
+            {/* <div className="lp-social-row">
               <button type="button" className="lp-social-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24">
                   <path
@@ -427,14 +427,14 @@ function LoginPage() {
                 </svg>
                 Google
               </button>
-            </div>
+            </div> */}
 
-            <p className="lp-register-text">
+            {/* <p className="lp-register-text">
               Don't have an account?{" "}
               <Link to="/Registration" className="lp-register-link">
                 Create one
               </Link>
-            </p>
+            </p> */}
           </form>
         </div>
       </div>
