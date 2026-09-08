@@ -1,5 +1,5 @@
-import React from 'react';
-import './BarChartWidget.css';
+import React from "react";
+import "./BarChartWidget.css";
 
 /**
  * BarChartWidget
@@ -19,20 +19,26 @@ export default function BarChartWidget({
   yMax = 100,
   yStep = 20,
   height = 240,
-  color = 'var(--md-navy)',
+  color = "var(--md-navy)",
   barWidthRatio = 0.4,
   yAxisLabel,
-  valueLabel = 'value',
+  valueLabel = "value",
 }) {
   const width = 620;
-  const padding = { top: 16, right: 16, bottom: 30, left: yAxisLabel ? 56 : 40 };
+  const padding = {
+    top: 16,
+    right: 16,
+    bottom: 30,
+    left: yAxisLabel ? 56 : 40,
+  };
   const plotW = width - padding.left - padding.right;
   const plotH = height - padding.top - padding.bottom;
 
   const slot = plotW / data.length;
   const barW = slot * barWidthRatio;
 
-  const yFor = (value) => padding.top + (1 - (value - yMin) / (yMax - yMin)) * plotH;
+  const yFor = (value) =>
+    padding.top + (1 - (value - yMin) / (yMax - yMin)) * plotH;
 
   const ticks = [];
   for (let v = yMin; v <= yMax; v += yStep) ticks.push(v);
@@ -49,8 +55,19 @@ export default function BarChartWidget({
         const y = yFor(tick);
         return (
           <g key={tick}>
-            <line x1={padding.left} x2={width - padding.right} y1={y} y2={y} className="md-barchart__grid" />
-            <text x={padding.left - 10} y={y + 4} className="md-barchart__ytick" textAnchor="end">
+            <line
+              x1={padding.left}
+              x2={width - padding.right}
+              y1={y}
+              y2={y}
+              className="md-barchart__grid"
+            />
+            <text
+              x={padding.left - 10}
+              y={y + 4}
+              className="md-barchart__ytick"
+              textAnchor="end"
+            >
               {tick}
             </text>
           </g>
@@ -75,10 +92,24 @@ export default function BarChartWidget({
         const barH = padding.top + plotH - y;
         return (
           <g key={i}>
-            <rect x={x} y={y} width={barW} height={barH} rx={5} className="md-barchart__bar" style={{ fill: color }}>
-              <title>{`${d.label}: ${d.value} ${valueLabel}`}</title>
+            <rect
+              x={x}
+              y={y}
+              width={barW}
+              height={barH}
+              rx={5}
+              className="md-barchart__bar"
+              style={{ fill: color }}
+              aria-label={`${d.tooltipLabel ?? d.label}: ${d.value} ${valueLabel}`}
+            >
+              <title>{`${d.tooltipLabel ?? d.label}: ${d.value} ${valueLabel}`}</title>
             </rect>
-            <text x={x + barW / 2} y={height - 10} className="md-barchart__xtick" textAnchor="middle">
+            <text
+              x={x + barW / 2}
+              y={height - 10}
+              className="md-barchart__xtick"
+              textAnchor="middle"
+            >
               {d.label}
             </text>
           </g>

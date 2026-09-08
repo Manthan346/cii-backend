@@ -7,6 +7,7 @@ import {
   ClipboardCheck,
   User,
   LogOut,
+   Users,
 } from "lucide-react";
 
 /**
@@ -53,7 +54,7 @@ export const sidebarMenu = [
     id: "candidates",
     title: "Candidates",
     route: "/mobilizer/candidates",
-    icon: ClipboardCheck,
+    icon:  Users ,
   },
   {
     id: "report",

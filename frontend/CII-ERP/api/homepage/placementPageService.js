@@ -1,5 +1,22 @@
 import API from "../api.js";
 
+function formatDisplayDate(value) {
+  if (!value) return "-";
+
+  const dateOnlyMatch = /^\d{4}-\d{2}-\d{2}$/.test(String(value));
+  const date = dateOnlyMatch
+    ? new Date(`${value}T00:00:00`)
+    : new Date(value);
+
+  if (Number.isNaN(date.getTime())) return value;
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
 function formatSalary(min, max) {
   if (min == null && max == null) return "Not specified";
 
@@ -22,7 +39,7 @@ export function mapPublicJob(job) {
     vacancy: job.vacancy,
     location: job.location,
     description: job.job_description,
-    deadline: job.last_date_to_apply,
+    deadline: formatDisplayDate(job.last_date_to_apply),
     workMode: job.work_mode,
     qualification: job.eligible_qualification,
     percentageCgpa: job.eligible_percentage_cgpa,
