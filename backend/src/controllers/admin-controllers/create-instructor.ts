@@ -129,21 +129,31 @@ export const createInstructorByAdmin = asyncHandler(
             const dob = new Date(date_of_birth);
 
             if (isNaN(dob.getTime())) {
-                throw new ApiError(
-                    400,
-                    "Invalid date of birth."
-                );
+                throw new ApiError(400, "Invalid date of birth.");
             }
 
             const today = new Date();
-
             today.setHours(0, 0, 0, 0);
             dob.setHours(0, 0, 0, 0);
 
+            // Future DOB check
             if (dob > today) {
                 throw new ApiError(
                     400,
                     "Date of birth cannot be in the future."
+                );
+            }
+
+            // Minimum age: 18 years
+            const eighteenYearsAgo = new Date(today);
+            eighteenYearsAgo.setFullYear(
+                eighteenYearsAgo.getFullYear() - 18
+            );
+
+            if (dob > eighteenYearsAgo) {
+                throw new ApiError(
+                    400,
+                    "Instructor must be at least 18 years old."
                 );
             }
         }
