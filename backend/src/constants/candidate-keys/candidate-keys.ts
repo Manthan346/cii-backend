@@ -16,6 +16,8 @@ export const CANDIDATE_REDIS_KEYS = {
     `studyMaterial:${candidateId}:${batchId}:${page}:${limit}`,
   candidate_available_assessments_key: (candidateId: string, page: number, limit: number) =>
     `availableAssessments:${candidateId}:${page}:${limit}`,
+  candidate_course_stats_key: (candidateId: string) =>
+  `candidate:course-stats:${candidateId}`,
 
 
     
