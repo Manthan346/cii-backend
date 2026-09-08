@@ -19,6 +19,7 @@ export default function LineChartWidget({
   yStep = 20,
   height = 240,
   color = 'var(--md-blue)',
+  valueLabel = 'value',
 }) {
   const width = 620;
   const padding = { top: 16, right: 16, bottom: 28, left: 40 };
@@ -59,7 +60,9 @@ export default function LineChartWidget({
       <path d={linePath} className="md-linechart__line" style={{ stroke: color }} />
 
       {points.map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r={5} className="md-linechart__dot" style={{ fill: color }} />
+        <circle key={i} cx={p.x} cy={p.y} r={5} className="md-linechart__dot" style={{ fill: color }}>
+          <title>{`${p.label}: ${p.value} ${valueLabel}`}</title>
+        </circle>
       ))}
 
       {points.map((p, i) => (

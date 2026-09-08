@@ -1,14 +1,14 @@
-import React from 'react';
-import { Eye } from 'lucide-react';
-import InitialsAvatar from '../../shared/InitialsAvatar/InitialsAvatar';
-import StatusPill from '../../shared/StatusPill/StatusPill';
-import './EnquiriesTable.css';
+import React from "react";
+import { Eye } from "lucide-react";
+import InitialsAvatar from "../../shared/InitialsAvatar/InitialsAvatar";
+import StatusPill from "../../shared/StatusPill/StatusPill";
+import "./EnquiriesTable.css";
 
 const STATUS_TONE = {
-  'Visited Centre': 'amber',
-  Verified: 'blue',
-  'Dropped Out': 'red',
-  'Not Visited': 'amber',
+  "Visited Centre": "amber",
+  Verified: "blue",
+  "Dropped Out": "red",
+  "Not Visited": "amber",
 };
 
 /**
@@ -19,7 +19,11 @@ const STATUS_TONE = {
  *      and the "Generate Profile" button, per your instructions
  *  - pagination: { page, totalPages, totalCount, rangeStart, rangeEnd, onPrev, onNext, onPage }
  */
-export default function EnquiriesTable({ candidates, onViewCandidate, pagination }) {
+export default function EnquiriesTable({
+  candidates,
+  onViewCandidate,
+  pagination,
+}) {
   return (
     <div className="eq-table-card">
       <div className="eq-table-scroll">
@@ -51,17 +55,13 @@ export default function EnquiriesTable({ candidates, onViewCandidate, pagination
                   <td>{c.enquiryDate}</td>
                   <td>{c.contact}</td>
                   <td>
-                    <StatusPill status={c.status} tone={STATUS_TONE[c.status] || 'gray'} />
+                    <StatusPill
+                      status={c.status}
+                      tone={STATUS_TONE[c.status] || "gray"}
+                    />
                   </td>
                   <td>
                     <div className="eq-table__actions">
-                      <button
-                        type="button"
-                        className="eq-generate-btn"
-                        onClick={() => onViewCandidate?.(c)}
-                      >
-                        Generate Profile
-                      </button>
                       <button
                         type="button"
                         className="eq-icon-btn"
@@ -82,8 +82,8 @@ export default function EnquiriesTable({ candidates, onViewCandidate, pagination
       {pagination && (
         <div className="eq-table-footer">
           <span className="eq-table-footer__summary">
-            Showing {pagination.rangeStart}-{pagination.rangeEnd} candidates out of{' '}
-            {pagination.totalCount.toLocaleString()}
+            Showing {pagination.rangeStart}-{pagination.rangeEnd} candidates out
+            of {pagination.totalCount.toLocaleString()}
           </span>
 
           <div className="eq-pagination">
@@ -96,7 +96,10 @@ export default function EnquiriesTable({ candidates, onViewCandidate, pagination
             >
               &lt;
             </button>
-            <button type="button" className="eq-pagination__btn eq-pagination__btn--active">
+            <button
+              type="button"
+              className="eq-pagination__btn eq-pagination__btn--active"
+            >
               {pagination.page}
             </button>
             <span className="eq-pagination__ellipsis">&hellip;</span>

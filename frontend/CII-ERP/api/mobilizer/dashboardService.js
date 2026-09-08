@@ -76,7 +76,7 @@ const STATUS_TONES = {
 	CALL_BUSY: "orange",
 	CALL_DROPPED_OUT: "red",
 	DOCUMENT_VERIFICATION_PENDING: "amber",
-	INTERESTED: "green",
+	INTERESTED: "orange",
 	DOCUMENT_VERIFICATION_DONE: "green",
 	NOT_CONNECTED: "cyan",
 	CONNECTED: "blue",

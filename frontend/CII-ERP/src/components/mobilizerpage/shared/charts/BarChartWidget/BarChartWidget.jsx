@@ -22,6 +22,7 @@ export default function BarChartWidget({
   color = 'var(--md-navy)',
   barWidthRatio = 0.4,
   yAxisLabel,
+  valueLabel = 'value',
 }) {
   const width = 620;
   const padding = { top: 16, right: 16, bottom: 30, left: yAxisLabel ? 56 : 40 };
@@ -74,7 +75,9 @@ export default function BarChartWidget({
         const barH = padding.top + plotH - y;
         return (
           <g key={i}>
-            <rect x={x} y={y} width={barW} height={barH} rx={5} className="md-barchart__bar" style={{ fill: color }} />
+            <rect x={x} y={y} width={barW} height={barH} rx={5} className="md-barchart__bar" style={{ fill: color }}>
+              <title>{`${d.label}: ${d.value} ${valueLabel}`}</title>
+            </rect>
             <text x={x + barW / 2} y={height - 10} className="md-barchart__xtick" textAnchor="middle">
               {d.label}
             </text>

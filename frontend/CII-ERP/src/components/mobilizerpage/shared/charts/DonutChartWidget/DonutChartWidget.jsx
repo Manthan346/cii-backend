@@ -1,7 +1,17 @@
-import React from 'react';
-import './DonutChartWidget.css';
+import React from "react";
+import "./DonutChartWidget.css";
 
-const KNOWN_TONES = ['navy', 'red', 'green', 'cyan', 'orange', 'blue', 'purple', 'magenta', 'gray'];
+const KNOWN_TONES = [
+  "navy",
+  "red",
+  "green",
+  "cyan",
+  "orange",
+  "blue",
+  "purple",
+  "magenta",
+  "gray",
+];
 
 /**
  * DonutChartWidget
@@ -41,7 +51,13 @@ export default function DonutChartWidget({
 
   return (
     <div className="md-donut">
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label="Donut chart">
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        role="img"
+        aria-label="Donut chart"
+      >
         {segments.map((seg, i) => (
           <circle
             key={i}
@@ -53,9 +69,13 @@ export default function DonutChartWidget({
             strokeDasharray={`${seg.dash} ${circumference - seg.dash}`}
             strokeDashoffset={-seg.offset}
             transform={`rotate(-90 ${cx} ${cy})`}
-            className={isKnownTone(seg.tone) ? `md-donut__tone-${seg.tone}` : ''}
+            className={
+              isKnownTone(seg.tone) ? `md-donut__tone-${seg.tone}` : ""
+            }
             style={isKnownTone(seg.tone) ? undefined : { stroke: seg.tone }}
-          />
+          >
+            <title>{`${seg.label}: ${seg.value}`}</title>
+          </circle>
         ))}
       </svg>
 
@@ -64,10 +84,14 @@ export default function DonutChartWidget({
           {data.map((d, i) => (
             <div className="md-donut__legend-item" key={i}>
               <span
-                className={`md-donut__swatch ${isKnownTone(d.tone) ? `md-donut__tone-bg-${d.tone}` : ''}`}
-                style={isKnownTone(d.tone) ? undefined : { backgroundColor: d.tone }}
+                className={`md-donut__swatch ${isKnownTone(d.tone) ? `md-donut__tone-bg-${d.tone}` : ""}`}
+                style={
+                  isKnownTone(d.tone) ? undefined : { backgroundColor: d.tone }
+                }
               />
-              {showLegendValue && <span className="md-donut__legend-value">{d.value}</span>}
+              {showLegendValue && (
+                <span className="md-donut__legend-value">{d.value}</span>
+              )}
               <span className="md-donut__legend-label">{d.label}</span>
             </div>
           ))}

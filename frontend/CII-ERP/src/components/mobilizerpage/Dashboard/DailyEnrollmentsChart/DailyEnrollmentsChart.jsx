@@ -11,13 +11,14 @@ export default function DailyEnrollmentsChart({ data = [] }) {
         data={data}
         yMax={yMax}
         yStep={getChartStep(yMax)}
+        valueLabel="enrollments"
       />
     </SectionCard>
   );
 }
 
 function getChartMax(data) {
-  return Math.max(10, ...data.map(({ value }) => value));
+  return Math.max(100, ...data.map(({ value }) => value));
 }
 
 function getChartStep(yMax) {
