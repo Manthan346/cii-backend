@@ -158,3 +158,38 @@ export async function fetchUserProfile(userId) {
 
   return response?.data?.data ?? null;
 }
+
+/**
+ * -> changeUserPassword (PATCH /admin/total-users/:userId/change-password)
+ * Body: { password } — the new password, chosen by the admin (not
+ * generated server-side). Backend hashes it and never echoes the
+ * plaintext back, so the caller must hang onto it locally to show the
+ * confirmation view afterward.
+ *
+ * Returns: { user_id, email, role, updated_at }
+ *
+ * Possible backend error messages surfaced via err.response.data.message:
+ *  - "Admin not authenticated" (401)
+ *  - "Valid user ID is required" (400)
+ *  - "Password must be at least 8 characters long" (400, Zod)
+ *  - "Password must not exceed 100 characters" (400, Zod)
+ *  - "Admins cannot change their own password through this endpoint.
+ *     Use the profile edit endpoint instead." (400 — shouldn't occur
+ *     from this row menu since it only targets other users' rows)
+ *  - "Admin user not found" (404)
+ *  - "Admin access required" (403)
+ *  - "User not found" (404)
+ *  - "You are not authorized to change password for this user" (403)
+ */
+export async function changeUserPassword(userId, password) {
+  if (!userId) {
+    throw new Error("User id is required.");
+  }
+
+  const response = await API.patch(
+    `/admin/total-users/${userId}/change-password`,
+    { password },
+  );
+
+  return response?.data?.data;
+}

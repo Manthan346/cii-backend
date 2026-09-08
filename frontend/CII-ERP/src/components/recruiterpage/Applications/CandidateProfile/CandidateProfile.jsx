@@ -69,7 +69,7 @@ const CandidateProfile = ({ candidate, onBack, onUpdateStatus }) => {
             onClick={handleDownloadResume}
             disabled={!candidate.resumeUrl}
           >
-            Download Resume
+            View Resume
           </button>
         </div>
       </div>

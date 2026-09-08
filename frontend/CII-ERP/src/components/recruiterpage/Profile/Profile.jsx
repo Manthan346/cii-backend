@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fetchRecruiterProfile } from "../../../../api/recruiter/profileservice";
+import {
+  fetchRecruiterProfile,
+  updateRecruiterProfile,
+} from "../../../../api/recruiter/profileservice";
 import "./Profile.css";
 
 const emptyProfile = {
@@ -24,6 +27,8 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     let cancelled = false;
@@ -59,22 +64,53 @@ const Profile = () => {
 
   const handleEdit = () => {
     setDraftProfile(profile);
+    setSaveError("");
     setIsEditing(true);
   };
 
   const handleCancel = () => {
     setDraftProfile(profile);
+    setSaveError("");
     setIsEditing(false);
   };
 
-  const handleSave = (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
-    setProfile((current) => ({
-      ...current,
-      name: draftProfile.name.trim(),
-      phone: draftProfile.phone.trim(),
-    }));
-    setIsEditing(false);
+    setSaveError("");
+
+    const trimmedName = draftProfile.name.trim();
+    const trimmedPhone = draftProfile.phone.trim();
+
+    if (!trimmedName) {
+      setSaveError("Name cannot be empty.");
+      return;
+    }
+    if (!/^\d{10}$/.test(trimmedPhone)) {
+      setSaveError("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const updated = await updateRecruiterProfile({
+        name: trimmedName,
+        phone: trimmedPhone,
+      });
+
+      // Backend only returns { name, designation, phone_no } - merge
+      // into existing profile so organization/email/etc aren't lost.
+      setProfile((current) => ({
+        ...current,
+        name: updated.name ?? trimmedName,
+        designation: updated.designation ?? current.designation,
+        phone: updated.phone_no ?? trimmedPhone,
+      }));
+      setIsEditing(false);
+    } catch (err) {
+      setSaveError(err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -181,18 +217,33 @@ const Profile = () => {
           </label>
         </div>
         {isEditing && (
-          <div className="profile-page__actions">
-            <button
-              type="button"
-              className="profile-page__cancel-btn"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            <button type="submit" className="profile-page__edit-btn">
-              Save Changes
-            </button>
-          </div>
+          <>
+            {saveError && (
+              <p
+                className="profile-page__status profile-page__status--error"
+                role="alert"
+              >
+                {saveError}
+              </p>
+            )}
+            <div className="profile-page__actions">
+              <button
+                type="button"
+                className="profile-page__cancel-btn"
+                onClick={handleCancel}
+                disabled={saving}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="profile-page__edit-btn"
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Changes"}
+              </button>
+            </div>
+          </>
         )}
       </form>
     </div>

@@ -58,12 +58,17 @@ export function normalizeRecruiterApplication(application = {}, index = 0) {
     source: application.source ?? "-",
     status: formatStatus(application.application_status),
     email: application.email ?? "-",
-    location: "-",
+    location: application.applicant_location ?? "-",
     dob: "-",
-    degree: "-",
-    college: "-",
-    graduationYear: "-",
-    percentage: "-",
+    degree: application.highest_qualification ?? "-",
+    college: application.institute_name ?? "-",
+    graduationYear: application.graduation_year ?? "-",
+    percentage:
+      application.percentage != null
+        ? `${application.percentage}%`
+        : application.cgpa != null
+          ? `${application.cgpa} CGPA`
+          : "-",
     certificates: [],
     coursesCompleted: [],
   };

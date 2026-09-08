@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { UserRound, Eye, MoreVertical, Lock, Unlock } from "lucide-react";
+import {
+  UserRound,
+  Eye,
+  MoreVertical,
+  Lock,
+  Unlock,
+  KeyRound,
+} from "lucide-react";
 import SectionCard from "../../shared/SectionCard/SectionCard";
 import StatusPill from "../../shared/StatusPill/StatusPill";
 import Button from "../../shared/Button/Button";
@@ -33,6 +40,7 @@ const UsersTable = ({
   onViewUser,
   onRowMenu,
   onToggleStatus,
+  onChangePassword,
   selectedIds = [],
   onToggleSelect,
   onToggleSelectAll,
@@ -147,6 +155,17 @@ const UsersTable = ({
                           {user.status === "active"
                             ? "Deactivate account"
                             : "Activate account"}
+                        </button>
+                        <button
+                          type="button"
+                          className="admin-users-table__menu-item"
+                          onClick={() => {
+                            setOpenMenuId(null);
+                            onChangePassword?.(user);
+                          }}
+                        >
+                          <KeyRound size={14} strokeWidth={2} />
+                          Change password
                         </button>
                       </div>
                     )}
