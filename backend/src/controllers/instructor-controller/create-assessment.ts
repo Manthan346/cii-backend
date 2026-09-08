@@ -131,7 +131,9 @@ export const createAssessment = asyncHandler(
                 },
                 select: {
                     candidates_details: {
+                        
                         select: {
+                            user_id: true,
                             candidate_id: true
                         }
                     }
@@ -297,7 +299,7 @@ export const createAssessment = asyncHandler(
 
                 const userNotifications = enrolledStudents.map((student) => ({
                     notification_id: notification.notification_id,
-                    user_id: student.candidates_details.candidate_id,
+                    user_id: student.candidates_details.user_id,
                 }));
 
                 // Skip user notification creation if no students are enrolled.
