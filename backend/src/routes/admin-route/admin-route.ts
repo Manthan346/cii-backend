@@ -44,6 +44,7 @@ import { changeUserPassword } from "../../controllers/admin-controllers/change-u
 import { deleteUser } from "../../controllers/admin-controllers/delete-user";
 import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
 import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
+import { getAllAdminNotifications } from "../../controllers/admin-controllers/get-all-adminNotifications";
 
 const adminRouter = Router();
 
@@ -198,5 +199,7 @@ adminRouter.get('/reports/fetch-company',verifyAdminUsingAccessToken,getCompanie
 adminRouter.get('/reports/fetch-courses-for-company',verifyAdminUsingAccessToken,getCompanyCourses);
 //fetch all batches for specific course 
 adminRouter.get('/reports/fetch-batch-for-course',verifyAdminUsingAccessToken,getCourseBatches);
+//fetch all notifications for admin 
+adminRouter.get('/notifications',verifyAdminUsingAccessToken,paginationMiddleware,getAllAdminNotifications);
 
 export default adminRouter
