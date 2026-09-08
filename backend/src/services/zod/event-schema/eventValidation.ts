@@ -24,6 +24,16 @@ export const createEventSchema = z.object({
     .refine(
       (date) => !isNaN(Date.parse(date)),
       "Invalid event date"
+    )
+    .refine(
+      (date) => {
+        const parsedDate = new Date(date);
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return parsedDate >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
     ),
 
   event_start_time: z
@@ -156,7 +166,18 @@ export const updatePublicEventSchema = z.object({
       (date) => !isNaN(Date.parse(date)),
       "Invalid event date"
     )
-    .optional(),
+    .optional()
+    .refine(
+      (date) => {
+        if (!date) return true; // Allow optional - will validate if provided
+        const parsedDate = new Date(date);
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return parsedDate >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
+    ),
 
   event_start_time: z
     .string()

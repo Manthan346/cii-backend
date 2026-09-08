@@ -29,6 +29,7 @@ import { getMobilizerCandidateDetails } from '../../controllers/mobilizer-contro
 import { downloadMobilizerEnquiryExcel } from '../../controllers/mobilizer-controller/download-mobilizer-enquiry-excel';
 import { getMobilizerSimpleCourses } from '../../controllers/mobilizer-controller/get-mobilizer-simple-courses';
 import { getMobilizerBatchesByCourse } from '../../controllers/mobilizer-controller/get-mobilizer-batches-by-course';
+import { getEnrollmentAnalytics } from '../../controllers/mobilizer-controller/get-enrollment-analytics';
 
 
 const mobilizerRouter = Router();
@@ -39,6 +40,8 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
+
+mobilizerRouter.get("/enrollment/analytics", verifyMobilizerUsingAccessToken, getEnrollmentAnalytics )
 mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 // Fetch all job fair and job drive for the mobilizer
