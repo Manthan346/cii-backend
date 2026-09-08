@@ -103,6 +103,7 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
         course_name: courseName,
         batch_name: batchName,
         enrollment_status: enrollment.enrollment_status,
+        enrollment_date: enrollment.enrollment_date
       });
     }
   });
@@ -115,11 +116,12 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
     contact_number: candidate.contact_number,
     email_id: candidate.user_login?.user_email || "", // Email from user_login
     candidate_creation_date: candidate.created_at,
-    enrollment_date: enrollments.map((date) => date.enrollment_date),
+
    
 
     // Enrollment info
     course_name: enrollmentMap.get(candidate.candidate_id)?.course_name || "Not Enrolled",
+    enrolled_date: enrollmentMap.get(candidate.candidate_id).enrollment_date || "date not found" ,
     batch_name: enrollmentMap.get(candidate.candidate_id)?.batch_name || "Not Enrolled",
     enrollment_status: enrollmentMap.get(candidate.candidate_id)?.enrollment_status || "Not Enrolled",
   }));
