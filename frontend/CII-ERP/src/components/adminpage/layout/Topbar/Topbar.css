@@ -12,7 +12,11 @@
   background: #eef1f7;
   background-image:
     radial-gradient(circle at 15% 0%, rgba(62, 95, 235, 0.05), transparent 55%),
-    radial-gradient(circle at 85% 100%, rgba(62, 95, 235, 0.05), transparent 55%);
+    radial-gradient(
+      circle at 85% 100%,
+      rgba(62, 95, 235, 0.05),
+      transparent 55%
+    );
   border-bottom: 1px solid #e7eaf1;
   box-sizing: border-box;
 }
@@ -38,12 +42,17 @@
 .admin-topbar__logo-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #ffffff;
-  border: 1px solid #e7eaf1;
-  border-radius: 12px;
-  padding: 8px 16px;
-  box-shadow: 0 2px 6px rgba(15, 18, 40, 0.05);
+  justify-content: center;
+}
+
+.admin-topbar__logo-image {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  max-height: 84px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
 }
 
 .admin-topbar__logo-mark {
@@ -79,7 +88,6 @@
   max-width: 420px;
   display: flex;
   align-items: center;
-  
 }
 
 .admin-topbar__search-icon {
@@ -98,7 +106,9 @@
   font-size: 14px;
   color: #1c1f2e;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .admin-topbar__search-input::placeholder {

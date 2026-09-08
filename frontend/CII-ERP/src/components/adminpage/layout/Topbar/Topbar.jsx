@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
+import ciiLogo from "../../../../assets/Logo.png";
 import "./Topbar.css";
 
 /**
@@ -47,10 +48,11 @@ const getInitials = (name = "") => {
 
 const AdminBrandMark = () => (
   <div className="admin-topbar__logo-card">
-    <span className="admin-topbar__logo-mark">CII</span>
-    <span className="admin-topbar__logo-caption">
-      Confederation of Indian Industry
-    </span>
+    <img
+      src={ciiLogo}
+      alt="CII - Confederation of Indian Industry"
+      className="admin-topbar__logo-image"
+    />
   </div>
 );
 

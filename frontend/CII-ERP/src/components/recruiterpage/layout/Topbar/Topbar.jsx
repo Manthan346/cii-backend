@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { Search, Bell, Menu } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { notifications } from '../../data';
-import NotificationsDropdown from '../../Notifications/NotificationsDropdown/NotificationsDropdown';
-import bannerImage from '../../assets/topbar-banner.png';
-import './Topbar.css';
+import React, { useRef, useState } from "react";
+import { Search, Bell, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { notifications } from "../../data";
+import NotificationsDropdown from "../../Notifications/NotificationsDropdown/NotificationsDropdown";
+import bannerImage from "../../assets/topbar-banner.png";
+import ciiLogo from "../../../../assets/Logo.png";
+import "./Topbar.css";
 
 /**
  * Topbar (Recruiter)
@@ -40,36 +41,38 @@ import './Topbar.css';
  */
 const RecruiterBrandMark = () => (
   <div className="recruiter-topbar__logo-card">
-    <span className="recruiter-topbar__logo-mark">CII</span>
-    <span className="recruiter-topbar__logo-caption">
-      Confederation of Indian Industry
-    </span>
+    <img
+      src={ciiLogo}
+      alt="CII - Confederation of Indian Industry"
+      className="recruiter-topbar__logo-image"
+    />
   </div>
 );
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
 const Topbar = ({
-  user = { name: 'Rohan Kapoor', role: 'HR Recruiter' },
+  user = { name: "Rohan Kapoor", role: "HR Recruiter" },
   hasUnreadNotifications,
   onMenuToggle,
   onSearch,
   onAvatarClick,
 }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const bellRef = useRef(null);
   const navigate = useNavigate();
 
-  const showUnreadDot = hasUnreadNotifications ?? notifications.some((item) => item.unread);
+  const showUnreadDot =
+    hasUnreadNotifications ?? notifications.some((item) => item.unread);
 
   const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter' && onSearch) {
+    if (e.key === "Enter" && onSearch) {
       onSearch(searchValue);
     }
   };
@@ -78,12 +81,15 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate('/recruiter/profile');
+      navigate("/recruiter/profile");
     }
   };
 
   return (
-    <header className="recruiter-topbar" style={{ backgroundImage: `url(${bannerImage})` }}>
+    <header
+      className="recruiter-topbar"
+      style={{ backgroundImage: `url(${bannerImage})` }}
+    >
       <button
         type="button"
         className="recruiter-topbar__hamburger"

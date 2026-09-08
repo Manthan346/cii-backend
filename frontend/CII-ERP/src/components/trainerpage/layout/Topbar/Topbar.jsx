@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../assets/cii-logo2.png";
+import ciiLogo from "../../../../assets/Logo.png";
 import "./Topbar.css";
 
 /**
@@ -94,10 +94,11 @@ const Topbar = ({
       {/* Left: CII logo card */}
       <div className="trainer-topbar__left">
         <div className="trainer-topbar__logo-card">
-          <img src={ciiLogo} alt="CII" className="trainer-topbar__logo-image" />
-          <span className="trainer-topbar__logo-caption">
-            Confederation of Indian Industry
-          </span>
+          <img
+            src={ciiLogo}
+            alt="CII - Confederation of Indian Industry"
+            className="trainer-topbar__logo-image"
+          />
         </div>
       </div>
 

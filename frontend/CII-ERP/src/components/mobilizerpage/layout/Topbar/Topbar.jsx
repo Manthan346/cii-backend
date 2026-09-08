@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Search, Menu } from 'lucide-react';
-import NotificationBell from '../../shared/NotificationBell/NotificationBell';
-import { useNavigate } from 'react-router-dom';
-import bannerImage from '../../assets/topbar-banner.png';
-import './Topbar.css';
+import React, { useState } from "react";
+import { Search, Menu } from "lucide-react";
+import NotificationBell from "../../shared/NotificationBell/NotificationBell";
+import { useNavigate } from "react-router-dom";
+import bannerImage from "../../assets/topbar-banner.png";
+import ciiLogo from "../../../../assets/Logo.png";
+import "./Topbar.css";
 
 /**
  * Topbar (Mobilizer)
@@ -42,32 +43,33 @@ import './Topbar.css';
  */
 const MobilizerBrandMark = () => (
   <div className="mobilizer-topbar__logo-card">
-    <span className="mobilizer-topbar__logo-mark">CII</span>
-    <span className="mobilizer-topbar__logo-caption">
-      Confederation of Indian Industry
-    </span>
+    <img
+      src={ciiLogo}
+      alt="CII - Confederation of Indian Industry"
+      className="mobilizer-topbar__logo-image"
+    />
   </div>
 );
 
-const getInitials = (name = '') => {
-  const parts = name.trim().split(' ').filter(Boolean);
-  if (parts.length === 0) return '';
+const getInitials = (name = "") => {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[1][0]).toUpperCase();
 };
 
 const Topbar = ({
-  user = { name: 'Sonal Mobilizer' },
+  user = { name: "Sonal Mobilizer" },
   onMenuToggle,
   onSearch,
   onNotificationClick,
   onAvatarClick,
 }) => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter' && onSearch) {
+    if (e.key === "Enter" && onSearch) {
       onSearch(searchValue);
     }
   };
@@ -76,7 +78,7 @@ const Topbar = ({
     if (onNotificationClick) {
       onNotificationClick();
     } else {
-      navigate('/mobilizer/notifications');
+      navigate("/mobilizer/notifications");
     }
   };
 
@@ -84,12 +86,15 @@ const Topbar = ({
     if (onAvatarClick) {
       onAvatarClick();
     } else {
-      navigate('/mobilizer/profile');
+      navigate("/mobilizer/profile");
     }
   };
 
   return (
-    <header className="mobilizer-topbar" style={{ backgroundImage: `url(${bannerImage})` }}> 
+    <header
+      className="mobilizer-topbar"
+      style={{ backgroundImage: `url(${bannerImage})` }}
+    >
       <button
         type="button"
         className="mobilizer-topbar__hamburger"

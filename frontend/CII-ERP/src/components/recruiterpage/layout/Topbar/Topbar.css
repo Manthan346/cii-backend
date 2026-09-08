@@ -38,12 +38,17 @@
 .recruiter-topbar__logo-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #ffffff;
-  border: 1px solid #e7eaf1;
-  border-radius: 12px;
-  padding: 8px 16px;
-  box-shadow: 0 2px 6px rgba(15, 18, 40, 0.05);
+  justify-content: center;
+}
+
+.recruiter-topbar__logo-image {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  max-height: 84px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
 }
 
 .recruiter-topbar__logo-mark {
@@ -97,7 +102,9 @@
   font-size: 14px;
   color: #1c1f2e;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .recruiter-topbar__search-input::placeholder {
