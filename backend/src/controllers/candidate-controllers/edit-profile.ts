@@ -75,7 +75,24 @@ export const editCandidateProfile = asyncHandler(
         if (gender !== undefined) data.gender = gender;
         if (date_of_birth !== undefined) {
             const parsed = new Date(date_of_birth);
-            if (!isNaN(parsed.getTime())) data.date_of_birth = parsed;
+            if (!isNaN(parsed.getTime())) {
+                // Validate that candidate is at least 18 years old
+                const today = new Date();
+                const birthDate = parsed;
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+
+                // Adjust age if birthday hasn't occurred yet this year
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                if (age < 18) {
+                    throw new ApiError(400, "Candidate must be at least 18 years old");
+                }
+
+                data.date_of_birth = parsed;
+            }
         }
         if (blood_group !== undefined) data.blood_group = blood_group;
         if (emergency_contact_no !== undefined) data.candidate_emergency_contact_no = emergency_contact_no;
