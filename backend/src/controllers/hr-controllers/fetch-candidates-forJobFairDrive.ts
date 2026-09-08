@@ -72,8 +72,7 @@ export const getJobFairCandidates = asyncHandler(
         candidate_experience: true,
         area: true,
         ward_no: true,
-        vidhansabha: true,
-        candidate_application_status: true,
+        vidhansabha: true
       },
       orderBy: {
         created_at: "desc",
