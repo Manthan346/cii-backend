@@ -63,6 +63,19 @@ export const updateAdminProfile = asyncHandler(
                     "Date of birth cannot be in the future."
                 );
             }
+
+            const eighteenYearsAgo = new Date(today);
+
+            eighteenYearsAgo.setUTCFullYear(
+                eighteenYearsAgo.getUTCFullYear() - 18
+            );
+
+            if (dob > eighteenYearsAgo) {
+                throw new ApiError(
+                    400,
+                    "Admin must be at least 18 years old."
+                );
+            }
         }
 
         const updateData: {
