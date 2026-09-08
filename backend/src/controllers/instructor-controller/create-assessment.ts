@@ -1,11 +1,16 @@
+
 // controllers/instructor/assessment.controller.ts
 
 import { Response } from "express";
 
 import { asyncHandler } from "../../helpers/asyncHandler";
+
 import { prisma } from "../../lib/prisma";
+
 import { InstructorAuthRequest } from "../../interfaces/instructor-auth-interface";
+
 import { ApiError } from "../../helpers/ApiError";
+
 import { ApiResponse } from "../../helpers/ApiResponse";
 
 import {
@@ -114,7 +119,9 @@ export const createAssessment = asyncHandler(
 
         /*
          * Fetch enrolled students before beginning the transaction.
-         * Only active enrolled students will receive the notification.
+         *
+         * Only active enrolled students will receive
+         * the assessment notification.
          */
         const enrolledStudents =
             await prisma.batch_enrollment.findMany({
@@ -131,6 +138,9 @@ export const createAssessment = asyncHandler(
                 }
             });
 
+        /*
+         * Authorization
+         */
         switch (user.user_role) {
 
             case "instructor":
@@ -178,23 +188,29 @@ export const createAssessment = asyncHandler(
         /*
          * Assessment Date Handling
          *
-         * Frontend sends only the selected date:
+         * assessment_date comes from the frontend as:
          *
-         *     YYYY-MM-DD
-         *
-         * Since the application operates in IST, we treat the
-         * selected date as the complete IST calendar day.
+         * YYYY-MM-DD
          *
          * Example:
          *
-         *     2026-09-10
+         * Instructor selects:
+         * 2026-09-08
          *
-         * becomes:
+         * Database stores:
+         * 2026-09-09
          *
-         *     2026-09-10 23:59:59.999 IST
+         * The stored date is treated as the exclusive
+         * expiry date.
          *
-         * This means the assessment remains available for
-         * the entire selected day and expires after that day.
+         * Therefore:
+         *
+         * 2026-09-08 -> assessment is available
+         * 2026-09-09 -> assessment has expired
+         *
+         * This works with the existing Prisma field:
+         *
+         * assessment_date DateTime @db.Date
          */
 
         const dateParts = assessment_date
@@ -213,33 +229,32 @@ export const createAssessment = asyncHandler(
 
         const [year, month, day] = dateParts;
 
+        /*
+         * Store the next calendar date.
+         *
+         * Example:
+         *
+         * 2026-09-08
+         *       +
+         *      1 day
+         *       =
+         * 2026-09-09
+         *
+         * Date.UTC is used so that the stored calendar date
+         * is not affected by the server timezone.
+         */
         const assessmentDate = new Date(
             Date.UTC(
                 year,
                 month - 1,
-                day,
-                18,
-                29,
-                59,
-                999
+                day + 1
             )
         );
 
         /*
-         * Why 18:29:59.999 UTC?
-         *
-         * IST = UTC + 5:30
-         *
-         * Therefore:
-         *
-         * 23:59:59.999 IST
-         * =
-         * 18:29:59.999 UTC
-         *
-         * This allows the database to store the correct
-         * IST end-of-day moment regardless of server timezone.
+         * Create assessment and notifications
+         * inside a single transaction.
          */
-
         const result = await prisma.$transaction(
             async (tx) => {
 
@@ -247,12 +262,14 @@ export const createAssessment = asyncHandler(
                     await tx.assessments.create({
                         data: {
                             batch_id,
-                            title: trimmedTitle,
+                            title:
+                                trimmedTitle,
                             assessment_desc:
                                 trimmedDescription,
                             assessment_link:
                                 trimmedAssessmentLink,
-                            is_show: true,
+                            is_show:
+                                true,
                             assessment_date:
                                 assessmentDate,
                             assessment_type,
@@ -261,43 +278,47 @@ export const createAssessment = asyncHandler(
                         }
                     });
 
+                /*
+                 * Create a single notification
+                 * for the assessment.
+                 */
                 const notification =
                     await tx.notifications.create({
                         data: {
                             title:
                                 "New Assessment Created",
-
                             notification_message:
                                 `New Assessment "${trimmedTitle}" has been created for batch "${batch.batch_name}".`,
-
                             notification_type:
                                 notification_type.ASSESSMENT_CREATED,
-
                             reference_type:
                                 notification_reference_type.ASSESSMENT,
-
                             reference_id:
                                 assessment.assessment_id
                         }
                     });
 
-                const userNotifications =
-                    enrolledStudents.map((student) => ({
-                        notification_id:
-                            notification.notification_id,
-
-                        user_id:
-                            student.candidates_details.user_id
-                    }));
-
                 /*
-                 * Skip user notification creation if
-                 * there are no active enrolled students.
+                 * Create user notifications
+                 * for all active enrolled students.
                  */
+                const userNotifications =
+                    enrolledStudents.map(
+                        (student) => ({
+                            notification_id:
+                                notification.notification_id,
+
+                            user_id:
+                                student.candidates_details.user_id
+                        })
+                    );
+
                 if (userNotifications.length > 0) {
+
                     await tx.user_notifications.createMany({
                         data: userNotifications
                     });
+
                 }
 
                 return {
@@ -313,12 +334,12 @@ export const createAssessment = asyncHandler(
                 {
                     assessment_id:
                         result.assessment.assessment_id,
-
                     title:
                         result.assessment.title,
-
                     created_by:
-                        user_id
+                        user_id,
+
+                    assessment_date
                 },
                 "Assessment created successfully."
             )
