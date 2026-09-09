@@ -35,7 +35,7 @@ import Event from "../components/mobilizerpage/Event/Event/Event";
 import Profile from "../components/mobilizerpage/Profile/Profile/Profile";
 import Notifications from "../components/mobilizerpage/Notifications/Notifications/Notifications";
 import Enrollment from "../components/mobilizerpage/Enrollment/Enrollment/Enrollment";
-import Candidates from "../components/mobilizerpage/Candidates/Candidates/Candidates";
+import Candidates from "../components/mobilizerpage/candidates/Candidates/Candidates";
 export default function MobilizerDashboard() {
   return (
     <Routes>

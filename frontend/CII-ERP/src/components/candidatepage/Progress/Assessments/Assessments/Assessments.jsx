@@ -3,7 +3,7 @@ import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 
 import AssessmentsStats from "../AssessmentsStats/AssessmentsStats";
-import AvailableAssessments from "../AvailableAssessments/AvailableAssessments";
+import AvailableAssessments from "../Availableassessments/AvailableAssessments";
 import PendingAssessments from "../PendingAssessments/PendingAssessments";
 import CompletedAssessments from "../CompletedAssessments/CompletedAssessments";
 import PerformanceByCourse from "../PerformanceByCourse/PerformanceByCourse";
