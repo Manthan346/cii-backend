@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
 import { StatGrid } from "../StatCard/StatCard";
-import CourseList from "../CourseList/CourseList";
 import CompletedCourses from "../CompletedCourses/CompletedCourses";
 
 import API from "../../../../../api/api";
@@ -13,24 +12,6 @@ import API from "../../../../../api/api";
 import orgLogo from "../../../../assets/Logo.png";
 
 import "./MyCourses.css";
-
-function mapAcademicCourses(academicDetails) {
-  return (academicDetails?.courses ?? []).map((course, index) => ({
-    id: course.course_id ?? course.id ?? `academic-course-${index}`,
-    title: course.title ?? course.course ?? "Course",
-    tag: course.course_type ?? "ACADEMIC",
-    tagColor: "#E6EEF8",
-    tagTextColor: "#003C7E",
-    company: course.company ?? "-",
-    mode: course.mode,
-    location: course.location,
-    startDate: course.starting_date,
-    endDate: course.end_date,
-    trainer: course.trainer_name,
-    desc: course.description ?? "Course details are available here.",
-    logoSrc: null,
-  }));
-}
 
 // ─── Map /candidate/course-stats -> StatGrid's expected shape ─────────
 function mapCourseStats(courseStats) {
@@ -67,36 +48,25 @@ function mapCourseStats(courseStats) {
   ];
 }
 
-// ─── Map academicDetails.courses -> CompletedCourses' expected shape ───
-// A course counts as "completed" when its end_date has passed.
-//
-// NOTE: field names below (title/professor/grade/certificateUrl) are
-// GUESSES — candidate-academics's actual shape hasn't been confirmed for
-// anything beyond starting_date/end_date. Once you share a real response,
-// swap the right-hand side of each field to match. Until then this will
-// likely render "-" / blank for title, professor, grade, and no working
-// certificate download link.
-function computeCompletedCourses(academicDetails) {
+// ─── Map academicDetails.courses -> course panel rows ─────────────────
+function mapCourseDetails(academicDetails) {
   const courses = academicDetails?.courses ?? [];
-  const now = new Date();
 
-  return courses
-    .filter((c) => c.end_date && new Date(c.end_date) < now)
-    .map((c, idx) => ({
-      id: c.course_id ?? c.id ?? `completed-course-${idx}`,
-      icon: "book", // TODO: swap once we know if backend sends an icon/category field
-      iconBg: "#E2F4EE",
-      iconColor: "#0D6E50",
-      title: c.course_name ?? c.title ?? "-",
-      completedDate: new Date(c.end_date).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
-      professor: c.professor_name ?? c.instructor_name ?? "-",
-      grade: c.grade ?? c.course_grade ?? "-",
-      certificateUrl: c.certificate_url ?? c.certificate_link ?? null,
-    }));
+  return courses.map((c, idx) => ({
+    id: c.course_id ?? c.id ?? `completed-course-${idx}`,
+    icon: "book", // TODO: swap once we know if backend sends an icon/category field
+    iconBg: "#E2F4EE",
+    iconColor: "#0D6E50",
+    title: c.title ?? c.course ?? "-",
+    courseName: c.course ?? "-",
+    enrolledDate: c.enrolled_date ?? null,
+    startingDate: c.starting_date ?? null,
+    company: c.company ?? "-",
+    location: c.location ?? "-",
+    endDate: c.end_date ?? null,
+    trainer: c.trainer_name ?? "-",
+    description: c.description ?? "",
+  }));
 }
 
 export default function MyCourses() {
@@ -137,10 +107,7 @@ export default function MyCourses() {
   }, []);
 
   const stats = mapCourseStats(courseStats);
-  const completed = computeCompletedCourses(academicDetails);
-  const academicCourses = mapAcademicCourses(academicDetails);
-
-  const courses = academicCourses;
+  const courseDetails = mapCourseDetails(academicDetails);
   const orgLogoSrc = orgLogo;
 
   if (error) {
@@ -183,12 +150,11 @@ export default function MyCourses() {
               <p>Loading courses…</p>
             ) : (
               <CompletedCourses
-                courses={completed}
+                courses={courseDetails}
                 onViewAll={() => navigate("/progress/certificates")}
               />
             )}
           </div>
-          {!loading && <CourseList cards={courses} search={search} />}
         </main>
       </div>
     </div>

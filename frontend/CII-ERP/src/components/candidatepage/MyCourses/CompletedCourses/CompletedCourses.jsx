@@ -11,9 +11,19 @@
 //                       derived from /candidate/candidate-academics.
 //   onViewAll {func}  – optional handler for the "view all" link
 
-import Icon from '../../shared/Icon/Icon';
-import './CompletedCourses.css';
+import Icon from "../../shared/Icon/Icon";
+import "./CompletedCourses.css";
 
+function formatDate(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
 
 function CompletedRow({ course }) {
   return (
@@ -27,21 +37,18 @@ function CompletedRow({ course }) {
 
       <div className="completed-courses__info">
         <div className="completed-courses__name">{course.title}</div>
+        <div className="completed-courses__course-name">
+          {course.courseName}
+        </div>
         <div className="completed-courses__meta">
-          completed {course.completedDate} &middot; {course.professor}
+          {course.company} &middot; {course.trainer} &middot; {course.location}
+        </div>
+        <div className="completed-courses__dates">
+          Enrolled {formatDate(course.enrolledDate)} &middot; Starts{" "}
+          {formatDate(course.startingDate)} &middot; Ends{" "}
+          {formatDate(course.endDate)}
         </div>
       </div>
-
-      <span className="completed-courses__grade">{course.grade} Grade</span>
-
-      <a
-        className="completed-courses__download"
-        href={course.certificateUrl || '#'}
-        aria-label={`Download certificate for ${course.title}`}
-        onClick={e => { if (!course.certificateUrl) e.preventDefault(); }}
-      >
-        <Icon name="download" size={15} color="#003C7E" />
-      </a>
     </li>
   );
 }
@@ -67,7 +74,7 @@ export default function CompletedCourses({ courses = [], onViewAll }) {
         </p>
       ) : (
         <ul className="completed-courses__list">
-          {courses.map(course => (
+          {courses.map((course) => (
             <CompletedRow key={course.id} course={course} />
           ))}
         </ul>
