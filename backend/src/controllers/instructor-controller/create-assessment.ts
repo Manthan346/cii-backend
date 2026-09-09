@@ -231,6 +231,42 @@ export const createAssessment = asyncHandler(
 
         const [year, month, day] = dateParts;
 
+        const selectedDate = new Date(
+            Date.UTC(
+                year,
+                month - 1,
+                day
+            )
+        );
+
+        if (
+            selectedDate.getUTCFullYear() !== year ||
+            selectedDate.getUTCMonth() !== month - 1 ||
+            selectedDate.getUTCDate() !== day
+        ) {
+            throw new ApiError(
+                400,
+                "Invalid assessment date."
+            );
+        }
+
+        const now = new Date();
+
+        const today = new Date(
+            Date.UTC(
+                now.getUTCFullYear(),
+                now.getUTCMonth(),
+                now.getUTCDate()
+            )
+        );
+
+        if (selectedDate < today) {
+            throw new ApiError(
+                400,
+                "Assessment date cannot be in the past."
+            );
+        }
+
         /*
          * Store the next calendar date.
          *
