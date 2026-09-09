@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import logo from "../../assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../../../api/api"; // adjust path to match your actual file location
+import Toast from "../adminpage/shared/Toast/Toast";
 
 // ---------------------------------------------------------------------------
 // Display labels — edit these freely. The KEY (left side) must exactly match
@@ -187,7 +188,7 @@ function LoginPage() {
   const [center, setCenter] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState({ message: "", tone: "danger" });
   const [loading, setLoading] = useState(false);
 
   const [roles, setRoles] = useState([]);
@@ -218,10 +219,10 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
     if (!email || !password || !role || !center) {
-      setError("Please fill in email, password, role, and center.");
+      const message = "Please fill in email, password, role, and center.";
+      setToast({ message, tone: "danger" });
       return;
     }
 
@@ -242,32 +243,36 @@ function LoginPage() {
         JSON.stringify({ userDetails, roleDetails }),
       );
 
+      setToast({ message: "Signed in successfully.", tone: "success" });
+
       // route based on the role returned by the backend, not just the
       // dropdown selection — this is the value the server actually validated
-      switch (userDetails.role) {
-        case "instructor":
-          navigate("/trainer/dashboard"); // match your actual trainer dashboard route
-          break;
-        case "candidate":
-          navigate("/my-dashboard");
-          break;
-        case "admin":
-        case "super-admin":
-          navigate("/admin/dashboard");
-          break;
-        case "hr":
-          navigate("/recruiter/dashboard");
-          break;
-        case "mobilizer":
-          navigate("/mobilizer/dashboard");
-          break;
-        default:
-          navigate("/my-dashboard");
-      }
+      setTimeout(() => {
+        switch (userDetails.role) {
+          case "instructor":
+            navigate("/trainer/dashboard"); // match your actual trainer dashboard route
+            break;
+          case "candidate":
+            navigate("/my-dashboard");
+            break;
+          case "admin":
+          case "super-admin":
+            navigate("/admin/dashboard");
+            break;
+          case "hr":
+            navigate("/recruiter/dashboard");
+            break;
+          case "mobilizer":
+            navigate("/mobilizer/dashboard");
+            break;
+          default:
+            navigate("/my-dashboard");
+        }
+      }, 800);
     } catch (err) {
       const msg =
         err.response?.data?.message || "Invalid credentials. Please try again.";
-      setError(msg);
+      setToast({ message: msg, tone: "danger" });
     } finally {
       setLoading(false);
     }
@@ -275,6 +280,11 @@ function LoginPage() {
 
   return (
     <div className="lp-container">
+      <Toast
+        message={toast.message}
+        tone={toast.tone}
+        onDismiss={() => setToast({ message: "", tone: "danger" })}
+      />
       <div className="lp-left">
         <div className="lp-left-inner"></div>
       </div>
@@ -384,18 +394,6 @@ function LoginPage() {
                 Forgot password?
               </a>
             </div>
-
-            {error && (
-              <p
-                style={{
-                  color: "#dc2626",
-                  fontSize: "13px",
-                  margin: "4px 0 0",
-                }}
-              >
-                {error}
-              </p>
-            )}
 
             <button type="submit" className="lp-submit-btn" disabled={loading}>
               {loading ? "Signing in..." : "Sign In"}
