@@ -20,6 +20,7 @@ import dotenv from 'dotenv'
 import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
 import jobRouter from "./src/routes/job-portal/job-portal-route";
+import "./src/jobs/notificationsCleanupJob"
 
 const app = Express();
 const port = 3000;
