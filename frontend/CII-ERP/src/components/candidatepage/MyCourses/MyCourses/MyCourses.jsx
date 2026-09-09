@@ -1,68 +1,57 @@
 // MyCourses.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
 import { StatGrid } from "../StatCard/StatCard";
 import CourseList from "../CourseList/CourseList";
 import CompletedCourses from "../CompletedCourses/CompletedCourses";
-import UpSkillActivities from "../UpSkillActivities/UpSkillActivities";
-import SuggestedCourses from "../SuggestedCourses/SuggestedCourses";
 
 import API from "../../../../../api/api";
 
-// Available Courses (courseCards), Upskill Activities, and Suggested
-// courses stay static — left untouched per request. Completed courses is
-// now wired to real data below.
-import {
-  courseCards,
-  upSkillActivities,
-  suggestedCourses,
-} from "../../../../data/myCoursesData";
 import orgLogo from "../../../../assets/Logo.png";
 
 import "./MyCourses.css";
 
-// ─── Derive stat counts from real academic data ────────────────────────
-// candidate-academics doesn't return enrollment_status, so status is
-// inferred from starting_date / end_date compared to today.
-function computeStats(academicDetails) {
-  const courses = academicDetails?.courses ?? [];
-  const now = new Date();
+function mapAcademicCourses(academicDetails) {
+  return (academicDetails?.courses ?? []).map((course, index) => ({
+    id: course.course_id ?? course.id ?? `academic-course-${index}`,
+    title: course.title ?? course.course ?? "Course",
+    tag: course.course_type ?? "ACADEMIC",
+    tagColor: "#E6EEF8",
+    tagTextColor: "#003C7E",
+    company: course.company ?? "-",
+    mode: course.mode,
+    location: course.location,
+    startDate: course.starting_date,
+    endDate: course.end_date,
+    trainer: course.trainer_name,
+    desc: course.description ?? "Course details are available here.",
+    logoSrc: null,
+  }));
+}
 
-  let inProgress = 0;
-  let completed = 0;
-
-  courses.forEach((c) => {
-    const start = c.starting_date ? new Date(c.starting_date) : null;
-    const end = c.end_date ? new Date(c.end_date) : null;
-
-    if (end && end < now) {
-      completed += 1;
-    } else if (start && start <= now && (!end || end >= now)) {
-      inProgress += 1;
-    }
-    // else: upcoming/enrolled — not counted in either bucket
-  });
-
+// ─── Map /candidate/course-stats -> StatGrid's expected shape ─────────
+function mapCourseStats(courseStats) {
   return [
     {
       label: "Total enrolled courses",
-      value: String(courses.length),
+      value: String(courseStats?.total_enrolled_courses ?? 0),
       iconBg: "#E6EEF8",
       iconColor: "#003C7E",
       icon: "courses",
     },
     {
       label: "In progress courses",
-      value: String(inProgress),
+      value: String(courseStats?.in_progress_courses ?? 0),
       iconBg: "#FFF5E0",
       iconColor: "#B8892A",
       icon: "dashboard",
     },
     {
       label: "Completed course",
-      value: String(completed),
+      value: String(courseStats?.completed_courses ?? 0),
       iconBg: "#E2F4EE",
       iconColor: "#0D6E50",
       icon: "certificates",
@@ -111,10 +100,12 @@ function computeCompletedCourses(academicDetails) {
 }
 
 export default function MyCourses() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [academicDetails, setAcademicDetails] = useState(null);
+  const [courseStats, setCourseStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -124,9 +115,13 @@ export default function MyCourses() {
     async function loadAcademics() {
       try {
         setLoading(true);
-        const res = await API.get("/candidate/candidate-academics");
+        const [academicsRes, statsRes] = await Promise.all([
+          API.get("/candidate/candidate-academics"),
+          API.get("/candidate/course-stats"),
+        ]);
         if (!cancelled) {
-          setAcademicDetails(res.data?.data?.academicDetails ?? null);
+          setAcademicDetails(academicsRes.data?.data?.academicDetails ?? null);
+          setCourseStats(statsRes.data?.data?.courseStats ?? null);
         }
       } catch (err) {
         if (!cancelled) setError(err);
@@ -141,18 +136,12 @@ export default function MyCourses() {
     };
   }, []);
 
-  const stats = computeStats(academicDetails);
+  const stats = mapCourseStats(courseStats);
   const completed = computeCompletedCourses(academicDetails);
+  const academicCourses = mapAcademicCourses(academicDetails);
 
-  // Untouched — static as before
-  const courses = courseCards;
-  const upSkill = upSkillActivities;
-  const suggested = suggestedCourses;
+  const courses = academicCourses;
   const orgLogoSrc = orgLogo;
-
-  const handleEnroll = (courseId) => {
-    console.log("enroll requested for course", courseId);
-  };
 
   if (error) {
     return (
@@ -193,14 +182,13 @@ export default function MyCourses() {
             {loading ? (
               <p>Loading courses…</p>
             ) : (
-              <CompletedCourses courses={completed} />
+              <CompletedCourses
+                courses={completed}
+                onViewAll={() => navigate("/progress/certificates")}
+              />
             )}
-            {/* <UpSkillActivities activities={upSkill} /> */}
           </div>
-          {/* 
-          <SuggestedCourses suggestions={suggested} onEnroll={handleEnroll} />
-
-          <CourseList cards={courses} search={search} /> */}
+          {!loading && <CourseList cards={courses} search={search} />}
         </main>
       </div>
     </div>
