@@ -33,7 +33,7 @@ app.use(cookieParser());
 // ADD THIS BLOCK
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend's exact dev URL (Vite default port)
+    origin: process.env.FRONTEND_URL, // your frontend's exact dev URL (Vite default port)
     credentials: true,
   }),
 );

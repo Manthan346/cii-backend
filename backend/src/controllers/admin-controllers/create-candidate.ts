@@ -85,6 +85,10 @@ export const adminCreateCandidate = asyncHandler(
 
             const existingUser = existingCandidate?.user_login;
 
+            if(existingUser?.user_email){
+                throw new ApiError(400, "email already exists")
+            }
+
             let candidateUserId: string;
             let candidateId: string;
             let candidateUniqueId: string;
