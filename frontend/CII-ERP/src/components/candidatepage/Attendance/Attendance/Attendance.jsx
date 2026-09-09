@@ -21,7 +21,7 @@ import Topbar from "../../layout/Topbar/Topbar";
 import { StatGrid } from "../../shared/StatCard/StatCard";
 import AttendanceBanner from "../AttendanceBanner/AttendanceBanner";
 import AttendanceCalendar from "../AttendanceCalendar/AttendanceCalendar";
-import AttendanceCourseFilter from "../AttendanceCourseFilter/AttendanceCourseFilter";
+import AttendanceCourseFilter from "../Attendancecoursefilter/AttendanceCourseFilter";
 import CourseAttendanceList from "../CourseAttendanceList/CourseAttendanceList";
 import RecentAttendanceLog from "../RecentAttendanceLog/RecentAttendanceLog";
 import AttendanceOverview from "../AttendanceOverview/AttendanceOverview";
