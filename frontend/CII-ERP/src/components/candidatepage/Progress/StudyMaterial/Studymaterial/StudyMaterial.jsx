@@ -8,7 +8,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Sidebar from '../../../layout/Sidebar/Sidebar';
 import Topbar from '../../../layout/Topbar/Topbar';
-import StudyMaterialList from '../StudyMaterialList/StudyMaterialList';
+import StudyMaterialList from '../Studymateriallist/StudyMaterialList';
 import { getAllStudyMaterials, getStudyMaterialGroups } from '../../../../../services/Studymaterialservice';
 import './StudyMaterial.css';
 
