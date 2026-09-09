@@ -86,3 +86,20 @@
   color: var(--color-text-secondary);
   font-size: 14px;
 }
+
+.attendance-management-sessions-table-eye-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: #ffffff;
+  color: var(--color-text-secondary, #4b5164);
+  cursor: pointer;
+}
+
+.attendance-management-sessions-table-eye-btn:hover {
+  background: var(--color-page-bg, #f7f8fb);
+}

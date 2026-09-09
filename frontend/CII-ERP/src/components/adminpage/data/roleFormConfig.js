@@ -27,6 +27,21 @@ export const BLOOD_GROUP_OPTIONS = [
   "AB-",
 ].map((bg) => ({ value: bg, label: bg }));
 
+// Today minus 18 years, formatted as YYYY-MM-DD — used as the native
+// date picker's `max` so admins can't even select a disqualifying date,
+// and re-checked in validateField below in case a date is typed directly.
+function getMaxDobForAge18() {
+  const today = new Date();
+  const eighteenYearsAgo = new Date(
+    today.getFullYear() - 18,
+    today.getMonth(),
+    today.getDate(),
+  );
+  return eighteenYearsAgo.toISOString().slice(0, 10);
+}
+
+export const MAX_DOB_AGE_18 = getMaxDobForAge18();
+
 // Field "type" drives how <FormField/> renders the input:
 // text | email | tel | date | number | select | password
 //
@@ -88,7 +103,12 @@ export const ROLE_CONFIG = {
         options: GENDER_OPTIONS,
         placeholder: "Select gender",
       },
-      { name: "date_of_birth", label: "Date of Birth", type: "date" },
+      {
+        name: "date_of_birth",
+        label: "Date of Birth",
+        type: "date",
+        max: MAX_DOB_AGE_18,
+      },
       {
         name: "blood_group",
         label: "Blood Group",
@@ -165,7 +185,12 @@ export const ROLE_CONFIG = {
         options: GENDER_OPTIONS,
         placeholder: "Select gender",
       },
-      { name: "date_of_birth", label: "Date of Birth", type: "date" },
+      {
+        name: "date_of_birth",
+        label: "Date of Birth",
+        type: "date",
+        max: MAX_DOB_AGE_18,
+      },
       {
         name: "specialization",
         label: "Specialization",
@@ -319,6 +344,9 @@ export function validateField(field, value) {
   }
   if (field.type === "number" && Number.isNaN(Number(trimmed))) {
     return `${field.label} must be a number`;
+  }
+  if (field.name === "date_of_birth" && trimmed > MAX_DOB_AGE_18) {
+    return "Must be at least 18 years old";
   }
   return "";
 }

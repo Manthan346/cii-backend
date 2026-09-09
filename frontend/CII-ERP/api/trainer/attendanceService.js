@@ -57,3 +57,15 @@ export async function fetchAttendanceSessionDetails(attendanceSessionId) {
   );
   return res.data.data; // { attendanceTaken, session, attendanceRecords }
 }
+
+/**
+ * -> fetchSessionAttendanceHistory (GET /instructor/attendance-sessions/:id/history)
+ * Powers the SessionAttendancePopup eye-icon modal — per-candidate
+ * present/absent/late records for one session, plus a summary count.
+ */
+export async function fetchSessionAttendanceHistory(attendanceSessionId) {
+  const res = await api.get(
+    `/instructor/attendance-sessions/${attendanceSessionId}/history`,
+  );
+  return res.data.data; // { session, summary: { total, present, absent, late }, records }
+}

@@ -1,22 +1,21 @@
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Eye } from "lucide-react";
 import "./SessionsTable.css";
 
 /**
  * SessionsTable
  *
- * "Today's Attendance" table for the Attendance tracker's default
- * (list) view. Each row is one SESSION, not one candidate - matches
- * the reference "Attendance tracker" screen.
- *
- * Behavior:
- *  - Clicking the "Mark attendance" pill opens the Mark Attendance
- *    modal for that session (stopPropagation so it doesn't also
- *    trigger the row click below).
- *  - Clicking anywhere else on a row opens the read-only session
- *    detail view. The detail view loads the session's persisted
- *    attendance records, including after a page reload.
+ * Status column now holds only the eye icon, which opens
+ * SessionAttendancePopup (candidate-level present/absent/late) via
+ * onViewAttendance. "Mark attendance" has moved to its own trailing,
+ * unlabeled column. Row click still opens the in-place SessionDetailView
+ * via onViewDetail, unchanged from before.
  */
-export default function SessionsTable({ sessions = [], onMark, onViewDetail }) {
+export default function SessionsTable({
+  sessions = [],
+  onMark,
+  onViewDetail,
+  onViewAttendance,
+}) {
   return (
     <div className={"attendance-management-sessions-table-table-wrap"}>
       <table className={"attendance-management-sessions-table-table"}>
@@ -28,6 +27,7 @@ export default function SessionsTable({ sessions = [], onMark, onViewDetail }) {
             <th>Time</th>
             <th>Class room</th>
             <th>Status</th>
+            <th aria-hidden="true" />
           </tr>
         </thead>
         <tbody>
@@ -74,6 +74,19 @@ export default function SessionsTable({ sessions = [], onMark, onViewDetail }) {
                 <td>
                   <button
                     type="button"
+                    className={"attendance-management-sessions-table-eye-btn"}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onViewAttendance?.(session);
+                    }}
+                    aria-label={`View attendance for session ${index + 1}`}
+                  >
+                    <Eye size={16} />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    type="button"
                     className={"attendance-management-sessions-table-mark-btn"}
                     onClick={(event) => {
                       event.stopPropagation();
@@ -91,7 +104,7 @@ export default function SessionsTable({ sessions = [], onMark, onViewDetail }) {
           {sessions.length === 0 && (
             <tr>
               <td
-                colSpan={6}
+                colSpan={7}
                 className={"attendance-management-sessions-table-empty"}
               >
                 No sessions match your filters.

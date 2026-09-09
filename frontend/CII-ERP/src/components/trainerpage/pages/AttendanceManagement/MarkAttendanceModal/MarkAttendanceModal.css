@@ -105,21 +105,24 @@
 .attendance-management-mark-attendance-modal-count-present {
   border-color: var(--color-green);
 }
-.attendance-management-mark-attendance-modal-count-present .attendance-management-mark-attendance-modal-count-label {
+.attendance-management-mark-attendance-modal-count-present
+  .attendance-management-mark-attendance-modal-count-label {
   color: var(--color-green);
 }
 
 .attendance-management-mark-attendance-modal-count-absent {
   border-color: #dc2626;
 }
-.attendance-management-mark-attendance-modal-count-absent .attendance-management-mark-attendance-modal-count-label {
+.attendance-management-mark-attendance-modal-count-absent
+  .attendance-management-mark-attendance-modal-count-label {
   color: #dc2626;
 }
 
 .attendance-management-mark-attendance-modal-count-late {
   border-color: var(--color-orange);
 }
-.attendance-management-mark-attendance-modal-count-late .attendance-management-mark-attendance-modal-count-label {
+.attendance-management-mark-attendance-modal-count-late
+  .attendance-management-mark-attendance-modal-count-label {
   color: var(--color-orange);
 }
 
@@ -215,6 +218,15 @@
   justify-content: flex-end;
   gap: 12px;
   margin-top: 20px;
+}
+
+.attendance-management-mark-attendance-modal-count-unmarked {
+  border-color: #d1d5db;
+}
+
+.attendance-management-mark-attendance-modal-count-unmarked
+  .attendance-management-mark-attendance-modal-count-label {
+  color: #6b7280;
 }
 
 @media (max-width: 560px) {
