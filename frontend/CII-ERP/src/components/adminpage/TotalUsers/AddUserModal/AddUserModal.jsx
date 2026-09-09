@@ -545,6 +545,7 @@ const FormField = ({
           value={value ?? ""}
           placeholder={field.placeholder}
           min={field.min}
+          max={field.max}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
         />

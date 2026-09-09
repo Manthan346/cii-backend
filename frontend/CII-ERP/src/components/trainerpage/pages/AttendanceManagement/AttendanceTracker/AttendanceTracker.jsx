@@ -6,11 +6,13 @@ import SessionDetailView from "../SessionDetailView/SessionDetailView";
 import MarkAttendanceModal from "../MarkAttendanceModal/MarkAttendanceModal";
 import ImportSessionsModal from "../ImportSessionsModal/ImportSessionsModal";
 import { attendanceMeta } from "../../../data";
+import SessionAttendancePopup from "../SessionAttendancePopup/SessionAttendancePopup";
 import {
   fetchAttendanceSessionDetails,
   fetchAttendanceSessions,
   fetchActiveStudentsForSession,
   markCandidateAttendance,
+  fetchSessionAttendanceHistory,
 } from "../../../../../../api/trainer/attendanceService";
 import { fetchCoursesAndBatches } from "../../../../../../api/trainer/candidateService";
 import "./AttendanceTracker.css";
@@ -45,12 +47,33 @@ function mapSession(session) {
 
 // Maps one entry from getActiveStudentsForSession's `students` array
 // to the { candidateId, name } shape MarkAttendanceModal expects.
-// candidateId here is the real candidate_id UUID, so it's safe to
-// send straight into addCandidateAttendance on save.
-function mapRosterStudent(student) {
+//
+// candidateId is read defensively from every location it's plausibly
+// nested at, since checking only student.candidate_id directly may
+// silently come back undefined for every student if the real API
+// actually nests it under candidates_details (the way name is) -
+// which would make every row in MarkAttendanceModal collapse onto
+// one shared "undefined" key, so clicking Absent for one person
+// appears to change everyone.
+function mapRosterStudent(student, index) {
   const details = student.candidates_details ?? {};
+
+  const candidateId =
+    student.candidate_id ??
+    details.candidate_id ??
+    student.candidateId ??
+    details.candidateId ??
+    student.id;
+
+  if (!candidateId) {
+    console.error(
+      "mapRosterStudent: no candidate id found on roster entry",
+      student,
+    );
+  }
+
   return {
-    candidateId: student.candidate_id,
+    candidateId: candidateId ?? `missing-id-${index}`,
     name: `${details.candidate_first_name ?? ""} ${
       details.candidate_last_name ?? ""
     }`.trim(),
@@ -83,6 +106,15 @@ export default function AttendanceTracker() {
 
   const [viewingSessionId, setViewingSessionId] = useState(null);
   const [showToast, setShowToast] = useState(false);
+
+  const [attendancePopup, setAttendancePopup] = useState({
+    isOpen: false,
+    session: null,
+    summary: null,
+    records: [],
+    loading: false,
+    error: "",
+  });
 
   const [viewedAttendance, setViewedAttendance] = useState([]);
   const [viewedAttendanceLoading, setViewedAttendanceLoading] = useState(false);
@@ -136,15 +168,14 @@ export default function AttendanceTracker() {
           page: currentPage,
           limit: 6,
           search: searchTerm,
-          batchId:
-            appliedFilters.batch.toLowerCase().startsWith("all")
-              ? undefined
-              : (batchRecords.find(
-                  (item) => item.batch_code === appliedFilters.batch,
-                )?.batchId ??
-                batchRecords.find(
-                  (item) => item.batch_code === appliedFilters.batch,
-                )?.batch_id),
+          batchId: appliedFilters.batch.toLowerCase().startsWith("all")
+            ? undefined
+            : (batchRecords.find(
+                (item) => item.batch_code === appliedFilters.batch,
+              )?.batchId ??
+              batchRecords.find(
+                (item) => item.batch_code === appliedFilters.batch,
+              )?.batch_id),
           sessionDate: appliedFilters.date || undefined,
         });
         if (cancelled) return;
@@ -262,6 +293,45 @@ export default function AttendanceTracker() {
     }
   };
 
+  const handleViewAttendance = async (session) => {
+    setAttendancePopup({
+      isOpen: true,
+      session: null,
+      summary: null,
+      records: [],
+      loading: true,
+      error: "",
+    });
+
+    try {
+      const data = await fetchSessionAttendanceHistory(session.id);
+      setAttendancePopup({
+        isOpen: true,
+        session: data.session,
+        summary: data.summary,
+        records: data.records ?? [],
+        loading: false,
+        error: "",
+      });
+    } catch (err) {
+      setAttendancePopup({
+        isOpen: true,
+        session: null,
+        summary: null,
+        records: [],
+        loading: false,
+        error:
+          err?.response?.data?.message ||
+          err?.message ||
+          "Unable to load attendance for this session.",
+      });
+    }
+  };
+
+  const handleCloseAttendancePopup = () => {
+    setAttendancePopup((prev) => ({ ...prev, isOpen: false }));
+  };
+
   return (
     <div className={"attendance-management-attendance-tracker-content"}>
       {showToast && (
@@ -334,7 +404,7 @@ export default function AttendanceTracker() {
         <div
           className={"attendance-management-attendance-tracker-table-header"}
         >
-          <h2
+          {/* <h2
             className={"attendance-management-attendance-tracker-table-title"}
           >
             {viewingSession ? (
@@ -342,16 +412,9 @@ export default function AttendanceTracker() {
             ) : (
               <>
                 Today's Attendance{" "}
-                <span
-                  className={
-                    "attendance-management-attendance-tracker-table-date"
-                  }
-                >
-                  {attendanceMeta.attendanceDate}
-                </span>
               </>
             )}
-          </h2>
+          </h2> */}
 
           {!viewingSession && (
             <div
@@ -401,6 +464,7 @@ export default function AttendanceTracker() {
               sessions={filteredSessions}
               onMark={setMarkingSession}
               onViewDetail={(session) => setViewingSessionId(session.id)}
+              onViewAttendance={handleViewAttendance}
             />
 
             <Pagination
@@ -414,6 +478,17 @@ export default function AttendanceTracker() {
           </>
         )}
       </section>
+
+      <SessionAttendancePopup
+        isOpen={attendancePopup.isOpen}
+        onClose={handleCloseAttendancePopup}
+        session={attendancePopup.session}
+        summary={attendancePopup.summary}
+        records={attendancePopup.records}
+        loading={attendancePopup.loading}
+        error={attendancePopup.error}
+      />
+
       <ImportSessionsModal
         isOpen={importOpen}
         onClose={() => setImportOpen(false)}

@@ -67,7 +67,7 @@
 }
 
 .attendance-management-attendance-tracker-header-actions {
-  display: flex;
+  display: right;
   gap: 10px;
   flex-wrap: wrap;
 }

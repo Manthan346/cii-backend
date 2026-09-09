@@ -1,22 +1,24 @@
-import { useMemo, useState } from 'react';
-import { X, UserCircle2 } from 'lucide-react';
-import { Button } from '../../../shared';
-import './MarkAttendanceModal.css';
+import { useMemo, useState } from "react";
+import { X, UserCircle2 } from "lucide-react";
+import { Button } from "../../../shared";
+import "./MarkAttendanceModal.css";
 
-const STATUSES = ['Present', 'Absent', 'Late'];
+const STATUSES = ["Present", "Absent", "Late"];
 
 /**
  * MarkAttendanceModal
  *
  * Popup opened by a session row's "Mark attendance" pill. Lists every
  * student on that session's batch roster with a 3-way Present /
- * Absent / Late toggle (everyone defaults to Present so the trainer
- * only has to click to flip exceptions). Live counts at the top
- * update as toggles change.
+ * Absent / Late toggle.
  *
- * Fires onSave(session, attendanceList) with one entry per student so
- * the parent (AttendanceTracker) can mark the session done and store
- * the results for the read-only detail view.
+ * No default status is shown — a student only displays a highlighted
+ * button once they have an actual status, either seeded from a prior
+ * mark-attendance pass on this session (session.attendance) or from
+ * clicking a button just now. Untouched, never-before-marked students
+ * stay visually unmarked and are excluded entirely from the payload
+ * sent on Save, so the backend never overwrites/creates a record for
+ * someone the trainer didn't actually mark.
  */
 export default function MarkAttendanceModal({
   session,
@@ -24,21 +26,25 @@ export default function MarkAttendanceModal({
   onCancel,
   onSave,
 }) {
-  // Map of candidateId -> "Present" | "Absent" | "Late". Missing
-  // entries default to Present, so nothing needs pre-seeding here -
-  // unless this session was already marked before, in which case we
-  // seed from its saved attendance so re-opening it shows prior state.
+  // Map of candidateId -> "Present" | "Absent" | "Late", seeded only
+  // from this session's previously saved attendance (if any). Students
+  // with no prior record and no click yet simply have no key here.
   const initialStatus = useMemo(() => {
     const map = {};
     (session?.attendance ?? []).forEach((entry) => {
-      map[entry.candidateId] = entry.status;
+      if (entry.status) {
+        map[entry.candidateId] = entry.status;
+      }
     });
     return map;
   }, [session]);
 
   const [statusById, setStatusById] = useState(initialStatus);
 
-  const getStatus = (student) => statusById[student.candidateId] || 'Present';
+  // No fallback — returns undefined for a student with no previous
+  // record and no click yet, which is exactly the "unmarked" state.
+  const getStatus = (student) => statusById[student.candidateId];
+
   const setStatus = (student, status) => {
     setStatusById((prev) => ({
       ...prev,
@@ -47,20 +53,30 @@ export default function MarkAttendanceModal({
   };
 
   const counts = useMemo(() => {
-    const tally = { Present: 0, Absent: 0, Late: 0 };
+    const tally = { Present: 0, Absent: 0, Late: 0, Unmarked: 0 };
     roster.forEach((student) => {
-      tally[getStatus(student)] += 1;
+      const status = statusById[student.candidateId];
+      if (status) {
+        tally[status] += 1;
+      } else {
+        tally.Unmarked += 1;
+      }
     });
     return tally;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusById, roster]);
 
   const handleSave = () => {
-    const attendanceList = roster.map((student) => ({
-      candidateId: student.candidateId,
-      name: student.name,
-      status: getStatus(student),
-    }));
+    // Only students with an actual status (previously saved or just
+    // clicked) are sent — untouched, never-marked students are left
+    // out of the payload entirely rather than defaulted to anything.
+    const attendanceList = roster
+      .filter((student) => Boolean(statusById[student.candidateId]))
+      .map((student) => ({
+        candidateId: student.candidateId,
+        name: student.name,
+        status: statusById[student.candidateId],
+      }));
+
     onSave?.(session, attendanceList);
   };
 
@@ -68,50 +84,61 @@ export default function MarkAttendanceModal({
 
   return (
     <div
-      className={'attendance-management-mark-attendance-modal-overlay'}
+      className={"attendance-management-mark-attendance-modal-overlay"}
       role="dialog"
       aria-modal="true"
       aria-label="Mark attendance"
       onClick={onCancel}
     >
       <div
-        className={'attendance-management-mark-attendance-modal-modal'}
+        className={"attendance-management-mark-attendance-modal-modal"}
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
-          className={'attendance-management-mark-attendance-modal-close-btn'}
+          className={"attendance-management-mark-attendance-modal-close-btn"}
           onClick={onCancel}
           aria-label="Close"
         >
           <X size={16} />
         </button>
 
-        <div className={'attendance-management-mark-attendance-modal-header'}>
+        <div className={"attendance-management-mark-attendance-modal-header"}>
           <div>
-            <h2 className={'attendance-management-mark-attendance-modal-title'}>
+            <h2 className={"attendance-management-mark-attendance-modal-title"}>
               {session.title}
             </h2>
-            <p className={'attendance-management-mark-attendance-modal-subtitle'}>
+            <p
+              className={"attendance-management-mark-attendance-modal-subtitle"}
+            >
               {session.subtitle}
             </p>
-            <p className={'attendance-management-mark-attendance-modal-batch'}>
+            <p className={"attendance-management-mark-attendance-modal-batch"}>
               Batch-{session.batch}
             </p>
           </div>
 
-          <div className={'attendance-management-mark-attendance-modal-counts'}>
-            {STATUSES.map((label) => (
+          <div className={"attendance-management-mark-attendance-modal-counts"}>
+            {[...STATUSES, "Unmarked"].map((label) => (
               <div
                 key={label}
-                className={`${'attendance-management-mark-attendance-modal-count-box'} ${
-                  'attendance-management-mark-attendance-modal-count-' + label.toLowerCase()
+                className={`${"attendance-management-mark-attendance-modal-count-box"} ${
+                  "attendance-management-mark-attendance-modal-count-" +
+                  label.toLowerCase()
                 }`}
               >
-                <span className={'attendance-management-mark-attendance-modal-count-label'}>
+                <span
+                  className={
+                    "attendance-management-mark-attendance-modal-count-label"
+                  }
+                >
                   {label}
                 </span>
-                <span className={'attendance-management-mark-attendance-modal-count-value'}>
+                <span
+                  className={
+                    "attendance-management-mark-attendance-modal-count-value"
+                  }
+                >
                   {counts[label]}/{roster.length}
                 </span>
               </div>
@@ -119,26 +146,42 @@ export default function MarkAttendanceModal({
           </div>
         </div>
 
-        <div className={'attendance-management-mark-attendance-modal-student-list'}>
+        <div
+          className={"attendance-management-mark-attendance-modal-student-list"}
+        >
           {roster.map((student) => {
             const status = getStatus(student);
             return (
               <div
                 key={student.candidateId}
-                className={'attendance-management-mark-attendance-modal-student-row'}
+                className={
+                  "attendance-management-mark-attendance-modal-student-row"
+                }
               >
-                <div className={'attendance-management-mark-attendance-modal-student-info'}>
+                <div
+                  className={
+                    "attendance-management-mark-attendance-modal-student-info"
+                  }
+                >
                   <UserCircle2
                     size={22}
-                    className={'attendance-management-mark-attendance-modal-student-avatar'}
+                    className={
+                      "attendance-management-mark-attendance-modal-student-avatar"
+                    }
                   />
-                  <span className={'attendance-management-mark-attendance-modal-student-name'}>
+                  <span
+                    className={
+                      "attendance-management-mark-attendance-modal-student-name"
+                    }
+                  >
                     {student.name}
                   </span>
                 </div>
 
                 <div
-                  className={'attendance-management-mark-attendance-modal-toggle'}
+                  className={
+                    "attendance-management-mark-attendance-modal-toggle"
+                  }
                   role="group"
                   aria-label={`${student.name} attendance`}
                 >
@@ -146,12 +189,13 @@ export default function MarkAttendanceModal({
                     <button
                       key={label}
                       type="button"
-                      className={`${'attendance-management-mark-attendance-modal-toggle-btn'} ${
-                        'attendance-management-mark-attendance-modal-toggle-btn-' + label.toLowerCase()
+                      className={`${"attendance-management-mark-attendance-modal-toggle-btn"} ${
+                        "attendance-management-mark-attendance-modal-toggle-btn-" +
+                        label.toLowerCase()
                       } ${
                         status === label
-                          ? 'attendance-management-mark-attendance-modal-toggle-btn-active'
-                          : ''
+                          ? "attendance-management-mark-attendance-modal-toggle-btn-active"
+                          : ""
                       }`}
                       aria-pressed={status === label}
                       onClick={() => setStatus(student, label)}
@@ -165,13 +209,13 @@ export default function MarkAttendanceModal({
           })}
 
           {roster.length === 0 && (
-            <p className={'attendance-management-mark-attendance-modal-empty'}>
+            <p className={"attendance-management-mark-attendance-modal-empty"}>
               No students found for this batch's roster.
             </p>
           )}
         </div>
 
-        <div className={'attendance-management-mark-attendance-modal-actions'}>
+        <div className={"attendance-management-mark-attendance-modal-actions"}>
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>
