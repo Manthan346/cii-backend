@@ -7,7 +7,7 @@
 // ============================================================================
 
 import React from "react";
-import AvailableAssessmentItem from "../AvailableAssessmentItem/AvailableAssessmentItem";
+import AvailableAssessmentItem from "../Availableassessmentitem/AvailableAssessmentItem";
 import "./AvailableAssessments.css";
 
 const AvailableAssessments = ({ items = [], onAttempt, attemptingId, attemptErrors = {} }) => {
