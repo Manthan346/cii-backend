@@ -47,7 +47,7 @@ const getMobilizerBatchesByCourse = asyncHandler(async (req: Request, res: Respo
   const batchWhere: any = {
     course_id: validCourseId,
     center_id: centerId,
-    end_date: {
+    batch_end_date: {
       gte: today,
     },
   };
