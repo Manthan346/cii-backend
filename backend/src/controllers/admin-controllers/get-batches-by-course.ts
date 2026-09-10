@@ -40,9 +40,15 @@ const getBatchesByCourse = asyncHandler(async (req: adminAuthRequest, res: Respo
   const centerCompanyIds = centerCompanies.map(c => c.company_id);
 
   // Build where clause: batches must belong to the specified course and center
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   const batchWhere: any = {
     course_id: validCourseId,
     center_id: centerId,
+    batch_end_date:{
+      gte:today,
+    }
   };
 
   // Also filter by company if center has companies
