@@ -1,68 +1,38 @@
 // MyCourses.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../../layout/Sidebar/Sidebar";
 import Topbar from "../../layout/Topbar/Topbar";
 import { StatGrid } from "../StatCard/StatCard";
-import CourseList from "../CourseList/CourseList";
 import CompletedCourses from "../CompletedCourses/CompletedCourses";
-import UpSkillActivities from "../UpSkillActivities/UpSkillActivities";
-import SuggestedCourses from "../SuggestedCourses/SuggestedCourses";
 
 import API from "../../../../../api/api";
 
-// Available Courses (courseCards), Upskill Activities, and Suggested
-// courses stay static — left untouched per request. Completed courses is
-// now wired to real data below.
-import {
-  courseCards,
-  upSkillActivities,
-  suggestedCourses,
-} from "../../../../data/myCoursesData";
 import orgLogo from "../../../../assets/Logo.png";
 
 import "./MyCourses.css";
 
-// ─── Derive stat counts from real academic data ────────────────────────
-// candidate-academics doesn't return enrollment_status, so status is
-// inferred from starting_date / end_date compared to today.
-function computeStats(academicDetails) {
-  const courses = academicDetails?.courses ?? [];
-  const now = new Date();
-
-  let inProgress = 0;
-  let completed = 0;
-
-  courses.forEach((c) => {
-    const start = c.starting_date ? new Date(c.starting_date) : null;
-    const end = c.end_date ? new Date(c.end_date) : null;
-
-    if (end && end < now) {
-      completed += 1;
-    } else if (start && start <= now && (!end || end >= now)) {
-      inProgress += 1;
-    }
-    // else: upcoming/enrolled — not counted in either bucket
-  });
-
+// ─── Map /candidate/course-stats -> StatGrid's expected shape ─────────
+function mapCourseStats(courseStats) {
   return [
     {
       label: "Total enrolled courses",
-      value: String(courses.length),
+      value: String(courseStats?.total_enrolled_courses ?? 0),
       iconBg: "#E6EEF8",
       iconColor: "#003C7E",
       icon: "courses",
     },
     {
       label: "In progress courses",
-      value: String(inProgress),
+      value: String(courseStats?.in_progress_courses ?? 0),
       iconBg: "#FFF5E0",
       iconColor: "#B8892A",
       icon: "dashboard",
     },
     {
       label: "Completed course",
-      value: String(completed),
+      value: String(courseStats?.completed_courses ?? 0),
       iconBg: "#E2F4EE",
       iconColor: "#0D6E50",
       icon: "certificates",
@@ -78,43 +48,34 @@ function computeStats(academicDetails) {
   ];
 }
 
-// ─── Map academicDetails.courses -> CompletedCourses' expected shape ───
-// A course counts as "completed" when its end_date has passed.
-//
-// NOTE: field names below (title/professor/grade/certificateUrl) are
-// GUESSES — candidate-academics's actual shape hasn't been confirmed for
-// anything beyond starting_date/end_date. Once you share a real response,
-// swap the right-hand side of each field to match. Until then this will
-// likely render "-" / blank for title, professor, grade, and no working
-// certificate download link.
-function computeCompletedCourses(academicDetails) {
+// ─── Map academicDetails.courses -> course panel rows ─────────────────
+function mapCourseDetails(academicDetails) {
   const courses = academicDetails?.courses ?? [];
-  const now = new Date();
 
-  return courses
-    .filter((c) => c.end_date && new Date(c.end_date) < now)
-    .map((c, idx) => ({
-      id: c.course_id ?? c.id ?? `completed-course-${idx}`,
-      icon: "book", // TODO: swap once we know if backend sends an icon/category field
-      iconBg: "#E2F4EE",
-      iconColor: "#0D6E50",
-      title: c.course_name ?? c.title ?? "-",
-      completedDate: new Date(c.end_date).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
-      professor: c.professor_name ?? c.instructor_name ?? "-",
-      grade: c.grade ?? c.course_grade ?? "-",
-      certificateUrl: c.certificate_url ?? c.certificate_link ?? null,
-    }));
+  return courses.map((c, idx) => ({
+    id: c.course_id ?? c.id ?? `completed-course-${idx}`,
+    icon: "book", // TODO: swap once we know if backend sends an icon/category field
+    iconBg: "#E2F4EE",
+    iconColor: "#0D6E50",
+    title: c.title ?? c.course ?? "-",
+    courseName: c.course ?? "-",
+    enrolledDate: c.enrolled_date ?? null,
+    startingDate: c.starting_date ?? null,
+    company: c.company ?? "-",
+    location: c.location ?? "-",
+    endDate: c.end_date ?? null,
+    trainer: c.trainer_name ?? "-",
+    description: c.description ?? "",
+  }));
 }
 
 export default function MyCourses() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [academicDetails, setAcademicDetails] = useState(null);
+  const [courseStats, setCourseStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -124,9 +85,13 @@ export default function MyCourses() {
     async function loadAcademics() {
       try {
         setLoading(true);
-        const res = await API.get("/candidate/candidate-academics");
+        const [academicsRes, statsRes] = await Promise.all([
+          API.get("/candidate/candidate-academics"),
+          API.get("/candidate/course-stats"),
+        ]);
         if (!cancelled) {
-          setAcademicDetails(res.data?.data?.academicDetails ?? null);
+          setAcademicDetails(academicsRes.data?.data?.academicDetails ?? null);
+          setCourseStats(statsRes.data?.data?.courseStats ?? null);
         }
       } catch (err) {
         if (!cancelled) setError(err);
@@ -141,18 +106,9 @@ export default function MyCourses() {
     };
   }, []);
 
-  const stats = computeStats(academicDetails);
-  const completed = computeCompletedCourses(academicDetails);
-
-  // Untouched — static as before
-  const courses = courseCards;
-  const upSkill = upSkillActivities;
-  const suggested = suggestedCourses;
+  const stats = mapCourseStats(courseStats);
+  const courseDetails = mapCourseDetails(academicDetails);
   const orgLogoSrc = orgLogo;
-
-  const handleEnroll = (courseId) => {
-    console.log("enroll requested for course", courseId);
-  };
 
   if (error) {
     return (
@@ -193,14 +149,12 @@ export default function MyCourses() {
             {loading ? (
               <p>Loading courses…</p>
             ) : (
-              <CompletedCourses courses={completed} />
+              <CompletedCourses
+                courses={courseDetails}
+                onViewAll={() => navigate("/progress/certificates")}
+              />
             )}
-            {/* <UpSkillActivities activities={upSkill} /> */}
           </div>
-          {/* 
-          <SuggestedCourses suggestions={suggested} onEnroll={handleEnroll} />
-
-          <CourseList cards={courses} search={search} /> */}
         </main>
       </div>
     </div>

@@ -13,7 +13,7 @@ import ProfileTabs from "../ProfileTabs/ProfileTabs";
 import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import AcademicDetail from "../AcademicDetail/AcademicDetail";
 import Document from "../Document/Document";
-import GuardianDetails from "../GuardianDetails/GuardianDetails";
+import GuardianDetails from "../Guardiandetails/GuardianDetails";
 import EditProfileModal from "../EditProfile/EditProfileModal";
 
 import {

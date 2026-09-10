@@ -35,7 +35,7 @@ export default function Home() {
             </h1>
             <div className="hero-overlay-stats">
               <div className="hero-stat">
-                <span className="hero-stat-num">36+</span>
+                <span className="hero-stat-num">5+</span>
                 <span className="hero-stat-lbl">Centres</span>
               </div>
               <div className="hero-stat-div" />

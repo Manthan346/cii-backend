@@ -14,27 +14,28 @@
 // Backend hookup:
 //   card.logoSrc = course.logoUrl  (from /api/courses response)
 
-import { LogoDisplay } from '../../shared/LogoDisplay/LogoDisplay';
-import Icon from '../../shared/Icon/Icon';
-import './CourseCard.css';
+import { LogoDisplay } from "../../shared/LogoDisplay/LogoDisplay";
+import Icon from "../../shared/Icon/Icon";
+import "./CourseCard.css";
 
 export default function CourseCard({ card }) {
   return (
     <article className="course-card">
-
       {/* Upcoming badge */}
-      {card.upcoming && (
-        <span className="course-card__badge">UPCOMING</span>
-      )}
+      {card.upcoming && <span className="course-card__badge">UPCOMING</span>}
 
       {/* Logo – populated by backend, no user interaction */}
       <div className="course-card__logo-area">
-        <LogoDisplay src={card.logoSrc} alt={card.company} width="100%" height="100%" />
+        <LogoDisplay
+          src={card.logoSrc}
+          alt={card.company}
+          width="100%"
+          height="100%"
+        />
       </div>
 
       {/* Card body */}
       <div className="course-card__body">
-
         {/* Category chip */}
         <span
           className="course-card__tag"
@@ -46,15 +47,25 @@ export default function CourseCard({ card }) {
           {card.tag}
         </span>
 
-        <div className="course-card__company">{card.company}</div>
+        <div className="course-card__company">{card.title || card.company}</div>
+        {card.title && (
+          <div className="course-card__provider">{card.company}</div>
+        )}
         <p className="course-card__desc">{card.desc}</p>
+
+        {(card.mode || card.location || card.trainer) && (
+          <div className="course-card__details">
+            {card.mode && <span>{card.mode}</span>}
+            {card.location && <span>{card.location}</span>}
+            {card.trainer && <span>{card.trainer}</span>}
+          </div>
+        )}
 
         {/* TODO: wire onClick to course detail page / modal */}
         <button className="course-card__cta">
           Learn more
           <Icon name="arrow" size={15} color="var(--orange)" />
         </button>
-
       </div>
     </article>
   );

@@ -2,7 +2,7 @@ import "./AboutUs.css";
 
 const stats = [
   { number: "100k+",  label: "Youth Trained Annually" },
-  { number: "36+", label: "Skill Centres" },
+  { number: "5+", label: "Skill Centres" },
   { number: "25+",  label: "Courses & Programs" },
   { number: "95%",  label: "Placement Rate" },
 ];

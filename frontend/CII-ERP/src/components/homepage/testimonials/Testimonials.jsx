@@ -47,7 +47,7 @@ const videoReviews = [
   {
     id: "v3",
     videoId: "TfEaiLAamoE",
-    name: "Sneha Kulkarni",
+    name: "Harsh Soni",
     role: "Graphic Designer – CCA",
     course: "Graphic Design & VFX",
     avatarBg: "#e63946",
@@ -63,7 +63,7 @@ const videoReviews = [
   {
     id: "v5",
     videoId: "M9YxUTS45a4",
-    name: "Kavita Desai",
+    name: "Shivam Verma",
     role: "Retail Supervisor – VFS",
     course: "Retail & AI Training",
     avatarBg: "#f4a023",
@@ -71,7 +71,7 @@ const videoReviews = [
   {
     id: "v6",
     videoId: "6jVLACvTWAQ",
-    name: "Arjun Nair",
+    name: "Palak Benvanshi",
     role: "Japanese Interpreter",
     course: "Japanese Language",
     avatarBg: "#d62828",
@@ -79,7 +79,7 @@ const videoReviews = [
   {
     id: "v6",
     videoId: "To-HwAlkdoE",
-    name: "Arjun Nair",
+    name: "Saidi Gadre",
     role: "Japanese Interpreter",
     course: "Japanese Language",
     avatarBg: "#d62828",
