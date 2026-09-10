@@ -1174,13 +1174,23 @@
   }
   .ep-filter-bar {
     padding: 14px 14px;
+    gap: 12px;
   }
   .ep-filter-group {
     width: 100%;
+    gap: 6px;
   }
   .ep-filter-select,
   .ep-filter-date {
+    /* width: 100%; */
+    min-height: 46px;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+  .ep-filter-reset {
     width: 100%;
+    padding: 10px 14px;
+    align-self: stretch;
   }
   .ep-review-row {
     flex-direction: column;
