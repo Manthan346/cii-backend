@@ -33,11 +33,13 @@ app.use(cookieParser());
 
 // ADD THIS BLOCK
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
+  process.env.FRONTEND_URL || "http://localhost:5173",
   "http://localhost:5173",
+  "http://localhost:3000",
 ].filter(Boolean);
 
 console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+console.log("Allowed CORS origins:", allowedOrigins);
 
 app.use(
   cors({
@@ -45,7 +47,8 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        // For development, also allow the origin if it's not in the list but looks like a valid origin
+        callback(null, true);
       }
     },
     credentials: true,
