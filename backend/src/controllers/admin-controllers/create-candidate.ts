@@ -78,12 +78,17 @@ export const adminCreateCandidate = asyncHandler(
                     contact_number: contact_number,
 
                 },
-                include: {
-                    user_login: true
-                }
             });
 
-            const existingUser = existingCandidate?.user_login;
+            if(existingCandidate?.contact_number){
+                throw new ApiError(400,"Phone No. already exists.")
+            }
+
+            const existingUser = await tx.user_login.findFirst({
+                where:{
+                    user_email:email
+                }
+            })
 
             if(existingUser?.user_email){
                 throw new ApiError(400, "email already exists")
