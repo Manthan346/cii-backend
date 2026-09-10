@@ -43,6 +43,16 @@
   color: #1c1f2e;
 }
 
+.job-details__company-logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #e7eaf1;
+  background: #ffffff;
+}
+
 .job-details__meta {
   margin: 0;
   font-size: 13px;

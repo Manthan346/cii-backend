@@ -1,44 +1,36 @@
 import { useState, useEffect, useCallback } from "react";
-import { LayoutGrid, CheckCircle2, Search, Filter, Plus } from "lucide-react";
+import { Search, Filter, Plus } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 import { Dropdown, Button, Pagination } from "../../../shared";
-import StatCard from "../StatCard/StatCard";
 import UploadMaterialModal from "../UploadMaterialModal/UploadMaterialModal";
 import EditMaterialModal from "../EditMaterialModal/EditMaterialModal";
 import ViewMaterialModal from "../ViewMaterialModal/ViewMaterialModal";
 import MaterialTable from "../MaterialTable/MaterialTable";
-import { batchOptions, materialStatusOptions } from "../../../data";
 import {
   fetchStudyMaterials,
-  fetchStudyMaterialStats,
+  fetchStudyMaterialFilterOptions,
   mapStudyMaterialRecord,
 } from "../../../../../../api/trainer/studyMaterialService";
 import "../../../styles/variables.css";
 import "./StudyMaterialUpload.css";
 
-// Only two icons now — "dots" (Pending review) dropped since the
-// backend has no third status state (is_show is boolean-only).
-const STAT_ICONS = {
-  grid: LayoutGrid,
-  check: CheckCircle2,
-};
-
 const StudyMaterialUpload = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [batch, setBatch] = useState(batchOptions[0]);
-  const [status, setStatus] = useState(materialStatusOptions[0]);
+  const [batchOptions, setBatchOptions] = useState([
+    { label: "All Batches", value: "" },
+  ]);
+  const [statusOptions, setStatusOptions] = useState([
+    { label: "All Status", value: "" },
+  ]);
+  const [batch, setBatch] = useState("");
+  const [status, setStatus] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const [records, setRecords] = useState([]);
   const [totalRecords, setTotalRecords] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [stats, setStats] = useState({
-    totalMaterials: 0,
-    published: 0,
-    draft: 0,
-  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -46,6 +38,20 @@ const StudyMaterialUpload = () => {
   const [selectedMaterial, setSelectedMaterial] = useState(null);
   const [viewMaterial, setViewMaterial] = useState(null);
   const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    fetchStudyMaterialFilterOptions()
+      .then(({ batches, statuses }) => {
+        setBatchOptions(batches);
+        setStatusOptions(statuses);
+      })
+      .catch((err) => {
+        setError(
+          err?.response?.data?.message ||
+            "Failed to load study material filter options",
+        );
+      });
+  }, []);
 
   const loadMaterials = useCallback(async () => {
     setLoading(true);
@@ -69,23 +75,17 @@ const StudyMaterialUpload = () => {
   }, [currentPage, searchTerm, batch, status]);
 
   useEffect(() => {
-    // This effect intentionally synchronizes the table with the API.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadMaterials();
+    const timeoutId = setTimeout(
+      () => loadMaterials(),
+      searchTerm.trim() ? 300 : 0,
+    );
+    return () => clearTimeout(timeoutId);
   }, [loadMaterials]);
 
-  useEffect(() => {
-    fetchStudyMaterialStats()
-      .then(setStats)
-      .catch(() => {}); // stats failing shouldn't block the table
-  }, [records.length]); // refresh counts whenever the list changes
-
-  // Reset to page 1 whenever filters change (avoids landing on an
-  // out-of-range page for a narrower result set)
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
     setCurrentPage(1);
-  }, [searchTerm, batch, status]);
+  };
 
   const handleSaveMaterial = () => {
     // The modal now performs the real API call itself and only calls
@@ -129,7 +129,7 @@ const StudyMaterialUpload = () => {
                     Study Material Upload
                   </h1>
                   <p className={"study-material-upload-subtitle"}>
-                    {stats.totalMaterials} materials shared
+                    Manage shared study materials
                   </p>
                 </div>
                 <Button
@@ -140,23 +140,6 @@ const StudyMaterialUpload = () => {
                 >
                   Add new Material
                 </Button>
-              </div>
-
-              <div className={"study-material-upload-stats-grid"}>
-                <StatCard
-                  icon={STAT_ICONS.grid}
-                  value={stats.totalMaterials}
-                  label="Total Materials"
-                  tone="teal"
-                />
-                <StatCard
-                  icon={STAT_ICONS.check}
-                  value={stats.published}
-                  label="Published"
-                  tone="green"
-                />
-                {/* "Pending review" card removed — no backing field
-                    on the backend (is_show is boolean-only) */}
               </div>
 
               <div className={"study-material-upload-filter-bar"}>
@@ -173,7 +156,7 @@ const StudyMaterialUpload = () => {
                       type="text"
                       placeholder="Search by Title or course"
                       value={searchTerm}
-                      onChange={(event) => setSearchTerm(event.target.value)}
+                      onChange={handleSearchChange}
                       className={"study-material-upload-search-input"}
                     />
                   </div>
@@ -187,7 +170,7 @@ const StudyMaterialUpload = () => {
                 />
                 <Dropdown
                   label="STATUS"
-                  options={materialStatusOptions}
+                  options={statusOptions}
                   value={status}
                   onChange={setStatus}
                 />

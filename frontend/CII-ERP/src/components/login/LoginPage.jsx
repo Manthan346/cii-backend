@@ -389,12 +389,6 @@ function LoginPage() {
               />
             </div>
 
-            <div className="lp-forgot-row">
-              <a href="#" className="lp-forgot-link">
-                Forgot password?
-              </a>
-            </div>
-
             <button type="submit" className="lp-submit-btn" disabled={loading}>
               {loading ? "Signing in..." : "Sign In"}
             </button>

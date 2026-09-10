@@ -1,8 +1,10 @@
 import api from "../api";
 
-const STATUS_LABEL_TO_IS_SHOW = {
-  Published: "true",
-  Draft: "false",
+const STATUS_LABEL_TO_BATCH_STATUS = {
+  Active: "ACTIVE",
+  Upcoming: "UPCOMING",
+  Dropped: "DROPPED",
+  Completed: "COMPLETED",
 };
 
 function isAllStatusOption(value) {
@@ -26,8 +28,8 @@ export async function fetchStudyMaterials({
   if (batchId && !isAllBatchOption(batchId)) params.batch_id = batchId;
 
   if (!isAllStatusOption(status)) {
-    const isShow = STATUS_LABEL_TO_IS_SHOW[status];
-    if (isShow !== undefined) params.is_show = isShow;
+    const batchStatus = STATUS_LABEL_TO_BATCH_STATUS[status] ?? status;
+    if (batchStatus) params.batch_status = batchStatus;
   }
 
   const res = await api.get("/instructor/study-material/get-all-material", {
@@ -47,6 +49,42 @@ export async function fetchStudyMaterialStats() {
     totalMaterials: all.totalRecords,
     published: published.totalRecords,
     draft: draft.totalRecords,
+  };
+}
+
+export async function fetchStudyMaterialFilterOptions() {
+  const batchResponse = await api.get(
+    "/instructor/get-all-courses-and-batches",
+  );
+
+  const rawBatches = batchResponse.data.data?.batches ?? [];
+  const batches = rawBatches
+    .map((batch) => ({
+      label: batch.batch_code ?? batch.batch_name,
+      value: batch.batch_id ?? batch.batchId ?? batch.id,
+    }))
+    .filter((batch) => batch.label && batch.value);
+  const statuses = Array.from(
+    new Map(
+      rawBatches
+        .map((batch) => batch.b_status ?? batch.batch_status ?? batch.status)
+        .filter(Boolean)
+        .map((status) => [
+          status,
+          {
+            label: String(status)
+              .toLowerCase()
+              .replace(/(^|_)\w/g, (character) => character.toUpperCase())
+              .replace("_", " "),
+            value: status,
+          },
+        ]),
+    ).values(),
+  );
+
+  return {
+    batches: [{ label: "All Batches", value: "" }, ...batches],
+    statuses: [{ label: "All Status", value: "" }, ...statuses],
   };
 }
 

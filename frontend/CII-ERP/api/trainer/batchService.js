@@ -44,11 +44,15 @@ function formatDate(isoString) {
  * Transforms one raw batch row from getInstructorBatches into the
  * shape BatchTable/data/batches.js already expects.
  *
- * NOTE: batch_end_date is NOT selected by the current backend
- * controller, so endDate always renders as "—" for now (per explicit
- * decision — revisit once batch_end_date is added to the select).
  */
 function mapBatch(raw) {
+  const endDate =
+    raw.batch_end_date ??
+    raw.end_date ??
+    raw.batchEndDate ??
+    raw.batch_endDate ??
+    raw.endDate;
+
   return {
     id: raw.batch_id,
     code: raw.batch_code,
@@ -56,7 +60,7 @@ function mapBatch(raw) {
     courseId: raw.course_id ?? null, // needed to build the Courses filter client-side
     candidates: raw.total_candidates_enrolled ?? 0,
     startDate: formatDate(raw.batch_start_date),
-    endDate: "—", // TODO: swap to formatDate(raw.batch_end_date) once backend adds it
+    endDate: formatDate(endDate),
     status: STATUS_ENUM_TO_LABEL[raw.status] ?? raw.status,
   };
 }
@@ -106,8 +110,40 @@ export async function fetchBatches({
     ).values(),
   );
 
+  const batches = (data.batches ?? []).map(mapBatch);
+  const batchesMissingEndDate = batches.filter(
+    (batch) => batch.endDate === "—" && batch.id,
+  );
+
+  if (batchesMissingEndDate.length > 0) {
+    const details = await Promise.all(
+      batchesMissingEndDate.map(async (batch) => {
+        try {
+          const details = await fetchBatchDetails(batch.id);
+          return [
+            batch.id,
+            formatDate(
+              details?.batch_end_date ??
+                details?.end_date ??
+                details?.batchEndDate ??
+                details?.batch_endDate ??
+                details?.endDate,
+            ),
+          ];
+        } catch (error) {
+          console.error(`Failed to load details for batch ${batch.id}.`, error);
+          return [batch.id, "—"];
+        }
+      }),
+    );
+    const endDatesById = new Map(details);
+    batches.forEach((batch) => {
+      batch.endDate = endDatesById.get(batch.id) ?? batch.endDate;
+    });
+  }
+
   return {
-    batches: (data.batches ?? []).map(mapBatch),
+    batches,
     pagination: data.pagination, // { currentPage, limit, totalRecords, totalPages, hasNextPage, hasPrevPage }
     courses: coursesFromPage,
   };
@@ -174,7 +210,7 @@ export async function createBatch(form) {
   const payload = {
     batch_name: form.batchName.trim(),
     batch_code: form.batchCode.trim(),
-    batch_desc: form.notes?.trim() || undefined,
+    batch_desc: form.notes?.trim() || "",
     course_id: form.courseId,
     batch_start_date: new Date(form.startDate).toISOString(),
     batch_end_date: new Date(form.endDate).toISOString(),

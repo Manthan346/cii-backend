@@ -234,22 +234,6 @@
   background: rgba(12, 45, 114, 0.06);
 }
 
-.lp-forgot-row {
-  text-align: right;
-  margin: -8px 0 18px;
-}
-
-.lp-forgot-link {
-  font-size: 13px;
-  color: #0c2d72;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.lp-forgot-link:hover {
-  text-decoration: underline;
-}
-
 .lp-submit-btn {
   width: 100%;
   padding: 13px;

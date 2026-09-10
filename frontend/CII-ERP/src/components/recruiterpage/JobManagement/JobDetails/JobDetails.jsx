@@ -30,6 +30,13 @@ const JobDetails = ({ job, onBack, onEdit, onCloseJob, error = "" }) => {
 
       <div className="job-details__header">
         <div>
+          {job.companyLogo && (
+            <img
+              src={job.companyLogo}
+              alt={`${job.companyName} logo`}
+              className="job-details__company-logo"
+            />
+          )}
           <h1 className="job-details__title">{job.jobRole}</h1>
           <p className="job-details__meta">
             {job.department} · {job.location}

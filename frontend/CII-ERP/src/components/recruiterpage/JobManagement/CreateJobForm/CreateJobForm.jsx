@@ -19,6 +19,7 @@ const WORK_MODE_OPTIONS = ["On-site", "Hybrid", "Remote"];
 
 const INITIAL_FORM = {
   companyName: "",
+  companyLogo: "",
   jobTitle: "",
   department: DEPARTMENT_OPTIONS[0],
   employmentType: EMPLOYMENT_TYPE_OPTIONS[0],
@@ -96,6 +97,12 @@ const buildInitialForm = (initialValues) => {
   return {
     ...INITIAL_FORM,
     companyName: values.companyName ?? values.company_name ?? "",
+    companyLogo:
+      values.companyLogo ??
+      values.company_logo ??
+      values.company_logo_url ??
+      values.logo_url ??
+      "",
     jobTitle: values.jobRole ?? values.job_role ?? "",
     department: values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
     employmentType:
@@ -165,6 +172,20 @@ const CreateJobForm = ({
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
+  const handleLogoChange = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setForm((prev) => ({ ...prev, companyLogo: reader.result }));
+    };
+    reader.onerror = () => {
+      event.target.value = "";
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleWorkModeSelect = (mode) => {
     setForm((prev) => ({ ...prev, workMode: mode }));
   };
@@ -185,6 +206,7 @@ const CreateJobForm = ({
   const buildPayload = () => {
     const payload = {
       company_name: form.companyName.trim(),
+      company_logo: form.companyLogo || "",
       sector: form.department.trim(),
       vacancy: Number(form.vacancies) || 0,
       location: (form.city || form.state || "").trim(),
@@ -227,14 +249,27 @@ const CreateJobForm = ({
           Job Management
         </button>
         <span className="create-job-form__breadcrumb-sep">/</span>
-        <span>Create Job</span>
+        <span>{isEdit ? "Edit Job" : "Create Job"}</span>
       </nav>
 
       <header className="create-job-form__header">
-        <h1 className="create-job-form__title">Create Job</h1>
-        <p className="create-job-form__subtitle">
-          Fill in the details below to post a new opportunity for candidates
-        </p>
+        <div>
+          <h1 className="create-job-form__title">
+            {isEdit ? "Edit Job" : "Create Job"}
+          </h1>
+          <p className="create-job-form__subtitle">
+            {isEdit
+              ? "Update the details of this job opportunity"
+              : "Fill in the details below to post a new opportunity for candidates"}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="create-job-form__back-btn"
+          onClick={onCancel}
+        >
+          Back
+        </button>
       </header>
 
       {/* 1. Basic Information */}
@@ -255,6 +290,36 @@ const CreateJobForm = ({
               className="create-job-form__input"
             />
           </label>
+
+          <div className="create-job-form__field">
+            <span className="create-job-form__label">Company Logo</span>
+            <label className="create-job-form__logo-picker">
+              {form.companyLogo ? (
+                <img
+                  src={form.companyLogo}
+                  alt="Company logo preview"
+                  className="create-job-form__logo-preview"
+                />
+              ) : (
+                <span>Choose an image</span>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleLogoChange}
+                className="create-job-form__logo-input"
+              />
+            </label>
+            {form.companyLogo && (
+              <button
+                type="button"
+                className="create-job-form__logo-remove"
+                onClick={() => setForm((prev) => ({ ...prev, companyLogo: "" }))}
+              >
+                Remove logo
+              </button>
+            )}
+          </div>
 
           <label className="create-job-form__field">
             <span className="create-job-form__label">Job Title</span>

@@ -251,6 +251,15 @@
   background: #ffffff;
 }
 
+.add-user-modal__input--error {
+  border-color: #e0554f;
+}
+
+.add-user-modal__input--error:focus {
+  border-color: #e0554f;
+  box-shadow: 0 0 0 3px rgba(224, 85, 79, 0.14);
+}
+
 .add-user-modal__input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -298,6 +307,11 @@
   font-size: 12px;
   font-weight: 600;
   color: #e0554f;
+}
+
+.add-user-modal__hint {
+  font-size: 12px;
+  color: #9aa1b1;
 }
 
 .add-user-modal__note {
