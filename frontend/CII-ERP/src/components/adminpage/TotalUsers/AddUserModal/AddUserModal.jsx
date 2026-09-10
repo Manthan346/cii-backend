@@ -49,6 +49,47 @@ const buildInitialState = () =>
     return acc;
   }, {});
 
+const API_FIELD_NAMES = [
+  "first_name",
+  "last_name",
+  "email",
+  "contact_number",
+  "phone_no",
+  "gender",
+  "date_of_birth",
+  "blood_group",
+  "course_id",
+  "batch_id",
+  "enrollment_date",
+  "password",
+  "specialization",
+  "experience_years",
+  "company_id",
+  "designation",
+];
+
+const getApiFieldError = (message) => {
+  const normalized = String(message).toLowerCase();
+  const fieldName = API_FIELD_NAMES.find((name) =>
+    normalized.includes(name.toLowerCase()),
+  );
+  if (fieldName) return fieldName;
+
+  const aliases = [
+    ["phone", "phone_no"],
+    ["mobile", "contact_number"],
+    ["course", "course_id"],
+    ["batch", "batch_id"],
+    ["company", "company_id"],
+    ["password", "password"],
+    ["email", "email"],
+    ["candidate name", "first_name"],
+    ["first name", "first_name"],
+    ["last name", "last_name"],
+  ];
+  return aliases.find(([term]) => normalized.includes(term))?.[1] ?? null;
+};
+
 /**
  * AddUserModal
  *
@@ -227,12 +268,29 @@ const AddUserModal = ({
       setSuccessInfo({ role: activeRole, response });
       onUserCreated?.(activeRole, response);
     } catch (err) {
+      const responseData = err?.response?.data || err?.payload || {};
+      const details = responseData?.details || responseData?.data?.details;
+      const validationDetail = Array.isArray(details)
+        ? details.find((detail) => detail?.message)
+        : details;
       const apiMessage =
-        err?.response?.data?.message ||
-        err?.response?.data?.error ||
+        validationDetail?.message ||
+        responseData?.message ||
+        responseData?.error ||
         err?.message ||
         "Something went wrong. Please try again.";
-      setApiError(apiMessage);
+      const fieldName = getApiFieldError(
+        validationDetail?.fields ||
+          validationDetail?.field ||
+          validationDetail?.path ||
+          apiMessage,
+      );
+      if (fieldName) {
+        setErrors((prev) => ({ ...prev, [fieldName]: apiMessage }));
+        setApiError("");
+      } else {
+        setApiError(apiMessage);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -254,7 +312,8 @@ const AddUserModal = ({
 
   const credentials = useMemo(() => {
     if (!successInfo) return null;
-    const data = successInfo.response?.data ?? successInfo.response;
+    const responseData = successInfo.response?.data ?? successInfo.response;
+    const data = responseData?.data ?? responseData;
     if (successInfo.role === "candidate") {
       return data?.credentials
         ? {
@@ -270,6 +329,13 @@ const AddUserModal = ({
       note: "Set by you just now.",
     };
   }, [successInfo, values]);
+
+  const createdCandidate = useMemo(() => {
+    if (!successInfo || successInfo.role !== "candidate") return null;
+    const responseData = successInfo.response?.data ?? successInfo.response;
+    const data = responseData?.data ?? responseData;
+    return data?.candidate ?? null;
+  }, [successInfo]);
 
   if (!isOpen) return null;
 
@@ -297,28 +363,30 @@ const AddUserModal = ({
           </button>
         </div>
 
-        <div className="add-user-modal__role-toggle" role="tablist">
-          {ROLE_ORDER.map((roleKey) => {
-            const Icon = ROLE_ICONS[roleKey];
-            const isActive = roleKey === activeRole;
-            return (
-              <button
-                key={roleKey}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`add-user-modal__role-tab${
-                  isActive ? " add-user-modal__role-tab--active" : ""
-                }`}
-                onClick={() => handleSwitchRole(roleKey)}
-                disabled={submitting}
-              >
-                <Icon size={16} strokeWidth={2.2} />
-                {ROLE_CONFIG[roleKey].label}
-              </button>
-            );
-          })}
-        </div>
+        {!successInfo && (
+          <div className="add-user-modal__role-toggle" role="tablist">
+            {ROLE_ORDER.map((roleKey) => {
+              const Icon = ROLE_ICONS[roleKey];
+              const isActive = roleKey === activeRole;
+              return (
+                <button
+                  key={roleKey}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`add-user-modal__role-tab${
+                    isActive ? " add-user-modal__role-tab--active" : ""
+                  }`}
+                  onClick={() => handleSwitchRole(roleKey)}
+                  disabled={submitting}
+                >
+                  <Icon size={16} strokeWidth={2.2} />
+                  {ROLE_CONFIG[roleKey].label}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {successInfo ? (
           <div className="add-user-modal__success add-user-modal__scroll">
@@ -327,9 +395,8 @@ const AddUserModal = ({
             </div>
             <h3 className="add-user-modal__success-title">
               {config.label} created
-              {successInfo.role === "candidate" &&
-              successInfo.response?.data?.candidate
-                ? ` — ${successInfo.response.data.candidate.first_name}`
+              {createdCandidate
+                ? ` — ${createdCandidate.first_name}`
                 : ""}
             </h3>
             <p className="add-user-modal__success-text">
@@ -490,7 +557,9 @@ const FormField = ({
       {field.type === "select" ? (
         <select
           id={inputId}
-          className="add-user-modal__input add-user-modal__select"
+          className={`add-user-modal__input add-user-modal__select${
+            error ? " add-user-modal__input--error" : ""
+          }`}
           value={value ?? ""}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
@@ -512,7 +581,7 @@ const FormField = ({
           <input
             id={inputId}
             type={showPassword ? "text" : "password"}
-            className="add-user-modal__input"
+            className={`add-user-modal__input${error ? " add-user-modal__input--error" : ""}`}
             value={value ?? ""}
             placeholder={field.placeholder || "Set a login password"}
             onChange={(e) => onChange(e.target.value)}
@@ -541,7 +610,7 @@ const FormField = ({
         <input
           id={inputId}
           type={field.type}
-          className="add-user-modal__input"
+          className={`add-user-modal__input${error ? " add-user-modal__input--error" : ""}`}
           value={value ?? ""}
           placeholder={field.placeholder}
           min={field.min}
@@ -551,6 +620,9 @@ const FormField = ({
         />
       )}
 
+      {field.hint && !error && (
+        <span className="add-user-modal__hint">{field.hint}</span>
+      )}
       {error && <span className="add-user-modal__error">{error}</span>}
     </div>
   );

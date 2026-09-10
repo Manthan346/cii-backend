@@ -177,6 +177,7 @@ export const ROLE_CONFIG = {
         label: "Login Password",
         type: "password",
         required: true,
+        hint: "Password must be at least 8 characters",
       },
       {
         name: "gender",
@@ -250,6 +251,7 @@ export const ROLE_CONFIG = {
         label: "Login Password",
         type: "password",
         required: true,
+        hint: "Password must be at least 8 characters",
       },
       {
         name: "designation",
@@ -304,6 +306,7 @@ export const ROLE_CONFIG = {
         label: "Login Password",
         type: "password",
         required: true,
+        hint: "Password must be at least 8 characters",
       },
       {
         name: "designation",
@@ -339,11 +342,17 @@ export function validateField(field, value) {
   if (field.type === "tel" && !PHONE_RE.test(trimmed)) {
     return "Enter a valid 10-digit phone number";
   }
-  if (field.name === "password" && String(trimmed).length < 6) {
-    return "Password must be at least 6 characters";
+  if (field.name === "password" && String(trimmed).length < 8) {
+    return "Password must be at least 8 characters";
   }
   if (field.type === "number" && Number.isNaN(Number(trimmed))) {
     return `${field.label} must be a number`;
+  }
+  if (field.type === "number" && field.min !== undefined && Number(trimmed) < field.min) {
+    return `${field.label} must be at least ${field.min}`;
+  }
+  if (field.type === "number" && field.max !== undefined && Number(trimmed) > field.max) {
+    return `${field.label} must be at most ${field.max}`;
   }
   if (field.name === "date_of_birth" && trimmed > MAX_DOB_AGE_18) {
     return "Must be at least 18 years old";

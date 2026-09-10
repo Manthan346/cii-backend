@@ -48,6 +48,18 @@ const getCollection = (response, key) => {
   return [];
 };
 
+const ensureSuccessfulCreate = (response) => {
+  const payload = response.data;
+  if (payload?.success === false) {
+    const error = new Error(
+      payload.message || "Unable to create the user.",
+    );
+    error.payload = payload;
+    throw error;
+  }
+  return payload;
+};
+
 // --- create user calls --------------------------------------------------
 // Payload shapes below match each controller's req.body destructuring
 // exactly — do not rename these keys without updating the controller too.
@@ -64,7 +76,7 @@ export const createAdminCandidate = (values) =>
       .join(" "),
     contact_no: values.contact_number,
     education: values.education ?? values.course_id,
-  }).then((res) => res.data);
+  }).then(ensureSuccessfulCreate);
 
 /**
  * -> createInstructorByAdmin  (POST /total-users/create-instructor)

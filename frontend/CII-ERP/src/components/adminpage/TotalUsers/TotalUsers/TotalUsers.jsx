@@ -293,6 +293,9 @@ const TotalUsers = () => {
 
   const handleUserCreated = () => {
     // Refresh the table so the newly created / enrolled user shows up.
+    setSearch("");
+    setRole("all");
+    setStatus("all");
     setPage(1);
     setRefreshTick((tick) => tick + 1);
   };

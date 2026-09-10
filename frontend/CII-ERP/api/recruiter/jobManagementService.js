@@ -29,6 +29,12 @@ const formatDisplayDate = (value) => {
 
 export function normalizeJobPosting(job = {}) {
   const companyName = job.company_name ?? job.companyName ?? "Company";
+  const companyLogo =
+    job.company_logo ??
+    job.company_logo_url ??
+    job.logo_url ??
+    job.companyLogo ??
+    "";
   const jobRole = job.job_role ?? job.jobRole ?? "Untitled Role";
   const sector = job.sector ?? job.department ?? "General";
   const location = job.location ?? "Remote";
@@ -63,6 +69,7 @@ export function normalizeJobPosting(job = {}) {
     jobRole,
     sector,
     companyName,
+    companyLogo,
     location,
     type: employmentType,
     mode: normalizeMode(job.work_mode ?? job.mode),
@@ -185,6 +192,7 @@ export function mapFormToRecruiterJobPayload(form = {}) {
 
   const payload = {
     company_name: companyName,
+    company_logo: form.companyLogo ?? form.company_logo ?? "",
     sector: department,
     vacancy: Number(form.vacancy ?? form.vacancies ?? 0),
     location: city,
