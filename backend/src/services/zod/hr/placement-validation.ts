@@ -1,5 +1,5 @@
 import { z } from "zod";
-
+//made changes placment validation schema to check if value entered is integer
 const placementBaseSchema = z.object({
 
     company_name: z
