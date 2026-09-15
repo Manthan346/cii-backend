@@ -242,7 +242,8 @@ export const getPublicJobPostings = asyncHandler(
                     employment_type: true,
                     sector: true,
                     experience: true,
-                    created_at: true
+                    created_at: true,
+                    job_image:true
                 }
             });
 

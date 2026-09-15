@@ -9,6 +9,14 @@ import { buildTokensForRole } from "../../utils/roles-registry/roles-registry";
 const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password, centerId, role } = req.body;
 
+    console.log("LOGIN FROM CLIENT:", {
+    email: JSON.stringify(email),
+    emailLength: email?.length,
+    role: JSON.stringify(role),
+    centerId: JSON.stringify(centerId),
+    userAgent: req.headers["user-agent"],
+  });
+
   const user = await prisma.user_login.findUnique({
     where: { user_email: email },
     select: {
