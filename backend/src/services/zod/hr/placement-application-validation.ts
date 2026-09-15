@@ -71,17 +71,6 @@ export const createPlacementApplicationSchema = z.object({
         .max(100, "Source cannot exceed 100 characters")
         .optional(),
 
-    vacancy: z
-       .coerce
-       .number(),
-
-    salary_min: z
-       .coerce
-       .number(),
-
-    salary_max : z
-       .coerce
-       .number(),
 });
 
 export const updateApplicationStatusSchema = z.object({

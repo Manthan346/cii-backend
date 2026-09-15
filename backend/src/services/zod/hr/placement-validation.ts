@@ -15,6 +15,7 @@ const placementBaseSchema = z.object({
         .max(255, "Sector name cannot exceed 255 characters"),
 
     vacancy: z
+        .coerce
         .number()
         .int("Vacancy must be an integer")
         .positive("Vacancy must be greater than 0"),
@@ -37,12 +38,14 @@ const placementBaseSchema = z.object({
         .optional(),
 
     salary_min: z
+        .coerce
         .number()
         .int("Minimum salary must be an integer")
         .nonnegative("Minimum salary cannot be negative")
         .optional(),
 
     salary_max: z
+        .coerce
         .number()
         .int("Maximum salary must be an integer")
         .nonnegative("Maximum salary cannot be negative")
