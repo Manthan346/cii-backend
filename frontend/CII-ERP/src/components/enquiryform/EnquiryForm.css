@@ -3,10 +3,11 @@
   background: #ffffff;
   border-radius: 20px;
   padding: 36px 32px;
-  width: 100%;
+  width: min(100%, 480px);
   max-width: 480px;
   box-shadow: 0 4px 32px rgba(6, 25, 74, 0.14);
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .reg-header {
@@ -20,19 +21,19 @@
 }
 
 .reg-title {
-  font-size: 22px;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
   font-weight: 700;
   color: #06194a;
   margin: 0 0 5px;
   letter-spacing: -0.2px;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .reg-subtitle {
   font-size: 13px;
   color: #7a8499;
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 /* ── Form layout ── */
@@ -40,17 +41,23 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  width: 100%;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .reg-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 16px;
 }
 
 .reg-row .reg-field {
-  flex: 1;
+  min-width: 0;
+}
+
+.reg-field {
+  width: 100%;
 }
 
 .reg-field-full {
@@ -86,6 +93,7 @@
 
 .reg-input {
   width: 100%;
+  min-height: 44px;
   padding: 11px 12px;
   border: 1.5px solid #e2e8f0;
   border-radius: 9px;
@@ -94,8 +102,11 @@
   background: #f8fafc;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .reg-input-icon-pad {
@@ -115,6 +126,7 @@
 /* ── Select dropdown ── */
 .reg-select {
   width: 100%;
+  min-height: 44px;
   padding: 11px 12px 11px 34px;
   border: 1.5px solid #e2e8f0;
   border-radius: 9px;
@@ -125,8 +137,10 @@
   box-sizing: border-box;
   appearance: none;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .reg-select:focus {
@@ -148,7 +162,9 @@
   justify-content: center;
   padding: 4px;
   border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
   width: auto;
   margin: 0;
 }
@@ -169,10 +185,12 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
+  transition:
+    opacity 0.2s,
+    transform 0.15s;
   letter-spacing: 0.3px;
   margin: 8px 0 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .reg-submit-btn:hover {
@@ -182,6 +200,22 @@
 
 .reg-submit-btn:active {
   transform: translateY(0);
+}
+
+.reg-status {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: #475569;
+}
+
+.reg-status--error {
+  color: #b42318;
+}
+
+.reg-status--success {
+  color: #067647;
 }
 
 /* ── Footer link ── */
@@ -206,30 +240,66 @@
 @media (max-width: 900px) {
   .reg-card {
     max-width: 100%;
-    width: 100%;
-    padding: 28px 24px;
+    width: min(100%, 620px);
+    padding: 30px 24px;
     box-shadow: 0 2px 20px rgba(6, 25, 74, 0.12);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .reg-card {
-    padding: 24px 16px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .reg-header {
+    margin-bottom: 22px;
+  }
+
+  .reg-row {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .reg-card {
+    padding: 22px 16px;
     border-radius: 16px;
   }
 
-  /* Stack name row on very small screens */
   .reg-row {
-    flex-direction: column;
-    gap: 0;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
   }
 
   .reg-row .reg-field {
-    margin-bottom: 14px;
+    margin-bottom: 0;
   }
 
-  .reg-title  { font-size: 20px; }
-  .reg-input  { font-size: 14px; padding: 12px 12px; }
-  .reg-select { font-size: 14px; padding: 12px 12px 12px 34px; }
-  .reg-submit-btn { font-size: 15px; padding: 13px; }
+  .reg-field-full {
+    margin-bottom: 12px;
+  }
+
+  .reg-input,
+  .reg-select {
+    font-size: 14px;
+    padding: 12px 12px 12px 34px;
+  }
+
+  .reg-submit-btn {
+    font-size: 15px;
+    padding: 13px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .reg-header {
+    margin-bottom: 18px;
+  }
+
+  .reg-label {
+    letter-spacing: 0.2px;
+  }
 }

@@ -66,12 +66,6 @@
   gap: 14px;
 }
 
-@media (max-width: 420px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
-}
-
 .field {
   display: flex;
   flex-direction: column;
@@ -218,4 +212,76 @@
 
 .successState .primaryBtn {
   width: 100%;
+}
+
+@media (max-width: 420px) {
+  .backdrop {
+    padding: 10px;
+  }
+
+  .modal {
+    max-width: 100%;
+    padding: 16px 12px 14px;
+    border-radius: 12px;
+  }
+
+  .header {
+    margin-bottom: 14px;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .field {
+    gap: 4px;
+  }
+
+  .label {
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .input,
+  .inputReadOnly {
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+
+  .dropzone {
+    padding: 16px 10px;
+    font-size: 12.5px;
+  }
+
+  .footer {
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .secondaryBtn,
+  .primaryBtn {
+    width: 100%;
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+
+  .successState {
+    padding-top: 12px;
+  }
+
+  .successTitle {
+    font-size: 18px;
+  }
+
+  .successSubtitle {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
 }

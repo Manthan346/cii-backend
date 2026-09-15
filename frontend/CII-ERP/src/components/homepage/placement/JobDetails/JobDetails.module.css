@@ -4,7 +4,7 @@
   padding: 28px 40px 60px;
   color: var(--ink);
   max-width: 1180px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .backBtn {
@@ -211,4 +211,108 @@
   color: var(--ink);
   font-size: 14.5px;
   line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+  .page {
+    padding: 12px 12px 24px;
+  }
+
+  .backBtn {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+  }
+
+  .headerCard {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px 8px;
+    margin-bottom: 14px;
+  }
+
+  .logo {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .headerText {
+    min-width: 0;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .company {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .applyBtn {
+    width: 100%;
+    grid-column: 1 / -1;
+    padding: 11px 14px;
+    margin-top: 2px;
+    font-size: 14px;
+  }
+
+  .overviewCard,
+  .card {
+    /* padding: 14px 12px; */
+    border-radius: 10px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .overviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .overviewItem {
+    padding: 10px 10px;
+    min-height: 72px;
+    justify-content: center;
+  }
+
+  .overviewLabel {
+    letter-spacing: 0.02em;
+    font-size: 9.5px;
+  }
+
+  .overviewValue {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .tagRow {
+    gap: 6px;
+  }
+
+  .tagRequired,
+  .tagPreferred {
+    width: 100%;
+    text-align: center;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+  .responsibilityList {
+    font-size: 13px;
+    gap: 6px;
+    padding-left: 14px;
+  }
 }
