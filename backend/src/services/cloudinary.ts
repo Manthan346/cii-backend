@@ -23,7 +23,7 @@ export const uploadCloudnary = async (localFilePath: string) => {
 
   try {
     const response = await cloudnary.uploader.upload(absolutePath,{
-      resource_type: "raw",
+      resource_type: "auto",
     });
 
     console.log('[Cloudinary] Upload successful:', response.secure_url);
