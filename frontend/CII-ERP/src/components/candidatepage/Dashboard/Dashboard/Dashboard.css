@@ -3,7 +3,7 @@
 .dashboard {
   display: flex;
   min-height: 100vh;
-  background: #F5F7FB;
+  background: #f5f7fb;
 }
 
 /* ── Right side (topbar + scrollable body) ──
@@ -40,7 +40,7 @@
 .dashboard__error {
   padding: 60px 0;
   text-align: center;
-  color: #6B7A94;
+  color: #6b7a94;
   font-size: 14px;
 }
 

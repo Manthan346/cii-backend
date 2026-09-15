@@ -1,7 +1,7 @@
 /* Calendar.css */
 
 .calendar {
-  background: var(--white, #FFFFFF);
+  background: var(--white, #ffffff);
   border-radius: var(--radius-lg, 16px);
   padding: 22px 22px 20px;
   border: 1px solid var(--border);
@@ -34,7 +34,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--bg, #F4F6FA);
+  background: var(--bg, #f4f6fa);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -104,22 +104,22 @@
 }
 
 .calendar__cell--present {
-  background: var(--green-soft, #E4F6EC);
-  color: #0D6E50;
+  background: var(--green-soft, #e4f6ec);
+  color: #0d6e50;
 }
 
 .calendar__cell--absent {
-  background: var(--red-soft, #FBE8E4);
-  color: var(--red, #D8432B);
+  background: var(--red-soft, #fbe8e4);
+  color: var(--red, #d8432b);
 }
 
 .calendar__cell--holiday {
-  background: var(--blue-soft, #E6EEF8);
-  color: var(--blue, #2F6FB0);
+  background: var(--blue-soft, #e6eef8);
+  color: var(--blue, #2f6fb0);
 }
 
 .calendar__cell--today {
-  border-color: var(--blue, #2F6FB0);
+  border-color: var(--blue, #2f6fb0);
   font-weight: 700;
 }
 
@@ -150,27 +150,26 @@
 }
 
 .calendar__legend-swatch--present {
-  background: var(--green-soft, #E4F6EC);
-  border-color: #0D6E50;
+  background: var(--green-soft, #e4f6ec);
+  border-color: #0d6e50;
 }
 
 .calendar__legend-swatch--absent {
-  background: var(--red-soft, #FBE8E4);
-  border-color: var(--red, #D8432B);
+  background: var(--red-soft, #fbe8e4);
+  border-color: var(--red, #d8432b);
 }
 
 .calendar__legend-swatch--holiday {
-  background: var(--blue-soft, #E6EEF8);
-  border-color: var(--blue, #2F6FB0);
+  background: var(--blue-soft, #e6eef8);
+  border-color: var(--blue, #2f6fb0);
 }
 
 .calendar__legend-swatch--today {
-  background: var(--white, #FFFFFF);
-  border-color: var(--blue, #2F6FB0);
+  background: var(--white, #ffffff);
+  border-color: var(--blue, #2f6fb0);
 }
 
 @media (max-width: 480px) {
-
   .calendar {
     width: 100%;
     padding: 16px;

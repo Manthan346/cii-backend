@@ -1,8 +1,8 @@
 /* JobCard.css */
 
 .job-card {
-  background: #FFFFFF;
-  border: 1px solid #EEF0F4;
+  background: #ffffff;
+  border: 1px solid #eef0f4;
   border-radius: 18px;
   padding: 16px;
   width: 260px;
@@ -13,14 +13,14 @@
   margin: 16px 0 4px;
   font-size: 19px;
   font-weight: 700;
-  color: #1A1D29;
+  color: #1a1d29;
 }
 
 .job-card__match {
   margin: 0 0 16px;
   font-size: 14px;
   font-weight: 700;
-  color: #1F9D4D;
+  color: #1f9d4d;
 }
 
 .job-card__actions {
@@ -31,8 +31,8 @@
 
 .job-card__apply {
   flex: 1;
-  background: #4361EE;
-  color: #FFFFFF;
+  background: #4361ee;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   padding: 12px 0;
@@ -42,7 +42,7 @@
 }
 
 .job-card__apply:hover {
-  background: #364FD1;
+  background: #364fd1;
 }
 
 .job-card__save {
@@ -51,8 +51,8 @@
   height: 42px;
   border-radius: 10px;
   border: none;
-  background: #F1F3F9;
-  color: #1A1D29;
+  background: #f1f3f9;
+  color: #1a1d29;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,10 +60,10 @@
 }
 
 .job-card__save:hover {
-  background: #E4E7F0;
+  background: #e4e7f0;
 }
 
 .job-card__save--active {
-  background: #E8ECFE;
-  color: #4361EE;
+  background: #e8ecfe;
+  color: #4361ee;
 }

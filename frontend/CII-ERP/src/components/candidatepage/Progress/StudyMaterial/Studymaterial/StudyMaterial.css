@@ -12,6 +12,7 @@
 .study-material-layout__main {
   margin-left: 268px; /* matches .sidebar width in Sidebar.css */
   min-height: 100vh;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -30,5 +31,11 @@
 @media (max-width: 760px) {
   .study-material-layout__content {
     padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .study-material-layout__content {
+    padding: 12px;
   }
 }

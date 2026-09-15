@@ -3,7 +3,7 @@
 
 .certificates-page {
   min-height: 100vh;
-  background: #F7F8FA;
+  background: #f7f8fa;
   /* font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; */
 }
 
@@ -44,13 +44,13 @@
   margin: 0 0 4px;
   font-size: 24px;
   font-weight: 700;
-  color: #1A1D29;
+  color: #1a1d29;
 }
 
 .certificates-page__subtitle {
   margin: 0;
   font-size: 14px;
-  color: #8A8FA3;
+  color: #8a8fa3;
 }
 
 @media (max-width: 768px) {

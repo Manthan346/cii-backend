@@ -1,8 +1,8 @@
 /* PerformanceByCourse.css */
 
 .performance-by-course.card {
-  background: #FFFFFF;
-  border: 1px solid #EEF0F4;
+  background: #ffffff;
+  border: 1px solid #eef0f4;
   border-radius: 14px;
   padding: 20px;
 }
@@ -11,7 +11,7 @@
   margin: 0 0 18px;
   font-size: 17px;
   font-weight: 700;
-  color: #1A1D29;
+  color: #1a1d29;
 }
 
 .performance-by-course__list {
@@ -29,7 +29,7 @@
 
 .performance-row__label {
   font-size: 13px;
-  color: #4A4F63;
+  color: #4a4f63;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -37,7 +37,7 @@
 
 .performance-row__bar-track {
   height: 8px;
-  background: #EEF0F4;
+  background: #eef0f4;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -51,6 +51,6 @@
 .performance-row__value {
   font-size: 13px;
   font-weight: 600;
-  color: #1A1D29;
+  color: #1a1d29;
   text-align: right;
 }

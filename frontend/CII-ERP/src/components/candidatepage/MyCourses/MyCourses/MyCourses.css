@@ -5,13 +5,13 @@
    and Profile. See shared/LogoDisplay/LogoDisplay.css for the
    default, and ../LogoDisplay/LogoDisplay.css for this override —
    loaded after the shared stylesheet so it wins the cascade. */
-@import '../LogoDisplay/LogoDisplay.css';
+@import "../LogoDisplay/LogoDisplay.css";
 
 /* ── Layout shell ── */
 .my-courses {
   display: flex;
   min-height: 100vh;
-  background: #F4F6FA;
+  background: #f4f6fa;
 }
 
 /* ── Main content area (offset by sidebar width) ── */

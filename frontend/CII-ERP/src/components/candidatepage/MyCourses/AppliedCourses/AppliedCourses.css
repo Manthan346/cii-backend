@@ -7,8 +7,8 @@
 .applied-courses__title {
   font-size: 18px;
   font-weight: 700;
-  color: #1A2740;
-  border-bottom: 2.5px solid #003C7E;
+  color: #1a2740;
+  border-bottom: 2.5px solid #003c7e;
   padding-bottom: 4px;
   display: inline-block;
   margin-bottom: 16px;
@@ -23,8 +23,8 @@
 /* ── Card ── */
 .applied-card {
   height: 150px;
-  background: #FFFFFF;
-  border: 1px solid #E0E8F0;
+  background: #ffffff;
+  border: 1px solid #e0e8f0;
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -64,7 +64,7 @@
 .applied-card__company {
   font-size: 13.5px;
   font-weight: 700;
-  color: #1A2740;
+  color: #1a2740;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -80,21 +80,21 @@
 .applied-card__bar-wrap {
   flex: 1;
   height: 6px;
-  background: #E0E8F0;
+  background: #e0e8f0;
   border-radius: 99px;
   overflow: hidden;
 }
 
 .applied-card__bar-fill {
   height: 100%;
-  background: #003C7E;
+  background: #003c7e;
   border-radius: 99px;
   transition: width 0.4s ease;
 }
 
 .applied-card__pct {
   font-size: 11px;
-  color: #6B7A94;
+  color: #6b7a94;
   flex-shrink: 0;
 }
 
