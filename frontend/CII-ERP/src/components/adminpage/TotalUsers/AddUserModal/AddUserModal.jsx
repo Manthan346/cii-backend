@@ -68,16 +68,18 @@ const API_FIELD_NAMES = [
   "designation",
 ];
 
-const getApiFieldError = (message) => {
+const getApiFieldError = (message, role) => {
   const normalized = String(message).toLowerCase();
   const fieldName = API_FIELD_NAMES.find((name) =>
     normalized.includes(name.toLowerCase()),
   );
   if (fieldName) return fieldName;
 
+  const phoneField = role === "candidate" ? "contact_number" : "phone_no";
   const aliases = [
-    ["phone", "phone_no"],
-    ["mobile", "contact_number"],
+    ["phone", phoneField],
+    ["mobile", phoneField],
+    ["contact", phoneField],
     ["course", "course_id"],
     ["batch", "batch_id"],
     ["company", "company_id"],
@@ -284,6 +286,7 @@ const AddUserModal = ({
           validationDetail?.field ||
           validationDetail?.path ||
           apiMessage,
+        activeRole,
       );
       if (fieldName) {
         setErrors((prev) => ({ ...prev, [fieldName]: apiMessage }));

@@ -353,6 +353,18 @@ export default function AttendanceTracker() {
             active batches
           </p>
         </div>
+
+        <div className={"attendance-management-attendance-tracker-header-actions"}>
+          <Button
+            variant="outline"
+            icon={Download}
+            onClick={() => {
+              setImportOpen(true);
+            }}
+          >
+            Import Sessions
+          </Button>
+        </div>
       </div>
 
       <div className={"attendance-management-attendance-tracker-filter-bar"}>
@@ -401,40 +413,6 @@ export default function AttendanceTracker() {
       <section
         className={"attendance-management-attendance-tracker-table-section"}
       >
-        <div
-          className={"attendance-management-attendance-tracker-table-header"}
-        >
-          {/* <h2
-            className={"attendance-management-attendance-tracker-table-title"}
-          >
-            {viewingSession ? (
-              viewingSession.title
-            ) : (
-              <>
-                Today's Attendance{" "}
-              </>
-            )}
-          </h2> */}
-
-          {!viewingSession && (
-            <div
-              className={
-                "attendance-management-attendance-tracker-table-actions"
-              }
-            >
-              <Button
-                variant="outline"
-                icon={Download}
-                onClick={() => {
-                  setImportOpen(true);
-                }}
-              >
-                Import
-              </Button>
-            </div>
-          )}
-        </div>
-
         {error && (
           <p className={"attendance-management-attendance-tracker-error"}>
             {typeof error === "string"

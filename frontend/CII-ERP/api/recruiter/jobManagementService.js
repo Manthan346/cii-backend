@@ -161,7 +161,10 @@ export async function fetchRecruiterJobPostingDetails(placementId) {
 }
 
 export async function createRecruiterJobPosting(payload) {
-  const response = await API.post("/hr/job-management/create-job", payload);
+  const response = await API.post(
+    "/hr/job-management/create-job",
+    toMultipartPayload(payload),
+  );
   const placement = response.data?.data?.placement ?? response.data?.data ?? {};
   return normalizeJobPosting(placement);
 }
@@ -169,10 +172,29 @@ export async function createRecruiterJobPosting(payload) {
 export async function updateRecruiterJobPosting(placementId, payload) {
   const response = await API.patch(
     `/hr/job-management/${placementId}`,
-    payload,
+    toMultipartPayload(payload),
   );
   const updated = response.data?.data ?? {};
   return normalizeJobPosting(updated);
+}
+
+function toMultipartPayload(payload = {}) {
+  // Keep numeric values numeric when no new image is being uploaded.
+  // This lets the backend validate vacancy and salary fields as JSON values.
+  if (!payload.logoFile) return payload;
+
+  const formData = new FormData();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key === "logoFile" || value === undefined || value === null) return;
+    formData.append(key, String(value));
+  });
+
+  if (payload.logoFile) {
+    formData.append("job_image", payload.logoFile);
+  }
+
+  return formData;
 }
 
 export function mapFormToRecruiterJobPayload(form = {}) {

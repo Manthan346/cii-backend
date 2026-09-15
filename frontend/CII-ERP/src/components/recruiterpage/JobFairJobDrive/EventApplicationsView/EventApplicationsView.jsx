@@ -4,22 +4,15 @@ import {
   Clock,
   MapPin,
   Map,
-  UserRoundPlus,
-  BadgeCheck,
-  ClipboardList,
-  Laptop,
-  CheckSquare,
 } from 'lucide-react';
-import StatCard from '../../shared/StatCard/StatCard';
 import StatusBadge from '../../shared/StatusBadge/StatusBadge';
 import Pagination from '../../shared/Pagination/Pagination';
 import ApplicationsFilterBar from './ApplicationsFilterBar/ApplicationsFilterBar';
 import ApplicationsTable from './ApplicationsTable/ApplicationsTable';
-import CandidateDetailsModal from './CandidateDetailsModal/CandidateDetailsModal';
 import {
-  eventApplications as allApplications,
   eventTypeStyles,
 } from '../../data';
+import { fetchJobEventCandidates } from '../../../../../api/recruiter/jobEventService';
 import './EventApplicationsView.css';
 
 const EMPTY_FILTERS = { search: '', status: 'All Status', source: 'All Sources' };
@@ -47,15 +40,47 @@ const PAGE_SIZE = 6;
  * everywhere else in this app (no shared store yet).
  */
 const EventApplicationsView = ({ event, onBack }) => {
-  const [applications, setApplications] = useState(() =>
-    allApplications.filter((application) => application.eventId === event.id)
-  );
+  const [applications, setApplications] = useState([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: PAGE_SIZE,
+    totalRecords: 0,
+    totalPages: 0,
+  });
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
-  const [profileCandidateId, setProfileCandidateId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const profileCandidate = applications.find((item) => item.id === profileCandidateId) ?? null;
-  const stats = event.applicationStats ?? {};
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError('');
+
+    fetchJobEventCandidates(event.id, { page: currentPage, limit: PAGE_SIZE })
+      .then((response) => {
+        if (cancelled) return;
+        setApplications(response.candidates);
+        setPagination(response.pagination);
+      })
+      .catch((requestError) => {
+        if (cancelled) return;
+        setApplications([]);
+        setPagination((previous) => ({ ...previous, totalRecords: 0, totalPages: 0 }));
+        setError(
+          requestError?.response?.data?.message ||
+            requestError.message ||
+            'Unable to load candidates.',
+        );
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [event.id, currentPage]);
 
   const filteredApplications = useMemo(() => {
     return applications.filter((item) => {
@@ -69,15 +94,6 @@ const EventApplicationsView = ({ event, onBack }) => {
   useEffect(() => {
     setCurrentPage(1);
   }, [filters]);
-
-  const paginatedApplications = useMemo(() => {
-    const start = (currentPage - 1) * PAGE_SIZE;
-    return filteredApplications.slice(start, start + PAGE_SIZE);
-  }, [filteredApplications, currentPage]);
-
-  const handleRemove = (candidateId) => {
-    setApplications((prev) => prev.filter((item) => item.id !== candidateId));
-  };
 
   return (
     <div className="event-applications-view">
@@ -117,34 +133,21 @@ const EventApplicationsView = ({ event, onBack }) => {
         </div>
       </div>
 
-      <div className="event-applications-view__stats">
-        <StatCard icon={UserRoundPlus} iconBg="#c026d3" value={stats.registered ?? 0} label="Registered" />
-        <StatCard icon={BadgeCheck} iconBg="#f97316" value={stats.attended ?? 0} label="Attended" />
-        <StatCard icon={ClipboardList} iconBg="#14b8a6" value={stats.shortlisted ?? 0} label="Shortlisted" />
-        <StatCard icon={Laptop} iconBg="#3b82f6" value={stats.interviewed ?? 0} label="Interviewed" />
-        <StatCard icon={CheckSquare} iconBg="#2563eb" value={stats.selected ?? 0} label="Selected" />
-      </div>
-
       <ApplicationsFilterBar filters={filters} onChange={setFilters} />
 
+      {error && <div className="event-applications-view__error" role="alert">{error}</div>}
+
       <ApplicationsTable
-        applications={paginatedApplications}
-        onViewProfile={setProfileCandidateId}
-        onRemove={handleRemove}
+        applications={loading ? [] : filteredApplications}
       />
 
       <Pagination
         currentPage={currentPage}
-        totalItems={filteredApplications.length}
+        totalItems={pagination.totalRecords}
         pageSize={PAGE_SIZE}
         onPageChange={setCurrentPage}
       />
 
-      <CandidateDetailsModal
-        candidate={profileCandidate}
-        isOpen={Boolean(profileCandidate)}
-        onClose={() => setProfileCandidateId(null)}
-      />
     </div>
   );
 };

@@ -123,7 +123,9 @@ export const CREATE_USER_HANDLERS = {
 
 /** Courses offered by the admin's center (for candidate.course_id) */
 export const fetchAdminCourses = () =>
-  API.get(`${ADMIN_BASE}/courses`).then((res) => getCollection(res, "courses"));
+  API.get(`${ADMIN_BASE}/courses`, { params: { page: 1, limit: 100 } }).then(
+    (res) => getCollection(res, "courses"),
+  );
 
 /** Active batches for a given course, scoped to the admin's center (candidate.batch_id) */
 export const fetchAdminBatchesByCourse = (courseId) =>

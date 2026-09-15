@@ -73,6 +73,7 @@ export default function CandidateTable({ candidates = [], onStatusChange }) {
                 <ActionButtons
                   onView={() => setViewingCandidate(candidate)}
                   onEdit={() => setEditingCandidate(candidate)}
+                  showLock={false}
                 />
               </td>
             </tr>

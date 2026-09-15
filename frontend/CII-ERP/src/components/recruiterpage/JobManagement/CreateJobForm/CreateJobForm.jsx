@@ -20,6 +20,7 @@ const WORK_MODE_OPTIONS = ["On-site", "Hybrid", "Remote"];
 const INITIAL_FORM = {
   companyName: "",
   companyLogo: "",
+  companyLogoFile: null,
   jobTitle: "",
   department: DEPARTMENT_OPTIONS[0],
   employmentType: EMPLOYMENT_TYPE_OPTIONS[0],
@@ -103,6 +104,7 @@ const buildInitialForm = (initialValues) => {
       values.company_logo_url ??
       values.logo_url ??
       "",
+    companyLogoFile: null,
     jobTitle: values.jobRole ?? values.job_role ?? "",
     department: values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
     employmentType:
@@ -161,6 +163,7 @@ const CreateJobForm = ({
   onSubmit,
   initialValues = null,
   isEdit = false,
+  error = "",
 }) => {
   const [form, setForm] = useState(() => buildInitialForm(initialValues));
 
@@ -178,7 +181,11 @@ const CreateJobForm = ({
 
     const reader = new FileReader();
     reader.onload = () => {
-      setForm((prev) => ({ ...prev, companyLogo: reader.result }));
+      setForm((prev) => ({
+        ...prev,
+        companyLogo: reader.result,
+        companyLogoFile: file,
+      }));
     };
     reader.onerror = () => {
       event.target.value = "";
@@ -206,7 +213,6 @@ const CreateJobForm = ({
   const buildPayload = () => {
     const payload = {
       company_name: form.companyName.trim(),
-      company_logo: form.companyLogo || "",
       sector: form.department.trim(),
       vacancy: Number(form.vacancies) || 0,
       location: (form.city || form.state || "").trim(),
@@ -231,6 +237,7 @@ const CreateJobForm = ({
 
     if (minSalary !== null) payload.salary_min = minSalary;
     if (maxSalary !== null) payload.salary_max = maxSalary;
+    if (form.companyLogoFile) payload.logoFile = form.companyLogoFile;
 
     return payload;
   };
@@ -271,6 +278,12 @@ const CreateJobForm = ({
           Back
         </button>
       </header>
+
+      {error && (
+        <div className="create-job-form__error" role="alert">
+          {error}
+        </div>
+      )}
 
       {/* 1. Basic Information */}
       <section className="create-job-form__section">
@@ -314,7 +327,13 @@ const CreateJobForm = ({
               <button
                 type="button"
                 className="create-job-form__logo-remove"
-                onClick={() => setForm((prev) => ({ ...prev, companyLogo: "" }))}
+                onClick={() =>
+                  setForm((prev) => ({
+                    ...prev,
+                    companyLogo: "",
+                    companyLogoFile: null,
+                  }))
+                }
               >
                 Remove logo
               </button>

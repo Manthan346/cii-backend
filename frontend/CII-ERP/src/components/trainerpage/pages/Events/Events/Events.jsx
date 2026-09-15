@@ -5,7 +5,7 @@ import {
   createEvent,
   updateEvent,
 } from "../../../../../../api/trainer/eventService";
-import { Plus, Download, Printer } from "lucide-react";
+import { Plus } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 import { Pagination } from "../../../shared";
@@ -207,22 +207,6 @@ const Events = () => {
               <section className={"events-table-section"}>
                 <div className={"events-table-header"}>
                   <h2 className={"events-table-title"}>All Events</h2>
-                  <div className={"events-table-actions"}>
-                    <button
-                      type="button"
-                      className={"events-icon-btn"}
-                      aria-label="Download list"
-                    >
-                      <Download size={16} />
-                    </button>
-                    <button
-                      type="button"
-                      className={"events-icon-btn"}
-                      aria-label="Print list"
-                    >
-                      <Printer size={16} />
-                    </button>
-                  </div>
                 </div>
 
                 <EventTable

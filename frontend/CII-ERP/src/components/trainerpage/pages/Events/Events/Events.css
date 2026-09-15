@@ -105,28 +105,6 @@
   text-underline-offset: 6px;
 }
 
-.events-table-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.events-icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: none;
-  background: var(--color-gray-icon-bg);
-  color: var(--color-text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.events-icon-btn:hover {
-  background: #e5e7eb;
-}
-
 @media (max-width: 1024px) {
   .events-upcoming-grid {
     grid-template-columns: 1fr 1fr;

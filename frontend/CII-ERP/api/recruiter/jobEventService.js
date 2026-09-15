@@ -167,6 +167,48 @@ export async function fetchJobEvents({
   };
 }
 
+/**
+ * Fetch candidates uploaded for one job event.
+ */
+export async function fetchJobEventCandidates(
+  eventId,
+  { page = 1, limit = 6 } = {},
+) {
+  if (!eventId) {
+    throw new Error("Job event ID is required.");
+  }
+
+  const res = await API.get(`/hr/job-event/${eventId}/view`, {
+    params: { page, limit },
+  });
+  const data = res.data?.data ?? {};
+
+  return {
+    candidates: (data.candidates ?? []).map((candidate, index) => ({
+      id: `${candidate.contact_no ?? candidate.candidate_name ?? "candidate"}-${page}-${index}`,
+      name: candidate.candidate_name ?? "—",
+      contactNo: candidate.contact_no ?? null,
+      location: candidate.location ?? null,
+      qualification: candidate.qualification ?? null,
+      college: candidate.college_institute ?? null,
+      experience: candidate.candidate_experience ?? null,
+      vidhansabha: candidate.vidhansabha ?? null,
+      avatarColor: "#2563eb",
+      email: null,
+      appliedTo: null,
+      source: "Job Fair",
+      status: "Registered",
+      appliedDate: null,
+    })),
+    pagination: data.pagination ?? {
+      page,
+      limit,
+      totalRecords: 0,
+      totalPages: 0,
+    },
+  };
+}
+
 export async function createJobEvent(form) {
   if (!form.type) {
     throw new Error("Please select an event type.");
