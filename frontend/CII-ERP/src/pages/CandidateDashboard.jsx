@@ -34,11 +34,12 @@ import StudyMaterial from '../components/candidatepage/Progress/StudyMaterial/St
 import Certificates from '../components/candidatepage/Progress/Certificates/Certificates/Certificates';
 import NotificationDashboard from '../components/candidatepage/Notification/NotificationDashboard/NotificationDashboard';
 import JobOpportunities from '../components/candidatepage/Progress/JobOpportunities/JobOpportunities/JobOpportunities';
+import '../components/candidatepage/candidate-responsive.css';
 
 
 export default function CandidateDashboard() {
   return (
-    <div>
+    <div className="candidate-portal">
       <Routes>
       
         <Route path="/my-dashboard" element={<Dashboard />} />
