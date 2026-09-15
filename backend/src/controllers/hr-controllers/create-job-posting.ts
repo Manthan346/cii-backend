@@ -15,8 +15,8 @@ export const createPlacement = asyncHandler(
         // Handle single job image upload
         let job_image = undefined;
         if (req.file) {
-            const profile_photo = await uploadCloudnary(req.file.path || '') || undefined;
-            const photo_url = profile_photo?.secure_url
+            const profile_photo = (await uploadCloudnary(req.file.path || ''))?.secure_url || undefined;
+            const photo_url = profile_photo
             if (profile_photo) {
                 job_image = photo_url;
             }
