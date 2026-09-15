@@ -67,9 +67,12 @@
 }
 
 .attendance-management-attendance-tracker-header-actions {
-  display: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-left: auto;
 }
 
 /* ---- Filter bar (Search / Batch / Date / Status / Apply) ---- */

@@ -155,61 +155,73 @@ export const eventApplications = [
     id: 'app-1', eventId: 'event-1', name: 'Ankita Sharma', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
     email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-1.pdf',
+    location: 'Mumbai', qualification: 'B.Des', college: 'Rachna Sansad', experience: 'Fresher', vidhansabha: 'Andheri West',
   },
   {
     id: 'app-2', eventId: 'event-1', name: 'Kiran Sawant', avatarColor: '#0f766e',
     appliedTo: 'Quick Service Restaurant', company: 'JUBILANT FoodWorks', contactNo: '+91 9999900000',
     email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-2.pdf',
+    location: 'Nashik', qualification: 'B.Com', college: 'S. P. College', experience: '1 Year', vidhansabha: 'Panchavati',
   },
   {
     id: 'app-3', eventId: 'event-1', name: 'Suresh Naik', avatarColor: '#b45309',
     appliedTo: 'Beauty & Wellness', company: "L'Oréal India", contactNo: '+91 9999900000',
     email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-3.pdf',
+    location: 'Pune', qualification: 'Diploma in Cosmetology', college: 'VLCC Institute', experience: '2 Years', vidhansabha: 'Kothrud',
   },
   {
     id: 'app-4', eventId: 'event-1', name: 'Deepa Chavan', avatarColor: '#2563eb',
     appliedTo: 'Hospitality', company: 'ITC Hotels Limited', contactNo: '+91 9999900000',
     email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-4.pdf',
+    location: 'Mumbai', qualification: 'BHM', college: 'IHM Mumbai', experience: '1 Year', vidhansabha: 'Goregaon',
   },
   {
     id: 'app-5', eventId: 'event-1', name: 'Rohit Shinde', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
     email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-5.pdf',
+    location: 'Thane', qualification: 'B.Des', college: 'Rachna Sansad', experience: 'Fresher', vidhansabha: 'Kalyan East',
   },
   {
     id: 'app-6', eventId: 'event-1', name: 'Pooja Jadhav', avatarColor: '#0f766e',
     appliedTo: 'Cybersecurity', company: 'DSCI', contactNo: '+91 9999900000',
     email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-6.pdf',
+    location: 'Pune', qualification: 'B.Sc IT', college: 'Fergusson College', experience: '6 Months', vidhansabha: 'Shivajinagar',
   },
 
   {
     id: 'app-7', eventId: 'event-2', name: 'Kiran Sawant', avatarColor: '#0f766e',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
     email: 'kiran@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-7.pdf',
+    location: 'Mumbai', qualification: 'B.A.', college: 'Mithibai College', experience: 'Fresher', vidhansabha: 'Vile Parle',
   },
   {
     id: 'app-8', eventId: 'event-2', name: 'Ankita Sharma', avatarColor: '#7c3aed',
     appliedTo: 'Quick Service Restaurant', company: 'JUBILANT FoodWorks', contactNo: '+91 9999900000',
     email: 'ankita@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-8.pdf',
+    location: 'Nagpur', qualification: '12th Pass', college: 'New Era School', experience: '1 Year', vidhansabha: 'Sadar',
   },
   {
     id: 'app-9', eventId: 'event-2', name: 'Suresh Naik', avatarColor: '#b45309',
     appliedTo: 'Beauty & Wellness', company: "L'Oréal India", contactNo: '+91 9999900000',
     email: 'suresh@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Selected', resumeUrl: 'https://example.com/resumes/app-9.pdf',
+    location: 'Nashik', qualification: 'Diploma in Cosmetology', college: 'VLCC Institute', experience: '3 Years', vidhansabha: 'Cidco',
   },
   {
     id: 'app-10', eventId: 'event-2', name: 'Deepa Chavan', avatarColor: '#2563eb',
     appliedTo: 'Hospitality', company: 'ITC Hotels Limited', contactNo: '+91 9999900000',
     email: 'deepa@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-10.pdf',
+    location: 'Panvel', qualification: 'BHM', college: 'IHM Mumbai', experience: '2 Years', vidhansabha: 'Panvel',
   },
   {
     id: 'app-11', eventId: 'event-2', name: 'Rohit Shinde', avatarColor: '#7c3aed',
     appliedTo: 'Junior Graphic Designer', company: 'COSMOS', contactNo: '+91 9999900000',
     email: 'rohit@mail.com', appliedDate: '17 Jul 2026', source: 'Walk-in', status: 'Rejected', resumeUrl: 'https://example.com/resumes/app-11.pdf',
+    location: 'Thane', qualification: 'B.A.', college: 'Rachna Sansad', experience: 'Fresher', vidhansabha: 'Mumbra',
   },
   {
     id: 'app-12', eventId: 'event-2', name: 'Pooja Jadhav', avatarColor: '#0f766e',
     appliedTo: 'Cybersecurity', company: 'DSCI', contactNo: '+91 9999900000',
     email: 'pooja@mail.com', appliedDate: '17 Jul 2026', source: 'Registered Online', status: 'Interview', resumeUrl: 'https://example.com/resumes/app-12.pdf',
+    location: 'Pune', qualification: 'B.Sc IT', college: 'Fergusson College', experience: '8 Months', vidhansabha: 'Shivajinagar',
   },
 ];

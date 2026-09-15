@@ -34,6 +34,7 @@ import CourseManagement from "../components/adminpage/Operations/CourseManagemen
 import ReportsAnalytics from "../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics";
 import Profile from "../components/adminpage/Profile/Profile/Profile";
 import Notifications from "../components/adminpage/Notifications/Notifications/Notifications";
+import Logout from "../components/adminpage/Logout/Logout";
 
 export default function AdminDashboard() {
   return (
@@ -52,6 +53,7 @@ export default function AdminDashboard() {
         <Route path="reports-analytics" element={<ReportsAnalytics />} />
         <Route path="profile" element={<Profile />} />
         <Route path="notifications" element={<Notifications />} />
+        <Route path="logout" element={<Logout />} />
       </Route>
     </Routes>
   );

@@ -1,12 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  FileDown,
-  Lock,
-  Users,
-  UserCheck,
-  UserX,
-  UserPlus,
-} from "lucide-react";
+import { Lock, Users, UserCheck, UserX, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/Button/Button";
 import UsersOverview from "../UsersOverview/UsersOverview";
@@ -305,10 +298,6 @@ const TotalUsers = () => {
     navigate(`/admin/total-users/${userId}`);
   };
 
-  const handleExport = () => {
-    console.log("export users");
-  };
-
   const handleViewDeactivated = () => {
     navigate("/admin/total-users/deactivated-accounts");
   };
@@ -343,9 +332,6 @@ const TotalUsers = () => {
         <div className="admin-total-users__heading-actions">
           <Button variant="danger" icon={Lock} onClick={handleViewDeactivated}>
             Deactivated Account
-          </Button>
-          <Button icon={FileDown} onClick={handleExport}>
-            Export As
           </Button>
         </div>
       </div>

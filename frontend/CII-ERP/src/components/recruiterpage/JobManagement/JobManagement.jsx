@@ -187,6 +187,7 @@ const JobManagement = () => {
         onSubmit={handleCreateJob}
         initialValues={selectedJob ?? selectedJobFromList ?? null}
         isEdit={Boolean(selectedJobId && (selectedJob || selectedJobFromList))}
+        error={error}
       />
     );
   }
