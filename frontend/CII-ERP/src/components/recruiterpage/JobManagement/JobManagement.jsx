@@ -148,6 +148,8 @@ const JobManagement = () => {
 
   const handleCreateJob = async (jobPayload, isEditMode = false) => {
     try {
+      setError("");
+
       if (isEditMode && selectedJobId) {
         const updated = await updateRecruiterJobPosting(
           selectedJobId,
@@ -168,6 +170,7 @@ const JobManagement = () => {
 
       const created = await createRecruiterJobPosting(jobPayload);
       setJobs((prev) => [normalizeJobPosting(created), ...prev]);
+      setError("");
       goToList();
     } catch (err) {
       console.error("Failed to create/update job:", err);

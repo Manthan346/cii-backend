@@ -179,15 +179,26 @@ const CreateJobForm = ({
     const file = event.target.files?.[0];
     if (!file) return;
 
+    // Keep the File immediately so submitting before the preview loads still
+    // sends it to the API as `job_image`.
+    setForm((prev) => ({
+      ...prev,
+      companyLogoFile: file,
+    }));
+
     const reader = new FileReader();
     reader.onload = () => {
       setForm((prev) => ({
         ...prev,
         companyLogo: reader.result,
-        companyLogoFile: file,
       }));
     };
     reader.onerror = () => {
+      setForm((prev) => ({
+        ...prev,
+        companyLogo: "",
+        companyLogoFile: null,
+      }));
       event.target.value = "";
     };
     reader.readAsDataURL(file);

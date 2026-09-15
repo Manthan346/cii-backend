@@ -1,0 +1,152 @@
+/*
+ * Shared responsive rules for the candidate portal.
+ *
+ * Candidate screens use separate page-level shells, but they all share the
+ * fixed 268px sidebar and the same topbar. Keeping these rules scoped to the
+ * candidate route prevents layout changes from leaking into staff portals.
+ */
+
+.candidate-portal {
+  --candidate-sidebar-width: 268px;
+  min-width: 0;
+}
+
+.candidate-portal .dashboard__main,
+.candidate-portal .attendance-page__main,
+.candidate-portal .my-courses__main,
+.candidate-portal .profile-page__main,
+.candidate-portal .assessments-page__main,
+.candidate-portal .certificates-page__main,
+.candidate-portal .job-opportunities-page__main {
+  margin-left: var(--candidate-sidebar-width);
+}
+
+.candidate-portal .topbar {
+  min-width: 0;
+}
+
+.candidate-portal .topbar__notification-popover {
+  max-width: calc(100vw - 32px);
+}
+
+.candidate-portal .dashboard__body,
+.candidate-portal .attendance-page__body,
+.candidate-portal .my-courses__body,
+.candidate-portal .profile-page__body,
+.candidate-portal .assessments-page__content,
+.candidate-portal .certificates-page__content,
+.candidate-portal .job-opportunities-page__content {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.candidate-portal img,
+.candidate-portal svg {
+  max-width: 100%;
+}
+
+.candidate-portal table {
+  max-width: 100%;
+}
+
+.candidate-portal button,
+.candidate-portal input,
+.candidate-portal select,
+.candidate-portal textarea {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .candidate-portal .dashboard__main,
+  .candidate-portal .attendance-page__main,
+  .candidate-portal .my-courses__main,
+  .candidate-portal .profile-page__main,
+  .candidate-portal .assessments-page__main,
+  .candidate-portal .certificates-page__main,
+  .candidate-portal .job-opportunities-page__main {
+    margin-left: 0;
+  }
+
+  .candidate-portal .topbar {
+    padding: 10px 20px;
+  }
+
+  .candidate-portal .profile-page__body {
+    padding: 20px 16px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .candidate-portal .topbar {
+    height: 58px;
+    padding: 8px 16px;
+  }
+
+  .candidate-portal .topbar__notification-popover {
+    position: fixed;
+    top: 64px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-height: min(70vh, 420px);
+  }
+
+  .candidate-portal .dashboard__body,
+  .candidate-portal .attendance-page__body,
+  .candidate-portal .my-courses__body,
+  .candidate-portal .profile-page__body,
+  .candidate-portal .assessments-page__content,
+  .candidate-portal .certificates-page__content,
+  .candidate-portal .job-opportunities-page__content {
+    padding: 16px;
+  }
+
+  .candidate-portal .attendance-page__title,
+  .candidate-portal .assessments-page__title,
+  .candidate-portal .certificates-page__title,
+  .candidate-portal .job-opportunities-page__title,
+  .candidate-portal .task-page__title {
+    font-size: 21px;
+  }
+
+  .candidate-portal .calendar__cell {
+    width: min(34px, 9vw);
+    height: min(34px, 9vw);
+  }
+
+  .candidate-portal .task-page__filters,
+  .candidate-portal .filterPanel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .candidate-portal .task-filter,
+  .candidate-portal .sortFilter {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .candidate-portal .task-item {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .candidate-portal .topbar {
+    padding-inline: 12px;
+  }
+
+  .candidate-portal .dashboard__body,
+  .candidate-portal .attendance-page__body,
+  .candidate-portal .my-courses__body,
+  .candidate-portal .profile-page__body,
+  .candidate-portal .assessments-page__content,
+  .candidate-portal .certificates-page__content,
+  .candidate-portal .job-opportunities-page__content {
+    padding-inline: 12px;
+  }
+
+  .candidate-portal .profile-tabs {
+    max-width: 100%;
+  }
+}

@@ -33,6 +33,7 @@ export function normalizeJobPosting(job = {}) {
     job.company_logo ??
     job.company_logo_url ??
     job.logo_url ??
+    job.job_image ??
     job.companyLogo ??
     "";
   const jobRole = job.job_role ?? job.jobRole ?? "Untitled Role";
