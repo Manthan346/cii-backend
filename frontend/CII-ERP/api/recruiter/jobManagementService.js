@@ -175,7 +175,8 @@ export async function updateRecruiterJobPosting(placementId, payload) {
     `/hr/job-management/${placementId}`,
     toMultipartPayload(payload),
   );
-  const updated = response.data?.data ?? {};
+  const updated =
+    response.data?.data?.placement ?? response.data?.data ?? {};
   return normalizeJobPosting(updated);
 }
 
