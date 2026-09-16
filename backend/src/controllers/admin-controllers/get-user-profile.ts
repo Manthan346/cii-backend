@@ -496,7 +496,7 @@ export const getUserProfile = asyncHandler(
                                 instructor_highest_qualification_documents: true,
                             }
                         },
-                        company_details:{
+                        company_details:{//to fetch company name 
                             select:{
                                 company_name:true,
                             }
