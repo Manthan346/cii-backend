@@ -1,7 +1,4 @@
 import { Response } from "express";
-import { upload } from "../../middlewares/multer-middleware/multer";
-import { uploadCloudnary } from "../../services/cloudinary";
-
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { prisma } from "../../lib/prisma";
 import { asyncHandler } from "../../helpers/asyncHandler";
@@ -12,16 +9,8 @@ import { createPlacementSchema } from "../../services/zod/hr/placement-validatio
 export const createPlacement = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
 
-        // Handle single job image upload
-        let job_image = undefined;
-        if (req.file) {
-            const profile_photo = (await uploadCloudnary(req.file.path || ''))?.secure_url || undefined;
-            const photo_url = profile_photo
-            if (profile_photo) {
-                job_image = photo_url;
-            }
-        }
-
+        // req.body.job_image is already set to the Cloudinary secure_url
+        // by the uploadJobImage middleware (if a file was uploaded).
         const validation = createPlacementSchema.safeParse(req.body);
 
         if (!validation.success) {
@@ -46,28 +35,21 @@ export const createPlacement = asyncHandler(
             eligible_qualification,
             eligible_percentage_cgpa,
             last_date_to_apply,
-            experience
+            experience,
+            job_image
         } = validation.data;
 
         const hrId = req.hr?.hr_id;
         const companyId = req.hr?.company_id;
 
         if (!hrId || !companyId) {
-            throw new ApiError(
-                401,
-                "HR information is missing"
-            );
+            throw new ApiError(401, "HR information is missing");
         }
 
-        const applicationDeadline = new Date(
-            `${last_date_to_apply}T12:00:00.000Z`
-        );
+        const applicationDeadline = new Date(`${last_date_to_apply}T12:00:00.000Z`);
 
         if (isNaN(applicationDeadline.getTime())) {
-            throw new ApiError(
-                400,
-                "Invalid application deadline"
-            );
+            throw new ApiError(400, "Invalid application deadline");
         }
 
         const today = new Date();
@@ -77,10 +59,7 @@ export const createPlacement = asyncHandler(
         deadlineDate.setUTCHours(0, 0, 0, 0);
 
         if (deadlineDate < today) {
-            throw new ApiError(
-                400,
-                "Last date to apply cannot be in the past"
-            );
+            throw new ApiError(400, "Last date to apply cannot be in the past");
         }
 
         const result = await prisma.$transaction(async (tx) => {
@@ -92,94 +71,57 @@ export const createPlacement = asyncHandler(
                     vacancy,
                     location: location.trim(),
                     job_role: job_role.trim(),
-                    job_description:
-                        job_description?.trim() || null,
+                    job_description: job_description?.trim() || null,
                     salary_min: salary_min ?? null,
                     salary_max: salary_max ?? null,
-                    employment_type:
-                        employment_type?.trim() || null,
+                    employment_type: employment_type?.trim() || null,
                     work_mode,
-                    eligible_qualification:
-                        eligible_qualification?.trim() || null,
-                    eligible_percentage_cgpa:
-                        eligible_percentage_cgpa?.trim() || null,
-                    last_date_to_apply:
-                        applicationDeadline,
+                    eligible_qualification: eligible_qualification?.trim() || null,
+                    eligible_percentage_cgpa: eligible_percentage_cgpa?.trim() || null,
+                    last_date_to_apply: applicationDeadline,
                     is_active: true,
                     created_by: hrId,
-                    experience:
-                        experience?.trim() || null,
+                    experience: experience?.trim() || null,
                     job_image
                 }
             });
 
-            const notification =
-                await tx.notifications.create({
-                    data: {
-                        title: "New Job Opportunity",
-
-                        notification_message:
-                            `A new ${placement.job_role} position is available at ${placement.company_name}.`,
-
-                        notification_type:
-                            "JOB_OPPORTUNITY",
-
-                        reference_type:
-                            "JOB_POSTING",
-
-                        reference_id:
-                            placement.placement_id
-                    }
-                });
+            const notification = await tx.notifications.create({
+                data: {
+                    title: "New Job Opportunity",
+                    notification_message: `A new ${placement.job_role} position is available at ${placement.company_name}.`,
+                    notification_type: "JOB_OPPORTUNITY",
+                    reference_type: "JOB_POSTING",
+                    reference_id: placement.placement_id
+                }
+            });
 
             const users = await tx.user_login.findMany({
                 where: {
-                    user_role: {
-                        in: [
-                            "hr",
-                            "mobilizer",
-                            "admin",
-                            "candidate"
-                        ]
-                    }
+                    user_role: { in: ["hr", "mobilizer", "admin", "candidate"] }
                 },
-
-                select: {
-                    user_id: true
-                }
+                select: { user_id: true }
             });
 
             if (users.length > 0) {
                 await tx.user_notifications.createMany({
                     data: users.map((user) => ({
-                        notification_id:
-                            notification.notification_id,
-
-                        user_id:
-                            user.user_id
+                        notification_id: notification.notification_id,
+                        user_id: user.user_id
                     })),
-
                     skipDuplicates: true
                 });
             }
 
             return {
                 placement,
-
-                notification_id:
-                    notification.notification_id,
-
-                notified_users:
-                    users.length
+                notification_id: notification.notification_id,
+                notified_users: users.length
             };
         });
 
         res.status(201).json(
-            new ApiResponse(
-                201,
-                result,
-                "Job posting created successfully"
-            )
+            new ApiResponse(201, result, "Job posting created successfully")
         );
     }
 );

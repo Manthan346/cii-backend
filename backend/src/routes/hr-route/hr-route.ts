@@ -43,11 +43,17 @@ hrRouter.get("/profile",verifyHrUsingAccessToken,getHrProfile);
 //update Job fair details
 hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,validateBody(updateJobEventSchema),updateJobEvent)
 //create job postings with optional job image upload
-hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,upload.single('job_image'),validateBody(createPlacementSchema),createPlacement);
+hrRouter.post(
+    '/job-management/create-job',
+    verifyHrUsingAccessToken,
+    uploadJobImage,                    // ← was: upload.single('job_image')
+    validateBody(createPlacementSchema),
+    createPlacement
+);
 //fetch all candidates in job fair 
 hrRouter.get('/job-event/:job_event_id/view',verifyHrUsingAccessToken,paginationMiddleware,getJobFairCandidates);
 //create job postings
-hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,validateBody(createPlacementSchema),createPlacement);
+
 //fetch all job postings 
 hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,getAllJobPostings);
 //update specific job postings
