@@ -121,7 +121,7 @@ const getMobilizerCandidates = asyncHandler(async (req: MobilizerAuthRequest, re
 
     // Enrollment info
     course_name: enrollmentMap.get(candidate.candidate_id)?.course_name || "Not Enrolled",
-    enrolled_date: enrollmentMap.get(candidate.candidate_id).enrollment_date || "date not found" ,
+    enrolled_date: enrollmentMap.get(candidate.candidate_id)?.enrollment_date || "date not found" ,
     batch_name: enrollmentMap.get(candidate.candidate_id)?.batch_name || "Not Enrolled",
     enrollment_status: enrollmentMap.get(candidate.candidate_id)?.enrollment_status || "Not Enrolled",
   }));
