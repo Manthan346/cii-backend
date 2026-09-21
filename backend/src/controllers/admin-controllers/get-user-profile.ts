@@ -495,6 +495,11 @@ export const getUserProfile = asyncHandler(
                                 instructor_resume: true,
                                 instructor_highest_qualification_documents: true,
                             }
+                        },
+                        company_details:{//to fetch company name 
+                            select:{
+                                company_name:true,
+                            }
                         }
                     },
                 });
@@ -550,6 +555,7 @@ export const getUserProfile = asyncHandler(
                                 degree: instructor.instructor_documents?.instructor_highest_qualification_documents
                             }
                             :null,
+                            company_name:instructor.company_details?.company_name ?? null,
                         },
                     },
                     "Instructor profile fetched successfully."
