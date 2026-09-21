@@ -179,6 +179,12 @@
   margin-top: 8px;
 }
 
+.admin-user-record-section--typed {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
 .admin-user-record-section h2 {
   margin: 0 0 16px;
   font-size: 20px;
@@ -211,4 +217,41 @@
   font-size: 15px;
   color: #0f172a;
   word-break: break-word;
+}
+
+.admin-user-record-document-link {
+  color: #3f5bd9;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-user-record-document-link:hover {
+  text-decoration: underline;
+}
+
+.admin-user-record-course-list {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-user-record-course {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.admin-user-record-course h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.admin-user-record-course__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px 16px;
+  color: #475569;
+  font-size: 13px;
 }

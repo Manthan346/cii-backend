@@ -16,8 +16,9 @@
 
 /* ── Main content area (offset by sidebar width) ── */
 .my-courses__main {
-  margin-left: 240px;
+  margin-left: var(--candidate-sidebar-width, 268px);
   flex: 1;
+  min-width: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +27,8 @@
 
 /* ── Page body (below topbar) ── */
 .my-courses__body {
+  min-width: 0;
+  box-sizing: border-box;
   padding: 16px 40px 16px 40px;
   flex: 1;
   overflow-y: auto;
@@ -35,6 +38,7 @@
 /* ── Completed courses / Up Skill Activities row ──
    Wider left panel, narrower right panel, matching the reference design. */
 .my-courses__progress-row {
+  min-width: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
@@ -54,5 +58,10 @@
 
   .my-courses__progress-row {
     grid-template-columns: 1fr;
+  }
+
+  .my-courses__progress-row > * {
+    min-width: 0;
+    max-width: 100%;
   }
 }
