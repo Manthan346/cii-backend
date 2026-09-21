@@ -3226,151 +3226,14 @@ export const Instructor_documentsScalarFieldEnum = {
 export type Instructor_documentsScalarFieldEnum = (typeof Instructor_documentsScalarFieldEnum)[keyof typeof Instructor_documentsScalarFieldEnum]
 
 
-export const NotificationsScalarFieldEnum = {
-  notification_id: 'notification_id',
-  title: 'title',
-  notification_message: 'notification_message',
-  notification_type: 'notification_type',
-  reference_type: 'reference_type',
-  reference_id: 'reference_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
-
-
-export const Study_materialScalarFieldEnum = {
-  study_material_id: 'study_material_id',
-  batch_id: 'batch_id',
-  uploaded_by: 'uploaded_by',
-  title: 'title',
-  description: 'description',
-  document_link: 'document_link',
-  is_show: 'is_show',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Study_materialScalarFieldEnum = (typeof Study_materialScalarFieldEnum)[keyof typeof Study_materialScalarFieldEnum]
-
-
-export const User_notificationsScalarFieldEnum = {
-  user_notification_id: 'user_notification_id',
-  notification_id: 'notification_id',
-  user_id: 'user_id',
-  is_read: 'is_read',
-  read_at: 'read_at',
-  created_at: 'created_at'
-} as const
-
-export type User_notificationsScalarFieldEnum = (typeof User_notificationsScalarFieldEnum)[keyof typeof User_notificationsScalarFieldEnum]
-
-
-export const Event_batchesScalarFieldEnum = {
-  event_batch_id: 'event_batch_id',
-  event_id: 'event_id',
-  batch_id: 'batch_id'
-} as const
-
-export type Event_batchesScalarFieldEnum = (typeof Event_batchesScalarFieldEnum)[keyof typeof Event_batchesScalarFieldEnum]
-
-
-export const Event_detailsScalarFieldEnum = {
-  event_id: 'event_id',
-  center_id: 'center_id',
-  event_title: 'event_title',
-  event_description: 'event_description',
-  event_date: 'event_date',
-  event_start_time: 'event_start_time',
-  venue: 'venue',
-  is_show: 'is_show',
-  created_by: 'created_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  updated_by: 'updated_by',
-  event_link: 'event_link',
-  event_mode: 'event_mode',
+export const Job_eventsScalarFieldEnum = {
+  job_event_id: 'job_event_id',
   event_type: 'event_type',
-  target_type: 'target_type',
-  event_status: 'event_status',
-  event_documents: 'event_documents',
-  event_end_time: 'event_end_time'
-} as const
-
-export type Event_detailsScalarFieldEnum = (typeof Event_detailsScalarFieldEnum)[keyof typeof Event_detailsScalarFieldEnum]
-
-
-export const Admin_detailsScalarFieldEnum = {
-  admin_id: 'admin_id',
-  admin_first_name: 'admin_first_name',
-  admin_last_name: 'admin_last_name',
-  blood_group: 'blood_group',
-  date_of_birth: 'date_of_birth',
-  highest_qualification: 'highest_qualification',
-  specialization: 'specialization',
-  university: 'university',
-  passing_year: 'passing_year',
-  total_experience: 'total_experience',
-  prev_organization: 'prev_organization',
-  prev_org_role: 'prev_org_role',
-  father_name: 'father_name',
-  father_mobile_no: 'father_mobile_no',
-  father_address: 'father_address',
-  father_occupation: 'father_occupation',
-  father_blood_group: 'father_blood_group',
-  father_dob: 'father_dob',
-  mother_name: 'mother_name',
-  mother_mobile_no: 'mother_mobile_no',
-  mother_address: 'mother_address',
-  mother_occupation: 'mother_occupation',
-  mother_blood_group: 'mother_blood_group',
-  mother_dob: 'mother_dob',
-  guardian_name: 'guardian_name',
-  guardian_dob: 'guardian_dob',
-  guardian_address: 'guardian_address',
-  guardian_gender: 'guardian_gender',
-  guardian_blood_group: 'guardian_blood_group',
-  guardian_phone_number: 'guardian_phone_number',
-  user_id: 'user_id',
-  admin_phone_no: 'admin_phone_no'
-} as const
-
-export type Admin_detailsScalarFieldEnum = (typeof Admin_detailsScalarFieldEnum)[keyof typeof Admin_detailsScalarFieldEnum]
-
-
-export const Admin_documentsScalarFieldEnum = {
-  admin_document_id: 'admin_document_id',
-  admin_id: 'admin_id',
-  pan_card_link: 'pan_card_link',
-  aadhar_card_link: 'aadhar_card_link',
-  resume_link: 'resume_link',
-  past_experience_letter_link: 'past_experience_letter_link',
-  highest_qualification_certificate_link: 'highest_qualification_certificate_link'
-} as const
-
-export type Admin_documentsScalarFieldEnum = (typeof Admin_documentsScalarFieldEnum)[keyof typeof Admin_documentsScalarFieldEnum]
-
-
-export const Batch_syllabusScalarFieldEnum = {
-  batch_syllabus_id: 'batch_syllabus_id',
-  batch_id: 'batch_id',
-  topic_name: 'topic_name',
-  completion_date: 'completion_date',
-  is_completed: 'is_completed',
-  completed_at: 'completed_at',
-  completed_by: 'completed_by',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type Batch_syllabusScalarFieldEnum = (typeof Batch_syllabusScalarFieldEnum)[keyof typeof Batch_syllabusScalarFieldEnum]
-
-
-export const Enquiry_status_historyScalarFieldEnum = {
-  history_id: 'history_id',
-  enquiry_id: 'enquiry_id',
-  mobilizer_id: 'mobilizer_id',
+  event_name: 'event_name',
+  event_date: 'event_date',
+  address: 'address',
+  google_map_link: 'google_map_link',
+  description: 'description',
   created_at: 'created_at',
   updated_at: 'updated_at',
   created_by: 'created_by',
@@ -3396,21 +3259,15 @@ export const Mobilizer_detailsScalarFieldEnum = {
 export type Mobilizer_detailsScalarFieldEnum = (typeof Mobilizer_detailsScalarFieldEnum)[keyof typeof Mobilizer_detailsScalarFieldEnum]
 
 
-export const Job_eventsScalarFieldEnum = {
-  job_event_id: 'job_event_id',
-  event_type: 'event_type',
-  event_name: 'event_name',
-  event_date: 'event_date',
-  address: 'address',
-  google_map_link: 'google_map_link',
-  description: 'description',
+export const NotificationsScalarFieldEnum = {
+  notification_id: 'notification_id',
+  title: 'title',
+  notification_message: 'notification_message',
+  notification_type: 'notification_type',
+  reference_type: 'reference_type',
+  reference_id: 'reference_id',
   created_at: 'created_at',
-  updated_at: 'updated_at',
-  created_by: 'created_by',
-  jobevent_photos: 'jobevent_photos',
-  event_status: 'event_status',
-  event_end_time: 'event_end_time',
-  event_start_time: 'event_start_time'
+  updated_at: 'updated_at'
 } as const
 
 export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
