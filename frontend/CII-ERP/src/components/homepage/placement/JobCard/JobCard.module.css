@@ -143,13 +143,13 @@
 }
 
 .primaryBtn {
-  background: var(--blue-light);
-  color: var(--blue);
+  background: var(--blue);
+  color: #ffffff;
 }
 
-.primaryBtn:hover {
-  background: #d9e6f5;
-}
+/* .primaryBtn:hover {
+  transition: background 0.18s ease, transform 0.18s ease;
+} */
 
 @media (max-width: 520px) {
   .card {

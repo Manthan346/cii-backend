@@ -173,7 +173,7 @@ export default function ApplyModal({ job, onClose, onSubmitted }) {
                 </div>
                 <div className={styles.field}>
                   <label className={styles.label} htmlFor="applicant_location">
-                    applicant_location
+                    Location
                   </label>
                   <input
                     id="applicant_location"
