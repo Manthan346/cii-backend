@@ -37,6 +37,8 @@ import { downloadCompanyEnrollmentReport } from "../../controllers/admin-control
 import { getCompanies } from "../../controllers/admin-controllers/get-companies-forReport";
 import { getCompanyCourses } from "../../controllers/admin-controllers/get-courses-forSpecificCompany";
 import { getCourseBatches } from "../../controllers/admin-controllers/get-batches-courseSpecific";
+import { addIndustryPartnerByAdmin } from "../../controllers/admin-controllers/create-company";
+
 
 //create mobilizer
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -47,6 +49,7 @@ import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-contro
 import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 import { getAllAdminNotifications } from "../../controllers/admin-controllers/get-all-adminNotifications";
 import { createAdminSchema } from "../../services/zod/admin/create-admin-schema";
+import { createCompanySchema } from "../../services/zod/admin/create-company-validation";
 
 const adminRouter = Router();
 
@@ -209,5 +212,7 @@ adminRouter.get('/reports/fetch-courses-for-company',verifyAdminUsingAccessToken
 adminRouter.get('/reports/fetch-batch-for-course',verifyAdminUsingAccessToken,getCourseBatches);
 //fetch all notifications for admin 
 adminRouter.get('/notifications',verifyAdminUsingAccessToken,paginationMiddleware,getAllAdminNotifications);
+//to create entirely new company
+adminRouter.post('/create-company',verifyAdminUsingAccessToken,validateBody(createCompanySchema),addIndustryPartnerByAdmin)
 
 export default adminRouter
