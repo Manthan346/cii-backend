@@ -21,6 +21,318 @@ const formatRole = (role = "") => {
 const safeText = (value, fallback = "—") =>
   value === null || value === undefined || value === "" ? fallback : value;
 
+const formatLabel = (value) =>
+  String(value)
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+
+const formatDisplayDate = (value) => {
+  if (!value) return "—";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? String(value)
+    : date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
+};
+
+const CandidateInfoSection = ({ title, values }) => {
+  const entries = Object.entries(values).filter(
+    ([, value]) => value !== null && value !== undefined && value !== "",
+  );
+
+  if (!entries.length) return null;
+
+  return (
+    <section className="admin-user-record-section admin-user-record-section--typed">
+      <h2>{title}</h2>
+      <div className="admin-user-record-list">
+        {entries.map(([key, value]) => (
+          <div className="admin-user-record-item" key={key}>
+            <span>{formatLabel(key)}</span>
+            <strong>{formatDisplayValue(value)}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const CandidateProfileSections = ({ profile }) => {
+  const currentLocation = profile.current_location ?? {};
+  const permanentLocation = profile.permanent_location ?? {};
+  const guardian = profile.guardian ?? {};
+  const father = profile.father ?? {};
+  const mother = profile.mother ?? {};
+  const courses = Array.isArray(profile.courses) ? profile.courses : [];
+
+  return (
+    <div className="admin-user-record-typed-content">
+      <CandidateInfoSection
+        title="Personal information"
+        values={{
+          full_name: profile.full_name,
+          contact_number: profile.contact_number,
+          gender: profile.gender,
+          date_of_birth: formatDisplayDate(profile.date_of_birth),
+          highest_qualification: profile.highest_qualification,
+          qualification_percentage: profile.qualification_percentage,
+          category: profile.category,
+          blood_group: profile.blood_group,
+          candidate_unique_id: profile.candidate_unique_id,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Current address"
+        values={{
+          address: profile.current_address,
+          city: currentLocation.city,
+          district: currentLocation.district,
+          state: currentLocation.state,
+          pin_code: currentLocation.pin_code,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Permanent address"
+        values={{
+          address: profile.permanent_address,
+          city: permanentLocation.city,
+          district: permanentLocation.district,
+          state: permanentLocation.state,
+          pin_code: permanentLocation.pin_code,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Emergency contact"
+        values={{ emergency_contact: profile.emergency_contact }}
+      />
+
+      <CandidateInfoSection
+        title="Guardian details"
+        values={{
+          name: guardian.name,
+          phone: guardian.phone,
+          relationship: guardian.relationship,
+          occupation: guardian.occupation,
+          gender: guardian.gender,
+          blood_group: guardian.blood_group,
+          address: guardian.address,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Father details"
+        values={{
+          name: father.name,
+          occupation: father.occupation,
+          phone: father.phone,
+          blood_group: father.blood_group,
+          address: father.address,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Mother details"
+        values={{
+          name: mother.name,
+          occupation: mother.occupation,
+          phone: mother.phone,
+          blood_group: mother.blood_group,
+          address: mother.address,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Course summary"
+        values={{
+          total_enrolled_courses: profile.course_summary?.total_enrolled_courses,
+          courses_in_progress: profile.course_summary?.courses_in_progress,
+          completed_courses: profile.course_summary?.completed_courses,
+        }}
+      />
+
+      {profile.documents && (
+        <section className="admin-user-record-section admin-user-record-section--typed">
+          <h2>Documents</h2>
+          <div className="admin-user-record-list">
+            {Object.entries(profile.documents)
+              .filter(([, value]) => value)
+              .map(([key, value]) => (
+                <div className="admin-user-record-item" key={key}>
+                  <span>{formatLabel(key)}</span>
+                  <a
+                    className="admin-user-record-document-link"
+                    href={value}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open document
+                  </a>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
+
+      {courses.length > 0 && (
+        <section className="admin-user-record-section admin-user-record-section--typed">
+          <h2>Courses and enrollment</h2>
+          <div className="admin-user-record-course-list">
+            {courses.map((enrollment) => (
+              <article
+                className="admin-user-record-course"
+                key={enrollment.enrollment_id}
+              >
+                <h3>{safeText(enrollment.course?.course_name)}</h3>
+                <div className="admin-user-record-course__details">
+                  <span>
+                    Company: {safeText(enrollment.company?.company_name)}
+                  </span>
+                  <span>
+                    Batch: {safeText(enrollment.batch?.batch_name)}
+                  </span>
+                  <span>
+                    Status: {safeText(enrollment.enrollment_status)}
+                  </span>
+                  <span>
+                    Attendance: {safeText(enrollment.attendance_percentage)}%
+                  </span>
+                  <span>
+                    Instructor: {safeText(enrollment.instructor?.full_name)}
+                  </span>
+                  <span>
+                    Dates: {formatDisplayDate(enrollment.batch?.start_date)} -{" "}
+                    {formatDisplayDate(enrollment.batch?.end_date)}
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};
+
+const InstructorProfileSections = ({ profile }) => {
+  const address = profile.address ?? {};
+
+  return (
+    <div className="admin-user-record-typed-content">
+      <CandidateInfoSection
+        title="Personal information"
+        values={{
+          full_name: profile.full_name,
+          email: profile.email,
+          contact_number: profile.contact_number,
+          gender: profile.gender,
+          date_of_birth: formatDisplayDate(profile.date_of_birth),
+          specialization: profile.specialization,
+          experience_years: profile.experience_years,
+          blood_group: profile.blood_group,
+          instructor_id: profile.instructor_id,
+        }}
+      />
+
+      <CandidateInfoSection
+        title="Address"
+        values={{
+          address: address.address,
+          city: address.city,
+          state: address.state,
+          district: address.district,
+          taluka: address.taluka,
+          pin_code: address.pin_code,
+        }}
+      />
+
+      {profile.documents && (
+        <section className="admin-user-record-section admin-user-record-section--typed">
+          <h2>Documents</h2>
+          <div className="admin-user-record-list">
+            {Object.entries(profile.documents)
+              .filter(([, value]) => value)
+              .map(([key, value]) => (
+                <div className="admin-user-record-item" key={key}>
+                  <span>{formatLabel(key)}</span>
+                  <a
+                    className="admin-user-record-document-link"
+                    href={value}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open document
+                  </a>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};
+
+const HrProfileSections = ({ profile }) => (
+  <div className="admin-user-record-typed-content">
+    <CandidateInfoSection
+      title="HR information"
+      values={{
+        full_name: profile.full_name,
+        email: profile.email,
+        phone_number: profile.phone_number,
+        designation: profile.designation,
+        unique_id: profile.unique_id,
+        hr_id: profile.hr_id,
+      }}
+    />
+    <CandidateInfoSection
+      title="Company"
+      values={{
+        company_name: profile.company?.company_name,
+        company_id: profile.company?.company_id,
+      }}
+    />
+  </div>
+);
+
+const MobilizerProfileSections = ({ profile }) => (
+  <div className="admin-user-record-typed-content">
+    <CandidateInfoSection
+      title="Mobilizer information"
+      values={{
+        full_name: profile.full_name,
+        email: profile.email,
+        phone_number: profile.phone_number,
+        designation: profile.designation,
+        unique_id: profile.unique_id,
+        mobilizer_id: profile.mobilizer_id,
+      }}
+    />
+  </div>
+);
+
+const AdminProfileSections = ({ profile }) => (
+  <div className="admin-user-record-typed-content">
+    <CandidateInfoSection
+      title="Admin information"
+      values={{
+        full_name: profile.full_name,
+        email: profile.email,
+        blood_group: profile.blood_group,
+        date_of_birth: formatDisplayDate(profile.date_of_birth),
+        highest_qualification: profile.highest_qualification,
+        specialization: profile.specialization,
+        admin_id: profile.admin_id,
+      }}
+    />
+  </div>
+);
+
 const isUuidLike = (text) => {
   if (typeof text !== "string") return false;
   const cleaned = text.trim();
@@ -153,19 +465,6 @@ const formatDisplayValue = (value) => {
   }
 
   return getDisplayableText(value) || "—";
-};
-
-const formatDisplayDate = (value) => {
-  if (!value) return "—";
-
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return String(value);
-
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
 };
 
 const findNestedValue = (source, keys = []) => {
@@ -451,7 +750,14 @@ const UserRecordView = () => {
 
         const profile = await fetchUserProfile(userId);
         if (isMounted) {
-          setUser(profile);
+          setUser(
+            profile?.profile
+              ? {
+                  ...profile.profile,
+                  userDetails: profile.userDetails,
+                }
+              : profile,
+          );
         }
       } catch (err) {
         console.error("Failed to fetch user profile:", err);
@@ -481,6 +787,7 @@ const UserRecordView = () => {
   const role = getFirstDefined(
     user?.user_role,
     user?.role,
+    user?.userDetails?.role,
     user?.type,
     user?.role_name,
     user?.user?.user_role,
@@ -495,6 +802,7 @@ const UserRecordView = () => {
   const email = getFirstDefined(
     user?.user_email,
     user?.email,
+    user?.userDetails?.email,
     user?.user?.user_email,
   );
   const fallbackProfileRole = getFirstDefined(
@@ -554,6 +862,7 @@ const UserRecordView = () => {
   const status = getFirstDefined(
     user?.is_active,
     user?.status,
+    user?.userDetails?.is_active,
     user?.user?.is_active,
   );
   const centerId = getFirstDefined(
@@ -753,93 +1062,22 @@ const UserRecordView = () => {
           </div>
         </div>
 
-        {Object.keys(centerDetails).length > 0 && (
-          <div className="admin-user-record-section">
-            <h2>Center details</h2>
-
-            <div className="admin-user-record-list">
-              {[
-                ["center name", centerName],
-                ["center address", centerAddress],
-                ["center email", centerEmail],
-                ["center contact", centerContact],
-              ]
-                .filter(
-                  ([, value]) =>
-                    value !== null && value !== undefined && value !== "",
-                )
-                .map(([label, value]) => (
-                  <div className="admin-user-record-item" key={label}>
-                    <span>{label}</span>
-                    <strong>{formatDisplayValue(value)}</strong>
-                  </div>
-                ))}
-            </div>
-          </div>
+        {Array.isArray(user?.courses) && (
+          <CandidateProfileSections profile={user} />
+        )}
+        {String(resolvedRole).toLowerCase() === "instructor" && (
+          <InstructorProfileSections profile={user} />
+        )}
+        {String(resolvedRole).toLowerCase() === "hr" && (
+          <HrProfileSections profile={user} />
+        )}
+        {String(resolvedRole).toLowerCase() === "mobilizer" && (
+          <MobilizerProfileSections profile={user} />
+        )}
+        {String(resolvedRole).toLowerCase() === "admin" && (
+          <AdminProfileSections profile={user} />
         )}
 
-        {(Object.keys(detailObject).length > 0 ||
-          flattenedProfile.length > 0) && (
-          <div className="admin-user-record-section">
-            <h2>
-              {Object.keys(detailObject).length > 0
-                ? "Role-specific details"
-                : "Profile details"}
-            </h2>
-
-            <div className="admin-user-record-list">
-              {(Object.keys(detailObject).length > 0
-                ? Object.entries(detailObject)
-                : flattenedProfile
-              )
-                .filter(([key]) => {
-                  const compactLabel = String(key)
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]/g, "");
-
-                  return !(
-                    compactLabel.includes("isactive") ||
-                    compactLabel.includes("userdetailsuserid") ||
-                    compactLabel.includes("candidateid") ||
-                    compactLabel.includes("firstname") ||
-                    compactLabel.includes("lastname") ||
-                    compactLabel.includes("profilephoto")
-                  );
-                })
-                .map(([key, value]) => {
-                  if (value === null || value === undefined || value === "")
-                    return null;
-
-                  const normalizedKey = String(key)
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]/g, "");
-                  const isDobField =
-                    normalizedKey.includes("dateofbirth") ||
-                    normalizedKey.includes("dob") ||
-                    normalizedKey.includes("birthdate");
-                  const isCourseLikeKey =
-                    /course|enrollment|batch|curriculum/i.test(String(key));
-                  const formattedValue = isDobField
-                    ? formatDisplayDate(value)
-                    : formatDisplayValue(value);
-
-                  if (isCourseLikeKey && !hasMeaningfulDisplayText(value)) {
-                    return null;
-                  }
-
-                  return (
-                    <div
-                      className="admin-user-record-item"
-                      key={`${key}-${String(value)}`}
-                    >
-                      <span>{String(key).replace(/_/g, " ")}</span>
-                      <strong>{formattedValue}</strong>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

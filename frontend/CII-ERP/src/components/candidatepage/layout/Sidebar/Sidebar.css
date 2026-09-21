@@ -46,13 +46,13 @@
 }
 
 .sidebar {
-  width: 268px;
-  height: 100vh;
+  width: var(--candidate-sidebar-width, 268px);
+  top: 0;
+  bottom: 0;
   background: var(--sidebar-bg);
   /* border-right: 1px solid var(--sidebar-border); */
   padding: 15px 16px;
   position: fixed;
-  top: 0;
   left: 0;
   z-index: 50;
   display: flex;

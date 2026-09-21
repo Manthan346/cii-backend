@@ -1,6 +1,10 @@
 /* CourseProgressList.css – "My Courses Progress" widget */
 
 .dash-my-courses {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
   border-radius: 16px;
   padding: 22px 20px;
@@ -13,6 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
   margin-bottom: 20px;
 }
 
@@ -38,6 +43,7 @@
 .course-row {
   display: flex;
   align-items: center;
+  min-width: 0;
   gap: 12px;
   margin-bottom: 18px;
 }
@@ -67,16 +73,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
   margin-bottom: 6px;
 }
 
 .course-row__name {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 13.5px;
   font-weight: 600;
   color: #1a2740;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.course-row__enrolled-tag {
+  flex: 0 0 auto;
+  margin-left: 8px;
 }
 
 .course-row__pct {

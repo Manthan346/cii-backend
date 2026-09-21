@@ -48,6 +48,7 @@ export function mapPublicJob(job) {
     sector: job.sector,
     experience: job.experience,
     createdAt: job.created_at,
+    jobImage: job.job_image,
   };
 }
 

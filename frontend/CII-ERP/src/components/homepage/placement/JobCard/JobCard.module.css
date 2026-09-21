@@ -12,7 +12,7 @@
     transform 0.18s ease,
     box-shadow 0.18s ease,
     border-color 0.18s ease;
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .card:hover {
@@ -48,6 +48,8 @@
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.02em;
+  object-fit: contain;
+  overflow: hidden;
 }
 
 .headerText {
