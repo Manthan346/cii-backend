@@ -257,7 +257,7 @@ export const createInstructorEvent = asyncHandler(
                         data: {
                             title: data.event_title,
                             notification_message:
-                                `${data.event_title} has been scheduled on ${data.event_date}.`,
+                                `${data.event_title} has been scheduled on ${data.event_date}a and timing is `,
                             notification_type:
                                 notification_type.EVENT_CREATED,
                             reference_type:

@@ -25,7 +25,9 @@ import { getApplicationsPerJob } from "../../controllers/hr-controllers/get-appl
 import { getApplicationPieChartStatus } from "../../controllers/hr-controllers/get-application-statusPieChart";
 import { uploadJobFairCandidates } from "../../controllers/hr-controllers/upload-job-fair-candidates";
 import { uploadExcel } from "../../middlewares/multer-middleware/excel-upload-multer";
+import upload, { uploadJobImage } from "../../middlewares/multer-middleware/image-upload";
 import { getJobFairCandidates } from "../../controllers/hr-controllers/fetch-candidates-forJobFairDrive";
+import { editHrProfile } from "../../controllers/hr-controllers/update-hr-profile";
 
 const hrRouter = Router();
 
@@ -40,14 +42,27 @@ updateJobEventStatus);
 hrRouter.get("/profile",verifyHrUsingAccessToken,getHrProfile);
 //update Job fair details
 hrRouter.patch('/job-event/update/:job_event_id',verifyHrUsingAccessToken,validateBody(updateJobEventSchema),updateJobEvent)
+//create job postings with optional job image upload
+hrRouter.post(
+    '/job-management/create-job',
+    verifyHrUsingAccessToken,
+    uploadJobImage,                    // ← was: upload.single('job_image')
+    validateBody(createPlacementSchema),
+    createPlacement
+);
 //fetch all candidates in job fair 
 hrRouter.get('/job-event/:job_event_id/view',verifyHrUsingAccessToken,paginationMiddleware,getJobFairCandidates);
 //create job postings
-hrRouter.post('/job-management/create-job',verifyHrUsingAccessToken,validateBody(createPlacementSchema),createPlacement);
+
 //fetch all job postings 
 hrRouter.get('/job-management',verifyHrUsingAccessToken,paginationMiddleware,getAllJobPostings);
-//update specific job postings 
-hrRouter.patch('/job-management/:placement_id',verifyHrUsingAccessToken,validateBody(updatePlacementSchema),updateJobPosting);
+//update specific job postings
+hrRouter.patch(
+  "/job-management/:placement_id",
+  verifyHrUsingAccessToken,
+  uploadJobImage,       // ← runs first, populates req.body.job_image if a file was sent
+  updateJobPosting
+);
 //fetch all notifications
 hrRouter.get('/notifications',verifyHrUsingAccessToken,paginationMiddleware,getAllNotifications);
 //fetch all job applications
@@ -71,5 +86,7 @@ hrRouter.post(
   uploadExcel.single("file"),
   uploadJobFairCandidates
 );
+//update profile for hr 
+hrRouter.patch('/profile/update',verifyHrUsingAccessToken,editHrProfile)
 
 export default hrRouter;

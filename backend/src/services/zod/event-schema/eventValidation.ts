@@ -24,11 +24,25 @@ export const createEventSchema = z.object({
     .refine(
       (date) => !isNaN(Date.parse(date)),
       "Invalid event date"
+    )
+    .refine(
+      (date) => {
+        const parsedDate = new Date(date);
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return parsedDate >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
     ),
 
-  event_time: z
+  event_start_time: z
     .string()
-    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event time"),
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event start time"),
+
+  event_end_time: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event end time"),
 
   venue: z
     .string()
@@ -52,7 +66,7 @@ export const createEventSchema = z.object({
 
   event_status: z.nativeEnum(event_status_type).optional(),
 
-  target_type: z.nativeEnum(event_target_type),
+  target_type: z.nativeEnum(event_target_type).optional().default(event_target_type.PUBLIC),
 })
 .superRefine((data, ctx) => {
     if (data.event_mode === event_mode.ONLINE) {
@@ -152,13 +166,27 @@ export const updatePublicEventSchema = z.object({
       (date) => !isNaN(Date.parse(date)),
       "Invalid event date"
     )
+    .optional()
+    .refine(
+      (date) => {
+        if (!date) return true; // Allow optional - will validate if provided
+        const parsedDate = new Date(date);
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return parsedDate >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
+    ),
+
+  event_start_time: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event start time")
     .optional(),
 
-    
-
-  event_time: z
+  event_end_time: z
     .string()
-    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event time")
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid event end time")
     .optional(),
 
   venue: z
@@ -176,6 +204,8 @@ export const updatePublicEventSchema = z.object({
   event_mode: z.nativeEnum(event_mode).optional(),
 
   event_type: z.nativeEnum(event_type).optional(),
+
+  event_status: z.enum(event_status_type).optional(),
 
   is_show: z.boolean().optional(),
 

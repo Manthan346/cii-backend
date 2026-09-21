@@ -665,12 +665,9 @@ export const getUserProfile = asyncHandler(
                                 address:
                                     candidate.mother_address,
                             },
-
-                            emergency_contact:
-                                candidate.candidate_emergency_contact_no,
-
                             profile_photo:
                                 candidate.profile_photo,
+                            emergency_contact:candidate.candidate_emergency_contact_no,
 
                             documents:{
                                 candidate_photo:candidate.candidate_documents?.candidate_photo,
@@ -756,6 +753,11 @@ export const getUserProfile = asyncHandler(
                                 aadhar_card: true,
                                 instructor_resume: true,
                                 instructor_highest_qualification_documents: true,
+                            }
+                        },
+                        company_details:{//to fetch company name 
+                            select:{
+                                company_name:true,
                             }
                         }
                     },
@@ -845,6 +847,7 @@ export const getUserProfile = asyncHandler(
                                 degree: instructor.instructor_documents?.instructor_highest_qualification_documents
                             }
                             :null,
+                            company_name:instructor.company_details?.company_name ?? null,
                         },
                     },
                     "Instructor profile fetched successfully."

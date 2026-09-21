@@ -6,16 +6,17 @@ import { redis } from "../../lib/redis";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { INSTRUCTOR_REDIS_KEYS } from "../../constants/instructor-keys/instructor-keys";
+import { CANDIDATE_REDIS_KEYS } from "../../constants/candidate-keys/candidate-keys";
 import { addAttendanceBodySchema } from "../../services/zod/instructor/mark-attendance-schema";
 
 const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, res: Response) => {
   const instructorId = req.instructor?.instructor_id;
-  const attendanceSessionId = req.params.attendanceSessionId as string
+  const attendanceSessionId = req.params.attendanceSessionId as string;
 
   if (!instructorId) {
     throw new ApiError(404, "instructor id not found");
   }
-  
+
   if (!attendanceSessionId) {
     throw new ApiError(400, "attendanceSessionId is required in the URL");
   }
@@ -32,6 +33,11 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
     select: {
       instructor_id: true,
       batch_id: true,
+      batch_details: {
+        select: {
+          course_id: true,
+        },
+      },
     },
   });
 
@@ -42,6 +48,8 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
   if (session.instructor_id !== instructorId) {
     throw new ApiError(403, "you don't have permission to mark attendance for this session");
   }
+
+  const courseId = session.batch_details.course_id;
 
   const candidateIds = attendance.map((a) => a.candidateId);
   const enrollments = await prisma.batch_enrollment.findMany({
@@ -102,7 +110,7 @@ const addCandidateAttendance = asyncHandler(async (req: InstructorAuthRequest, r
     );
   }
 
-const record =  await prisma.$transaction(
+  const record = await prisma.$transaction(
     attendance.map((entry) =>
       prisma.attendance_records.upsert({
         where: {
@@ -126,10 +134,19 @@ const record =  await prisma.$transaction(
   );
 
   try {
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1; // getMonth() is 0-indexed
+    const currentYear = now.getFullYear();
+
     await Promise.all(
       enrollments.flatMap((e) => [
+        // Delete instructor-side attendance marking cache
         redis.del(INSTRUCTOR_REDIS_KEYS.mark_attendance_key(e.candidate_id)),
-        redis.del(INSTRUCTOR_REDIS_KEYS.view_candidate_profile_key(e.enrollment_id)),
+        // Delete candidate profile cache so frontend gets fresh attendance data
+        // Delete attendance-specific cache keys
+        redis.del(CANDIDATE_REDIS_KEYS.candidate_all_courses_attendance_key(e.candidate_id)),
+        redis.del(CANDIDATE_REDIS_KEYS.candidate_attendance_calendar_key(e.candidate_id, courseId, currentMonth, currentYear)),
+        redis.del(CANDIDATE_REDIS_KEYS.candidate_recent_attendance_log_key(e.candidate_id)),
       ])
     );
   } catch (err) {

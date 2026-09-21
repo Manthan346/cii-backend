@@ -31,6 +31,7 @@ import { editGuardianProfile } from "../../controllers/candidate-controllers/edi
 import { editGuardianProfileSchema } from "../../services/zod/candidate/guardian-edit-schema";
 import { uploadEventImages } from "../../middlewares/multer-middleware/image-upload";
 import { getCandidateCertificates } from "../../controllers/candidate-controllers/fetch-candidate-certificates";
+import { candidateCourseStats } from "../../controllers/candidate-controllers/get-candidate-courseStats";
 
 const candidateRouter = Router()
 
@@ -94,6 +95,7 @@ candidateRouter.post('/candidate-assessment/mark-attempt/:assessment_id',verifyC
 candidateRouter.get('/events/get-event',verifyCandidateUsingAccessToken,paginationMiddleware,getAllCandidateEvents)
 //fetch certificates
 candidateRouter.get('/certificates',verifyCandidateUsingAccessToken,getCandidateCertificates);
+candidateRouter.get('/course-stats',verifyCandidateUsingAccessToken,candidateCourseStats);
 
 export {
     candidateRouter

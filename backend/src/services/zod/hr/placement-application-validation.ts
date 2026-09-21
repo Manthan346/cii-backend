@@ -70,6 +70,7 @@ export const createPlacementApplicationSchema = z.object({
         .trim()
         .max(100, "Source cannot exceed 100 characters")
         .optional(),
+
 });
 
 export const updateApplicationStatusSchema = z.object({

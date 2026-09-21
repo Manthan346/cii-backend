@@ -41,8 +41,15 @@ export const editCandidateProfile = asyncHandler(
             emergency_contact_no,
             contact_number,
             highest_qualification,
-            candidate_current_address,
-            candidate_permanent_address,
+            pancard_no,
+            aadhar_card,
+            qualification_percentage
+
+
+
+
+
+        
         } = req.body;
 
         // Build update payload from ONLY allowed columns
@@ -53,10 +60,13 @@ export const editCandidateProfile = asyncHandler(
             date_of_birth?: Date;
             blood_group?: string;
             candidate_emergency_contact_no?: string;
-            candidate_contact_no?: string;
+            contact_number?: string;
             highest_qualification?: string;
-            candidate_current_address?: string;
-            candidate_permanent_address?: string;
+            pan_card_no?: string,
+            aadhar_card_no?: string,
+            qualification_percentage?: string,
+
+         
             profile_photo?: string;
         } = {};
 
@@ -65,14 +75,33 @@ export const editCandidateProfile = asyncHandler(
         if (gender !== undefined) data.gender = gender;
         if (date_of_birth !== undefined) {
             const parsed = new Date(date_of_birth);
-            if (!isNaN(parsed.getTime())) data.date_of_birth = parsed;
+            if (!isNaN(parsed.getTime())) {
+                // Validate that candidate is at least 18 years old
+                const today = new Date();
+                const birthDate = parsed;
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+
+                // Adjust age if birthday hasn't occurred yet this year
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                if (age < 18) {
+                    throw new ApiError(400, "Candidate must be at least 18 years old");
+                }
+
+                data.date_of_birth = parsed;
+            }
         }
         if (blood_group !== undefined) data.blood_group = blood_group;
         if (emergency_contact_no !== undefined) data.candidate_emergency_contact_no = emergency_contact_no;
-        if (contact_number !== undefined) data.candidate_contact_no = contact_number;
+        if (contact_number !== undefined) data.contact_number = contact_number;
         if (highest_qualification !== undefined) data.highest_qualification = highest_qualification;
-        if (candidate_current_address !== undefined) data.candidate_current_address = candidate_current_address;
-        if (candidate_permanent_address !== undefined) data.candidate_permanent_address = candidate_permanent_address;
+        if (pancard_no !== undefined) data.pan_card_no = pancard_no;
+        if (aadhar_card !== undefined) data.aadhar_card_no = aadhar_card;
+        if (qualification_percentage !== undefined) data.qualification_percentage = qualification_percentage;
+
         if (profile_photo !== undefined) data.profile_photo = profile_photo;
 
         // Update the candidate record

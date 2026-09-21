@@ -44,6 +44,40 @@ export const updateAdminProfile = asyncHandler(
             throw new ApiError(404, "Admin profile not found.");
         }
 
+        if (date_of_birth !== undefined) {
+            const dob = new Date(`${date_of_birth}T00:00:00.000Z`);
+
+            if (isNaN(dob.getTime())) {
+                throw new ApiError(
+                    400,
+                    "Invalid date of birth."
+                );
+            }
+
+            const today = new Date();
+            today.setUTCHours(0, 0, 0, 0);
+
+            if (dob > today) {
+                throw new ApiError(
+                    400,
+                    "Date of birth cannot be in the future."
+                );
+            }
+
+            const eighteenYearsAgo = new Date(today);
+
+            eighteenYearsAgo.setUTCFullYear(
+                eighteenYearsAgo.getUTCFullYear() - 18
+            );
+
+            if (dob > eighteenYearsAgo) {
+                throw new ApiError(
+                    400,
+                    "Admin must be at least 18 years old."
+                );
+            }
+        }
+
         const updateData: {
             admin_first_name?: string;
             admin_last_name?: string;

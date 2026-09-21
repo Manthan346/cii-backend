@@ -14,7 +14,7 @@ import { validateBody } from '../../middlewares/zod-middleware/zod-body-validato
 import { uploadEventImages } from '../../middlewares/multer-middleware/image-upload';
 import { getAllJobEvents } from '../../controllers/mobilizer-controller/get-all-jobEvents';
 import { getJobEventDetails } from '../../controllers/mobilizer-controller/get-job-event-details';
-
+import { getMobilizerCandidates } from '../../controllers/mobilizer-controller/get-mobilizer-candidates';
 import { getMobilizerProfile } from '../../controllers/mobilizer-controller/get-profile';
 import { editMobilizerProfile } from '../../controllers/mobilizer-controller/edit-profile';
 import { editMobilizerProfileSchema } from '../../services/zod/mobilizer-schema/mobilizer-edit-schema';
@@ -25,6 +25,12 @@ import { getEnquiryStats } from '../../controllers/mobilizer-controller/enquiry-
 import { getMobilizerNotifications } from '../../controllers/mobilizer-controller/get-notifications';
 import { mobilizerEnrollCandidate } from '../../controllers/mobilizer-controller/enroll-candidate';
 import { mobilizerEnrollCandidateSchema } from '../../services/zod/mobilizer-schema/mobilizer-enroll-candidate-schema';
+import { getMobilizerCandidateDetails } from '../../controllers/mobilizer-controller/get-mobilizer-candidate-details';
+import { downloadMobilizerEnquiryExcel } from '../../controllers/mobilizer-controller/download-mobilizer-enquiry-excel';
+import { getMobilizerSimpleCourses } from '../../controllers/mobilizer-controller/get-mobilizer-simple-courses';
+import { getMobilizerBatchesByCourse } from '../../controllers/mobilizer-controller/get-mobilizer-batches-by-course';
+import { getEnrollmentAnalytics } from '../../controllers/mobilizer-controller/get-enrollment-analytics';
+
 
 const mobilizerRouter = Router();
 
@@ -34,6 +40,8 @@ mobilizerRouter.get(
     paginationMiddleware,
     getAllEnquiry
 );
+
+mobilizerRouter.get("/enrollment/analytics", verifyMobilizerUsingAccessToken, getEnrollmentAnalytics )
 mobilizerRouter.get("/job-event",verifyMobilizerUsingAccessToken,paginationMiddleware,getAllJobEvents)
 
 // Fetch all job fair and job drive for the mobilizer
@@ -149,6 +157,49 @@ mobilizerRouter.post(
     verifyMobilizerUsingAccessToken,
     validateBody(mobilizerEnrollCandidateSchema),
     mobilizerEnrollCandidate
+);
+
+// Get all candidates for this mobilizer's center (enrolled or not) - paginated
+mobilizerRouter.get(
+    "/candidates",
+    verifyMobilizerUsingAccessToken,
+    paginationMiddleware,
+    getMobilizerCandidates
+);
+
+// Get specific candidate details by ID (full profile with documents, enrollments, batch info)
+mobilizerRouter.get(
+    "/candidates/:candidateId",
+    verifyMobilizerUsingAccessToken,
+    getMobilizerCandidateDetails
+);
+
+// Get detailed profile for each candidate (documents, enrollment, batch info)
+mobilizerRouter.get(
+    "/candidates/details",
+    verifyMobilizerUsingAccessToken,
+    
+);
+
+// Download enquiry records as Excel/CSV
+mobilizerRouter.get(
+    "/download-enquiry-excel",
+    verifyMobilizerUsingAccessToken,
+    downloadMobilizerEnquiryExcel
+);
+
+// Get simple courses list (id + name only) for dropdowns - center-scoped
+mobilizerRouter.get(
+    "/courses/simple",
+    verifyMobilizerUsingAccessToken,
+    getMobilizerSimpleCourses
+);
+
+// Get batches for a specific course (no pagination - returns all batches with enrollment counts) - center-scoped
+mobilizerRouter.get(
+    "/batches",
+    verifyMobilizerUsingAccessToken,
+    getMobilizerBatchesByCourse
 );
 
 export default mobilizerRouter

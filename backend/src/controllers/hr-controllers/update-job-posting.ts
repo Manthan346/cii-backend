@@ -24,6 +24,9 @@ export const updateJobPosting = asyncHandler(
             );
         }
 
+        // req.body.job_image is already set to the Cloudinary secure_url
+        // by the uploadJobImage middleware (if a file was uploaded), or left
+        // as whatever the client sent (or omitted) otherwise.
         const validation =
             updatePlacementSchema.safeParse(req.body);
 
@@ -43,6 +46,15 @@ export const updateJobPosting = asyncHandler(
             throw new ApiError(
                 401,
                 "HR information is missing"
+            );
+        }
+
+        const companyId = req.hr?.company_id;
+
+        if (!companyId) {
+            throw new ApiError(
+                401,
+                "Company information is missing"
             );
         }
 
@@ -174,7 +186,6 @@ export const updateJobPosting = asyncHandler(
 
             const deadlineDate =
                 new Date(applicationDeadline);
-
             deadlineDate.setUTCHours(0, 0, 0, 0);
 
             if (deadlineDate < today) {
@@ -186,6 +197,10 @@ export const updateJobPosting = asyncHandler(
 
             updateData.last_date_to_apply =
                 applicationDeadline;
+        }
+
+        if (data.job_image !== undefined) {
+            updateData.job_image = data.job_image;
         }
 
         const updatedPlacement =

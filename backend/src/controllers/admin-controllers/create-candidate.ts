@@ -78,12 +78,21 @@ export const adminCreateCandidate = asyncHandler(
                     contact_number: contact_number,
 
                 },
-                include: {
-                    user_login: true
-                }
             });
 
-            const existingUser = existingCandidate?.user_login;
+            if(existingCandidate?.contact_number){
+                throw new ApiError(400,"Phone No. already exists.")
+            }
+
+            const existingUser = await tx.user_login.findFirst({
+                where:{
+                    user_email:email
+                }
+            })
+
+            if(existingUser?.user_email){
+                throw new ApiError(400, "email already exists")
+            }
 
             let candidateUserId: string;
             let candidateId: string;
@@ -110,9 +119,9 @@ export const adminCreateCandidate = asyncHandler(
 
                 // Generate sequence and candidate_unique_id
                 // Use first 3 letters of center name (uppercased) as prefix
-                const centerPrefix = center.center_name.toUpperCase().slice(0, 3);
-                const sequence = await getNextSequence(tx, centerPrefix);
-                candidateUniqueId = buildStudentId(sequence, centerPrefix);
+                
+                const sequence = await getNextSequence(tx, "ABVKVK");
+                candidateUniqueId = buildStudentId(sequence, "ABVKVK");
 
                 // Generate default password: firstname + lastname + last 4 digits of phone
                 const cleanLastName = last_name?.trim() || "";
@@ -132,6 +141,7 @@ export const adminCreateCandidate = asyncHandler(
                         user_password: hashedPassword,
                         user_role: "candidate",
                         center_id: centerId,
+                        is_active: true
                     }
                 });
                 candidateUserId = userLogin.user_id;
@@ -147,7 +157,7 @@ export const adminCreateCandidate = asyncHandler(
                         date_of_birth: date_of_birth ? new Date(date_of_birth) : null,
                         blood_group: blood_group?.trim() || null,
                         candidate_unique_id: candidateUniqueId,
-                        is_active: false, // Requires admin approval
+                         // Requires admin approval
                     }
                 });
                 candidateId = candidate.candidate_id;

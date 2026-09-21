@@ -16,7 +16,8 @@ export const updateJobEvent = asyncHandler(
       event_type,
       event_name,
       event_date,
-      event_time,
+      event_start_time,
+      event_end_time,
       address,
       google_map_link,
       description,
@@ -34,6 +35,18 @@ export const updateJobEvent = asyncHandler(
         throw new ApiError(404, "Job event not found.");
       }
 
+      // Parse base date
+      const baseDate = new Date(event_date);
+
+      // Create proper DateTime values for time fields (combine date with time)
+      const parsedEventStartTime = event_start_time
+        ? new Date(`${baseDate.toISOString().split('T')[0]}T${event_start_time}:00.000Z`)
+        : undefined;
+
+      const parsedEventEndTime = event_end_time
+        ? new Date(`${baseDate.toISOString().split('T')[0]}T${event_end_time}:00.000Z`)
+        : undefined;
+
       // Update job event
       const updatedJobEvent = await tx.job_events.update({
         where: {
@@ -49,13 +62,15 @@ export const updateJobEvent = asyncHandler(
           }),
 
           ...(event_date !== undefined && {
-            event_date: new Date(event_date),
+            event_date: baseDate,
           }),
 
-          ...(event_time !== undefined && {
-            event_time: new Date(
-              `1970-01-01T${event_time}:00`
-            ),
+          ...(event_start_time !== undefined && {
+            event_start_time: parsedEventStartTime,
+          }),
+
+          ...(event_end_time !== undefined && {
+            event_end_time: parsedEventEndTime,
           }),
 
           ...(address !== undefined && {
@@ -78,7 +93,7 @@ export const updateJobEvent = asyncHandler(
           title: "Job Event Updated",
 
           notification_message:
-  `${updatedJobEvent.event_name} has been updated. The event is scheduled for ${updatedJobEvent.event_date.toISOString().split("T")[0]} at ${updatedJobEvent.event_time.toISOString().substring(11, 16)} at ${updatedJobEvent.address}.`,
+  `${updatedJobEvent.event_name} has been updated. The event is scheduled for ${updatedJobEvent.event_date.toISOString().split("T")[0]} at ${updatedJobEvent.event_start_time ? updatedJobEvent.event_start_time.toISOString().substring(11, 16) : "an unspecified time"} at ${updatedJobEvent.address}.`,
 
           notification_type: "JOB_EVENT_UPDATED",
 

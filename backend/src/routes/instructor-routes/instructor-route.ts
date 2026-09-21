@@ -48,7 +48,7 @@ import { createEventSchema } from "../../services/zod/event-schema/eventValidati
 import { updateEventSchema } from "../../services/zod/event-schema/eventValidation";
 import { createInstructorEvent } from "../../controllers/instructor-controller/instructor-create-event";
 import { updateInstructorEvent } from "../../controllers/instructor-controller/instructor-update-event";
-import { getAllInstructorEvents } from "../../controllers/instructor-controller/get-instructor-events"; 
+import { getAllInstructorEvents } from "../../controllers/instructor-controller/get-instructor-events";
 import { deleteInstructorEvent } from "../../controllers/instructor-controller/delete-instructor-event";
 import { getAllAttendanceSessions } from "../../controllers/instructor-controller/instructor-get-allAttendanceSessions";
 import { getSessionDetails } from "../../controllers/instructor-controller/instructor-get-attendanceSessionDetails";
@@ -66,6 +66,8 @@ import { deleteBatchSyllabusTopic } from "../../controllers/instructor-controlle
 import { addAttendanceBodySchema } from "../../services/zod/instructor/mark-attendance-schema";
 import { getActiveStudentsForSession } from "../../controllers/instructor-controller/fetch-active-CandidatesForAttendance";
 import { getInstructorNotifications } from "../../controllers/instructor-controller/fetch-all-instructorNotifications";
+import { instructorGetMyBatches } from "../../controllers/instructor-controller/instructor-get-my-batches";
+import { createAttendanceSessionsFromExcel } from "../../controllers/instructor-controller/instructor-create-session";
 import { getSessionAttendanceHistory } from "../../controllers/instructor-controller/fetch-attendance-sessionHistory";
 
 const instructorRouter = Router();
@@ -74,6 +76,12 @@ instructorRouter.get(
     "/instructor-dashboard",
     verifyInstructorUsingAccessToken,
     getInstructorDashboard
+);
+
+instructorRouter.get(
+    "/my-batches",
+    verifyInstructorUsingAccessToken,
+    instructorGetMyBatches
 );
 instructorRouter.get(
     "/batches/:batchId/attendance",
@@ -187,6 +195,7 @@ instructorRouter.get("/attendance-management/get-sessions",verifyInstructorUsing
 instructorRouter.get("/attendance-management/get-sessions/:attendance_session_id",verifyInstructorUsingAccessToken,getSessionDetails)
 instructorRouter.post("/batch-management/batch-syllabus/:batch_id/upload",verifyInstructorUsingAccessToken,uploadExcel.single("file"),uploadSyllabus
 );
+instructorRouter.post("/create-session/excel", verifyInstructorUsingAccessToken, uploadExcel.single("file"), createAttendanceSessionsFromExcel)
 instructorRouter.get("/batch-management/batch-syllabus/:batch_id/get",verifyInstructorUsingAccessToken,getBatchSyllabus)
 instructorRouter.patch("/batch-management/batch-syllabus/:batch_syllabus_id/",verifyInstructorUsingAccessToken,markBatchSyllabus)
 instructorRouter.post("/batch-management/:batch_id/add_batch_syllabus",verifyInstructorUsingAccessToken,addBatchSyllabusTopic)

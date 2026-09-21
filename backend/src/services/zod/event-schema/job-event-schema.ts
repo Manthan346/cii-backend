@@ -8,9 +8,20 @@ export const createJobEventSchema = z.object({
     .min(1, "Event name is required")
     .max(255),
 
-  event_date: z.coerce.date(),
+  event_date: z.coerce.date()
+    .refine(
+      (date) => {
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
+    ),
 
-  event_time: z.string().min(1, "Event time is required"),
+  event_start_time: z.string().min(1, "Event start time is required"),
+
+  event_end_time: z.string().min(1, "Event end time is required"),
 
   address: z
     .string()
@@ -40,11 +51,26 @@ export const updateJobEventSchema = z.object({
   event_date: z
     .coerce
     .date()
+    .optional()
+    .refine(
+      (date) => {
+        if (!date) return true; // Allow optional - will validate if provided
+        // Ensure event date is in the future (after today at midnight)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date >= today;
+      },
+      "Event date cannot be in the past. Please select a future date."
+    ),
+
+  event_start_time: z
+    .string()
+    .min(1, "Event start time is required")
     .optional(),
 
-  event_time: z
+  event_end_time: z
     .string()
-    .min(1, "Event time is required")
+    .min(1, "Event end time is required")
     .optional(),
 
   address: z

@@ -111,7 +111,6 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
             skip,
             take:limit,
             select:{
-            candidate_batch_id:true,
             enrollment_status:true,
             enrollment_date:true,
             enrollment_id:true,
@@ -119,7 +118,8 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
                 select:{
                     candidate_first_name:true,
                     candidate_last_name:true,
-                    contact_number:true
+                    contact_number:true,
+                    candidate_unique_id:true
                 }
             },
             batch_details:{
@@ -138,7 +138,7 @@ export const getAllCandidateBelongingToInstructor = asyncHandler(
 
         const formattedCandidates = candidates.map((candidate)=>({
             candidate_batch_id:
-                candidate.candidate_batch_id,
+                candidate.candidates_details.candidate_unique_id,
             candidate_name:
                 `${candidate.candidates_details.candidate_first_name} ${
                 candidate.candidates_details.candidate_last_name ?? ""

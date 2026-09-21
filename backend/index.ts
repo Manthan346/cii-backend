@@ -20,6 +20,7 @@ import dotenv from 'dotenv'
 import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
 import jobRouter from "./src/routes/job-portal/job-portal-route";
+import "./src/jobs/notificationsCleanupJob"
 
 const app = Express();
 const port = 3000;
@@ -31,11 +32,27 @@ app.use(cookieParser());
 
 
 // ADD THIS BLOCK
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:5173",
+  "http://localhost:5173",
+  "http://localhost:3000",
+].filter(Boolean);
+
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+console.log("Allowed CORS origins:", allowedOrigins);
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend's exact dev URL (Vite default port)
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        // For development, also allow the origin if it's not in the list but looks like a valid origin
+        callback(null, true);
+      }
+    },
     credentials: true,
-  }),
+  })
 );
 
 

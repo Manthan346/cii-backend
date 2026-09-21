@@ -48,8 +48,8 @@ export const getCoursesByCenter = asyncHandler(
       select: {
         course_id: true,
         course_name: true,
-     
-        
+
+
       },
       orderBy: { created_at: "desc" }
     });
@@ -63,3 +63,4 @@ export const getCoursesByCenter = asyncHandler(
     );
   }
 );
+

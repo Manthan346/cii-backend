@@ -117,9 +117,9 @@ export const mobilizerEnrollCandidate = asyncHandler(
 
                 // Generate sequence and candidate_unique_id
                 // Use first 3 letters of center name (uppercased) as prefix
-                const centerPrefix = center.center_name.toUpperCase().slice(0, 3);
-                const sequence = await getNextSequence(tx, centerPrefix);
-                candidateUniqueId = buildStudentId(sequence, centerPrefix);
+                
+                const sequence = await getNextSequence(tx, "ABVKVK");
+                candidateUniqueId = buildStudentId(sequence, "ABVKVK");
 
                 // Generate default password: firstname + lastname + last 4 digits of phone
                 const cleanLastName = last_name?.trim() || "";
@@ -139,6 +139,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                         user_password: hashedPassword,
                         user_role: "candidate",
                         center_id: centerId,
+                        is_active: true, // Requires admin approval
                     }
                 });
                 candidateUserId = userLogin.user_id;
@@ -154,7 +155,7 @@ export const mobilizerEnrollCandidate = asyncHandler(
                         date_of_birth: date_of_birth ? new Date(date_of_birth) : null,
                         blood_group: blood_group?.trim() || null,
                         candidate_unique_id: candidateUniqueId,
-                        is_active: false, // Requires admin approval
+                        
                     }
                 });
                 candidateId = candidate.candidate_id;
