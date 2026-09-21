@@ -87,7 +87,8 @@ const placementBaseSchema = z.object({
     job_image: z
         .string()
         .url("Invalid image URL")
-        .optional(),
+        .optional()
+        .default(undefined),
 });
     
 

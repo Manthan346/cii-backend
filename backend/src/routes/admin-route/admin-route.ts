@@ -38,13 +38,15 @@ import { getCompanies } from "../../controllers/admin-controllers/get-companies-
 import { getCompanyCourses } from "../../controllers/admin-controllers/get-courses-forSpecificCompany";
 import { getCourseBatches } from "../../controllers/admin-controllers/get-batches-courseSpecific";
 
-//create mobilizer 
+//create mobilizer
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
 import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
 import { deleteUser } from "../../controllers/admin-controllers/delete-user";
+import { createAdminByAdmin } from "../../controllers/admin-controllers/create-admin";
 import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
 import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 import { getAllAdminNotifications } from "../../controllers/admin-controllers/get-all-adminNotifications";
+import { createAdminSchema } from "../../services/zod/admin/create-admin-schema";
 
 const adminRouter = Router();
 
@@ -193,7 +195,13 @@ adminRouter.delete(
     verifyAdminUsingAccessToken,
     deleteUser
 );
-//fetch all companies partnered with center to generate report 
+//create admin account (admin only)
+adminRouter.post("/total-users/create-admin",
+    verifyAdminUsingAccessToken,
+    validateBody(createAdminSchema),
+    createAdminByAdmin
+);
+//fetch all companies partnered with center to generate report
 adminRouter.get('/reports/fetch-company',verifyAdminUsingAccessToken,getCompanies)
 //fetch all courses for specific company
 adminRouter.get('/reports/fetch-courses-for-company',verifyAdminUsingAccessToken,getCompanyCourses);
