@@ -41,7 +41,7 @@ import { getCourseBatches } from "../../controllers/admin-controllers/get-batche
 import { addIndustryPartnerByAdmin } from "../../controllers/admin-controllers/create-company";
 import { createCourseByAdmin } from "../../controllers/admin-controllers/create-course";
 import { createCourseSchema } from "../../services/zod/admin/course-creation-validation";
-
+import { getCompaniesByAdmin } from "../../controllers/admin-controllers/fetch-courses-andCompanies";
 
 //create mobilizer 
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
@@ -219,4 +219,6 @@ adminRouter.get('/notifications',verifyAdminUsingAccessToken,paginationMiddlewar
 adminRouter.post('/create-company',verifyAdminUsingAccessToken,validateBody(createCompanySchema),addIndustryPartnerByAdmin)
 //to create new course 
 adminRouter.post('/create-course',verifyAdminUsingAccessToken,validateBody(createCourseSchema),createCourseByAdmin)
+//fetch all companies and courses for the center(company & courses section)
+adminRouter.get('/company-courses',verifyAdminUsingAccessToken,getCompaniesByAdmin)
 export default adminRouter
