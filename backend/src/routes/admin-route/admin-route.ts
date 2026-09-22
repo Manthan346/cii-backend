@@ -39,6 +39,8 @@ import { getCompanies } from "../../controllers/admin-controllers/get-companies-
 import { getCompanyCourses } from "../../controllers/admin-controllers/get-courses-forSpecificCompany";
 import { getCourseBatches } from "../../controllers/admin-controllers/get-batches-courseSpecific";
 import { addIndustryPartnerByAdmin } from "../../controllers/admin-controllers/create-company";
+import { createCourseByAdmin } from "../../controllers/admin-controllers/create-course";
+import { createCourseSchema } from "../../services/zod/admin/course-creation-validation";
 
 
 //create mobilizer 
@@ -215,5 +217,6 @@ adminRouter.get('/reports/fetch-batch-for-course',verifyAdminUsingAccessToken,ge
 adminRouter.get('/notifications',verifyAdminUsingAccessToken,paginationMiddleware,getAllAdminNotifications);
 //to create entirely new company
 adminRouter.post('/create-company',verifyAdminUsingAccessToken,validateBody(createCompanySchema),addIndustryPartnerByAdmin)
-
+//to create new course 
+adminRouter.post('/create-course',verifyAdminUsingAccessToken,validateBody(createCourseSchema),createCourseByAdmin)
 export default adminRouter
