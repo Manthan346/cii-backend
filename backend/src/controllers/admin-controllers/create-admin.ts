@@ -52,6 +52,7 @@ export const createAdminByAdmin = async (
                     },
                 },
             });
+            
 
             if (!admin) {
                 throw new ApiError(404, "Admin user not found.");
