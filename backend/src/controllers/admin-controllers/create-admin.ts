@@ -38,6 +38,7 @@ export const createAdminByAdmin = async (
 
             const admin = await prisma.user_login.findUnique({
                 where: {
+                
                     user_id: adminUserId,
                 },
                 select: {
