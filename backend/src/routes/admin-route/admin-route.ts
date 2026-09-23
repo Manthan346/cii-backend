@@ -41,7 +41,7 @@ import { addIndustryPartnerByAdmin } from "../../controllers/admin-controllers/c
 import { createCourseByAdmin } from "../../controllers/admin-controllers/create-course";
 import { createCourseSchema } from "../../services/zod/admin/course-creation-validation";
 import { getCompaniesByAdmin } from "../../controllers/admin-controllers/fetch-courses-andCompanies";
-
+import { updateCourseByAdmin } from "../../controllers/admin-controllers/update-course-byAdmin";
 //create mobilizer
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
 import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
@@ -52,6 +52,7 @@ import { changePasswordSchema } from "../../services/zod/admin/change-password-s
 import { getAllAdminNotifications } from "../../controllers/admin-controllers/get-all-adminNotifications";
 import { createAdminSchema } from "../../services/zod/admin/create-admin-schema";
 import { createCompanySchema } from "../../services/zod/admin/create-company-validation";
+import { updateCourseSchema } from "../../services/zod/admin/course-creation-validation";
 
 const adminRouter = Router();
 
@@ -220,4 +221,7 @@ adminRouter.post('/create-company',verifyAdminUsingAccessToken,validateBody(crea
 adminRouter.post('/create-course',verifyAdminUsingAccessToken,validateBody(createCourseSchema),createCourseByAdmin)
 //fetch all companies and courses for the center(company & courses section)
 adminRouter.get('/company-courses',verifyAdminUsingAccessToken,getCompaniesByAdmin)
+//update course details
+adminRouter.patch('/company-course/:course_id',verifyAdminUsingAccessToken,validateBody(updateCourseSchema),updateCourseByAdmin)
+
 export default adminRouter
