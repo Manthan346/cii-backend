@@ -161,6 +161,12 @@
   color: #4b5164;
 }
 
+.create-job-form__field-error {
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .create-job-form__input,
 .create-job-form__textarea {
   width: 100%;

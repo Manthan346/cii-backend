@@ -1,0 +1,14 @@
+@import "../CreateCompanyModal/CreateCompanyModal.css";
+
+.admin-modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .admin-modal-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

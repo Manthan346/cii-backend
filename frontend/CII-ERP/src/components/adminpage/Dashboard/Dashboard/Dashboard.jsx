@@ -98,9 +98,7 @@ const Dashboard = () => {
     <div className="admin-dashboard">
       <div className="admin-dashboard__heading">
         <h1 className="admin-dashboard__title">Institution overview</h1>
-        <p className="admin-dashboard__subtitle">
-          Snapshot across all centers
-        </p>
+        <p className="admin-dashboard__subtitle">Snapshot across all centers</p>
       </div>
 
       <StatsOverview stats={stats} />

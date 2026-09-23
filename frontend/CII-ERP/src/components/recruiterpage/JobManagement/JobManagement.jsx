@@ -31,6 +31,7 @@ const JobManagement = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -149,6 +150,7 @@ const JobManagement = () => {
   const handleCreateJob = async (jobPayload, isEditMode = false) => {
     try {
       setError("");
+      setFieldErrors({});
 
       if (isEditMode && selectedJobId) {
         const updated = await updateRecruiterJobPosting(
@@ -174,8 +176,30 @@ const JobManagement = () => {
       goToList();
     } catch (err) {
       console.error("Failed to create/update job:", err);
+      const responseData = err?.response?.data;
+      const details = Array.isArray(responseData?.details)
+        ? responseData.details
+        : [];
+      const nextFieldErrors = details.reduce((errors, detail) => {
+        if (detail?.fields && detail?.message) {
+          const field =
+            detail.fields === "last_date_to_apply"
+              ? "deadline"
+              : detail.fields;
+          errors[field] = detail.message;
+        }
+        return errors;
+      }, {});
+
+      if (
+        responseData?.message === "Last date to apply cannot be in the past"
+      ) {
+        nextFieldErrors.deadline = responseData.message;
+      }
+
+      setFieldErrors(nextFieldErrors);
       setError(
-        err?.response?.data?.message ||
+        responseData?.message ||
           (isEditMode
             ? "Unable to update job posting."
             : "Unable to create job posting."),
@@ -191,6 +215,15 @@ const JobManagement = () => {
         initialValues={selectedJob ?? selectedJobFromList ?? null}
         isEdit={Boolean(selectedJobId && (selectedJob || selectedJobFromList))}
         error={error}
+        fieldErrors={fieldErrors}
+        onFieldChange={(field) =>
+          setFieldErrors((current) => {
+            if (!current[field]) return current;
+            const next = { ...current };
+            delete next[field];
+            return next;
+          })
+        }
       />
     );
   }

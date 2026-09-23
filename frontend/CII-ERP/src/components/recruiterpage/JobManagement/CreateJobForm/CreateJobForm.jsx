@@ -67,6 +67,14 @@ const normalizeDateForInput = (value) => {
   return date.toISOString().slice(0, 10);
 };
 
+const getTodayDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 const normalizeWorkModeForUi = (mode) => {
   const normalized = String(mode ?? "")
     .trim()
@@ -164,6 +172,8 @@ const CreateJobForm = ({
   initialValues = null,
   isEdit = false,
   error = "",
+  fieldErrors = {},
+  onFieldChange,
 }) => {
   const [form, setForm] = useState(() => buildInitialForm(initialValues));
 
@@ -173,6 +183,7 @@ const CreateJobForm = ({
 
   const handleChange = (field) => (event) => {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
+    onFieldChange?.(field);
   };
 
   const handleLogoChange = (event) => {
@@ -241,7 +252,7 @@ const CreateJobForm = ({
     if (description) payload.job_description = description;
     if (qualification) payload.eligible_qualification = qualification;
     if (minPercentage) payload.eligible_percentage_cgpa = minPercentage;
-    if (experience) payload.experience = experience;
+    payload.experience = experience;
 
     const minSalary = toNumericSalary(form.salaryMin);
     const maxSalary = toNumericSalary(form.salaryMax);
@@ -401,6 +412,11 @@ const CreateJobForm = ({
               onChange={handleChange("experience")}
               className="create-job-form__input"
             />
+            {fieldErrors.experience && (
+              <span className="create-job-form__field-error">
+                {fieldErrors.experience}
+              </span>
+            )}
           </label>
 
           <label className="create-job-form__field">
@@ -413,6 +429,11 @@ const CreateJobForm = ({
               onChange={handleChange("vacancies")}
               className="create-job-form__input"
             />
+            {fieldErrors.vacancy && (
+              <span className="create-job-form__field-error">
+                {fieldErrors.vacancy}
+              </span>
+            )}
           </label>
         </div>
       </section>
@@ -532,6 +553,11 @@ const CreateJobForm = ({
               onChange={handleChange("salaryMin")}
               className="create-job-form__input"
             />
+            {fieldErrors.salary_min && (
+              <span className="create-job-form__field-error">
+                {fieldErrors.salary_min}
+              </span>
+            )}
           </label>
 
           <label className="create-job-form__field">
@@ -543,6 +569,11 @@ const CreateJobForm = ({
               onChange={handleChange("salaryMax")}
               className="create-job-form__input"
             />
+            {fieldErrors.salary_max && (
+              <span className="create-job-form__field-error">
+                {fieldErrors.salary_max}
+              </span>
+            )}
           </label>
         </div>
       </section>
@@ -560,11 +591,17 @@ const CreateJobForm = ({
             <input
               type="date"
               value={form.deadline}
+              min={getTodayDate()}
               onChange={handleChange("deadline")}
               className="create-job-form__input create-job-form__input--date"
             />
             <Calendar size={16} className="create-job-form__date-icon" />
           </div>
+          {fieldErrors.deadline && (
+            <span className="create-job-form__field-error">
+              {fieldErrors.deadline}
+            </span>
+          )}
         </label>
       </section>
 

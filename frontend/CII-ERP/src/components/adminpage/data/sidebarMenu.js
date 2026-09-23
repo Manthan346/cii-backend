@@ -63,6 +63,12 @@ export const sidebarMenu = [
         route: "/admin/reports-analytics",
         icon: BarChart3,
       },
+      {
+        id: "companies-courses",
+        title: "Companies & Courses",
+        route: "/admin/companies-courses",
+        icon: BookOpen,
+      },
     ],
   },
   {

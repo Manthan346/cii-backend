@@ -32,6 +32,7 @@ import DeactivatedUsers from "../components/adminpage/TotalUsers/DeactivatedUser
 import Candidates from "../components/adminpage/Candidates/Candidates/Candidates";
 import CourseManagement from "../components/adminpage/Operations/CourseManagement/CourseManagement/CourseManagement";
 import ReportsAnalytics from "../components/adminpage/Operations/ReportsAnalytics/ReportsAnalytics/ReportsAnalytics";
+import CompaniesCourses from "../components/adminpage/Operations/Companies&Courses/Companies&Courses/Companies&Courses";
 import Profile from "../components/adminpage/Profile/Profile/Profile";
 import Notifications from "../components/adminpage/Notifications/Notifications/Notifications";
 import Logout from "../components/adminpage/Logout/Logout";
@@ -51,6 +52,7 @@ export default function AdminDashboard() {
         <Route path="candidates" element={<Candidates />} />
         <Route path="course-management" element={<CourseManagement />} />
         <Route path="reports-analytics" element={<ReportsAnalytics />} />
+        <Route path="companies-courses" element={<CompaniesCourses />} />
         <Route path="profile" element={<Profile />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="logout" element={<Logout />} />
