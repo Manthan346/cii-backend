@@ -5,6 +5,7 @@ import { prisma } from "../../lib/prisma";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { buildTokensForRole } from "../../utils/roles-registry/roles-registry";
+import { role_types } from "../../generated/prisma/enums";
 
 const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password, centerId, role } = req.body;
@@ -46,8 +47,17 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     throw new ApiError(404, "invalid role");
   }
 
-  if (user.center_details.center_id !== centerId) {
-    throw new ApiError(404, "user doesn't exist at this center, please select the right center");
+  if (user.user_role !== role_types.super_admin) {
+      if (!centerId) {
+          throw new ApiError(400, "center is required");
+      }
+
+      if (user.center_details?.center_id !== centerId) {
+          throw new ApiError(
+              404,
+              "user doesn't exist at this center, please select the right center"
+          );
+      }
   }
 
   const passwordMatches = await bcrypt.compare(password, user.user_password);
@@ -58,8 +68,8 @@ const login = asyncHandler(async (req: Request, res: Response) => {
   const { accessToken, refreshToken, roleDetails } = await buildTokensForRole({
     userId: user.user_id,
     role: user.user_role,
-    centerId: user.center_details.center_id,
-    centreName: user.center_details.center_name,
+    centerId: user.center_details?.center_id ?? null,
+    centreName: user.center_details?.center_name ?? null,
     email: user.user_email,
     is_active: user.is_active ?? true,
   });
