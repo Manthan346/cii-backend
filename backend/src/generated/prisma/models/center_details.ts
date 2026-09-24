@@ -466,10 +466,12 @@ export type center_detailsCreateNestedOneWithoutUser_loginInput = {
   connect?: Prisma.center_detailsWhereUniqueInput
 }
 
-export type center_detailsUpdateOneRequiredWithoutUser_loginNestedInput = {
+export type center_detailsUpdateOneWithoutUser_loginNestedInput = {
   create?: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
   connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutUser_loginInput
   upsert?: Prisma.center_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.center_detailsWhereInput | boolean
+  delete?: Prisma.center_detailsWhereInput | boolean
   connect?: Prisma.center_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.center_detailsUpdateWithoutUser_loginInput>, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
 }

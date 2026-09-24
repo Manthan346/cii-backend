@@ -185,7 +185,7 @@ model user_login {
   user_role                                          role_types
   created_at                                         DateTime             @default(now()) @db.Timestamp(6)
   updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
-  center_id                                          String               @db.Uuid
+  center_id                                          String?              @db.Uuid
   refresh_token_hash                                 String?
   is_active                                          Boolean              @default(true)
   admin_details                                      admin_details?
@@ -196,7 +196,7 @@ model user_login {
   instructor_details                                 instructor_details?
   mobilizer_details                                  mobilizer_details?
   study_material                                     study_material[]
-  center_details                                     center_details       @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  center_details                                     center_details?      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
   user_notifications                                 user_notifications[]
 }
 
