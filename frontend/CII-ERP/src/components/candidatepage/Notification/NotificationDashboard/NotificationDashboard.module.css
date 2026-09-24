@@ -1,6 +1,11 @@
+/* ── Layout ── */
 .layout {
+  --sidebar-width: 280px; /* keep in sync with Sidebar.css */
+  --topbar-height: 64px; /* keep in sync with Topbar.css */
+
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   background: #f8faff;
 }
 
@@ -10,24 +15,31 @@
   flex: 1;
   min-width: 0;
 
-  /* Sidebar is position: fixed, so it's out of normal flow — this
-     margin pushes .content over by the sidebar's width so nothing
-     renders underneath it. Adjust the value below if it doesn't
-     line up exactly with your Sidebar.css width. */
-  margin-left: 280px;
+  /* Sidebar is position: fixed, so this pushes the content clear of it.
+     It is removed at the SAME breakpoint (900px) where the topbar shows
+     the hamburger and the sidebar becomes a drawer. */
+  margin-left: var(--sidebar-width);
 }
 
 .main {
-  flex: 1;
-  padding: 32px 40px 48px;
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 24px;
+  /* width: 100%; */
+  max-width: 1280px;
+  /* margin: 0 auto; */
+  padding: 40px 40px 48px;
+  margin-top: 20px;
+  padding-bottom: max(48px, env(safe-area-inset-bottom, 0px));
 }
 
+/* ── Grid ──
+   One column by default. The two-column layout only kicks in when a
+   preference column actually exists AND there is enough room for it. */
 .grid {
   display: grid;
-  /* grid-template-columns: 60% 40%; */
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
 }
@@ -40,10 +52,22 @@
 }
 
 .preferenceColumn {
-  position: sticky;
-  top: 24px;
+  min-width: 0;
 }
 
+@media (min-width: 1101px) {
+  .grid:has(.preferenceColumn) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+
+  .preferenceColumn {
+    position: sticky;
+    /* sits below the sticky topbar instead of sliding under it */
+    top: calc(var(--topbar-height) + 24px);
+  }
+}
+
+/* ── Groups & cards ── */
 .group {
   display: flex;
   flex-direction: column;
@@ -52,10 +76,10 @@
 
 .groupLabel {
   margin: 0;
+  color: #9aa1b2;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: #9aa1b2;
   text-transform: uppercase;
 }
 
@@ -63,21 +87,25 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
 .emptyState {
   margin: 0;
-  padding: 24px;
+  padding: 32px 24px;
   border-radius: 16px;
   background: #ffffff;
   color: #7a8194;
   font-size: 14px;
+  line-height: 1.5;
   text-align: center;
 }
 
+/* ── Filter panel ── */
 .filterPanel {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
   padding: 18px;
@@ -88,13 +116,16 @@
 
 .filterTabs {
   display: flex;
+  flex: 1 1 320px;
   flex-wrap: wrap;
   gap: 10px;
+  min-width: 0;
 }
 
 .filterTab {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   min-height: 44px;
   padding: 0 20px;
@@ -105,9 +136,24 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.filterTabActive {
+.filterTab:hover {
+  border-color: #c9d3df;
+  background: #f5f8fc;
+}
+
+.filterTab:focus-visible,
+.sortFilter:focus-visible,
+.closeDetails:focus-visible {
+  outline: 2px solid #2764c6;
+  outline-offset: 2px;
+}
+
+.filterTabActive,
+.filterTabActive:hover {
   border-color: #117b6d;
   background: #117b6d;
   color: #fff;
@@ -120,10 +166,11 @@
   min-width: 24px;
   height: 24px;
   padding: 0 6px;
-  border-radius: 50%;
+  border-radius: 12px; /* pill, so 2–3 digit counts don't distort */
   background: #fde1e1;
   color: #d64545;
   font-size: 12px;
+  line-height: 1;
 }
 
 .filterTabActive .filterCount {
@@ -132,25 +179,20 @@
 }
 
 .sortFilter {
+  flex: 0 0 auto;
   min-width: 150px;
+  min-height: 44px;
+  margin-left: auto;
   padding: 10px 12px;
   border: 1px solid #dce5ef;
   border-radius: 10px;
   background: #fff;
   color: #1a2740;
+  cursor: pointer;
   font-size: 13px;
 }
 
-.sortFilter {
-  min-width: 150px;
-  padding: 10px 12px;
-  border: 1px solid #dce5ef;
-  border-radius: 10px;
-  background: #fff;
-  color: #1a2740;
-  font-size: 13px;
-}
-
+/* ── Details overlay ── */
 .notificationDetailsOverlay {
   position: fixed;
   inset: 0;
@@ -159,6 +201,8 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: rgba(26, 39, 64, 0.28);
 }
 
@@ -166,7 +210,10 @@
   position: relative;
   width: min(100%, 640px);
   min-height: 320px;
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
   padding: 42px;
+  overflow-y: auto;
   border: 1px solid #dce5ef;
   border-radius: 14px;
   background: #fff;
@@ -198,6 +245,8 @@
   margin: 0 70px 8px 0;
   color: #1a2740;
   font-size: 16px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .notificationDetails p {
@@ -205,6 +254,7 @@
   color: #6b7a94;
   font-size: 13px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .notificationDetails time {
@@ -214,9 +264,11 @@
 
 .closeDetails {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
+  padding: 8px 10px;
   border: 0;
+  border-radius: 8px;
   background: transparent;
   color: #2764c6;
   cursor: pointer;
@@ -224,10 +276,42 @@
   font-weight: 600;
 }
 
+.closeDetails:hover {
+  background: #f0f5fc;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 1200px) {
+  .main {
+    padding: 28px 28px 40px;
+  }
+}
+
+/* Sidebar turns into a drawer here (matches the topbar hamburger) */
+@media (max-width: 900px) {
+  .content {
+    margin-left: 0;
+  }
+
+  .main {
+    padding: 24px 20px 40px;
+  }
+}
+
 @media (max-width: 700px) {
+  .layout {
+    --topbar-height: 56px;
+  }
+
   .filterPanel {
-    align-items: stretch;
     flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .filterTabs {
+    flex-basis: auto;
   }
 
   .filterTab {
@@ -237,45 +321,43 @@
 
   .sortFilter {
     width: 100%;
+    margin-left: 0;
   }
 
   .notificationDetails {
+    min-height: 0;
     padding: 28px;
   }
-}
 
-/* ----- Responsive ----- */
-
-@media (max-width: 1200px) {
-  .main {
-    padding: 28px 28px 40px;
-  }
-}
-
-@media (max-width: 992px) {
-  .grid {
-    grid-template-columns: 58% 42%;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .content {
-    margin-left: 0; /* sidebar becomes a slide-in drawer on mobile/tablet */
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .preferenceColumn {
-    position: static;
+  .detailIcon {
+    margin-bottom: 24px;
   }
 }
 
 @media (max-width: 480px) {
   .main {
-    padding: 20px 16px 32px;
     gap: 18px;
+    padding: 20px 16px 32px;
+  }
+
+  .filterTab {
+    min-height: 40px;
+    font-size: 13px;
+  }
+
+  .notificationDetailsOverlay {
+    padding: 12px;
+  }
+
+  .notificationDetails {
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    padding: 24px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filterTab {
+    transition: none;
   }
 }
