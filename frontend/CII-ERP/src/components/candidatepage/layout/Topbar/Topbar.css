@@ -1,60 +1,121 @@
 /* Topbar.css */
 
+/* ── Tokens (scoped to the topbar so nothing leaks) ── */
 .topbar {
-  background: #f6f8fc;
-  border-bottom: 1px solid #E0E8F0;
-  padding: 10px 28px;
-  height: 64px;
+  --topbar-height: 64px;
+  --topbar-bg: #f6f8fc;
+  --topbar-border: #e0e8f0;
+  --topbar-text: #1a2740;
+  --topbar-muted: #6b7a94;
+  --topbar-faint: #9aa8bc;
+  --topbar-accent: #2764c6;
+  --topbar-danger: #d64545;
+  --topbar-divider: #edf1f5;
+  --topbar-surface: #ffffff;
+  --topbar-hover: #e6eef8;
+  --topbar-pad-x: 28px;
+}
+
+/* ── Base bar ── */
+.topbar,
+.topbar *,
+.topbar *::before,
+.topbar *::after {
+  box-sizing: border-box;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 40;
+  width: 100%;
+  min-height: var(--topbar-height);
+  height: var(--topbar-height);
+  /* keeps content clear of notches on phones */
+  padding: 0 max(var(--topbar-pad-x), env(safe-area-inset-right, 0px)) 0
+    max(var(--topbar-pad-x), env(safe-area-inset-left, 0px));
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--topbar-border);
 }
 
+/* ── Logo ── */
 .topbar__logo-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 54px;
-  flex-shrink: 0;
+  justify-content: flex-start;
+  flex: 0 1 180px;
+  min-width: 0;
+  height: 100%;
+  max-height: 44px; /* fits inside the 64px bar with breathing room */
 }
 
 .topbar__logo-image {
   display: block;
-  width: 180px;
-  height: 54px;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  max-width: 180px;
   object-fit: contain;
+  object-position: left center;
 }
 
 /* ── Actions cluster ── */
 .topbar__actions {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 10px;
   margin-left: auto;
+}
+
+/* ── Shared focus ring ── */
+.topbar__bell-btn:focus-visible,
+.topbar__avatar:focus-visible,
+.topbar__hamburger:focus-visible,
+.topbar__view-all:focus-visible,
+.topbar__notification-detail button:focus-visible {
+  outline: 2px solid var(--topbar-accent);
+  outline-offset: 2px;
 }
 
 /* ── Bell button ── */
 .topbar__bell-btn {
   position: relative;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #f4f6fa;
-  border: 1px solid #e0e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  background: #f4f6fa;
+  border: 1px solid var(--topbar-border);
+  color: var(--topbar-text);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background-color 0.15s ease;
 }
 
+.topbar__bell-btn:hover {
+  background: var(--topbar-hover);
+}
+
+.topbar__bell-dot {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 1.5px solid var(--topbar-surface);
+  pointer-events: none;
+}
+
+/* ── Notification popover ── */
 .topbar__notification-wrap {
   position: relative;
 }
@@ -63,35 +124,43 @@
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
+  z-index: 100;
   width: min(360px, calc(100vw - 32px));
-  max-height: 420px;
+  max-height: min(420px, calc(100vh - var(--topbar-height) - 24px));
+  max-height: min(420px, calc(100dvh - var(--topbar-height) - 24px));
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 8px;
-  background: #fff;
-  border: 1px solid #e0e8f0;
+  background: var(--topbar-surface);
+  border: 1px solid var(--topbar-border);
   border-radius: 12px;
   box-shadow: 0 14px 35px rgba(26, 39, 64, 0.18);
-  z-index: 100;
 }
 
 .topbar__notification-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 10px;
-  color: #1a2740;
+  color: var(--topbar-text);
   font-size: 14px;
+  font-weight: 600;
 }
 
 .topbar__notification-header span {
-  color: #d64545;
+  color: var(--topbar-danger);
   font-size: 12px;
+  font-weight: 500;
 }
 
 .topbar__notification-item {
   padding: 11px 10px;
-  border-top: 1px solid #edf1f5;
-  color: #1a2740;
+  border-top: 1px solid var(--topbar-divider);
+  border-radius: 6px;
+  color: var(--topbar-text);
   cursor: pointer;
+  transition: background-color 0.15s ease;
 }
 
 .topbar__notification-item:hover,
@@ -100,142 +169,261 @@
   outline: none;
 }
 
+.topbar__notification-item:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--topbar-accent);
+}
+
 .topbar__notification-item strong {
   display: block;
   font-size: 13px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .topbar__notification-item p {
   margin: 4px 0;
-  color: #6b7a94;
+  color: var(--topbar-muted);
   font-size: 12px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .topbar__notification-item time {
-  color: #9aa8bc;
+  color: var(--topbar-faint);
   font-size: 11px;
 }
 
 .topbar__notification-empty {
   margin: 0;
   padding: 24px 10px;
-  color: #6b7a94;
+  color: var(--topbar-muted);
   text-align: center;
   font-size: 13px;
 }
 
 .topbar__view-all {
+  display: block;
   width: 100%;
   margin-top: 4px;
   padding: 11px 10px;
   border: 0;
-  border-top: 1px solid #edf1f5;
-  background: #fff;
-  color: #2764c6;
+  border-top: 1px solid var(--topbar-divider);
+  border-radius: 0 0 8px 8px;
+  background: var(--topbar-surface);
+  color: var(--topbar-accent);
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
   text-align: center;
+  transition: background-color 0.15s ease;
 }
 
+.topbar__view-all:hover {
+  background: #f5f8fc;
+}
+
+/* ── Notification detail panel (overlays the popover) ── */
 .topbar__notification-detail {
   position: absolute;
   inset: 8px;
   z-index: 2;
+  overflow-y: auto;
   padding: 18px;
   border: 1px solid #dce5ef;
   border-radius: 10px;
-  background: #fff;
+  background: var(--topbar-surface);
   box-shadow: 0 8px 22px rgba(26, 39, 64, 0.14);
 }
 
 .topbar__notification-detail button {
   float: right;
+  margin: -4px -6px 0 8px;
+  padding: 4px 6px;
   border: 0;
+  border-radius: 6px;
   background: transparent;
-  color: #2764c6;
+  color: var(--topbar-accent);
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
+}
+
+.topbar__notification-detail button:hover {
+  background: #f0f5fc;
 }
 
 .topbar__notification-detail strong {
   display: block;
   margin-bottom: 8px;
-  color: #1a2740;
+  color: var(--topbar-text);
   font-size: 14px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .topbar__notification-detail p {
   margin: 0 0 10px;
-  color: #6b7a94;
+  color: var(--topbar-muted);
   font-size: 12px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .topbar__notification-detail time {
-  color: #9aa8bc;
+  color: var(--topbar-faint);
   font-size: 11px;
-}
-
-.topbar__bell-btn:hover {
-  background: #e6eef8;
-}
-
-.topbar__bell-dot {
-  position: absolute;
-  top: 7px;
-  right: 8px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ef4444;
-  border: 1.5px solid #ffffff;
-  pointer-events: none;
 }
 
 /* ── Avatar ── */
 .topbar__avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--blue-light);
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  /* falls back to the accent blue if --blue-light isn't defined globally */
+  background: var(--blue-light, var(--topbar-accent));
+  color: #ffffff;
   font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
   cursor: pointer;
   user-select: none;
+  transition: filter 0.15s ease;
 }
 
-/* ── Hamburger (mobile only) ── */
+.topbar__avatar:hover {
+  filter: brightness(0.94);
+}
+
+/* ── Hamburger (mobile / tablet only) ── */
 .topbar__hamburger {
   display: none;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
   flex-shrink: 0;
+  gap: 5px;
+  width: 40px;
+  height: 40px; /* comfortable touch target */
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.topbar__hamburger:hover {
+  background: var(--topbar-hover);
 }
 
 .topbar__hamburger span {
   display: block;
   width: 22px;
   height: 2px;
-  background: #1a2740;
   border-radius: 2px;
+  background: var(--topbar-text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* Optional: animates to an "X" if the button sets aria-expanded="true" */
+.topbar__hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.topbar__hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.topbar__hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Responsive ── */
+
+/* Tablet & below: show the hamburger, tighten the bar */
 @media (max-width: 900px) {
+  .topbar {
+    --topbar-pad-x: 20px;
+    gap: 12px;
+  }
+
   .topbar__hamburger {
     display: flex;
   }
 }
 
-/* ── Responsive ── */
+/* Phones: smaller logo, tighter spacing, full-width popover */
+@media (max-width: 600px) {
+  .topbar {
+    --topbar-height: 56px;
+    --topbar-pad-x: 12px;
+    gap: 8px;
+  }
+
+  .topbar__logo-card {
+    flex-basis: 130px;
+    max-height: 36px;
+  }
+
+  .topbar__logo-image {
+    max-width: 130px;
+  }
+
+  .topbar__actions {
+    gap: 8px;
+  }
+
+  .topbar__bell-btn,
+  .topbar__avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .topbar__bell-dot {
+    top: 6px;
+    right: 7px;
+  }
+
+  /* Anchor to the viewport so the popover can never spill off-screen */
+  .topbar__notification-popover {
+    position: fixed;
+    top: calc(var(--topbar-height) + 8px);
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - var(--topbar-height) - 24px);
+    max-height: calc(100dvh - var(--topbar-height) - 24px);
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .topbar__logo-card {
+    flex-basis: 104px;
+  }
+
+  .topbar__logo-image {
+    max-width: 104px;
+  }
+}
+
+/* Short landscape screens: keep the bar compact */
+@media (max-height: 480px) and (orientation: landscape) {
+  .topbar {
+    --topbar-height: 52px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .topbar *,
+  .topbar *::before,
+  .topbar *::after {
+    transition: none !important;
+  }
+}

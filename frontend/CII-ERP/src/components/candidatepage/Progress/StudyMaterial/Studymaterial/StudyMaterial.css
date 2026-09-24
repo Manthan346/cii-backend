@@ -1,41 +1,71 @@
 /* StudyMaterial.css
-   Same fixed-sidebar offset as Task.css — Sidebar.css sets
-   `.sidebar { position: fixed; width: 268px; }`, which removes it from
-   normal flow, so the main column needs a matching margin-left instead
-   of relying on flexbox to reserve space for it. */
+
+   Sidebar.css sets `.sidebar { position: fixed; width: 268px; }`, which
+   takes it out of normal flow, so the main column needs a matching
+   margin-left instead of relying on flexbox to reserve the space.
+
+   The sticky topbar (64px, 56px on phones) sits ABOVE this layout in normal
+   flow, so the layout's min-height must subtract it. Using a bare 100vh
+   makes the page 64px taller than the screen, which creates a scroll and
+   tucks the top of the content under the topbar. */
 
 .study-material-layout {
-  min-height: 100vh;
-  background: var(--white);
+  --sidebar-width: 268px; /* keep in sync with Sidebar.css */
+  --topbar-height: 64px; /* keep in sync with Topbar.css */
+
+  min-height: calc(100vh - var(--topbar-height));
+  min-height: calc(100dvh - var(--topbar-height));
+  background: var(--white, #ffffff);
 }
 
 .study-material-layout__main {
-  margin-left: 268px; /* matches .sidebar width in Sidebar.css */
-  min-height: 100vh;
-  min-width: 0;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  min-height: inherit;
+  margin-left: var(--sidebar-width);
 }
 
 .study-material-layout__content {
   flex: 1;
+  /* width: 100%; */
+  max-width: 1280px;
+  /* margin: 0 auto; */
   padding: 24px 32px;
+  margin-top: 60px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
 }
 
+/* Sidebar becomes an off-canvas drawer (same breakpoint as the topbar
+   hamburger) */
 @media (max-width: 900px) {
   .study-material-layout__main {
-    margin-left: 0; /* sidebar becomes an off-canvas drawer below 900px */
+    margin-left: 0;
+  }
+
+  .study-material-layout__content {
+    padding: 20px 24px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Topbar drops to 56px on phones */
+@media (max-width: 600px) {
+  .study-material-layout {
+    --topbar-height: 56px;
   }
 }
 
 @media (max-width: 760px) {
   .study-material-layout__content {
     padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
   }
 }
 
 @media (max-width: 480px) {
   .study-material-layout__content {
     padding: 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
   }
 }

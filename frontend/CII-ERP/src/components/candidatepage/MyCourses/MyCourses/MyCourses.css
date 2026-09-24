@@ -30,6 +30,7 @@
   min-width: 0;
   box-sizing: border-box;
   padding: 16px 40px 16px 40px;
+  margin-top: 16px;
   flex: 1;
   overflow-y: auto;
   height: 0;

@@ -26,6 +26,7 @@
 .attendance-page__body {
   flex: 1;
   padding: 16px 40px 16px 40px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
 }
