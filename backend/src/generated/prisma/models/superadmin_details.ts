@@ -29,6 +29,7 @@ export type Superadmin_detailsMinAggregateOutputType = {
   first_name: string | null
   last_name: string | null
   phone_no: string | null
+  user_id: string | null
 }
 
 export type Superadmin_detailsMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type Superadmin_detailsMaxAggregateOutputType = {
   first_name: string | null
   last_name: string | null
   phone_no: string | null
+  user_id: string | null
 }
 
 export type Superadmin_detailsCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type Superadmin_detailsCountAggregateOutputType = {
   first_name: number
   last_name: number
   phone_no: number
+  user_id: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type Superadmin_detailsMinAggregateInputType = {
   first_name?: true
   last_name?: true
   phone_no?: true
+  user_id?: true
 }
 
 export type Superadmin_detailsMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type Superadmin_detailsMaxAggregateInputType = {
   first_name?: true
   last_name?: true
   phone_no?: true
+  user_id?: true
 }
 
 export type Superadmin_detailsCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type Superadmin_detailsCountAggregateInputType = {
   first_name?: true
   last_name?: true
   phone_no?: true
+  user_id?: true
   _all?: true
 }
 
@@ -146,6 +152,7 @@ export type Superadmin_detailsGroupByOutputType = {
   first_name: string
   last_name: string
   phone_no: string | null
+  user_id: string | null
   _count: Superadmin_detailsCountAggregateOutputType | null
   _min: Superadmin_detailsMinAggregateOutputType | null
   _max: Superadmin_detailsMaxAggregateOutputType | null
@@ -174,6 +181,8 @@ export type superadmin_detailsWhereInput = {
   first_name?: Prisma.StringFilter<"superadmin_details"> | string
   last_name?: Prisma.StringFilter<"superadmin_details"> | string
   phone_no?: Prisma.StringNullableFilter<"superadmin_details"> | string | null
+  user_id?: Prisma.UuidNullableFilter<"superadmin_details"> | string | null
+  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
 }
 
 export type superadmin_detailsOrderByWithRelationInput = {
@@ -181,6 +190,8 @@ export type superadmin_detailsOrderByWithRelationInput = {
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
   phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_login?: Prisma.user_loginOrderByWithRelationInput
 }
 
 export type superadmin_detailsWhereUniqueInput = Prisma.AtLeast<{
@@ -191,6 +202,8 @@ export type superadmin_detailsWhereUniqueInput = Prisma.AtLeast<{
   first_name?: Prisma.StringFilter<"superadmin_details"> | string
   last_name?: Prisma.StringFilter<"superadmin_details"> | string
   phone_no?: Prisma.StringNullableFilter<"superadmin_details"> | string | null
+  user_id?: Prisma.UuidNullableFilter<"superadmin_details"> | string | null
+  user_login?: Prisma.XOR<Prisma.User_loginNullableScalarRelationFilter, Prisma.user_loginWhereInput> | null
 }, "super_admin_id">
 
 export type superadmin_detailsOrderByWithAggregationInput = {
@@ -198,6 +211,7 @@ export type superadmin_detailsOrderByWithAggregationInput = {
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
   phone_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.superadmin_detailsCountOrderByAggregateInput
   _max?: Prisma.superadmin_detailsMaxOrderByAggregateInput
   _min?: Prisma.superadmin_detailsMinOrderByAggregateInput
@@ -211,6 +225,7 @@ export type superadmin_detailsScalarWhereWithAggregatesInput = {
   first_name?: Prisma.StringWithAggregatesFilter<"superadmin_details"> | string
   last_name?: Prisma.StringWithAggregatesFilter<"superadmin_details"> | string
   phone_no?: Prisma.StringNullableWithAggregatesFilter<"superadmin_details"> | string | null
+  user_id?: Prisma.UuidNullableWithAggregatesFilter<"superadmin_details"> | string | null
 }
 
 export type superadmin_detailsCreateInput = {
@@ -218,6 +233,7 @@ export type superadmin_detailsCreateInput = {
   first_name: string
   last_name: string
   phone_no?: string | null
+  user_login?: Prisma.user_loginCreateNestedOneWithoutSuperadmin_detailsInput
 }
 
 export type superadmin_detailsUncheckedCreateInput = {
@@ -225,6 +241,7 @@ export type superadmin_detailsUncheckedCreateInput = {
   first_name: string
   last_name: string
   phone_no?: string | null
+  user_id?: string | null
 }
 
 export type superadmin_detailsUpdateInput = {
@@ -232,6 +249,7 @@ export type superadmin_detailsUpdateInput = {
   first_name?: Prisma.StringFieldUpdateOperationsInput | string
   last_name?: Prisma.StringFieldUpdateOperationsInput | string
   phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_login?: Prisma.user_loginUpdateOneWithoutSuperadmin_detailsNestedInput
 }
 
 export type superadmin_detailsUncheckedUpdateInput = {
@@ -239,6 +257,7 @@ export type superadmin_detailsUncheckedUpdateInput = {
   first_name?: Prisma.StringFieldUpdateOperationsInput | string
   last_name?: Prisma.StringFieldUpdateOperationsInput | string
   phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type superadmin_detailsCreateManyInput = {
@@ -246,6 +265,7 @@ export type superadmin_detailsCreateManyInput = {
   first_name: string
   last_name: string
   phone_no?: string | null
+  user_id?: string | null
 }
 
 export type superadmin_detailsUpdateManyMutationInput = {
@@ -260,6 +280,17 @@ export type superadmin_detailsUncheckedUpdateManyInput = {
   first_name?: Prisma.StringFieldUpdateOperationsInput | string
   last_name?: Prisma.StringFieldUpdateOperationsInput | string
   phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type Superadmin_detailsListRelationFilter = {
+  every?: Prisma.superadmin_detailsWhereInput
+  some?: Prisma.superadmin_detailsWhereInput
+  none?: Prisma.superadmin_detailsWhereInput
+}
+
+export type superadmin_detailsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type superadmin_detailsCountOrderByAggregateInput = {
@@ -267,6 +298,7 @@ export type superadmin_detailsCountOrderByAggregateInput = {
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
   phone_no?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
 }
 
 export type superadmin_detailsMaxOrderByAggregateInput = {
@@ -274,6 +306,7 @@ export type superadmin_detailsMaxOrderByAggregateInput = {
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
   phone_no?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
 }
 
 export type superadmin_detailsMinOrderByAggregateInput = {
@@ -281,6 +314,128 @@ export type superadmin_detailsMinOrderByAggregateInput = {
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
   phone_no?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
+}
+
+export type superadmin_detailsCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
+  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+}
+
+export type superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
+  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
+  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+}
+
+export type superadmin_detailsUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
+  set?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  disconnect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  delete?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  update?: Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput[]
+  deleteMany?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+}
+
+export type superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
+  upsert?: Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
+  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
+  set?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  disconnect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  delete?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+  update?: Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
+  updateMany?: Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput[]
+  deleteMany?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+}
+
+export type superadmin_detailsCreateWithoutUser_loginInput = {
+  super_admin_id?: string
+  first_name: string
+  last_name: string
+  phone_no?: string | null
+}
+
+export type superadmin_detailsUncheckedCreateWithoutUser_loginInput = {
+  super_admin_id?: string
+  first_name: string
+  last_name: string
+  phone_no?: string | null
+}
+
+export type superadmin_detailsCreateOrConnectWithoutUser_loginInput = {
+  where: Prisma.superadmin_detailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type superadmin_detailsCreateManyUser_loginInputEnvelope = {
+  data: Prisma.superadmin_detailsCreateManyUser_loginInput | Prisma.superadmin_detailsCreateManyUser_loginInput[]
+  skipDuplicates?: boolean
+}
+
+export type superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput = {
+  where: Prisma.superadmin_detailsWhereUniqueInput
+  update: Prisma.XOR<Prisma.superadmin_detailsUpdateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
+  create: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+}
+
+export type superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput = {
+  where: Prisma.superadmin_detailsWhereUniqueInput
+  data: Prisma.XOR<Prisma.superadmin_detailsUpdateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
+}
+
+export type superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput = {
+  where: Prisma.superadmin_detailsScalarWhereInput
+  data: Prisma.XOR<Prisma.superadmin_detailsUpdateManyMutationInput, Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginInput>
+}
+
+export type superadmin_detailsScalarWhereInput = {
+  AND?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+  OR?: Prisma.superadmin_detailsScalarWhereInput[]
+  NOT?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+  super_admin_id?: Prisma.UuidFilter<"superadmin_details"> | string
+  first_name?: Prisma.StringFilter<"superadmin_details"> | string
+  last_name?: Prisma.StringFilter<"superadmin_details"> | string
+  phone_no?: Prisma.StringNullableFilter<"superadmin_details"> | string | null
+  user_id?: Prisma.UuidNullableFilter<"superadmin_details"> | string | null
+}
+
+export type superadmin_detailsCreateManyUser_loginInput = {
+  super_admin_id?: string
+  first_name: string
+  last_name: string
+  phone_no?: string | null
+}
+
+export type superadmin_detailsUpdateWithoutUser_loginInput = {
+  super_admin_id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type superadmin_detailsUncheckedUpdateWithoutUser_loginInput = {
+  super_admin_id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type superadmin_detailsUncheckedUpdateManyWithoutUser_loginInput = {
+  super_admin_id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -290,6 +445,8 @@ export type superadmin_detailsSelect<ExtArgs extends runtime.Types.Extensions.In
   first_name?: boolean
   last_name?: boolean
   phone_no?: boolean
+  user_id?: boolean
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["superadmin_details"]>
 
 export type superadmin_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -297,6 +454,8 @@ export type superadmin_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.
   first_name?: boolean
   last_name?: boolean
   phone_no?: boolean
+  user_id?: boolean
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["superadmin_details"]>
 
 export type superadmin_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -304,6 +463,8 @@ export type superadmin_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.
   first_name?: boolean
   last_name?: boolean
   phone_no?: boolean
+  user_id?: boolean
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
 }, ExtArgs["result"]["superadmin_details"]>
 
 export type superadmin_detailsSelectScalar = {
@@ -311,18 +472,31 @@ export type superadmin_detailsSelectScalar = {
   first_name?: boolean
   last_name?: boolean
   phone_no?: boolean
+  user_id?: boolean
 }
 
-export type superadmin_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"super_admin_id" | "first_name" | "last_name" | "phone_no", ExtArgs["result"]["superadmin_details"]>
+export type superadmin_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"super_admin_id" | "first_name" | "last_name" | "phone_no" | "user_id", ExtArgs["result"]["superadmin_details"]>
+export type superadmin_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
+}
+export type superadmin_detailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
+}
+export type superadmin_detailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user_login?: boolean | Prisma.superadmin_details$user_loginArgs<ExtArgs>
+}
 
 export type $superadmin_detailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "superadmin_details"
-  objects: {}
+  objects: {
+    user_login: Prisma.$user_loginPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     super_admin_id: string
     first_name: string
     last_name: string
     phone_no: string | null
+    user_id: string | null
   }, ExtArgs["result"]["superadmin_details"]>
   composites: {}
 }
@@ -717,6 +891,7 @@ readonly fields: superadmin_detailsFieldRefs;
  */
 export interface Prisma__superadmin_detailsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user_login<T extends Prisma.superadmin_details$user_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.superadmin_details$user_loginArgs<ExtArgs>>): Prisma.Prisma__user_loginClient<runtime.Types.Result.GetResult<Prisma.$user_loginPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -750,6 +925,7 @@ export interface superadmin_detailsFieldRefs {
   readonly first_name: Prisma.FieldRef<"superadmin_details", 'String'>
   readonly last_name: Prisma.FieldRef<"superadmin_details", 'String'>
   readonly phone_no: Prisma.FieldRef<"superadmin_details", 'String'>
+  readonly user_id: Prisma.FieldRef<"superadmin_details", 'String'>
 }
     
 
@@ -766,6 +942,10 @@ export type superadmin_detailsFindUniqueArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the superadmin_details
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
   /**
    * Filter, which superadmin_details to fetch.
    */
@@ -785,6 +965,10 @@ export type superadmin_detailsFindUniqueOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  /**
    * Filter, which superadmin_details to fetch.
    */
   where: Prisma.superadmin_detailsWhereUniqueInput
@@ -802,6 +986,10 @@ export type superadmin_detailsFindFirstArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the superadmin_details
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
   /**
    * Filter, which superadmin_details to fetch.
    */
@@ -851,6 +1039,10 @@ export type superadmin_detailsFindFirstOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  /**
    * Filter, which superadmin_details to fetch.
    */
   where?: Prisma.superadmin_detailsWhereInput
@@ -899,6 +1091,10 @@ export type superadmin_detailsFindManyArgs<ExtArgs extends runtime.Types.Extensi
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  /**
    * Filter, which superadmin_details to fetch.
    */
   where?: Prisma.superadmin_detailsWhereInput
@@ -942,6 +1138,10 @@ export type superadmin_detailsCreateArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  /**
    * The data needed to create a superadmin_details.
    */
   data: Prisma.XOR<Prisma.superadmin_detailsCreateInput, Prisma.superadmin_detailsUncheckedCreateInput>
@@ -975,6 +1175,10 @@ export type superadmin_detailsCreateManyAndReturnArgs<ExtArgs extends runtime.Ty
    */
   data: Prisma.superadmin_detailsCreateManyInput | Prisma.superadmin_detailsCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -989,6 +1193,10 @@ export type superadmin_detailsUpdateArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the superadmin_details
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
   /**
    * The data needed to update a superadmin_details.
    */
@@ -1041,6 +1249,10 @@ export type superadmin_detailsUpdateManyAndReturnArgs<ExtArgs extends runtime.Ty
    * Limit how many superadmin_details to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1055,6 +1267,10 @@ export type superadmin_detailsUpsertArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the superadmin_details
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
   /**
    * The filter to search for the superadmin_details to update in case it exists.
    */
@@ -1082,6 +1298,10 @@ export type superadmin_detailsDeleteArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  /**
    * Filter which superadmin_details to delete.
    */
   where: Prisma.superadmin_detailsWhereUniqueInput
@@ -1102,6 +1322,25 @@ export type superadmin_detailsDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * superadmin_details.user_login
+ */
+export type superadmin_details$user_loginArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the user_login
+   */
+  select?: Prisma.user_loginSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the user_login
+   */
+  omit?: Prisma.user_loginOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.user_loginInclude<ExtArgs> | null
+  where?: Prisma.user_loginWhereInput
+}
+
+/**
  * superadmin_details without action
  */
 export type superadmin_detailsDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1113,4 +1352,8 @@ export type superadmin_detailsDefaultArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the superadmin_details
    */
   omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
 }

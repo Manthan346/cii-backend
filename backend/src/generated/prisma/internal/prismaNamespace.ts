@@ -3466,7 +3466,8 @@ export const Superadmin_detailsScalarFieldEnum = {
   super_admin_id: 'super_admin_id',
   first_name: 'first_name',
   last_name: 'last_name',
-  phone_no: 'phone_no'
+  phone_no: 'phone_no',
+  user_id: 'user_id'
 } as const
 
 export type Superadmin_detailsScalarFieldEnum = (typeof Superadmin_detailsScalarFieldEnum)[keyof typeof Superadmin_detailsScalarFieldEnum]

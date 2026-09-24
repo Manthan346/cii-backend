@@ -222,6 +222,7 @@ export type user_loginWhereInput = {
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
   mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsNullableScalarRelationFilter, Prisma.mobilizer_detailsWhereInput> | null
   study_material?: Prisma.Study_materialListRelationFilter
+  superadmin_details?: Prisma.Superadmin_detailsListRelationFilter
   center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
   user_notifications?: Prisma.User_notificationsListRelationFilter
 }
@@ -244,6 +245,7 @@ export type user_loginOrderByWithRelationInput = {
   instructor_details?: Prisma.instructor_detailsOrderByWithRelationInput
   mobilizer_details?: Prisma.mobilizer_detailsOrderByWithRelationInput
   study_material?: Prisma.study_materialOrderByRelationAggregateInput
+  superadmin_details?: Prisma.superadmin_detailsOrderByRelationAggregateInput
   center_details?: Prisma.center_detailsOrderByWithRelationInput
   user_notifications?: Prisma.user_notificationsOrderByRelationAggregateInput
 }
@@ -269,6 +271,7 @@ export type user_loginWhereUniqueInput = Prisma.AtLeast<{
   instructor_details?: Prisma.XOR<Prisma.Instructor_detailsNullableScalarRelationFilter, Prisma.instructor_detailsWhereInput> | null
   mobilizer_details?: Prisma.XOR<Prisma.Mobilizer_detailsNullableScalarRelationFilter, Prisma.mobilizer_detailsWhereInput> | null
   study_material?: Prisma.Study_materialListRelationFilter
+  superadmin_details?: Prisma.Superadmin_detailsListRelationFilter
   center_details?: Prisma.XOR<Prisma.Center_detailsNullableScalarRelationFilter, Prisma.center_detailsWhereInput> | null
   user_notifications?: Prisma.User_notificationsListRelationFilter
 }, "user_id" | "user_email">
@@ -320,6 +323,7 @@ export type user_loginCreateInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -342,6 +346,7 @@ export type user_loginUncheckedCreateInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -362,6 +367,7 @@ export type user_loginUpdateInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -384,6 +390,7 @@ export type user_loginUncheckedUpdateInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -471,6 +478,11 @@ export type user_loginMinOrderByAggregateInput = {
   center_id?: Prisma.SortOrder
   refresh_token_hash?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
+}
+
+export type User_loginNullableScalarRelationFilter = {
+  is?: Prisma.user_loginWhereInput | null
+  isNot?: Prisma.user_loginWhereInput | null
 }
 
 export type user_loginCreateNestedOneWithoutCandidates_detailsInput = {
@@ -649,6 +661,22 @@ export type user_loginUpdateOneRequiredWithoutMobilizer_detailsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutMobilizer_detailsInput, Prisma.user_loginUpdateWithoutMobilizer_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutMobilizer_detailsInput>
 }
 
+export type user_loginCreateNestedOneWithoutSuperadmin_detailsInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutSuperadmin_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutSuperadmin_detailsInput
+  connect?: Prisma.user_loginWhereUniqueInput
+}
+
+export type user_loginUpdateOneWithoutSuperadmin_detailsNestedInput = {
+  create?: Prisma.XOR<Prisma.user_loginCreateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutSuperadmin_detailsInput>
+  connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutSuperadmin_detailsInput
+  upsert?: Prisma.user_loginUpsertWithoutSuperadmin_detailsInput
+  disconnect?: Prisma.user_loginWhereInput | boolean
+  delete?: Prisma.user_loginWhereInput | boolean
+  connect?: Prisma.user_loginWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutSuperadmin_detailsInput, Prisma.user_loginUpdateWithoutSuperadmin_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutSuperadmin_detailsInput>
+}
+
 export type user_loginCreateWithoutCandidates_detailsInput = {
   user_id?: string
   user_email: string
@@ -665,6 +693,7 @@ export type user_loginCreateWithoutCandidates_detailsInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -686,6 +715,7 @@ export type user_loginUncheckedCreateWithoutCandidates_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -721,6 +751,7 @@ export type user_loginUpdateWithoutCandidates_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -742,6 +773,7 @@ export type user_loginUncheckedUpdateWithoutCandidates_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -762,6 +794,7 @@ export type user_loginCreateWithoutCenter_detailsInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
 
@@ -782,6 +815,7 @@ export type user_loginUncheckedCreateWithoutCenter_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -842,6 +876,7 @@ export type user_loginCreateWithoutInstructor_detailsInput = {
   hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -863,6 +898,7 @@ export type user_loginUncheckedCreateWithoutInstructor_detailsInput = {
   hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -898,6 +934,7 @@ export type user_loginUpdateWithoutInstructor_detailsInput = {
   hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -919,6 +956,7 @@ export type user_loginUncheckedUpdateWithoutInstructor_detailsInput = {
   hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -938,6 +976,7 @@ export type user_loginCreateWithoutStudy_materialInput = {
   hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -959,6 +998,7 @@ export type user_loginUncheckedCreateWithoutStudy_materialInput = {
   hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -994,6 +1034,7 @@ export type user_loginUpdateWithoutStudy_materialInput = {
   hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1015,6 +1056,7 @@ export type user_loginUncheckedUpdateWithoutStudy_materialInput = {
   hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1035,6 +1077,7 @@ export type user_loginCreateWithoutUser_notificationsInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
 }
 
@@ -1056,6 +1099,7 @@ export type user_loginUncheckedCreateWithoutUser_notificationsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
 export type user_loginCreateOrConnectWithoutUser_notificationsInput = {
@@ -1091,6 +1135,7 @@ export type user_loginUpdateWithoutUser_notificationsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
 }
 
@@ -1112,6 +1157,7 @@ export type user_loginUncheckedUpdateWithoutUser_notificationsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
 export type user_loginCreateWithoutEvent_details_event_details_created_byTouser_loginInput = {
@@ -1130,6 +1176,7 @@ export type user_loginCreateWithoutEvent_details_event_details_created_byTouser_
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -1151,6 +1198,7 @@ export type user_loginUncheckedCreateWithoutEvent_details_event_details_created_
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -1175,6 +1223,7 @@ export type user_loginCreateWithoutEvent_details_event_details_updated_byTouser_
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -1196,6 +1245,7 @@ export type user_loginUncheckedCreateWithoutEvent_details_event_details_updated_
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -1231,6 +1281,7 @@ export type user_loginUpdateWithoutEvent_details_event_details_created_byTouser_
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1252,6 +1303,7 @@ export type user_loginUncheckedUpdateWithoutEvent_details_event_details_created_
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1282,6 +1334,7 @@ export type user_loginUpdateWithoutEvent_details_event_details_updated_byTouser_
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1303,6 +1356,7 @@ export type user_loginUncheckedUpdateWithoutEvent_details_event_details_updated_
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1322,6 +1376,7 @@ export type user_loginCreateWithoutAdmin_detailsInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -1343,6 +1398,7 @@ export type user_loginUncheckedCreateWithoutAdmin_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -1378,6 +1434,7 @@ export type user_loginUpdateWithoutAdmin_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1399,6 +1456,7 @@ export type user_loginUncheckedUpdateWithoutAdmin_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1418,6 +1476,7 @@ export type user_loginCreateWithoutHr_detailsInput = {
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -1439,6 +1498,7 @@ export type user_loginUncheckedCreateWithoutHr_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -1474,6 +1534,7 @@ export type user_loginUpdateWithoutHr_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1495,6 +1556,7 @@ export type user_loginUncheckedUpdateWithoutHr_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1514,6 +1576,7 @@ export type user_loginCreateWithoutMobilizer_detailsInput = {
   hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
   instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsCreateNestedManyWithoutUser_loginInput
   center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
 }
@@ -1535,6 +1598,7 @@ export type user_loginUncheckedCreateWithoutMobilizer_detailsInput = {
   hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
   study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput
   user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
 }
 
@@ -1570,6 +1634,7 @@ export type user_loginUpdateWithoutMobilizer_detailsInput = {
   hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
@@ -1590,6 +1655,107 @@ export type user_loginUncheckedUpdateWithoutMobilizer_detailsInput = {
   event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
   hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginCreateWithoutSuperadmin_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  refresh_token_hash?: string | null
+  is_active?: boolean
+  admin_details?: Prisma.admin_detailsCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsCreateNestedOneWithoutUser_loginInput
+  mobilizer_details?: Prisma.mobilizer_detailsCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialCreateNestedManyWithoutUser_loginInput
+  center_details?: Prisma.center_detailsCreateNestedOneWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginUncheckedCreateWithoutSuperadmin_detailsInput = {
+  user_id?: string
+  user_email: string
+  user_password: string
+  user_role: $Enums.role_types
+  created_at?: Date | string
+  updated_at?: Date | string
+  center_id?: string | null
+  refresh_token_hash?: string | null
+  is_active?: boolean
+  admin_details?: Prisma.admin_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  candidates_details?: Prisma.candidates_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_created_byTouser_loginInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedCreateNestedManyWithoutUser_login_event_details_updated_byTouser_loginInput
+  hr_details?: Prisma.hr_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  instructor_details?: Prisma.instructor_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  mobilizer_details?: Prisma.mobilizer_detailsUncheckedCreateNestedOneWithoutUser_loginInput
+  study_material?: Prisma.study_materialUncheckedCreateNestedManyWithoutUser_loginInput
+  user_notifications?: Prisma.user_notificationsUncheckedCreateNestedManyWithoutUser_loginInput
+}
+
+export type user_loginCreateOrConnectWithoutSuperadmin_detailsInput = {
+  where: Prisma.user_loginWhereUniqueInput
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutSuperadmin_detailsInput>
+}
+
+export type user_loginUpsertWithoutSuperadmin_detailsInput = {
+  update: Prisma.XOR<Prisma.user_loginUpdateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedUpdateWithoutSuperadmin_detailsInput>
+  create: Prisma.XOR<Prisma.user_loginCreateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutSuperadmin_detailsInput>
+  where?: Prisma.user_loginWhereInput
+}
+
+export type user_loginUpdateToOneWithWhereWithoutSuperadmin_detailsInput = {
+  where?: Prisma.user_loginWhereInput
+  data: Prisma.XOR<Prisma.user_loginUpdateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedUpdateWithoutSuperadmin_detailsInput>
+}
+
+export type user_loginUpdateWithoutSuperadmin_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admin_details?: Prisma.admin_detailsUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
+  mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
+  study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  center_details?: Prisma.center_detailsUpdateOneWithoutUser_loginNestedInput
+  user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
+}
+
+export type user_loginUncheckedUpdateWithoutSuperadmin_detailsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_email?: Prisma.StringFieldUpdateOperationsInput | string
+  user_password?: Prisma.StringFieldUpdateOperationsInput | string
+  user_role?: Prisma.Enumrole_typesFieldUpdateOperationsInput | $Enums.role_types
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  center_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refresh_token_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  admin_details?: Prisma.admin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  candidates_details?: Prisma.candidates_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  event_details_event_details_created_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_created_byTouser_loginNestedInput
+  event_details_event_details_updated_byTouser_login?: Prisma.event_detailsUncheckedUpdateManyWithoutUser_login_event_details_updated_byTouser_loginNestedInput
+  hr_details?: Prisma.hr_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
+  mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
@@ -1622,6 +1788,7 @@ export type user_loginUpdateWithoutCenter_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1642,6 +1809,7 @@ export type user_loginUncheckedUpdateWithoutCenter_detailsInput = {
   instructor_details?: Prisma.instructor_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   mobilizer_details?: Prisma.mobilizer_detailsUncheckedUpdateOneWithoutUser_loginNestedInput
   study_material?: Prisma.study_materialUncheckedUpdateManyWithoutUser_loginNestedInput
+  superadmin_details?: Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput
   user_notifications?: Prisma.user_notificationsUncheckedUpdateManyWithoutUser_loginNestedInput
 }
 
@@ -1665,6 +1833,7 @@ export type User_loginCountOutputType = {
   event_details_event_details_created_byTouser_login: number
   event_details_event_details_updated_byTouser_login: number
   study_material: number
+  superadmin_details: number
   user_notifications: number
 }
 
@@ -1672,6 +1841,7 @@ export type User_loginCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   event_details_event_details_created_byTouser_login?: boolean | User_loginCountOutputTypeCountEvent_details_event_details_created_byTouser_loginArgs
   event_details_event_details_updated_byTouser_login?: boolean | User_loginCountOutputTypeCountEvent_details_event_details_updated_byTouser_loginArgs
   study_material?: boolean | User_loginCountOutputTypeCountStudy_materialArgs
+  superadmin_details?: boolean | User_loginCountOutputTypeCountSuperadmin_detailsArgs
   user_notifications?: boolean | User_loginCountOutputTypeCountUser_notificationsArgs
 }
 
@@ -1709,6 +1879,13 @@ export type User_loginCountOutputTypeCountStudy_materialArgs<ExtArgs extends run
 /**
  * User_loginCountOutputType without action
  */
+export type User_loginCountOutputTypeCountSuperadmin_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.superadmin_detailsWhereInput
+}
+
+/**
+ * User_loginCountOutputType without action
+ */
 export type User_loginCountOutputTypeCountUser_notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.user_notificationsWhereInput
 }
@@ -1732,6 +1909,7 @@ export type user_loginSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   instructor_details?: boolean | Prisma.user_login$instructor_detailsArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.user_login$mobilizer_detailsArgs<ExtArgs>
   study_material?: boolean | Prisma.user_login$study_materialArgs<ExtArgs>
+  superadmin_details?: boolean | Prisma.user_login$superadmin_detailsArgs<ExtArgs>
   center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
   user_notifications?: boolean | Prisma.user_login$user_notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.User_loginCountOutputTypeDefaultArgs<ExtArgs>
@@ -1785,6 +1963,7 @@ export type user_loginInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   instructor_details?: boolean | Prisma.user_login$instructor_detailsArgs<ExtArgs>
   mobilizer_details?: boolean | Prisma.user_login$mobilizer_detailsArgs<ExtArgs>
   study_material?: boolean | Prisma.user_login$study_materialArgs<ExtArgs>
+  superadmin_details?: boolean | Prisma.user_login$superadmin_detailsArgs<ExtArgs>
   center_details?: boolean | Prisma.user_login$center_detailsArgs<ExtArgs>
   user_notifications?: boolean | Prisma.user_login$user_notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.User_loginCountOutputTypeDefaultArgs<ExtArgs>
@@ -1807,6 +1986,7 @@ export type $user_loginPayload<ExtArgs extends runtime.Types.Extensions.Internal
     instructor_details: Prisma.$instructor_detailsPayload<ExtArgs> | null
     mobilizer_details: Prisma.$mobilizer_detailsPayload<ExtArgs> | null
     study_material: Prisma.$study_materialPayload<ExtArgs>[]
+    superadmin_details: Prisma.$superadmin_detailsPayload<ExtArgs>[]
     center_details: Prisma.$center_detailsPayload<ExtArgs> | null
     user_notifications: Prisma.$user_notificationsPayload<ExtArgs>[]
   }
@@ -2222,6 +2402,7 @@ export interface Prisma__user_loginClient<T, Null = never, ExtArgs extends runti
   instructor_details<T extends Prisma.user_login$instructor_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$instructor_detailsArgs<ExtArgs>>): Prisma.Prisma__instructor_detailsClient<runtime.Types.Result.GetResult<Prisma.$instructor_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   mobilizer_details<T extends Prisma.user_login$mobilizer_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$mobilizer_detailsArgs<ExtArgs>>): Prisma.Prisma__mobilizer_detailsClient<runtime.Types.Result.GetResult<Prisma.$mobilizer_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   study_material<T extends Prisma.user_login$study_materialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$study_materialArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$study_materialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  superadmin_details<T extends Prisma.user_login$superadmin_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$superadmin_detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$superadmin_detailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   center_details<T extends Prisma.user_login$center_detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$center_detailsArgs<ExtArgs>>): Prisma.Prisma__center_detailsClient<runtime.Types.Result.GetResult<Prisma.$center_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user_notifications<T extends Prisma.user_login$user_notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_login$user_notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2822,6 +3003,30 @@ export type user_login$study_materialArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.Study_materialScalarFieldEnum | Prisma.Study_materialScalarFieldEnum[]
+}
+
+/**
+ * user_login.superadmin_details
+ */
+export type user_login$superadmin_detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the superadmin_details
+   */
+  select?: Prisma.superadmin_detailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the superadmin_details
+   */
+  omit?: Prisma.superadmin_detailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.superadmin_detailsInclude<ExtArgs> | null
+  where?: Prisma.superadmin_detailsWhereInput
+  orderBy?: Prisma.superadmin_detailsOrderByWithRelationInput | Prisma.superadmin_detailsOrderByWithRelationInput[]
+  cursor?: Prisma.superadmin_detailsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Superadmin_detailsScalarFieldEnum | Prisma.Superadmin_detailsScalarFieldEnum[]
 }
 
 /**

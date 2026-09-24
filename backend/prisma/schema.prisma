@@ -196,6 +196,7 @@ model user_login {
   instructor_details                                 instructor_details?
   mobilizer_details                                  mobilizer_details?
   study_material                                     study_material[]
+  superadmin_details                                 superadmin_details[]
   center_details                                     center_details?      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
   user_notifications                                 user_notifications[]
 }
@@ -645,10 +646,12 @@ model job_fair_candidates {
 }
 
 model superadmin_details {
-  super_admin_id String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  first_name     String  @db.VarChar(255)
-  last_name      String  @db.VarChar(255)
-  phone_no       String? @db.VarChar(10)
+  super_admin_id String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name     String      @db.VarChar(255)
+  last_name      String      @db.VarChar(255)
+  phone_no       String?     @db.VarChar(10)
+  user_id        String?     @db.Uuid
+  user_login     user_login? @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum attend_types {
