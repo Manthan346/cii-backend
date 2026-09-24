@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { notifications } from "../../data";
 import NotificationsDropdown from "../../Notifications/NotificationsDropdown/NotificationsDropdown";
 import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../../../assets/Logo.png";
+import ciiLogo from "../../../../assets/header_logo_1.png";
 import "./Topbar.css";
 
 /**

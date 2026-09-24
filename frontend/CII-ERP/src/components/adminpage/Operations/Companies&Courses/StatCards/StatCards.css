@@ -1,5 +1,6 @@
 .companies-courses-statscards {
   display: grid;
+  margin-top: 18px;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }

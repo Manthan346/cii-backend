@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../../../assets/Logo.png";
+import ciiLogo from "../../assets/header_logo_1.png";
 import "./Topbar.css";
 
 /**
@@ -91,7 +91,7 @@ const Topbar = ({
 
   return (
     <header
-      className="trainer-topbar"
+      className="admin-topbar"
       style={{ backgroundImage: `url(${bannerImage})` }}
     >
       {/* Hamburger: mobile only, opens a Sidebar drawer supplied by the parent layout */}

@@ -46,10 +46,8 @@ import {
   LogOut,
   X,
 } from "lucide-react";
-import { SidebarLogo } from "../../shared/LogoDisplay/LogoDisplay";
 import { useAuthUser } from "../../../../services/useAuthUser"; // adjust path to wherever useAuthUser.js lives
 import Icon from "../../shared/Icon/Icon";
-//import orgLogo from "../../../../assets/Logo.png";
 import "./Sidebar.css";
 
 const NAV_MAIN = [
@@ -118,7 +116,6 @@ function SectionLabel({ children }) {
 }
 
 export default function Sidebar({
-  orgLogoSrc = SidebarLogo,
   activeItem = "Dashboard",
   isOpen = false,
   onClose = () => {},
@@ -136,13 +133,6 @@ export default function Sidebar({
       </button>
 
       <div className="sidebar__scroll">
-        {/* Organisation logo – sourced from backend, read-only */}
-        <div className="sidebar__logo-card">
-          <div className="sidebar__logo-wrap">
-            <SidebarLogo src={orgLogoSrc} />
-          </div>
-        </div>
-
         {/* Candidate profile mini-card */}
         <div className="sidebar__profile">
           <div className="sidebar__avatar">{initials}</div>

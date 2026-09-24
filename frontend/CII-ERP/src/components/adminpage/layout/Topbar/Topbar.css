@@ -43,15 +43,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 180px;
+  height: 64px;
 }
 
 .admin-topbar__logo-image {
   display: block;
-  width: 100%;
-  max-width: 280px;
-  max-height: 84px;
-  height: auto;
-  border-radius: 16px;
+  width: 180px;
+  height: 58px;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -197,6 +198,10 @@
 
 @media (max-width: 640px) {
   .admin-topbar__center {
+    display: none;
+  }
+
+  .admin-topbar__bell {
     display: none;
   }
 }

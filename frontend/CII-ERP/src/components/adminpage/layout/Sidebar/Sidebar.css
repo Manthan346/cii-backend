@@ -13,8 +13,14 @@
   padding: 20px 12px 24px;
   box-sizing: border-box;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   margin-top: 15px;
   border-top-right-radius: 20px;
+}
+
+.admin-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .admin-sidebar--collapsed {
@@ -100,7 +106,9 @@
 @media (max-width: 900px) {
   .admin-sidebar {
     position: fixed;
-    top: 0;
+    top: 112px;
+    height: calc(100vh - 112px);
+    margin-top: 0;
     left: 0;
     z-index: 40;
     transform: translateX(-100%);
@@ -116,7 +124,10 @@
   .admin-sidebar__overlay {
     display: block;
     position: fixed;
-    inset: 0;
+    top: 112px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: rgba(15, 18, 40, 0.35);
     z-index: 39;
   }

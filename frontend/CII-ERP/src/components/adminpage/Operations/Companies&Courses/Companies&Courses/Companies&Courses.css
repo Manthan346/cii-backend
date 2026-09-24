@@ -37,6 +37,37 @@
   font-size: 17px;
 }
 
+.companies-courses-section {
+  width: 100%;
+}
+
+.companies-courses-overview {
+  padding-bottom: 28px;
+  border-bottom: 1px solid #dfe3ec;
+}
+
+.companies-courses-list {
+  padding-top: 28px;
+}
+
+.companies-courses-section-title {
+  margin: 0;
+  color: #1c1f2e;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.companies-courses-section-description {
+  margin: 5px 0 0;
+  color: #7b8194;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.companies-courses-list .company-cards {
+  margin-top: 20px;
+}
+
 @media (max-width: 560px) {
   .companies-courses-header {
     align-items: stretch;

@@ -3,7 +3,7 @@ import { Search, Menu } from "lucide-react";
 import NotificationBell from "../../shared/NotificationBell/NotificationBell";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
-import ciiLogo from "../../../../assets/Logo.png";
+import ciiLogo from "../../../../assets/header_logo_1.png";
 import "./Topbar.css";
 
 /**

@@ -19,10 +19,17 @@
 .candidate-portal .certificates-page__main,
 .candidate-portal .job-opportunities-page__main {
   margin-left: var(--candidate-sidebar-width);
+  padding-top: 64px;
 }
 
 .candidate-portal .topbar {
   min-width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 60;
 }
 
 .candidate-portal .topbar__notification-popover {
@@ -71,6 +78,12 @@
     padding: 10px 20px;
   }
 
+  .candidate-portal .sidebar {
+    top: 64px;
+    bottom: 0;
+    height: calc(100vh - 64px);
+  }
+
   .candidate-portal .profile-page__body {
     padding: 20px 16px 32px;
   }
@@ -80,6 +93,21 @@
   .candidate-portal .topbar {
     height: 58px;
     padding: 8px 16px;
+  }
+
+  .candidate-portal .dashboard__main,
+  .candidate-portal .attendance-page__main,
+  .candidate-portal .my-courses__main,
+  .candidate-portal .profile-page__main,
+  .candidate-portal .assessments-page__main,
+  .candidate-portal .certificates-page__main,
+  .candidate-portal .job-opportunities-page__main {
+    padding-top: 58px;
+  }
+
+  .candidate-portal .sidebar {
+    top: 58px;
+    height: calc(100vh - 58px);
   }
 
   .candidate-portal .topbar__notification-popover {

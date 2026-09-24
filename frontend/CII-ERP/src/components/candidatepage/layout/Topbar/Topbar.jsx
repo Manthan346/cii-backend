@@ -22,6 +22,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "../../shared/Icon/Icon";
 import { fetchNotifications } from "../../../../services/Notificationservice";
+import ciiLogo from "../../../../assets/header_logo_1.png";
 import "./Topbar.css";
 
 function flattenNotifications(data) {
@@ -101,6 +102,14 @@ export default function Topbar({ onMenuClick = () => {} }) {
         <span />
         <span />
       </button>
+
+      <div className="topbar__logo-card">
+        <img
+          src={ciiLogo}
+          alt="CII - Confederation of Indian Industry"
+          className="topbar__logo-image"
+        />
+      </div>
 
       {/* Actions */}
       <div className="topbar__actions">

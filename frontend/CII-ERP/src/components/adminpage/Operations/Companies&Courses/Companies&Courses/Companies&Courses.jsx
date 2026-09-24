@@ -137,18 +137,34 @@ const CompaniesAndCourses = () => {
         </button>
       </header>
 
-      <StatCards stats={stats} />
+      <section className="companies-courses-section companies-courses-overview">
+        <h2 className="companies-courses-section-title">
+          Overview
+        </h2>
+        <StatCards stats={stats} />
+      </section>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      <section className="companies-courses-section companies-courses-list">
+        <div className="companies-courses-section-header">
+          <div>
+            <h2 className="companies-courses-section-title">Companies</h2>
+            <p className="companies-courses-section-description">
+              Manage companies and their associated courses.
+            </p>
+          </div>
+        </div>
 
-      <CompanyCards
-        companies={companies}
-        onAddCourse={(company) => {
-          setSubmitError("");
-          setCourseCompany(company);
-        }}
-      />
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+
+        <CompanyCards
+          companies={companies}
+          onAddCourse={(company) => {
+            setSubmitError("");
+            setCourseCompany(company);
+          }}
+        />
+      </section>
 
       {companyModalOpen && (
         <CreateCompanyModal
