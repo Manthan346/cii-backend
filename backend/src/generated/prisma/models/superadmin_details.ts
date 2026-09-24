@@ -196,15 +196,15 @@ export type superadmin_detailsOrderByWithRelationInput = {
 
 export type superadmin_detailsWhereUniqueInput = Prisma.AtLeast<{
   super_admin_id?: string
+  user_id?: string
   AND?: Prisma.superadmin_detailsWhereInput | Prisma.superadmin_detailsWhereInput[]
   OR?: Prisma.superadmin_detailsWhereInput[]
   NOT?: Prisma.superadmin_detailsWhereInput | Prisma.superadmin_detailsWhereInput[]
   first_name?: Prisma.StringFilter<"superadmin_details"> | string
   last_name?: Prisma.StringFilter<"superadmin_details"> | string
   phone_no?: Prisma.StringNullableFilter<"superadmin_details"> | string | null
-  user_id?: Prisma.UuidFilter<"superadmin_details"> | string
   user_login?: Prisma.XOR<Prisma.User_loginScalarRelationFilter, Prisma.user_loginWhereInput>
-}, "super_admin_id">
+}, "super_admin_id" | "user_id">
 
 export type superadmin_detailsOrderByWithAggregationInput = {
   super_admin_id?: Prisma.SortOrder
@@ -283,14 +283,9 @@ export type superadmin_detailsUncheckedUpdateManyInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Superadmin_detailsListRelationFilter = {
-  every?: Prisma.superadmin_detailsWhereInput
-  some?: Prisma.superadmin_detailsWhereInput
-  none?: Prisma.superadmin_detailsWhereInput
-}
-
-export type superadmin_detailsOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type Superadmin_detailsNullableScalarRelationFilter = {
+  is?: Prisma.superadmin_detailsWhereInput | null
+  isNot?: Prisma.superadmin_detailsWhereInput | null
 }
 
 export type superadmin_detailsCountOrderByAggregateInput = {
@@ -317,46 +312,36 @@ export type superadmin_detailsMinOrderByAggregateInput = {
   user_id?: Prisma.SortOrder
 }
 
-export type superadmin_detailsCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+export type superadmin_detailsCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.superadmin_detailsWhereUniqueInput
 }
 
-export type superadmin_detailsUncheckedCreateNestedManyWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
-  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
-  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
+export type superadmin_detailsUncheckedCreateNestedOneWithoutUser_loginInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput
+  connect?: Prisma.superadmin_detailsWhereUniqueInput
 }
 
-export type superadmin_detailsUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
-  set?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  disconnect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  delete?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  update?: Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+export type superadmin_detailsUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.superadmin_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.superadmin_detailsWhereInput | boolean
+  delete?: Prisma.superadmin_detailsWhereInput | boolean
+  connect?: Prisma.superadmin_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.superadmin_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.superadmin_detailsUpdateWithoutUser_loginInput>, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
-export type superadmin_detailsUncheckedUpdateManyWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput> | Prisma.superadmin_detailsCreateWithoutUser_loginInput[] | Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput[]
-  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput | Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput[]
-  upsert?: Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput[]
-  createMany?: Prisma.superadmin_detailsCreateManyUser_loginInputEnvelope
-  set?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  disconnect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  delete?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  connect?: Prisma.superadmin_detailsWhereUniqueInput | Prisma.superadmin_detailsWhereUniqueInput[]
-  update?: Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput | Prisma.superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput[]
-  updateMany?: Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput | Prisma.superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput[]
-  deleteMany?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
+export type superadmin_detailsUncheckedUpdateOneWithoutUser_loginNestedInput = {
+  create?: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+  connectOrCreate?: Prisma.superadmin_detailsCreateOrConnectWithoutUser_loginInput
+  upsert?: Prisma.superadmin_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.superadmin_detailsWhereInput | boolean
+  delete?: Prisma.superadmin_detailsWhereInput | boolean
+  connect?: Prisma.superadmin_detailsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.superadmin_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.superadmin_detailsUpdateWithoutUser_loginInput>, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
 }
 
 export type superadmin_detailsCreateWithoutUser_loginInput = {
@@ -378,43 +363,15 @@ export type superadmin_detailsCreateOrConnectWithoutUser_loginInput = {
   create: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
 }
 
-export type superadmin_detailsCreateManyUser_loginInputEnvelope = {
-  data: Prisma.superadmin_detailsCreateManyUser_loginInput | Prisma.superadmin_detailsCreateManyUser_loginInput[]
-  skipDuplicates?: boolean
-}
-
-export type superadmin_detailsUpsertWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.superadmin_detailsWhereUniqueInput
+export type superadmin_detailsUpsertWithoutUser_loginInput = {
   update: Prisma.XOR<Prisma.superadmin_detailsUpdateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
   create: Prisma.XOR<Prisma.superadmin_detailsCreateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedCreateWithoutUser_loginInput>
+  where?: Prisma.superadmin_detailsWhereInput
 }
 
-export type superadmin_detailsUpdateWithWhereUniqueWithoutUser_loginInput = {
-  where: Prisma.superadmin_detailsWhereUniqueInput
+export type superadmin_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
+  where?: Prisma.superadmin_detailsWhereInput
   data: Prisma.XOR<Prisma.superadmin_detailsUpdateWithoutUser_loginInput, Prisma.superadmin_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type superadmin_detailsUpdateManyWithWhereWithoutUser_loginInput = {
-  where: Prisma.superadmin_detailsScalarWhereInput
-  data: Prisma.XOR<Prisma.superadmin_detailsUpdateManyMutationInput, Prisma.superadmin_detailsUncheckedUpdateManyWithoutUser_loginInput>
-}
-
-export type superadmin_detailsScalarWhereInput = {
-  AND?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
-  OR?: Prisma.superadmin_detailsScalarWhereInput[]
-  NOT?: Prisma.superadmin_detailsScalarWhereInput | Prisma.superadmin_detailsScalarWhereInput[]
-  super_admin_id?: Prisma.UuidFilter<"superadmin_details"> | string
-  first_name?: Prisma.StringFilter<"superadmin_details"> | string
-  last_name?: Prisma.StringFilter<"superadmin_details"> | string
-  phone_no?: Prisma.StringNullableFilter<"superadmin_details"> | string | null
-  user_id?: Prisma.UuidFilter<"superadmin_details"> | string
-}
-
-export type superadmin_detailsCreateManyUser_loginInput = {
-  super_admin_id?: string
-  first_name: string
-  last_name: string
-  phone_no?: string | null
 }
 
 export type superadmin_detailsUpdateWithoutUser_loginInput = {
@@ -425,13 +382,6 @@ export type superadmin_detailsUpdateWithoutUser_loginInput = {
 }
 
 export type superadmin_detailsUncheckedUpdateWithoutUser_loginInput = {
-  super_admin_id?: Prisma.StringFieldUpdateOperationsInput | string
-  first_name?: Prisma.StringFieldUpdateOperationsInput | string
-  last_name?: Prisma.StringFieldUpdateOperationsInput | string
-  phone_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type superadmin_detailsUncheckedUpdateManyWithoutUser_loginInput = {
   super_admin_id?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.StringFieldUpdateOperationsInput | string
   last_name?: Prisma.StringFieldUpdateOperationsInput | string
