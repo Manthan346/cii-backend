@@ -3,12 +3,12 @@
    ========================================================================== */
 
 .admin-topbar {
-  height: 112px;
+  height: 90px;
   min-height: 76px;
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 0 24px;
+  gap: 42px;
+  padding: 0 0 0 10px;
   background: #eef1f7;
   background-image:
     radial-gradient(circle at 15% 0%, rgba(62, 95, 235, 0.05), transparent 55%),

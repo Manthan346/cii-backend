@@ -172,7 +172,7 @@ export async function fetchJobEvents({
  */
 export async function fetchJobEventCandidates(
   eventId,
-  { page = 1, limit = 6 } = {},
+  { page = 1, limit = 20 } = {},
 ) {
   if (!eventId) {
     throw new Error("Job event ID is required.");

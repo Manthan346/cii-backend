@@ -2,17 +2,24 @@ import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../shared/Button/Button";
 import ciiLogo from "../assets/cii-logo2.png";
+import { logoutUser } from "../../../services/authService";
 import "./Logout.css";
 
 const Logout = ({ onLogout }) => {
   const navigate = useNavigate();
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (onLogout) {
       onLogout();
       return;
     }
-    navigate("/");
+    try {
+      await logoutUser();
+    } catch {
+      // Client session state is cleared even if the API request fails.
+    } finally {
+      navigate("/LoginPage", { replace: true });
+    }
   };
 
   return (

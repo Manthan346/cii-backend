@@ -32,11 +32,7 @@ const RecruiterLayout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // TODO: replace with whatever this project actually uses for auth -
-    // e.g. clearing a token from localStorage/cookies, calling
-    // POST /api/auth/logout, or an AuthContext's own logout() method.
-    // localStorage.removeItem('authToken');
-    navigate('/LoginPage', { replace: true });
+    navigate('/recruiter/logout');
   };
 
   return (

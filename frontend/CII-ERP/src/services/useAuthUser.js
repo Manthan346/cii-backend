@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../../api/api"; // adjust to wherever your axios instance actually lives
+import API from "../../api/api";
+import { logoutUser } from "./authService";
 
 function getInitials(fullName) {
   if (!fullName) return "?";
@@ -59,15 +60,11 @@ export function useAuthUser() {
 
   const logout = useCallback(async () => {
     try {
-      // Best-effort — if this endpoint doesn't exist yet or fails, we still
-      // log the user out on the client rather than leaving them stuck.
-      await API.post("/auth/logout");
+      await logoutUser();
     } catch (err) {
-      // swallow — client-side logout below is what actually matters
-    } finally {
-      localStorage.removeItem("token");
-      navigate("/LoginPage");
+      // The session is cleared by logoutUser even when the API is unavailable.
     }
+    navigate("/LoginPage", { replace: true });
   }, [navigate]);
 
   return { ...user, loading, logout };

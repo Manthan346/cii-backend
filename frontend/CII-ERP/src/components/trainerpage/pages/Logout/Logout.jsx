@@ -1,12 +1,13 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
-import Sidebar from '../../layout/Sidebar/Sidebar';
-import Topbar from '../../layout/Topbar/Topbar';
-import { Button } from '../../shared';
-import ciiLogo from '../../assets/cii-logo2.png';
-import '../../styles/variables.css';
-import './Logout.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
+import Sidebar from "../../layout/Sidebar/Sidebar";
+import Topbar from "../../layout/Topbar/Topbar";
+import { Button } from "../../shared";
+import ciiLogo from "../../assets/cii-logo2.png";
+import { logoutUser } from "../../../../services/authService";
+import "../../styles/variables.css";
+import "./Logout.css";
 
 /**
  * Logout (full page, "Log out of CII Portal?")
@@ -25,13 +26,18 @@ import './Logout.css';
 const Logout = ({ onLogout }) => {
   const navigate = useNavigate();
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (onLogout) {
       onLogout();
       return;
     }
-    // TODO: wire up to real auth (clear session/token) once available.
-    navigate('/');
+    try {
+      await logoutUser();
+    } catch {
+      // Client session state is cleared even if the API request fails.
+    } finally {
+      navigate("/LoginPage", { replace: true });
+    }
   };
 
   const handleCancel = () => {
@@ -41,7 +47,7 @@ const Logout = ({ onLogout }) => {
   return (
     <div className="staff-dashboard">
       <Topbar
-        user={{ name: 'Staff Admin' }}
+        user={{ name: "Staff Admin" }}
         hasUnreadNotifications={true}
         onMenuToggle={() => {}}
         onSearch={() => {}}
@@ -54,16 +60,12 @@ const Logout = ({ onLogout }) => {
           <main className="staff-dashboard__body">
             <div className="logout-page">
               <div className="logout-page__card">
-                <img
-                  src={ciiLogo}
-                  alt="CII"
-                  className="logout-page__logo"
-                />
+                <img src={ciiLogo} alt="CII" className="logout-page__logo" />
 
                 <h1 className="logout-page__title">Log out of CII Portal?</h1>
                 <p className="logout-page__subtitle">
-                  You'll need to sign in again to access the staff
-                  dashboard, candidate records and reports.
+                  You'll need to sign in again to access the staff dashboard,
+                  candidate records and reports.
                 </p>
 
                 <Button

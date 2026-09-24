@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import Topbar from './Topbar/Topbar';
+import { logoutUser } from '../../../services/authService';
 import './MobilizerLayout.css';
 
 /**
@@ -26,12 +27,14 @@ const MobilizerLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // TODO: replace with whatever this project actually uses for auth -
-    // e.g. clearing a token from localStorage/cookies, calling
-    // POST /api/auth/logout, or an AuthContext's own logout() method.
-    // localStorage.removeItem('authToken');
-    navigate('/LoginPage', { replace: true });
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+    } catch {
+      // Client session state is cleared even if the API request fails.
+    } finally {
+      navigate('/LoginPage', { replace: true });
+    }
   };
 
   return (

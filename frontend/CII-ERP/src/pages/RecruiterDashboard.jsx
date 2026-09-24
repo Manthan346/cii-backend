@@ -38,6 +38,7 @@ import JobFairJobDrive from "../components/recruiterpage/JobFairJobDrive/JobFair
 import Applications from "../components/recruiterpage/Applications/Applications";
 import Notifications from "../components/recruiterpage/Notifications/Notifications";
 import Profile from "../components/recruiterpage/Profile/Profile";
+import Logout from "../components/recruiterpage/Logout/Logout";
 
 export default function RecruiterDashboard() {
   return (
@@ -50,6 +51,7 @@ export default function RecruiterDashboard() {
         <Route path="notifications" element={<Notifications />} />
          <Route path="profile" element={<Profile />} />
         <Route path="applications" element={<Applications />} />
+         <Route path="logout" element={<Logout />} />
         
        
       </Route>

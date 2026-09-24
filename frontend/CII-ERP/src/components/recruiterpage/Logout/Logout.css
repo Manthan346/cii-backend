@@ -1,0 +1,71 @@
+.recruiter-logout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+.recruiter-logout__card {
+  width: 100%;
+  max-width: 440px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(31, 41, 55, 0.1);
+  text-align: center;
+}
+
+.recruiter-logout__logo {
+  width: 180px;
+  height: 58px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.recruiter-logout__title {
+  margin: 6px 0 0;
+  color: #1f2937;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.recruiter-logout__subtitle {
+  max-width: 340px;
+  margin: 0 0 14px;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.recruiter-logout__button {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 10px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recruiter-logout__button--primary {
+  margin-bottom: 10px;
+  background: #3e6ff3;
+  color: #ffffff;
+}
+
+.recruiter-logout__button--secondary {
+  border-color: #d9deea;
+  background: #ffffff;
+  color: #1f2937;
+}
