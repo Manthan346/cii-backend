@@ -480,11 +480,6 @@ export type user_loginMinOrderByAggregateInput = {
   is_active?: Prisma.SortOrder
 }
 
-export type User_loginNullableScalarRelationFilter = {
-  is?: Prisma.user_loginWhereInput | null
-  isNot?: Prisma.user_loginWhereInput | null
-}
-
 export type user_loginCreateNestedOneWithoutCandidates_detailsInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutCandidates_detailsInput, Prisma.user_loginUncheckedCreateWithoutCandidates_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutCandidates_detailsInput
@@ -667,12 +662,10 @@ export type user_loginCreateNestedOneWithoutSuperadmin_detailsInput = {
   connect?: Prisma.user_loginWhereUniqueInput
 }
 
-export type user_loginUpdateOneWithoutSuperadmin_detailsNestedInput = {
+export type user_loginUpdateOneRequiredWithoutSuperadmin_detailsNestedInput = {
   create?: Prisma.XOR<Prisma.user_loginCreateWithoutSuperadmin_detailsInput, Prisma.user_loginUncheckedCreateWithoutSuperadmin_detailsInput>
   connectOrCreate?: Prisma.user_loginCreateOrConnectWithoutSuperadmin_detailsInput
   upsert?: Prisma.user_loginUpsertWithoutSuperadmin_detailsInput
-  disconnect?: Prisma.user_loginWhereInput | boolean
-  delete?: Prisma.user_loginWhereInput | boolean
   connect?: Prisma.user_loginWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_loginUpdateToOneWithWhereWithoutSuperadmin_detailsInput, Prisma.user_loginUpdateWithoutSuperadmin_detailsInput>, Prisma.user_loginUncheckedUpdateWithoutSuperadmin_detailsInput>
 }
