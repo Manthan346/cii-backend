@@ -49,8 +49,8 @@ const generateNewAccessTokenRefreshToken = asyncHandler(async (req: Request, res
   const { accessToken, refreshToken, roleDetails } = await buildTokensForRole({
     userId: user.user_id,
     role: user.user_role,
-    centerId: user.center_details.center_id,
-    centreName: user.center_details.center_name,
+    centerId: user.center_details!.center_id,
+    centreName: user.center_details!.center_name,
     email: user.user_email,
     is_active: user.is_active ?? true,
   });
