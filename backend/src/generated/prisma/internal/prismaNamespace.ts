@@ -2978,7 +2978,8 @@ export const Center_detailsScalarFieldEnum = {
   center_contact: 'center_contact',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  center_code: 'center_code'
+  center_code: 'center_code',
+  city_name: 'city_name'
 } as const
 
 export type Center_detailsScalarFieldEnum = (typeof Center_detailsScalarFieldEnum)[keyof typeof Center_detailsScalarFieldEnum]

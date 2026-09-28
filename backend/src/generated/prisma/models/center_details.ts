@@ -33,6 +33,7 @@ export type Center_detailsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   center_code: string | null
+  city_name: string | null
 }
 
 export type Center_detailsMaxAggregateOutputType = {
@@ -44,6 +45,7 @@ export type Center_detailsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   center_code: string | null
+  city_name: string | null
 }
 
 export type Center_detailsCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type Center_detailsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   center_code: number
+  city_name: number
   _all: number
 }
 
@@ -68,6 +71,7 @@ export type Center_detailsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_code?: true
+  city_name?: true
 }
 
 export type Center_detailsMaxAggregateInputType = {
@@ -79,6 +83,7 @@ export type Center_detailsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_code?: true
+  city_name?: true
 }
 
 export type Center_detailsCountAggregateInputType = {
@@ -90,6 +95,7 @@ export type Center_detailsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   center_code?: true
+  city_name?: true
   _all?: true
 }
 
@@ -174,6 +180,7 @@ export type Center_detailsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   center_code: string | null
+  city_name: string | null
   _count: Center_detailsCountAggregateOutputType | null
   _min: Center_detailsMinAggregateOutputType | null
   _max: Center_detailsMaxAggregateOutputType | null
@@ -206,6 +213,7 @@ export type center_detailsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   center_code?: Prisma.StringNullableFilter<"center_details"> | string | null
+  city_name?: Prisma.StringNullableFilter<"center_details"> | string | null
   batch_details?: Prisma.Batch_detailsListRelationFilter
   center_company?: Prisma.Center_companyListRelationFilter
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
@@ -222,6 +230,7 @@ export type center_detailsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  city_name?: Prisma.SortOrderInput | Prisma.SortOrder
   batch_details?: Prisma.batch_detailsOrderByRelationAggregateInput
   center_company?: Prisma.center_companyOrderByRelationAggregateInput
   enquiry_records?: Prisma.enquiry_recordsOrderByRelationAggregateInput
@@ -241,6 +250,7 @@ export type center_detailsWhereUniqueInput = Prisma.AtLeast<{
   center_contact?: Prisma.StringFilter<"center_details"> | string
   created_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
+  city_name?: Prisma.StringNullableFilter<"center_details"> | string | null
   batch_details?: Prisma.Batch_detailsListRelationFilter
   center_company?: Prisma.Center_companyListRelationFilter
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
@@ -257,6 +267,7 @@ export type center_detailsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  city_name?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.center_detailsCountOrderByAggregateInput
   _max?: Prisma.center_detailsMaxOrderByAggregateInput
   _min?: Prisma.center_detailsMinOrderByAggregateInput
@@ -274,6 +285,7 @@ export type center_detailsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"center_details"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"center_details"> | Date | string
   center_code?: Prisma.StringNullableWithAggregatesFilter<"center_details"> | string | null
+  city_name?: Prisma.StringNullableWithAggregatesFilter<"center_details"> | string | null
 }
 
 export type center_detailsCreateInput = {
@@ -285,6 +297,7 @@ export type center_detailsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
@@ -301,6 +314,7 @@ export type center_detailsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -317,6 +331,7 @@ export type center_detailsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
@@ -333,6 +348,7 @@ export type center_detailsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -349,6 +365,7 @@ export type center_detailsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
 }
 
 export type center_detailsUpdateManyMutationInput = {
@@ -360,6 +377,7 @@ export type center_detailsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type center_detailsUncheckedUpdateManyInput = {
@@ -371,6 +389,7 @@ export type center_detailsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Center_detailsNullableScalarRelationFilter = {
@@ -392,6 +411,7 @@ export type center_detailsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_code?: Prisma.SortOrder
+  city_name?: Prisma.SortOrder
 }
 
 export type center_detailsMaxOrderByAggregateInput = {
@@ -403,6 +423,7 @@ export type center_detailsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_code?: Prisma.SortOrder
+  city_name?: Prisma.SortOrder
 }
 
 export type center_detailsMinOrderByAggregateInput = {
@@ -414,6 +435,7 @@ export type center_detailsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   center_code?: Prisma.SortOrder
+  city_name?: Prisma.SortOrder
 }
 
 export type center_detailsCreateNestedOneWithoutBatch_detailsInput = {
@@ -501,6 +523,7 @@ export type center_detailsCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
@@ -516,6 +539,7 @@ export type center_detailsUncheckedCreateWithoutBatch_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -547,6 +571,7 @@ export type center_detailsUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
@@ -562,6 +587,7 @@ export type center_detailsUncheckedUpdateWithoutBatch_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -577,6 +603,7 @@ export type center_detailsCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
@@ -592,6 +619,7 @@ export type center_detailsUncheckedCreateWithoutCenter_companyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -623,6 +651,7 @@ export type center_detailsUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
@@ -638,6 +667,7 @@ export type center_detailsUncheckedUpdateWithoutCenter_companyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -653,6 +683,7 @@ export type center_detailsCreateWithoutEnquiry_recordsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
@@ -668,6 +699,7 @@ export type center_detailsUncheckedCreateWithoutEnquiry_recordsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -699,6 +731,7 @@ export type center_detailsUpdateWithoutEnquiry_recordsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
@@ -714,6 +747,7 @@ export type center_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -729,6 +763,7 @@ export type center_detailsCreateWithoutUser_loginInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
@@ -744,6 +779,7 @@ export type center_detailsUncheckedCreateWithoutUser_loginInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -775,6 +811,7 @@ export type center_detailsUpdateWithoutUser_loginInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
@@ -790,6 +827,7 @@ export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -805,6 +843,7 @@ export type center_detailsCreateWithoutEvent_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
@@ -820,6 +859,7 @@ export type center_detailsUncheckedCreateWithoutEvent_detailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -851,6 +891,7 @@ export type center_detailsUpdateWithoutEvent_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
@@ -866,6 +907,7 @@ export type center_detailsUncheckedUpdateWithoutEvent_detailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
@@ -948,6 +990,7 @@ export type center_detailsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   created_at?: boolean
   updated_at?: boolean
   center_code?: boolean
+  city_name?: boolean
   batch_details?: boolean | Prisma.center_details$batch_detailsArgs<ExtArgs>
   center_company?: boolean | Prisma.center_details$center_companyArgs<ExtArgs>
   enquiry_records?: boolean | Prisma.center_details$enquiry_recordsArgs<ExtArgs>
@@ -965,6 +1008,7 @@ export type center_detailsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   created_at?: boolean
   updated_at?: boolean
   center_code?: boolean
+  city_name?: boolean
 }, ExtArgs["result"]["center_details"]>
 
 export type center_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -976,6 +1020,7 @@ export type center_detailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   created_at?: boolean
   updated_at?: boolean
   center_code?: boolean
+  city_name?: boolean
 }, ExtArgs["result"]["center_details"]>
 
 export type center_detailsSelectScalar = {
@@ -987,9 +1032,10 @@ export type center_detailsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   center_code?: boolean
+  city_name?: boolean
 }
 
-export type center_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"center_id" | "center_name" | "center_address" | "center_email" | "center_contact" | "created_at" | "updated_at" | "center_code", ExtArgs["result"]["center_details"]>
+export type center_detailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"center_id" | "center_name" | "center_address" | "center_email" | "center_contact" | "created_at" | "updated_at" | "center_code" | "city_name", ExtArgs["result"]["center_details"]>
 export type center_detailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch_details?: boolean | Prisma.center_details$batch_detailsArgs<ExtArgs>
   center_company?: boolean | Prisma.center_details$center_companyArgs<ExtArgs>
@@ -1019,6 +1065,7 @@ export type $center_detailsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     created_at: Date
     updated_at: Date
     center_code: string | null
+    city_name: string | null
   }, ExtArgs["result"]["center_details"]>
   composites: {}
 }
@@ -1455,6 +1502,7 @@ export interface center_detailsFieldRefs {
   readonly created_at: Prisma.FieldRef<"center_details", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"center_details", 'DateTime'>
   readonly center_code: Prisma.FieldRef<"center_details", 'String'>
+  readonly city_name: Prisma.FieldRef<"center_details", 'String'>
 }
     
 
