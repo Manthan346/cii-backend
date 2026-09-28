@@ -10,13 +10,7 @@ export const getAllAdminNotifications = asyncHandler(
 
         const userId = req.user?.user_id;
 
-        if (!userId) {
-            throw new ApiError(
-                401,
-                "User information is missing"
-            );
-        }
-
+ 
         const { page, limit, skip } = req.pagination!;
 
         if (page < 1) {
