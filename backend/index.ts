@@ -16,7 +16,7 @@ import mobilizerRouter from "./src/routes/mobilizer-route/mobilizer-route";
 import eventsRouter from "./src/routes/events-route/events-route";
 import hrRouter from "./src/routes/hr-route/hr-route";
 import dotenv from 'dotenv'
-
+import superAdminRouter from "./src/routes/superadmin-route/superadmin-route";
 import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
 import jobRouter from "./src/routes/job-portal/job-portal-route";
@@ -79,6 +79,7 @@ app.use("/api/v1/enquiry", enquiryRouter)
 app.use("/api/v1/hr",hrRouter)
 app.use("/api/v1/admin",adminRouter)
 app.use("/api/v1/job-portal",jobRouter);
+app.use("/api/v1/super-admin",superAdminRouter);
 
 
 app.listen(port, () => {
