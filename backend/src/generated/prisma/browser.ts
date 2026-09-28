@@ -172,3 +172,8 @@ export type placement_applications = Prisma.placement_applicationsModel
  * 
  */
 export type job_fair_candidates = Prisma.job_fair_candidatesModel
+/**
+ * Model superadmin_details
+ * 
+ */
+export type superadmin_details = Prisma.superadmin_detailsModel
