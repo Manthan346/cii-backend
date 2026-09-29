@@ -273,6 +273,7 @@ model center_details {
   created_at      DateTime          @default(now()) @db.Timestamp(6)
   updated_at      DateTime          @default(now()) @db.Timestamp(6)
   center_code     String?           @unique(map: "center_details_center_code_unique") @db.VarChar(6)
+  city_name       String?
   batch_details   batch_details[]
   center_company  center_company[]
   enquiry_records enquiry_records[]
@@ -328,6 +329,7 @@ model enquiry_records {
   enquiry_status_history enquiry_status_history[]
 }
 
+<<<<<<< HEAD
 model enquiry_status_history {
   history_id        String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   enquiry_id        String            @db.Uuid
@@ -337,6 +339,29 @@ model enquiry_status_history {
   enq_status        enquiry_status?
   enquiry_records   enquiry_records   @relation(fields: [enquiry_id], references: [enquiry_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_status_history_enquiry")
   mobilizer_details mobilizer_details @relation(fields: [mobilizer_id], references: [mobilizer_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_enquiry_status_history_mobilizer")
+=======
+model user_login {
+  user_id                                            String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_email                                         String               @unique @db.VarChar(255)
+  user_password                                      String
+  user_role                                          role_types
+  created_at                                         DateTime             @default(now()) @db.Timestamp(6)
+  updated_at                                         DateTime             @default(now()) @db.Timestamp(6)
+  center_id                                          String?              @db.Uuid
+  refresh_token_hash                                 String?
+  is_active                                          Boolean              @default(true)
+  admin_details                                      admin_details?
+  candidates_details                                 candidates_details?
+  event_details_event_details_created_byTouser_login event_details[]      @relation("event_details_created_byTouser_login")
+  event_details_event_details_updated_byTouser_login event_details[]      @relation("event_details_updated_byTouser_login")
+  hr_details                                         hr_details?
+  instructor_details                                 instructor_details?
+  mobilizer_details                                  mobilizer_details?
+  study_material                                     study_material[]
+  superadmin_details                                 superadmin_details?
+  center_details                                     center_details?      @relation(fields: [center_id], references: [center_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_center")
+  user_notifications                                 user_notifications[]
+>>>>>>> b005a6308169b47f09ff53b07418728385e534ae
 }
 
 model event_batches {
@@ -644,12 +669,22 @@ model job_fair_candidates {
   job_events                   job_events               @relation(fields: [job_event_id], references: [job_event_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_job_fair_candidates_job_event")
 }
 
+<<<<<<< HEAD
 enum assessment_type {
   APTITUDE
   TECHNICAL
   COMMUNICATION
   MOCK_INTERVIEW
   FINAL_ASSESSMENT
+=======
+model superadmin_details {
+  super_admin_id String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  first_name     String     @db.VarChar(255)
+  last_name      String     @db.VarChar(255)
+  phone_no       String?    @db.VarChar(10)
+  user_id        String     @unique @db.Uuid
+  user_login     user_login @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+>>>>>>> b005a6308169b47f09ff53b07418728385e534ae
 }
 
 enum attend_types {

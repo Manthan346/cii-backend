@@ -79,7 +79,8 @@ export const ModelName = {
   user_login: 'user_login',
   user_notifications: 'user_notifications',
   placement_applications: 'placement_applications',
-  job_fair_candidates: 'job_fair_candidates'
+  job_fair_candidates: 'job_fair_candidates',
+  superadmin_details: 'superadmin_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -355,7 +356,8 @@ export const Center_detailsScalarFieldEnum = {
   center_contact: 'center_contact',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  center_code: 'center_code'
+  center_code: 'center_code',
+  city_name: 'city_name'
 } as const
 
 export type Center_detailsScalarFieldEnum = (typeof Center_detailsScalarFieldEnum)[keyof typeof Center_detailsScalarFieldEnum]
@@ -710,6 +712,17 @@ export const Job_fair_candidatesScalarFieldEnum = {
 } as const
 
 export type Job_fair_candidatesScalarFieldEnum = (typeof Job_fair_candidatesScalarFieldEnum)[keyof typeof Job_fair_candidatesScalarFieldEnum]
+
+
+export const Superadmin_detailsScalarFieldEnum = {
+  super_admin_id: 'super_admin_id',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  phone_no: 'phone_no',
+  user_id: 'user_id'
+} as const
+
+export type Superadmin_detailsScalarFieldEnum = (typeof Superadmin_detailsScalarFieldEnum)[keyof typeof Superadmin_detailsScalarFieldEnum]
 
 
 export const SortOrder = {

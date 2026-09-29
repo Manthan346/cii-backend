@@ -44,13 +44,18 @@ import { createCourseSchema } from "../../services/zod/admin/course-creation-val
 import { getCompaniesByAdmin } from "../../controllers/admin-controllers/fetch-courses-andCompanies";
 
 //create mobilizer 
+import { updateCourseByAdmin } from "../../controllers/admin-controllers/update-course-byAdmin";
+//create mobilizer
 import { getUserProfile } from "../../controllers/admin-controllers/get-user-profile";
 import { changeUserPassword } from "../../controllers/admin-controllers/change-user-password";
 import { deleteUser } from "../../controllers/admin-controllers/delete-user";
+import { createAdminByAdmin } from "../../controllers/admin-controllers/create-admin";
 import { getMobilizerCandidateDetails } from "../../controllers/mobilizer-controller/get-mobilizer-candidate-details";
 import { changePasswordSchema } from "../../services/zod/admin/change-password-schema";
 import { getAllAdminNotifications } from "../../controllers/admin-controllers/get-all-adminNotifications";
 import { createCompanySchema } from "../../services/zod/admin/create-company-validation";
+import { createAdminSchema } from "../../services/zod/admin/create-admin-schema";
+import { updateCourseSchema } from "../../services/zod/admin/course-creation-validation";
 
 const adminRouter = Router();
 
@@ -207,7 +212,13 @@ adminRouter.delete(
     verifyAdminUsingAccessToken,
     deleteUser
 );
-//fetch all companies partnered with center to generate report 
+//create admin account (admin only)
+adminRouter.post("/total-users/create-admin",
+    verifyAdminUsingAccessToken,
+    validateBody(createAdminSchema),
+    createAdminByAdmin
+);
+//fetch all companies partnered with center to generate report
 adminRouter.get('/reports/fetch-company',verifyAdminUsingAccessToken,getCompanies)
 //fetch all courses for specific company
 adminRouter.get('/reports/fetch-courses-for-company',verifyAdminUsingAccessToken,getCompanyCourses);
@@ -221,4 +232,7 @@ adminRouter.post('/create-company',verifyAdminUsingAccessToken,validateBody(crea
 adminRouter.post('/create-course',verifyAdminUsingAccessToken,validateBody(createCourseSchema),createCourseByAdmin)
 //fetch all companies and courses for the center(company & courses section)
 adminRouter.get('/company-courses',verifyAdminUsingAccessToken,getCompaniesByAdmin)
+//update course details
+adminRouter.patch('/company-course/:course_id',verifyAdminUsingAccessToken,validateBody(updateCourseSchema),updateCourseByAdmin)
+
 export default adminRouter

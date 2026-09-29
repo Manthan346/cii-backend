@@ -420,7 +420,8 @@ export const ModelName = {
   user_login: 'user_login',
   user_notifications: 'user_notifications',
   placement_applications: 'placement_applications',
-  job_fair_candidates: 'job_fair_candidates'
+  job_fair_candidates: 'job_fair_candidates',
+  superadmin_details: 'superadmin_details'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -436,7 +437,11 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
+<<<<<<< HEAD
     modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications" | "placement_applications" | "job_fair_candidates"
+=======
+    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details" | "admin_details" | "admin_documents" | "batch_syllabus" | "enquiry_status_history" | "hr_details" | "mobilizer_details" | "job_events" | "placement" | "placement_applications" | "job_fair_candidates" | "superadmin_details"
+>>>>>>> b005a6308169b47f09ff53b07418728385e534ae
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2734,6 +2739,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    superadmin_details: {
+      payload: Prisma.$superadmin_detailsPayload<ExtArgs>
+      fields: Prisma.superadmin_detailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.superadmin_detailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.superadmin_detailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        findFirst: {
+          args: Prisma.superadmin_detailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.superadmin_detailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        findMany: {
+          args: Prisma.superadmin_detailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>[]
+        }
+        create: {
+          args: Prisma.superadmin_detailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        createMany: {
+          args: Prisma.superadmin_detailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.superadmin_detailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>[]
+        }
+        delete: {
+          args: Prisma.superadmin_detailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        update: {
+          args: Prisma.superadmin_detailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.superadmin_detailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.superadmin_detailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.superadmin_detailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.superadmin_detailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$superadmin_detailsPayload>
+        }
+        aggregate: {
+          args: Prisma.Superadmin_detailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSuperadmin_details>
+        }
+        groupBy: {
+          args: Prisma.superadmin_detailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Superadmin_detailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.superadmin_detailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Superadmin_detailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3030,7 +3109,8 @@ export const Center_detailsScalarFieldEnum = {
   center_contact: 'center_contact',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  center_code: 'center_code'
+  center_code: 'center_code',
+  city_name: 'city_name'
 } as const
 
 export type Center_detailsScalarFieldEnum = (typeof Center_detailsScalarFieldEnum)[keyof typeof Center_detailsScalarFieldEnum]
@@ -3385,6 +3465,17 @@ export const Job_fair_candidatesScalarFieldEnum = {
 } as const
 
 export type Job_fair_candidatesScalarFieldEnum = (typeof Job_fair_candidatesScalarFieldEnum)[keyof typeof Job_fair_candidatesScalarFieldEnum]
+
+
+export const Superadmin_detailsScalarFieldEnum = {
+  super_admin_id: 'super_admin_id',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  phone_no: 'phone_no',
+  user_id: 'user_id'
+} as const
+
+export type Superadmin_detailsScalarFieldEnum = (typeof Superadmin_detailsScalarFieldEnum)[keyof typeof Superadmin_detailsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3891,6 +3982,7 @@ export type GlobalOmitConfig = {
   user_notifications?: Prisma.user_notificationsOmit
   placement_applications?: Prisma.placement_applicationsOmit
   job_fair_candidates?: Prisma.job_fair_candidatesOmit
+  superadmin_details?: Prisma.superadmin_detailsOmit
 }
 
 /* Types for Logging */

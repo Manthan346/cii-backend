@@ -511,6 +511,16 @@ export interface PrismaClient<
     * ```
     */
   get job_fair_candidates(): Prisma.job_fair_candidatesDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.superadmin_details`: Exposes CRUD operations for the **superadmin_details** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Superadmin_details
+    * const superadmin_details = await prisma.superadmin_details.findMany()
+    * ```
+    */
+  get superadmin_details(): Prisma.superadmin_detailsDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(dirname: string): PrismaClientConstructor {

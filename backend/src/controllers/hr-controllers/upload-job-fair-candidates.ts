@@ -109,30 +109,24 @@ export const uploadJobFairCandidates = asyncHandler(
     for (let i = 0; i < validRows.length; i += CHUNK_SIZE) {
       const chunk = validRows.slice(i, i + CHUNK_SIZE);
 
-      const chunkResult = await prisma.$transaction(async (tx) => {
-        const chunkCreated: any[] = [];
-        for (const row of chunk) {
-          try {
-            const createdCandidate = await tx.job_fair_candidates.create({
-              data: row.data,
-            });
-            chunkCreated.push({
-              job_fair_candidate_id: createdCandidate.job_fair_candidate_id,
-              candidate_name: createdCandidate.candidate_name,
-              contact_no: createdCandidate.contact_no,
-            });
-          } catch (err: any) {
-            // Individual row failed - log error but continue chunk
-            errors.push({
-              row: row.rowNumber,
-              error: err.message || "Database error",
-            });
-          }
-        }
-        return chunkCreated;
-      });
+      for (const row of chunk) {
+        try {
+          const createdCandidate = await prisma.job_fair_candidates.create({
+            data: row.data,
+          });
 
-      created.push(...chunkResult);
+          created.push({
+            job_fair_candidate_id: createdCandidate.job_fair_candidate_id,
+            candidate_name: createdCandidate.candidate_name,
+            contact_no: createdCandidate.contact_no,
+          });
+        } catch (err: any) {
+          errors.push({
+            row: row.rowNumber,
+            error: err.message || "Database error",
+          });
+        }
+      }
     }
 
     return res.status(201).json(
