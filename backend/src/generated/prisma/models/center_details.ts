@@ -504,10 +504,12 @@ export type center_detailsCreateNestedOneWithoutUser_loginInput = {
   connect?: Prisma.center_detailsWhereUniqueInput
 }
 
-export type center_detailsUpdateOneRequiredWithoutUser_loginNestedInput = {
+export type center_detailsUpdateOneWithoutUser_loginNestedInput = {
   create?: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
   connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutUser_loginInput
   upsert?: Prisma.center_detailsUpsertWithoutUser_loginInput
+  disconnect?: Prisma.center_detailsWhereInput | boolean
+  delete?: Prisma.center_detailsWhereInput | boolean
   connect?: Prisma.center_detailsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.center_detailsUpdateWithoutUser_loginInput>, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
 }
@@ -841,6 +843,7 @@ export type center_detailsCreateWithoutUser_loginInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
@@ -856,6 +859,7 @@ export type center_detailsUncheckedCreateWithoutUser_loginInput = {
   created_at?: Date | string
   updated_at?: Date | string
   center_code?: string | null
+  city_name?: string | null
   batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
   center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
@@ -887,6 +891,7 @@ export type center_detailsUpdateWithoutUser_loginInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
@@ -902,6 +907,7 @@ export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
   center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
   enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput

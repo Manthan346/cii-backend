@@ -437,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications" | "placement_applications" | "job_fair_candidates"
+    modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications" | "placement_applications" | "job_fair_candidates" | "superadmin_details"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
