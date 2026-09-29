@@ -27,6 +27,7 @@ import './RecruiterLayout.css';
  *     <Route path="profile" element={<Profile />} />
  *   </Route>
  */
+
 const RecruiterLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -55,3 +56,4 @@ const RecruiterLayout = () => {
 };
 
 export default RecruiterLayout;
+ 
