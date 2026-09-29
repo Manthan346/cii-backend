@@ -482,25 +482,6 @@ export type center_detailsUpdateOneRequiredWithoutEnquiry_recordsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutEnquiry_recordsInput, Prisma.center_detailsUpdateWithoutEnquiry_recordsInput>, Prisma.center_detailsUncheckedUpdateWithoutEnquiry_recordsInput>
 }
 
-<<<<<<< HEAD
-=======
-export type center_detailsCreateNestedOneWithoutUser_loginInput = {
-  create?: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutUser_loginInput
-  connect?: Prisma.center_detailsWhereUniqueInput
-}
-
-export type center_detailsUpdateOneWithoutUser_loginNestedInput = {
-  create?: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
-  connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutUser_loginInput
-  upsert?: Prisma.center_detailsUpsertWithoutUser_loginInput
-  disconnect?: Prisma.center_detailsWhereInput | boolean
-  delete?: Prisma.center_detailsWhereInput | boolean
-  connect?: Prisma.center_detailsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.center_detailsUpdateToOneWithWhereWithoutUser_loginInput, Prisma.center_detailsUpdateWithoutUser_loginInput>, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
->>>>>>> b005a6308169b47f09ff53b07418728385e534ae
 export type center_detailsCreateNestedOneWithoutEvent_detailsInput = {
   create?: Prisma.XOR<Prisma.center_detailsCreateWithoutEvent_detailsInput, Prisma.center_detailsUncheckedCreateWithoutEvent_detailsInput>
   connectOrCreate?: Prisma.center_detailsCreateOrConnectWithoutEvent_detailsInput
@@ -771,89 +752,6 @@ export type center_detailsUncheckedUpdateWithoutEnquiry_recordsInput = {
   user_login?: Prisma.user_loginUncheckedUpdateManyWithoutCenter_detailsNestedInput
 }
 
-<<<<<<< HEAD
-=======
-export type center_detailsCreateWithoutUser_loginInput = {
-  center_id?: string
-  center_name: string
-  center_address: string
-  center_email: string
-  center_contact: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_code?: string | null
-  city_name?: string | null
-  batch_details?: Prisma.batch_detailsCreateNestedManyWithoutCenter_detailsInput
-  center_company?: Prisma.center_companyCreateNestedManyWithoutCenter_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsCreateNestedManyWithoutCenter_detailsInput
-  event_details?: Prisma.event_detailsCreateNestedManyWithoutCenter_detailsInput
-}
-
-export type center_detailsUncheckedCreateWithoutUser_loginInput = {
-  center_id?: string
-  center_name: string
-  center_address: string
-  center_email: string
-  center_contact: string
-  created_at?: Date | string
-  updated_at?: Date | string
-  center_code?: string | null
-  city_name?: string | null
-  batch_details?: Prisma.batch_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
-  center_company?: Prisma.center_companyUncheckedCreateNestedManyWithoutCenter_detailsInput
-  enquiry_records?: Prisma.enquiry_recordsUncheckedCreateNestedManyWithoutCenter_detailsInput
-  event_details?: Prisma.event_detailsUncheckedCreateNestedManyWithoutCenter_detailsInput
-}
-
-export type center_detailsCreateOrConnectWithoutUser_loginInput = {
-  where: Prisma.center_detailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
-}
-
-export type center_detailsUpsertWithoutUser_loginInput = {
-  update: Prisma.XOR<Prisma.center_detailsUpdateWithoutUser_loginInput, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
-  create: Prisma.XOR<Prisma.center_detailsCreateWithoutUser_loginInput, Prisma.center_detailsUncheckedCreateWithoutUser_loginInput>
-  where?: Prisma.center_detailsWhereInput
-}
-
-export type center_detailsUpdateToOneWithWhereWithoutUser_loginInput = {
-  where?: Prisma.center_detailsWhereInput
-  data: Prisma.XOR<Prisma.center_detailsUpdateWithoutUser_loginInput, Prisma.center_detailsUncheckedUpdateWithoutUser_loginInput>
-}
-
-export type center_detailsUpdateWithoutUser_loginInput = {
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  center_name?: Prisma.StringFieldUpdateOperationsInput | string
-  center_address?: Prisma.StringFieldUpdateOperationsInput | string
-  center_email?: Prisma.StringFieldUpdateOperationsInput | string
-  center_contact?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  batch_details?: Prisma.batch_detailsUpdateManyWithoutCenter_detailsNestedInput
-  center_company?: Prisma.center_companyUpdateManyWithoutCenter_detailsNestedInput
-  enquiry_records?: Prisma.enquiry_recordsUpdateManyWithoutCenter_detailsNestedInput
-  event_details?: Prisma.event_detailsUpdateManyWithoutCenter_detailsNestedInput
-}
-
-export type center_detailsUncheckedUpdateWithoutUser_loginInput = {
-  center_id?: Prisma.StringFieldUpdateOperationsInput | string
-  center_name?: Prisma.StringFieldUpdateOperationsInput | string
-  center_address?: Prisma.StringFieldUpdateOperationsInput | string
-  center_email?: Prisma.StringFieldUpdateOperationsInput | string
-  center_contact?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  center_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  batch_details?: Prisma.batch_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
-  center_company?: Prisma.center_companyUncheckedUpdateManyWithoutCenter_detailsNestedInput
-  enquiry_records?: Prisma.enquiry_recordsUncheckedUpdateManyWithoutCenter_detailsNestedInput
-  event_details?: Prisma.event_detailsUncheckedUpdateManyWithoutCenter_detailsNestedInput
-}
-
->>>>>>> b005a6308169b47f09ff53b07418728385e534ae
 export type center_detailsCreateWithoutEvent_detailsInput = {
   center_id?: string
   center_name: string

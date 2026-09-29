@@ -437,11 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-<<<<<<< HEAD
     modelProps: "admin_details" | "admin_documents" | "assessments" | "attendance_records" | "attendance_sessions" | "batch_details" | "batch_enrollment" | "batch_syllabus" | "candidate_assessment" | "candidate_documents" | "candidates_details" | "center_company" | "center_details" | "company_details" | "course_details" | "enquiry_records" | "enquiry_status_history" | "event_batches" | "event_details" | "hr_details" | "instructor_details" | "instructor_documents" | "job_events" | "mobilizer_details" | "notifications" | "placement" | "study_material" | "user_login" | "user_notifications" | "placement_applications" | "job_fair_candidates"
-=======
-    modelProps: "candidates_details" | "attendance_records" | "batch_details" | "course_details" | "center_company" | "center_details" | "enquiry_records" | "user_login" | "assessments" | "company_details" | "instructor_details" | "batch_enrollment" | "attendance_sessions" | "candidate_documents" | "candidate_assessment" | "instructor_documents" | "notifications" | "study_material" | "user_notifications" | "event_batches" | "event_details" | "admin_details" | "admin_documents" | "batch_syllabus" | "enquiry_status_history" | "hr_details" | "mobilizer_details" | "job_events" | "placement" | "placement_applications" | "job_fair_candidates" | "superadmin_details"
->>>>>>> b005a6308169b47f09ff53b07418728385e534ae
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
