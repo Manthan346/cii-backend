@@ -9,6 +9,8 @@ import { createCenterSchema } from "../../services/zod/super-admin/center-creati
 import { createAdminBySuperAdminSchema } from "../../services/zod/super-admin/admin-creation-validation";
 import { updateCenterSchema } from "../../services/zod/super-admin/center-creation-validation";
 import { updateCenter } from "../../controllers/superadmin-controllers/edit-center-details";
+import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
+import { fetchAllCenterDetails } from "../../controllers/superadmin-controllers/fetch-all-centerDetails";
 
 const superAdminRouter = Router()
 
@@ -22,5 +24,7 @@ superAdminRouter.get('/dashboardData',verifySuperAdminUsingAccessToken,fetchDash
 superAdminRouter.post('/createCenter',validateBody(createCenterSchema),verifySuperAdminUsingAccessToken,createCenter)
 //to edit details of a center 
 superAdminRouter.patch('/center/:center_id',validateBody(updateCenterSchema),verifySuperAdminUsingAccessToken,updateCenter)
+//fetch details of all center
+superAdminRouter.get('/center/details',verifySuperAdminUsingAccessToken,paginationMiddleware,fetchAllCenterDetails)
 
 export default superAdminRouter
