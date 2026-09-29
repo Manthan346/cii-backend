@@ -148,7 +148,7 @@ model center_details {
   center_contact  String            @db.VarChar(15)
   created_at      DateTime          @default(now()) @db.Timestamp(6)
   updated_at      DateTime          @default(now()) @db.Timestamp(6)
-  center_code     String?           @unique(map: "center_details_center_code_unique") @db.VarChar(6)
+  center_code     String?           @unique @db.VarChar(6)
   city_name       String?
   batch_details   batch_details[]
   center_company  center_company[]
