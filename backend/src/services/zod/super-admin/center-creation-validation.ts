@@ -32,3 +32,34 @@ export const createCenterSchema = z.object({
         .optional()
         .nullable(),
 });
+
+export const updateCenterSchema = z.object({
+    center_name: z
+        .string()
+        .min(1, "Center name is required")
+        .max(255, "Center name cannot exceed 255 characters")
+        .optional(),
+
+    center_address: z
+        .string()
+        .min(1, "Center address is required")
+        .optional(),
+
+    center_email: z
+        .string()
+        .email("Invalid center email")
+        .max(255, "Center email cannot exceed 255 characters")
+        .optional(),
+
+    center_contact: z
+        .string()
+        .min(10, "Center contact must be at least 10 digits")
+        .max(15, "Center contact cannot exceed 15 digits")
+        .regex(/^\d+$/, "Center contact must contain only digits")
+        .optional(),
+
+    city_name: z
+        .string()
+        .min(1, "City name cannot be empty")
+        .optional(),
+});

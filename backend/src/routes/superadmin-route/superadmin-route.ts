@@ -9,14 +9,29 @@ import { getCenterWiseEnrollment } from "../../controllers/superadmin-controller
 import { validateBody } from "../../middlewares/zod-middleware/zod-body-validator";
 import { createCenterSchema } from "../../services/zod/super-admin/center-creation-validation";
 import { createAdminBySuperAdminSchema } from "../../services/zod/super-admin/admin-creation-validation";
+import { updateCenterSchema } from "../../services/zod/super-admin/center-creation-validation";
+import { updateCenter } from "../../controllers/superadmin-controllers/edit-center-details";
+import { paginationMiddleware } from "../../middlewares/pagination-middleware/pagination";
+import { fetchAllCenterDetails } from "../../controllers/superadmin-controllers/fetch-all-centerDetails";
 
 const superAdminRouter = Router()
 
-superAdminRouter.get('/fetchCenters', verifySuperAdminUsingAccessToken, fetchCentersforDropdown)
-superAdminRouter.get('/dashboardData', verifySuperAdminUsingAccessToken, fetchDashboardData)
-superAdminRouter.post('/createCenter', validateBody(createCenterSchema), verifySuperAdminUsingAccessToken, createCenter)
+//create admin
 superAdminRouter.post('/createAdmin', validateBody(createAdminBySuperAdminSchema), verifySuperAdminUsingAccessToken, createAdminBySuperAdmin)
+<<<<<<< HEAD
 superAdminRouter.get('/enrollment-trend', verifySuperAdminUsingAccessToken, getEnrollmentTrend)
 superAdminRouter.get('/center-wise-enrollment', verifySuperAdminUsingAccessToken, getCenterWiseEnrollment)
+=======
+//fetch all center dropdown
+superAdminRouter.get('/fetchCenters',verifySuperAdminUsingAccessToken,fetchCentersforDropdown)
+//to show dashboard data
+superAdminRouter.get('/dashboardData',verifySuperAdminUsingAccessToken,fetchDashboardData)
+//to create a center
+superAdminRouter.post('/createCenter',validateBody(createCenterSchema),verifySuperAdminUsingAccessToken,createCenter)
+//to edit details of a center 
+superAdminRouter.patch('/center/:center_id',validateBody(updateCenterSchema),verifySuperAdminUsingAccessToken,updateCenter)
+//fetch details of all center
+superAdminRouter.get('/center/details',verifySuperAdminUsingAccessToken,paginationMiddleware,fetchAllCenterDetails)
+>>>>>>> 82f0288495bcd9f3e4295d6dd009b161f0da92a8
 
 export default superAdminRouter
