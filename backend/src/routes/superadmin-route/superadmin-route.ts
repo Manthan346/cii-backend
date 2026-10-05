@@ -31,6 +31,6 @@ superAdminRouter.post('/createCenter',validateBody(createCenterSchema),verifySup
 superAdminRouter.patch('/center/:center_id',validateBody(updateCenterSchema),verifySuperAdminUsingAccessToken,updateCenter)
 //fetch details of all center
 superAdminRouter.get('/center/details',verifySuperAdminUsingAccessToken,paginationMiddleware,fetchAllCenterDetails)
-superAdminRouter.get('/admin-details',verifySuperAdminUsingAccessToken,paginationMiddleware,getAllAdmins)
+superAdminRouter.get('/admindetails',verifySuperAdminUsingAccessToken,paginationMiddleware,getAllAdmins)
 
 export default superAdminRouter
