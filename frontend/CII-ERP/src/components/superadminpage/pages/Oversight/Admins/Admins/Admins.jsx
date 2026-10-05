@@ -1,19 +1,62 @@
 import { useEffect, useState } from "react";
 import { fetchCenterDetails } from "../../../../../../../api/superadmin/centreService";
-import { createSuperAdminAdmin } from "../../../../../../../api/superadmin/adminService";
+import {
+  createSuperAdminAdmin,
+  fetchSuperAdminAdmins,
+} from "../../../../../../../api/superadmin/adminService";
 import CreateAdminForm from "../CreateAdminForm/CreateAdminForm";
 import "./Admins.css";
 
 export default function Admins() {
   const [admins, setAdmins] = useState([]);
   const [centres, setCentres] = useState([]);
+  const [page, setPage] = useState(1);
+  const [refreshVersion, setRefreshVersion] = useState(0);
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    limit: 20,
+    totalPages: 0,
+  });
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCentres, setIsLoadingCentres] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     let isCurrent = true;
+    setIsLoading(true);
+    setError("");
+    fetchSuperAdminAdmins(page, 20)
+      .then((result) => {
+        if (!isCurrent) return;
+        setAdmins(result.admins.map((admin) => ({
+          id: admin.user_id,
+          name: `${admin.admin_details?.admin_first_name || ""} ${admin.admin_details?.admin_last_name || ""}`.trim() || "Unnamed admin",
+          email: admin.user_email,
+          centre: admin.center_details?.center_name || "Unassigned",
+          role: admin.user_role === "admin" ? "Centre Admin" : admin.user_role,
+        })));
+        setPagination(result.pagination);
+      })
+      .catch((requestError) => {
+        if (isCurrent) {
+          setError(requestError.response?.data?.message || "Unable to load admins.");
+        }
+      })
+      .finally(() => {
+        if (isCurrent) setIsLoading(false);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [page, refreshVersion]);
+
+  useEffect(() => {
+    let isCurrent = true;
+    setIsLoadingCentres(true);
     fetchCenterDetails()
       .then((centerDetails) => {
         if (isCurrent) setCentres(centerDetails);
@@ -26,7 +69,7 @@ export default function Admins() {
         }
       })
       .finally(() => {
-        if (isCurrent) setIsLoading(false);
+        if (isCurrent) setIsLoadingCentres(false);
       });
 
     return () => {
@@ -38,24 +81,10 @@ export default function Admins() {
     setError("");
     setIsSubmitting(true);
     try {
-      const result = await createSuperAdminAdmin(payload);
-      const createdAdmin = result.admin;
-      const createdCenter = result.center;
-      setAdmins((currentAdmins) => [
-        {
-          id: createdAdmin.admin_id,
-          name: `${createdAdmin.first_name} ${createdAdmin.last_name || ""}`.trim(),
-          email: createdAdmin.email,
-          centre:
-            createdCenter?.center_name ||
-            centres.find((center) => center.center_id === payload.center_id)
-              ?.center_name ||
-            "",
-          role: createdAdmin.role,
-        },
-        ...currentAdmins,
-      ]);
+      await createSuperAdminAdmin(payload);
       setIsFormOpen(false);
+      setPage(1);
+      setRefreshVersion((version) => version + 1);
     } catch (requestError) {
       setError(
         requestError.response?.data?.message || "Unable to create admin.",
@@ -80,7 +109,7 @@ export default function Admins() {
         <button
           className="superadmin-admins__add"
           type="button"
-          disabled={isLoading || !centres.length}
+          disabled={isLoadingCentres || !centres.length}
           onClick={() => {
             setError("");
             setIsFormOpen(true);
@@ -110,7 +139,7 @@ export default function Admins() {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan="4">Loading centers...</td>
+                <td colSpan="4">Loading admins...</td>
               </tr>
             ) : (
               admins.map((admin) => (
@@ -126,16 +155,37 @@ export default function Admins() {
                 </tr>
               ))
             )}
-            {!isLoading && !admins.length && (
+            {!isLoading && !error && !admins.length && (
               <tr>
-                <td colSpan="4">
-                  No admins created in this session. The current API does not
-                  provide an admin listing endpoint.
-                </td>
+                <td colSpan="4">No admins found.</td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+      <div className="superadmin-admins__pagination" aria-label="Admin list pagination">
+        <span>
+          {pagination.total.toLocaleString()} admin{pagination.total === 1 ? "" : "s"}
+          {pagination.totalPages > 0 && ` · Page ${pagination.page} of ${pagination.totalPages}`}
+        </span>
+        {pagination.totalPages > 1 && (
+          <div className="superadmin-admins__pagination-actions">
+            <button
+              type="button"
+              onClick={() => setPage((currentPage) => Math.max(1, currentPage - 1))}
+              disabled={isLoading || page <= 1}
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage((currentPage) => Math.min(pagination.totalPages, currentPage + 1))}
+              disabled={isLoading || page >= pagination.totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
       {isFormOpen && (
         <CreateAdminForm

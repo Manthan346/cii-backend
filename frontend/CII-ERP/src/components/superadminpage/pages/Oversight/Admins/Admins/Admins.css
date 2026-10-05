@@ -64,6 +64,30 @@
   font-size: 11px;
   font-weight: 700;
 }
+.superadmin-admins__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--superadmin-muted);
+  font-size: 12px;
+}
+.superadmin-admins__pagination-actions { display: flex; gap: 8px; }
+.superadmin-admins__pagination-actions button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--superadmin-border);
+  border-radius: 7px;
+  color: var(--superadmin-text);
+  background: var(--superadmin-surface);
+  font: inherit;
+  cursor: pointer;
+}
+.superadmin-admins__pagination-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 @media (max-width: 540px) {
   .superadmin-admins__header { align-items: start; flex-direction: column; }
   .superadmin-admins__table-wrap { padding: 6px 12px 10px; }
