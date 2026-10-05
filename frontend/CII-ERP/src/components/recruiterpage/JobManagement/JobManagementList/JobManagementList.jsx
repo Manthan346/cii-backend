@@ -22,10 +22,7 @@ const PAGE_SIZE = 5;
  * The default Job Management view: page header, JobFilterBar, the
  * jobs table, pagination, and the floating "Create Job" button.
  *
- * Filtering is "apply on click" - JobFilterBar keeps its own draft
- * input state and only calls back here (via onApplyFilter) once the
- * user hits "Apply Filter", which is when `appliedFilters` actually
- * updates and the table re-filters.
+ * Job filters are applied as the user types or selects an option.
  *
  * Pagination is client-side over the filtered list via the shared
  * Pagination component - `currentPage` resets to 1 whenever the
@@ -91,7 +88,7 @@ const JobManagementList = ({
         </p>
       </header>
 
-      <JobFilterBar onApplyFilter={setAppliedFilters} />
+      <JobFilterBar onFilterChange={setAppliedFilters} />
 
       {error && <div className="job-management__error">{error}</div>}
 

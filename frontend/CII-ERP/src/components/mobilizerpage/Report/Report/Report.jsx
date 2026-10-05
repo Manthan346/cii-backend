@@ -89,7 +89,7 @@ export default function Report() {
       </div>
 
       <ReportFilterBar
-        onApply={setRange}
+        onRangeChange={setRange}
         onExport={handleExport}
         exporting={exporting}
       />

@@ -19,14 +19,12 @@ const EVENT_STATUS_OPTIONS = [
  * PlacementEventFilterBar
  * Props:
  *  - onSearch, onTypeChange, onStatusChange, onDateChange: (value) => void
- *  - onApply: () => void
  */
 export default function PlacementEventFilterBar({
   onSearch,
   onTypeChange,
   onStatusChange,
   onDateChange,
-  onApply,
 }) {
   const [query, setQuery] = useState('');
   const [date, setDate] = useState('');
@@ -61,9 +59,6 @@ export default function PlacementEventFilterBar({
           <Search size={16} className="pe-search__icon" />
           <input type="text" placeholder="Search here..." value={query} onChange={handleQuery} />
         </div>
-        <button type="button" className="pe-apply-btn" onClick={onApply}>
-          Apply Filter
-        </button>
       </div>
 
       <div className="pe-filterbar__row pe-filterbar__row--filters">

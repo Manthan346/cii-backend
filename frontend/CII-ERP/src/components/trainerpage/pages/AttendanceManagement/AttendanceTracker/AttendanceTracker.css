@@ -75,10 +75,10 @@
   margin-left: auto;
 }
 
-/* ---- Filter bar (Search / Batch / Date / Status / Apply) ---- */
+/* ---- Filter bar (Session / Batch / Date) ---- */
 .attendance-management-attendance-tracker-filter-bar {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: end;
   background: var(--color-white);
@@ -150,10 +150,6 @@
   border-color: var(--color-teal);
 }
 
-.attendance-management-attendance-tracker-apply-wrap {
-  display: flex;
-}
-
 /* ---- Today's Attendance table section ---- */
 .attendance-management-attendance-tracker-table-section {
   background: var(--color-white);
@@ -208,9 +204,7 @@
   .attendance-management-attendance-tracker-filter-bar {
     grid-template-columns: 1fr;
   }
-  .attendance-management-attendance-tracker-apply-wrap button {
-    width: 100%;
-  }
+
   .attendance-management-attendance-tracker-table-section {
     padding: 16px;
   }

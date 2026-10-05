@@ -74,10 +74,10 @@
   gap: 16px;
 }
 
-/* ---- Filter bar (Search / Course / Type / Status / Apply) ---- */
+/* ---- Filter bar (Search / Batch / Status) ---- */
 .study-material-upload-filter-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: end;
   background: var(--color-white);
@@ -125,10 +125,6 @@
   font-size: 14px;
   background: transparent;
   min-width: 0;
-}
-
-.study-material-upload-apply-wrap {
-  display: flex;
 }
 
 /* ---- All Materials table section ---- */
@@ -201,9 +197,7 @@
   .study-material-upload-filter-bar {
     grid-template-columns: 1fr;
   }
-  .study-material-upload-apply-wrap button {
-    width: 100%;
-  }
+
   .study-material-upload-table-section {
     padding: 16px;
   }

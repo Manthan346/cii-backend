@@ -8,9 +8,8 @@ import "./ApplicationsList.css";
  * ApplicationsList
  *
  * The default Applications view: page header, ApplicationFilterBar,
- * the applications table, and pagination. Filtering is "apply on
- * click" - ApplicationFilterBar keeps its own draft state and only
- * calls back here once "Apply Filter" is clicked.
+ * the applications table, and pagination. Filter changes are
+ * immediately passed back to the page.
  */
 const ApplicationsList = ({
   applications,
@@ -22,7 +21,7 @@ const ApplicationsList = ({
   onViewProfile,
   onStatusChange,
   onPageChange,
-  onApplyFilters,
+  onFilterChange,
 }) => {
   return (
     <div className="applications-list">
@@ -33,7 +32,7 @@ const ApplicationsList = ({
         </p>
       </header>
 
-      <ApplicationFilterBar onApplyFilter={onApplyFilters} />
+      <ApplicationFilterBar onFilterChange={onFilterChange} />
 
       {error && <div className="applications-list__error">{error}</div>}
 

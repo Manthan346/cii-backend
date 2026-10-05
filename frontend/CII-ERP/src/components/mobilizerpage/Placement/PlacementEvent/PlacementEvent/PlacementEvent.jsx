@@ -113,7 +113,6 @@ export default function PlacementEvent() {
           setDateFilter(value);
           setPage(1);
         }}
-        onApply={() => setPage(1)}
       />
 
       <ViewToggle view={view} onChange={setView} />

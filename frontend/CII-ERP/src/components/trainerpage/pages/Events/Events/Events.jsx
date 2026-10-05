@@ -68,6 +68,11 @@ const Events = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [records, setRecords] = useState([]);
+  const [filters, setFilters] = useState({
+    searchTerm: "",
+    type: eventTypeOptions[0] || "",
+    status: eventStatusOptions[0] || "",
+  });
   const [pagination, setPagination] = useState({
     totalRecords: 0,
     totalPages: 1,
@@ -115,6 +120,24 @@ const Events = () => {
         tone: CARD_TONES[i % CARD_TONES.length],
       }));
   }, [records]);
+
+  const filteredRecords = useMemo(() => {
+    const query = filters.searchTerm.trim().toLowerCase();
+    return records.filter((record) => {
+      const matchesSearch =
+        !query ||
+        [record.title, record.venue]
+          .filter(Boolean)
+          .some((value) => value.toLowerCase().includes(query));
+      const matchesType =
+        !filters.type.toLowerCase().startsWith("all") ||
+        record.type?.toLowerCase() === filters.type.toLowerCase();
+      const matchesStatus =
+        !filters.status.toLowerCase().startsWith("all") ||
+        record.status?.toLowerCase() === filters.status.toLowerCase();
+      return matchesSearch && matchesType && matchesStatus;
+    });
+  }, [records, filters]);
 
   const handleCreate = async (formValues) => {
     try {
@@ -202,6 +225,10 @@ const Events = () => {
               <EventFilterBar
                 typeOptions={eventTypeOptions}
                 statusOptions={eventStatusOptions}
+                onFilterChange={(nextFilters) => {
+                  setFilters(nextFilters);
+                  setCurrentPage(1);
+                }}
               />
 
               <section className={"events-table-section"}>
@@ -210,15 +237,17 @@ const Events = () => {
                 </div>
 
                 <EventTable
-                  records={records}
+                  records={filteredRecords}
                   onView={setEventBeingViewed}
                   onEdit={setEventBeingEdited}
                   onDelete={handleDelete}
                 />
 
                 <Pagination
-                  showing={records.length}
-                  total={pagination.totalRecords}
+                  showing={filteredRecords.length}
+                  total={filters.searchTerm || !filters.type.toLowerCase().startsWith("all") || !filters.status.toLowerCase().startsWith("all")
+                    ? filteredRecords.length
+                    : pagination.totalRecords}
                   currentPage={currentPage}
                   totalPages={pagination.totalPages}
                   onPageChange={setCurrentPage}

@@ -86,6 +86,8 @@ function toEvent(event) {
   };
 }
 
+//gnsdfvcjhwvcsdhm
+
 function EmptyState({ title, text }) {
   return (
     <div className="ep-empty">
@@ -535,12 +537,19 @@ function DateFilter({ label, value, onChange }) {
   return (
     <div className="ep-filter-group">
       <label className="ep-filter-label">{label}</label>
-      <input
-        type="date"
-        className="ep-filter-date"
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
+      <div className="ep-filter-date-wrap">
+        <input
+          type="date"
+          className={`ep-filter-date${value ? "" : " ep-filter-date--empty"}`}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+        />
+        {!value && (
+          <span className="ep-filter-date-placeholder" aria-hidden="true">
+            DD-MM-YYYY
+          </span>
+        )}
+      </div>
     </div>
   );
 }

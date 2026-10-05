@@ -27,12 +27,20 @@ export default function PlacementDashboard() {
       const q = searchQuery.trim().toLowerCase();
       list = list.filter((e) => e.location.toLowerCase().includes(q) || e.date.toLowerCase().includes(q));
     }
-    // dateFilter isn't cross-checked against event dates here since event
-    // dates are display strings ("01 Jun 2026") rather than ISO values —
-    // wire this up once real event data has a proper date field to compare.
+    if (dateFilter) {
+      const selectedDate = new Date(`${dateFilter}T00:00:00`);
+      list = list.filter((event) => {
+        const eventDate = new Date(event.date);
+        return (
+          eventDate.getFullYear() === selectedDate.getFullYear() &&
+          eventDate.getMonth() === selectedDate.getMonth() &&
+          eventDate.getDate() === selectedDate.getDate()
+        );
+      });
+    }
 
     return list;
-  }, [statusFilter, searchQuery]);
+  }, [statusFilter, searchQuery, dateFilter]);
 
   const visibleEvents = expanded ? filteredEvents : filteredEvents.slice(0, PREVIEW_COUNT);
   const activeEvent = jobFairEvents.find((e) => e.id === activeEventId) || null;
@@ -50,7 +58,6 @@ export default function PlacementDashboard() {
           onSearch={setSearchQuery}
           onStatusChange={setStatusFilter}
           onDateChange={setDateFilter}
-          onApply={() => console.log('Apply filter', { searchQuery, statusFilter, dateFilter })}
         />
       )}
 

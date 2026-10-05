@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Filter } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import { applicationCompanyOptions, applicationRoleOptions } from '../../data';
 import './ApplicationFilterBar.css';
 
@@ -8,31 +8,20 @@ const EMPTY_DRAFT = { search: '', company: '', role: '', from: '', to: '' };
 /**
  * ApplicationFilterBar
  *
- * Search box + Company Name + Role dropdowns + From/To date range,
- * with an explicit "Apply Filter" button - same "draft state until
- * you click Apply" pattern as Job Management's JobFilterBar, unlike
- * JobFairJobDrive's EventFilterBar which filters live.
+ * Search box + Company Name + Role dropdowns + From/To date range.
+ * Filter changes are passed to the parent immediately.
  */
-const ApplicationFilterBar = ({ onApplyFilter }) => {
+const ApplicationFilterBar = ({ onFilterChange }) => {
   const [draft, setDraft] = useState(EMPTY_DRAFT);
 
   const handleChange = (key) => (event) => {
-    setDraft((prev) => ({ ...prev, [key]: event.target.value }));
-  };
-
-  const handleApply = () => {
-    onApplyFilter?.(draft);
+    const nextDraft = { ...draft, [key]: event.target.value };
+    setDraft(nextDraft);
+    onFilterChange?.(nextDraft);
   };
 
   return (
     <div className="application-filter-bar">
-      <div className="application-filter-bar__top">
-        <button type="button" className="application-filter-bar__apply" onClick={handleApply}>
-          Apply Filter
-          <Filter size={15} />
-        </button>
-      </div>
-
       <div className="application-filter-bar__fields">
         <div className="application-filter-bar__field application-filter-bar__field--search">
           <Search size={16} className="application-filter-bar__search-icon" />

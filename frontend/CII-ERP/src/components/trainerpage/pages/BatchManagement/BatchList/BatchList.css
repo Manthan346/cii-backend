@@ -35,10 +35,10 @@
   gap: 16px;
 }
 
-/* ---- Filter bar (Search / Courses / Status / Apply) ---- */
+/* ---- Filter bar (Search / Courses / Status) ---- */
 .batch-management-batch-list-filter-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: end;
   background: var(--color-white);
@@ -86,10 +86,6 @@
   font-size: 14px;
   background: transparent;
   min-width: 0;
-}
-
-.batch-management-batch-list-apply-wrap {
-  display: flex;
 }
 
 /* ---- All Batches table section ---- */
@@ -161,9 +157,6 @@
   }
   .batch-management-batch-list-filter-bar {
     grid-template-columns: 1fr;
-  }
-  .batch-management-batch-list-apply-wrap button {
-    width: 100%;
   }
   .batch-management-batch-list-table-section {
     padding: 16px;

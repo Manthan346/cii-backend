@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Filter } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import { jobFilterOptions } from '../../data';
 import './JobFilterBar.css';
 
@@ -16,20 +16,16 @@ const EMPTY_DRAFT = {
  * JobFilterBar
  *
  * Search box + 5 dropdown filters (Job Role, Sector, Company Name,
- * Mode, Location) + an "Apply Filter" button. Keeps its own draft
- * state as the user types/selects, and only calls `onApplyFilter`
- * with the current values when the button is clicked - JobManagementList
- * owns what happens with those values.
+ * Mode, Location). Filter changes are passed to JobManagementList
+ * immediately.
  */
-const JobFilterBar = ({ onApplyFilter }) => {
+const JobFilterBar = ({ onFilterChange }) => {
   const [draft, setDraft] = useState(EMPTY_DRAFT);
 
   const handleChange = (key) => (event) => {
-    setDraft((prev) => ({ ...prev, [key]: event.target.value }));
-  };
-
-  const handleApply = () => {
-    onApplyFilter?.(draft);
+    const nextDraft = { ...draft, [key]: event.target.value };
+    setDraft(nextDraft);
+    onFilterChange?.(nextDraft);
   };
 
   return (
@@ -95,10 +91,6 @@ const JobFilterBar = ({ onApplyFilter }) => {
         <ChevronDown size={14} className="job-filter-bar__chevron" />
       </div>
 
-      <button type="button" className="job-filter-bar__apply" onClick={handleApply}>
-        Apply Filter
-        <Filter size={15} />
-      </button>
     </div>
   );
 };

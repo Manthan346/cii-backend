@@ -8,10 +8,11 @@
 
 .filterBar {
   display: grid;
-  grid-template-columns: minmax(190px, 1.7fr) minmax(135px, 0.92fr) minmax(
-      112px,
-      0.7fr
-    ) minmax(150px, 1fr) minmax(110px, 0.7fr) auto;
+  grid-template-columns:
+    minmax(190px, 1.7fr)
+    minmax(135px, 0.92fr)
+    minmax(112px, 0.7fr)
+    minmax(150px, 1fr);
   gap: 12px;
   align-items: center;
   margin: 0 auto 32px;
@@ -41,6 +42,33 @@
     box-shadow 0.18s ease;
 }
 
+.filterSearch {
+  width: 100%;
+  min-width: 0;
+  appearance: none;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--ink);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.filterSearch::placeholder {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+
+.filterSearch:focus-visible {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 60, 126, 0.12);
+}
+
 .filterSelect:focus-visible {
   outline: none;
   border-color: var(--blue);
@@ -54,7 +82,7 @@
   color: var(--ink-soft);
 }
 
-.applyFilterBtn {
+.clearFiltersBtn {
   background: var(--blue);
   color: #fff;
   border: none;
@@ -69,7 +97,7 @@
     transform 0.18s ease;
 }
 
-.applyFilterBtn:hover {
+.clearFiltersBtn:hover {
   background: #002f64;
   transform: translateY(-1px);
 }
@@ -105,10 +133,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 24px;
-  }
-
-  .applyFilterBtn {
-    grid-column: 1 / -1;
   }
 
   .grid {

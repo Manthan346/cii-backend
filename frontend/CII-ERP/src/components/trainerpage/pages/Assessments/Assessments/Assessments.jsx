@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Filter, Plus, Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 import { Button, Dropdown, Pagination } from "../../../shared";
@@ -20,12 +20,9 @@ import "./Assessments.css";
 export default function Assessments() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [records, setRecords] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
   const [searchBatchId, setSearchBatchId] = useState("");
-  const [batchInput, setBatchInput] = useState("");
   const [assessmentType, setAssessmentType] = useState("");
-  const [assessmentTypeInput, setAssessmentTypeInput] = useState("");
   const [batches, setBatches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
@@ -67,13 +64,6 @@ export default function Assessments() {
       .then(setBatches)
       .catch(() => {});
   }, []);
-
-  const applyFilters = () => {
-    setCurrentPage(1);
-    setSearch(searchInput.trim());
-    setSearchBatchId(batchInput);
-    setAssessmentType(assessmentTypeInput);
-  };
 
   const visibleRecords = assessmentType
     ? records.filter((record) => record.assessment_type === assessmentType)
@@ -147,10 +137,10 @@ export default function Assessments() {
                     <input
                       type="search"
                       placeholder="Search by title, batch code, or description"
-                      value={searchInput}
-                      onChange={(event) => setSearchInput(event.target.value)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter") applyFilters();
+                      value={search}
+                      onChange={(event) => {
+                        setSearch(event.target.value);
+                        setCurrentPage(1);
                       }}
                     />
                   </div>
@@ -164,8 +154,11 @@ export default function Assessments() {
                       value: batch.batch_id,
                     })),
                   ]}
-                  value={batchInput}
-                  onChange={setBatchInput}
+                  value={searchBatchId}
+                  onChange={(value) => {
+                    setSearchBatchId(value);
+                    setCurrentPage(1);
+                  }}
                 />
                 <Dropdown
                   label="Assessment Type"
@@ -177,12 +170,12 @@ export default function Assessments() {
                     { label: "Mock interview", value: "MOCK_INTERVIEW" },
                     { label: "Final assessment", value: "FINAL_ASSESSMENT" },
                   ]}
-                  value={assessmentTypeInput}
-                  onChange={setAssessmentTypeInput}
+                  value={assessmentType}
+                  onChange={(value) => {
+                    setAssessmentType(value);
+                    setCurrentPage(1);
+                  }}
                 />
-                <Button variant="outline" icon={Filter} onClick={applyFilters}>
-                  Apply filter
-                </Button>
               </div>
               {error && <p className="assessments-error">{error}</p>}
               {loading ? (

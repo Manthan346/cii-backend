@@ -1,6 +1,6 @@
 .shared-filter-bar-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   align-items: end;
   background: var(--color-white);
@@ -50,10 +50,6 @@
   min-width: 0;
 }
 
-.shared-filter-bar-apply-wrap {
-  display: flex;
-}
-
 @media (max-width: 1024px) {
   .shared-filter-bar-bar {
     grid-template-columns: repeat(2, 1fr);
@@ -63,8 +59,5 @@
 @media (max-width: 640px) {
   .shared-filter-bar-bar {
     grid-template-columns: 1fr;
-  }
-  .shared-filter-bar-apply-wrap button {
-    width: 100%;
   }
 }

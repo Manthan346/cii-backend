@@ -13,11 +13,6 @@ const PAGE_SIZE = 40;
 
 const FILTERS = [
   {
-    key: "title",
-    label: "Job Role",
-    getOptions: (list) => unique(list.map((job) => job.title)),
-  },
-  {
     key: "location",
     label: "Location",
     getOptions: (list) => unique(list.map((job) => job.location)),
@@ -62,7 +57,6 @@ function FilterSelect({ label, options, value, onChange }) {
 export default function Placements() {
   const navigate = useNavigate();
   const [filterValues, setFilterValues] = useState({});
-  const [appliedFilters, setAppliedFilters] = useState({});
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [applyJob, setApplyJob] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -102,19 +96,17 @@ export default function Placements() {
   const filteredJobs = useMemo(
     () =>
       jobs.filter((job) =>
-        FILTERS.every(({ key }) => {
-          const wanted = appliedFilters[key];
-          return !wanted || job[key] === wanted;
-        }),
+        (job.title || "")
+          .toLowerCase()
+          .includes((filterValues.title || "").trim().toLowerCase()) &&
+          FILTERS.every(({ key }) => {
+            const wanted = filterValues[key];
+            return !wanted || job[key] === wanted;
+          }),
       ),
-    [jobs, appliedFilters],
+    [jobs, filterValues],
   );
   const visibleJobs = filteredJobs.slice(0, visibleCount);
-
-  const handleApplyFilters = () => {
-    setAppliedFilters(filterValues);
-    setVisibleCount(PAGE_SIZE);
-  };
 
   const handleNextPage = async () => {
     if (!nextCursor || pageLoading) return;
@@ -131,8 +123,6 @@ export default function Placements() {
       setHasNextPage(result.pagination.hasNextPage);
       setCurrentPage((page) => page + 1);
       setVisibleCount(PAGE_SIZE);
-      setAppliedFilters({});
-      setFilterValues({});
     } catch {
       setError("Unable to load the next page of job openings.");
     } finally {
@@ -147,6 +137,21 @@ export default function Placements() {
 
       <main className={styles.page}>
         <div className={styles.filterBar}>
+          <div className={styles.filterPill}>
+            <input
+              type="search"
+              className={styles.filterSearch}
+              value={filterValues.title || ""}
+              onChange={(event) =>
+                setFilterValues((previous) => ({
+                  ...previous,
+                  title: event.target.value,
+                }))
+              }
+              placeholder="Search job roles"
+              aria-label="Search job roles"
+            />
+          </div>
           {FILTERS.map((filter) => (
             <FilterSelect
               key={filter.key}
@@ -161,13 +166,6 @@ export default function Placements() {
               }
             />
           ))}
-          <button
-            type="button"
-            className={styles.applyFilterBtn}
-            onClick={handleApplyFilters}
-          >
-            Apply Filter
-          </button>
         </div>
 
         {loading ? (
@@ -179,11 +177,8 @@ export default function Placements() {
             <p>No openings match those filters right now.</p>
             <button
               type="button"
-              className={styles.applyFilterBtn}
-              onClick={() => {
-                setFilterValues({});
-                setAppliedFilters({});
-              }}
+              className={styles.clearFiltersBtn}
+              onClick={() => setFilterValues({})}
             >
               Clear filters
             </button>

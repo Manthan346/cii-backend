@@ -5,7 +5,6 @@ import {
   GraduationCap,
   Repeat,
   Search,
-  Filter,
 } from "lucide-react";
 import { Dropdown, Button, Pagination } from "../../../shared";
 import StatCard from "../StatCard/StatCard";
@@ -214,18 +213,6 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
           }}
         />
 
-        <div className={"batch-management-batch-list-apply-wrap"}>
-          <Button
-            variant="outline"
-            icon={Filter}
-            onClick={() => {
-              setCurrentPage(1);
-              loadBatches();
-            }}
-          >
-            Apply Filter
-          </Button>
-        </div>
       </div>
 
       <section className={"batch-management-batch-list-table-section"}>

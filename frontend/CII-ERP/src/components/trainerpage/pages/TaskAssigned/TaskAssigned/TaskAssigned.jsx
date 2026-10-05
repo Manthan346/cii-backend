@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   LayoutGrid,
   CalendarClock,
   CheckCircle2,
   Search,
-  Filter,
   Plus,
 } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
@@ -58,6 +57,23 @@ const TaskAssigned = () => {
   const pendingCount = records.filter(
     (t) => t.status?.toLowerCase() !== "completed",
   ).length;
+  const filteredRecords = useMemo(() => {
+    const query = searchTask.trim().toLowerCase();
+    return records.filter((task) => {
+      const matchesSearch =
+        !query ||
+        [task.title, task.subtitle, task.assignee, task.assignedTo]
+          .filter(Boolean)
+          .some((value) => value.toLowerCase().includes(query));
+      const matchesPriority =
+        priority.toLowerCase().startsWith("all") ||
+        task.priority?.toLowerCase() === priority.toLowerCase();
+      const matchesStatus =
+        status.toLowerCase().startsWith("all") ||
+        task.status?.toLowerCase() === status.toLowerCase();
+      return matchesSearch && matchesPriority && matchesStatus;
+    });
+  }, [records, searchTask, priority, status]);
 
   const handleAssignTask = (formValues) => {
     const newTask = {
@@ -178,7 +194,10 @@ const TaskAssigned = () => {
                       type="text"
                       placeholder="search task"
                       value={searchTask}
-                      onChange={(event) => setSearchTask(event.target.value)}
+                      onChange={(event) => {
+                        setSearchTask(event.target.value);
+                        setCurrentPage(1);
+                      }}
                       className="task-assigned-page__search-input"
                     />
                   </div>
@@ -188,20 +207,20 @@ const TaskAssigned = () => {
                   label="Priority"
                   options={taskPriorityOptions}
                   value={priority}
-                  onChange={setPriority}
+                  onChange={(value) => {
+                    setPriority(value);
+                    setCurrentPage(1);
+                  }}
                 />
                 <Dropdown
                   label="Status"
                   options={taskStatusOptions}
                   value={status}
-                  onChange={setStatus}
+                  onChange={(value) => {
+                    setStatus(value);
+                    setCurrentPage(1);
+                  }}
                 />
-
-                <div className="task-assigned-page__apply-wrap">
-                  <Button variant="outline" icon={Filter}>
-                    Apply Filter
-                  </Button>
-                </div>
               </div>
 
               <section className="task-assigned-page__table-section">
@@ -209,7 +228,7 @@ const TaskAssigned = () => {
                   <h2 className="task-assigned-page__table-title">All Task</h2>
                 </div>
 
-                <TaskTable records={records} onView={handleViewTask} />
+                <TaskTable tasks={filteredRecords} onView={handleViewTask} />
 
                 <Pagination
                   showing={records.length}

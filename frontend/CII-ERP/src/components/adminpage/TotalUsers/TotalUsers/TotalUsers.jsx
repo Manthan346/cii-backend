@@ -262,10 +262,6 @@ const TotalUsers = () => {
     });
   }, [search, role, status, users]);
 
-  const handleApplyFilters = () => {
-    setPage(1);
-  };
-
   const handleToggleSelect = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((sel) => sel !== id) : [...prev, id],
@@ -340,14 +336,22 @@ const TotalUsers = () => {
 
       <UsersFilterBar
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(value) => {
+          setSearch(value);
+          setPage(1);
+        }}
         role={role}
-        onRoleChange={setRole}
+        onRoleChange={(value) => {
+          setRole(value);
+          setPage(1);
+        }}
         status={status}
-        onStatusChange={setStatus}
+        onStatusChange={(value) => {
+          setStatus(value);
+          setPage(1);
+        }}
         roleOptions={roleOptions}
         statusOptions={statusOptions}
-        onApply={handleApplyFilters}
       />
 
       {error && <div className="admin-users-table__error">{error}</div>}

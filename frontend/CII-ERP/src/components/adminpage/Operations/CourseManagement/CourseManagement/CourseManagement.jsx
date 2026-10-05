@@ -108,10 +108,6 @@ const CourseManagement = () => {
     };
   }, []);
 
-  const handleApplyFilters = () => {
-    setPage(1);
-  };
-
   const handleExport = () => {
     // TODO: GET /api/admin/courses/export?format=csv
     console.log("export courses");
@@ -133,14 +129,22 @@ const CourseManagement = () => {
 
       <CoursesFilterBar
         search={search}
-        onSearchChange={setSearch}
+        onSearchChange={(value) => {
+          setSearch(value);
+          setPage(1);
+        }}
         mode={mode}
-        onModeChange={setMode}
+        onModeChange={(value) => {
+          setMode(value);
+          setPage(1);
+        }}
         company={company}
-        onCompanyChange={setCompany}
+        onCompanyChange={(value) => {
+          setCompany(value);
+          setPage(1);
+        }}
         modeOptions={COURSE_MODE_OPTIONS}
         companyOptions={companyOptions}
-        onApply={handleApplyFilters}
       />
 
       {error && <div className="admin-course-management__error">{error}</div>}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Filter, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { Dropdown, Button, Pagination } from "../../../shared";
 import SessionsTable from "../SessionsTable/SessionsTable";
 import SessionDetailView from "../SessionDetailView/SessionDetailView";
@@ -86,12 +86,6 @@ export default function AttendanceTracker() {
   const [date, setDate] = useState(""); // now holds "YYYY-MM-DD" or ''
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [appliedFilters, setAppliedFilters] = useState({
-    session: "",
-    batch: "All Batches",
-    date: "",
-  });
-
   const [sessions, setSessions] = useState([]);
   const [pagination, setPagination] = useState({
     totalRecords: 0,
@@ -162,21 +156,21 @@ export default function AttendanceTracker() {
       setLoading(true);
       setError(null);
       try {
-        const searchTerm = appliedFilters.session.trim() || undefined;
+        const searchTerm = sessionFilter.trim() || undefined;
 
         const data = await fetchAttendanceSessions({
           page: currentPage,
           limit: 6,
           search: searchTerm,
-          batchId: appliedFilters.batch.toLowerCase().startsWith("all")
+          batchId: batch.toLowerCase().startsWith("all")
             ? undefined
             : (batchRecords.find(
-                (item) => item.batch_code === appliedFilters.batch,
+                (item) => item.batch_code === batch,
               )?.batchId ??
               batchRecords.find(
-                (item) => item.batch_code === appliedFilters.batch,
+                (item) => item.batch_code === batch,
               )?.batch_id),
-          sessionDate: appliedFilters.date || undefined,
+          sessionDate: date || undefined,
         });
         if (cancelled) return;
         setSessions((data.sessions ?? []).map(mapSession));
@@ -201,7 +195,7 @@ export default function AttendanceTracker() {
     return () => {
       cancelled = true;
     };
-  }, [currentPage, appliedFilters, batchRecords, sessionsRefreshKey]);
+  }, [currentPage, sessionFilter, batch, date, batchRecords, sessionsRefreshKey]);
 
   // Fetch the real roster (active enrolled students) whenever a
   // session is opened for marking. Replaces the old mock
@@ -252,27 +246,21 @@ export default function AttendanceTracker() {
   const filteredSessions = useMemo(() => {
     return sessions.filter((session) => {
       const sessionMatches =
-        !appliedFilters.session.trim() ||
+        !sessionFilter.trim() ||
         session.title
           ?.toLowerCase()
-          .includes(appliedFilters.session.trim().toLowerCase());
+          .includes(sessionFilter.trim().toLowerCase());
       const batchOk =
-        appliedFilters.batch.toLowerCase().startsWith("all") ||
-        session.batch === appliedFilters.batch;
+        batch.toLowerCase().startsWith("all") || session.batch === batch;
       return sessionMatches && batchOk;
     });
-  }, [sessions, appliedFilters]);
+  }, [sessions, sessionFilter, batch]);
 
   const baseViewingSession =
     sessions.find((s) => s.id === viewingSessionId) || null;
   const viewingSession = baseViewingSession
     ? { ...baseViewingSession, attendance: viewedAttendance }
     : null;
-
-  const handleApplyFilter = () => {
-    setAppliedFilters({ session: sessionFilter, batch, date });
-    setCurrentPage(1);
-  };
 
   const handleSaveAttendance = async (session, attendanceList) => {
     try {
@@ -379,14 +367,20 @@ export default function AttendanceTracker() {
             className={"attendance-management-attendance-tracker-date-input"}
             value={sessionFilter}
             placeholder="Search session"
-            onChange={(event) => setSessionFilter(event.target.value)}
+            onChange={(event) => {
+              setSessionFilter(event.target.value);
+              setCurrentPage(1);
+            }}
           />
         </div>
         <Dropdown
           label="BATCH"
           options={batchOptionsList} // was: batchOptions
           value={batch}
-          onChange={setBatch}
+          onChange={(value) => {
+            setBatch(value);
+            setCurrentPage(1);
+          }}
         />
 
         <div className={"attendance-management-attendance-tracker-date-field"}>
@@ -399,14 +393,11 @@ export default function AttendanceTracker() {
             type="date"
             className={"attendance-management-attendance-tracker-date-input"}
             value={date}
-            onChange={(event) => setDate(event.target.value)}
+            onChange={(event) => {
+              setDate(event.target.value);
+              setCurrentPage(1);
+            }}
           />
-        </div>
-
-        <div className={"attendance-management-attendance-tracker-apply-wrap"}>
-          <Button variant="outline" icon={Filter} onClick={handleApplyFilter}>
-            Apply Filters
-          </Button>
         </div>
       </div>
 

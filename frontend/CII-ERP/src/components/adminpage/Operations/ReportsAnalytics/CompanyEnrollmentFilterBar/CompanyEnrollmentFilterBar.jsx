@@ -224,7 +224,7 @@ export default function CompanyEnrollmentFilterBar() {
 
         <button
           type="button"
-          className="ra-btn ra-btn--primary ra-filterbar__apply"
+          className="ra-btn ra-btn--primary ra-filterbar__export"
           onClick={handleExport}
           disabled={exporting || !companyId}
         >

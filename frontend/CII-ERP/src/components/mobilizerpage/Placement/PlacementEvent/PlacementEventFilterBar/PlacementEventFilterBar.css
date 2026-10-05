@@ -51,23 +51,6 @@
   pointer-events: none;
 }
 
-.pe-apply-btn {
-  height: 42px;
-  padding: 0 20px;
-  border-radius: 10px;
-  border: 1px solid #e4e8f0;
-  background: #f6f7f9;
-  color: #1f2430;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.pe-apply-btn:hover {
-  background: #eef0f3;
-}
-
 .pe-select-wrap,
 .pe-date-wrap {
   position: relative;

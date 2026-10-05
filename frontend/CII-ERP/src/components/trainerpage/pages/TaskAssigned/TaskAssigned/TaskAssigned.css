@@ -74,10 +74,10 @@
   gap: 16px;
 }
 
-/* ---- Filter bar (Search Task / Assignee / Priority / Status / Apply) ---- */
+/* ---- Filter bar (Search Task / Priority / Status) ---- */
 .task-assigned-page__filter-bar {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: end;
   background: var(--color-white);
@@ -125,10 +125,6 @@
   font-size: 14px;
   background: transparent;
   min-width: 0;
-}
-
-.task-assigned-page__apply-wrap {
-  display: flex;
 }
 
 /* ---- "All Task" table section ---- */
@@ -215,9 +211,7 @@
     grid-template-columns: 1fr;
   }
 
-  .task-assigned-page__apply-wrap button {
-    width: 100%;
-  }
+
 
   .staff-dashboard {
     padding: 0 0 0 16px;
