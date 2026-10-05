@@ -103,7 +103,7 @@ const Applications = () => {
         onViewProfile={setSelectedId}
         onStatusChange={handleStatusChange}
         onPageChange={setCurrentPage}
-        onApplyFilters={(nextFilters) => {
+        onFilterChange={(nextFilters) => {
           setCurrentPage(1);
           setFilters(nextFilters);
         }}

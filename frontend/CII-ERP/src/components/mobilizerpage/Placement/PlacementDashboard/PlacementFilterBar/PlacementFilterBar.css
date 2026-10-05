@@ -86,23 +86,6 @@
   pointer-events: none;
 }
 
-.pd-apply-btn {
-  height: 44px;
-  padding: 0 22px;
-  border-radius: 10px;
-  border: none;
-  background: #ffffff;
-  color: #1f2430;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.pd-apply-btn:hover {
-  background: #f6f7f9;
-}
-
 @media (max-width: 760px) {
   .pd-filterbar {
     flex-direction: column;
@@ -110,7 +93,4 @@
   }
   .pd-select-wrap select,
   .pd-date-wrap input,
-  .pd-apply-btn {
-    width: 100%;
-  }
 }

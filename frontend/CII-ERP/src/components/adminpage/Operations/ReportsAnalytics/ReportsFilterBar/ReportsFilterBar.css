@@ -89,7 +89,7 @@
   pointer-events: none;
 }
 
-.ra-filterbar__apply {
+.ra-filterbar__export {
   margin-left: auto;
 }
 
@@ -97,7 +97,7 @@
   .ra-filterbar {
     align-items: stretch;
   }
-  .ra-filterbar__apply {
+  .ra-filterbar__export {
     margin-left: 0;
     width: 100%;
     justify-content: center;

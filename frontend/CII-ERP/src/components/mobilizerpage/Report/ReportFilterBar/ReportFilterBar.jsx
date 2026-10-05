@@ -5,12 +5,19 @@ import './ReportFilterBar.css';
 /**
  * ReportFilterBar
  * Props:
- *  - onApply: ({ from, to }) => void
+ *  - onRangeChange: ({ from, to }) => void
  *  - onExport: () => void
  */
-export default function ReportFilterBar({ onApply, onExport, exporting = false }) {
+export default function ReportFilterBar({ onRangeChange, onExport, exporting = false }) {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
+
+  const handleDateChange = (key, value) => {
+    const nextRange = { from, to, [key]: value };
+    if (key === 'from') setFrom(value);
+    else setTo(value);
+    onRangeChange?.(nextRange);
+  };
 
   return (
     <div className="rp-filterbar">
@@ -24,7 +31,7 @@ export default function ReportFilterBar({ onApply, onExport, exporting = false }
               <input
                 type="date"
                 value={from}
-                onChange={(e) => setFrom(e.target.value)}
+                onChange={(e) => handleDateChange('from', e.target.value)}
               />
               <Calendar size={15} className="rp-date__icon" />
             </span>
@@ -36,15 +43,12 @@ export default function ReportFilterBar({ onApply, onExport, exporting = false }
               <input
                 type="date"
                 value={to}
-                onChange={(e) => setTo(e.target.value)}
+                onChange={(e) => handleDateChange('to', e.target.value)}
               />
               <Calendar size={15} className="rp-date__icon" />
             </span>
           </label>
 
-          <button type="button" className="rp-btn" onClick={() => onApply?.({ from, to })}>
-            Apply Filter
-          </button>
         </div>
       </div>
 

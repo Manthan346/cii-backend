@@ -182,7 +182,7 @@ const CandidateManagement = () => {
     };
   }, []);
 
-  const handleApplyFilter = ({ status, searchTerm, batch }) => {
+  const handleFilterChange = ({ status, searchTerm, batch }) => {
     setPagination((p) => ({ ...p, currentPage: 1 }));
     setFilters({
       status,
@@ -262,7 +262,7 @@ const CandidateManagement = () => {
                 batchOptions={batchLabels}
                 courseOptions={courseLabels}
                 statusOptions={statusOptions}
-                onApply={handleApplyFilter}
+                onFilterChange={handleFilterChange}
               />
 
               <section className={"candidate-management-table-section"}>

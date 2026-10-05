@@ -190,6 +190,8 @@
   box-shadow: 0 2px 12px rgba(12, 45, 114, 0.06);
 }
 .ep-filter-group {
+  flex: 1 1 0;
+  min-width: 130px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -203,6 +205,7 @@
 }
 .ep-filter-select,
 .ep-filter-date {
+  width: 100%;
   padding: 8px 12px;
   border: 1.5px solid #e2e8f0;
   border-radius: 8px;
@@ -215,10 +218,44 @@
   transition: border-color 0.2s;
   font-family: inherit;
 }
+.ep-filter-date-wrap {
+  position: relative;
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+.ep-filter-date-wrap:focus-within {
+  background: #fff;
+}
+.ep-filter-date-placeholder {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 13px;
+  right: 36px;
+  overflow: hidden;
+  transform: translateY(-50%);
+  background: inherit;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: clip;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.ep-filter-date--empty {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.ep-filter-date--empty::-webkit-datetime-edit {
+  color: transparent;
+}
 .ep-filter-select:focus,
 .ep-filter-date:focus {
   border-color: #0c2d72;
-  background: #fff;
+  background: transparent;
 }
 .ep-filter-reset {
   padding: 8px 16px;
@@ -1197,6 +1234,7 @@
     gap: 12px;
   }
   .ep-filter-group {
+    flex: 1 1 100%;
     width: 100%;
     gap: 6px;
   }

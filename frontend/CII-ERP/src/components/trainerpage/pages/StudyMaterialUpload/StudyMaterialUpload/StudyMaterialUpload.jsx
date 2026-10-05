@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Search, Filter, Plus } from "lucide-react";
+import { Search, Plus } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
 import { Dropdown, Button, Pagination } from "../../../shared";
@@ -166,24 +166,20 @@ const StudyMaterialUpload = () => {
                   label="BATCH"
                   options={batchOptions}
                   value={batch}
-                  onChange={setBatch}
+                  onChange={(value) => {
+                    setBatch(value);
+                    setCurrentPage(1);
+                  }}
                 />
                 <Dropdown
                   label="STATUS"
                   options={statusOptions}
                   value={status}
-                  onChange={setStatus}
+                  onChange={(value) => {
+                    setStatus(value);
+                    setCurrentPage(1);
+                  }}
                 />
-
-                <div className={"study-material-upload-apply-wrap"}>
-                  <Button
-                    variant="outline"
-                    icon={Filter}
-                    onClick={loadMaterials}
-                  >
-                    Apply Filter
-                  </Button>
-                </div>
               </div>
 
               <section className={"study-material-upload-table-section"}>

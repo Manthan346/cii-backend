@@ -1,22 +1,13 @@
 import React from "react";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import SectionCard from "../../../shared/SectionCard/SectionCard";
 import Dropdown from "../../../shared/Dropdown/Dropdown";
-import Button from "../../../shared/Button/Button";
 import "./CoursesFilterBar.css";
 
 /**
  * CoursesFilterBar
  *
- * Search + Mode + Company filters, plus the "Apply Filters" button,
- * for the Courses catalog table (backed by GET /admin/courses).
- *
- * Props:
- *  - search / onSearchChange
- *  - mode / onModeChange
- *  - company / onCompanyChange
- *  - modeOptions / companyOptions: array of { value, label }
- *  - onApply: function -> "Apply Filters" button
+ * Search, mode, and company filters for the Courses catalog table.
  */
 const CoursesFilterBar = ({
   search,
@@ -27,7 +18,6 @@ const CoursesFilterBar = ({
   onCompanyChange,
   modeOptions = [],
   companyOptions = [],
-  onApply,
 }) => {
   return (
     <SectionCard>
@@ -60,11 +50,6 @@ const CoursesFilterBar = ({
           onChange={onCompanyChange}
         />
 
-        <div className="admin-courses-filter__apply">
-          <Button icon={Filter} onClick={onApply}>
-            Apply Filters
-          </Button>
-        </div>
       </div>
     </SectionCard>
   );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Search, Filter } from 'lucide-react';
-import { Dropdown, Button } from '../../../shared';
+import { Search } from 'lucide-react';
+import { Dropdown } from '../../../shared';
 import './EventFilterBar.css';
 
 /**
@@ -12,23 +12,27 @@ import './EventFilterBar.css';
  * generic Dropdown/Button atoms from /shared, same convention as the
  * inline filter bar on the Resources page.
  *
- * onApply receives the current filter state so it can be wired to a
- * backend call later, e.g. GET /api/events?search=&type=&status=
+ * Filter changes are passed to the parent immediately.
  */
 export default function EventFilterBar({
   typeOptions = [],
   statusOptions = [],
-  onApply,
+  onFilterChange,
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [type, setType] = useState(typeOptions[0] || '');
   const [status, setStatus] = useState(statusOptions[0] || '');
-  const handleApply = () => {
-    onApply?.({
+  const updateFilter = (key, value) => {
+    const nextFilters = {
       searchTerm,
       type,
       status,
-    });
+      [key]: value,
+    };
+    if (key === 'searchTerm') setSearchTerm(value);
+    if (key === 'type') setType(value);
+    if (key === 'status') setStatus(value);
+    onFilterChange?.(nextFilters);
   };
   return (
     <div className={'events-event-filter-bar-bar'}>
@@ -40,7 +44,7 @@ export default function EventFilterBar({
             type="text"
             placeholder="Search by event title or venue"
             value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onChange={(event) => updateFilter('searchTerm', event.target.value)}
             className={'events-event-filter-bar-search-input'}
           />
         </div>
@@ -50,20 +54,14 @@ export default function EventFilterBar({
         label="Type"
         options={typeOptions}
         value={type}
-        onChange={setType}
+        onChange={(value) => updateFilter('type', value)}
       />
       <Dropdown
         label="Status"
         options={statusOptions}
         value={status}
-        onChange={setStatus}
+        onChange={(value) => updateFilter('status', value)}
       />
-
-      <div className={'events-event-filter-bar-apply-wrap'}>
-        <Button variant="outline" icon={Filter} onClick={handleApply}>
-          Apply Filter
-        </Button>
-      </div>
     </div>
   );
 }

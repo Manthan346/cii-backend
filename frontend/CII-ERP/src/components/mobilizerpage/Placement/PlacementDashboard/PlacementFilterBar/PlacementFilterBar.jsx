@@ -9,9 +9,8 @@ import './PlacementFilterBar.css';
  *  - onSearch: (query: string) => void
  *  - onStatusChange: (value: string) => void
  *  - onDateChange: (value: string) => void
- *  - onApply: () => void
  */
-export default function PlacementFilterBar({ onSearch, onStatusChange, onDateChange, onApply }) {
+export default function PlacementFilterBar({ onSearch, onStatusChange, onDateChange }) {
   const [query, setQuery] = useState('');
   const [date, setDate] = useState('');
 
@@ -55,9 +54,6 @@ export default function PlacementFilterBar({ onSearch, onStatusChange, onDateCha
         <Calendar size={14} className="pd-date__icon" />
       </div>
 
-      <button type="button" className="pd-apply-btn" onClick={onApply}>
-        Apply Filter
-      </button>
     </div>
   );
 }

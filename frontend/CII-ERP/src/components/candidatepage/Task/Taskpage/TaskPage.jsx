@@ -8,7 +8,7 @@
 //   filterOptions {object}  – { batches, courses, assignees, statuses } (arrays of {value,label})
 //   tasks         {array}   – [{ id, index, title, dueLabel, status: 'completed'|'in-progress', onNotify }]
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Icon from '../../shared/Icon/Icon';
 import './TaskPage.css';
 
@@ -105,6 +105,25 @@ export default function TaskPage({
   const updateFilter = (key) => (val) =>
     setSelected(prev => ({ ...prev, [key]: val }));
 
+  const filteredTasks = useMemo(() => tasks.filter((task) => {
+    const matches = (key, aliases) => {
+      const selectedValue = selected[key];
+      if (!selectedValue) return true;
+      const normalizedSelection = String(selectedValue).toLowerCase().replace(/[\s_-]+/g, '');
+      return aliases.some((alias) => {
+        const value = task[alias];
+        return value != null && String(value).toLowerCase().replace(/[\s_-]+/g, '') === normalizedSelection;
+      });
+    };
+
+    return (
+      matches('batch', ['batch', 'batchId', 'batch_id']) &&
+      matches('course', ['course', 'courseId', 'course_id']) &&
+      matches('assignee', ['assignee', 'assignedTo', 'assigned_to']) &&
+      matches('status', ['status'])
+    );
+  }), [tasks, selected]);
+
   return (
     <div className="task-page">
       <h1 className="task-page__title">Task Assignment</h1>
@@ -166,17 +185,15 @@ export default function TaskPage({
           value={selected.status}
           onChange={updateFilter('status')}
         />
-        <button className="task-page__apply-filter" type="button">
-          Apply Filter
-          <Icon name="filter" size={14} color="var(--blue)" />
-        </button>
       </div>
 
       <div className="task-page__list">
-        {tasks.length === 0 ? (
-          <div className="task-page__empty">No tasks assigned yet.</div>
+        {filteredTasks.length === 0 ? (
+          <div className="task-page__empty">
+            {tasks.length === 0 ? 'No tasks assigned yet.' : 'No tasks match those filters.'}
+          </div>
         ) : (
-          tasks.map(t => (
+          filteredTasks.map(t => (
             <TaskItem
               key={t.id}
               index={t.index}

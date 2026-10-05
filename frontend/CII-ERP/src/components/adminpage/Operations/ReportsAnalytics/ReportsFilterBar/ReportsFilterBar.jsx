@@ -10,7 +10,7 @@ import "./ReportsFilterBar.css";
  * Enrollment report, once for the Enquiry report — each pointed at
  * its own export handler (downloadEnrollmentReport /
  * downloadEnquiryReport), since those are separate backend endpoints
- * with their own file outputs, not a single shared "Apply Filters".
+ * with their own file outputs.
  *
  * Props:
  *  - title: string heading shown above the bar (e.g. "Total Enrollments")
@@ -107,7 +107,7 @@ export default function ReportsFilterBar({
 
         <button
           type="button"
-          className="ra-btn ra-btn--primary ra-filterbar__apply"
+          className="ra-btn ra-btn--primary ra-filterbar__export"
           onClick={handleExport}
           disabled={exporting}
         >

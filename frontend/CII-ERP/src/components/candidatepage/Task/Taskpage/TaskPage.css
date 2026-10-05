@@ -125,21 +125,6 @@
   cursor: pointer;
 }
 
-.task-page__apply-filter {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--white);
-  color: var(--blue);
-  font-size: 13.5px;
-  font-weight: 600;
-  padding: 10px 16px;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
 /* ── Task list ── */
 .task-page__list {
   display: flex;

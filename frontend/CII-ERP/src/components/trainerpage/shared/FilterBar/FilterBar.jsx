@@ -1,30 +1,34 @@
 import { useState } from 'react';
-import { Search, Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Dropdown from '../Dropdown/Dropdown';
-import Button from '../Button/Button';
 import './FilterBar.css';
 
 /**
- * Search + Batches + Courses + Status filters, with an Apply Filter action.
- * onApply receives the current filter state so it can be wired to a backend call.
+ * Search + Batches + Courses + Status filters, applied as they change.
  */
 export default function FilterBar({
   batchOptions = [],
   courseOptions = [],
   statusOptions = [],
-  onApply,
+  onFilterChange,
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [batch, setBatch] = useState(batchOptions[0] || '');
   const [course, setCourse] = useState(courseOptions[0] || '');
   const [status, setStatus] = useState(statusOptions[0] || '');
-  const handleApply = () => {
-    onApply?.({
+  const updateFilter = (key, value) => {
+    const nextFilters = {
       searchTerm,
       batch,
       course,
       status,
-    });
+      [key]: value,
+    };
+    if (key === 'searchTerm') setSearchTerm(value);
+    if (key === 'batch') setBatch(value);
+    if (key === 'course') setCourse(value);
+    if (key === 'status') setStatus(value);
+    onFilterChange?.(nextFilters);
   };
   return (
     <div className={'shared-filter-bar-bar'}>
@@ -36,7 +40,7 @@ export default function FilterBar({
             type="text"
             placeholder="Search by name,ID or phone"
             value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onChange={(event) => updateFilter('searchTerm', event.target.value)}
             className={'shared-filter-bar-search-input'}
           />
         </div>
@@ -46,26 +50,20 @@ export default function FilterBar({
         label="Batches"
         options={batchOptions}
         value={batch}
-        onChange={setBatch}
+        onChange={(value) => updateFilter('batch', value)}
       />
       <Dropdown
         label="Courses"
         options={courseOptions}
         value={course}
-        onChange={setCourse}
+        onChange={(value) => updateFilter('course', value)}
       />
       <Dropdown
         label="Status"
         options={statusOptions}
         value={status}
-        onChange={setStatus}
+        onChange={(value) => updateFilter('status', value)}
       />
-
-      <div className={'shared-filter-bar-apply-wrap'}>
-        <Button variant="outline" icon={Filter} onClick={handleApply}>
-          Apply Filter
-        </Button>
-      </div>
     </div>
   );
 }
