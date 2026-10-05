@@ -3,6 +3,8 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 import { prisma } from "../../lib/prisma";
+import { redis } from "../../lib/redis";
+import { HR_REDIS_KEYS } from "../../constants/hr-keys/hr-keys";
 
 export const editHrProfile = asyncHandler(
   async (req: HrAuthRequest, res: Response) => {
@@ -129,6 +131,10 @@ export const editHrProfile = asyncHandler(
         hr_designation: true,
       },
     });
+
+    const redisKey = HR_REDIS_KEYS.hr_profile_key(hr_id)
+
+    await redis.del(redisKey);
 
     const name = updatedHr.hr_last_name
       ? `${updatedHr.hr_first_name} ${updatedHr.hr_last_name}`

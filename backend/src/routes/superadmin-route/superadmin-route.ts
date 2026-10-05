@@ -18,10 +18,8 @@ const superAdminRouter = Router()
 
 //create admin
 superAdminRouter.post('/createAdmin', validateBody(createAdminBySuperAdminSchema), verifySuperAdminUsingAccessToken, createAdminBySuperAdmin)
-<<<<<<< HEAD
 superAdminRouter.get('/enrollment-trend', verifySuperAdminUsingAccessToken, getEnrollmentTrend)
 superAdminRouter.get('/center-wise-enrollment', verifySuperAdminUsingAccessToken, getCenterWiseEnrollment)
-=======
 //fetch all center dropdown
 superAdminRouter.get('/fetchCenters',verifySuperAdminUsingAccessToken,fetchCentersforDropdown)
 //to show dashboard data
@@ -32,6 +30,5 @@ superAdminRouter.post('/createCenter',validateBody(createCenterSchema),verifySup
 superAdminRouter.patch('/center/:center_id',validateBody(updateCenterSchema),verifySuperAdminUsingAccessToken,updateCenter)
 //fetch details of all center
 superAdminRouter.get('/center/details',verifySuperAdminUsingAccessToken,paginationMiddleware,fetchAllCenterDetails)
->>>>>>> 82f0288495bcd9f3e4295d6dd009b161f0da92a8
 
 export default superAdminRouter

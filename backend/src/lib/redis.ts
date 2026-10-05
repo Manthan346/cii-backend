@@ -10,3 +10,4 @@ redis.on("error", (err) => console.error(err));
 
 //expiry time for data
 export const CANDIDATE_REDIS_CACHE = 60 * 10;
+export const HR_REDIS_CACHE = 60 * 10;

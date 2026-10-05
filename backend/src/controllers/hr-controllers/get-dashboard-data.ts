@@ -3,9 +3,26 @@ import { prisma } from "../../lib/prisma";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
+import { HR_REDIS_KEYS } from "../../constants/hr-keys/hr-keys";
+import { HR_REDIS_CACHE } from "../../lib/redis";
+import { redis } from "../../lib/redis";
 
 export const getHrDashboard = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
+
+        const redisKey = HR_REDIS_KEYS.hr_dashboard_key();
+
+        const cachedDashboard = await redis.get(redisKey);
+
+        if (cachedDashboard) {
+            return res.status(200).json(
+                new ApiResponse(
+                    200,
+                    JSON.parse(cachedDashboard),
+                    "Placement dashboard details fetched successfully."
+                )
+            );
+        }
 
         const totalJobApplications =
             await prisma.placement_applications.count();
@@ -57,6 +74,8 @@ export const getHrDashboard = asyncHandler(
                 }
             });
 
+        console.log("HR DASHBOARD FETCHED FROM DATABASE");
+
         const data = {
             totalJobApplications,
             totalJobEvents,
@@ -67,6 +86,13 @@ export const getHrDashboard = asyncHandler(
             currentJobsPosted,
             interviewedCandidates
         };
+
+        await redis.set(
+            redisKey,
+            JSON.stringify(data),
+            "EX",
+            HR_REDIS_CACHE
+        );
 
         return res.status(200).json(
             new ApiResponse(
