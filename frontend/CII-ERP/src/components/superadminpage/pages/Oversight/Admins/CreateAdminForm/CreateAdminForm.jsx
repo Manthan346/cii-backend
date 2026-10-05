@@ -6,10 +6,11 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
     const formData = new FormData(event.currentTarget);
 
     onCreateAdmin({
-      firstName: String(formData.get("first_name") || "").trim(),
-      lastName: String(formData.get("last_name") || "").trim(),
+      first_name: String(formData.get("first_name") || "").trim(),
+      last_name: String(formData.get("last_name") || "").trim() || null,
       email: String(formData.get("email") || "").trim(),
-      centreId: String(formData.get("center_id") || ""),
+      password: String(formData.get("password") || ""),
+      center_id: String(formData.get("center_id") || ""),
     });
   };
 
@@ -28,8 +29,8 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
       >
         <div className="create-admin-form__header">
           <div>
-            <h2 id="create-admin-form-title">Add a centre admin</h2>
-            <p>Enter the admin details and choose a centre.</p>
+            <h2 id="create-admin-form-title">Create admin</h2>
+            <p>Enter the details required to create a centre admin.</p>
           </div>
           <button
             className="create-admin-form__close"
@@ -52,7 +53,7 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
               />
             </label>
             <label>
-              Last name
+              Last name (optional)
               <input
                 name="last_name"
                 type="text"

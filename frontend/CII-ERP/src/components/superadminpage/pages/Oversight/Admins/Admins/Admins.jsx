@@ -7,8 +7,8 @@ export default function Admins() {
   const [admins, setAdmins] = useState(initialAdmins);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleCreateAdmin = ({ firstName, lastName, email, centreId }) => {
-    const centre = centres.find((item) => item.id === centreId);
+  const handleCreateAdmin = ({ first_name, last_name, email, center_id }) => {
+    const centre = centres.find((item) => item.id === center_id);
 
     if (!centre) return;
 
@@ -16,13 +16,12 @@ export default function Admins() {
       ...currentAdmins,
       {
         id: `local-admin-${Date.now()}`,
-        name: `${firstName} ${lastName}`.trim(),
+        name: `${first_name} ${last_name || ""}`.trim(),
         email,
         centre: centre.name,
         role: "Centre Admin",
       },
     ]);
-    setIsFormOpen(false);
     setIsFormOpen(false);
   };
 
