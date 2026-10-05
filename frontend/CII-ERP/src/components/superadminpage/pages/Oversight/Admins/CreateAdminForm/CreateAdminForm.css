@@ -1,0 +1,140 @@
+.create-admin-form__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(23, 32, 66, .48);
+  backdrop-filter: blur(3px);
+}
+
+.create-admin-form {
+  width: min(100%, 560px);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+  padding: 26px;
+  border: 1px solid var(--superadmin-border);
+  border-radius: 18px;
+  background: var(--superadmin-surface);
+  box-shadow: 0 24px 64px rgba(23, 32, 66, .2);
+}
+
+.create-admin-form__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.create-admin-form__header h2 {
+  margin: 0 0 5px;
+  color: var(--superadmin-text);
+  font-size: 21px;
+}
+
+.create-admin-form__header p {
+  color: var(--superadmin-muted);
+  font-size: 13px;
+}
+
+.create-admin-form__close {
+  align-self: flex-start;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 9px;
+  color: var(--superadmin-muted);
+  background: var(--superadmin-bg);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.create-admin-form__fields {
+  display: grid;
+  gap: 17px;
+}
+
+.create-admin-form__fields label {
+  display: grid;
+  gap: 7px;
+  color: var(--superadmin-text);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.create-admin-form__fields input,
+.create-admin-form__fields select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--superadmin-border);
+  border-radius: 9px;
+  color: var(--superadmin-text);
+  background: var(--superadmin-surface);
+  font: inherit;
+}
+
+.create-admin-form__fields input:focus-visible,
+.create-admin-form__fields select:focus-visible,
+.create-admin-form__close:focus-visible {
+  outline: 2px solid var(--superadmin-accent);
+  outline-offset: 2px;
+}
+
+.create-admin-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.create-admin-form__note {
+  padding: 11px 12px;
+  border-radius: 9px;
+  color: var(--superadmin-muted);
+  background: var(--superadmin-bg);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.create-admin-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.create-admin-form__cancel,
+.create-admin-form__submit {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-admin-form__cancel {
+  border: 1px solid var(--superadmin-border);
+  color: var(--superadmin-text);
+  background: var(--superadmin-surface);
+}
+
+.create-admin-form__submit {
+  border: 0;
+  color: #fff;
+  background: var(--superadmin-accent);
+}
+
+.create-admin-form__cancel:focus-visible,
+.create-admin-form__submit:focus-visible {
+  outline: 2px solid var(--superadmin-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 540px) {
+  .create-admin-form { padding: 21px 17px; }
+  .create-admin-form__row { grid-template-columns: 1fr; }
+}
