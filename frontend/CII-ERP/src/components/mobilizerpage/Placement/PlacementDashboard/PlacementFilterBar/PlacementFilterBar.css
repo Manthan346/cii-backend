@@ -92,5 +92,7 @@
     align-items: stretch;
   }
   .pd-select-wrap select,
-  .pd-date-wrap input,
+  .pd-date-wrap input {
+    width: 100%;
+  }
 }
