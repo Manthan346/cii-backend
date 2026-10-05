@@ -6,17 +6,10 @@ import "./SuperAdminLayout.css";
 
 const SuperAdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div
-      className={`superadmin-layout${darkMode ? " superadmin-layout--dark" : ""}`}
-    >
-      <Topbar
-        onMenuToggle={() => setIsSidebarOpen(true)}
-        darkMode={darkMode}
-        onThemeToggle={() => setDarkMode((current) => !current)}
-      />
+    <div className="superadmin-layout">
+      <Topbar onMenuToggle={() => setIsSidebarOpen(true)} />
       <div className="superadmin-layout__body">
         <Sidebar
           isOpen={isSidebarOpen}

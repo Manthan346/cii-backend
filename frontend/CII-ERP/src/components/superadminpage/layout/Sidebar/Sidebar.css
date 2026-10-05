@@ -4,16 +4,18 @@
   height: 100%;
   overflow-y: auto;
   background: var(--superadmin-surface);
+  border-right: 1px solid var(--superadmin-border);
   padding: 20px 14px;
   box-sizing: border-box;
 }
-.superadmin-sidebar__nav { display: flex; flex-direction: column; gap: 22px; }
+.superadmin-sidebar__nav { display: flex; flex-direction: column; gap: 20px; }
 .superadmin-sidebar__section { margin-bottom: 4px; }
 .superadmin-sidebar__section-title {
   margin: 8px 8px 12px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: .03em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
   color: var(--superadmin-muted);
 }
 .superadmin-sidebar__list { list-style: none; margin: 0; padding: 0; }
@@ -28,15 +30,24 @@
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
+  transition: background-color .18s ease, color .18s ease, transform .18s ease;
 }
-.superadmin-sidebar__item:hover { background: color-mix(in srgb, var(--superadmin-text) 6%, transparent); }
+.superadmin-sidebar__item:hover {
+  background: var(--superadmin-bg);
+  color: var(--superadmin-accent);
+}
 .superadmin-sidebar__item--active {
   color: #fff;
-  background: #8954ee;
+  background: var(--superadmin-accent);
   font-weight: 700;
+  box-shadow: 0 5px 12px rgba(118, 82, 212, 0.2);
 }
-.superadmin-sidebar__item--active:hover { background: #8954ee; }
+.superadmin-sidebar__item--active:hover { color: #fff; background: var(--superadmin-accent); }
 .superadmin-sidebar__item svg { flex-shrink: 0; }
+.superadmin-sidebar__item:focus-visible {
+  outline: 2px solid var(--superadmin-accent);
+  outline-offset: 2px;
+}
 .superadmin-sidebar__overlay { display: none; }
 .superadmin-sidebar__item span {
   white-space: nowrap;
