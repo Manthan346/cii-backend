@@ -16,13 +16,12 @@ const Dashboard = () => {
         <p>Complete oversight across all centres, candidates and staff</p>
       </div>
       <div className="superadmin-stat-grid">
-        {dashboardStats.map(({ id, label, value, trend, icon: Icon }) => (
+        {dashboardStats.map(({ id, label, value, icon: Icon }) => (
           <article className="superadmin-stat" key={id}>
             <span className="superadmin-stat__icon"><Icon size={19} /></span>
             <div className="superadmin-stat__details">
               <p>{label}</p>
               <strong>{value}</strong>
-              {trend && <small>▲ {trend}</small>}
             </div>
           </article>
         ))}
