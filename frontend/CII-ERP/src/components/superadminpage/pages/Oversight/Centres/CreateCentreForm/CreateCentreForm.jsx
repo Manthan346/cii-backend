@@ -1,6 +1,11 @@
 import "./CreateCentreForm.css";
 
-export default function CreateCentreForm({ onClose, onCreateCentre }) {
+export default function CreateCentreForm({
+  onClose,
+  onCreateCentre,
+  isSubmitting,
+  error,
+}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -46,20 +51,40 @@ export default function CreateCentreForm({ onClose, onCreateCentre }) {
         <form className="create-centre-form__fields" onSubmit={handleSubmit}>
           <label>
             Centre name
-            <input name="center_name" type="text" autoComplete="organization" required />
+            <input
+              name="center_name"
+              type="text"
+              autoComplete="organization"
+              required
+            />
           </label>
           <label>
             Centre address
-            <input name="center_address" type="text" autoComplete="street-address" required />
+            <input
+              name="center_address"
+              type="text"
+              autoComplete="street-address"
+              required
+            />
           </label>
           <div className="create-centre-form__row">
             <label>
               Email
-              <input name="center_email" type="email" autoComplete="email" required />
+              <input
+                name="center_email"
+                type="email"
+                autoComplete="email"
+                required
+              />
             </label>
             <label>
               Contact number
-              <input name="center_contact" type="tel" autoComplete="tel" required />
+              <input
+                name="center_contact"
+                type="tel"
+                autoComplete="tel"
+                required
+              />
             </label>
           </div>
           <div className="create-centre-form__row">
@@ -69,22 +94,37 @@ export default function CreateCentreForm({ onClose, onCreateCentre }) {
             </label>
             <label>
               City
-              <input name="city_name" type="text" autoComplete="address-level2" required />
+              <input
+                name="city_name"
+                type="text"
+                autoComplete="address-level2"
+                required
+              />
             </label>
           </div>
-          <p className="create-centre-form__note">
-            This form is a local preview only. It does not send or save data.
-          </p>
+          {error && (
+            <p
+              className="superadmin-feedback superadmin-feedback--error"
+              role="alert"
+            >
+              {error}
+            </p>
+          )}
           <div className="create-centre-form__actions">
             <button
               className="create-centre-form__cancel"
               type="button"
               onClick={onClose}
+              disabled={isSubmitting}
             >
               Cancel
             </button>
-            <button className="create-centre-form__submit" type="submit">
-              Add centre
+            <button
+              className="create-centre-form__submit"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Creating..." : "Add centre"}
             </button>
           </div>
         </form>

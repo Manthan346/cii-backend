@@ -1,24 +1,49 @@
-import { useState } from "react";
-import { centres } from "../../../../data";
+import { useEffect, useState } from "react";
+import {
+  createCenter,
+  fetchCenterDetails,
+} from "../../../../../../../api/superadmin/centreService";
 import CreateCentreForm from "../CreateCentreForm/CreateCentreForm";
 import "./Centres.css";
 
 export default function Centres() {
-  const [visibleCentres, setVisibleCentres] = useState(centres);
+  const [visibleCentres, setVisibleCentres] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleCreateCentre = (centreDetails) => {
-    setVisibleCentres((currentCentres) => [
-      ...currentCentres,
-      {
-        id: `local-centre-${Date.now()}`,
-        name: centreDetails.center_name,
-        city: centreDetails.city_name,
-        candidates: 0,
-        admin: "",
-      },
-    ]);
-    setIsFormOpen(false);
+  const loadCentres = async () => {
+    setError("");
+    try {
+      setVisibleCentres(await fetchCenterDetails());
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message || "Unable to load centers.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadCentres();
+  }, []);
+
+  const handleCreateCentre = async (centreDetails) => {
+    setError("");
+    setIsSubmitting(true);
+    try {
+      await createCenter(centreDetails);
+      setIsFormOpen(false);
+      await loadCentres();
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message || "Unable to create center.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -31,25 +56,55 @@ export default function Centres() {
         <button
           className="superadmin-centres__add"
           type="button"
-          onClick={() => setIsFormOpen(true)}
+          onClick={() => {
+            setError("");
+            setIsFormOpen(true);
+          }}
         >
           + Add Centre
         </button>
       </div>
+      {error && !isFormOpen && (
+        <p
+          className="superadmin-feedback superadmin-feedback--error"
+          role="alert"
+        >
+          {error}
+        </p>
+      )}
       <div className="superadmin-centres__table-wrap">
         <table className="superadmin-centres__table">
           <thead>
-            <tr><th>Centre</th><th>City</th><th>Candidates</th><th>Admin</th></tr>
+            <tr>
+              <th>Centre</th>
+              <th>City</th>
+              <th>Centre code</th>
+              <th>Candidates</th>
+              <th>Contact</th>
+            </tr>
           </thead>
           <tbody>
-            {visibleCentres.map((centre) => (
-              <tr key={centre.id}>
-                <td>{centre.name}</td>
-                <td>{centre.city}</td>
-                <td>{centre.candidates.toLocaleString()}</td>
-                <td>{centre.admin || <span className="superadmin-centres__unassigned">Unassigned</span>}</td>
+            {isLoading ? (
+              <tr>
+                <td colSpan="5">Loading centers...</td>
               </tr>
-            ))}
+            ) : visibleCentres.length ? (
+              visibleCentres.map((centre) => (
+                <tr key={centre.center_id}>
+                  <td>{centre.center_name}</td>
+                  <td>{centre.city_name}</td>
+                  <td>{centre.center_code}</td>
+                  <td>
+                    {Number(centre.candidate_count ?? 0).toLocaleString()}
+                  </td>
+                  <td>{centre.center_contact}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No centers found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -57,6 +112,8 @@ export default function Centres() {
         <CreateCentreForm
           onClose={() => setIsFormOpen(false)}
           onCreateCentre={handleCreateCentre}
+          isSubmitting={isSubmitting}
+          error={error}
         />
       )}
     </div>

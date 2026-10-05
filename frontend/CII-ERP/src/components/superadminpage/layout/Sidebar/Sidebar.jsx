@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { LogOut } from "lucide-react";
 import { sidebarMenu } from "../../data/sidebarMenu";
 import "./Sidebar.css";
 
-const Sidebar = ({ isOpen, onClose }) => (
+const Sidebar = ({ isOpen, onClose, onLogout }) => (
   <>
     {isOpen && (
       <div
@@ -41,6 +42,17 @@ const Sidebar = ({ isOpen, onClose }) => (
           </section>
         ))}
       </nav>
+      <button
+        className="superadmin-sidebar__logout"
+        type="button"
+        onClick={() => {
+          onClose?.();
+          onLogout?.();
+        }}
+      >
+        <LogOut size={17} />
+        <span>Log out</span>
+      </button>
     </aside>
   </>
 );

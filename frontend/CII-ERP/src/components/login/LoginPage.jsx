@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./LoginPage.css";
-import logo from "../../assets/Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import API from "../../../api/api"; // adjust path to match your actual file location
 import Toast from "../adminpage/shared/Toast/Toast";
 
@@ -14,7 +13,7 @@ const ROLE_LABELS = {
   candidate: "Candidate",
   instructor: "Instructor",
   admin: "Admin",
-  "super-admin": "Super Admin",
+  super_admin: "Super Admin",
   hr: "HR",
   mobilizer: "Mobilizer",
 };
@@ -203,7 +202,7 @@ function LoginPage() {
       { role_name: "candidate" },
       { role_name: "instructor" },
       { role_name: "admin" },
-      { role_name: "super-admin" },
+      { role_name: "super_admin" },
       { role_name: "hr" },
       { role_name: "mobilizer" },
     ]);
@@ -220,20 +219,25 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password || !role || !center) {
-      const message = "Please fill in email, password, role, and center.";
+    const requiresCenter = role !== "super_admin";
+    if (!email || !password || !role || (requiresCenter && !center)) {
+      const message = requiresCenter
+        ? "Please fill in email, password, role, and center."
+        : "Please fill in email, password, and role.";
       setToast({ message, tone: "danger" });
       return;
     }
 
     setLoading(true);
     try {
-      const res = await API.post("/user/login", {
+      const credentials = {
         email,
         password,
         role,
-        centerId: center,
-      });
+      };
+      if (requiresCenter) credentials.centerId = center;
+
+      const res = await API.post("/user/login", credentials);
 
       const { userDetails, roleDetails, accessToken } = res.data.data;
 
@@ -258,6 +262,7 @@ function LoginPage() {
           case "admin":
             navigate("/admin/dashboard");
             break;
+          case "super_admin":
           case "super-admin":
             navigate("/superadmin/dashboard");
             break;
@@ -394,24 +399,29 @@ function LoginPage() {
                 label="Role"
                 placeholder="Select role"
                 value={role}
-                onChange={setRole}
+                onChange={(selectedRole) => {
+                  setRole(selectedRole);
+                  if (selectedRole === "super_admin") setCenter("");
+                }}
                 options={roles.map((r) => ({
-                  value: r.role_name, // sent to backend, unchanged
-                  label: ROLE_LABELS[r.role_name] || r.role_name, // shown to user
+                  value: r.role_name,
+                  label: ROLE_LABELS[r.role_name] || r.role_name,
                 }))}
               />
 
-              <Dropdown
-                id="lp-center-select"
-                label="Center"
-                placeholder="Select center"
-                value={center}
-                onChange={setCenter}
-                options={centers.map((c) => ({
-                  value: c.center_id, // sent to backend, unchanged
-                  label: CENTER_LABELS[c.center_id] || c.center_name, // shown to user
-                }))}
-              />
+              {role !== "super_admin" && (
+                <Dropdown
+                  id="lp-center-select"
+                  label="Center"
+                  placeholder="Select center"
+                  value={center}
+                  onChange={setCenter}
+                  options={centers.map((c) => ({
+                    value: c.center_id,
+                    label: CENTER_LABELS[c.center_id] || c.center_name,
+                  }))}
+                />
+              )}
             </div>
 
             <button type="submit" className="lp-submit-btn" disabled={loading}>

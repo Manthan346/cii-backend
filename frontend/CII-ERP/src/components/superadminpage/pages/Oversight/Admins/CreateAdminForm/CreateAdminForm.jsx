@@ -1,6 +1,12 @@
 import "./CreateAdminForm.css";
 
-export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
+export default function CreateAdminForm({
+  centres,
+  onClose,
+  onCreateAdmin,
+  isSubmitting,
+  error,
+}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -54,11 +60,7 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
             </label>
             <label>
               Last name (optional)
-              <input
-                name="last_name"
-                type="text"
-                autoComplete="family-name"
-              />
+              <input name="last_name" type="text" autoComplete="family-name" />
             </label>
           </div>
           <label>
@@ -77,7 +79,9 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
           <label>
             Centre
             <select name="center_id" defaultValue="" required>
-              <option value="" disabled>Select a centre</option>
+              <option value="" disabled>
+                Select a centre
+              </option>
               {centres.map((centre) => (
                 <option key={centre.id} value={centre.id}>
                   {centre.name}
@@ -85,19 +89,29 @@ export default function CreateAdminForm({ centres, onClose, onCreateAdmin }) {
               ))}
             </select>
           </label>
-          <p className="create-admin-form__note">
-            This form is a local preview only. It does not save or send the password.
-          </p>
+          {error && (
+            <p
+              className="superadmin-feedback superadmin-feedback--error"
+              role="alert"
+            >
+              {error}
+            </p>
+          )}
           <div className="create-admin-form__actions">
             <button
               className="create-admin-form__cancel"
               type="button"
               onClick={onClose}
+              disabled={isSubmitting}
             >
               Cancel
             </button>
-            <button className="create-admin-form__submit" type="submit">
-              Add admin
+            <button
+              className="create-admin-form__submit"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Creating..." : "Add admin"}
             </button>
           </div>
         </form>
