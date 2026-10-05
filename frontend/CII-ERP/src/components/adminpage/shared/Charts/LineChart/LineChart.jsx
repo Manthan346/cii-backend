@@ -12,6 +12,7 @@ import './LineChart.css';
  *  - yMin, yMax, yStep: number (axis range + tick spacing)
  *  - height: number (px, viewBox height — width is fluid at 100%)
  *  - color: CSS color for the line/dots
+ *  - areaColor: optional CSS color for filling the area below the line
  */
 export default function LineChart({
   data = [],
@@ -20,6 +21,7 @@ export default function LineChart({
   yStep = 20,
   height = 260,
   color = 'var(--ra-blue)',
+  areaColor,
 }) {
   const width = 640;
   const padding = { top: 16, right: 16, bottom: 28, left: 46 };
@@ -34,6 +36,9 @@ export default function LineChart({
   const points = data.map((d, i) => ({ x: xFor(i), y: yFor(d.value), ...d }));
 
   const linePath = getSmoothPath(points);
+  const areaPath = points.length > 1
+    ? `${linePath} L ${points[points.length - 1].x},${yFor(yMin)} L ${points[0].x},${yFor(yMin)} Z`
+    : '';
 
   const ticks = [];
   for (let v = yMin; v <= yMax; v += yStep) ticks.push(v);
@@ -64,6 +69,10 @@ export default function LineChart({
           </g>
         );
       })}
+
+      {areaColor && areaPath && (
+        <path d={areaPath} fill={areaColor} />
+      )}
 
       {/* the line itself */}
       <path d={linePath} className="ra-linechart__line" style={{ stroke: color }} />

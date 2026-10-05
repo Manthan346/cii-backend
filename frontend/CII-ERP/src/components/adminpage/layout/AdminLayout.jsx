@@ -18,6 +18,7 @@ import "./AdminLayout.css";
  *     ...
  *   </Route>
  */
+
 const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

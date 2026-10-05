@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Users, IdCard, UserCog, CalendarCheck } from "lucide-react";
 import StatsOverview from "../StatsOverview/StatsOverview";
 import CoursePerformance from "../CoursePerformance/CoursePerformance";

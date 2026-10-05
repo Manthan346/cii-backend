@@ -18,6 +18,8 @@ export async function createAdminCompany(payload) {
     return response?.data;
 }
 
+
+
 export async function createAdminCourse(payload) {
     const response = await API.post("/admin/create-course", payload);
     return response?.data;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Bell, Menu } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/topbar-banner.png";
 import ciiLogo from "../../assets/header_logo_1.png";
@@ -25,7 +25,7 @@ import "./Topbar.css";
  * Props:
  *  - user: { name, avatarUrl }   -> logged-in admin user. `avatarUrl` is optional;
  *                                   when absent, initials are derived from `name`.
- *  - hasUnreadNotifications      -> boolean, toggles the red dot on the bell.
+ *  -      -> boolean, toggles the red dot on the bell.
  *  - onMenuToggle: function      -> opens a mobile Sidebar drawer, wired from a parent layout.
  *  - onSearch: function(str)     -> fires on Enter in the search input.
  *  - onNotificationClick         -> optional override for the bell click; when omitted,

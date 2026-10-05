@@ -256,8 +256,10 @@ function LoginPage() {
             navigate("/my-dashboard");
             break;
           case "admin":
-          case "super-admin":
             navigate("/admin/dashboard");
+            break;
+          case "super-admin":
+            navigate("/superadmin/dashboard");
             break;
           case "hr":
             navigate("/recruiter/dashboard");

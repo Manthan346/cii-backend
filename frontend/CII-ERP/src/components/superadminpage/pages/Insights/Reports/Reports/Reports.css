@@ -1,0 +1,58 @@
+.superadmin-reports { width: 100%; }
+.superadmin-reports__header { margin-bottom: 20px; }
+.superadmin-reports__header h1 { margin: 0 0 5px; font-size: 24px; font-weight: 800; }
+.superadmin-reports__header p { margin: 0; color: var(--superadmin-muted); font-size: 14px; }
+.superadmin-reports__panel {
+  padding: 18px;
+  border-radius: 15px;
+  background: var(--superadmin-surface);
+  box-shadow: 0 2px 7px #1720420d;
+}
+.superadmin-reports__filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.superadmin-reports__filters input, .superadmin-reports__filters select {
+  height: 38px;
+  padding: 0 11px;
+  border: 1px solid var(--superadmin-border);
+  border-radius: 9px;
+  color: var(--superadmin-text);
+  background: var(--superadmin-surface);
+  font: inherit;
+}
+.superadmin-reports__downloads { margin-left: auto; }
+.superadmin-reports__downloads button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: #0ab981;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.superadmin-reports__summary { margin: 12px 0; color: var(--superadmin-muted); font-size: 12px; }
+.superadmin-reports__table-wrap { overflow-x: auto; }
+.superadmin-reports__table { width: 100%; min-width: 550px; border-collapse: collapse; font-size: 13px; }
+.superadmin-reports__table th {
+  color: var(--superadmin-muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+.superadmin-reports__table th, .superadmin-reports__table td {
+  padding: 12px 9px;
+  border-bottom: 1px solid var(--superadmin-border);
+  text-align: left;
+}
+@media (max-width: 640px) {
+  .superadmin-reports__downloads { margin-left: 0; }
+  .superadmin-reports__filters { align-items: stretch; }
+  .superadmin-reports__filters input, .superadmin-reports__filters select { flex: 1 1 145px; min-width: 0; }
+  .superadmin-reports__downloads { flex: 1 1 100%; }
+  .superadmin-reports__downloads button { width: 100%; }
+  .superadmin-reports__panel { padding: 14px; }
+}
+@media (max-width: 360px) {
+  .superadmin-reports__filters input, .superadmin-reports__filters select { flex-basis: 100%; }
+}
