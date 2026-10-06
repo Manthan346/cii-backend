@@ -6,6 +6,24 @@ import {
 import CreateCentreForm from "../CreateCentreForm/CreateCentreForm";
 import "./Centres.css";
 
+function getRequestErrorMessage(requestError, fallback) {
+  const responseData = requestError?.response?.data;
+  const details = responseData?.details;
+  const detailMessages = Array.isArray(details)
+    ? details
+        .map((detail) => detail?.message)
+        .filter((message) => typeof message === "string" && message.trim())
+    : typeof details?.message === "string"
+      ? [details.message]
+      : [];
+
+  if (detailMessages.length) return detailMessages.join(" ");
+  if (typeof responseData?.message === "string" && responseData.message.trim()) {
+    return responseData.message;
+  }
+  return fallback;
+}
+
 export default function Centres() {
   const [visibleCentres, setVisibleCentres] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -18,9 +36,7 @@ export default function Centres() {
     try {
       setVisibleCentres(await fetchCenterDetails());
     } catch (requestError) {
-      setError(
-        requestError.response?.data?.message || "Unable to load centers.",
-      );
+      setError(getRequestErrorMessage(requestError, "Unable to load centers."));
     } finally {
       setIsLoading(false);
     }
@@ -38,9 +54,7 @@ export default function Centres() {
       setIsFormOpen(false);
       await loadCentres();
     } catch (requestError) {
-      setError(
-        requestError.response?.data?.message || "Unable to create center.",
-      );
+      setError(getRequestErrorMessage(requestError, "Unable to create center."));
     } finally {
       setIsSubmitting(false);
     }
