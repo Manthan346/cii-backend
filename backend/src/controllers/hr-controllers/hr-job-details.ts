@@ -34,6 +34,7 @@ export const getPlacementJobDetails = asyncHandler(
                 sector: true,
                 created_at: true,
                 updated_at: true,
+                experience:true
             },
         });
 
