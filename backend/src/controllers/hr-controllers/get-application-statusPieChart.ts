@@ -23,6 +23,7 @@ export const getApplicationPieChartStatus = asyncHandler(
             message: "HR profile fetched successfully.",
             data: JSON.parse(cachedChartData),
         });
+    }
 
         // Total applications across all jobs
         const applied =
@@ -86,6 +87,8 @@ export const getApplicationPieChartStatus = asyncHandler(
             withdrawn
         };
 
+        console.log("Query hit")
+
         await redis.set(
           redisKey,
           JSON.stringify(data),
@@ -101,5 +104,4 @@ export const getApplicationPieChartStatus = asyncHandler(
             )
         );
     }
-}
 );
