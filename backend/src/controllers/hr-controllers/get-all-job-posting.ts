@@ -35,29 +35,6 @@ export const getAllJobPostings = asyncHandler(
                 "Limit must be between 1 and 50"
             );
         }
-        
-        const redisKey = HR_REDIS_KEYS.job_postings(
-            page,
-            limit,
-            search,
-            sector,
-            company_name,
-            job_role,
-            work_mode,
-            location
-        );
-
-        const cachedJobPostings = await redis.get(redisKey);
-
-        if (cachedJobPostings) {
-            return res.status(200).json(
-                new ApiResponse(
-                    200,
-                    JSON.parse(cachedJobPostings),
-                    "Job postings fetched successfully"
-                )
-            );
-        }
 
         const where: any = {};
 
@@ -203,13 +180,6 @@ export const getAllJobPostings = asyncHandler(
                 hasPreviousPage: page > 1,
             },
         };
-
-        await redis.set(
-            redisKey,
-            JSON.stringify(responseData),
-            "EX",
-            HR_REDIS_CACHE
-        );
 
         res.status(200).json(
             new ApiResponse(
