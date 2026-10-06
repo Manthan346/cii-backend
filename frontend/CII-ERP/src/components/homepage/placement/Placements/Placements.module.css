@@ -9,14 +9,13 @@
 .filterBar {
   display: grid;
   grid-template-columns:
-    minmax(190px, 1.7fr)
-    minmax(135px, 0.92fr)
-    minmax(112px, 0.7fr)
-    minmax(150px, 1fr);
+    minmax(240px, 2fr)
+    minmax(180px, 1fr)
+    minmax(160px, 1fr);
   gap: 12px;
   align-items: center;
   margin: 0 auto 32px;
-  max-width: 1280px;
+  max-width: 1200px;
 }
 
 .filterPill {
@@ -133,6 +132,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 24px;
+  }
+
+  .filterBar > :first-child {
+    grid-column: 1 / -1;
   }
 
   .grid {

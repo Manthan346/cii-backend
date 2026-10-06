@@ -13,3 +13,8 @@
   font-weight: 700;
   color: #1c1f2e;
 }
+
+.bar-chart-card .recharts-wrapper:focus:not(:focus-visible),
+.bar-chart-card .recharts-surface:focus:not(:focus-visible) {
+  outline: none;
+}

@@ -39,8 +39,7 @@ const JobDetails = ({ job, onBack, onEdit, onCloseJob, error = "" }) => {
           )}
           <h1 className="job-details__title">{job.jobRole}</h1>
           <p className="job-details__meta">
-            {job.department} · {job.location}
-            {job.state ? `, ${job.state}` : ''} · Posted {job.postedDate}
+            {job.department} · {job.location} · Posted {job.postedDate}
           </p>
         </div>
 
@@ -88,9 +87,7 @@ const JobDetails = ({ job, onBack, onEdit, onCloseJob, error = "" }) => {
           </div>
           <div className="job-details__overview-item">
             <span className="job-details__overview-label">Location</span>
-            <span className="job-details__overview-value">
-              {job.location}{job.state ? `, ${job.state}` : ''}
-            </span>
+            <span className="job-details__overview-value">{job.location}</span>
           </div>
           <div className="job-details__overview-item">
             <span className="job-details__overview-label">Status</span>

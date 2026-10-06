@@ -16,7 +16,12 @@ import './JobTable.css';
  * JobDetails - this is the "preview"), Edit, and Close job. No
  * Duplicate / Archive / Delete here.
  */
-const JobTable = ({ jobs, onViewJob, onEditJob, onCloseJob }) => {
+const JobTable = ({
+  jobs,
+  onViewJob,
+  onEditJob,
+  onCloseJob,
+}) => {
   return (
     <div className="job-table">
       <table className="job-table__table">

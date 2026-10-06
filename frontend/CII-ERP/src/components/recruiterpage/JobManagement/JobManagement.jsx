@@ -74,14 +74,6 @@ const JobManagement = () => {
       setError("");
       const detail = await fetchRecruiterJobPostingDetails(jobId);
       setSelectedJob(detail);
-      setJobs((prev) => {
-        const exists = prev.some((job) => job.id === detail.id);
-        if (!exists) return [detail, ...prev];
-
-        return prev.map((job) =>
-          job.id === detail.id ? { ...job, ...detail } : job,
-        );
-      });
       setView("details");
     } catch (err) {
       console.error("Failed to fetch job details:", err);
@@ -95,13 +87,6 @@ const JobManagement = () => {
       setError("");
       const detail = await fetchRecruiterJobPostingDetails(jobId);
       setSelectedJob(detail);
-      setJobs((prev) =>
-        prev.some((job) => job.id === detail.id)
-          ? prev.map((job) =>
-              job.id === detail.id ? { ...job, ...detail } : job,
-            )
-          : [detail, ...prev],
-      );
       setView("create");
     } catch (err) {
       console.error("Failed to load job for edit:", err);
