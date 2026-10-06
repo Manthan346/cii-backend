@@ -177,7 +177,8 @@ export const getAllJobPostings = asyncHandler(
                         salary_min:true,
                         salary_max:true,
                         employment_type: true,
-                        sector: true
+                        sector: true,
+                        experience:true
                     },
                 }),
 
