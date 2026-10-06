@@ -4,6 +4,9 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
+import { HR_REDIS_CACHE } from "../../lib/redis";
+import { HR_REDIS_KEYS } from "../../constants/hr-keys/hr-keys";
+import { redis } from "../../lib/redis";
 
 export const getAllJobPostings = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
@@ -30,6 +33,29 @@ export const getAllJobPostings = asyncHandler(
             throw new ApiError(
                 400,
                 "Limit must be between 1 and 50"
+            );
+        }
+        
+        const redisKey = HR_REDIS_KEYS.job_postings(
+            page,
+            limit,
+            search,
+            sector,
+            company_name,
+            job_role,
+            work_mode,
+            location
+        );
+
+        const cachedJobPostings = await redis.get(redisKey);
+
+        if (cachedJobPostings) {
+            return res.status(200).json(
+                new ApiResponse(
+                    200,
+                    JSON.parse(cachedJobPostings),
+                    "Job postings fetched successfully"
+                )
             );
         }
 
@@ -164,23 +190,30 @@ export const getAllJobPostings = asyncHandler(
             totalCount / limit
         );
 
+        const responseData = {
+            jobPostings,
+
+            pagination: {
+                page,
+                limit,
+                totalCount,
+                totalPages,
+                hasNextPage: page < totalPages,
+                hasPreviousPage: page > 1,
+            },
+        };
+
+        await redis.set(
+            redisKey,
+            JSON.stringify(responseData),
+            "EX",
+            HR_REDIS_CACHE
+        );
+
         res.status(200).json(
             new ApiResponse(
                 200,
-                {
-                    jobPostings,
-
-                    pagination: {
-                        page,
-                        limit,
-                        totalCount,
-                        totalPages,
-                        hasNextPage:
-                            page < totalPages,
-                        hasPreviousPage:
-                            page > 1,
-                    },
-                },
+                responseData,
                 "Job postings fetched successfully"
             )
         );

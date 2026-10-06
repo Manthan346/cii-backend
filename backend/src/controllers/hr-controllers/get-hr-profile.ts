@@ -74,7 +74,7 @@ export const getHrProfile = asyncHandler(
         organization_name: hrProfile.company_details.company_name
       }
 
-        await redis.set(
+      await redis.set(
           redisKey,
           JSON.stringify(data),
           "EX",

@@ -6,9 +6,23 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
 import { application_status_type } from "../../generated/prisma/enums";
+import { HR_REDIS_CACHE } from "../../lib/redis";
+import { HR_REDIS_KEYS } from "../../constants/hr-keys/hr-keys";
+import { redis } from "../../lib/redis";
 
 export const getApplicationPieChartStatus = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
+
+        const redisKey = HR_REDIS_KEYS.hr_pie_chart();
+
+        const cachedChartData = await redis.get(redisKey);
+
+        if (cachedChartData) {
+        return res.status(200).json({
+            statusCode: 200,
+            message: "HR profile fetched successfully.",
+            data: JSON.parse(cachedChartData),
+        });
 
         // Total applications across all jobs
         const applied =
@@ -72,6 +86,13 @@ export const getApplicationPieChartStatus = asyncHandler(
             withdrawn
         };
 
+        await redis.set(
+          redisKey,
+          JSON.stringify(data),
+          "EX",
+          HR_REDIS_CACHE
+      );
+
         return res.status(200).json(
             new ApiResponse(
                 200,
@@ -80,4 +101,5 @@ export const getApplicationPieChartStatus = asyncHandler(
             )
         );
     }
+}
 );
