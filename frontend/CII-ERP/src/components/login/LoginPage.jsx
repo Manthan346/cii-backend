@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import API from "../../../api/api"; // adjust path to match your actual file location
+import { getLoginCenters, loginUser } from "../../../api/homepage/loginService";
 import Toast from "../adminpage/shared/Toast/Toast";
 
 // ---------------------------------------------------------------------------
@@ -16,10 +16,6 @@ const ROLE_LABELS = {
   super_admin: "Super Admin",
   hr: "HR",
   mobilizer: "Mobilizer",
-};
-
-const CENTER_LABELS = {
-  "54520921-f3ec-4211-87c1-a0dcec343070": "Kandivali",
 };
 
 function EyeIcon({ open }) {
@@ -57,7 +53,15 @@ function EyeIcon({ open }) {
   );
 }
 
-function Dropdown({ id, label, value, onChange, options, placeholder }) {
+function Dropdown({
+  id,
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+  disabled = false,
+}) {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -87,9 +91,10 @@ function Dropdown({ id, label, value, onChange, options, placeholder }) {
           type="button"
           id={id}
           className="lp-input"
+          disabled={disabled}
           style={{
             textAlign: "left",
-            cursor: "pointer",
+            cursor: disabled ? "not-allowed" : "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -192,12 +197,12 @@ function LoginPage() {
 
   const [roles, setRoles] = useState([]);
   const [centers, setCenters] = useState([]);
+  const [isLoadingCenters, setIsLoadingCenters] = useState(true);
 
   const navigate = useNavigate();
 
-  // Load roles & centers for dropdowns
+  // Load dropdown options.
   useEffect(() => {
-    // TEMP: hardcoded from role_types table screenshot
     setRoles([
       { role_name: "candidate" },
       { role_name: "instructor" },
@@ -207,13 +212,31 @@ function LoginPage() {
       { role_name: "mobilizer" },
     ]);
 
-    // TEMP: hardcoded — center_id is a UUID (from center_details table), no GET /centers endpoint exists yet
-    setCenters([
-      {
-        center_id: "54520921-f3ec-4211-87c1-a0dcec343070", // paste the FULL uuid here
-        center_name: "Kandivali",
-      },
-    ]);
+    let isMounted = true;
+
+    async function loadCenters() {
+      try {
+        const availableCenters = await getLoginCenters();
+        if (isMounted) setCenters(availableCenters);
+      } catch (error) {
+        if (isMounted) {
+          setToast({
+            message:
+              error.response?.data?.message ||
+              "Unable to load centers right now.",
+            tone: "danger",
+          });
+        }
+      } finally {
+        if (isMounted) setIsLoadingCenters(false);
+      }
+    }
+
+    loadCenters();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleSubmit = async (e) => {
@@ -237,9 +260,9 @@ function LoginPage() {
       };
       if (requiresCenter) credentials.centerId = center;
 
-      const res = await API.post("/user/login", credentials);
-
-      const { userDetails, roleDetails, accessToken } = res.data.data;
+      const { userDetails, roleDetails, accessToken } = await loginUser(
+        credentials,
+      );
 
       localStorage.setItem("token", accessToken);
       localStorage.setItem(
@@ -413,12 +436,19 @@ function LoginPage() {
                 <Dropdown
                   id="lp-center-select"
                   label="Center"
-                  placeholder="Select center"
+                  placeholder={
+                    isLoadingCenters
+                      ? "Loading centers..."
+                      : centers.length === 0
+                        ? "No centers available"
+                        : "Select center"
+                  }
                   value={center}
                   onChange={setCenter}
+                  disabled={isLoadingCenters || centers.length === 0}
                   options={centers.map((c) => ({
                     value: c.center_id,
-                    label: CENTER_LABELS[c.center_id] || c.center_name,
+                    label: c.center_name,
                   }))}
                 />
               )}
