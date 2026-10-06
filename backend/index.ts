@@ -21,6 +21,16 @@ import { redis } from "./src/lib/redis";
 import adminRouter from "./src/routes/admin-route/admin-route";
 import jobRouter from "./src/routes/job-portal/job-portal-route";
 import "./src/jobs/notificationsCleanupJob"
+import { rateLimit} from 'express-rate-limit'
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 2, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	ipv6Subnet: 56, // Set to 60 or 64 to be less aggressive, or 52 or 48 to be more aggressive
+	// store: ... , // Redis, Memcached, etc. See below.
+})
 
 const app = Express();
 const port = 3000;
@@ -70,14 +80,14 @@ app.use("/api/v1/candidate", candidateRouter);
 // app.use("/api/v1/company", companyRouter);
 app.use("/api/v1/courses", courseRouter);
 app.use("/api/v1/instructor", instructorRouter);
-app.use("/api/v1/user", userRouter)
+app.use("/api/v1/user",limiter, userRouter)
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/mobilizer",mobilizerRouter)
-app.use("/api/v1/events", eventsRouter)
-app.use("/api/v1/enquiry", enquiryRouter)
+app.use("/api/v1/events",limiter, eventsRouter)
+app.use("/api/v1/enquiry",limiter, enquiryRouter)
 app.use("/api/v1/hr",hrRouter)
 app.use("/api/v1/admin",adminRouter)
-app.use("/api/v1/job-portal",jobRouter);
+app.use("/api/v1/job-portal",limiter,jobRouter);
 app.use("/api/v1/super-admin",superAdminRouter);
 
 
