@@ -242,12 +242,12 @@ export type center_detailsWhereUniqueInput = Prisma.AtLeast<{
   center_id?: string
   center_name?: string
   center_email?: string
+  center_contact?: string
   center_code?: string
   AND?: Prisma.center_detailsWhereInput | Prisma.center_detailsWhereInput[]
   OR?: Prisma.center_detailsWhereInput[]
   NOT?: Prisma.center_detailsWhereInput | Prisma.center_detailsWhereInput[]
   center_address?: Prisma.StringFilter<"center_details"> | string
-  center_contact?: Prisma.StringFilter<"center_details"> | string
   created_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"center_details"> | Date | string
   city_name?: Prisma.StringNullableFilter<"center_details"> | string | null
@@ -256,7 +256,7 @@ export type center_detailsWhereUniqueInput = Prisma.AtLeast<{
   enquiry_records?: Prisma.Enquiry_recordsListRelationFilter
   event_details?: Prisma.Event_detailsListRelationFilter
   user_login?: Prisma.User_loginListRelationFilter
-}, "center_id" | "center_name" | "center_email" | "center_code">
+}, "center_id" | "center_name" | "center_email" | "center_contact" | "center_code">
 
 export type center_detailsOrderByWithAggregationInput = {
   center_id?: Prisma.SortOrder

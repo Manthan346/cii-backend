@@ -4,6 +4,9 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { HrAuthRequest } from "../../interfaces/hr-auth-interface";
+import { HR_REDIS_CACHE } from "../../lib/redis";
+import { HR_REDIS_KEYS } from "../../constants/hr-keys/hr-keys";
+import { redis } from "../../lib/redis";
 
 export const getAllJobPostings = asyncHandler(
     async (req: HrAuthRequest, res: Response) => {
@@ -151,7 +154,8 @@ export const getAllJobPostings = asyncHandler(
                         salary_min:true,
                         salary_max:true,
                         employment_type: true,
-                        sector: true
+                        sector: true,
+                        experience:true
                     },
                 }),
 
@@ -164,23 +168,23 @@ export const getAllJobPostings = asyncHandler(
             totalCount / limit
         );
 
+        const responseData = {
+            jobPostings,
+
+            pagination: {
+                page,
+                limit,
+                totalCount,
+                totalPages,
+                hasNextPage: page < totalPages,
+                hasPreviousPage: page > 1,
+            },
+        };
+
         res.status(200).json(
             new ApiResponse(
                 200,
-                {
-                    jobPostings,
-
-                    pagination: {
-                        page,
-                        limit,
-                        totalCount,
-                        totalPages,
-                        hasNextPage:
-                            page < totalPages,
-                        hasPreviousPage:
-                            page > 1,
-                    },
-                },
+                responseData,
                 "Job postings fetched successfully"
             )
         );
