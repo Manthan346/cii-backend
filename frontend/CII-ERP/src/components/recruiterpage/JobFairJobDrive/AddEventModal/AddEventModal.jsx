@@ -35,9 +35,14 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
   const [form, setForm] = useState(INITIAL_FORM);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
   const [dateWarning, setDateWarning] = useState("");
 
   useEffect(() => {
+    if (isOpen) {
+      setError("");
+      setFieldErrors({});
+    }
     if (isOpen && initialValues) {
       setForm({
         type: initialValues.type ?? "",
@@ -57,6 +62,12 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
   const handleChange = (field) => (event) => {
     const value = event.target.value;
     setForm((prev) => ({ ...prev, [field]: value }));
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
 
     if (field === "date") {
       setDateWarning("");
@@ -76,17 +87,46 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
 
   const handleTypeSelect = (type) => {
     setForm((prev) => ({ ...prev, type }));
+    setFieldErrors((prev) => {
+      if (!prev.type) return prev;
+      const next = { ...prev };
+      delete next.type;
+      return next;
+    });
   };
 
   const handleClose = () => {
     setForm(INITIAL_FORM);
     setError("");
+    setFieldErrors({});
     setDateWarning("");
     onClose();
   };
 
   const handleSubmit = async () => {
     setError("");
+    const nextFieldErrors = {};
+    if (!isEditing && !form.type) {
+      nextFieldErrors.type = "Please select an event type.";
+    }
+    if (!form.name.trim()) {
+      nextFieldErrors.name = "Event name is required.";
+    }
+    if (!form.date) {
+      nextFieldErrors.date = "Please select a date.";
+    }
+    if (!form.time) {
+      nextFieldErrors.time = "Please select a start time.";
+    }
+    if (!form.address.trim()) {
+      nextFieldErrors.address = "Please enter a venue or address.";
+    }
+    if (Object.keys(nextFieldErrors).length > 0) {
+      setFieldErrors(nextFieldErrors);
+      return;
+    }
+
+    setFieldErrors({});
     setSubmitting(true);
     try {
       if (isEditing) {
@@ -98,9 +138,38 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
       setDateWarning("");
       onSubmit();
     } catch (err) {
-      setError(
-        err?.response?.data?.message || err.message || "Failed to save event.",
-      );
+      const responseData = err?.response?.data;
+      const details = Array.isArray(responseData?.details)
+        ? responseData.details
+        : [];
+      const apiFieldNames = {
+        event_type: "type",
+        event_name: "name",
+        event_date: "date",
+        event_start_time: "time",
+        event_end_time: "endTime",
+        venue: "address",
+        address: "address",
+        google_map_link: "mapsLink",
+        event_description: "description",
+      };
+      const mappedFieldErrors = details.reduce((mapped, detail) => {
+        const rawField = Array.isArray(detail?.fields)
+          ? detail.fields[0]
+          : detail?.fields;
+        const field = apiFieldNames[rawField] ?? rawField;
+        if (field && detail?.message) mapped[field] = detail.message;
+        return mapped;
+      }, {});
+
+      if (Object.keys(mappedFieldErrors).length > 0) {
+        setFieldErrors(mappedFieldErrors);
+        setError("");
+      } else {
+        setError(
+          responseData?.message || err.message || "Failed to save event.",
+        );
+      }
     } finally {
       setSubmitting(false);
     }
@@ -130,6 +199,11 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             </button>
           ))}
         </div>
+        {fieldErrors.type && (
+          <p className="add-event-modal__field-error" role="alert">
+            {fieldErrors.type}
+          </p>
+        )}
       </div>
 
       <label className="add-event-modal__field">
@@ -139,19 +213,48 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
           placeholder="e.g. North Mumbai Job Fair/Job Drive"
           value={form.name}
           onChange={handleChange("name")}
+          aria-invalid={Boolean(fieldErrors.name)}
           className="add-event-modal__input"
         />
+        {fieldErrors.name && (
+          <span className="add-event-modal__field-error" role="alert">
+            {fieldErrors.name}
+          </span>
+        )}
       </label>
 
       <div className="add-event-modal__grid">
+        <label className="add-event-modal__field">
+          <span className="add-event-modal__label">Venue / Address</span>
+          <input
+            type="text"
+            placeholder="e.g. Community Hall, 75 Nirlon Knowledge Park Rd, Mumbai"
+            value={form.address}
+            onChange={handleChange("address")}
+            aria-invalid={Boolean(fieldErrors.address)}
+            className="add-event-modal__input"
+          />
+          {fieldErrors.address && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.address}
+            </span>
+          )}
+        </label>
+
         <label className="add-event-modal__field">
           <span className="add-event-modal__label">Date</span>
           <input
             type="date"
             value={form.date}
             onChange={handleChange("date")}
+            aria-invalid={Boolean(fieldErrors.date)}
             className="add-event-modal__input"
           />
+          {fieldErrors.date && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.date}
+            </span>
+          )}
           {dateWarning && (
             <p className="add-event-modal__date-warning">{dateWarning}</p>
           )}
@@ -163,8 +266,14 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             type="time"
             value={form.time}
             onChange={handleChange("time")}
+            aria-invalid={Boolean(fieldErrors.time)}
             className="add-event-modal__input"
           />
+          {fieldErrors.time && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.time}
+            </span>
+          )}
         </label>
 
         <label className="add-event-modal__field">
@@ -173,19 +282,14 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             type="time"
             value={form.endTime}
             onChange={handleChange("endTime")}
+            aria-invalid={Boolean(fieldErrors.endTime)}
             className="add-event-modal__input"
           />
-        </label>
-
-        <label className="add-event-modal__field">
-          <span className="add-event-modal__label">Venue / Address</span>
-          <input
-            type="text"
-            placeholder="e.g. Community Hall, 75 Nirlon Knowledge Park Rd, Mumbai"
-            value={form.address}
-            onChange={handleChange("address")}
-            className="add-event-modal__input"
-          />
+          {fieldErrors.endTime && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.endTime}
+            </span>
+          )}
         </label>
 
         <label className="add-event-modal__field">
@@ -195,8 +299,14 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             placeholder="https://maps.google.com/.."
             value={form.mapsLink}
             onChange={handleChange("mapsLink")}
+            aria-invalid={Boolean(fieldErrors.mapsLink)}
             className="add-event-modal__input"
           />
+          {fieldErrors.mapsLink && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.mapsLink}
+            </span>
+          )}
         </label>
 
         <label
@@ -209,8 +319,14 @@ const AddEventModal = ({ isOpen, onClose, onSubmit, initialValues = null }) => {
             placeholder="Write about the event....."
             value={form.description}
             onChange={handleChange("description")}
+            aria-invalid={Boolean(fieldErrors.description)}
             className="add-event-modal__input"
           />
+          {fieldErrors.description && (
+            <span className="add-event-modal__field-error" role="alert">
+              {fieldErrors.description}
+            </span>
+          )}
         </label>
       </div>
 

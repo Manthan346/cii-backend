@@ -10,7 +10,7 @@ import './JobTable.css';
  *
  * Renders the jobs list as a table matching the reference columns:
  * Job Role, Sector, Location, Type, Company Name, Mode, Vacancy,
- * No. of Application, Status, Posted Date, plus a row action menu.
+ * Experience, Status, Posted Date, plus a row action menu.
  *
  * Per the request, the row menu only has three items: View (opens
  * JobDetails - this is the "preview"), Edit, and Close job. No
@@ -34,7 +34,7 @@ const JobTable = ({
             <th>Company Name</th>
             <th>Mode</th>
             <th>Vacancy</th>
-            <th>No. of Application</th>
+            <th>Experience</th>
             <th>Status</th>
             <th>Posted Date</th>
             <th aria-hidden="true" />
@@ -50,7 +50,7 @@ const JobTable = ({
               <td>{job.companyName}</td>
               <td>{job.mode}</td>
               <td>{job.vacancy}</td>
-              <td>{job.applications}</td>
+              <td>{job.experience || '-'}</td>
               <td>
                 <StatusBadge label={job.status} {...(jobStatusStyles[job.status] ?? {})} />
               </td>

@@ -25,6 +25,7 @@ import {
   uploadInstructorDocuments,
   fetchInstructorDocuments,
   DOCUMENT_FIELD_MAP,
+  DOCUMENT_RESPONSE_FIELD_MAP,
 } from "../../../../../../api/trainer/documentService";
 import { profileTabs, profileDocumentNote } from "../../../data";
 import "../../../styles/variables.css";
@@ -138,12 +139,15 @@ const Profile = () => {
 
     return INITIAL_DOCUMENTS.map((doc) => {
       const fieldName = DOCUMENT_FIELD_MAP[doc.id];
+      const responseFieldName = DOCUMENT_RESPONSE_FIELD_MAP[doc.id];
 
       const candidateValue =
         raw?.[fieldName] ??
+        raw?.[responseFieldName] ??
         raw?.[fieldName?.toLowerCase?.()] ??
         raw?.[fieldName?.replace("instructor_", "")] ??
         raw?.documents?.[fieldName] ??
+        raw?.documents?.[responseFieldName] ??
         raw?.documents?.[fieldName?.toLowerCase?.()] ??
         raw?.documents?.[fieldName?.replace("instructor_", "")] ??
         raw?.[doc.name] ??

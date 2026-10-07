@@ -69,12 +69,6 @@ export const sidebarMenu = [
         route: "/admin/companies-courses",
         icon: BookOpen,
       },
-      {
-        id: "companies-courses",
-        title: "Companies & Courses",
-        route: "/admin/companies",
-        icon: BookOpen,
-      },
     ],
   },
   {

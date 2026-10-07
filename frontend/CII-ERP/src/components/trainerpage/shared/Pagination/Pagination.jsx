@@ -6,7 +6,7 @@ export default function Pagination({
   totalPages = 22,
   showing = 0,
   total = 0,
-  pageSize = 6,
+  pageSize = 15,
   onPageChange,
   label,
 }) {

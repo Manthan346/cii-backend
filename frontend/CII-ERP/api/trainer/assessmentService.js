@@ -1,4 +1,5 @@
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
 export async function fetchMyBatches() {
   const response = await api.get("/instructor/my-batches");
@@ -7,20 +8,25 @@ export async function fetchMyBatches() {
 
 export async function fetchAssessments({
   page = 1,
-  limit = 10,
+  limit = 15,
   search,
   batchId,
 } = {}) {
-  const params = { page, limit };
-
+  const params = { limit };
   if (search?.trim()) params.search = search.trim();
   if (batchId) params.batch_id = batchId;
 
-  const response = await api.get("/instructor/assessment/get-assessment", {
-    params,
+  return fetchPaginatedPage({
+    fetchPage: async (requestPage) => {
+      const response = await api.get("/instructor/assessment/get-assessment", {
+        params: { ...params, page: requestPage },
+      });
+      return response.data.data;
+    },
+    page,
+    limit,
+    itemsKey: "assessments",
   });
-
-  return response.data.data;
 }
 
 export async function createAssessment({

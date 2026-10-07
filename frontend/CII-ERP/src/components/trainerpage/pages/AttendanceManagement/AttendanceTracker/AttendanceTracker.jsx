@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Download } from "lucide-react";
-import { Dropdown, Button, Pagination } from "../../../shared";
+import {
+  Dropdown,
+  Button,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import SessionsTable from "../SessionsTable/SessionsTable";
 import SessionDetailView from "../SessionDetailView/SessionDetailView";
 import MarkAttendanceModal from "../MarkAttendanceModal/MarkAttendanceModal";
@@ -160,7 +165,7 @@ export default function AttendanceTracker() {
 
         const data = await fetchAttendanceSessions({
           page: currentPage,
-          limit: 6,
+          limit: TRAINER_PAGE_SIZE,
           search: searchTerm,
           batchId: batch.toLowerCase().startsWith("all")
             ? undefined
@@ -442,6 +447,7 @@ export default function AttendanceTracker() {
               currentPage={currentPage}
               totalPages={pagination.totalPages}
               onPageChange={setCurrentPage}
+              pageSize={TRAINER_PAGE_SIZE}
               label={`Showing ${filteredSessions.length} of ${pagination.totalRecords}`}
             />
           </>

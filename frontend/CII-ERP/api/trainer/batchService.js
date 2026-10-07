@@ -1,4 +1,5 @@
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
 /**
  * Maps backend b_status enum -> UI status label.
@@ -78,13 +79,13 @@ function mapBatch(raw) {
  */
 export async function fetchBatches({
   page = 1,
-  limit = 6,
+  limit = 15,
   search,
   courseId,
   courseType,
   status,
 } = {}) {
-  const params = { page, limit };
+  const params = { limit };
 
   if (search && search.trim()) params.search = search.trim();
   if (courseId) params.courseId = courseId;
@@ -94,8 +95,17 @@ export async function fetchBatches({
     if (enumStatus) params.status = enumStatus;
   }
 
-  const res = await api.get("/instructor/batches-details", { params });
-  const data = res.data.data;
+  const data = await fetchPaginatedPage({
+    fetchPage: async (requestPage) => {
+      const res = await api.get("/instructor/batches-details", {
+        params: { ...params, page: requestPage },
+      });
+      return res.data.data;
+    },
+    page,
+    limit,
+    itemsKey: "batches",
+  });
 
   // Course list derived client-side from THIS response's raw batches
   // (not the backend's `data.courses`, which is paginated/duplicated/

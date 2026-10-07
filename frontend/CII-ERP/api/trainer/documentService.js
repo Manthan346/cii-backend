@@ -2,16 +2,18 @@ import api from "../api";
 
 // Maps profileDocuments' doc.id values to the multipart field names
 // multer/instructor-documents.ts actually expect on the wire.
-// The backend payload exposes the highest qualification document as
-// "instructor_highest_qualification_documents" in the current response
-// contract, so the UI must map to that exact field rather than an older
-// singular alias used in comments.
+// The highest qualification field is singular on upload but plural in the
+// response, so its read-side name is mapped separately below.
 export const DOCUMENT_FIELD_MAP = {
   'doc-1': 'highest_qualification_document', // Highest Qualification Document
   'doc-2': 'past_exp_letter',                 // Past Experience letter
   'doc-3': 'pan_card',                        // PAN Card
   'doc-4': 'aadhar_card',                     // Aadhar Card
   'doc-5': 'instructor_resume',               // Resume
+};
+
+export const DOCUMENT_RESPONSE_FIELD_MAP = {
+  'doc-1': 'instructor_highest_qualification_documents',
 };
 
 /**

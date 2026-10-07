@@ -9,6 +9,7 @@ import {
 import "./Notifications.css";
 
 const TABS = ["All", "Unread"];
+const PAGE_SIZE = 15;
 
 /**
  * Notifications (Recruiter)
@@ -31,7 +32,7 @@ const Notifications = () => {
       setIsLoading(true);
       setError("");
       const { notifications, pagination: pageData } =
-        await fetchRecruiterNotifications({ page: currentPage, limit: 10 });
+        await fetchRecruiterNotifications({ page: currentPage, limit: PAGE_SIZE });
       setNotificationsList(notifications);
       setPagination(pageData);
     } catch (loadError) {
@@ -160,7 +161,7 @@ const Notifications = () => {
         <Pagination
           currentPage={currentPage}
           totalItems={pagination.totalCount ?? 0}
-          pageSize={pagination.limit ?? 10}
+          pageSize={pagination.limit ?? PAGE_SIZE}
           onPageChange={setCurrentPage}
         />
       )}

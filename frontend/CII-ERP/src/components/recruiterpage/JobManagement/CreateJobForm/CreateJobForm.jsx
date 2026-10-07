@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import "./CreateJobForm.css";
 
-const DEPARTMENT_OPTIONS = [
-  "Design",
-  "L'Oréal",
-  "DSCI",
-  "Jubilant",
-  "EHL & ITC",
-];
 const EMPLOYMENT_TYPE_OPTIONS = [
   "Full-time",
   "Part-time",
@@ -21,11 +14,12 @@ const INITIAL_FORM = {
   companyLogo: "",
   companyLogoFile: null,
   jobTitle: "",
-  department: DEPARTMENT_OPTIONS[0],
+  department: "",
   employmentType: EMPLOYMENT_TYPE_OPTIONS[0],
   experience: "",
   vacancies: "",
   city: "",
+  state: "",
   workMode: WORK_MODE_OPTIONS[0],
   description: "",
   qualification: "",
@@ -65,14 +59,6 @@ const normalizeDateForInput = (value) => {
   return date.toISOString().slice(0, 10);
 };
 
-const getTodayDate = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
-
 const normalizeWorkModeForUi = (mode) => {
   const normalized = String(mode ?? "")
     .trim()
@@ -101,6 +87,13 @@ const buildInitialForm = (initialValues) => {
         : salaryRange.salaryMax;
   }
 
+  const location = values.location ?? "";
+  const state = values.state ?? "";
+  const locationWithState =
+    state && !location.toLowerCase().includes(state.toLowerCase())
+      ? [location, state].filter(Boolean).join(", ")
+      : location;
+
   return {
     ...INITIAL_FORM,
     companyName: values.companyName ?? values.company_name ?? "",
@@ -112,7 +105,7 @@ const buildInitialForm = (initialValues) => {
       "",
     companyLogoFile: null,
     jobTitle: values.jobRole ?? values.job_role ?? "",
-    department: values.department ?? values.sector ?? DEPARTMENT_OPTIONS[0],
+    department: values.department ?? values.sector ?? "",
     employmentType:
       values.employmentType ??
       values.employment_type ??
@@ -120,6 +113,7 @@ const buildInitialForm = (initialValues) => {
     experience: values.experience ?? "",
     vacancies: values.vacancy ?? "",
     city: values.location ?? "",
+    state: values.state ?? "",
     workMode: normalizeWorkModeForUi(values.mode ?? values.work_mode),
     description: values.description ?? values.job_description ?? "",
     qualification:
@@ -237,7 +231,7 @@ const CreateJobForm = ({
       company_name: form.companyName.trim(),
       sector: form.department.trim(),
       vacancy: Number(form.vacancies) || 0,
-      location: form.city.trim(),
+      location: (form.city || form.state || "").trim(),
       job_role: form.jobTitle.trim(),
       employment_type: form.employmentType,
       work_mode: mapWorkModeToApiValue(form.workMode),
@@ -264,7 +258,6 @@ const CreateJobForm = ({
     return payload;
   };
 
-  const handleSaveDraft = () => onSubmit(buildPayload(), isEdit);
   const handlePublish = () => onSubmit(buildPayload(), isEdit);
 
   return (
@@ -375,17 +368,13 @@ const CreateJobForm = ({
 
           <label className="create-job-form__field">
             <span className="create-job-form__label">Department</span>
-            <select
+            <input
+              type="text"
+              placeholder="e.g. Design"
               value={form.department}
               onChange={handleChange("department")}
               className="create-job-form__input"
-            >
-              {DEPARTMENT_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+            />
           </label>
 
           <label className="create-job-form__field">
@@ -447,12 +436,12 @@ const CreateJobForm = ({
 
         <div className="create-job-form__grid">
           <label className="create-job-form__field">
-            <span className="create-job-form__label">Location</span>
+            <span className="create-job-form__label">City</span>
             <input
               type="text"
-              placeholder="e.g. Mumbai"
-              value={form.city}
-              onChange={handleChange("city")}
+              placeholder="e.g. Mumbai, Maharashtra"
+              value={form.location}
+              onChange={handleChange("location")}
               className="create-job-form__input"
             />
           </label>
@@ -584,6 +573,7 @@ const CreateJobForm = ({
               onChange={handleChange("deadline")}
               className="create-job-form__input create-job-form__input--date"
             />
+            <Calendar size={16} className="create-job-form__date-icon" />
           </div>
           {fieldErrors.deadline && (
             <span className="create-job-form__field-error">
@@ -604,13 +594,6 @@ const CreateJobForm = ({
             onClick={onCancel}
           >
             Cancel
-          </button>
-          <button
-            type="button"
-            className="create-job-form__btn create-job-form__btn--ghost"
-            onClick={handleSaveDraft}
-          >
-            Save Draft
           </button>
           <button
             type="button"

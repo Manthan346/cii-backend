@@ -15,6 +15,7 @@
 .add-event-modal__field--select {
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -88,6 +89,21 @@
 .add-event-modal__input:focus {
   border-color: #4338ca;
   box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+}
+
+.add-event-modal__input[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.add-event-modal__field-error {
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.add-event-modal__field--select .add-event-modal__field-error {
+  flex-basis: 100%;
+  margin-top: -12px;
 }
 
 .add-event-modal__input::placeholder {

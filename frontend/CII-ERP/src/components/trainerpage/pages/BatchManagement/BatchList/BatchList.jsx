@@ -6,7 +6,12 @@ import {
   Repeat,
   Search,
 } from "lucide-react";
-import { Dropdown, Button, Pagination } from "../../../shared";
+import {
+  Dropdown,
+  Button,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import StatCard from "../StatCard/StatCard";
 import BatchTable from "../BatchTable/BatchTable";
 import ViewBatchModal from "../ViewBatchModal/ViewBatchModal";
@@ -24,7 +29,6 @@ const STAT_ICONS = {
   repeat: Repeat,
 };
 
-const PAGE_LIMIT = 6;
 const ALL_COURSES_LABEL = "All Courses";
 
 const BatchList = ({ onCreateBatch, refreshKey }) => {
@@ -60,7 +64,7 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
     try {
       const result = await fetchBatches({
         page: currentPage,
-        limit: PAGE_LIMIT,
+        limit: TRAINER_PAGE_SIZE,
         search: searchTerm,
         status,
         courseId,
@@ -238,6 +242,7 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
           currentPage={pagination.currentPage || currentPage}
           totalPages={pagination.totalPages || 1}
           onPageChange={setCurrentPage}
+          pageSize={TRAINER_PAGE_SIZE}
         />
       </section>
 

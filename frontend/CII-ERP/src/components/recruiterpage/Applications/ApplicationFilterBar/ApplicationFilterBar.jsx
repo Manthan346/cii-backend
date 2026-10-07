@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
-import { Search, ChevronDown } from 'lucide-react';
-import { applicationCompanyOptions, applicationRoleOptions } from '../../data';
-import './ApplicationFilterBar.css';
+import { useState } from "react";
+import { ChevronDown, Search } from "lucide-react";
+import "./ApplicationFilterBar.css";
 
-const EMPTY_DRAFT = { search: '', company: '', role: '', from: '', to: '' };
+const EMPTY_DRAFT = { search: "", status: "", from: "", to: "" };
+const APPLICATION_STATUSES = [
+  ["APPLIED", "Applied"],
+  ["SCREENING", "Screening"],
+  ["SHORTLISTED", "Shortlisted"],
+  ["INTERVIEW", "Interview"],
+  ["SELECTED", "Selected"],
+  ["REJECTED", "Rejected"],
+  ["WITHDRAWN", "Withdrawn"],
+];
 
 /**
  * ApplicationFilterBar
  *
- * Search box + Company Name + Role dropdowns + From/To date range.
+ * Search box + Status dropdown + From/To date range.
  * Filter changes are passed to the parent immediately.
  */
 const ApplicationFilterBar = ({ onFilterChange }) => {
@@ -27,31 +35,31 @@ const ApplicationFilterBar = ({ onFilterChange }) => {
           <Search size={16} className="application-filter-bar__search-icon" />
           <input
             type="text"
-            placeholder="Search job..."
+            placeholder="Search candidate, company, or role..."
             value={draft.search}
-            onChange={handleChange('search')}
+            onChange={handleChange("search")}
             className="application-filter-bar__search-input"
           />
         </div>
 
         <div className="application-filter-bar__field">
-          <select value={draft.company} onChange={handleChange('company')} className="application-filter-bar__select">
-            <option value="">Company Name</option>
-            {applicationCompanyOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
+          <select
+            value={draft.status}
+            onChange={handleChange("status")}
+            className="application-filter-bar__select"
+          >
+            <option value="">Status</option>
+            {APPLICATION_STATUSES.map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
             ))}
           </select>
-          <ChevronDown size={14} className="application-filter-bar__chevron" />
-        </div>
-
-        <div className="application-filter-bar__field">
-          <select value={draft.role} onChange={handleChange('role')} className="application-filter-bar__select">
-            <option value="">Role</option>
-            {applicationRoleOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-          <ChevronDown size={14} className="application-filter-bar__chevron" />
+          <ChevronDown
+            size={14}
+            className="application-filter-bar__chevron"
+            aria-hidden="true"
+          />
         </div>
 
         <div className="application-filter-bar__field application-filter-bar__field--date">
@@ -59,7 +67,7 @@ const ApplicationFilterBar = ({ onFilterChange }) => {
           <input
             type="date"
             value={draft.from}
-            onChange={handleChange('from')}
+            onChange={handleChange("from")}
             className="application-filter-bar__date-input"
           />
         </div>
@@ -69,7 +77,7 @@ const ApplicationFilterBar = ({ onFilterChange }) => {
           <input
             type="date"
             value={draft.to}
-            onChange={handleChange('to')}
+            onChange={handleChange("to")}
             className="application-filter-bar__date-input"
           />
         </div>

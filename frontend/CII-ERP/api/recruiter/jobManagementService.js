@@ -27,6 +27,42 @@ const formatDisplayDate = (value) => {
   }).format(date);
 };
 
+const getIndiaDateKey = (value) => {
+  if (!value) return null;
+
+  const dateOnlyMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value));
+  if (dateOnlyMatch) {
+    const [, year, month, day] = dateOnlyMatch;
+    const parsedDate = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+    if (
+      parsedDate.getUTCFullYear() !== Number(year) ||
+      parsedDate.getUTCMonth() !== Number(month) - 1 ||
+      parsedDate.getUTCDate() !== Number(day)
+    ) {
+      return null;
+    }
+    return `${year}-${month}-${day}`;
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+
+  const dateParts = new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "Asia/Kolkata",
+  }).formatToParts(date);
+  const parts = Object.fromEntries(dateParts.map(({ type, value: part }) => [type, part]));
+  return `${parts.year}-${parts.month}-${parts.day}`;
+};
+
+const hasApplicationDeadlinePassed = (deadline) => {
+  const deadlineKey = getIndiaDateKey(deadline);
+  const todayKey = getIndiaDateKey(new Date());
+  return Boolean(deadlineKey && todayKey && deadlineKey < todayKey);
+};
+
 export function normalizeJobPosting(job = {}) {
   const companyName = job.company_name ?? job.companyName ?? "Company";
   const companyLogo =
@@ -43,6 +79,8 @@ export function normalizeJobPosting(job = {}) {
     typeof job.is_active === "boolean"
       ? job.is_active
       : job.status !== "Closed";
+  const applicationDeadline = job.last_date_to_apply ?? job.deadline;
+  const isExpired = isActive && hasApplicationDeadlinePassed(applicationDeadline);
   const employmentType =
     job.employment_type ?? job.employmentType ?? "Full-time";
 
@@ -76,9 +114,9 @@ export function normalizeJobPosting(job = {}) {
     mode: normalizeMode(job.work_mode ?? job.mode),
     vacancy: Number(job.vacancy ?? 0),
     applications: Number(job.applications ?? 0),
-    status: isActive ? "Published" : "Closed",
+    status: !isActive ? "Closed" : isExpired ? "Expired" : "Published",
     postedDate: formatDisplayDate(job.created_at ?? job.postedDate),
-    deadline: formatDisplayDate(job.last_date_to_apply ?? job.deadline),
+    deadline: formatDisplayDate(applicationDeadline),
     department: sector,
     role: job.role ?? job.job_role ?? jobRole,
     employmentType,

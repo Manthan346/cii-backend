@@ -15,8 +15,8 @@ import {
 import { fetchJobEventCandidates } from '../../../../../api/recruiter/jobEventService';
 import './EventApplicationsView.css';
 
-const EMPTY_FILTERS = { search: '', status: 'All Status', source: 'All Sources' };
-const PAGE_SIZE = 6;
+const EMPTY_FILTERS = { search: '' };
+const PAGE_SIZE = 15;
 
 /**
  * EventApplicationsView
@@ -41,12 +41,6 @@ const PAGE_SIZE = 6;
  */
 const EventApplicationsView = ({ event, onBack }) => {
   const [applications, setApplications] = useState([]);
-  const [pagination, setPagination] = useState({
-    page: 1,
-    limit: PAGE_SIZE,
-    totalRecords: 0,
-    totalPages: 0,
-  });
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -57,39 +51,74 @@ const EventApplicationsView = ({ event, onBack }) => {
     setLoading(true);
     setError('');
 
-    fetchJobEventCandidates(event.id, { page: currentPage, limit: PAGE_SIZE })
-      .then((response) => {
+    const loadCandidates = async () => {
+      try {
+        const firstPage = await fetchJobEventCandidates(event.id, {
+          page: 1,
+          limit: PAGE_SIZE,
+        });
+        const allCandidates = [...firstPage.candidates];
+        const totalPages = Math.max(
+          1,
+          Number(firstPage.pagination.totalPages) || 1,
+        );
+
+        const remainingPages = await Promise.all(
+          Array.from({ length: totalPages - 1 }, (_, index) =>
+            fetchJobEventCandidates(event.id, {
+              page: index + 2,
+              limit: PAGE_SIZE,
+            }),
+          ),
+        );
+        remainingPages.forEach(({ candidates }) =>
+          allCandidates.push(...candidates),
+        );
+
         if (cancelled) return;
-        setApplications(response.candidates);
-        setPagination(response.pagination);
-      })
-      .catch((requestError) => {
+        setApplications(allCandidates);
+      } catch (requestError) {
         if (cancelled) return;
         setApplications([]);
-        setPagination((previous) => ({ ...previous, totalRecords: 0, totalPages: 0 }));
         setError(
           requestError?.response?.data?.message ||
             requestError.message ||
             'Unable to load candidates.',
         );
-      })
-      .finally(() => {
+      } finally {
         if (!cancelled) setLoading(false);
-      });
+      }
+    };
+
+    loadCandidates();
 
     return () => {
       cancelled = true;
     };
-  }, [event.id, currentPage]);
+  }, [event.id]);
 
   const filteredApplications = useMemo(() => {
+    const search = filters.search.trim().toLowerCase();
+    if (!search) return applications;
+
     return applications.filter((item) => {
-      const matchesSearch = !filters.search || item.name.toLowerCase().includes(filters.search.toLowerCase());
-      const matchesStatus = filters.status === 'All Status' || item.status === filters.status;
-      const matchesSource = filters.source === 'All Sources' || item.source === filters.source;
-      return matchesSearch && matchesStatus && matchesSource;
+      const searchableFields = [
+        item.name,
+        item.location,
+        item.vidhansabha,
+        item.contactNo,
+        item.college,
+      ];
+      return searchableFields.some((value) =>
+        String(value ?? '').toLowerCase().includes(search),
+      );
     });
-  }, [applications, filters]);
+  }, [applications, filters.search]);
+
+  const paginatedApplications = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return filteredApplications.slice(start, start + PAGE_SIZE);
+  }, [filteredApplications, currentPage]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -138,12 +167,12 @@ const EventApplicationsView = ({ event, onBack }) => {
       {error && <div className="event-applications-view__error" role="alert">{error}</div>}
 
       <ApplicationsTable
-        applications={loading ? [] : filteredApplications}
+        applications={loading ? [] : paginatedApplications}
       />
 
       <Pagination
         currentPage={currentPage}
-        totalItems={pagination.totalRecords}
+        totalItems={filteredApplications.length}
         pageSize={PAGE_SIZE}
         onPageChange={setCurrentPage}
       />

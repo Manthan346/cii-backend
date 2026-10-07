@@ -8,12 +8,17 @@ import {
 } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
-import { StatCard, Dropdown, Button, Pagination } from "../../../shared";
+import {
+  StatCard,
+  Dropdown,
+  Button,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import TaskTable from "../TaskTable/TaskTable";
 import AssignTaskModal from "../AssignTaskModal/AssignTaskModal";
 import MarkAssessment from "../MarkAssessment/MarkAssessment";
 import {
-  taskAssignedMeta,
   taskAssignedRecords as defaultRecords,
   taskPriorityOptions,
   taskStatusOptions,
@@ -74,6 +79,14 @@ const TaskAssigned = () => {
       return matchesSearch && matchesPriority && matchesStatus;
     });
   }, [records, searchTask, priority, status]);
+  const visibleRecords = filteredRecords.slice(
+    (currentPage - 1) * TRAINER_PAGE_SIZE,
+    currentPage * TRAINER_PAGE_SIZE,
+  );
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredRecords.length / TRAINER_PAGE_SIZE),
+  );
 
   const handleAssignTask = (formValues) => {
     const newTask = {
@@ -228,15 +241,15 @@ const TaskAssigned = () => {
                   <h2 className="task-assigned-page__table-title">All Task</h2>
                 </div>
 
-                <TaskTable tasks={filteredRecords} onView={handleViewTask} />
+                <TaskTable tasks={visibleRecords} onView={handleViewTask} />
 
                 <Pagination
-                  showing={records.length}
-                  total={taskAssignedMeta.totalRecords}
+                  showing={visibleRecords.length}
+                  total={filteredRecords.length}
                   currentPage={currentPage}
-                  totalPages={taskAssignedMeta.totalPages}
+                  totalPages={totalPages}
                   onPageChange={setCurrentPage}
-                  label={`Showing 1-${records.length} out of ${taskAssignedMeta.totalRecords}`}
+                  pageSize={TRAINER_PAGE_SIZE}
                 />
               </section>
             </div>

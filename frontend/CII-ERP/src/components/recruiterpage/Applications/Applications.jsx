@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ApplicationsList from "./ApplicationsList/ApplicationsList";
 import CandidateProfile from "./CandidateProfile/CandidateProfile";
 import {
@@ -6,12 +6,13 @@ import {
   updateApplicationStatus,
 } from "../../../../api/recruiter/applicationService";
 
+const PAGE_SIZE = 15;
+
 const Applications = () => {
   const [applications, setApplications] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({});
-  const [pagination, setPagination] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [statusError, setStatusError] = useState("");
@@ -20,22 +21,33 @@ const Applications = () => {
     try {
       setIsLoading(true);
       setError("");
-      const { applications: records, pagination: pageData } =
-        await fetchRecruiterApplications({
-          page: currentPage,
-          limit: 10,
-          search: filters.search || undefined,
-          company_name: filters.company || undefined,
-          job_role: filters.role || undefined,
-          from_date: filters.from || undefined,
-          to_date: filters.to || undefined,
+      const dateFilters = {
+        limit: PAGE_SIZE,
+        from_date: filters.from || undefined,
+        to_date: filters.to || undefined,
+      };
+      const firstPage = await fetchRecruiterApplications({
+        ...dateFilters,
+        page: 1,
+      });
+      const allApplications = [...firstPage.applications];
+      const totalPages = Math.max(
+        1,
+        Number(firstPage.pagination.totalPages) || 1,
+      );
+
+      for (let page = 2; page <= totalPages; page += 1) {
+        const { applications: nextPage } = await fetchRecruiterApplications({
+          ...dateFilters,
+          page,
         });
-      setApplications(records);
-      setPagination(pageData);
+        allApplications.push(...nextPage);
+      }
+
+      setApplications(allApplications);
     } catch (loadError) {
       console.error("Failed to load applications:", loadError);
       setApplications([]);
-      setPagination({});
       setError(
         loadError?.response?.data?.message ||
           "Unable to load applications right now.",
@@ -43,11 +55,35 @@ const Applications = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [currentPage, filters]);
+  }, [filters.from, filters.to]);
 
   useEffect(() => {
     loadApplications();
   }, [loadApplications]);
+
+  const filteredApplications = useMemo(() => {
+    const search = filters.search?.trim().toLowerCase();
+    const status = filters.status?.trim().toUpperCase();
+
+    return applications.filter((application) => {
+      const matchesSearch =
+        !search ||
+        [application.name, application.company, application.jobRole]
+          .join(" ")
+          .toLowerCase()
+          .includes(search);
+      const matchesStatus =
+        !status ||
+        application.status.toUpperCase().replace(/\s+/g, "_") === status;
+
+      return matchesSearch && matchesStatus;
+    });
+  }, [applications, filters.search, filters.status]);
+
+  const paginatedApplications = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return filteredApplications.slice(start, start + PAGE_SIZE);
+  }, [filteredApplications, currentPage]);
 
   const selectedCandidate =
     applications.find((item) => item.id === selectedId) ?? null;
@@ -94,10 +130,10 @@ const Applications = () => {
         </div>
       )}
       <ApplicationsList
-        applications={applications}
+        applications={paginatedApplications}
         currentPage={currentPage}
-        totalItems={pagination.totalItems ?? 0}
-        pageSize={pagination.limit ?? 10}
+        totalItems={filteredApplications.length}
+        pageSize={PAGE_SIZE}
         isLoading={isLoading}
         error={error}
         onViewProfile={setSelectedId}

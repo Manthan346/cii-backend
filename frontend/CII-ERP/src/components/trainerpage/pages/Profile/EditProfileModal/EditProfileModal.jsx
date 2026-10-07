@@ -70,6 +70,28 @@ function formatDateForInput(value) {
   return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
 }
 
+function isValidMobileNumber(value) {
+  const digits = String(value ?? "").replace(/\D/g, "");
+  return /^(?:91)?[6-9]\d{9}$/.test(digits);
+}
+
+function hasValue(value) {
+  return String(value ?? "").trim().length > 0;
+}
+
+function getLatestEligibleBirthDate() {
+  const today = new Date();
+  const year = today.getFullYear() - 18;
+  const month = today.getMonth();
+  const cutoff = new Date(year, month, today.getDate());
+  if (cutoff.getMonth() !== month) cutoff.setDate(0);
+
+  const localYear = cutoff.getFullYear();
+  const localMonth = String(cutoff.getMonth() + 1).padStart(2, "0");
+  const localDay = String(cutoff.getDate()).padStart(2, "0");
+  return `${localYear}-${localMonth}-${localDay}`;
+}
+
 export default function EditProfileModal({
   personal,
   contact,
@@ -94,6 +116,7 @@ export default function EditProfileModal({
     ...personal,
     firstName: personal?.firstName ?? nameParts[0] ?? "",
     lastName: personal?.lastName ?? nameParts.slice(1).join(" "),
+    dob: formatDateForInput(personal?.dob),
     mobileNumber: personal?.mobileNumber ?? contact?.mobileNumber ?? "",
     emergencyContactNumber:
       personal?.emergencyContactNumber ?? contact?.emergencyContactNumber ?? "",
@@ -111,6 +134,7 @@ export default function EditProfileModal({
   const [avatarFile, setAvatarFile] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState("");
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     // Only revoke blob: URLs we created ourselves - the initial
@@ -187,13 +211,33 @@ export default function EditProfileModal({
       experience?.previousOrganisation ??
       "",
   });
-  const updateField = (setter) => (field) => (event) => {
+  const updateField = (setter) => (field, errorKey = field) => (event) => {
     const { value } = event.target;
     setter((prev) => ({
       ...prev,
       [field]: value,
     }));
+    setValidationErrors((prev) => {
+      if (!prev[errorKey]) return prev;
+      const next = { ...prev };
+      delete next[errorKey];
+      return next;
+    });
   };
+  const renderFieldError = (field) =>
+    validationErrors[field] ? (
+      <p
+        id={`${field}-error`}
+        className="profile-edit-profile-modal-field-error"
+        role="alert"
+      >
+        {validationErrors[field]}
+      </p>
+    ) : null;
+  const fieldErrorProps = (field) => ({
+    "aria-invalid": Boolean(validationErrors[field]),
+    "aria-describedby": validationErrors[field] ? `${field}-error` : undefined,
+  });
   // const updateGuardianField = (index, field) => (event) => {
   //   const { value } = event.target;
   //   setGuardianForms((prev) =>
@@ -213,8 +257,81 @@ export default function EditProfileModal({
   //   );
   // };
   const handleSave = async () => {
-    setIsSaving(true);
+    const errors = {};
+    if (!hasValue(personalForm.firstName)) {
+      errors.firstName = "First name is required.";
+    }
+    if (!hasValue(personalForm.lastName)) {
+      errors.lastName = "Last name is required.";
+    }
+    if (!hasValue(personalForm.mobileNumber)) {
+      errors.mobileNumber = "Mobile number is required.";
+    } else if (!isValidMobileNumber(personalForm.mobileNumber)) {
+      errors.mobileNumber = "Enter a valid 10-digit mobile number.";
+    }
+    if (
+      hasValue(personalForm.emergencyContactNumber) &&
+      !isValidMobileNumber(personalForm.emergencyContactNumber)
+    ) {
+      errors.emergencyContactNumber =
+        "Enter a valid 10-digit mobile number.";
+    }
+    if (!personalForm.dob) {
+      errors.dob = "Date of birth is required.";
+    } else {
+      const birthDate = new Date(`${personalForm.dob}T00:00:00`);
+      if (Number.isNaN(birthDate.getTime())) {
+        errors.dob = "Enter a valid date of birth.";
+      } else if (personalForm.dob > getLatestEligibleBirthDate()) {
+        errors.dob = "Trainer must be at least 18 years old.";
+      }
+    }
+    if (!hasValue(personalForm.gender)) {
+      errors.gender = "Gender is required.";
+    }
+    if (
+      hasValue(fatherForm.phone_no) &&
+      !isValidMobileNumber(fatherForm.phone_no)
+    ) {
+      errors.fatherPhone = "Enter a valid 10-digit mobile number.";
+    }
+    if (
+      hasValue(motherForm.phone_no) &&
+      !isValidMobileNumber(motherForm.phone_no)
+    ) {
+      errors.motherPhone = "Enter a valid 10-digit mobile number.";
+    }
+    if (
+      hasValue(guardianForm.phone_no) &&
+      !isValidMobileNumber(guardianForm.phone_no)
+    ) {
+      errors.guardianPhone = "Enter a valid 10-digit mobile number.";
+    }
+    if (
+      !hasValue(fatherForm.name) &&
+      !hasValue(motherForm.name) &&
+      !hasValue(guardianForm.name)
+    ) {
+      errors.guardian = "Enter at least one guardian's name.";
+    }
+
+    setValidationErrors(errors);
     setSaveError("");
+    if (Object.keys(errors).length) {
+      setActiveSection(
+        errors.firstName ||
+          errors.lastName ||
+          errors.mobileNumber ||
+          errors.emergencyContactNumber ||
+          errors.dob ||
+          errors.gender
+          ? "personal"
+          : "guardian",
+      );
+      return;
+    }
+
+    setIsSaving(true);
 
     try {
       await onSave?.({
@@ -315,38 +432,51 @@ export default function EditProfileModal({
               <div className={"profile-edit-profile-modal-row"}>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
-                    First Name
+                    First Name *
                   </label>
                   <input
                     type="text"
                     className={"profile-edit-profile-modal-input"}
                     value={personalForm.firstName}
                     onChange={updateField(setPersonalForm)("firstName")}
+                    required
+                    aria-required="true"
+                    {...fieldErrorProps("firstName")}
                   />
+                  {renderFieldError("firstName")}
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
-                    Last Name
+                    Last Name *
                   </label>
                   <input
                     type="text"
                     className={"profile-edit-profile-modal-input"}
                     value={personalForm.lastName}
                     onChange={updateField(setPersonalForm)("lastName")}
+                    required
+                    aria-required="true"
+                    {...fieldErrorProps("lastName")}
                   />
+                  {renderFieldError("lastName")}
                 </div>
               </div>
               <div className={"profile-edit-profile-modal-row"}>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
-                    Mobile Number
+                    Mobile Number *
                   </label>
                   <input
                     type="text"
                     className={"profile-edit-profile-modal-input"}
                     value={personalForm.mobileNumber}
                     onChange={updateField(setPersonalForm)("mobileNumber")}
+                    required
+                    aria-required="true"
+                    inputMode="tel"
+                    {...fieldErrorProps("mobileNumber")}
                   />
+                  {renderFieldError("mobileNumber")}
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
@@ -359,21 +489,28 @@ export default function EditProfileModal({
                     onChange={updateField(setPersonalForm)(
                       "emergencyContactNumber",
                     )}
+                    inputMode="tel"
+                    {...fieldErrorProps("emergencyContactNumber")}
                   />
+                  {renderFieldError("emergencyContactNumber")}
                 </div>
               </div>
               <div className={"profile-edit-profile-modal-row"}>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
-                    Date of Birth
+                    Date of Birth *
                   </label>
                   <input
-                    type="text"
+                    type="date"
                     className={"profile-edit-profile-modal-input"}
-                    placeholder="dd mmm yyyy"
                     value={personalForm.dob}
                     onChange={updateField(setPersonalForm)("dob")}
+                    max={getLatestEligibleBirthDate()}
+                    required
+                    aria-required="true"
+                    {...fieldErrorProps("dob")}
                   />
+                  {renderFieldError("dob")}
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
@@ -429,12 +566,15 @@ export default function EditProfileModal({
                 </div>
                 <div className={"profile-edit-profile-modal-field"}>
                   <label className={"profile-edit-profile-modal-label"}>
-                    Gender
+                    Gender *
                   </label>
                   <select
                     className={"profile-edit-profile-modal-input"}
                     value={personalForm.gender}
                     onChange={updateField(setPersonalForm)("gender")}
+                    required
+                    aria-required="true"
+                    {...fieldErrorProps("gender")}
                   >
                     <option value="">Select gender</option>
                     {personalForm.gender &&
@@ -449,6 +589,7 @@ export default function EditProfileModal({
                       </option>
                     ))}
                   </select>
+                  {renderFieldError("gender")}
                 </div>
               </div>
             </>
@@ -586,6 +727,7 @@ export default function EditProfileModal({
 
           {activeSection === "guardian" && (
             <>
+              {renderFieldError("guardian")}
               <div className={"profile-edit-profile-modal-guardian-card"}>
                 <h3 className={"profile-edit-profile-modal-subheading"}>
                   Father
@@ -599,7 +741,10 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={fatherForm.name}
-                      onChange={updateField(setFatherForm)("name")}
+                      onChange={updateField(setFatherForm)("name", "guardian")}
+                      aria-describedby={
+                        validationErrors.guardian ? "guardian-error" : undefined
+                      }
                     />
                   </div>
                   <div className={"profile-edit-profile-modal-field"}>
@@ -610,8 +755,14 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={fatherForm.phone_no}
-                      onChange={updateField(setFatherForm)("phone_no")}
+                      onChange={updateField(setFatherForm)(
+                        "phone_no",
+                        "fatherPhone",
+                      )}
+                      inputMode="tel"
+                      {...fieldErrorProps("fatherPhone")}
                     />
+                    {renderFieldError("fatherPhone")}
                   </div>
                 </div>
                 <div className={"profile-edit-profile-modal-row"}>
@@ -675,7 +826,10 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={motherForm.name}
-                      onChange={updateField(setMotherForm)("name")}
+                      onChange={updateField(setMotherForm)("name", "guardian")}
+                      aria-describedby={
+                        validationErrors.guardian ? "guardian-error" : undefined
+                      }
                     />
                   </div>
                   <div className={"profile-edit-profile-modal-field"}>
@@ -686,8 +840,14 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={motherForm.phone_no}
-                      onChange={updateField(setMotherForm)("phone_no")}
+                      onChange={updateField(setMotherForm)(
+                        "phone_no",
+                        "motherPhone",
+                      )}
+                      inputMode="tel"
+                      {...fieldErrorProps("motherPhone")}
                     />
+                    {renderFieldError("motherPhone")}
                   </div>
                 </div>
                 <div className={"profile-edit-profile-modal-row"}>
@@ -751,7 +911,13 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={guardianForm.name}
-                      onChange={updateField(setGuardianForm)("name")}
+                      onChange={updateField(setGuardianForm)(
+                        "name",
+                        "guardian",
+                      )}
+                      aria-describedby={
+                        validationErrors.guardian ? "guardian-error" : undefined
+                      }
                     />
                   </div>
                   <div className={"profile-edit-profile-modal-field"}>
@@ -776,8 +942,14 @@ export default function EditProfileModal({
                       type="text"
                       className={"profile-edit-profile-modal-input"}
                       value={guardianForm.phone_no}
-                      onChange={updateField(setGuardianForm)("phone_no")}
+                      onChange={updateField(setGuardianForm)(
+                        "phone_no",
+                        "guardianPhone",
+                      )}
+                      inputMode="tel"
+                      {...fieldErrorProps("guardianPhone")}
                     />
+                    {renderFieldError("guardianPhone")}
                   </div>
                   <div className={"profile-edit-profile-modal-field"}>
                     <label className={"profile-edit-profile-modal-label"}>

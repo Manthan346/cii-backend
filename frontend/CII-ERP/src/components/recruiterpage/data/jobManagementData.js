@@ -17,6 +17,7 @@ export const jobStatusStyles = {
   Published: { bg: '#dcfce7', color: '#16a34a' },
   Draft: { bg: '#eef1f7', color: '#6b7280' },
   Closed: { bg: '#fee2e2', color: '#dc2626' },
+  Expired: { bg: '#ffedd5', color: '#c2410c' },
   Archived: { bg: '#eef1f7', color: '#6b7280' },
 };
 

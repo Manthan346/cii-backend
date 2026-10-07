@@ -8,11 +8,11 @@ import "./JobManagementList.css";
 const EMPTY_FILTERS = {
   search: "",
   mode: "",
-  employmentType: "",
-  experience: "",
+  type: "",
+  status: "",
 };
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 15;
 
 /**
  * JobManagementList
@@ -39,15 +39,41 @@ const JobManagementList = ({
   const [appliedFilters, setAppliedFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const jobTypes = useMemo(
+    () =>
+      [...new Set(jobs.map((job) => job.type).filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b),
+      ),
+    [jobs],
+  );
+
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
       const searchText = [
         job.jobRole,
-        job.companyName,
         job.sector,
         job.location,
+        job.state,
+        job.type,
+        job.companyName,
+        job.mode,
+        job.vacancy,
+        job.experience,
+        job.status,
+        job.postedDate,
+        job.deadline,
+        job.role,
+        job.department,
+        job.employmentType,
+        job.salary,
+        job.description,
+        job.eligibility?.qualification,
+        job.eligibility?.minPercentage,
+        ...(job.requiredSkills ?? []),
+        ...(job.preferredSkills ?? []),
+        ...(job.responsibilities ?? []),
       ]
-        .filter(Boolean)
+        .filter((value) => value !== null && value !== undefined)
         .join(" ")
         .toLowerCase();
       const matchesSearch =
@@ -55,19 +81,12 @@ const JobManagementList = ({
         searchText.includes(appliedFilters.search.toLowerCase());
       const matchesMode =
         !appliedFilters.mode || job.mode === appliedFilters.mode;
-      const matchesEmploymentType =
-        !appliedFilters.employmentType ||
-        job.employmentType === appliedFilters.employmentType;
-      const matchesExperience =
-        !appliedFilters.experience ||
-        job.experience === appliedFilters.experience;
+      const matchesType =
+        !appliedFilters.type || job.type === appliedFilters.type;
+      const matchesStatus =
+        !appliedFilters.status || job.status === appliedFilters.status;
 
-      return (
-        matchesSearch &&
-        matchesMode &&
-        matchesEmploymentType &&
-        matchesExperience
-      );
+      return matchesSearch && matchesMode && matchesType && matchesStatus;
     });
   }, [jobs, appliedFilters]);
 
@@ -89,7 +108,10 @@ const JobManagementList = ({
         </p>
       </header>
 
-      <JobFilterBar jobs={jobs} onFilterChange={setAppliedFilters} />
+      <JobFilterBar
+        onFilterChange={setAppliedFilters}
+        jobTypes={jobTypes}
+      />
 
       {error && <div className="job-management__error">{error}</div>}
 

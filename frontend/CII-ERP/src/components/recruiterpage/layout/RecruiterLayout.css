@@ -1,20 +1,27 @@
 .recruiter-layout {
   height: 100vh;
   height: 100dvh;
+<<<<<<< HEAD
   min-height: 0;
+=======
+>>>>>>> bfc9c933cbf5943484f7ef2a3d51c5bc2a866d3b
   display: flex;
   flex-direction: column;
   background: #eef1f7;
   overflow: hidden;
+<<<<<<< HEAD
 }
 
 .recruiter-layout > .recruiter-topbar {
   flex: 0 0 auto;
+=======
+>>>>>>> bfc9c933cbf5943484f7ef2a3d51c5bc2a866d3b
 }
 
 .recruiter-layout__body {
   flex: 1;
   display: flex;
+  overflow: hidden;
   min-height: 0;
   overflow: hidden;
 }
@@ -24,6 +31,7 @@
   min-width: 0;
   min-height: 0;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   padding: 24px 28px 40px;
   box-sizing: border-box;
 }

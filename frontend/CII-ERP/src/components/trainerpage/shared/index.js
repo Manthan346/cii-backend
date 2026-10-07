@@ -23,3 +23,4 @@ export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as ActionButtons } from './ActionButtons/ActionButtons';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as FilterBar } from './FilterBar/FilterBar';
+export const TRAINER_PAGE_SIZE = 15;

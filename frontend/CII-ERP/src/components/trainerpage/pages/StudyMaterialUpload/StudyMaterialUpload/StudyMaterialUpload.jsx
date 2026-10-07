@@ -2,7 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import { Search, Plus } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
-import { Dropdown, Button, Pagination } from "../../../shared";
+import {
+  Dropdown,
+  Button,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import UploadMaterialModal from "../UploadMaterialModal/UploadMaterialModal";
 import EditMaterialModal from "../EditMaterialModal/EditMaterialModal";
 import ViewMaterialModal from "../ViewMaterialModal/ViewMaterialModal";
@@ -59,7 +64,7 @@ const StudyMaterialUpload = () => {
     try {
       const data = await fetchStudyMaterials({
         page: currentPage,
-        limit: 10,
+        limit: TRAINER_PAGE_SIZE,
         search: searchTerm,
         batchId: batch,
         status,
@@ -208,8 +213,11 @@ const StudyMaterialUpload = () => {
                   currentPage={currentPage}
                   totalPages={totalPages}
                   onPageChange={setCurrentPage}
-                  label={`Showing ${(currentPage - 1) * 10 + 1}-${
-                    (currentPage - 1) * 10 + records.length
+                  pageSize={TRAINER_PAGE_SIZE}
+                  label={`Showing ${
+                    records.length ? (currentPage - 1) * TRAINER_PAGE_SIZE + 1 : 0
+                  }-${
+                    (currentPage - 1) * TRAINER_PAGE_SIZE + records.length
                   } out of ${totalRecords}`}
                 />
               </section>
