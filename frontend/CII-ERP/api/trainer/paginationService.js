@@ -27,6 +27,7 @@ export async function fetchPaginatedPage({
       ...data.pagination,
       currentPage: page,
       totalRecords: totalItems,
+      ...Object.fromEntries(totalKeys.map((key) => [key, totalItems])),
       totalPages,
       limit,
     },

@@ -94,14 +94,17 @@ const CandidateManagement = () => {
     totalCandidates: 0,
     limit: TRAINER_PAGE_SIZE,
   });
-  const [filters, setFilters] = useState({ status: "", search: "" });
+  const [filters, setFilters] = useState({
+    status: "",
+    search: "",
+    batchId: null,
+    courseName: null,
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [batchLabels, setBatchLabels] = useState(["All Batches"]);
   const [courseLabels, setCourseLabels] = useState(["All Courses"]);
-  const [batchLabelToId, setBatchLabelToId] = useState({});
-  const [courseLabelToId, setCourseLabelToId] = useState({});
 
   useEffect(() => {
     let cancelled = false;
@@ -111,14 +114,8 @@ const CandidateManagement = () => {
         if (cancelled) return;
 
         setBatchLabels(["All Batches", ...batches.map((b) => b.batch_code)]);
-        setBatchLabelToId(
-          Object.fromEntries(batches.map((b) => [b.batch_code, b.batchId])),
-        );
 
         setCourseLabels(["All Courses", ...courses.map((c) => c.course_name)]);
-        setCourseLabelToId(
-          Object.fromEntries(courses.map((c) => [c.course_name, c.course_id])),
-        );
       } catch (err) {
         console.error("Failed to load batch/course filter options:", err);
       }
@@ -144,6 +141,7 @@ const CandidateManagement = () => {
           status: filters.status,
           search: filters.search,
           batchId: filters.batchId,
+          courseName: filters.courseName,
         });
         if (!cancelled) {
           setCandidates(data.candidates.map(mapCandidate));
@@ -184,12 +182,13 @@ const CandidateManagement = () => {
     };
   }, []);
 
-  const handleFilterChange = ({ status, searchTerm, batch }) => {
+  const handleFilterChange = ({ status, searchTerm, batch, course }) => {
     setPagination((p) => ({ ...p, currentPage: 1 }));
     setFilters({
       status,
       search: searchTerm,
-      batchId: batchLabelToId[batch] ?? null, // undefined/'All Batches' -> null, meaning "no filter"
+      batchId: batch === "All Batches" ? null : batch,
+      courseName: course === "All Courses" ? null : course,
     });
   };
 

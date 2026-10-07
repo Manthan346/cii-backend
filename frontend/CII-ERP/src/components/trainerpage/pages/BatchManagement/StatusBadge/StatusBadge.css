@@ -15,20 +15,12 @@
   color: #1a8f4c;
 }
 
-.batch-management-batch-list-status-badge-dropped {
-  background: var(--color-dropped-bg);
-  color: var(--color-white);
-}
-
-.batch-management-batch-list-status-badge-ending {
-  background: var(--color-peach-bg);
-  color: var(--color-peach-text);
-  white-space: normal;
-  line-height: 1.2;
-  text-align: center;
-}
-
 .batch-management-batch-list-status-badge-upcoming {
   background: var(--color-blue-bg);
   color: var(--color-blue);
+}
+
+.batch-management-batch-list-status-badge-expired {
+  background: var(--color-dropped-bg);
+  color: var(--color-white);
 }

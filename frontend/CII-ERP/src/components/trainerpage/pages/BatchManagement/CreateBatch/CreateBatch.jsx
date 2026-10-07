@@ -4,6 +4,8 @@ import { Dropdown, Button } from "../../../shared";
 import {
   createBatch,
   fetchCourseOptions,
+  fetchBatchDetails,
+  updateBatch,
 } from "../../../../../../api/trainer/batchService";
 import "./CreateBatch.css";
 
@@ -15,6 +17,8 @@ const EMPTY_FORM = {
   startDate: "",
   endDate: "",
   notes: "",
+  batchType: "ACADEMIC",
+  batchStatus: "ACTIVE",
 };
 
 const getTodayDate = () => {
@@ -30,14 +34,37 @@ const isTimeoutError = (error) =>
   error?.code === "ETIMEDOUT" ||
   /timeout of \d+ms exceeded/i.test(error?.message || "");
 
-const CreateBatch = ({ onBack, onCreated }) => {
+const toDateInputValue = (value) => {
+  if (!value) return "";
+  if (typeof value === "string") {
+    const isoDate = value.match(/^\d{4}-\d{2}-\d{2}/)?.[0];
+    if (isoDate) return isoDate;
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+const CreateBatch = ({ batch, onBack, onCreated }) => {
+  const isEditing = Boolean(batch?.id);
   const [form, setForm] = useState(EMPTY_FORM);
   const [courses, setCourses] = useState([]);
   const [fieldErrors, setFieldErrors] = useState({});
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [loadingBatch, setLoadingBatch] = useState(isEditing);
+  const [batchLoaded, setBatchLoaded] = useState(!isEditing);
+  const [formError, setFormError] = useState("");
+  const [originalDates, setOriginalDates] = useState({
+    startDate: "",
+    endDate: "",
+  });
 
   useEffect(() => {
+    if (isEditing) return undefined;
     let cancelled = false;
     fetchCourseOptions()
       .then((data) => !cancelled && setCourses(data))
@@ -45,23 +72,80 @@ const CreateBatch = ({ onBack, onCreated }) => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [isEditing]);
+
+  useEffect(() => {
+    if (!isEditing) return undefined;
+    let cancelled = false;
+    setLoadingBatch(true);
+    setFormError("");
+    fetchBatchDetails(batch.id)
+      .then((details) => {
+        if (cancelled) return;
+        if (!details) {
+          setFormError("Batch details could not be found.");
+          return;
+        }
+        const startDate = toDateInputValue(
+          details.batch_start_date ?? details.start_date,
+        );
+        const endDate = toDateInputValue(
+          details.batch_end_date ?? details.end_date,
+        );
+        setForm({
+          batchName: details.batch_name ?? batch.code ?? "",
+          batchCode: details.batch_code ?? batch.code ?? "",
+          courseId: details.course_id ?? "",
+          maxCandidates: String(details.max_candidates ?? ""),
+          startDate,
+          endDate,
+          notes: details.batch_desc ?? "",
+          batchType: details.batch_type ?? "ACADEMIC",
+          batchStatus: details.b_status ?? details.batch_status ?? "",
+        });
+        setOriginalDates({ startDate, endDate });
+        setBatchLoaded(true);
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setFormError(
+            error?.response?.data?.message ||
+              error.message ||
+              "Failed to load batch details.",
+          );
+        }
+      })
+      .finally(() => !cancelled && setLoadingBatch(false));
+    return () => {
+      cancelled = true;
+    };
+  }, [batch, isEditing]);
 
   const updateField = (field) => (event) => {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
     setFieldErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  const handleCreate = async () => {
+  const handleSubmit = async () => {
+    if (isEditing && (!batchLoaded || loadingBatch)) return;
     const errors = {};
     if (!form.batchName.trim()) {
       errors.batchName = "Batch name is required.";
     }
-    if (!form.courseId) {
+    if (!isEditing && !form.courseId) {
       errors.courseId = "Course is required.";
     }
-    if (!form.maxCandidates || Number(form.maxCandidates) <= 0) {
-      errors.maxCandidates = "Maximum candidates must be a positive number.";
+    if (
+      !form.maxCandidates ||
+      !Number.isInteger(Number(form.maxCandidates)) ||
+      Number(form.maxCandidates) <= 0
+    ) {
+      errors.maxCandidates = "Maximum candidates must be a positive integer.";
+    } else if (
+      isEditing &&
+      Number(form.maxCandidates) < Number(batch.candidates ?? 0)
+    ) {
+      errors.maxCandidates = `Maximum candidates cannot be less than the ${batch.candidates} already enrolled.`;
     }
     if (!form.startDate) {
       errors.startDate = "Start date is required.";
@@ -72,41 +156,62 @@ const CreateBatch = ({ onBack, onCreated }) => {
     if (!form.notes.trim()) {
       errors.notes = "Batch description cannot be empty.";
     }
-    if (form.startDate && form.startDate < getTodayDate()) {
+    if (isEditing && !form.batchStatus) {
+      setFormError("Batch status is missing from the batch details.");
+      return;
+    }
+    if (
+      form.startDate &&
+      form.startDate !== originalDates.startDate &&
+      form.startDate < getTodayDate()
+    ) {
       errors.startDate = "Start date cannot be in the past.";
     }
-    if (form.endDate && form.endDate < getTodayDate()) {
+    if (
+      form.endDate &&
+      form.endDate !== originalDates.endDate &&
+      form.endDate < getTodayDate()
+    ) {
       errors.endDate = "End date cannot be in the past.";
     }
-    if (form.startDate && form.endDate && form.endDate < form.startDate) {
-      errors.endDate = "End date must be on or after the start date.";
+    if (
+      form.startDate &&
+      form.endDate &&
+      (form.startDate !== originalDates.startDate ||
+        form.endDate !== originalDates.endDate) &&
+      form.endDate <= form.startDate
+    ) {
+      errors.endDate = "End date must be after the start date.";
     }
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       return;
     }
     setFieldErrors({});
+    setFormError("");
     setSubmitting(true);
 
     try {
-      const created = await createBatch(form);
+      const result = isEditing
+        ? await updateBatch(batch.id, form, originalDates)
+        : await createBatch(form);
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        setForm(EMPTY_FORM);
-        onCreated?.(created);
-      }, 1400);
+        if (!isEditing) setForm(EMPTY_FORM);
+        onCreated?.(result);
+      }, 800);
     } catch (err) {
-      if (isTimeoutError(err)) {
-        console.error("Batch creation request timed out.", err);
-        return;
-      }
       const message =
         err?.response?.data?.message ||
         err?.response?.data?.error?.message ||
         err?.response?.data?.error ||
         err.message ||
-        "Failed to create batch.";
+        `Failed to ${isEditing ? "update" : "create"} batch.`;
+      if (isTimeoutError(err)) {
+        setFormError(message);
+        return;
+      }
       const normalizedMessage = message.toLowerCase();
       const field =
         normalizedMessage.includes("course")
@@ -131,7 +236,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
       if (field) {
         setFieldErrors({ [field]: message });
       } else {
-        console.error("Batch creation failed.", err);
+        setFormError(message);
       }
     } finally {
       setSubmitting(false);
@@ -139,24 +244,25 @@ const CreateBatch = ({ onBack, onCreated }) => {
   };
 
   const handleCancel = () => {
-    setForm(EMPTY_FORM);
+    if (!isEditing) setForm(EMPTY_FORM);
     setFieldErrors({});
     onBack?.();
   };
 
   const courseOptions = courses.map((c) => ({ label: c.name, value: c.id }));
   const selectedCourseName =
-    courses.find((c) => c.id === form.courseId)?.name || "Select course";
+    courses.find((c) => c.id === form.courseId)?.name ||
+    (isEditing ? batch.course : "Select course");
 
   return (
     <div className={"batch-management-create-batch-content"}>
       <div className={"batch-management-create-batch-page-header"}>
         <div>
           <h1 className={"batch-management-create-batch-title"}>
-            Create new Batch
+            {isEditing ? "Edit Batch" : "Create new Batch"}
           </h1>
           <p className={"batch-management-create-batch-subtitle"}>
-            Set up batch details
+            {isEditing ? "Update batch details" : "Set up batch details"}
           </p>
         </div>
         <Button
@@ -176,9 +282,19 @@ const CreateBatch = ({ onBack, onCreated }) => {
               className={"batch-management-create-batch-success-toast"}
               role="status"
             >
-              Batch created successfully
+              Batch {isEditing ? "updated" : "created"} successfully
             </div>
           )}
+          {formError && (
+            <p className={"batch-management-create-batch-error-text"} role="alert">
+              {formError}
+            </p>
+          )}
+
+          {loadingBatch ? (
+            <p>Loading batch details…</p>
+          ) : (
+            <>
 
           <section className={"batch-management-create-batch-section"}>
             <h3 className={"batch-management-create-batch-section-title"}>
@@ -226,22 +342,36 @@ const CreateBatch = ({ onBack, onCreated }) => {
                 )}
               </div>
 
-              <div>
-                <Dropdown
-                  label="course *"
-                  options={courseOptions}
-                  value={form.courseId}
-                  onChange={(value) => {
-                    setForm((prev) => ({ ...prev, courseId: value }));
-                    setFieldErrors((prev) => ({ ...prev, courseId: "" }));
-                  }}
-                />
-                {fieldErrors.courseId && (
-                  <p className={"batch-management-create-batch-error-text"}>
-                    {fieldErrors.courseId}
-                  </p>
-                )}
-              </div>
+              {isEditing ? (
+                <div className={"batch-management-create-batch-field"}>
+                  <label className={"batch-management-create-batch-label"}>
+                    Course
+                  </label>
+                  <input
+                    type="text"
+                    className={"batch-management-create-batch-input"}
+                    value={selectedCourseName || "—"}
+                    readOnly
+                  />
+                </div>
+              ) : (
+                <div>
+                  <Dropdown
+                    label="course *"
+                    options={courseOptions}
+                    value={form.courseId}
+                    onChange={(value) => {
+                      setForm((prev) => ({ ...prev, courseId: value }));
+                      setFieldErrors((prev) => ({ ...prev, courseId: "" }));
+                    }}
+                  />
+                  {fieldErrors.courseId && (
+                    <p className={"batch-management-create-batch-error-text"}>
+                      {fieldErrors.courseId}
+                    </p>
+                  )}
+                </div>
+              )}
 
               <div className={"batch-management-create-batch-field"}>
                 <label className={"batch-management-create-batch-label"}>
@@ -254,6 +384,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
                   type="number"
                   className={"batch-management-create-batch-input"}
                   placeholder="eg-30"
+                  min={isEditing ? batch.candidates ?? 1 : 1}
                   value={form.maxCandidates}
                   onChange={updateField("maxCandidates")}
                 />
@@ -281,7 +412,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
                 <input
                   type="date"
                   className={"batch-management-create-batch-input"}
-                  min={getTodayDate()}
+                  min={isEditing ? undefined : getTodayDate()}
                   value={form.startDate}
                   onChange={updateField("startDate")}
                 />
@@ -302,7 +433,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
                 <input
                   type="date"
                   className={"batch-management-create-batch-input"}
-                  min={getTodayDate()}
+                  min={isEditing ? undefined : getTodayDate()}
                   value={form.endDate}
                   onChange={updateField("endDate")}
                 />
@@ -351,12 +482,20 @@ const CreateBatch = ({ onBack, onCreated }) => {
             </Button>
             <Button
               variant="primary"
-              onClick={handleCreate}
-              disabled={submitting}
+              onClick={handleSubmit}
+              disabled={submitting || loadingBatch || !batchLoaded}
             >
-              {submitting ? "Creating..." : "Create Batch"}
+              {submitting
+                ? isEditing
+                  ? "Saving..."
+                  : "Creating..."
+                : isEditing
+                  ? "Save Changes"
+                  : "Create Batch"}
             </Button>
           </div>
+            </>
+          )}
         </div>
 
         <div className={"batch-management-create-batch-sidebar"}>
@@ -365,7 +504,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
               Batch Summary
             </h3>
             <p className={"batch-management-create-batch-summary-subtitle"}>
-              Review before creating
+              {isEditing ? "Review batch details" : "Review before creating"}
             </p>
             <dl className={"batch-management-create-batch-summary-list"}>
               <div className={"batch-management-create-batch-summary-row"}>
@@ -379,7 +518,7 @@ const CreateBatch = ({ onBack, onCreated }) => {
               <div className={"batch-management-create-batch-summary-row"}>
                 <dt>Status on save</dt>
                 <dd className={"batch-management-create-batch-summary-status"}>
-                  Active
+                  {isEditing ? "Date-based" : "Active"}
                 </dd>
               </div>
             </dl>
@@ -391,8 +530,9 @@ const CreateBatch = ({ onBack, onCreated }) => {
               <span>Tip</span>
             </div>
             <p className={"batch-management-create-batch-tip-text"}>
-              You can add candidate to this batch right after creating it, from
-              the batch detail page
+              {isEditing
+                ? "The course assignment cannot be changed here."
+                : "You can add candidates to this batch after creating it."}
             </p>
           </div>
         </div>
