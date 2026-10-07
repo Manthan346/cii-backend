@@ -1,11 +1,19 @@
 // api/trainer/eventService.js
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
-export async function fetchInstructorEvents({ page = 1, limit = 6 } = {}) {
-  const res = await api.get("/instructor/instructor-events/get-event", {
-    params: { page, limit },
+export async function fetchInstructorEvents({ page = 1, limit = 15 } = {}) {
+  return fetchPaginatedPage({
+    fetchPage: async (requestPage) => {
+      const res = await api.get("/instructor/instructor-events/get-event", {
+        params: { page: requestPage, limit },
+      });
+      return res.data.data;
+    },
+    page,
+    limit,
+    itemsKey: "events",
   });
-  return res.data.data; // { events, pagination: { page, limit, totalRecords, totalPages } }
 }
 
 const TARGET_TYPE_LABELS = {

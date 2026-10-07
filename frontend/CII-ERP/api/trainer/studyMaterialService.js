@@ -1,4 +1,5 @@
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
 const STATUS_LABEL_TO_BATCH_STATUS = {
   Active: "ACTIVE",
@@ -17,12 +18,12 @@ function isAllBatchOption(value) {
 
 export async function fetchStudyMaterials({
   page = 1,
-  limit = 10,
+  limit = 15,
   search,
   batchId,
   status,
 } = {}) {
-  const params = { page, limit };
+  const params = { limit };
 
   if (search && search.trim()) params.search = search.trim();
   if (batchId && !isAllBatchOption(batchId)) params.batch_id = batchId;
@@ -32,10 +33,17 @@ export async function fetchStudyMaterials({
     if (batchStatus) params.batch_status = batchStatus;
   }
 
-  const res = await api.get("/instructor/study-material/get-all-material", {
-    params,
+  return fetchPaginatedPage({
+    fetchPage: async (requestPage) => {
+      const res = await api.get("/instructor/study-material/get-all-material", {
+        params: { ...params, page: requestPage },
+      });
+      return res.data.data;
+    },
+    page,
+    limit,
+    itemsKey: "studyMaterials",
   });
-  return res.data.data;
 }
 
 export async function fetchStudyMaterialStats() {

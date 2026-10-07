@@ -8,7 +8,7 @@ import {
 import { Plus } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
-import { Pagination } from "../../../shared";
+import { Pagination, TRAINER_PAGE_SIZE } from "../../../shared";
 import EventCard from "../EventCard/EventCard";
 import EventFilterBar from "../EventFilterBar/EventFilterBar";
 import EventTable from "../EventTable/EventTable";
@@ -82,7 +82,7 @@ const Events = () => {
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    fetchInstructorEvents({ page: currentPage, limit: 6 })
+    fetchInstructorEvents({ page: currentPage, limit: TRAINER_PAGE_SIZE })
       .then((data) => {
         if (cancelled) return;
         setRecords((data.events ?? []).map(mapEventRecord));
@@ -251,7 +251,7 @@ const Events = () => {
                   currentPage={currentPage}
                   totalPages={pagination.totalPages}
                   onPageChange={setCurrentPage}
-                  pageSize={6}
+                  pageSize={TRAINER_PAGE_SIZE}
                 />
               </section>
             </div>

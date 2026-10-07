@@ -1,4 +1,5 @@
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
 // Confirmed against batch_enrollment_status_type usage in
 // getCandidateStatistics.ts and the update-status PATCH example.
@@ -15,8 +16,8 @@ function isAllStatusOption(value) {
   return !value || value.toLowerCase().startsWith('all status');
 }
 
-export async function fetchCandidateOverview({ page = 1, limit = 6, status, search, batchId } = {}) {
-  const params = { page, limit };
+export async function fetchCandidateOverview({ page = 1, limit = 15, status, search, batchId } = {}) {
+  const params = { limit };
   if (!isAllStatusOption(status)) {
     const enumStatus = STATUS_LABEL_TO_ENUM[status];
     if (enumStatus) params.status = enumStatus;
@@ -24,8 +25,21 @@ export async function fetchCandidateOverview({ page = 1, limit = 6, status, sear
   if (search && search.trim()) params.search = search.trim();
   if (batchId) params.batch_code = batchId;   // 👈 add this
 
-  const res = await api.get("/instructor/candidate-management/candidate-overview", { params });
-  return res.data.data;
+  const fetchPage = async (requestPageNumber) => {
+    const res = await api.get(
+      "/instructor/candidate-management/candidate-overview",
+      { params: { ...params, page: requestPageNumber } },
+    );
+    return res.data.data;
+  };
+
+  return fetchPaginatedPage({
+    fetchPage,
+    page,
+    limit,
+    itemsKey: "candidates",
+    totalKeys: ["totalCandidates", "totalRecords"],
+  });
 }
 
 /**

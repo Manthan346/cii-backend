@@ -1,4 +1,5 @@
 import api from "../api";
+import { fetchPaginatedPage } from "./paginationService";
 
 /**
  * Fetches paginated attendance sessions for the instructor's company.
@@ -8,23 +9,31 @@ import api from "../api";
  */
 export async function fetchAttendanceSessions({
   page = 1,
-  limit = 6,
+  limit = 15,
   search,
   batchId,
   courseId,
   sessionDate,
 } = {}) {
-  const params = { page, limit };
+  const params = { limit };
 
   if (search && search.trim()) params.search = search.trim();
   if (batchId) params.batch_id = batchId;
   if (courseId) params.course_id = courseId;
   if (sessionDate) params.session_date = sessionDate;
 
-  const res = await api.get("/instructor/attendance-management/get-sessions", {
-    params,
+  return fetchPaginatedPage({
+    fetchPage: async (requestPage) => {
+      const res = await api.get(
+        "/instructor/attendance-management/get-sessions",
+        { params: { ...params, page: requestPage } },
+      );
+      return res.data.data;
+    },
+    page,
+    limit,
+    itemsKey: "sessions",
   });
-  return res.data.data; // { sessions, pagination: { page, limit, totalRecords, totalPages } }
 }
 
 export async function fetchActiveStudentsForSession(attendanceSessionId) {

@@ -2,7 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { Plus, Search } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
-import { Button, Dropdown, Pagination } from "../../../shared";
+import {
+  Button,
+  Dropdown,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import { assessmentRecords } from "../../../data/assessmentsData";
 import {
   createAssessment,
@@ -37,7 +42,7 @@ export default function Assessments() {
     try {
       const data = await fetchAssessments({
         page: currentPage,
-        limit: 10,
+        limit: TRAINER_PAGE_SIZE,
         search,
         batchId: searchBatchId,
       });
@@ -197,9 +202,9 @@ export default function Assessments() {
                   total={assessmentType ? visibleRecords.length : totalRecords}
                   currentPage={currentPage}
                   totalPages={totalPages}
-                  pageSize={10}
+                  pageSize={TRAINER_PAGE_SIZE}
                   onPageChange={setCurrentPage}
-                  label={`Showing ${visibleRecords.length === 0 ? 0 : (currentPage - 1) * 10 + 1}-${(currentPage - 1) * 10 + visibleRecords.length} out of ${assessmentType ? visibleRecords.length : totalRecords}`}
+                  label={`Showing ${visibleRecords.length === 0 ? 0 : (currentPage - 1) * TRAINER_PAGE_SIZE + 1}-${(currentPage - 1) * TRAINER_PAGE_SIZE + visibleRecords.length} out of ${assessmentType ? visibleRecords.length : totalRecords}`}
                 />
               )}
             </div>

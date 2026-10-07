@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { UserRound, CheckCircle2, Clock, Phone } from "lucide-react";
 import Sidebar from "../../../layout/Sidebar/Sidebar";
 import Topbar from "../../../layout/Topbar/Topbar";
-import { FilterBar, Pagination } from "../../../shared";
+import {
+  FilterBar,
+  Pagination,
+  TRAINER_PAGE_SIZE,
+} from "../../../shared";
 import StatCard from "../StatCard/StatCard";
 import CandidateTable from "../CandidateTable/CandidateTable";
 import {
@@ -23,8 +27,6 @@ const STAT_ICONS = {
   clock: Clock,
   phone: Phone,
 };
-const PAGE_LIMIT = 6;
-
 function mapCandidate(apiCandidate) {
   return {
     id: apiCandidate.enrollment_id,
@@ -90,7 +92,7 @@ const CandidateManagement = () => {
     currentPage: 1,
     totalPages: 1,
     totalCandidates: 0,
-    limit: PAGE_LIMIT,
+    limit: TRAINER_PAGE_SIZE,
   });
   const [filters, setFilters] = useState({ status: "", search: "" });
   const [loading, setLoading] = useState(true);
@@ -138,7 +140,7 @@ const CandidateManagement = () => {
       try {
         const data = await fetchCandidateOverview({
           page: pagination.currentPage,
-          limit: PAGE_LIMIT,
+          limit: TRAINER_PAGE_SIZE,
           status: filters.status,
           search: filters.search,
           batchId: filters.batchId,
@@ -287,6 +289,7 @@ const CandidateManagement = () => {
                       currentPage={pagination.currentPage}
                       totalPages={pagination.totalPages}
                       onPageChange={handlePageChange}
+                      pageSize={TRAINER_PAGE_SIZE}
                     />
                   </>
                 )}
