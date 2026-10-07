@@ -1,7 +1,7 @@
 import API from "../api";
 
 export async function fetchSuperAdminAdmins(page = 1, limit = 20) {
-  const response = await API.get("/super-admin/admindetails", {
+  const response = await API.get("/super-admin/admin-details", {
     params: { page, limit },
   });
   const data = response?.data?.data ?? {};
