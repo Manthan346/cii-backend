@@ -95,6 +95,18 @@
   color: #dc2626;
 }
 
+.recruiter-sidebar__item--action.recruiter-sidebar__item--active,
+.recruiter-sidebar__item--action.recruiter-sidebar__item--active:hover {
+  background: var(--recruiter-navy);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.recruiter-sidebar__item--action {
+  width: 195px;
+  box-sizing: content-box;
+}
+
 .recruiter-sidebar__icon {
   flex-shrink: 0;
 }

@@ -18,7 +18,8 @@ const INITIAL_FORM = {
   employmentType: EMPLOYMENT_TYPE_OPTIONS[0],
   experience: "",
   vacancies: "",
-  location: "",
+  city: "",
+  state: "",
   workMode: WORK_MODE_OPTIONS[0],
   description: "",
   qualification: "",
@@ -111,7 +112,8 @@ const buildInitialForm = (initialValues) => {
       EMPLOYMENT_TYPE_OPTIONS[0],
     experience: values.experience ?? "",
     vacancies: values.vacancy ?? "",
-    location: locationWithState,
+    city: values.location ?? "",
+    state: values.state ?? "",
     workMode: normalizeWorkModeForUi(values.mode ?? values.work_mode),
     description: values.description ?? values.job_description ?? "",
     qualification:
@@ -210,6 +212,9 @@ const CreateJobForm = ({
 
   const mapWorkModeToApiValue = (mode) => {
     switch (mode) {
+      case "On-site":
+      case "On Site":
+      case "Onsite":
       case "Off-site":
       case "Offline":
         return "offline";
@@ -226,7 +231,7 @@ const CreateJobForm = ({
       company_name: form.companyName.trim(),
       sector: form.department.trim(),
       vacancy: Number(form.vacancies) || 0,
-      location: form.location.trim(),
+      location: (form.city || form.state || "").trim(),
       job_role: form.jobTitle.trim(),
       employment_type: form.employmentType,
       work_mode: mapWorkModeToApiValue(form.workMode),
@@ -431,7 +436,7 @@ const CreateJobForm = ({
 
         <div className="create-job-form__grid">
           <label className="create-job-form__field">
-            <span className="create-job-form__label">City &amp; State</span>
+            <span className="create-job-form__label">City</span>
             <input
               type="text"
               placeholder="e.g. Mumbai, Maharashtra"
@@ -559,16 +564,17 @@ const CreateJobForm = ({
         </h2>
 
         <label className="create-job-form__field" style={{ maxWidth: 260 }}>
-          <span className="create-job-form__label">Last Date to Apply</span>
-          <input
-            type="text"
-            placeholder="YYYY-MM-DD"
-            value={form.deadline}
-            onChange={handleChange("deadline")}
-            aria-label="Last date to apply (YYYY-MM-DD)"
-            title="Last date to apply (YYYY-MM-DD)"
-            className="create-job-form__input create-job-form__input--date"
-          />
+          <span className="create-job-form__label">Deadline Date</span>
+          <div className="create-job-form__date-input">
+            <input
+              type="date"
+              value={form.deadline}
+              min={getTodayDate()}
+              onChange={handleChange("deadline")}
+              className="create-job-form__input create-job-form__input--date"
+            />
+            <Calendar size={16} className="create-job-form__date-icon" />
+          </div>
           {fieldErrors.deadline && (
             <span className="create-job-form__field-error">
               {fieldErrors.deadline}

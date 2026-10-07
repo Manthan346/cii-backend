@@ -205,7 +205,10 @@ export async function createRecruiterJobPosting(payload) {
     toMultipartPayload(payload),
   );
   const placement = response.data?.data?.placement ?? response.data?.data ?? {};
-  return normalizeJobPosting(placement);
+  return normalizeJobPosting({
+    ...placement,
+    work_mode: placement.work_mode ?? payload.work_mode,
+  });
 }
 
 export async function updateRecruiterJobPosting(placementId, payload) {
@@ -215,7 +218,10 @@ export async function updateRecruiterJobPosting(placementId, payload) {
   );
   const updated =
     response.data?.data?.placement ?? response.data?.data ?? {};
-  return normalizeJobPosting(updated);
+  return normalizeJobPosting({
+    ...updated,
+    work_mode: updated.work_mode ?? payload.work_mode,
+  });
 }
 
 function toMultipartPayload(payload = {}) {
@@ -242,7 +248,18 @@ export function mapFormToRecruiterJobPayload(form = {}) {
   const jobRole = form.jobRole || form.job_role || "Role";
   const department = form.department || form.sector || "General";
   const city = form.location || form.city || "";
-  const workMode = form.mode || form.workMode || "hybrid";
+  const workMode = String(form.mode || form.workMode || "hybrid")
+    .trim()
+    .toLowerCase();
+  const apiWorkMode = ["on-site", "on site", "onsite", "off-site", "offline"].includes(
+    workMode,
+  )
+    ? "offline"
+    : ["remote", "online"].includes(workMode)
+      ? "online"
+      : workMode === "hybrid"
+        ? "hybrid"
+        : workMode.replace(/\s+/g, "-");
 
   const parseSalaryValue = (value) => {
     if (value === null || value === undefined || value === "") return null;
@@ -261,7 +278,7 @@ export function mapFormToRecruiterJobPayload(form = {}) {
     job_role: jobRole,
     job_description: form.description ?? form.job_description ?? "",
     employment_type: form.employmentType ?? form.type ?? "Full-time",
-    work_mode: String(workMode).trim().toLowerCase().replace(/\s+/g, "-"),
+    work_mode: apiWorkMode,
     eligible_qualification:
       form.eligibility?.qualification ?? form.qualification ?? "",
     eligible_percentage_cgpa:

@@ -220,7 +220,14 @@
 }
 
 .create-job-form__input--date {
-  padding-right: 12px;
+  padding-right: 36px;
+}
+
+.create-job-form__date-icon {
+  position: absolute;
+  right: 12px;
+  color: #9aa1b1;
+  pointer-events: none;
 }
 
 .create-job-form__footer {

@@ -9,6 +9,7 @@
 
 export const jobFilterOptions = {
   modes: ['On-Site', 'Hybrid', 'Remote'],
+  employmentTypes: ['Full-time', 'Part-time', 'Internship', 'Contract'],
 };
 
 // Maps a job's status text to the bg/color pair the shared StatusBadge expects

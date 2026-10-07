@@ -46,6 +46,9 @@ const FilterDropdown = ({ label, options, value, onChange }) => (
  */
 const JobFilterBar = ({ onFilterChange, jobTypes = [] }) => {
   const [draft, setDraft] = useState(EMPTY_DRAFT);
+  const experienceOptions = [...new Set(
+    jobs.map((job) => job.experience).filter(Boolean),
+  )];
 
   const updateFilter = (key, value) => {
     const nextDraft = { ...draft, [key]: value };
@@ -63,7 +66,8 @@ const JobFilterBar = ({ onFilterChange, jobTypes = [] }) => {
         <Search size={16} className="job-filter-bar__search-icon" />
         <input
           type="text"
-          placeholder="Search ..."
+          aria-label="Search by job role, company name, sector, or location"
+          placeholder="Search job role, company, sector, location..."
           value={draft.search}
           onChange={handleChange('search')}
           className="job-filter-bar__search-input"
