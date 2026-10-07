@@ -7,11 +7,9 @@ import "./JobManagementList.css";
 
 const EMPTY_FILTERS = {
   search: "",
-  jobRole: "",
-  sector: "",
-  companyName: "",
   mode: "",
-  location: "",
+  employmentType: "",
+  experience: "",
 };
 
 const PAGE_SIZE = 5;
@@ -43,29 +41,32 @@ const JobManagementList = ({
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
-      const searchText = (job.jobRole ?? "").toLowerCase();
+      const searchText = [
+        job.jobRole,
+        job.companyName,
+        job.sector,
+        job.location,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
       const matchesSearch =
         !appliedFilters.search ||
         searchText.includes(appliedFilters.search.toLowerCase());
-      const matchesJobRole =
-        !appliedFilters.jobRole || job.jobRole === appliedFilters.jobRole;
-      const matchesSector =
-        !appliedFilters.sector || job.sector === appliedFilters.sector;
-      const matchesCompany =
-        !appliedFilters.companyName ||
-        job.companyName === appliedFilters.companyName;
       const matchesMode =
         !appliedFilters.mode || job.mode === appliedFilters.mode;
-      const matchesLocation =
-        !appliedFilters.location || job.location === appliedFilters.location;
+      const matchesEmploymentType =
+        !appliedFilters.employmentType ||
+        job.employmentType === appliedFilters.employmentType;
+      const matchesExperience =
+        !appliedFilters.experience ||
+        job.experience === appliedFilters.experience;
 
       return (
         matchesSearch &&
-        matchesJobRole &&
-        matchesSector &&
-        matchesCompany &&
         matchesMode &&
-        matchesLocation
+        matchesEmploymentType &&
+        matchesExperience
       );
     });
   }, [jobs, appliedFilters]);
@@ -88,7 +89,7 @@ const JobManagementList = ({
         </p>
       </header>
 
-      <JobFilterBar onFilterChange={setAppliedFilters} />
+      <JobFilterBar jobs={jobs} onFilterChange={setAppliedFilters} />
 
       {error && <div className="job-management__error">{error}</div>}
 

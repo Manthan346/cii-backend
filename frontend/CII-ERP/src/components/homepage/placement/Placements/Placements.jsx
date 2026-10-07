@@ -12,11 +12,11 @@ import { getPublicJobPostings } from "../../../../../api/homepage/placementPageS
 const PAGE_SIZE = 40;
 
 const FILTERS = [
-  {
-    key: "location",
-    label: "Location",
-    getOptions: (list) => unique(list.map((job) => job.location)),
-  },
+  // {
+  //   key: "location",
+  //   label: "Location",
+  //   getOptions: (list) => unique(list.map((job) => job.location)),
+  // },
   {
     key: "workMode",
     label: "Work Mode",
@@ -93,18 +93,20 @@ export default function Placements() {
     };
   }, []);
 
+  const search = (filterValues.search || "").trim().toLowerCase();
   const filteredJobs = useMemo(
     () =>
-      jobs.filter((job) =>
-        (job.title || "")
-          .toLowerCase()
-          .includes((filterValues.title || "").trim().toLowerCase()) &&
+      jobs.filter(
+        (job) =>
+          `${job.title || ""} ${job.location || ""}`
+            .toLowerCase()
+            .includes(search) &&
           FILTERS.every(({ key }) => {
             const wanted = filterValues[key];
             return !wanted || job[key] === wanted;
           }),
       ),
-    [jobs, filterValues],
+    [jobs, filterValues, search],
   );
   const visibleJobs = filteredJobs.slice(0, visibleCount);
 
@@ -141,11 +143,11 @@ export default function Placements() {
             <input
               type="search"
               className={styles.filterSearch}
-              value={filterValues.title || ""}
+              value={filterValues.search || ""}
               onChange={(event) =>
                 setFilterValues((previous) => ({
                   ...previous,
-                  title: event.target.value,
+                  search: event.target.value,
                 }))
               }
               placeholder="Search job roles"

@@ -14,6 +14,11 @@
   color: #1c1f2e;
 }
 
+.donut-chart-card .recharts-wrapper:focus:not(:focus-visible),
+.donut-chart-card .recharts-surface:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .donut-chart-card__donut {
   margin: 4px 0 8px;
 }

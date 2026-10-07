@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Calendar } from "lucide-react";
 import "./CreateJobForm.css";
 
 const DEPARTMENT_OPTIONS = [
@@ -27,7 +26,6 @@ const INITIAL_FORM = {
   experience: "",
   vacancies: "",
   city: "",
-  state: "",
   workMode: WORK_MODE_OPTIONS[0],
   description: "",
   qualification: "",
@@ -122,7 +120,6 @@ const buildInitialForm = (initialValues) => {
     experience: values.experience ?? "",
     vacancies: values.vacancy ?? "",
     city: values.location ?? "",
-    state: values.state ?? "",
     workMode: normalizeWorkModeForUi(values.mode ?? values.work_mode),
     description: values.description ?? values.job_description ?? "",
     qualification:
@@ -221,6 +218,9 @@ const CreateJobForm = ({
 
   const mapWorkModeToApiValue = (mode) => {
     switch (mode) {
+      case "On-site":
+      case "On Site":
+      case "Onsite":
       case "Off-site":
       case "Offline":
         return "offline";
@@ -237,7 +237,7 @@ const CreateJobForm = ({
       company_name: form.companyName.trim(),
       sector: form.department.trim(),
       vacancy: Number(form.vacancies) || 0,
-      location: (form.city || form.state || "").trim(),
+      location: form.city.trim(),
       job_role: form.jobTitle.trim(),
       employment_type: form.employmentType,
       work_mode: mapWorkModeToApiValue(form.workMode),
@@ -447,7 +447,7 @@ const CreateJobForm = ({
 
         <div className="create-job-form__grid">
           <label className="create-job-form__field">
-            <span className="create-job-form__label">City</span>
+            <span className="create-job-form__label">Location</span>
             <input
               type="text"
               placeholder="e.g. Mumbai"
@@ -457,31 +457,20 @@ const CreateJobForm = ({
             />
           </label>
 
-          <label className="create-job-form__field">
-            <span className="create-job-form__label">State</span>
-            <input
-              type="text"
-              placeholder="e.g. Maharashtra"
-              value={form.state}
-              onChange={handleChange("state")}
-              className="create-job-form__input"
-            />
-          </label>
-        </div>
-
-        <div className="create-job-form__field" style={{ marginTop: 14 }}>
-          <span className="create-job-form__label">Work Mode</span>
-          <div className="create-job-form__segmented">
-            {WORK_MODE_OPTIONS.map((mode) => (
-              <button
-                key={mode}
-                type="button"
-                className={`create-job-form__segmented-option ${form.workMode === mode ? "create-job-form__segmented-option--active" : ""}`}
-                onClick={() => handleWorkModeSelect(mode)}
-              >
-                {mode}
-              </button>
-            ))}
+          <div className="create-job-form__field">
+            <span className="create-job-form__label">Work Mode</span>
+            <div className="create-job-form__segmented">
+              {WORK_MODE_OPTIONS.map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  className={`create-job-form__segmented-option ${form.workMode === mode ? "create-job-form__segmented-option--active" : ""}`}
+                  onClick={() => handleWorkModeSelect(mode)}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -595,7 +584,6 @@ const CreateJobForm = ({
               onChange={handleChange("deadline")}
               className="create-job-form__input create-job-form__input--date"
             />
-            <Calendar size={16} className="create-job-form__date-icon" />
           </div>
           {fieldErrors.deadline && (
             <span className="create-job-form__field-error">

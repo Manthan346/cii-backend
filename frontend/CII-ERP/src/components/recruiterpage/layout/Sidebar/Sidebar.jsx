@@ -75,11 +75,14 @@ const Sidebar = ({ isOpen = false, onClose, onLogout }) => {
 
               if (item.isAction) {
                 const Icon = item.icon;
+                const isActive = item.id === 'logout' && location.pathname === '/recruiter/logout';
                 return (
                   <li key={item.id}>
                     <button
                       type="button"
-                      className="recruiter-sidebar__item recruiter-sidebar__item--action"
+                      className={`recruiter-sidebar__item recruiter-sidebar__item--action ${
+                        isActive ? 'recruiter-sidebar__item--active' : ''
+                      }`}
                       onClick={() => {
                         onClose?.();
                         onLogout?.();

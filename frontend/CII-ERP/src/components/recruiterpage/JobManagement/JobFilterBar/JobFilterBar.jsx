@@ -5,22 +5,22 @@ import './JobFilterBar.css';
 
 const EMPTY_DRAFT = {
   search: '',
-  jobRole: '',
-  sector: '',
-  companyName: '',
   mode: '',
-  location: '',
+  employmentType: '',
+  experience: '',
 };
 
 /**
  * JobFilterBar
  *
- * Search box + 5 dropdown filters (Job Role, Sector, Company Name,
- * Mode, Location). Filter changes are passed to JobManagementList
- * immediately.
+ * Search across job role, company, sector, and location, with dropdowns
+ * for mode, employment type, and experience.
  */
-const JobFilterBar = ({ onFilterChange }) => {
+const JobFilterBar = ({ jobs = [], onFilterChange }) => {
   const [draft, setDraft] = useState(EMPTY_DRAFT);
+  const experienceOptions = [...new Set(
+    jobs.map((job) => job.experience).filter(Boolean),
+  )];
 
   const handleChange = (key) => (event) => {
     const nextDraft = { ...draft, [key]: event.target.value };
@@ -34,41 +34,12 @@ const JobFilterBar = ({ onFilterChange }) => {
         <Search size={16} className="job-filter-bar__search-icon" />
         <input
           type="text"
-          placeholder="Search ..."
+          aria-label="Search by job role, company name, sector, or location"
+          placeholder="Search job role, company, sector, location..."
           value={draft.search}
           onChange={handleChange('search')}
           className="job-filter-bar__search-input"
         />
-      </div>
-
-      <div className="job-filter-bar__field">
-        <select value={draft.jobRole} onChange={handleChange('jobRole')} className="job-filter-bar__select">
-          <option value="">Job Role</option>
-          {jobFilterOptions.jobRoles.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
-        <ChevronDown size={14} className="job-filter-bar__chevron" />
-      </div>
-
-      <div className="job-filter-bar__field">
-        <select value={draft.sector} onChange={handleChange('sector')} className="job-filter-bar__select">
-          <option value="">Sector</option>
-          {jobFilterOptions.sectors.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
-        <ChevronDown size={14} className="job-filter-bar__chevron" />
-      </div>
-
-      <div className="job-filter-bar__field">
-        <select value={draft.companyName} onChange={handleChange('companyName')} className="job-filter-bar__select">
-          <option value="">Company Name</option>
-          {jobFilterOptions.companies.map((option) => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
-        <ChevronDown size={14} className="job-filter-bar__chevron" />
       </div>
 
       <div className="job-filter-bar__field">
@@ -82,15 +53,24 @@ const JobFilterBar = ({ onFilterChange }) => {
       </div>
 
       <div className="job-filter-bar__field">
-        <select value={draft.location} onChange={handleChange('location')} className="job-filter-bar__select">
-          <option value="">All location</option>
-          {jobFilterOptions.locations.map((option) => (
+        <select value={draft.employmentType} onChange={handleChange('employmentType')} className="job-filter-bar__select">
+          <option value="">Employment Type</option>
+          {jobFilterOptions.employmentTypes.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
         </select>
         <ChevronDown size={14} className="job-filter-bar__chevron" />
       </div>
 
+      <div className="job-filter-bar__field">
+        <select value={draft.experience} onChange={handleChange('experience')} className="job-filter-bar__select">
+          <option value="">Experience</option>
+          {experienceOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+        <ChevronDown size={14} className="job-filter-bar__chevron" />
+      </div>
     </div>
   );
 };
