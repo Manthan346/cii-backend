@@ -7,8 +7,9 @@ export async function fetchDashboardData() {
   return getData(response);
 }
 
-export async function fetchEnrollmentTrend() {
-  const response = await API.get("/super-admin/enrollment-trend");
+export async function fetchEnrollmentTrend(centerId) {
+  const params = centerId && centerId !== "all" ? { center_id: centerId } : {};
+  const response = await API.get("/super-admin/enrollment-trend", { params });
   return getData(response)?.candidate_enrollment_trend ?? {};
 }
 
