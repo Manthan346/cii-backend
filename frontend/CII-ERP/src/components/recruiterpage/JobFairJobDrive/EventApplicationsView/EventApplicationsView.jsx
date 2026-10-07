@@ -16,7 +16,7 @@ import { fetchJobEventCandidates } from '../../../../../api/recruiter/jobEventSe
 import './EventApplicationsView.css';
 
 const EMPTY_FILTERS = { search: '', status: 'All Status', source: 'All Sources' };
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 15;
 
 /**
  * EventApplicationsView

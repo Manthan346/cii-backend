@@ -6,6 +6,8 @@ import {
   updateApplicationStatus,
 } from "../../../../api/recruiter/applicationService";
 
+const PAGE_SIZE = 15;
+
 const Applications = () => {
   const [applications, setApplications] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
@@ -23,7 +25,7 @@ const Applications = () => {
       const { applications: records, pagination: pageData } =
         await fetchRecruiterApplications({
           page: currentPage,
-          limit: 10,
+          limit: PAGE_SIZE,
           search: filters.search || undefined,
           company_name: filters.company || undefined,
           job_role: filters.role || undefined,
@@ -97,7 +99,7 @@ const Applications = () => {
         applications={applications}
         currentPage={currentPage}
         totalItems={pagination.totalItems ?? 0}
-        pageSize={pagination.limit ?? 10}
+        pageSize={pagination.limit ?? PAGE_SIZE}
         isLoading={isLoading}
         error={error}
         onViewProfile={setSelectedId}

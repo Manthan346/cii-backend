@@ -1,20 +1,25 @@
 .recruiter-layout {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   background: #eef1f7;
+  overflow: hidden;
 }
 
 .recruiter-layout__body {
   flex: 1;
   display: flex;
+  overflow: hidden;
   min-height: 0;
 }
 
 .recruiter-layout__content {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   padding: 24px 28px 40px;
   box-sizing: border-box;
 }

@@ -9,7 +9,7 @@ import { fetchJobEvents } from "../../../../../api/recruiter/jobEventService";
 import "./JobFairJobDriveList.css";
 
 const EMPTY_FILTERS = { search: "", type: "All", status: "All status" };
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 15;
 
 /**
  * JobFairJobDriveList

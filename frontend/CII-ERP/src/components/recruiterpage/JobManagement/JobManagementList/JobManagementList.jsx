@@ -7,14 +7,12 @@ import "./JobManagementList.css";
 
 const EMPTY_FILTERS = {
   search: "",
-  jobRole: "",
-  sector: "",
-  companyName: "",
   mode: "",
-  location: "",
+  type: "",
+  status: "",
 };
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 15;
 
 /**
  * JobManagementList
@@ -41,32 +39,54 @@ const JobManagementList = ({
   const [appliedFilters, setAppliedFilters] = useState(EMPTY_FILTERS);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const jobTypes = useMemo(
+    () =>
+      [...new Set(jobs.map((job) => job.type).filter(Boolean))].sort((a, b) =>
+        a.localeCompare(b),
+      ),
+    [jobs],
+  );
+
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
-      const searchText = (job.jobRole ?? "").toLowerCase();
+      const searchText = [
+        job.jobRole,
+        job.sector,
+        job.location,
+        job.state,
+        job.type,
+        job.companyName,
+        job.mode,
+        job.vacancy,
+        job.experience,
+        job.status,
+        job.postedDate,
+        job.deadline,
+        job.role,
+        job.department,
+        job.employmentType,
+        job.salary,
+        job.description,
+        job.eligibility?.qualification,
+        job.eligibility?.minPercentage,
+        ...(job.requiredSkills ?? []),
+        ...(job.preferredSkills ?? []),
+        ...(job.responsibilities ?? []),
+      ]
+        .filter((value) => value !== null && value !== undefined)
+        .join(" ")
+        .toLowerCase();
       const matchesSearch =
         !appliedFilters.search ||
         searchText.includes(appliedFilters.search.toLowerCase());
-      const matchesJobRole =
-        !appliedFilters.jobRole || job.jobRole === appliedFilters.jobRole;
-      const matchesSector =
-        !appliedFilters.sector || job.sector === appliedFilters.sector;
-      const matchesCompany =
-        !appliedFilters.companyName ||
-        job.companyName === appliedFilters.companyName;
       const matchesMode =
         !appliedFilters.mode || job.mode === appliedFilters.mode;
-      const matchesLocation =
-        !appliedFilters.location || job.location === appliedFilters.location;
+      const matchesType =
+        !appliedFilters.type || job.type === appliedFilters.type;
+      const matchesStatus =
+        !appliedFilters.status || job.status === appliedFilters.status;
 
-      return (
-        matchesSearch &&
-        matchesJobRole &&
-        matchesSector &&
-        matchesCompany &&
-        matchesMode &&
-        matchesLocation
-      );
+      return matchesSearch && matchesMode && matchesType && matchesStatus;
     });
   }, [jobs, appliedFilters]);
 
@@ -88,7 +108,10 @@ const JobManagementList = ({
         </p>
       </header>
 
-      <JobFilterBar onFilterChange={setAppliedFilters} />
+      <JobFilterBar
+        onFilterChange={setAppliedFilters}
+        jobTypes={jobTypes}
+      />
 
       {error && <div className="job-management__error">{error}</div>}
 

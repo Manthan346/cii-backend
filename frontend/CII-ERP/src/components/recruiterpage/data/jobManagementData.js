@@ -8,11 +8,7 @@
  */
 
 export const jobFilterOptions = {
-  jobRoles: ['Junior Graphic Designer', 'Beauty & Wellness', 'Cybersecurity', 'Quick Service Restaurant', 'Hospitality'],
-  sectors: ['Design', "L'Oréal", 'DSCI', 'Jubilant', 'EHL & ITC'],
-  companies: ['Blue Star', 'ITC', 'COSMOS', 'DSCI', 'PSIPL'],
   modes: ['On-Site', 'Hybrid', 'Remote'],
-  locations: ['Mumbai', 'Pune', 'Delhi'],
 };
 
 // Maps a job's status text to the bg/color pair the shared StatusBadge expects
@@ -20,6 +16,7 @@ export const jobStatusStyles = {
   Published: { bg: '#dcfce7', color: '#16a34a' },
   Draft: { bg: '#eef1f7', color: '#6b7280' },
   Closed: { bg: '#fee2e2', color: '#dc2626' },
+  Expired: { bg: '#ffedd5', color: '#c2410c' },
   Archived: { bg: '#eef1f7', color: '#6b7280' },
 };
 
