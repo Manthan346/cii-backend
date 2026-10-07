@@ -5,9 +5,24 @@ import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { SuperAdminAuthRequest } from "../../interfaces/superadmin-auth-interface";
 import { prisma } from "../../lib/prisma";
+import { SUPER_ADMIN_REDIS_CACHE } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
+import { redis } from "../../lib/redis";
 
 export const fetchDashboardData = asyncHandler(
     async (req: SuperAdminAuthRequest, res: Response) => {
+
+        const redisKey = SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+
+        const cachedSuperAdminDashboardData = await redis.get(redisKey)
+
+        if(cachedSuperAdminDashboardData){
+            return res.status(200).json({
+                statusCode: 200,
+                message: "Super Admin dashboard data fetched successfully.",
+                data: JSON.parse(cachedSuperAdminDashboardData),
+            });
+        }
 
         const [centerCount,totalCandidates,totalStaff,certificatesIssued] = await Promise.all([
             prisma.center_details.count(),
@@ -28,12 +43,27 @@ export const fetchDashboardData = asyncHandler(
             })
         ])
 
+        
+        const data = {
+            centerCount,
+            totalCandidates,
+            totalStaff,
+            certificatesIssued
+        }
+
+        await redis.set(
+            redisKey,
+            JSON.stringify(data),
+            "EX",
+            SUPER_ADMIN_REDIS_CACHE
+        );
+
         return res.status(200).json(
         new ApiResponse(200, {
-            center_count:centerCount,
-            total_candidates:totalCandidates,
-            total_staff: totalStaff,
-            certificate_issued : certificatesIssued
+            center_count:data.centerCount,
+            total_candidates:data.totalCandidates,
+            total_staff: data.totalStaff,
+            certificate_issued : data.certificatesIssued
         }, "Dashboard data fetched successfully")
     )
        

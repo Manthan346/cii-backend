@@ -8,6 +8,8 @@ import bcrypt from "bcrypt";
 import { Prisma } from "../../generated/prisma/client";
 import { generateInstructorUniqueId } from "../../helpers/generate-instructor-id";
 import { ApiResponse } from "../../helpers/ApiResponse";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 export const createInstructorByAdmin = asyncHandler(
     async (
@@ -62,7 +64,7 @@ export const createInstructorByAdmin = asyncHandler(
             );
         }
 
-        const centerId = admin.center_id;
+        const centerId = admin.center_id!;
         const centerCode = admin.center_details?.center_code;
 
         if (!centerCode) {
@@ -311,6 +313,10 @@ export const createInstructorByAdmin = asyncHandler(
                 "Unable to generate a unique instructor ID. Please try again."
             );
         }
+
+        await redis.del(
+            SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+        );
 
         return res.status(201).json(
             new ApiResponse(

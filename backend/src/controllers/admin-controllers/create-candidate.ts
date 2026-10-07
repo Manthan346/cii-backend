@@ -6,6 +6,8 @@ import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { buildStudentId, getNextSequence } from "../../utils/candidate-utils/generate-student-id";
 import * as bcrypt from "bcrypt";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 /**
  * Admin create candidate — admin can create and enroll a candidate in a batch.
@@ -240,6 +242,10 @@ export const adminCreateCandidate = asyncHandler(
                 throw error;
             }
         }
+
+        await redis.del(
+            SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+        );
 
         return res.status(201).json(
             new ApiResponse(

@@ -7,6 +7,8 @@ import { role_types } from "../../generated/prisma/enums";
 import bcrypt from "bcrypt";
 import { generateAdminUniqueId } from "../../helpers/generate-admin-id";
 import { Prisma } from "../../generated/prisma/client";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 export const createAdminByAdmin = async (
     req: Request,
@@ -150,6 +152,10 @@ export const createAdminByAdmin = async (
                     adminDetail,
                 };
             });
+
+            await redis.del(
+                SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+            );
 
             return res.status(201).json({
                 statusCode: 201,

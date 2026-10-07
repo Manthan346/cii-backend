@@ -7,6 +7,8 @@ import { role_types } from "../../generated/prisma/enums";
 import bcrypt from "bcrypt";
 import { generateHrUniqueId } from "../../helpers/generate-hr-id";
 import { Prisma } from "../../generated/prisma/client";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 export const createHrByAdmin = asyncHandler(
     async (
@@ -254,6 +256,10 @@ export const createHrByAdmin = asyncHandler(
                 "Unable to generate a unique HR ID. Please try again."
             );
         }
+
+        await redis.del(
+            SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+        );
         
         return res.status(201).json({
             statusCode: 201,
