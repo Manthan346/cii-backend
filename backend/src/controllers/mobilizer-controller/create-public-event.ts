@@ -10,6 +10,7 @@ import {
 } from "../../generated/prisma/enums";
 import { ApiError } from "../../helpers/ApiError";
 import { createEventSchema } from "../../services/zod/event-schema/eventValidation";
+import { cache } from "../../lib/cache-helper";
 
 export const createPublicEvent = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
@@ -108,6 +109,9 @@ const endTimeStr = data.event_end_time || 'Time not specified';
                 return event;
             }
         );
+
+        // Invalidate mobilizer cache for this center (affects center events, dashboard)
+        await cache.invalidateMobilizerCenter(center_id);
 
         // Prepare response with mobilizer name
         const responseData = {

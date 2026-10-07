@@ -35,7 +35,7 @@ superAdminRouter.post('/createAdmin', validateBody(createAdminBySuperAdminSchema
 // enrollment trend
 superAdminRouter.get('/enrollment-trend', verifySuperAdminUsingAccessToken, getEnrollmentTrend)
 // center-wise enrollment (optional center_id param)
-superAdminRouter.get('/center-wise-enrollment/:center_id?', verifySuperAdminUsingAccessToken, getCenterWiseEnrollment)
+superAdminRouter.get('/center-wise-enrollment{/:center_id}', verifySuperAdminUsingAccessToken, getCenterWiseEnrollment)
 // download enrollment report (superadmin) - query: from_date, to_date, center_id (optional)
 superAdminRouter.get('/reports/enrollment', verifySuperAdminUsingAccessToken, validateQuery(downloadSuperAdminEnrollmentReportQuerySchema), downloadSuperAdminEnrollmentReport)
 

@@ -7,6 +7,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { updatePublicEventSchema } from "../../services/zod/event-schema/eventValidation";
 import { event_mode } from "../../generated/prisma/enums";
 import { uploadEventImages } from "../../middlewares/multer-middleware/image-upload";
+import { cache } from "../../lib/cache-helper";
 
 export const updatePublicEvent = asyncHandler(
   async (req: MobilizerAuthRequest, res: Response) => {
@@ -101,6 +102,9 @@ export const updatePublicEvent = asyncHandler(
       where: { event_id },
       data: updateData,
     });
+
+    // Invalidate mobilizer cache for this center (affects center events, dashboard)
+    await cache.invalidateMobilizerCenter(mobilizer.center_id);
 
     // Create notification
     const startTimeStr = updatedEvent.event_start_time

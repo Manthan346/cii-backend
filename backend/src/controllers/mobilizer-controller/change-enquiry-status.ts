@@ -5,6 +5,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { MobilizerAuthRequest } from "../../interfaces/mobilizer-auth-interface";
 import { enquiry_status } from "../../generated/prisma/enums";
+import { cache } from "../../lib/cache-helper";
 
 export const changeEnquiryStatus = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
@@ -25,16 +26,12 @@ export const changeEnquiryStatus = asyncHandler(
         }
 
         // Validate that the status is a valid enquiry_status enum value
-        // We check if the status string is a key in the enquiry_status enum object
         if (!(status in enquiry_status)) {
-            // Build a string of valid statuses for the error message
             const validStatuses = Object.values(enquiry_status).join(", ");
             throw new ApiError(400, `Invalid status. Valid statuses are: ${validStatuses}`);
         }
 
-        // Check if enquiry exists AND belongs to the mobilizer's center.
-        // findFirst with center_id scopes the lookup; an enquiry from another center
-        // returns null -> 404 (no cross-center status change allowed).
+        // Check if enquiry exists AND belongs to the mobilizer's center
         const enquiry = await prisma.enquiry_records.findFirst({
             where: { enquiry_id: enquiryId, center_id: centerId },
             select: {
@@ -48,7 +45,6 @@ export const changeEnquiryStatus = asyncHandler(
             throw new ApiError(404, "Enquiry not found");
         }
 
-        // Get mobilizer ID from token
         const mobilizerId = req.mobilizer?.mobilizer_id;
         if (!mobilizerId) {
             throw new ApiError(401, "Mobilizer ID not found in token");
@@ -86,6 +82,9 @@ export const changeEnquiryStatus = asyncHandler(
                 }
             }
         });
+
+        // Invalidate mobilizer cache for this center (affects dashboard stats, charts, enquiry stats, enrollment analytics)
+        await cache.invalidateMobilizerCenter(centerId);
 
         // Prepare response
         const responseData = {

@@ -4,6 +4,7 @@ import { prisma } from "../../lib/prisma";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { MobilizerAuthRequest } from "../../interfaces/mobilizer-auth-interface";
+import { cache } from "../../lib/cache-helper";
 
 export const assignMobilizerToEnquiry = asyncHandler(
     async (req: MobilizerAuthRequest, res: Response) => {
@@ -68,6 +69,9 @@ export const assignMobilizerToEnquiry = asyncHandler(
                 }
             }
         });
+
+        // Invalidate mobilizer cache for this center (enquiry assignment affects dashboard stats/charts)
+        await cache.invalidateMobilizerCenter(centerId);
 
         return res.status(200).json(
             new ApiResponse(200, updatedEnquiry, "Enquiry assigned to mobilizer successfully")

@@ -1,0 +1,345 @@
+{
+  "info": {
+    "name": "SuperAdmin Enrollment Report API",
+    "description": "Postman collection to test the SuperAdmin Enrollment Report download endpoint",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "user"
+  },
+  "item": [
+    {
+      "name": "Download Enrollment Report - All Centers",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?from_date=2025-01-01&to_date=2025-12-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "from_date",
+              "value": "2025-01-01",
+              "description": "Start date in YYYY-MM-DD format (required)"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-12-31",
+              "description": "End date in YYYY-MM-DD format (required)"
+            }
+          ]
+        },
+        "description": "Download enrollment report for ALL centers within date range"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Specific Center",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?center_id=550e8400-e29b-41d4-a716-446655440000&from_date=2025-01-01&to_date=2025-12-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "center_id",
+              "value": "550e8400-e29b-41d4-a716-446655440000",
+              "description": "Optional: UUID of center to filter by"
+            },
+            {
+              "key": "from_date",
+              "value": "2025-01-01",
+              "description": "Start date in YYYY-MM-DD format (required)"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-12-31",
+              "description": "End date in YYYY-MM-DD format (required)"
+            }
+          ]
+        },
+        "description": "Download enrollment report for a SPECIFIC center within date range"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Missing Parameters (Error Test)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?from_date=2025-01-01",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "from_date",
+              "value": "2025-01-01",
+              "description": "Missing to_date - should return 400 error"
+            }
+          ]
+        },
+        "description": "Test error response when to_date is missing (expects 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Invalid Date Format (Error Test)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?from_date=01-01-2025&to_date=12-31-2025",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "from_date",
+              "value": "01-01-2025",
+              "description": "Invalid format - should be YYYY-MM-DD"
+            },
+            {
+              "key": "to_date",
+              "value": "12-31-2025",
+              "description": "Invalid format - should be YYYY-MM-DD"
+            }
+          ]
+        },
+        "description": "Test error response for invalid date format (expects 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - from_date after to_date (Error Test)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?from_date=2025-12-31&to_date=2025-01-01",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "from_date",
+              "value": "2025-12-31",
+              "description": "from_date after to_date - should return 400 error"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-01-01",
+              "description": "to_date before from_date - should return 400 error"
+            }
+          ]
+        },
+        "description": "Test error response when from_date > to_date (expects 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Invalid Center UUID (Error Test)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?center_id=invalid-uuid&from_date=2025-01-01&to_date=2025-12-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "center_id",
+              "value": "invalid-uuid",
+              "description": "Invalid UUID format - should return 400 error"
+            },
+            {
+              "key": "from_date",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-12-31"
+            }
+          ]
+        },
+        "description": "Test error response for invalid center_id UUID format (expects 400)"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Non-existent Center (Error Test)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{superadmin_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?center_id=00000000-0000-0000-0000-000000000000&from_date=2025-01-01&to_date=2025-12-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "center_id",
+              "value": "00000000-0000-0000-0000-000000000000",
+              "description": "Valid UUID but non-existent center - should return 404 error"
+            },
+            {
+              "key": "from_date",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-12-31"
+            }
+          ]
+        },
+        "description": "Test error response for non-existent center (expects 404)"
+      },
+      "response": []
+    },
+    {
+      "name": "Download Enrollment Report - Without Auth (Error Test)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/superadmin/reports/enrollment?from_date=2025-01-01&to_date=2025-12-31",
+          "host": ["{{base_url}}"],
+          "path": ["api", "superadmin", "reports", "enrollment"],
+          "query": [
+            {
+              "key": "from_date",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "to_date",
+              "value": "2025-12-31"
+            }
+          ]
+        },
+        "description": "Test error response without authentication token (expects 401/403)"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "description": "Base URL of your backend API"
+    },
+    {
+      "key": "superadmin_access_token",
+      "value": "YOUR_SUPERADMIN_JWT_TOKEN_HERE",
+      "description": "Replace with your actual superadmin JWT access token from login"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

@@ -6,6 +6,7 @@ import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
 import { buildStudentId, getNextSequence } from "../../utils/candidate-utils/generate-student-id";
 import * as bcrypt from "bcrypt";
+import { cache } from "../../lib/cache-helper";
 
 /**
  * Mobilizer enroll candidate — mobilizer can create and enroll a candidate in a batch.
@@ -228,51 +229,55 @@ export const mobilizerEnrollCandidate = asyncHandler(
                 isNewCandidate
             };
         });
-                break; // success → exit retry loop
-            } catch (error: any) {
-                // P2002 = unique-constraint violation (duplicate candidate_unique_id race)
-                if (error?.code === "P2002" && attempt < MAX_RETRIES - 1) {
-                    lastError = error;
-                    continue; // retry whole transaction → recomputes sequence
-                }
-                // Non-retryable, or last attempt failed → bubble up
-                throw error;
-            }
-        }
 
-        return res.status(201).json(
-            new ApiResponse(
-                201,
-                {
-                    enrollment: {
-                        enrollment_id: result.enrollment.enrollment_id,
-                        enrollment_status: result.enrollment.enrollment_status,
-                        enrollment_date: result.enrollment.enrollment_date,
-                    },
-                    candidate: {
-                        candidate_id: result.candidateId,
-                        candidate_unique_id: result.candidateUniqueId,
-                        first_name: first_name.trim(),
-                        last_name: last_name?.trim() || "",
-                        contact_number,
-                    },
-                    
-                    batch: {
-                        batch_id,
-                    },
-                    // Only return generated password for NEW candidates
-                    ...(result.isNewCandidate && {
-                        credentials: {
-                            login_email: result.userEmail,
-                            default_password: result.generatedPassword,
-                            // note: "Share these credentials with the candidate. Password = firstname + lastname + last 4 digits of phone"
-                        }
-                    })
-                },
-                result.isNewCandidate
-                    ? "Candidate created and enrolled successfully"
-                    : "Existing candidate enrolled successfully"
-            )
-        );
+        // Invalidate mobilizer cache for this center (affects enrollment analytics, candidate list, dashboard)
+        await cache.invalidateMobilizerCenter(centerId);
+
+        break; // success → exit retry loop
+    } catch (error: any) {
+        // P2002 = unique-constraint violation (duplicate candidate_unique_id race)
+        if (error?.code === "P2002" && attempt < MAX_RETRIES - 1) {
+            lastError = error;
+            continue; // retry whole transaction → recomputes sequence
+        }
+        // Non-retryable, or last attempt failed → bubble up
+        throw error;
     }
-);
+}
+
+return res.status(201).json(
+    new ApiResponse(
+        201,
+        {
+            enrollment: {
+                enrollment_id: result.enrollment.enrollment_id,
+                enrollment_status: result.enrollment.enrollment_status,
+                enrollment_date: result.enrollment.enrollment_date,
+            },
+            candidate: {
+                candidate_id: result.candidateId,
+                candidate_unique_id: result.candidateUniqueId,
+                first_name: first_name.trim(),
+                last_name: last_name?.trim() || "",
+                contact_number,
+            },
+
+            batch: {
+                batch_id,
+            },
+            // Only return generated password for NEW candidates
+            ...(result.isNewCandidate && {
+                credentials: {
+                    login_email: result.userEmail,
+                    default_password: result.generatedPassword,
+                    // note: "Share these credentials with the candidate. Password = firstname + lastname + last 4 digits of phone"
+                }
+            })
+        },
+        result.isNewCandidate
+            ? "Candidate created and enrolled successfully"
+            : "Existing candidate enrolled successfully"
+      )
+
+)} 
+)
