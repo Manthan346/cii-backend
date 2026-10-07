@@ -7,6 +7,8 @@ import { ApiResponse } from "../../helpers/ApiResponse";
 import { role_types, batch_enrollment_status_type } from "../../generated/prisma/enums";
 import { uploadCloudnary } from "../../services/cloudinary";
 import { z } from "zod";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 export const uploadCandidateCertificate = asyncHandler(
     async (req: Request, res: Response) => {
@@ -121,6 +123,10 @@ export const uploadCandidateCertificate = asyncHandler(
                 }
             }
         });
+
+        await redis.del(
+            SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+        );
 
         return res.status(200).json(
             new ApiResponse(

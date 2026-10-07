@@ -6,6 +6,8 @@ import { SuperAdminAuthRequest } from "../../interfaces/superadmin-auth-interfac
 import { prisma } from "../../lib/prisma";
 import { role_types } from "../../generated/prisma/enums";
 import bcrypt from "bcrypt";
+import { redis } from "../../lib/redis";
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 
 export const createAdminBySuperAdmin = asyncHandler(
     async (req: SuperAdminAuthRequest, res: Response) => {
@@ -90,6 +92,10 @@ export const createAdminBySuperAdmin = asyncHandler(
                 },
             };
         });
+
+        await redis.del(
+            SUPER_ADMIN_REDIS_KEY.superadmin_dashboard_key()
+        );
 
         return res.status(201).json(
             new ApiResponse(201, {

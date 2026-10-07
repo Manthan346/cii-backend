@@ -1,12 +1,11 @@
 import { Response } from "express";
-
 import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { ApiResponse } from "../../helpers/ApiResponse";
-
 import { SuperAdminAuthRequest } from "../../interfaces/superadmin-auth-interface";
-
+import { SUPER_ADMIN_REDIS_KEY } from "../../constants/superadmin-keys/superadmin-keys";
 import { prisma } from "../../lib/prisma";
+import { redis } from "../../lib/redis";
 
 export const updateCenter = asyncHandler(
     async (req: SuperAdminAuthRequest, res: Response) => {
@@ -59,6 +58,10 @@ export const updateCenter = asyncHandler(
                 }),
             },
         });
+
+        const redisKey = SUPER_ADMIN_REDIS_KEY.superadmin_center_key()
+        
+        await redis.del(redisKey);
 
         return res.status(200).json(
             new ApiResponse(
