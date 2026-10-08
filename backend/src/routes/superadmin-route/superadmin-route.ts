@@ -18,6 +18,7 @@ import { updateCenterSchema } from "../../services/zod/super-admin/center-creati
 import { downloadSuperAdminEnrollmentReportQuerySchema } from "../../services/zod/super-admin/enrollment-report-validation";
 import { monthlyEnrollmentQuerySchema } from "../../services/zod/super-admin/monthly-enrollment-validation";
 import { getMonthlyEnrollmentData } from "../../controllers/superadmin-controllers/get-monthly-enrollment";
+import { getAllAdmins } from "../../controllers/superadmin-controllers/fetch-all-admin";
 
 const superAdminRouter = Router()
 
@@ -40,6 +41,7 @@ superAdminRouter.get('/enrollment-trend', verifySuperAdminUsingAccessToken, getE
 superAdminRouter.get('/center-wise-enrollment{/:center_id}', verifySuperAdminUsingAccessToken, getCenterWiseEnrollment)
 // download enrollment report (superadmin) - query: from_date, to_date, center_id (optional)
 superAdminRouter.get('/reports/enrollment', verifySuperAdminUsingAccessToken, validateQuery(downloadSuperAdminEnrollmentReportQuerySchema), downloadSuperAdminEnrollmentReport)
+superAdminRouter.get('/admin-details',verifySuperAdminUsingAccessToken,paginationMiddleware,getAllAdmins)
 
 // get monthly enrollment data (superadmin) - query: from=MM/YYYY, to=MM/YYYY, center_id (optional)
 superAdminRouter.get('/reports/enrollment/monthly', verifySuperAdminUsingAccessToken, validateQuery(monthlyEnrollmentQuerySchema), getMonthlyEnrollmentData)
