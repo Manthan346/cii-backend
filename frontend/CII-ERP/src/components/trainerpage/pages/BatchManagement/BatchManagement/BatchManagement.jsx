@@ -8,11 +8,13 @@ import "./BatchManagement.css";
 
 const BatchManagement = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [view, setView] = useState("list"); // "list" | "create"
+  const [view, setView] = useState("list"); // "list" | "create" | "edit"
+  const [batchToEdit, setBatchToEdit] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const handleCreated = () => {
+  const handleSaved = () => {
     setRefreshKey((k) => k + 1);
+    setBatchToEdit(null);
     setView("list");
   };
 
@@ -32,12 +34,25 @@ const BatchManagement = () => {
             {view === "list" ? (
               <BatchList
                 onCreateBatch={() => setView("create")}
+                onEditBatch={(batch) => {
+                  setBatchToEdit(batch);
+                  setView("edit");
+                }}
                 refreshKey={refreshKey}
+              />
+            ) : view === "create" ? (
+              <CreateBatch
+                onBack={() => setView("list")}
+                onCreated={handleSaved}
               />
             ) : (
               <CreateBatch
-                onBack={() => setView("list")}
-                onCreated={handleCreated}
+                batch={batchToEdit}
+                onBack={() => {
+                  setBatchToEdit(null);
+                  setView("list");
+                }}
+                onCreated={handleSaved}
               />
             )}
           </main>

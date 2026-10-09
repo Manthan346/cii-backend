@@ -5,7 +5,11 @@ import {
   fetchMyBatches,
   updateAssessment,
 } from "../../../../../../api/trainer/assessmentService";
-import { AssessmentFields } from "../CreateAssessment/CreateAssessment";
+import {
+  AssessmentFields,
+  getAssessmentFieldErrors,
+  validateAssessment,
+} from "../CreateAssessment/CreateAssessment";
 import "../AssessmentDialog/AssessmentDialog.css";
 import "./EditAssessment.css";
 
@@ -14,6 +18,7 @@ export default function EditAssessment({ assessment, onClose, onSubmit }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [batches, setBatches] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
     fetchMyBatches()
@@ -22,8 +27,12 @@ export default function EditAssessment({ assessment, onClose, onSubmit }) {
   }, []);
 
   const handleSubmit = async () => {
-    setSubmitting(true);
+    const validationErrors = validateAssessment(form);
+    setFieldErrors(validationErrors);
     setError("");
+    if (Object.keys(validationErrors).length > 0) return;
+
+    setSubmitting(true);
     try {
       await updateAssessment({
         assessmentId: assessment.assessment_id ?? assessment.id,
@@ -38,9 +47,13 @@ export default function EditAssessment({ assessment, onClose, onSubmit }) {
       });
       onSubmit(form);
     } catch (requestError) {
+      const serverErrors = getAssessmentFieldErrors(requestError);
+      setFieldErrors(serverErrors);
       setError(
-        requestError.response?.data?.message ||
-          "Unable to update assessment. Please try again.",
+        Object.keys(serverErrors).length
+          ? ""
+          : requestError.response?.data?.message ||
+              "Unable to update assessment. Please try again.",
       );
     } finally {
       setSubmitting(false);
@@ -69,7 +82,13 @@ export default function EditAssessment({ assessment, onClose, onSubmit }) {
           </button>
         </div>
         {error && <p className="assessment-dialog-error">{error}</p>}
-        <AssessmentFields form={form} setForm={setForm} batches={batches} />
+        <AssessmentFields
+          form={form}
+          setForm={setForm}
+          batches={batches}
+          errors={fieldErrors}
+          setFieldErrors={setFieldErrors}
+        />
         <div className="assessment-dialog-actions">
           <Button variant="outline" onClick={onClose} disabled={submitting}>
             Cancel

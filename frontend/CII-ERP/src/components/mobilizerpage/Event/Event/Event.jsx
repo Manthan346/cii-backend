@@ -21,6 +21,7 @@ export default function Event() {
   const [eventList, setEventList] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
@@ -56,7 +57,7 @@ export default function Event() {
     fetchCenterEvents({
       page,
       limit: 20,
-      title: searchQuery.trim() || undefined,
+      title: debouncedSearchQuery.trim() || undefined,
       event_type: typeFilter || undefined,
       status: status || undefined,
       date: dateFilter || undefined,
@@ -81,10 +82,18 @@ export default function Event() {
     dateFilter,
     page,
     refreshKey,
-    searchQuery,
+    debouncedSearchQuery,
     statusFilter,
     typeFilter,
   ]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(
+      () => setDebouncedSearchQuery(searchQuery),
+      300,
+    );
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   const uploadEvent =
     eventList.find((event) => event.id === uploadEventId) || null;

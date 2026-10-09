@@ -1,15 +1,14 @@
-import { Eye, UserPlus } from 'lucide-react';
+import { Eye, Pencil } from 'lucide-react';
 import './ActionButtons.css';
 
 /**
  * ActionButtons (Batch Management)
  *
- * Row-level actions for the "All Batches" table: view batch, assign a
- * trainer. Delete was removed per request. NOTE: page-local variant,
- * kept out of /shared because shared/ActionButtons (Candidate
- * Management) exposes a different four-icon set (view/edit/lock/delete).
+ * Row-level actions for the "All Batches" table: view and edit batch.
+ * This page-specific set stays separate from Candidate Management's
+ * shared row actions.
  */
-export default function ActionButtons({ onView, onAssignTrainer }) {
+export default function ActionButtons({ onView, onEdit }) {
   return (
     <div className={'batch-management-batch-list-action-buttons-actions'}>
       <button
@@ -20,14 +19,14 @@ export default function ActionButtons({ onView, onAssignTrainer }) {
       >
         <Eye size={15} />
       </button>
-      {/* <button
+      <button
         type="button"
         className={'batch-management-batch-list-action-buttons-icon-btn'}
-        onClick={onAssignTrainer}
-        aria-label="Assign trainer"
+        onClick={onEdit}
+        aria-label="Edit batch"
       >
-        <UserPlus size={15} />
-      </button> */}
+        <Pencil size={15} />
+      </button>
     </div>
   );
 }

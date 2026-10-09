@@ -87,8 +87,10 @@ function mapRosterStudent(student, index) {
 
 export default function AttendanceTracker() {
   const [sessionFilter, setSessionFilter] = useState("");
+  const [debouncedSessionFilter, setDebouncedSessionFilter] = useState("");
   const [batch, setBatch] = useState("All Batches");
-  const [date, setDate] = useState(""); // now holds "YYYY-MM-DD" or ''
+  const [selectedBatchId, setSelectedBatchId] = useState(undefined);
+  const [date, setDate] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const [sessions, setSessions] = useState([]);
@@ -121,6 +123,13 @@ export default function AttendanceTracker() {
   const [batchRecords, setBatchRecords] = useState([]);
   const [importOpen, setImportOpen] = useState(false);
   const [sessionsRefreshKey, setSessionsRefreshKey] = useState(0);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSessionFilter(sessionFilter);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [sessionFilter]);
 
   useEffect(() => {
     if (!viewingSessionId) {
@@ -161,20 +170,13 @@ export default function AttendanceTracker() {
       setLoading(true);
       setError(null);
       try {
-        const searchTerm = sessionFilter.trim() || undefined;
+        const searchTerm = debouncedSessionFilter.trim() || undefined;
 
         const data = await fetchAttendanceSessions({
           page: currentPage,
           limit: TRAINER_PAGE_SIZE,
           search: searchTerm,
-          batchId: batch.toLowerCase().startsWith("all")
-            ? undefined
-            : (batchRecords.find(
-                (item) => item.batch_code === batch,
-              )?.batchId ??
-              batchRecords.find(
-                (item) => item.batch_code === batch,
-              )?.batch_id),
+          batchId: selectedBatchId,
           sessionDate: date || undefined,
         });
         if (cancelled) return;
@@ -200,7 +202,13 @@ export default function AttendanceTracker() {
     return () => {
       cancelled = true;
     };
-  }, [currentPage, sessionFilter, batch, date, batchRecords, sessionsRefreshKey]);
+  }, [
+    currentPage,
+    debouncedSessionFilter,
+    selectedBatchId,
+    date,
+    sessionsRefreshKey,
+  ]);
 
   // Fetch the real roster (active enrolled students) whenever a
   // session is opened for marking. Replaces the old mock
@@ -347,7 +355,9 @@ export default function AttendanceTracker() {
           </p>
         </div>
 
-        <div className={"attendance-management-attendance-tracker-header-actions"}>
+        <div
+          className={"attendance-management-attendance-tracker-header-actions"}
+        >
           <Button
             variant="outline"
             icon={Download}
@@ -384,6 +394,14 @@ export default function AttendanceTracker() {
           value={batch}
           onChange={(value) => {
             setBatch(value);
+            const selectedBatch = batchRecords.find(
+              (item) => item.batch_code === value,
+            );
+            setSelectedBatchId(
+              value.toLowerCase().startsWith("all")
+                ? undefined
+                : (selectedBatch?.batchId ?? selectedBatch?.batch_id),
+            );
             setCurrentPage(1);
           }}
         />
@@ -396,6 +414,7 @@ export default function AttendanceTracker() {
           </label>
           <input
             type="date"
+            placeholder="DD-MM-YYYY"
             className={"attendance-management-attendance-tracker-date-input"}
             value={date}
             onChange={(event) => {

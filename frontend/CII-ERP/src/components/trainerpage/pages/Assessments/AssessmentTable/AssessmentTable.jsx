@@ -1,6 +1,16 @@
 import { Eye, Pencil } from "lucide-react";
 import "./AssessmentTable.css";
 
+function formatAssessmentType(value) {
+  if (!value || value === "-") return value || "-";
+  return value
+    .toLowerCase()
+    .split(/[_\s-]+/)
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 export default function AssessmentTable({ records, onView, onEdit }) {
   return (
     <section className="assessment-table-section">
@@ -29,7 +39,7 @@ export default function AssessmentTable({ records, onView, onEdit }) {
                   </span>
                 </td>
                 <td className="assessment-table-title">{assessment.title}</td>
-                <td>{assessment.assessment_type}</td>
+                <td>{formatAssessmentType(assessment.assessment_type)}</td>
                 <td>
                   {assessment.assessment_date_display ||
                     assessment.assessment_date}

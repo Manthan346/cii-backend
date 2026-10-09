@@ -3,6 +3,12 @@ import { Search } from 'lucide-react';
 import Dropdown from '../Dropdown/Dropdown';
 import './FilterBar.css';
 
+function getOptionValue(option) {
+  return typeof option === 'object' && option !== null
+    ? option.value
+    : option;
+}
+
 /**
  * Search + Batches + Courses + Status filters, applied as they change.
  */
@@ -13,9 +19,9 @@ export default function FilterBar({
   onFilterChange,
 }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [batch, setBatch] = useState(batchOptions[0] || '');
-  const [course, setCourse] = useState(courseOptions[0] || '');
-  const [status, setStatus] = useState(statusOptions[0] || '');
+  const [batch, setBatch] = useState(getOptionValue(batchOptions[0]) || '');
+  const [course, setCourse] = useState(getOptionValue(courseOptions[0]) || '');
+  const [status, setStatus] = useState(getOptionValue(statusOptions[0]) || '');
   const updateFilter = (key, value) => {
     const nextFilters = {
       searchTerm,

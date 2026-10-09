@@ -26,6 +26,7 @@ export default function Enquiries() {
   const [candidateList, setCandidateList] = useState([]);
   const [activeTab, setActiveTab] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [sourceFilter, setSourceFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
@@ -47,7 +48,7 @@ export default function Enquiries() {
     fetchEnquiries({
       page,
       limit: PAGE_SIZE,
-      search: searchQuery.trim() || undefined,
+      search: debouncedSearchQuery.trim() || undefined,
       status: statusFilter || TAB_STATUS_MAP[activeTab] || undefined,
       source: sourceFilter || undefined,
       date: dateFilter || undefined,
@@ -68,7 +69,22 @@ export default function Enquiries() {
     return () => {
       isMounted = false;
     };
-  }, [activeTab, dateFilter, page, searchQuery, sourceFilter, statusFilter]);
+  }, [
+    activeTab,
+    dateFilter,
+    page,
+    debouncedSearchQuery,
+    sourceFilter,
+    statusFilter,
+  ]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(
+      () => setDebouncedSearchQuery(searchQuery),
+      300,
+    );
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);

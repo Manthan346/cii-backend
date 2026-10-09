@@ -89,6 +89,15 @@
   line-height: 1.5;
   font-weight: 600;
 }
+.assessment-field-error {
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.assessment-dialog-fields [aria-invalid="true"] {
+  border-color: #b42318;
+}
 @media (max-width: 640px) {
   .assessment-dialog {
     padding: 20px;

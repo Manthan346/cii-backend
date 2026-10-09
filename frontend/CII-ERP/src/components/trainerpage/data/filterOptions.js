@@ -13,10 +13,8 @@ export const courseOptions = [
 
 export const statusOptions = [
   "All Status",
-  "All status",
   "Active",
   "Dropped",
-  "Ending soon",
   "Blacklisted", // 👈 add this
 ];
 
@@ -40,10 +38,9 @@ export const batchCourseOptions = [
 
 export const batchStatusOptions = [
   "All Status",
-  "Active",
-  "Dropped",
-  "Ending Soon",
   "Upcoming",
+  "Active",
+  "Expired",
 ];
 
 /* ---- Attendance Management additions ----

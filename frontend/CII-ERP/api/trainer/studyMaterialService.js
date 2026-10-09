@@ -1,19 +1,18 @@
 import api from "../api";
 import { fetchPaginatedPage } from "./paginationService";
 
-const STATUS_LABEL_TO_BATCH_STATUS = {
-  Active: "ACTIVE",
-  Upcoming: "UPCOMING",
-  Dropped: "DROPPED",
-  Completed: "COMPLETED",
-};
-
-function isAllStatusOption(value) {
-  return !value || value.toLowerCase().startsWith("all status");
-}
-
 function isAllBatchOption(value) {
   return !value || value.toLowerCase().startsWith("all batch");
+}
+
+function getLocalDateKey(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 export async function fetchStudyMaterials({
@@ -21,42 +20,83 @@ export async function fetchStudyMaterials({
   limit = 15,
   search,
   batchId,
-  status,
+  dateFrom,
+  dateTo,
 } = {}) {
   const params = { limit };
 
   if (search && search.trim()) params.search = search.trim();
   if (batchId && !isAllBatchOption(batchId)) params.batch_id = batchId;
 
-  if (!isAllStatusOption(status)) {
-    const batchStatus = STATUS_LABEL_TO_BATCH_STATUS[status] ?? status;
-    if (batchStatus) params.batch_status = batchStatus;
+  const fetchPage = async (requestPage) => {
+    const res = await api.get("/instructor/study-material/get-all-material", {
+      params: { ...params, page: requestPage },
+    });
+    return res.data.data;
+  };
+
+  if (!dateFrom && !dateTo) {
+    return fetchPaginatedPage({
+      fetchPage,
+      page,
+      limit,
+      itemsKey: "studyMaterials",
+    });
   }
 
-  return fetchPaginatedPage({
-    fetchPage: async (requestPage) => {
-      const res = await api.get("/instructor/study-material/get-all-material", {
-        params: { ...params, page: requestPage },
-      });
-      return res.data.data;
-    },
-    page,
-    limit,
-    itemsKey: "studyMaterials",
+  const firstPage = await fetchPage(1);
+  const firstMaterials = firstPage.studyMaterials ?? [];
+  const pagination = firstPage.pagination ?? {};
+  const totalRecords = Number(
+    pagination.totalRecords ??
+      pagination.totalStudyMaterials ??
+      pagination.total ??
+      firstPage.totalRecords ??
+      firstPage.totalStudyMaterials ??
+      firstMaterials.length,
+  );
+  const reportedPageSize = Number(pagination.limit);
+  const serverPageSize =
+    firstMaterials.length > 0 && firstMaterials.length < totalRecords
+      ? Math.min(reportedPageSize || firstMaterials.length, firstMaterials.length)
+      : reportedPageSize || firstMaterials.length || limit;
+  const serverTotalPages =
+    Math.ceil(totalRecords / serverPageSize) ||
+    Number(pagination.totalPages) ||
+    1;
+  const remainingPages = await Promise.all(
+    Array.from({ length: Math.max(0, serverTotalPages - 1) }, (_, index) =>
+      fetchPage(index + 2),
+    ),
+  );
+  const allMaterials = [
+    ...firstMaterials,
+    ...remainingPages.flatMap((result) => result.studyMaterials ?? []),
+  ];
+  const matchingMaterials = allMaterials.filter((material) => {
+    const createdDate = getLocalDateKey(material.created_at);
+    return (
+      createdDate &&
+      (!dateFrom || createdDate >= dateFrom) &&
+      (!dateTo || createdDate <= dateTo)
+    );
   });
-}
-
-export async function fetchStudyMaterialStats() {
-  const [all, published, draft] = await Promise.all([
-    fetchStudyMaterials({ page: 1, limit: 1 }),
-    fetchStudyMaterials({ page: 1, limit: 1, status: "Published" }),
-    fetchStudyMaterials({ page: 1, limit: 1, status: "Draft" }),
-  ]);
+  const startIndex = (page - 1) * limit;
+  const filteredTotal = matchingMaterials.length;
+  const filteredTotalPages = Math.max(1, Math.ceil(filteredTotal / limit));
 
   return {
-    totalMaterials: all.totalRecords,
-    published: published.totalRecords,
-    draft: draft.totalRecords,
+    ...firstPage,
+    totalRecords: filteredTotal,
+    totalPages: filteredTotalPages,
+    studyMaterials: matchingMaterials.slice(startIndex, startIndex + limit),
+    pagination: {
+      ...pagination,
+      currentPage: page,
+      totalRecords: filteredTotal,
+      totalPages: filteredTotalPages,
+      limit,
+    },
   };
 }
 
@@ -72,28 +112,7 @@ export async function fetchStudyMaterialFilterOptions() {
       value: batch.batch_id ?? batch.batchId ?? batch.id,
     }))
     .filter((batch) => batch.label && batch.value);
-  const statuses = Array.from(
-    new Map(
-      rawBatches
-        .map((batch) => batch.b_status ?? batch.batch_status ?? batch.status)
-        .filter(Boolean)
-        .map((status) => [
-          status,
-          {
-            label: String(status)
-              .toLowerCase()
-              .replace(/(^|_)\w/g, (character) => character.toUpperCase())
-              .replace("_", " "),
-            value: status,
-          },
-        ]),
-    ).values(),
-  );
-
-  return {
-    batches: [{ label: "All Batches", value: "" }, ...batches],
-    statuses: [{ label: "All Status", value: "" }, ...statuses],
-  };
+  return { batches: [{ label: "All Batches", value: "" }, ...batches] };
 }
 
 export function mapStudyMaterialRecord(item) {
@@ -111,7 +130,6 @@ export function mapStudyMaterialRecord(item) {
           year: "numeric",
         })
       : "-",
-    status: item.is_show ? "Published" : "Draft",
   };
 }
 
@@ -135,13 +153,11 @@ export async function updateStudyMaterial({
   title,
   description,
   documentLink,
-  isShow,
 }) {
   const payload = { study_material_id: studyMaterialId };
   if (title !== undefined) payload.title = title;
   if (description !== undefined) payload.description = description;
   if (documentLink !== undefined) payload.document_link = documentLink;
-  if (isShow !== undefined) payload.is_show = isShow;
 
   const res = await api.patch(
     "/instructor/study-material/update-material",

@@ -29,6 +29,7 @@ const JobFairJobDriveList = ({
   onStatusChange,
 }) => {
   const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [events, setEvents] = useState([]);
   const [pagination, setPagination] = useState({
@@ -39,8 +40,16 @@ const JobFairJobDriveList = ({
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearch(filters.search);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [filters.search]);
+
+  const handleFiltersChange = (nextFilters) => {
     setCurrentPage(1);
-  }, [filters]);
+    setFilters(nextFilters);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -50,7 +59,7 @@ const JobFairJobDriveList = ({
     fetchJobEvents({
       page: currentPage,
       limit: PAGE_SIZE,
-      search: filters.search,
+      search: debouncedSearch,
       type: filters.type,
       status: filters.status,
     })
@@ -75,7 +84,7 @@ const JobFairJobDriveList = ({
     return () => {
       cancelled = true;
     };
-  }, [currentPage, filters]);
+  }, [currentPage, debouncedSearch, filters.type, filters.status]);
 
   return (
     <div className="job-fair-job-drive">
@@ -109,7 +118,7 @@ const JobFairJobDriveList = ({
         ))}
       </div>
 
-      <EventFilterBar filters={filters} onChange={setFilters} />
+      <EventFilterBar filters={filters} onChange={handleFiltersChange} />
 
       {error && <p className="job-fair-job-drive__error">{error}</p>}
 

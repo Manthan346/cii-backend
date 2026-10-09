@@ -1,4 +1,3 @@
-// import { UserCircle2 } from 'lucide-react';
 import StatusBadge from "../StatusBadge/StatusBadge";
 import ActionButtons from "../ActionButtons/ActionButtons";
 import "./BatchTable.css";
@@ -7,24 +6,21 @@ import "./BatchTable.css";
  * BatchTable
  *
  * "All Batches" table for the Batch Management page. Column shape is
- * specific to batches (batch code, trainer, course, candidate count,
- * start date, status, row actions), so this lives inside
- * pages/BatchManagement/BatchList rather than /shared. Schedule subtext
- * and the course progress bar were removed per request.
+ * Batch name/code, course, candidate count, dates, date-derived status,
+ * and row actions are specific to this page.
  */
 export default function BatchTable({
   batches = [],
   onView,
-  // onDelete,
-  // onAssignTrainer,
+  onEdit,
 }) {
   return (
     <div className={"batch-management-batch-list-batch-table-table-wrap"}>
       <table className={"batch-management-batch-list-batch-table-table"}>
         <thead>
           <tr>
-            <th>Batch</th>
-            {/* <th>Trainer</th> */}
+            <th>Batch Name</th>
+            <th>Batch Code</th>
             <th>Course</th>
             <th>Candidates</th>
             <th>Start date</th>
@@ -37,41 +33,11 @@ export default function BatchTable({
           {batches.map((batch) => (
             <tr key={batch.id}>
               <td>
-                <div
-                  className={
-                    "batch-management-batch-list-batch-table-batch-cell"
-                  }
-                >
-                  {/* <span
-                    className={
-                      'batch-management-batch-list-batch-table-batch-icon'
-                    }
-                    aria-hidden="true"
-                  /> */}
-                  <span
-                    className={
-                      "batch-management-batch-list-batch-table-batch-code"
-                    }
-                  >
-                    {batch.code}
-                  </span>
-                </div>
+                {batch.name}
               </td>
-              {/* <td>
-                <div
-                  className={
-                    'batch-management-batch-list-batch-table-trainer-cell'
-                  }
-                >
-                  <UserCircle2
-                    size={20}
-                    className={
-                      'batch-management-batch-list-batch-table-trainer-icon'
-                    }
-                  />
-                  <span>{batch.trainer}</span>
-                </div>
-              </td> */}
+              <td className="batch-management-batch-list-batch-table-batch-code">
+                {batch.code}
+              </td>
               <td>{batch.course}</td>
               <td>{batch.candidates}</td>
               <td className={"batch-management-batch-list-batch-table-nowrap"}>
@@ -86,7 +52,7 @@ export default function BatchTable({
               <td>
                 <ActionButtons
                   onView={() => onView?.(batch)}
-                  // onAssignTrainer={() => onAssignTrainer?.(batch)}
+                  onEdit={() => onEdit?.(batch)}
                 />
               </td>
             </tr>

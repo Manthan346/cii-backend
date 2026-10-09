@@ -26,11 +26,9 @@ const StudyMaterialUpload = () => {
   const [batchOptions, setBatchOptions] = useState([
     { label: "All Batches", value: "" },
   ]);
-  const [statusOptions, setStatusOptions] = useState([
-    { label: "All Status", value: "" },
-  ]);
   const [batch, setBatch] = useState("");
-  const [status, setStatus] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const [records, setRecords] = useState([]);
@@ -46,9 +44,8 @@ const StudyMaterialUpload = () => {
 
   useEffect(() => {
     fetchStudyMaterialFilterOptions()
-      .then(({ batches, statuses }) => {
+      .then(({ batches }) => {
         setBatchOptions(batches);
-        setStatusOptions(statuses);
       })
       .catch((err) => {
         setError(
@@ -67,7 +64,8 @@ const StudyMaterialUpload = () => {
         limit: TRAINER_PAGE_SIZE,
         search: searchTerm,
         batchId: batch,
-        status,
+        dateFrom,
+        dateTo,
       });
       setRecords(data.studyMaterials.map(mapStudyMaterialRecord));
       setTotalRecords(data.totalRecords);
@@ -77,7 +75,7 @@ const StudyMaterialUpload = () => {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, searchTerm, batch, status]);
+  }, [currentPage, searchTerm, batch, dateFrom, dateTo]);
 
   useEffect(() => {
     const timeoutId = setTimeout(
@@ -176,15 +174,42 @@ const StudyMaterialUpload = () => {
                     setCurrentPage(1);
                   }}
                 />
-                <Dropdown
-                  label="STATUS"
-                  options={statusOptions}
-                  value={status}
-                  onChange={(value) => {
-                    setStatus(value);
-                    setCurrentPage(1);
-                  }}
-                />
+                <div className="study-material-upload-date-filter">
+                  <label
+                    className="study-material-upload-filter-label"
+                    htmlFor="study-material-date-from"
+                  >
+                    DATE
+                  </label>
+                  <div className="study-material-upload-date-range">
+                    <label htmlFor="study-material-date-from">
+                      <span>From</span>
+                      <input
+                        id="study-material-date-from"
+                        type="date"
+                        max={dateTo || undefined}
+                        value={dateFrom}
+                        onChange={(event) => {
+                          setDateFrom(event.target.value);
+                          setCurrentPage(1);
+                        }}
+                      />
+                    </label>
+                    <label htmlFor="study-material-date-to">
+                      <span>To</span>
+                      <input
+                        id="study-material-date-to"
+                        type="date"
+                        min={dateFrom || undefined}
+                        value={dateTo}
+                        onChange={(event) => {
+                          setDateTo(event.target.value);
+                          setCurrentPage(1);
+                        }}
+                      />
+                    </label>
+                  </div>
+                </div>
               </div>
 
               <section className={"study-material-upload-table-section"}>

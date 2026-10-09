@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import {
   Layers,
   CheckCircle2,
-  GraduationCap,
   Repeat,
   Search,
 } from "lucide-react";
@@ -25,14 +24,14 @@ import "./BatchList.css";
 const STAT_ICONS = {
   layers: Layers,
   check: CheckCircle2,
-  completed: GraduationCap,
   repeat: Repeat,
 };
 
 const ALL_COURSES_LABEL = "All Courses";
 
-const BatchList = ({ onCreateBatch, refreshKey }) => {
+const BatchList = ({ onCreateBatch, onEditBatch, refreshKey }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [status, setStatus] = useState(batchStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -53,6 +52,7 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
     active: 0,
     upcoming: 0,
   });
+  const [statsError, setStatsError] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -65,7 +65,7 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
       const result = await fetchBatches({
         page: currentPage,
         limit: TRAINER_PAGE_SIZE,
-        search: searchTerm,
+        search: debouncedSearchTerm,
         status,
         courseId,
       });
@@ -86,29 +86,32 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, searchTerm, status, courseId]);
+  }, [currentPage, debouncedSearchTerm, status, courseId]);
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const t = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
       setCurrentPage(1);
-      loadBatches();
     }, 400);
     return () => clearTimeout(t);
   }, [searchTerm]);
-  /* eslint-enable react-hooks/exhaustive-deps */
 
-  /* eslint-disable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
   useEffect(() => {
     loadBatches();
-  }, [currentPage, status, courseId, refreshKey]);
-  /* eslint-enable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
+  }, [loadBatches, refreshKey]);
 
   useEffect(() => {
+    setStatsError("");
     fetchBatchStats()
       .then(setStats)
-      .catch(() => {});
-  }, []);
+      .catch((err) => {
+        setStatsError(
+          err?.response?.data?.message ||
+            err?.message ||
+            "Failed to load batch statistics.",
+        );
+      });
+  }, [refreshKey]);
 
   const handleCourseChange = (name) => {
     if (name === ALL_COURSES_LABEL) {
@@ -138,13 +141,6 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
       value: stats.active,
       label: "Active",
       tone: "green",
-    },
-    {
-      id: "completed",
-      icon: "completed",
-      value: "—",
-      label: "Batches Completed",
-      tone: "orange",
     },
     {
       id: "upcoming",
@@ -180,6 +176,11 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
           />
         ))}
       </div>
+      {statsError && (
+        <p role="alert" style={{ color: "#dc2626" }}>
+          {statsError}
+        </p>
+      )}
 
       <div className={"batch-management-batch-list-filter-bar"}>
         <div className={"batch-management-batch-list-search-field"}>
@@ -216,7 +217,6 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
             setCurrentPage(1);
           }}
         />
-
       </div>
 
       <section className={"batch-management-batch-list-table-section"}>
@@ -233,7 +233,11 @@ const BatchList = ({ onCreateBatch, refreshKey }) => {
         {loading ? (
           <p style={{ padding: "24px 0" }}>Loading batches…</p>
         ) : (
-          <BatchTable batches={batches} onView={setSelectedBatch} />
+          <BatchTable
+            batches={batches}
+            onView={setSelectedBatch}
+            onEdit={onEditBatch}
+          />
         )}
 
         <Pagination

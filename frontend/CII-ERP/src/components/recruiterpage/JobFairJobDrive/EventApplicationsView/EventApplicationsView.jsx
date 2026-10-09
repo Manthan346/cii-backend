@@ -57,7 +57,6 @@ const EventApplicationsView = ({ event, onBack }) => {
           page: 1,
           limit: PAGE_SIZE,
         });
-        const allCandidates = [...firstPage.candidates];
         const totalPages = Math.max(
           1,
           Number(firstPage.pagination.totalPages) || 1,
@@ -71,9 +70,10 @@ const EventApplicationsView = ({ event, onBack }) => {
             }),
           ),
         );
-        remainingPages.forEach(({ candidates }) =>
-          allCandidates.push(...candidates),
-        );
+        const allCandidates = [
+          ...firstPage.candidates,
+          ...remainingPages.flatMap(({ candidates }) => candidates),
+        ];
 
         if (cancelled) return;
         setApplications(allCandidates);

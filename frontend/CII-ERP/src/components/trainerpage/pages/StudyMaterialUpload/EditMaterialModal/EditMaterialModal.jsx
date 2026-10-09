@@ -9,14 +9,13 @@ import "./EditMaterialModal.css";
  *
  * Batch is shown read-only: the backend's updateStudyMaterial
  * controller only accepts study_material_id, title, description,
- * document_link, is_show — there is no batch_id param, so a batch
- * cannot actually be changed through this endpoint.
+ * and document_link — there is no batch_id param, so a batch cannot
+ * actually be changed through this endpoint.
  */
 export default function EditMaterialModal({ material, onClose, onSave }) {
   const [title, setTitle] = useState(material?.name || "");
   const [description, setDescription] = useState(material?.description || "");
   const [link, setLink] = useState(material?.link || "");
-  const [status, setStatus] = useState(material?.status || "Draft");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -33,7 +32,6 @@ export default function EditMaterialModal({ material, onClose, onSave }) {
         title: title.trim(),
         description: description.trim(),
         documentLink: link.trim(),
-        isShow: status === "Published",
       });
       onSave?.();
       onClose();
@@ -116,18 +114,6 @@ export default function EditMaterialModal({ material, onClose, onSave }) {
             value={link}
             onChange={(event) => setLink(event.target.value)}
           />
-        </div>
-
-        <div className="study-material-upload-edit-material-modal-field">
-          <label htmlFor="edit-material-status">Status</label>
-          <select
-            id="edit-material-status"
-            value={status}
-            onChange={(event) => setStatus(event.target.value)}
-          >
-            <option value="Published">Published</option>
-            <option value="Draft">Draft</option>
-          </select>
         </div>
 
         <div className="study-material-upload-edit-material-modal-actions">

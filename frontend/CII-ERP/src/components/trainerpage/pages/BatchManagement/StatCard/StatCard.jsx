@@ -4,8 +4,7 @@ import './StatCard.css';
 /**
  * StatCard (Batch Management)
  *
- * Summary card for the Batch List header row ("9 Total batches",
- * "6 Active", "2 Ending Soon", "1 Upcoming"). icon: lucide-react icon
+ * Summary card for the Batch List header row. icon: lucide-react icon
  * component. tone: 'blue' | 'green' | 'peach' | 'gray' - controls the
  * icon badge color, matching the reference design's square badges.
  *

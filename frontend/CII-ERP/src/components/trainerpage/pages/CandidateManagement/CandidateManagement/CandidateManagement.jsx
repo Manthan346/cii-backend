@@ -94,14 +94,20 @@ const CandidateManagement = () => {
     totalCandidates: 0,
     limit: TRAINER_PAGE_SIZE,
   });
-  const [filters, setFilters] = useState({ status: "", search: "" });
+  const [filters, setFilters] = useState({
+    status: "",
+    search: "",
+    batchId: null,
+    courseName: null,
+  });
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [batchLabels, setBatchLabels] = useState(["All Batches"]);
+  const [batchOptions, setBatchOptions] = useState([
+    { label: "All Batches", value: "" },
+  ]);
   const [courseLabels, setCourseLabels] = useState(["All Courses"]);
-  const [batchLabelToId, setBatchLabelToId] = useState({});
-  const [courseLabelToId, setCourseLabelToId] = useState({});
 
   useEffect(() => {
     let cancelled = false;
@@ -110,15 +116,17 @@ const CandidateManagement = () => {
         const { batches, courses } = await fetchCoursesAndBatches();
         if (cancelled) return;
 
-        setBatchLabels(["All Batches", ...batches.map((b) => b.batch_code)]);
-        setBatchLabelToId(
-          Object.fromEntries(batches.map((b) => [b.batch_code, b.batchId])),
-        );
+        setBatchOptions([
+          { label: "All Batches", value: "" },
+          ...batches
+            .map((batch) => ({
+              label: batch.batch_code,
+              value: batch.batch_id ?? batch.batchId ?? batch.id,
+            }))
+            .filter((batch) => batch.label && batch.value),
+        ]);
 
         setCourseLabels(["All Courses", ...courses.map((c) => c.course_name)]);
-        setCourseLabelToId(
-          Object.fromEntries(courses.map((c) => [c.course_name, c.course_id])),
-        );
       } catch (err) {
         console.error("Failed to load batch/course filter options:", err);
       }
@@ -132,6 +140,15 @@ const CandidateManagement = () => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearch(filters.search);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [filters.search]);
+
+  const { status: filterStatus, batchId: filterBatchId, courseName } = filters;
+
+  useEffect(() => {
     let cancelled = false;
 
     async function load() {
@@ -141,9 +158,10 @@ const CandidateManagement = () => {
         const data = await fetchCandidateOverview({
           page: pagination.currentPage,
           limit: TRAINER_PAGE_SIZE,
-          status: filters.status,
-          search: filters.search,
-          batchId: filters.batchId,
+          status: filterStatus,
+          search: debouncedSearch,
+          batchId: filterBatchId,
+          courseName,
         });
         if (!cancelled) {
           setCandidates(data.candidates.map(mapCandidate));
@@ -160,7 +178,14 @@ const CandidateManagement = () => {
     return () => {
       cancelled = true;
     };
-  }, [pagination.currentPage, filters, refreshKey]);
+  }, [
+    pagination.currentPage,
+    filterStatus,
+    debouncedSearch,
+    filterBatchId,
+    courseName,
+    refreshKey,
+  ]);
 
   const [stats, setStats] = useState(null);
   const [statsLoading, setStatsLoading] = useState(true);
@@ -184,12 +209,13 @@ const CandidateManagement = () => {
     };
   }, []);
 
-  const handleFilterChange = ({ status, searchTerm, batch }) => {
+  const handleFilterChange = ({ status, searchTerm, batch, course }) => {
     setPagination((p) => ({ ...p, currentPage: 1 }));
     setFilters({
       status,
       search: searchTerm,
-      batchId: batchLabelToId[batch] ?? null, // undefined/'All Batches' -> null, meaning "no filter"
+      batchId: batch || null,
+      courseName: course === "All Courses" ? null : course,
     });
   };
 
@@ -261,7 +287,7 @@ const CandidateManagement = () => {
               </div>
 
               <FilterBar
-                batchOptions={batchLabels}
+                batchOptions={batchOptions}
                 courseOptions={courseLabels}
                 statusOptions={statusOptions}
                 onFilterChange={handleFilterChange}

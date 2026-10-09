@@ -1,14 +1,13 @@
-import { StatusBadge, ActionButtons } from "../../../shared";
+import { ActionButtons } from "../../../shared";
 import "./MaterialTable.css";
 
 /**
  * MaterialTable
  *
  * "All Materials" table for the Study Material Upload page. Column
- * shape (Material / Batch / Uploaded by / Date /
- * Status / Action) is specific to study materials, so it lives inside
- * pages/StudyMaterialUpload rather than /shared - only the generic
- * bits (StatusBadge, ActionButtons) come from /shared.
+ * shape (Material / Batch / Uploaded by / Date / Action) is specific to
+ * study materials, so it lives inside
+ * pages/StudyMaterialUpload rather than /shared; row actions are shared.
  *
  * Row actions show view/edit/delete (no lock), matching the reference
  * design, so ActionButtons is called with showLock={false}.
@@ -28,7 +27,6 @@ export default function MaterialTable({
             <th>Batch</th>
             <th>Uploaded by</th>
             <th>Date</th>
-            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -46,9 +44,6 @@ export default function MaterialTable({
               </td>
               <td className={"study-material-upload-material-table-nowrap"}>
                 {record.date}
-              </td>
-              <td>
-                <StatusBadge status={record.status} />
               </td>
               <td>
                 <ActionButtons

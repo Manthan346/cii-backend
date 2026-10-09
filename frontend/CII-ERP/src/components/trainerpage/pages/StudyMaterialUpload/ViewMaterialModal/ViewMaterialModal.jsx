@@ -42,10 +42,6 @@ export default function ViewMaterialModal({ material, onClose }) {
             <dd>{material.batch || "-"}</dd>
           </div>
           <div className="study-material-upload-view-material-modal-detail">
-            <dt>Status</dt>
-            <dd>{material.status || "-"}</dd>
-          </div>
-          <div className="study-material-upload-view-material-modal-detail">
             <dt>Uploaded by</dt>
             <dd>{material.uploadedBy || "-"}</dd>
           </div>

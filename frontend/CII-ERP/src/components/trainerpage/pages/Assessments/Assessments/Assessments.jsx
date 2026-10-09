@@ -26,6 +26,7 @@ export default function Assessments() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [records, setRecords] = useState([]);
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [searchBatchId, setSearchBatchId] = useState("");
   const [assessmentType, setAssessmentType] = useState("");
   const [batches, setBatches] = useState([]);
@@ -43,7 +44,7 @@ export default function Assessments() {
       const data = await fetchAssessments({
         page: currentPage,
         limit: TRAINER_PAGE_SIZE,
-        search,
+        search: debouncedSearch,
         batchId: searchBatchId,
       });
       setRecords((data.assessments ?? []).map(mapAssessmentRecord));
@@ -58,11 +59,18 @@ export default function Assessments() {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, search, searchBatchId]);
+  }, [currentPage, debouncedSearch, searchBatchId]);
 
   useEffect(() => {
     loadAssessments();
   }, [loadAssessments]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [search]);
 
   useEffect(() => {
     fetchMyBatches()
