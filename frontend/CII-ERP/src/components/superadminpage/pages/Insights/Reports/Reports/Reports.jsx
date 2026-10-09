@@ -6,18 +6,47 @@ import {
 import "./Reports.css";
 
 const today = new Date();
-const currentYearStart = `${today.getFullYear()}-01-01`;
-const localToday = [
+const currentYearStart = `${today.getFullYear()}-01`;
+const currentMonth = [
   today.getFullYear(),
   String(today.getMonth() + 1).padStart(2, "0"),
-  String(today.getDate()).padStart(2, "0"),
 ].join("-");
+
+function getMonthRange(fromMonth, toMonth) {
+  if (!fromMonth || !toMonth || fromMonth > toMonth) return [];
+
+  const [startYear, startMonth] = fromMonth.split("-").map(Number);
+  const [endYear, endMonth] = toMonth.split("-").map(Number);
+  const months = [];
+
+  for (
+    let year = startYear, month = startMonth;
+    year < endYear || (year === endYear && month <= endMonth);
+    month += 1
+  ) {
+    if (month > 12) {
+      year += 1;
+      month = 1;
+    }
+    months.push(`${year}-${String(month).padStart(2, "0")}`);
+  }
+
+  return months;
+}
+
+function formatMonth(monthValue) {
+  const [year, month] = monthValue.split("-").map(Number);
+  const monthName = new Date(year, month - 1, 1).toLocaleString("en", {
+    month: "short",
+  });
+  return `${monthName} ${year}`;
+}
 
 export default function Reports() {
   const [reports, setReports] = useState({ monthly: {}, centres: [] });
   const [selectedCentre, setSelectedCentre] = useState("all");
-  const [fromDate, setFromDate] = useState(currentYearStart);
-  const [toDate, setToDate] = useState(localToday);
+  const [fromMonth, setFromMonth] = useState(currentYearStart);
+  const [toMonth, setToMonth] = useState(currentMonth);
   const [isLoading, setIsLoading] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false);
   const [error, setError] = useState("");
@@ -28,8 +57,8 @@ export default function Reports() {
     setError("");
     fetchEnrollmentReports({
       centerId: selectedCentre,
-      fromDate,
-      toDate,
+      fromMonth,
+      toMonth,
     })
       .then((data) => {
         if (isCurrent) setReports(data);
@@ -49,16 +78,10 @@ export default function Reports() {
     return () => {
       isCurrent = false;
     };
-  }, [selectedCentre, fromDate, toDate]);
+  }, [selectedCentre, fromMonth, toMonth]);
 
-  const monthOrder = Array.from({ length: 12 }, (_, index) => {
-    const date = new Date();
-    date.setDate(1);
-    date.setMonth(index);
-    return date.toLocaleString("en", { month: "short" });
-  });
-  const monthlyReports = monthOrder.map((month) => ({
-    month,
+  const monthlyReports = getMonthRange(fromMonth, toMonth).map((month) => ({
+    month: formatMonth(month),
     enrollments: Number(reports.monthly[month] ?? 0),
   }));
   const selectedCentreName =
@@ -73,12 +96,12 @@ export default function Reports() {
   );
 
   const handleDownload = async () => {
-    if (!fromDate || !toDate) {
-      setError("Select both a start date and an end date.");
+    if (!fromMonth || !toMonth) {
+      setError("Select both a start month and an end month.");
       return;
     }
-    if (fromDate > toDate) {
-      setError("The start date must be on or before the end date.");
+    if (fromMonth > toMonth) {
+      setError("The start month must be on or before the end month.");
       return;
     }
 
@@ -86,8 +109,8 @@ export default function Reports() {
     setIsDownloading(true);
     try {
       await downloadEnrollmentReport({
-        fromDate,
-        toDate,
+        fromMonth,
+        toMonth,
         centerId: selectedCentre,
       });
     } catch (downloadError) {
@@ -114,23 +137,23 @@ export default function Reports() {
       <div className="superadmin-reports__panel">
         <div className="superadmin-reports__filters">
           <label className="superadmin-reports__date-filter">
-            <span className="superadmin-reports__sr-only">From date</span>
+            <span className="superadmin-reports__sr-only">From month</span>
             <input
-              aria-label="From date"
-              type="date"
-              value={fromDate}
-              max={toDate || undefined}
-              onChange={(event) => setFromDate(event.target.value)}
+              aria-label="From month"
+              type="month"
+              value={fromMonth}
+              max={toMonth || undefined}
+              onChange={(event) => setFromMonth(event.target.value)}
             />
           </label>
           <label className="superadmin-reports__date-filter">
-            <span className="superadmin-reports__sr-only">To date</span>
+            <span className="superadmin-reports__sr-only">To month</span>
             <input
-              aria-label="To date"
-              type="date"
-              value={toDate}
-              min={fromDate || undefined}
-              onChange={(event) => setToDate(event.target.value)}
+              aria-label="To month"
+              type="month"
+              value={toMonth}
+              min={fromMonth || undefined}
+              onChange={(event) => setToMonth(event.target.value)}
             />
           </label>
           <label className="superadmin-reports__centre-filter">
@@ -161,10 +184,13 @@ export default function Reports() {
           </div>
         </div>
         <p className="superadmin-reports__summary">
-          All 12 months · {totalEnrollments.toLocaleString()} enrollments
+          {fromMonth && toMonth
+            ? `${formatMonth(fromMonth)} – ${formatMonth(toMonth)}`
+            : "Select a month range"}{" "}
+          · {totalEnrollments.toLocaleString()} enrollments
           <span className="superadmin-reports__summary-note">
             {" "}
-            · Date range applies to the downloaded report
+            · Selected month range applies to the downloaded report
           </span>
         </p>
         <div className="superadmin-reports__table-wrap">
