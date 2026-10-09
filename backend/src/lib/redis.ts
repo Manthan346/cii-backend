@@ -12,3 +12,4 @@ redis.on("error", (err) => console.error(err));
 export const CANDIDATE_REDIS_CACHE = 60 * 10;
 export const HR_REDIS_CACHE = 60 * 10;
 export const SUPER_ADMIN_REDIS_CACHE = 60 * 5;
+export const ADMIN_REDIS_CACHE = 60*2;

@@ -9,6 +9,8 @@ import { adminAuthRequest } from "../../interfaces/admin-auth-interface";
 import { prisma } from "../../lib/prisma";
 
 import { updateAdminProfileSchema } from "../../services/zod/admin/admin-profile-validation";
+import { ADMIN_REDIS_KEY } from "../../constants/admin-keys/admin-keys";
+import { redis } from "../../lib/redis";
 
 export const updateAdminProfile = asyncHandler(
     async (req: adminAuthRequest, res: Response) => {
@@ -147,6 +149,10 @@ export const updateAdminProfile = asyncHandler(
 
             phone_no: updatedProfile.admin_phone_no
         };
+
+        const redisKey = ADMIN_REDIS_KEY.admin_profile_key(req.user.user_id)
+        
+        await redis.del(redisKey);
 
         res.status(200).json({
             statusCode: 200,
