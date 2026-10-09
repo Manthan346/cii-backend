@@ -58,6 +58,7 @@ export const getInstructorBatches = asyncHandler(
           batch_name: true,
           batch_code: true,
           batch_start_date: true,
+          batch_end_date:true,
           b_status: true,
           batch_type: true,
           course_details: { select: { course_id: true, course_mode: true, course_name: true } },
