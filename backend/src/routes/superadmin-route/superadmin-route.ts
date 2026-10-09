@@ -17,8 +17,10 @@ import { createAdminBySuperAdminSchema } from "../../services/zod/super-admin/ad
 import { updateCenterSchema } from "../../services/zod/super-admin/center-creation-validation";
 import { downloadSuperAdminEnrollmentReportQuerySchema } from "../../services/zod/super-admin/enrollment-report-validation";
 import { monthlyEnrollmentQuerySchema } from "../../services/zod/super-admin/monthly-enrollment-validation";
+import { courseEnrollmentReportQuerySchema } from "../../services/zod/super-admin/course-enrollment-report-validation";
 import { getMonthlyEnrollmentData } from "../../controllers/superadmin-controllers/get-monthly-enrollment";
 import { getAllAdmins } from "../../controllers/superadmin-controllers/fetch-all-admin";
+import { downloadCourseEnrollmentReport } from "../../controllers/superadmin-controllers/download-course-enrollment-report";
 
 const superAdminRouter = Router()
 
@@ -45,5 +47,8 @@ superAdminRouter.get('/admin-details',verifySuperAdminUsingAccessToken,paginatio
 
 // get monthly enrollment data (superadmin) - query: from=MM/YYYY, to=MM/YYYY, center_id (optional)
 superAdminRouter.get('/reports/enrollment/monthly', verifySuperAdminUsingAccessToken, validateQuery(monthlyEnrollmentQuerySchema), getMonthlyEnrollmentData)
+
+// download course-wise enrollment report (superadmin) - query: from=MM/YYYY, to=MM/YYYY, center_id (optional)
+superAdminRouter.get('/reports/enrollment/course-wise', verifySuperAdminUsingAccessToken, validateQuery(courseEnrollmentReportQuerySchema), downloadCourseEnrollmentReport)
 
 export default superAdminRouter
