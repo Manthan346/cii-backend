@@ -25,6 +25,7 @@ export const fetchCentersforDropdown = asyncHandler(
         const getCenters = await prisma.center_details.findMany({
             select:{
                 center_name:true,
+                center_id:true
             }
         })
 
