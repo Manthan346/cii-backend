@@ -18,10 +18,7 @@
 }
 
 .job-filter-bar__field--search {
-<<<<<<< HEAD
   flex: 2 1 300px;
-=======
-  flex: 1.4 1 400px;
 }
 
 .job-filter-bar__field--dropdown {
@@ -31,7 +28,6 @@
 
 .job-filter-bar__field--dropdown[open] {
   z-index: 2;
->>>>>>> bfc9c933cbf5943484f7ef2a3d51c5bc2a866d3b
 }
 
 .job-filter-bar__search-icon {
