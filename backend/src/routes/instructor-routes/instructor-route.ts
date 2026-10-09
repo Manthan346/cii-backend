@@ -69,6 +69,8 @@ import { getInstructorNotifications } from "../../controllers/instructor-control
 import { instructorGetMyBatches } from "../../controllers/instructor-controller/instructor-get-my-batches";
 import { createAttendanceSessionsFromExcel } from "../../controllers/instructor-controller/instructor-create-session";
 import { getSessionAttendanceHistory } from "../../controllers/instructor-controller/fetch-attendance-sessionHistory";
+import { getAssessmentAttempts } from "../../controllers/instructor-controller/fetch-assessment-attempts";
+import { gradeCandidateAssessment } from "../../controllers/instructor-controller/add-gradeMarks-assessment";
 
 const instructorRouter = Router();
 
@@ -210,6 +212,11 @@ instructorRouter.get("/notifications",verifyInstructorUsingAccessToken,getInstru
 //fetch specific attendance session history
 instructorRouter.get("/attendance-sessions/:attendance_session_id/history",
 verifyInstructorUsingAccessToken,getSessionAttendanceHistory);
+//fetch all attempts for a particular assessment 
+instructorRouter.get("/assessments/:assessment_id/attempts",verifyInstructorUsingAccessToken,getAssessmentAttempts);
+//enter marks of the student or instructor
+instructorRouter.patch("/assessments/:assessment_id/attempts/:ca_record_id/grade",verifyInstructorUsingAccessToken,gradeCandidateAssessment);
+
 
 export { instructorRouter };
 
