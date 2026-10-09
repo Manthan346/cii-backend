@@ -20,8 +20,18 @@ export type candidate_assessmentModel = runtime.Types.Result.DefaultSelection<Pr
 
 export type AggregateCandidate_assessment = {
   _count: Candidate_assessmentCountAggregateOutputType | null
+  _avg: Candidate_assessmentAvgAggregateOutputType | null
+  _sum: Candidate_assessmentSumAggregateOutputType | null
   _min: Candidate_assessmentMinAggregateOutputType | null
   _max: Candidate_assessmentMaxAggregateOutputType | null
+}
+
+export type Candidate_assessmentAvgAggregateOutputType = {
+  candidate_marks: number | null
+}
+
+export type Candidate_assessmentSumAggregateOutputType = {
+  candidate_marks: number | null
 }
 
 export type Candidate_assessmentMinAggregateOutputType = {
@@ -32,6 +42,7 @@ export type Candidate_assessmentMinAggregateOutputType = {
   assessment_grade: $Enums.grade_types | null
   created_at: Date | null
   updated_at: Date | null
+  candidate_marks: number | null
 }
 
 export type Candidate_assessmentMaxAggregateOutputType = {
@@ -42,6 +53,7 @@ export type Candidate_assessmentMaxAggregateOutputType = {
   assessment_grade: $Enums.grade_types | null
   created_at: Date | null
   updated_at: Date | null
+  candidate_marks: number | null
 }
 
 export type Candidate_assessmentCountAggregateOutputType = {
@@ -52,9 +64,18 @@ export type Candidate_assessmentCountAggregateOutputType = {
   assessment_grade: number
   created_at: number
   updated_at: number
+  candidate_marks: number
   _all: number
 }
 
+
+export type Candidate_assessmentAvgAggregateInputType = {
+  candidate_marks?: true
+}
+
+export type Candidate_assessmentSumAggregateInputType = {
+  candidate_marks?: true
+}
 
 export type Candidate_assessmentMinAggregateInputType = {
   ca_record_id?: true
@@ -64,6 +85,7 @@ export type Candidate_assessmentMinAggregateInputType = {
   assessment_grade?: true
   created_at?: true
   updated_at?: true
+  candidate_marks?: true
 }
 
 export type Candidate_assessmentMaxAggregateInputType = {
@@ -74,6 +96,7 @@ export type Candidate_assessmentMaxAggregateInputType = {
   assessment_grade?: true
   created_at?: true
   updated_at?: true
+  candidate_marks?: true
 }
 
 export type Candidate_assessmentCountAggregateInputType = {
@@ -84,6 +107,7 @@ export type Candidate_assessmentCountAggregateInputType = {
   assessment_grade?: true
   created_at?: true
   updated_at?: true
+  candidate_marks?: true
   _all?: true
 }
 
@@ -125,6 +149,18 @@ export type Candidate_assessmentAggregateArgs<ExtArgs extends runtime.Types.Exte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: Candidate_assessmentAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: Candidate_assessmentSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: Candidate_assessmentMinAggregateInputType
@@ -155,6 +191,8 @@ export type candidate_assessmentGroupByArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   _count?: Candidate_assessmentCountAggregateInputType | true
+  _avg?: Candidate_assessmentAvgAggregateInputType
+  _sum?: Candidate_assessmentSumAggregateInputType
   _min?: Candidate_assessmentMinAggregateInputType
   _max?: Candidate_assessmentMaxAggregateInputType
 }
@@ -167,7 +205,10 @@ export type Candidate_assessmentGroupByOutputType = {
   assessment_grade: $Enums.grade_types | null
   created_at: Date
   updated_at: Date
+  candidate_marks: number | null
   _count: Candidate_assessmentCountAggregateOutputType | null
+  _avg: Candidate_assessmentAvgAggregateOutputType | null
+  _sum: Candidate_assessmentSumAggregateOutputType | null
   _min: Candidate_assessmentMinAggregateOutputType | null
   _max: Candidate_assessmentMaxAggregateOutputType | null
 }
@@ -198,6 +239,7 @@ export type candidate_assessmentWhereInput = {
   assessment_grade?: Prisma.Enumgrade_typesNullableFilter<"candidate_assessment"> | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+  candidate_marks?: Prisma.IntNullableFilter<"candidate_assessment"> | number | null
   assessments?: Prisma.XOR<Prisma.AssessmentsScalarRelationFilter, Prisma.assessmentsWhereInput>
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
 }
@@ -210,6 +252,7 @@ export type candidate_assessmentOrderByWithRelationInput = {
   assessment_grade?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_marks?: Prisma.SortOrderInput | Prisma.SortOrder
   assessments?: Prisma.assessmentsOrderByWithRelationInput
   candidates_details?: Prisma.candidates_detailsOrderByWithRelationInput
 }
@@ -226,6 +269,7 @@ export type candidate_assessmentWhereUniqueInput = Prisma.AtLeast<{
   assessment_grade?: Prisma.Enumgrade_typesNullableFilter<"candidate_assessment"> | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+  candidate_marks?: Prisma.IntNullableFilter<"candidate_assessment"> | number | null
   assessments?: Prisma.XOR<Prisma.AssessmentsScalarRelationFilter, Prisma.assessmentsWhereInput>
   candidates_details?: Prisma.XOR<Prisma.Candidates_detailsScalarRelationFilter, Prisma.candidates_detailsWhereInput>
 }, "ca_record_id" | "assessment_id_candidate_id">
@@ -238,9 +282,12 @@ export type candidate_assessmentOrderByWithAggregationInput = {
   assessment_grade?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_marks?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.candidate_assessmentCountOrderByAggregateInput
+  _avg?: Prisma.candidate_assessmentAvgOrderByAggregateInput
   _max?: Prisma.candidate_assessmentMaxOrderByAggregateInput
   _min?: Prisma.candidate_assessmentMinOrderByAggregateInput
+  _sum?: Prisma.candidate_assessmentSumOrderByAggregateInput
 }
 
 export type candidate_assessmentScalarWhereWithAggregatesInput = {
@@ -254,6 +301,7 @@ export type candidate_assessmentScalarWhereWithAggregatesInput = {
   assessment_grade?: Prisma.Enumgrade_typesNullableWithAggregatesFilter<"candidate_assessment"> | $Enums.grade_types | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"candidate_assessment"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"candidate_assessment"> | Date | string
+  candidate_marks?: Prisma.IntNullableWithAggregatesFilter<"candidate_assessment"> | number | null
 }
 
 export type candidate_assessmentCreateInput = {
@@ -262,6 +310,7 @@ export type candidate_assessmentCreateInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
   assessments: Prisma.assessmentsCreateNestedOneWithoutCandidate_assessmentInput
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutCandidate_assessmentInput
 }
@@ -274,6 +323,7 @@ export type candidate_assessmentUncheckedCreateInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentUpdateInput = {
@@ -282,6 +332,7 @@ export type candidate_assessmentUpdateInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   assessments?: Prisma.assessmentsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
 }
@@ -294,6 +345,7 @@ export type candidate_assessmentUncheckedUpdateInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type candidate_assessmentCreateManyInput = {
@@ -304,6 +356,7 @@ export type candidate_assessmentCreateManyInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentUpdateManyMutationInput = {
@@ -312,6 +365,7 @@ export type candidate_assessmentUpdateManyMutationInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type candidate_assessmentUncheckedUpdateManyInput = {
@@ -322,6 +376,7 @@ export type candidate_assessmentUncheckedUpdateManyInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type Candidate_assessmentListRelationFilter = {
@@ -347,6 +402,11 @@ export type candidate_assessmentCountOrderByAggregateInput = {
   assessment_grade?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_marks?: Prisma.SortOrder
+}
+
+export type candidate_assessmentAvgOrderByAggregateInput = {
+  candidate_marks?: Prisma.SortOrder
 }
 
 export type candidate_assessmentMaxOrderByAggregateInput = {
@@ -357,6 +417,7 @@ export type candidate_assessmentMaxOrderByAggregateInput = {
   assessment_grade?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_marks?: Prisma.SortOrder
 }
 
 export type candidate_assessmentMinOrderByAggregateInput = {
@@ -367,6 +428,11 @@ export type candidate_assessmentMinOrderByAggregateInput = {
   assessment_grade?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  candidate_marks?: Prisma.SortOrder
+}
+
+export type candidate_assessmentSumOrderByAggregateInput = {
+  candidate_marks?: Prisma.SortOrder
 }
 
 export type candidate_assessmentCreateNestedManyWithoutCandidates_detailsInput = {
@@ -459,6 +525,7 @@ export type candidate_assessmentCreateWithoutCandidates_detailsInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
   assessments: Prisma.assessmentsCreateNestedOneWithoutCandidate_assessmentInput
 }
 
@@ -469,6 +536,7 @@ export type candidate_assessmentUncheckedCreateWithoutCandidates_detailsInput = 
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentCreateOrConnectWithoutCandidates_detailsInput = {
@@ -508,6 +576,7 @@ export type candidate_assessmentScalarWhereInput = {
   assessment_grade?: Prisma.Enumgrade_typesNullableFilter<"candidate_assessment"> | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"candidate_assessment"> | Date | string
+  candidate_marks?: Prisma.IntNullableFilter<"candidate_assessment"> | number | null
 }
 
 export type candidate_assessmentCreateWithoutAssessmentsInput = {
@@ -516,6 +585,7 @@ export type candidate_assessmentCreateWithoutAssessmentsInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
   candidates_details: Prisma.candidates_detailsCreateNestedOneWithoutCandidate_assessmentInput
 }
 
@@ -526,6 +596,7 @@ export type candidate_assessmentUncheckedCreateWithoutAssessmentsInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentCreateOrConnectWithoutAssessmentsInput = {
@@ -561,6 +632,7 @@ export type candidate_assessmentCreateManyCandidates_detailsInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentUpdateWithoutCandidates_detailsInput = {
@@ -569,6 +641,7 @@ export type candidate_assessmentUpdateWithoutCandidates_detailsInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   assessments?: Prisma.assessmentsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
 }
 
@@ -579,6 +652,7 @@ export type candidate_assessmentUncheckedUpdateWithoutCandidates_detailsInput = 
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInput = {
@@ -588,6 +662,7 @@ export type candidate_assessmentUncheckedUpdateManyWithoutCandidates_detailsInpu
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type candidate_assessmentCreateManyAssessmentsInput = {
@@ -597,6 +672,7 @@ export type candidate_assessmentCreateManyAssessmentsInput = {
   assessment_grade?: $Enums.grade_types | null
   created_at?: Date | string
   updated_at?: Date | string
+  candidate_marks?: number | null
 }
 
 export type candidate_assessmentUpdateWithoutAssessmentsInput = {
@@ -605,6 +681,7 @@ export type candidate_assessmentUpdateWithoutAssessmentsInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   candidates_details?: Prisma.candidates_detailsUpdateOneRequiredWithoutCandidate_assessmentNestedInput
 }
 
@@ -615,6 +692,7 @@ export type candidate_assessmentUncheckedUpdateWithoutAssessmentsInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type candidate_assessmentUncheckedUpdateManyWithoutAssessmentsInput = {
@@ -624,6 +702,7 @@ export type candidate_assessmentUncheckedUpdateManyWithoutAssessmentsInput = {
   assessment_grade?: Prisma.NullableEnumgrade_typesFieldUpdateOperationsInput | $Enums.grade_types | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidate_marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -636,6 +715,7 @@ export type candidate_assessmentSelect<ExtArgs extends runtime.Types.Extensions.
   assessment_grade?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_marks?: boolean
   assessments?: boolean | Prisma.assessmentsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidate_assessment"]>
@@ -648,6 +728,7 @@ export type candidate_assessmentSelectCreateManyAndReturn<ExtArgs extends runtim
   assessment_grade?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_marks?: boolean
   assessments?: boolean | Prisma.assessmentsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidate_assessment"]>
@@ -660,6 +741,7 @@ export type candidate_assessmentSelectUpdateManyAndReturn<ExtArgs extends runtim
   assessment_grade?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_marks?: boolean
   assessments?: boolean | Prisma.assessmentsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidate_assessment"]>
@@ -672,9 +754,10 @@ export type candidate_assessmentSelectScalar = {
   assessment_grade?: boolean
   created_at?: boolean
   updated_at?: boolean
+  candidate_marks?: boolean
 }
 
-export type candidate_assessmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ca_record_id" | "assessment_id" | "candidate_id" | "attempted_at" | "assessment_grade" | "created_at" | "updated_at", ExtArgs["result"]["candidate_assessment"]>
+export type candidate_assessmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ca_record_id" | "assessment_id" | "candidate_id" | "attempted_at" | "assessment_grade" | "created_at" | "updated_at" | "candidate_marks", ExtArgs["result"]["candidate_assessment"]>
 export type candidate_assessmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assessments?: boolean | Prisma.assessmentsDefaultArgs<ExtArgs>
   candidates_details?: boolean | Prisma.candidates_detailsDefaultArgs<ExtArgs>
@@ -702,6 +785,7 @@ export type $candidate_assessmentPayload<ExtArgs extends runtime.Types.Extension
     assessment_grade: $Enums.grade_types | null
     created_at: Date
     updated_at: Date
+    candidate_marks: number | null
   }, ExtArgs["result"]["candidate_assessment"]>
   composites: {}
 }
@@ -1134,6 +1218,7 @@ export interface candidate_assessmentFieldRefs {
   readonly assessment_grade: Prisma.FieldRef<"candidate_assessment", 'grade_types'>
   readonly created_at: Prisma.FieldRef<"candidate_assessment", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"candidate_assessment", 'DateTime'>
+  readonly candidate_marks: Prisma.FieldRef<"candidate_assessment", 'Int'>
 }
     
 
