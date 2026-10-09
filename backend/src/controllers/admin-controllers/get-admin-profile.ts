@@ -4,9 +4,24 @@ import { asyncHandler } from "../../helpers/asyncHandler";
 import { ApiError } from "../../helpers/ApiError";
 import { adminAuthRequest } from "../../interfaces/admin-auth-interface";
 import { prisma } from "../../lib/prisma";
+import { redis } from "../../lib/redis";
+import { ADMIN_REDIS_KEY } from "../../constants/admin-keys/admin-keys";
+import { ADMIN_REDIS_CACHE } from "../../lib/redis";
 
 export const getAdminProfile = asyncHandler(
     async (req: adminAuthRequest, res: Response) => {
+
+        const redisKey = ADMIN_REDIS_KEY.admin_profile_key(req.user.user_id)
+
+        const cachedAdminProfile = await redis.get(redisKey)
+
+        if (cachedAdminProfile) {
+            return res.status(200).json({
+                statusCode: 200,
+                message: "Admin profile fetched successfully.",
+                data: JSON.parse(cachedAdminProfile),
+            });
+        }
 
         const adminProfile = await prisma.admin_details.findUnique({
             where: {
@@ -45,6 +60,13 @@ export const getAdminProfile = asyncHandler(
 
             phone_no: adminProfile.admin_phone_no
         };
+
+        await redis.set(
+                  redisKey,
+                  JSON.stringify(profileData),
+                  "EX",
+                  ADMIN_REDIS_CACHE
+              );
 
         res.status(200).json({
             statusCode: 200,

@@ -3168,7 +3168,8 @@ export const Candidate_assessmentScalarFieldEnum = {
   attempted_at: 'attempted_at',
   assessment_grade: 'assessment_grade',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  candidate_marks: 'candidate_marks'
 } as const
 
 export type Candidate_assessmentScalarFieldEnum = (typeof Candidate_assessmentScalarFieldEnum)[keyof typeof Candidate_assessmentScalarFieldEnum]
