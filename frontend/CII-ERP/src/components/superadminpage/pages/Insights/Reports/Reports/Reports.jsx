@@ -26,7 +26,11 @@ export default function Reports() {
     let isCurrent = true;
     setIsLoading(true);
     setError("");
-    fetchEnrollmentReports(selectedCentre)
+    fetchEnrollmentReports({
+      centerId: selectedCentre,
+      fromDate,
+      toDate,
+    })
       .then((data) => {
         if (isCurrent) setReports(data);
       })
@@ -45,7 +49,7 @@ export default function Reports() {
     return () => {
       isCurrent = false;
     };
-  }, [selectedCentre]);
+  }, [selectedCentre, fromDate, toDate]);
 
   const monthOrder = Array.from({ length: 12 }, (_, index) => {
     const date = new Date();

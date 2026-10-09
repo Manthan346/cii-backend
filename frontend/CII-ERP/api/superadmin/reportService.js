@@ -1,14 +1,53 @@
 import API from "../api";
-import { fetchEnrollmentTrend } from "./dashboardService";
-import { fetchCenterDetails } from "./centreService";
+import { fetchCenters } from "./centreService";
 
-export async function fetchEnrollmentReports(centerId = "all") {
-	const [monthly, centres] = await Promise.all([
-		fetchEnrollmentTrend(centerId),
-		fetchCenterDetails(),
+function toMonthYear(dateString) {
+	if (!dateString) return "";
+	const value = String(dateString).trim();
+	if (/^\d{2}\/\d{4}$/.test(value)) return value;
+	const [year, month] = value.split("-");
+	if (!year || !month) return "";
+	return `${month}/${year}`;
+}
+
+function normalizeMonthlyEnrollment(payload = {}) {
+	const centers = Array.isArray(payload.centers) ? payload.centers : [];
+	const monthly = {};
+
+	centers.forEach((center) => {
+		(center.monthly_enrollment ?? []).forEach((entry) => {
+			const label = new Date(
+				Number(entry.year),
+				Number(entry.month) - 1,
+				1,
+			).toLocaleString("en-US", { month: "short" });
+			monthly[label] = (monthly[label] ?? 0) + Number(entry.enrollment_count ?? 0);
+		});
+	});
+
+	return monthly;
+}
+
+export async function fetchEnrollmentReports({
+	centerId = "all",
+	fromDate,
+	toDate,
+} = {}) {
+	const params = {};
+	const fromValue = toMonthYear(fromDate);
+	const toValue = toMonthYear(toDate);
+
+	if (fromValue) params.from = fromValue;
+	if (toValue) params.to = toValue;
+	if (centerId && centerId !== "all") params.center_id = centerId;
+
+	const [response, centres] = await Promise.all([
+		API.get("/super-admin/reports/enrollment/monthly", { params }),
+		fetchCenters(),
 	]);
-
-	return { monthly, centres };
+	const payload = response?.data?.data ?? {};
+	const monthly = normalizeMonthlyEnrollment(payload);
+	return { monthly, centres, period: payload.period ?? null };
 }
 
 export async function downloadEnrollmentReport({
