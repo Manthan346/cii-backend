@@ -100,10 +100,13 @@ const CandidateManagement = () => {
     batchId: null,
     courseName: null,
   });
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [batchLabels, setBatchLabels] = useState(["All Batches"]);
+  const [batchOptions, setBatchOptions] = useState([
+    { label: "All Batches", value: "" },
+  ]);
   const [courseLabels, setCourseLabels] = useState(["All Courses"]);
 
   useEffect(() => {
@@ -113,7 +116,15 @@ const CandidateManagement = () => {
         const { batches, courses } = await fetchCoursesAndBatches();
         if (cancelled) return;
 
-        setBatchLabels(["All Batches", ...batches.map((b) => b.batch_code)]);
+        setBatchOptions([
+          { label: "All Batches", value: "" },
+          ...batches
+            .map((batch) => ({
+              label: batch.batch_code,
+              value: batch.batch_id ?? batch.batchId ?? batch.id,
+            }))
+            .filter((batch) => batch.label && batch.value),
+        ]);
 
         setCourseLabels(["All Courses", ...courses.map((c) => c.course_name)]);
       } catch (err) {
@@ -129,6 +140,15 @@ const CandidateManagement = () => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedSearch(filters.search);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [filters.search]);
+
+  const { status: filterStatus, batchId: filterBatchId, courseName } = filters;
+
+  useEffect(() => {
     let cancelled = false;
 
     async function load() {
@@ -138,10 +158,10 @@ const CandidateManagement = () => {
         const data = await fetchCandidateOverview({
           page: pagination.currentPage,
           limit: TRAINER_PAGE_SIZE,
-          status: filters.status,
-          search: filters.search,
-          batchId: filters.batchId,
-          courseName: filters.courseName,
+          status: filterStatus,
+          search: debouncedSearch,
+          batchId: filterBatchId,
+          courseName,
         });
         if (!cancelled) {
           setCandidates(data.candidates.map(mapCandidate));
@@ -158,7 +178,14 @@ const CandidateManagement = () => {
     return () => {
       cancelled = true;
     };
-  }, [pagination.currentPage, filters, refreshKey]);
+  }, [
+    pagination.currentPage,
+    filterStatus,
+    debouncedSearch,
+    filterBatchId,
+    courseName,
+    refreshKey,
+  ]);
 
   const [stats, setStats] = useState(null);
   const [statsLoading, setStatsLoading] = useState(true);
@@ -187,7 +214,7 @@ const CandidateManagement = () => {
     setFilters({
       status,
       search: searchTerm,
-      batchId: batch === "All Batches" ? null : batch,
+      batchId: batch || null,
       courseName: course === "All Courses" ? null : course,
     });
   };
@@ -260,7 +287,7 @@ const CandidateManagement = () => {
               </div>
 
               <FilterBar
-                batchOptions={batchLabels}
+                batchOptions={batchOptions}
                 courseOptions={courseLabels}
                 statusOptions={statusOptions}
                 onFilterChange={handleFilterChange}

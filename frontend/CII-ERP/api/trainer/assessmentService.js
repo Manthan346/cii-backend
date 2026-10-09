@@ -83,7 +83,7 @@ export function mapAssessmentRecord(item) {
   return {
     id: item.assessment_id,
     assessment_id: item.assessment_id,
-    batch_id: item.batch_details?.batch_id ?? "-",
+    batch_id: item.batch_details?.batch_id ?? "",
     batch_code: item.batch_details?.batch_code ?? "-",
     course: item.batch_details?.course_details?.course_name ?? "-",
     title: item.title ?? "-",

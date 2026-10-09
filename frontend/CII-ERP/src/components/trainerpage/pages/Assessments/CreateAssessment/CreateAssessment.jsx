@@ -18,9 +18,112 @@ const emptyAssessment = {
   assessment_link: "",
 };
 
-export function AssessmentFields({ form, setForm, readOnly = false, batches }) {
-  const update = (name, value) =>
+const ASSESSMENT_FIELDS = {
+  batch_code: "batch_id",
+  title: "title",
+  assessment_desc: "assessment_desc",
+  assessment_type: "assessment_type",
+  assessment_date: "assessment_date",
+  no_of_questions: "questions",
+  assessment_duration: "assessment_duration",
+  assessment_link: "assessment_link",
+};
+
+export function validateAssessment(form) {
+  const errors = {};
+  if (!form.batch_id) errors.batch_code = "Please select a batch.";
+  if (!form.title?.trim()) errors.title = "Title is required.";
+  else if (form.title.trim().length < 3) {
+    errors.title = "Title must be at least 3 characters.";
+  }
+  if (!form.assessment_type) {
+    errors.assessment_type = "Please select an assessment type.";
+  }
+  if (!form.assessment_date) {
+    errors.assessment_date = "Assessment date is required.";
+  } else {
+    const match = form.assessment_date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (match) {
+      const [, year, month, day] = match;
+      const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+      if (
+        date.getUTCFullYear() !== Number(year) ||
+        date.getUTCMonth() !== Number(month) - 1 ||
+        date.getUTCDate() !== Number(day)
+      ) {
+        errors.assessment_date = "Enter a valid assessment date.";
+      }
+    } else {
+      errors.assessment_date = "Enter a valid assessment date.";
+    }
+  }
+  if (
+    !form.no_of_questions ||
+    !Number.isInteger(Number(form.no_of_questions)) ||
+    Number(form.no_of_questions) < 1
+  ) {
+    errors.no_of_questions = "Enter at least 1 question.";
+  }
+  if (
+    !form.assessment_duration ||
+    !Number.isInteger(Number(form.assessment_duration)) ||
+    Number(form.assessment_duration) < 1
+  ) {
+    errors.assessment_duration = "Duration must be at least 1 minute.";
+  }
+  if (!form.assessment_desc?.trim()) {
+    errors.assessment_desc = "Assessment description is required.";
+  } else if (form.assessment_desc.trim().length < 5) {
+    errors.assessment_desc = "Description must be at least 5 characters.";
+  }
+  if (form.assessment_link?.trim()) {
+    try {
+      const link = new URL(form.assessment_link.trim());
+      if (!["http:", "https:"].includes(link.protocol)) {
+        errors.assessment_link = "Enter a valid http or https link.";
+      }
+    } catch {
+      errors.assessment_link = "Enter a valid http or https link.";
+    }
+  }
+  return errors;
+}
+
+export function getAssessmentFieldErrors(requestError) {
+  const details = requestError.response?.data?.details;
+  if (!Array.isArray(details)) return {};
+
+  return details.reduce((errors, detail) => {
+    const fieldNames = Array.isArray(detail.fields)
+      ? detail.fields
+      : [detail.fields];
+    fieldNames.forEach((fieldName) => {
+      const field = Object.keys(ASSESSMENT_FIELDS).find(
+        (key) => ASSESSMENT_FIELDS[key] === fieldName,
+      );
+      if (field && detail.message) errors[field] = detail.message;
+    });
+    return errors;
+  }, {});
+}
+
+export function AssessmentFields({
+  form,
+  setForm,
+  readOnly = false,
+  batches,
+  errors = {},
+  setFieldErrors,
+}) {
+  const update = (name, value) => {
     setForm((current) => ({ ...current, [name]: value }));
+    setFieldErrors?.((current) => {
+      if (!current[name]) return current;
+      const next = { ...current };
+      delete next[name];
+      return next;
+    });
+  };
   const items = [
     ["batch_code", "Batch Code", "batch"],
     ["title", "Title", "text"],
@@ -38,6 +141,13 @@ export function AssessmentFields({ form, setForm, readOnly = false, batches }) {
       ].filter(Boolean),
     ),
   ];
+  const batchSelectOptions = batches
+    ? batches.some((batch) => batch.batch_code === form.batch_code)
+      ? batches
+      : form.batch_id && form.batch_code
+        ? [...batches, { batch_code: form.batch_code, batch_id: form.batch_id }]
+        : batches
+    : availableBatchOptions.map((batch_code) => ({ batch_code }));
   return (
     <div className="assessment-dialog-fields">
       {readOnly && (
@@ -58,35 +168,58 @@ export function AssessmentFields({ form, setForm, readOnly = false, batches }) {
                   : form[name] || "-"}
             </strong>
           ) : name === "batch_code" ? (
-            <select
-              value={form[name]}
-              onChange={(event) => {
-                const selectedBatch = batches?.find(
-                  (batch) => batch.batch_code === event.target.value,
-                );
-                setForm((current) => ({
-                  ...current,
-                  batch_code: event.target.value,
-                  batch_id: selectedBatch?.batch_id ?? current.batch_id,
-                }));
-              }}
-              required
-            >
-              <option value="">Select batch code</option>
-              {(
-                batches ??
-                availableBatchOptions.map((batch_code) => ({ batch_code }))
-              ).map((option) => (
-                <option key={option.batch_code} value={option.batch_code}>
-                  {option.batch_code}
-                </option>
-              ))}
-            </select>
+            <>
+              <select
+                value={form[name] ?? ""}
+                onChange={(event) => {
+                  const selectedBatch = batchSelectOptions.find(
+                    (batch) => batch.batch_code === event.target.value,
+                  );
+                  setForm((current) => ({
+                    ...current,
+                    batch_code: event.target.value,
+                    batch_id:
+                      selectedBatch?.batch_id ??
+                      selectedBatch?.batchId ??
+                      selectedBatch?.id ??
+                      "",
+                  }));
+                  setFieldErrors?.((current) => {
+                    if (!current.batch_code) return current;
+                    const next = { ...current };
+                    delete next.batch_code;
+                    return next;
+                  });
+                }}
+                aria-invalid={Boolean(errors.batch_code)}
+                aria-describedby={
+                  errors.batch_code ? "assessment-batch-error" : undefined
+                }
+              >
+                <option value="">Please select a batch</option>
+                {batchSelectOptions.map((option) => (
+                  <option key={option.batch_code} value={option.batch_code}>
+                    {option.batch_code}
+                  </option>
+                ))}
+              </select>
+              {errors.batch_code && (
+                <small
+                  id="assessment-batch-error"
+                  className="assessment-field-error"
+                >
+                  {errors.batch_code}
+                </small>
+              )}
+            </>
           ) : type === "select" ? (
             <select
               value={form[name]}
               onChange={(event) => update(name, event.target.value)}
-              required
+              aria-invalid={Boolean(errors[name])}
+              aria-describedby={
+                errors[name] ? `assessment-${name}-error` : undefined
+              }
             >
               <option value="APTITUDE">Aptitude</option>
               <option value="TECHNICAL">Technical</option>
@@ -97,10 +230,35 @@ export function AssessmentFields({ form, setForm, readOnly = false, batches }) {
           ) : (
             <input
               type={type}
-              value={form[name]}
+              value={form[name] ?? ""}
               onChange={(event) => update(name, event.target.value)}
-              required
+              min={
+                name === "title"
+                  ? 3
+                  : name === "no_of_questions" ||
+                      name === "assessment_duration"
+                    ? 1
+                    : undefined
+              }
+              step={
+                name === "no_of_questions" ||
+                name === "assessment_duration"
+                  ? 1
+                  : undefined
+              }
+              aria-invalid={Boolean(errors[name])}
+              aria-describedby={
+                errors[name] ? `assessment-${name}-error` : undefined
+              }
             />
+          )}
+          {!readOnly && name !== "batch_code" && errors[name] && (
+            <small
+              id={`assessment-${name}-error`}
+              className="assessment-field-error"
+            >
+              {errors[name]}
+            </small>
           )}
         </label>
       ))}
@@ -113,8 +271,22 @@ export function AssessmentFields({ form, setForm, readOnly = false, batches }) {
             rows="3"
             value={form.assessment_desc}
             onChange={(event) => update("assessment_desc", event.target.value)}
-            required
+            minLength={5}
+            aria-invalid={Boolean(errors.assessment_desc)}
+            aria-describedby={
+              errors.assessment_desc
+                ? "assessment-assessment_desc-error"
+                : undefined
+            }
           />
+        )}
+        {!readOnly && errors.assessment_desc && (
+          <small
+            id="assessment-assessment_desc-error"
+            className="assessment-field-error"
+          >
+            {errors.assessment_desc}
+          </small>
         )}
       </label>
     </div>
@@ -126,6 +298,7 @@ export default function CreateAssessment({ onClose, onSubmit }) {
   const [batches, setBatches] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
     fetchMyBatches()
@@ -134,15 +307,22 @@ export default function CreateAssessment({ onClose, onSubmit }) {
   }, []);
 
   const handleSubmit = async () => {
-    if (!form.batch_id) return setError("Please select a batch code.");
-    setSubmitting(true);
+    const validationErrors = validateAssessment(form);
+    setFieldErrors(validationErrors);
     setError("");
+    if (Object.keys(validationErrors).length > 0) return;
+
+    setSubmitting(true);
     try {
       await onSubmit(form);
     } catch (requestError) {
+      const serverErrors = getAssessmentFieldErrors(requestError);
+      setFieldErrors(serverErrors);
       setError(
-        requestError.response?.data?.message ||
-          "Unable to create assessment. Please try again.",
+        Object.keys(serverErrors).length
+          ? ""
+          : requestError.response?.data?.message ||
+              "Unable to create assessment. Please try again.",
       );
     } finally {
       setSubmitting(false);
@@ -171,7 +351,13 @@ export default function CreateAssessment({ onClose, onSubmit }) {
           </button>
         </div>
         {error && <p className="assessment-dialog-error">{error}</p>}
-        <AssessmentFields form={form} setForm={setForm} batches={batches} />
+        <AssessmentFields
+          form={form}
+          setForm={setForm}
+          batches={batches}
+          errors={fieldErrors}
+          setFieldErrors={setFieldErrors}
+        />
         <div className="assessment-dialog-actions">
           <Button variant="outline" onClick={onClose} disabled={submitting}>
             Cancel

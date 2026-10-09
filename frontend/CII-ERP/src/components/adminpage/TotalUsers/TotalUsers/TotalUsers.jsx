@@ -159,6 +159,7 @@ const normalizeUsers = (payload = []) =>
 const TotalUsers = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [role, setRole] = useState("all");
   const [status, setStatus] = useState("all");
   const [page, setPage] = useState(1);
@@ -213,7 +214,7 @@ const TotalUsers = () => {
 
     try {
       const response = await fetchAdminUsers({
-        search,
+        search: debouncedSearch,
         role,
         status,
         page,
@@ -240,11 +241,16 @@ const TotalUsers = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, role, status, page]);
+  }, [debouncedSearch, role, status, page]);
 
   useEffect(() => {
     loadUsers();
   }, [loadUsers, refreshTick]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(timeoutId);
+  }, [search]);
 
   const filteredUsers = useMemo(() => {
     const query = search.trim().toLowerCase();

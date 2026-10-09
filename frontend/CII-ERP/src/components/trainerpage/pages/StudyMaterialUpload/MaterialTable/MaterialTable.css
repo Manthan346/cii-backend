@@ -6,7 +6,7 @@
 .study-material-upload-material-table-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 900px;
+  min-width: 800px;
   font-family: var(--font-family);
 }
 

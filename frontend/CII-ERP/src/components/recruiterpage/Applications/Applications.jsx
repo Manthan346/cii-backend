@@ -30,19 +30,25 @@ const Applications = () => {
         ...dateFilters,
         page: 1,
       });
-      const allApplications = [...firstPage.applications];
       const totalPages = Math.max(
         1,
         Number(firstPage.pagination.totalPages) || 1,
       );
 
-      for (let page = 2; page <= totalPages; page += 1) {
-        const { applications: nextPage } = await fetchRecruiterApplications({
-          ...dateFilters,
-          page,
-        });
-        allApplications.push(...nextPage);
-      }
+      const remainingPages = await Promise.all(
+        Array.from({ length: totalPages - 1 }, (_, index) =>
+          fetchRecruiterApplications({
+            ...dateFilters,
+            page: index + 2,
+          }),
+        ),
+      );
+      const allApplications = [
+        ...firstPage.applications,
+        ...remainingPages.flatMap(({ applications: pageApplications }) =>
+          pageApplications,
+        ),
+      ];
 
       setApplications(allApplications);
     } catch (loadError) {

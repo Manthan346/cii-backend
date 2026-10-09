@@ -45,6 +45,7 @@ const normalizeCourse = (course) => ({
  */
 const CourseManagement = () => {
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [mode, setMode] = useState("all");
   const [company, setCompany] = useState("all");
   const [page, setPage] = useState(1);
@@ -65,7 +66,7 @@ const CourseManagement = () => {
       const data = await fetchAdminCourses({
         page,
         limit: 10,
-        search,
+        search: debouncedSearch,
         companyId: company,
         courseMode: mode,
       });
@@ -86,11 +87,16 @@ const CourseManagement = () => {
     } finally {
       setLoading(false);
     }
-  }, [page, search, company, mode]);
+  }, [page, debouncedSearch, company, mode]);
 
   useEffect(() => {
     loadCourses();
   }, [loadCourses]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(timeoutId);
+  }, [search]);
 
   useEffect(() => {
     let cancelled = false;

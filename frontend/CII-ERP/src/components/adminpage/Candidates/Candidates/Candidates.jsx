@@ -62,6 +62,7 @@ const Candidates = () => {
   const [statsLoading, setStatsLoading] = useState(true);
   const [statsError, setStatsError] = useState("");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [course, setCourse] = useState("all");
   const [company, setCompany] = useState("all");
   const [attendance, setAttendance] = useState("all");
@@ -135,7 +136,7 @@ const Candidates = () => {
     fetchAdminCandidateEnrollments({
       page,
       limit: 10,
-      search,
+      search: debouncedSearch,
       attendance,
     })
       .then((response) => {
@@ -163,7 +164,12 @@ const Candidates = () => {
     return () => {
       cancelled = true;
     };
-  }, [page, search, attendance]);
+  }, [page, debouncedSearch, attendance]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(timeoutId);
+  }, [search]);
 
   const handleUploadCertificate = async (candidate, file) => {
     if (!file) return;
@@ -188,7 +194,7 @@ const Candidates = () => {
       const response = await fetchAdminCandidateEnrollments({
         page,
         limit: 10,
-        search,
+        search: debouncedSearch,
         attendance,
       });
       const responsePagination = response.pagination ?? {};

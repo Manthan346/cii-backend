@@ -1,6 +1,29 @@
 import api from "../api";
 import { fetchPaginatedPage } from "./paginationService";
 
+const pendingBatchPageRequests = new Map();
+const pendingBatchDetailsRequests = new Map();
+
+function fetchBatchPage(params) {
+  const key = JSON.stringify(
+    Object.keys(params)
+      .sort()
+      .map((name) => [name, params[name]]),
+  );
+  const pending = pendingBatchPageRequests.get(key);
+  if (pending) return pending;
+
+  const request = api
+    .get("/instructor/batches-details", { params })
+    .then((response) => response.data.data);
+  pendingBatchPageRequests.set(key, request);
+  request.then(
+    () => pendingBatchPageRequests.delete(key),
+    () => pendingBatchPageRequests.delete(key),
+  );
+  return request;
+}
+
 /**
  * Fallback labels for batches whose start or end date is unavailable.
  * When both dates exist, the table status is derived from the date range.
@@ -39,6 +62,22 @@ function getDateBasedStatus(startDate, endDate) {
   if (today < start) return "Upcoming";
   if (today > end) return "Expired";
   return "Active";
+}
+
+function getBatchStatus(batch) {
+  const dateStatus = getDateBasedStatus(
+    batch.batch_start_date ??
+      batch.start_date ??
+      batch.batchStartDate ??
+      batch.startDate,
+    batch.batch_end_date ??
+      batch.end_date ??
+      batch.batchEndDate ??
+      batch.batch_endDate ??
+      batch.endDate,
+  );
+
+  return dateStatus ?? STATUS_ENUM_TO_LABEL[batch.status] ?? batch.status;
 }
 
 function formatDate(value) {
@@ -128,10 +167,7 @@ export async function fetchBatches({
   if (courseType && !isAllOption(courseType)) params.courseType = courseType;
 
   const fetchPage = async (requestPage) => {
-    const res = await api.get("/instructor/batches-details", {
-      params: { ...params, page: requestPage },
-    });
-    return res.data.data;
+    return fetchBatchPage({ ...params, page: requestPage });
   };
 
   let data;
@@ -170,83 +206,8 @@ export async function fetchBatches({
       ...firstBatches,
       ...remainingPages.flatMap((result) => result.batches ?? []),
     ];
-    const batchesMissingDates = allBatches.filter((batch) => {
-      const startDate =
-        batch.batch_start_date ??
-        batch.start_date ??
-        batch.batchStartDate ??
-        batch.startDate;
-      const endDate =
-        batch.batch_end_date ??
-        batch.end_date ??
-        batch.batchEndDate ??
-        batch.batch_endDate ??
-        batch.endDate;
-      return (!startDate || !endDate) && batch.batch_id;
-    });
-    const resolvedDates = await Promise.all(
-      batchesMissingDates.map(async (batch) => {
-        try {
-          const details = await fetchBatchDetails(batch.batch_id);
-          return [
-            batch.batch_id,
-            {
-              startDate:
-                details?.batch_start_date ??
-                details?.start_date ??
-                details?.batchStartDate ??
-                details?.startDate,
-              endDate:
-                details?.batch_end_date ??
-                details?.end_date ??
-                details?.batchEndDate ??
-                details?.batch_endDate ??
-                details?.endDate,
-            },
-          ];
-        } catch (error) {
-          console.error(
-            `Failed to load dates for batch ${batch.batch_id}.`,
-            error,
-          );
-          return [batch.batch_id, null];
-        }
-      }),
-    );
-    const datesByBatchId = new Map(resolvedDates);
-    const batchesWithDates = allBatches.map((batch) => {
-      const dates = datesByBatchId.get(batch.batch_id);
-      if (!dates) return batch;
-      return {
-        ...batch,
-        batch_start_date:
-          batch.batch_start_date ??
-          batch.start_date ??
-          batch.batchStartDate ??
-          batch.startDate ??
-          dates.startDate,
-        batch_end_date:
-          batch.batch_end_date ??
-          batch.end_date ??
-          batch.batchEndDate ??
-          batch.batch_endDate ??
-          batch.endDate ??
-          dates.endDate,
-      };
-    });
-    const matchingBatches = batchesWithDates.filter(
-      (batch) =>
-        getDateBasedStatus(
-          batch.batch_start_date ??
-            batch.start_date ??
-            batch.batchStartDate ??
-            batch.startDate,
-          batch.batch_end_date ??
-            batch.end_date ??
-            batch.batchEndDate ??
-            batch.batch_endDate ??
-            batch.endDate,
-        ) === status,
+    const matchingBatches = allBatches.filter(
+      (batch) => getBatchStatus(batch) === status,
     );
     const startIndex = (page - 1) * limit;
 
@@ -277,42 +238,6 @@ export async function fetchBatches({
   );
 
   const batches = (data.batches ?? []).map(mapBatch);
-  const batchesMissingEndDate = batches.filter(
-    (batch) => batch.endDate === "—" && batch.id,
-  );
-
-  if (batchesMissingEndDate.length > 0) {
-    const details = await Promise.all(
-      batchesMissingEndDate.map(async (batch) => {
-        try {
-          const details = await fetchBatchDetails(batch.id);
-          return [
-            batch.id,
-            details?.batch_end_date ??
-              details?.end_date ??
-              details?.batchEndDate ??
-              details?.batch_endDate ??
-              details?.endDate ??
-              null,
-          ];
-        } catch (error) {
-          console.error(`Failed to load details for batch ${batch.id}.`, error);
-          return [batch.id, "—"];
-        }
-      }),
-    );
-    const endDatesById = new Map(details);
-    batches.forEach((batch) => {
-      const endDate = endDatesById.get(batch.id);
-      if (endDate) {
-        batch.endDateValue = endDate;
-        batch.endDate = formatDate(endDate);
-        batch.status =
-          getDateBasedStatus(batch.startDateValue, endDate) ??
-          batch.status;
-      }
-    });
-  }
 
   return {
     batches,
@@ -325,12 +250,10 @@ export async function fetchBatches({
 export async function fetchBatchStats() {
   const [statsResponse, firstPageResponse] = await Promise.all([
     api.get("/instructor/batches-card-data"),
-    api.get("/instructor/batches-details", {
-      params: { page: 1, limit: 15 },
-    }),
+    fetchBatchPage({ page: 1, limit: 15 }),
   ]);
   const stats = statsResponse.data.data;
-  const firstPage = firstPageResponse.data.data;
+  const firstPage = firstPageResponse;
   const firstBatches = firstPage.batches ?? [];
   const pagination = firstPage.pagination ?? {};
   const totalRecords = Number(
@@ -350,78 +273,14 @@ export async function fetchBatchStats() {
     1;
   const remainingPages = await Promise.all(
     Array.from({ length: Math.max(0, serverTotalPages - 1) }, (_, index) =>
-      api
-        .get("/instructor/batches-details", {
-          params: { page: index + 2, limit: 15 },
-        })
-        .then((response) => response.data.data),
+      fetchBatchPage({ page: index + 2, limit: 15 }),
     ),
   );
   const allBatches = [
     ...firstBatches,
     ...remainingPages.flatMap((page) => page.batches ?? []),
   ];
-  const batchesMissingDates = allBatches.filter((batch) => {
-    const startDate =
-      batch.batch_start_date ??
-      batch.start_date ??
-      batch.batchStartDate ??
-      batch.startDate;
-    const endDate =
-      batch.batch_end_date ??
-      batch.end_date ??
-      batch.batchEndDate ??
-      batch.batch_endDate ??
-      batch.endDate;
-    return (!startDate || !endDate) && batch.batch_id;
-  });
-  const datesByBatchId = new Map(
-    await Promise.all(
-      batchesMissingDates.map(async (batch) => {
-        try {
-          const details = await fetchBatchDetails(batch.batch_id);
-          return [
-            batch.batch_id,
-            {
-              startDate:
-                details?.batch_start_date ??
-                details?.start_date ??
-                details?.batchStartDate ??
-                details?.startDate,
-              endDate:
-                details?.batch_end_date ??
-                details?.end_date ??
-                details?.batchEndDate ??
-                details?.batch_endDate ??
-                details?.endDate,
-            },
-          ];
-        } catch (error) {
-          console.error(
-            `Failed to load dates for batch ${batch.batch_id}.`,
-            error,
-          );
-          return [batch.batch_id, null];
-        }
-      }),
-    ),
-  );
-  const dateBasedStatuses = allBatches.map((batch) => {
-    const details = datesByBatchId.get(batch.batch_id);
-    return getDateBasedStatus(
-      batch.batch_start_date ??
-        batch.start_date ??
-        batch.batchStartDate ??
-        batch.startDate ??
-        details?.startDate,
-      batch.batch_end_date ??
-        batch.end_date ??
-        batch.batchEndDate ??
-        batch.batch_endDate ??
-        batch.endDate ??
-        details?.endDate,
-    );
-  });
+  const dateBasedStatuses = allBatches.map(getBatchStatus);
 
   return {
     totalBatches: stats.totalBatch ?? totalRecords,
@@ -434,8 +293,18 @@ export async function fetchBatchStats() {
  * Fetches full detail for one batch — powers the eye icon.
  */
 export async function fetchBatchDetails(batchId) {
-  const res = await api.get(`/instructor/batch-details/${batchId}`);
-  return res.data.data.batchDetails;
+  const pending = pendingBatchDetailsRequests.get(batchId);
+  if (pending) return pending;
+
+  const request = api
+    .get(`/instructor/batch-details/${batchId}`)
+    .then((response) => response.data.data.batchDetails);
+  pendingBatchDetailsRequests.set(batchId, request);
+  request.then(
+    () => pendingBatchDetailsRequests.delete(batchId),
+    () => pendingBatchDetailsRequests.delete(batchId),
+  );
+  return request;
 }
 
 // ---- Courses (for the Create Batch dropdown) ----

@@ -37,12 +37,46 @@ function formatDate(isoString) {
   });
 }
 
-function mapBatchProfile(apiDetails) {
+function mapBatchProfile(apiDetails, batch) {
+  const status =
+    apiDetails.b_status ?? apiDetails.batch_status ?? apiDetails.status;
+  const startDate =
+    apiDetails.batch_start_date ??
+    apiDetails.start_date ??
+    apiDetails.batchStartDate ??
+    apiDetails.startDate;
+  const endDate =
+    apiDetails.batch_end_date ??
+    apiDetails.end_date ??
+    apiDetails.batchEndDate ??
+    apiDetails.endDate;
+
   return {
-    description: apiDetails.batch_desc || "—",
-    endDate: formatDate(apiDetails.batch_end_date),
+    name: apiDetails.batch_name ?? apiDetails.name ?? batch.name,
+    code: apiDetails.batch_code ?? apiDetails.code ?? batch.code,
+    course:
+      apiDetails.course_name ??
+      apiDetails.course_details?.course_name ??
+      apiDetails.course?.course_name ??
+      batch.course,
+    candidates:
+      apiDetails.total_candidates_enrolled ??
+      apiDetails.candidates_enrolled ??
+      apiDetails.candidates ??
+      batch.candidates,
+    startDate: startDate ? formatDate(startDate) : batch.startDate,
+    status:
+      status === "ACTIVE"
+        ? "Active"
+        : status === "INACTIVE" || status === "DROPPED"
+          ? "Dropped"
+          : status === "UPCOMING"
+            ? "Upcoming"
+            : (status ?? batch.status),
+    description: apiDetails.batch_desc ?? apiDetails.description ?? "—",
+    endDate: endDate ? formatDate(endDate) : batch.endDate,
     maxCandidates: apiDetails.max_candidates ?? "—",
-    batchType: apiDetails.batch_type || "—",
+    batchType: apiDetails.batch_type ?? apiDetails.batchType ?? "—",
   };
 }
 
@@ -58,6 +92,7 @@ export default function ViewBatchModal({ batch, onClose }) {
 
     async function loadDetails() {
       setLoading(true);
+      setDetails(null);
       setError(null);
       setNotFound(false);
       try {
@@ -67,7 +102,7 @@ export default function ViewBatchModal({ batch, onClose }) {
           // Backend returns 200 + batchDetails: null instead of a 404.
           setNotFound(true);
         } else {
-          setDetails(mapBatchProfile(apiDetails));
+          setDetails(mapBatchProfile(apiDetails, batch));
         }
       } catch (err) {
         if (!cancelled) {
@@ -82,7 +117,7 @@ export default function ViewBatchModal({ batch, onClose }) {
     return () => {
       cancelled = true;
     };
-  }, [batch?.id]);
+  }, [batch]);
 
   if (!batch) return null;
 

@@ -31,6 +31,7 @@ const ALL_COURSES_LABEL = "All Courses";
 
 const BatchList = ({ onCreateBatch, onEditBatch, refreshKey }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [status, setStatus] = useState(batchStatusOptions[0]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -64,7 +65,7 @@ const BatchList = ({ onCreateBatch, onEditBatch, refreshKey }) => {
       const result = await fetchBatches({
         page: currentPage,
         limit: TRAINER_PAGE_SIZE,
-        search: searchTerm,
+        search: debouncedSearchTerm,
         status,
         courseId,
       });
@@ -85,23 +86,19 @@ const BatchList = ({ onCreateBatch, onEditBatch, refreshKey }) => {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, searchTerm, status, courseId]);
+  }, [currentPage, debouncedSearchTerm, status, courseId]);
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const t = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
       setCurrentPage(1);
-      loadBatches();
     }, 400);
     return () => clearTimeout(t);
   }, [searchTerm]);
-  /* eslint-enable react-hooks/exhaustive-deps */
 
-  /* eslint-disable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
   useEffect(() => {
     loadBatches();
-  }, [currentPage, status, courseId, refreshKey]);
-  /* eslint-enable react-hooks/exhaustive-deps, react-hooks/set-state-in-effect */
+  }, [loadBatches, refreshKey]);
 
   useEffect(() => {
     setStatsError("");
