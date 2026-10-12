@@ -25,6 +25,7 @@ const candidateAssessments = asyncHandler(
                 select: {
                     attempted_at: true,
                     assessment_grade: true,
+                    candidate_marks:true,
 
                     assessments: {
                         select: {
