@@ -32,6 +32,13 @@ const candidateAssessments = asyncHandler(
                             assessment_type: true,
                             assessment_date: true
                         }
+                    },
+
+                    batch_details:{
+                        select:{
+                            batch_name:true,
+                            batch_code:true
+                        }
                     }
                 }
             });
